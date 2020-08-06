@@ -1,8 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     * {
         font-family:나눔고딕 !important;
+    }
+    body {
+        background-color:#FAFAFA;
     }
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -47,4 +50,9 @@ export const GlobalStyle = createGlobalStyle`
         border-collapse: collapse;
         border-spacing: 0;
     }
+`;
+
+export const GlobalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
