@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #fafafa;
   box-sizing: border-box;
   height: 100px;
-  padding: 20px;
+  padding: 20px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,6 +12,7 @@ export const Container = styled.div`
 export const LeftTextWrap = styled.div`
   color: #20223e;
   font-size: 38px;
+  margin-left: 5px;
   font-weight: bolder;
 `;
 
