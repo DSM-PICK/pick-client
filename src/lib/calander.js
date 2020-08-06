@@ -41,7 +41,8 @@ const getDateObj = (dayArr = ["일", "월", "화", "수", "목", "금", "토"]) 
 
   const splitArr = [];
   for (let i = 0; i < 6; i++) {
-    splitArr.push(calanderArr.splice(0, 7));
+    splitArr.push(calanderArr.splice(1, 5));
+    calanderArr.splice(0, 2);
   }
 
   return splitArr;
