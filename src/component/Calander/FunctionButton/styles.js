@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   position: fixed;
@@ -7,43 +7,75 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  & > button {
-    z-index: 2;
-  }
 `;
 
 export const Button = styled.button`
-  width: 0;
-  height: 0;
-  width: ${(props) => props.width}px;
-  height: ${(props) => props.width}px;
+  outline: none;
+  transition: 0.45s;
   background-color: #2764a7;
   border-radius: 50%;
-  color: white;
   border: none;
   margin: 10px 0;
+  transition: 0.3s;
+`;
+
+export const BigButton = styled(Button)`
+  z-index: 0;
+  ${(props) =>
+    props.isOpen &&
+    css`
+      transform: rotate(45deg);
+    `};
+  width: 100px;
+  height: 100px;
+`;
+
+export const MenuButton = styled(Button)`
+  width: 0;
+  height: 0;
+  &:nth-child(1) {
+    transform: translate(0px, 130px);
+  }
+  &:nth-child(2) {
+    transform: translate(0px, 100px);
+  }
+`;
+
+export const MenuText = styled.div`
+  width: 100px;
+  text-align: right;
+  margin-right: 15px;
+  font-size: 19px;
+  color: #2764a7;
+`;
+
+export const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
 `;
 
 export const AnimationWrap = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > button:nth-child(1) {
-    transform: translate(0px, 130px);
-  }
-  & > button:nth-child(2) {
-    transform: translate(0px, 100px);
+  ${ButtonWrap} {
+    opacity: 0;
+    ${(props) =>
+      props.isOpen &&
+      css`
+        opacity: 1;
+      `}
   }
 
-  & > button {
-    transition: 0.35s;
+  ${MenuButton} {
     ${(props) =>
       props.isOpen &&
       css`
         width: 80px;
         height: 80px;
-        transform: translateY(0) !important;
+        transform: translate(0) !important;
       `}
   }
 `;
