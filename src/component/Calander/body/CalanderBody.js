@@ -5,10 +5,11 @@ import * as S from "./styles";
 
 const CalanderBody = () => {
   const [date, setDate] = useState(getDateObj());
+
   return (
     <S.Container>
-      {date.map((dateArr) => (
-        <CalanderRow date={dateArr} />
+      {date.map((dateArr, index) => (
+        <CalanderRow key={index} date={dateArr} />
       ))}
     </S.Container>
   );
