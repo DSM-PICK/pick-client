@@ -6,7 +6,7 @@ const CalanderRow = ({ date }) => {
   return (
     <S.Container>
       {date.map(({ date, isActive, month }) => (
-        <CalanderItem isActive={isActive} date={date} />
+        <CalanderItem key={month + date} isActive={isActive} date={date} />
       ))}
     </S.Container>
   );

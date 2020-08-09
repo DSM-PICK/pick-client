@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   flex: 1;
@@ -26,4 +26,11 @@ export const Body = styled.div`
 
 export const TeacherName = styled.div`
   padding: 5px 0;
+  ${(props) =>
+    props.isActive &&
+    css`
+      background-color: #2764a7;
+      border-radius: 12px;
+      color: white;
+    `}
 `;
