@@ -17,6 +17,9 @@ export const Button = styled.button`
   border: none;
   margin: 10px 0;
   transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const BigButton = styled(Button)`
@@ -42,7 +45,7 @@ export const MenuButton = styled(Button)`
 `;
 
 export const MenuText = styled.div`
-  width: 100px;
+  width: 130px;
   text-align: right;
   margin-right: 15px;
   font-size: 19px;
