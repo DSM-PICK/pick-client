@@ -1,8 +1,9 @@
 import React from 'react';
 import * as S from './styles';
 
-const AttedanceHeader = () => {
-	return <S.Container>출석</S.Container>;
+const AttedanceHeader = (props) => {
+	const { text } = props;
+	return <S.Container>{text}</S.Container>;
 };
 
 export default AttedanceHeader;

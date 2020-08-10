@@ -5,10 +5,13 @@ export const Container = styled.div`
 	width: 100%;
 	height: 238px;
 	margin: 10px 0;
-	background: url(${(props) => props.url}) no-repeat center;
+	background: ${(props) =>
+			props.url.length > 1 ? `url(${props.url})` : '#fafafa'}
+		no-repeat center;
+	box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
 	font-size: 40px;
 	text-decoration: none;
-	color: white;
+	color: ${(props) => (props.url.length > 1 ? 'white' : 'black')};
 	line-height: 238px;
 	text-align: center;
 	border-radius: 60px;

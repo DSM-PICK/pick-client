@@ -8,7 +8,7 @@ const Routing = () => {
 		<Switch>
 			<Route exact path="/schedule" component={ScheduleContainer} />
 
-			<Route exact path="/attendance" component={AttendanceContainer} />
+			<Route path="/attendance" component={AttendanceContainer} />
 			{/* 404PAGE <Route component={NotFound} /> */}
 		</Switch>
 	);
