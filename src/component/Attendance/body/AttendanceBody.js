@@ -9,7 +9,7 @@ const AttendanceBody = (props) => {
 		<S.Container>
 			{anchorItems.map((anchorItems) => (
 				<AttendanceAnchor
-					key={anchorItems.imgLink}
+					key={anchorItems.link}
 					text={anchorItems.text}
 					imgLink={anchorItems.imgLink}
 					link={anchorItems.link}

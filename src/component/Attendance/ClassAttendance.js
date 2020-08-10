@@ -3,26 +3,31 @@ import * as S from './styles';
 import AttendanceHeader from './header/AttedanceHeader';
 import AttendanceBody from './body/AttendanceBody';
 
-const Attendance = () => {
+const AttendanceClass = () => {
 	const [anchorItems, setAnchorItems] = useState([
 		{
-			text: '전공동아리',
-			imgLink: '../../../src/asset/attendanceClubPng.png',
-			link: '/attendance/club',
+			text: '4층',
+			imgLink: '',
+			link: '/attendance/class/floor4',
 		},
 		{
-			text: '교실자습',
-			imgLink: '../../../src/asset/attendanceClassPng.png',
-			link: '/attendance/class',
+			text: '3층',
+			imgLink: '',
+			link: '/attendance/class/floor3',
+		},
+		{
+			text: '2층',
+			imgLink: '',
+			link: '/attendance/class/floor2',
 		},
 	]);
 
 	return (
 		<S.Container>
-			<AttendanceHeader text="출석" />
+			<AttendanceHeader text="교실 자습" />
 			<AttendanceBody anchorItems={anchorItems} />
 		</S.Container>
 	);
 };
 
-export default Attendance;
+export default AttendanceClass;
