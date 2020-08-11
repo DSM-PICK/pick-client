@@ -2,8 +2,7 @@ import React from 'react';
 import * as S from './styles';
 
 const Header = (props) => {
-	const { text } = props;
-	return <S.Container>{text}</S.Container>;
+	return <S.Container>{props.children}</S.Container>;
 };
 
 export default Header;
