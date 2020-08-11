@@ -4,7 +4,14 @@ export const GlobalStyle = createGlobalStyle`
     * {
         font-family:나눔고딕 !important;
     }
+    .sc-fznZeY {
+        height: 100%;
+    }
+    html {
+        height: 100%;
+    }
     body {
+        height: 100%;
         background-color:#FAFAFA;
     }
     html, body, div, span, applet, object, iframe,
