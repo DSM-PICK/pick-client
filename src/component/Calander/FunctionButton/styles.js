@@ -29,8 +29,13 @@ export const BigButton = styled(Button)`
     css`
       transform: rotate(45deg);
     `};
+<<<<<<< Updated upstream
   width: 100px;
   height: 100px;
+=======
+  width: 80px;
+  height: 80px;
+>>>>>>> Stashed changes
 `;
 
 export const MenuButton = styled(Button)`
@@ -76,8 +81,13 @@ export const AnimationWrap = styled.div`
     ${(props) =>
       props.isOpen &&
       css`
+<<<<<<< Updated upstream
         width: 80px;
         height: 80px;
+=======
+        width: 60px;
+        height: 60px;
+>>>>>>> Stashed changes
         transform: translate(0) !important;
       `}
   }
