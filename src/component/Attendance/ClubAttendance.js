@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import * as S from './styles';
-import AttendanceHeader from './header/AttedanceHeader';
 import AttendanceBody from './body/AttendanceBody';
+import Header from '../Header/Header';
+import { Link } from 'react-router-dom';
+import { IoIosArrowBack } from 'react-icons/io';
 import { CLUB_ANCHOR_ITEMS } from './Constant';
 
 const AttendanceClub = () => {
@@ -9,7 +11,12 @@ const AttendanceClub = () => {
 
 	return (
 		<S.Container>
-			<AttendanceHeader text="전공동아리" />
+			<Header>
+				<S.HeaderBackBtn as={Link} to="/attendance">
+					<IoIosArrowBack />
+				</S.HeaderBackBtn>
+				<S.HeaderText>전공동아리</S.HeaderText>
+			</Header>
 			<AttendanceBody anchorItems={anchorItems} />
 		</S.Container>
 	);
