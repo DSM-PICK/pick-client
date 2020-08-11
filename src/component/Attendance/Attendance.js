@@ -2,20 +2,10 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import AttendanceHeader from './header/AttedanceHeader';
 import AttendanceBody from './body/AttendanceBody';
+import { MAIN_ANCHOR_ITEMS } from './Constant';
 
 const Attendance = () => {
-	const [anchorItems, setAnchorItems] = useState([
-		{
-			text: '전공동아리',
-			imgLink: '../../../src/asset/attendanceClubPng.png',
-			link: '/attendance/club',
-		},
-		{
-			text: '교실자습',
-			imgLink: '../../../src/asset/attendanceClassPng.png',
-			link: '/attendance/class',
-		},
-	]);
+	const anchorItems = MAIN_ANCHOR_ITEMS;
 
 	return (
 		<S.Container>
