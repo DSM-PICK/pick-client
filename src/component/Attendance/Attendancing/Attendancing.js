@@ -8,13 +8,24 @@ const onBack = () => {
 	history.back();
 };
 
-const Attendancing = () => {
+const getFloorText = (floorName) => {
+	console.log(floorName[floorName.length - 1]);
+	return floorName[floorName.length - 1] === 'y'
+		? '자습실'
+		: `${Number(floorName[floorName.length - 1])}층`;
+};
+
+const Attendancing = ({ location }) => {
+	const Floor = getFloorText(location.pathname.split('/')[3]);
+
+	console.log(Floor);
+
 	return (
 		<S.Container>
 			<Header>
 				<S.HeaderWhere>
 					<S.HeaderBackBtn onClick={onBack} />
-					<S.HeaderFloor>{`2층`}</S.HeaderFloor>
+					<S.HeaderFloor>{Floor}</S.HeaderFloor>
 				</S.HeaderWhere>
 				<S.HeaderWhen>
 					<S.HeaderMonthAndDay>{'7월 9일'}</S.HeaderMonthAndDay>
