@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import { CLASS_ANCHOR_ITEMS } from './Constant';
+import Footer from '../Footer/Footer';
 
 const AttendanceClass = () => {
 	const anchorItems = CLASS_ANCHOR_ITEMS;
@@ -18,6 +19,7 @@ const AttendanceClass = () => {
 				<S.HeaderText>교실 자습</S.HeaderText>
 			</Header>
 			<AttendanceBody anchorItems={anchorItems} />
+			<Footer />
 		</S.Container>
 	);
 };

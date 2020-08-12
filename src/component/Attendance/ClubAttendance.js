@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import { CLUB_ANCHOR_ITEMS } from './Constant';
+import Footer from '../Footer/Footer';
 
 const AttendanceClub = () => {
 	const anchorItems = CLUB_ANCHOR_ITEMS;
@@ -18,6 +19,7 @@ const AttendanceClub = () => {
 				<S.HeaderText>전공동아리</S.HeaderText>
 			</Header>
 			<AttendanceBody anchorItems={anchorItems} />
+			<Footer />
 		</S.Container>
 	);
 };

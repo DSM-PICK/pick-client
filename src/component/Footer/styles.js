@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
@@ -19,18 +19,11 @@ export const FooterNavItem = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	background: ${(props) => (props.imglink ? `url(${props.imglink})` : 'none')}
+	background: ${(props) =>
+			props.imgonlink
+				? `url(${props.imgonlink})`
+				: props.imglink
+				? `url(${props.imglink})`
+				: 'none'}
 		no-repeat center/30%;
 `;
-
-export const FooterNavItemActiveStyle = css`
-	background: ${(props) => (props.imgonlink ? `url(${props.imglink})` : 'none')}
-		no-repeat center/30%;
-`;
-
-// export const FooterNavItemImg = styled.div`
-// 	width: 100px;
-// 	height: 100%;
-// 	background: ${(props) => (props.imglink ? `url(${props.imglink})` : 'none')}
-// 		no-repeat round/80%;
-// `;

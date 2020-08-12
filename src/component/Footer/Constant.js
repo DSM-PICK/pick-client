@@ -2,21 +2,21 @@ export const FooterNav = [
 	{
 		imgLink: '../../../src/asset/Footer/home.png',
 		imgOnLink: '../../../src/asset/Footer/homeOn.png',
-		link: './main',
+		link: '/main',
 	},
 	{
 		imgLink: '../../../src/asset/Footer/calender.png',
 		imgOnLink: '../../../src/asset/Footer/calenderOn.png',
-		link: './schedule',
+		link: '/schedule',
 	},
 	{
 		imgLink: '../../../src/asset/Footer/bugreport.png',
 		imgOnLink: '../../../src/asset/Footer/bugreportOn.png',
-		link: './attendance/class',
+		link: '/bugreport',
 	},
 	{
 		imgLink: '../../../src/asset/Footer/tonggei.png',
 		imgOnLink: '../../../src/asset/Footer/tonggeiOn.png',
-		link: './attendance/club',
+		link: '/tonggei',
 	},
 ];
