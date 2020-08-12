@@ -11,7 +11,7 @@ const ScheduleHeader = () => {
         <S.MiddleFirstText>{month}월</S.MiddleFirstText>
         <S.MiddleSecondText>{year}년</S.MiddleSecondText>
       </S.MiddleWrap>
-      <S.Box width="50px" />
+      <S.Box width="80px" />
     </S.Container>
   );
 };
