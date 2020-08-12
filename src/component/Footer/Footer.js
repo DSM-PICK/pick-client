@@ -1,12 +1,9 @@
 import React from 'react';
-import * as S from './styles';
-import { FooterNav } from './Constant';
-import { Link, NavLink } from 'react-router-dom';
+import FooterRouting from './FooterRouting';
 
 const Footer = () => {
-	const FooterItems = FooterNav;
-
 	return (
+		<FooterRouting />
 		// <S.Container>
 		// 	<S.FooterNavItem
 		// 		as={NavLink}
@@ -17,6 +14,8 @@ const Footer = () => {
 		// 		key={FooterItems[0].imgLink}
 		// 	/>
 		// </S.Container>
+
+		/*
 		<S.Container>
 			{FooterItems.map((footerItem) => (
 				<S.FooterNavItem
@@ -29,6 +28,8 @@ const Footer = () => {
 				/>
 			))}
 		</S.Container>
+		*/
+
 		// <S.Container>
 		// 	{FooterItems.map((footerItem) => (
 		// 		<S.FooterNavItem
