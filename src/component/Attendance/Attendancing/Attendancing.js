@@ -3,6 +3,7 @@ import * as S from './styles';
 import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
 import Body from '../../Body/Body';
+import AttendanceNav from './AttendanceNav/AttendanceNav';
 
 const onBack = () => {
 	history.back();
@@ -30,7 +31,7 @@ const Attendancing = ({ location }) => {
 				</S.HeaderWhen>
 				<S.HeaderWho>{`감독교사 ${`김정은`}`}</S.HeaderWho>
 			</Header>
-			<Body></Body>
+			<Body>{Floor !== '자습실' && <AttendanceNav />}</Body>
 			<Footer />
 		</S.Container>
 	);
