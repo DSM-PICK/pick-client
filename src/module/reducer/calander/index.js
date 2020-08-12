@@ -1,23 +1,79 @@
-import { SHOW_MY_SCHEDULE, DEFAULT_STATUS } from "../../action/calander";
+import {
+  SHOW_MY_SCHEDULE_STATUS,
+  DEFAULT_STATUS,
+  CHANGE_MY_SCHEDULE_STATUS,
+  SELECT_FIRST_DAY,
+  SELECT_SECOND_DAY,
+  SELECT_SECOND_DAY_TEACHER,
+} from "../../action/calander";
+import getDateObj from "../../../lib/calander";
 
 const defaultState = {
-  state: "DEFAULT",
-  focusTeacher: "",
+  state: DEFAULT_STATUS,
+  todayTeacher: "김정은",
+  calanderArr: getDateObj(),
+  changeScheduleStatus: 1,
+  changeDays: {
+    first: {},
+    second: {},
+  },
 };
 
 const calanderReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case SHOW_MY_SCHEDULE: {
+    case SHOW_MY_SCHEDULE_STATUS: {
       return {
         ...state,
-        state: "SHOW_MY_SCHEDULE",
-        focusTeacher: action.payload,
+        state: SHOW_MY_SCHEDULE_STATUS,
+        todayTeacher: action.payload,
       };
     }
     case DEFAULT_STATUS: {
       return {
         ...state,
-        state: "DEFAULT",
+        state: DEFAULT_STATUS,
+      };
+    }
+    case CHANGE_MY_SCHEDULE_STATUS: {
+      return {
+        ...state,
+        state: CHANGE_MY_SCHEDULE_STATUS,
+        changeScheduleStatus: action.payload,
+        changeDays: {},
+      };
+    }
+    case SELECT_FIRST_DAY: {
+      return {
+        ...state,
+        changeScheduleStatus: 2,
+        changeDays: {
+          first: action.payload,
+        },
+      };
+    }
+    case SELECT_SECOND_DAY: {
+      return {
+        ...state,
+        changeScheduleStatus: 3,
+        changeDays: {
+          ...state.changeDays,
+          second: action.payload,
+        },
+      };
+    }
+    case SELECT_SECOND_DAY_TEACHER: {
+      const { floor, name } = action.payload;
+      return {
+        ...state,
+        changeScheduleStatus: 4,
+        changeDays: {
+          ...state.changeDays,
+          second: {
+            ...state.changeDays.second,
+            floor,
+            name,
+          },
+        },
       };
     }
     default: {

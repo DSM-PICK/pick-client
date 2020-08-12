@@ -1,16 +1,13 @@
-import React, { useState } from "react";
-import getDateObj from "../../../lib/calander";
-import CalanderRow from "./row/CalanderRow";
+import React from "react";
 import * as S from "./styles";
+import CalanderList from "./List/CalanderList";
+import CalanderAlert from "./alert/CalanderAlert";
 
 const CalanderBody = () => {
-  const [date, setDate] = useState(getDateObj());
-
   return (
     <S.Container>
-      {date.map((dateArr, index) => (
-        <CalanderRow key={index} date={dateArr} />
-      ))}
+      <CalanderList />
+      <CalanderAlert />
     </S.Container>
   );
 };

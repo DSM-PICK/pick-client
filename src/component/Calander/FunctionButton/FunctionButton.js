@@ -1,20 +1,21 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import * as S from "./styles";
 import { MenuAddIcon } from "../../../asset";
 import HiddenMenu from "./HiddenMenu/HiddenMenu";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { defaultStatus } from "../../../module/action/calander";
 
 const FunctionButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  const { state } = useSelector((state) => state.calander);
 
   const changeIsOpen = useCallback(() => {
-    setIsOpen(!isOpen);
-    if (!isOpen || state === "DEFAULT") return;
+    const nextValue = !isOpen;
+
+    setIsOpen(nextValue);
+    if (nextValue) return;
     dispatch(defaultStatus());
-  }, [dispatch, isOpen, state]);
+  }, [dispatch, isOpen]);
 
   return (
     <S.Container>
