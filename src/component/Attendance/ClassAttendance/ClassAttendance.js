@@ -13,9 +13,7 @@ const AttendanceClass = () => {
 	return (
 		<S.Container>
 			<Header>
-				<S.HeaderBackBtn as={Link} to="/main">
-					<IoIosArrowBack />
-				</S.HeaderBackBtn>
+				<S.HeaderBackBtn as={Link} to="/main" />
 				<S.HeaderText>교실 자습</S.HeaderText>
 			</Header>
 			<AttendanceBody anchorItems={anchorItems} />

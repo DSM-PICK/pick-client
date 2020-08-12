@@ -13,9 +13,7 @@ const AttendanceClub = () => {
 	return (
 		<S.Container>
 			<Header>
-				<S.HeaderBackBtn as={Link} to="/main">
-					<IoIosArrowBack />
-				</S.HeaderBackBtn>
+				<S.HeaderBackBtn as={Link} to="/main" />
 				<S.HeaderText>전공동아리</S.HeaderText>
 			</Header>
 			<AttendanceBody anchorItems={anchorItems} />

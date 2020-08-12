@@ -14,11 +14,13 @@ export const HeaderBackBtn = styled.span`
 	left: 30px;
 	top: 30px;
 
-	& > svg {
-		width: 3em;
-		height: 3em;
-		vertical-align: middle;
-	}
+	display: flex;
+	width: 3em;
+	height: 3em;
+	margin-right: 20px;
+	align-items: center;
+	justify-content: center;
+	background: url('../../../src/asset/Header/back.png') no-repeat center/100%;
 `;
 
 export const HeaderText = styled.span`

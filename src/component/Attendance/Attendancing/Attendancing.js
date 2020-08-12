@@ -9,7 +9,6 @@ const onBack = () => {
 };
 
 const getFloorText = (floorName) => {
-	console.log(floorName[floorName.length - 1]);
 	return floorName[floorName.length - 1] === 'y'
 		? '자습실'
 		: `${Number(floorName[floorName.length - 1])}층`;
@@ -17,8 +16,6 @@ const getFloorText = (floorName) => {
 
 const Attendancing = ({ location }) => {
 	const Floor = getFloorText(location.pathname.split('/')[3]);
-
-	console.log(Floor);
 
 	return (
 		<S.Container>
