@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import NavFooter from './NavFooter';
+import NavFooter from './NavFooter/NavFooter';
 
 const FooterRouting = () => {
 	return (

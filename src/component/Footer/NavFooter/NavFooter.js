@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './styles';
-import { FooterNav } from './Constant';
+import { FooterNav } from '../Constant';
 import { NavLink, Redirect } from 'react-router-dom';
 
 const checkPath = (pathname) => {
