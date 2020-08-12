@@ -5,10 +5,10 @@ import NavFooter from './NavFooter';
 const FooterRouting = () => {
 	return (
 		<Switch>
-			<Route path={['/main', '/attendance']} component={NavFooter} />
-			<Route path="/calendar" component={NavFooter} />
-			<Route path="/bugreport" component={NavFooter} />
-			<Route path="/tonggei" component={NavFooter} />
+			<Route
+				path={['/main', '/attendance', '/calendar', '/bugreport', '/tonggei']}
+				component={NavFooter}
+			/>
 		</Switch>
 	);
 };
