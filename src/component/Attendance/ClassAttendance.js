@@ -12,7 +12,7 @@ const AttendanceClass = () => {
 	return (
 		<S.Container>
 			<Header>
-				<S.HeaderBackBtn as={Link} to="/attendance">
+				<S.HeaderBackBtn as={Link} to="/main">
 					<IoIosArrowBack />
 				</S.HeaderBackBtn>
 				<S.HeaderText>교실 자습</S.HeaderText>
