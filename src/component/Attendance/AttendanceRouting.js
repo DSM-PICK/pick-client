@@ -12,7 +12,7 @@ const AttendanceRouting = () => {
 				<Route exact path="/attendance/class" component={AttendanceClass} />
 				<Route exact path="/attendance/club" component={AttendanceClub} />
 				<Route
-					path={['/attendance/class/', '/attendance/class/']}
+					path={['/attendance/class/', '/attendance/club/']}
 					component={Attendancing}
 				/>
 			</Switch>
