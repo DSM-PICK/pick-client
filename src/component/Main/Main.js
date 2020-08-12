@@ -36,7 +36,7 @@ const Main = () => {
 					<S.MainBodyLogoutButton>로그아웃</S.MainBodyLogoutButton>
 				</S.MainBodyLogoutLayout>
 			</Body>
-			<Footer></Footer>
+			<Footer />
 		</G.GlobalContainer>
 	);
 };
