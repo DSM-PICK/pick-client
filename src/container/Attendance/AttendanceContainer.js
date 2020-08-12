@@ -1,12 +1,11 @@
 import React from 'react';
 import * as G from '../../GlobalStyle';
-import { Switch, Route } from 'react-router-dom';
-import AttendanceRouting from '../../component/Attendance/AttendanceRouting';
+import Attendance from '../../component/Attendance/Attendance';
 
 const AttendanceContainer = () => {
 	return (
 		<G.GlobalContainer>
-			<AttendanceRouting />
+			<Attendance />
 		</G.GlobalContainer>
 	);
 };
