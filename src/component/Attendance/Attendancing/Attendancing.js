@@ -16,8 +16,31 @@ const getFloorText = (floorName) => {
 		: `${Number(floorName[floorName.length - 1])}층`;
 };
 
+const getFloorData = (floor) => {
+	console.log(Data);
+	console.log(Data.CLUB_FLOOR2);
+	return Data.CLUB_FLOOR2;
+};
+
+const getDay = (floorData) => {
+	let month = String(floorData.date).substring(0, 2);
+	let day = String(floorData.date).substring(2, 4);
+	if (month[0] == 0) {
+		month = month[1];
+	}
+	if (day[0] == 0) {
+		day = day[1];
+	}
+	return [month, day];
+};
+
 const Attendancing = ({ location }) => {
 	const Floor = getFloorText(location.pathname.split('/')[3]);
+
+	const floorData = getFloorData();
+	const today = getDay(floorData);
+
+	console.log(today);
 
 	return (
 		<S.Container>
@@ -27,10 +50,10 @@ const Attendancing = ({ location }) => {
 					<S.HeaderFloor>{Floor}</S.HeaderFloor>
 				</S.HeaderWhere>
 				<S.HeaderWhen>
-					<S.HeaderMonthAndDay>{'7월 9일'}</S.HeaderMonthAndDay>
-					<S.HeaderDayOfTheWeek>{'금요일'}</S.HeaderDayOfTheWeek>
+					<S.HeaderMonthAndDay>{`${today[0]}월 ${today[1]}일`}</S.HeaderMonthAndDay>
+					<S.HeaderDayOfTheWeek>{`${floorData.dayOfWeek}요일`}</S.HeaderDayOfTheWeek>
 				</S.HeaderWhen>
-				<S.HeaderWho>{`감독교사 ${`김정은`}`}</S.HeaderWho>
+				<S.HeaderWho>{`감독교사 ${floorData.teacherName}`}</S.HeaderWho>
 			</Header>
 			<Body>{Floor !== '자습실' && <AttendanceNav data={Data} />}</Body>
 			<Footer />
