@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as Item from "./item/styles";
+import * as Item from "./CalanderItem/styles";
 
 export const Container = styled.div`
   display: flex;

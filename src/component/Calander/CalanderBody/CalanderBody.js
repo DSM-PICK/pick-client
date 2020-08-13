@@ -1,12 +1,12 @@
 import React from "react";
 import * as S from "./styles";
-import CalanderList from "./List/CalanderList";
-import CalanderAlert from "./alert/CalanderAlert";
+import CalanderAlert from "../../Alert/CalanderAlert";
+import CalanderListContainer from "./CalanderList/CalanderListContainer";
 
 const CalanderBody = () => {
   return (
     <S.Container>
-      <CalanderList />
+      <CalanderListContainer />
       <CalanderAlert />
     </S.Container>
   );

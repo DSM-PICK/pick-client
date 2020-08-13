@@ -1,12 +1,13 @@
 import React, { useCallback } from "react";
 import * as S from "../styles";
-import { arrowIcon } from "../../../../../asset";
 import { Hr } from "../teacherList/styles";
 import { useDispatch } from "react-redux";
 import {
   resolveChangeTeacherSaga,
   rejectChangeTeacherSaga,
-} from "../../../../../module/action/calander";
+} from "../../../module/action/calander";
+import { arrowIcon } from "../../../asset/index";
+import BottomAlert from "../BottomAlert/BottomAlert";
 
 const CalanderConfirmChangeTeacher = ({ firstDay, secondDay }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const CalanderConfirmChangeTeacher = ({ firstDay, secondDay }) => {
   } = secondDay;
   return (
     <>
-      <S.BottomText>{`${firstDayMonth}월 ${firstDayDate}일 → ${secondDayMonth}월 ${secondDayDate}일`}</S.BottomText>
+      <BottomAlert>{`${firstDayMonth}월 ${firstDayDate}일 → ${secondDayMonth}월 ${secondDayDate}일`}</BottomAlert>
       <S.TopContainer>
         <S.TopHeader>교체하시겠습니까?</S.TopHeader>
         <S.Confirm>

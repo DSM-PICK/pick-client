@@ -1,9 +1,10 @@
 import React, { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as S from "./styles";
-import { CHANGE_MY_SCHEDULE_STATUS } from "../../../../module/action/calander";
+import { CHANGE_MY_SCHEDULE_STATUS } from "../../module/action/calander";
 import CalanderAlertTeacherList from "./teacherList/CalanderAlertTeacherList";
 import CalanderConfirmChangeTeacher from "./confirm/CalanderConfirmChangeTeacher";
+import BottomAlert from "./BottomAlert/BottomAlert";
 
 const CalanderAlert = () => {
   const state = useSelector((store) => store.calander.state);
@@ -19,20 +20,18 @@ const CalanderAlert = () => {
   const render = useMemo(() => {
     switch (changeScheduleStatus) {
       case 1: {
-        return (
-          <S.BottomText>교체를 원하는 내 일정을 선택해 주세요</S.BottomText>
-        );
+        return <BottomAlert>교체를 원하는 내 일정을 선택해 주세요</BottomAlert>;
       }
       case 2: {
         const { month, date } = days.first;
-        return <S.BottomText>{`${month}월 ${date}일 →`}</S.BottomText>;
+        return <BottomAlert>{`${month}월 ${date}일 →`}</BottomAlert>;
       }
       case 3: {
         const { month: month1, date: date1 } = days.first;
         const { month: month2, date: date2, teachers } = days.second;
         return (
           <>
-            <S.BottomText>{`${month1}월 ${date1}일 → ${month2}월 ${date2}일`}</S.BottomText>
+            <BottomAlert>{`${month1}월 ${date1}일 → ${month2}월 ${date2}일`}</BottomAlert>
             <S.TopContainer>
               <S.TopHeader>
                 {month2}월 {date2}일
@@ -56,11 +55,7 @@ const CalanderAlert = () => {
     }
   }, [changeScheduleStatus, days]);
 
-  return state === CHANGE_MY_SCHEDULE_STATUS ? (
-    <S.Container>{render}</S.Container>
-  ) : (
-    <></>
-  );
+  return state === CHANGE_MY_SCHEDULE_STATUS ? render : <></>;
 };
 
 export default CalanderAlert;
