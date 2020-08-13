@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import * as S from './styles';
+import React from 'react';
 import AttendanceAnchor from './anchor/AttendanceAnchor';
+import Body from '../../Body/Body';
 
 const AttendanceBody = (props) => {
 	const { anchorItems } = props;
 
 	return (
-		<S.Container>
+		<Body>
 			{anchorItems.map((anchorItems) => (
 				<AttendanceAnchor
 					key={anchorItems.link}
@@ -15,7 +15,7 @@ const AttendanceBody = (props) => {
 					link={anchorItems.link}
 				/>
 			))}
-		</S.Container>
+		</Body>
 	);
 };
 
