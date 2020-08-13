@@ -9,7 +9,7 @@ export const CLUB_FLOOR2 = {
 		{ location: '3학년 3반', name: 'UP' },
 		{ location: '세미나실 2-3', name: 'GG' },
 		{ location: '3학년 4반', name: 'UP' },
-		{ location: '세미나실 2-4', name: 'GG' },
+		{ location: '세미나실 2-4', name: 'GG', did: true },
 	],
 	teacherName: '김정은',
 };

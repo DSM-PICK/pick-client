@@ -53,7 +53,9 @@ const Attendancing = ({ location }) => {
 				</S.HeaderWhen>
 				<S.HeaderWho>{`감독교사 ${floorData.teacherName}`}</S.HeaderWho>
 			</Header>
-			<Body>{Floor !== '자습실' && <AttendanceNav data={Data} />}</Body>
+			<Body>
+				{Floor !== '자습실' && <AttendanceNav floors={floorData.locations} />}
+			</Body>
 			<Footer />
 		</S.Container>
 	);

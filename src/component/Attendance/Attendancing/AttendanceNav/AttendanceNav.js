@@ -1,18 +1,17 @@
 import React from 'react';
 import * as S from './styles';
+import AttendanceNavItem from './AttendanceNavItem/AttendanceNavItem';
 
 const AttendanceNav = (props) => {
-	const { classes } = props;
+	const { floors } = props;
 
-	console.log(classes);
+	console.log(floors);
 
 	return (
 		<S.Container>
-			{/* {
-            classes.map(class => 
-                    
-            )
-        } */}
+			{floors.map((data, index) => (
+				<AttendanceNavItem key={data.location} data={data} index={index} />
+			))}
 		</S.Container>
 	);
 };
