@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import * as S from "./styles";
-import CalanderItem from "./item/CalanderItem";
+import CalanderItemContainer from "./CalanderItem/CalanderItemContainer";
 
 const teachers = [
   {
@@ -19,12 +19,12 @@ const teachers = [
 
 const CalanderRow = ({ date }) => {
   useEffect(() => {
-    console.log("캘린더 로우 랜더링");
+    console.log("CalanderRow");
   });
   return (
     <S.Container>
       {date.map(({ date, isActive, month }) => (
-        <CalanderItem
+        <CalanderItemContainer
           key={month + date}
           isActive={isActive}
           date={date}

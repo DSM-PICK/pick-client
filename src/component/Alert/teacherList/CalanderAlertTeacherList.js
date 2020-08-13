@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as S from "./styles";
 import { useDispatch } from "react-redux";
-import { selectSecondDayTeacher } from "../../../../../module/action/calander";
+import { selectSecondDayTeacher } from "../../../module/action/calander";
 
 const CalanderAlertTeacherList = ({ teachers }) => {
   useEffect(() => {

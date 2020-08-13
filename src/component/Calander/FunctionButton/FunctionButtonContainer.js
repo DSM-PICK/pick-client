@@ -1,27 +1,28 @@
 import React, { useState, useCallback } from "react";
 import * as S from "./styles";
 import { MenuAddIcon } from "../../../asset";
-import HiddenMenu from "./HiddenMenu/HiddenMenu";
-import { useDispatch } from "react-redux";
-import { defaultStatus } from "../../../module/action/calander";
+import HiddenMenuContainer from "./HiddenMenu/HiddenMenuContainer";
+import { useDispatch, useSelector } from "react-redux";
+import { defaultStatus, DEFAULT_STATUS } from "../../../module/action/calander";
 
-const FunctionButton = () => {
+const FunctionButtonContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  const state = useSelector((store) => store.calander.state);
 
   const changeIsOpen = useCallback(() => {
     const nextValue = !isOpen;
 
     setIsOpen(nextValue);
-    if (nextValue) return;
+    if (nextValue || state === DEFAULT_STATUS) return;
     dispatch(defaultStatus());
-  }, [dispatch, isOpen]);
+  }, [dispatch, isOpen, state]);
 
   return (
     <S.Container>
-      <HiddenMenu isOpen={isOpen} />
+      <HiddenMenuContainer isOpen={isOpen} state={state} />
       <S.ButtonWrap>
-        <S.MenuText></S.MenuText>
+        <S.MenuText />
         <S.BigButton onClick={changeIsOpen} isOpen={isOpen}>
           <img src={MenuAddIcon} />
         </S.BigButton>
@@ -29,4 +30,4 @@ const FunctionButton = () => {
     </S.Container>
   );
 };
-export default FunctionButton;
+export default FunctionButtonContainer;
