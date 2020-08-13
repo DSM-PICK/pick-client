@@ -5,10 +5,7 @@ import Footer from '../../Footer/Footer';
 import Body from '../../Body/Body';
 import AttendanceNav from './AttendanceNav/AttendanceNav';
 import * as Data from './Constant';
-
-const onBack = () => {
-	history.back();
-};
+import { Link } from 'react-router-dom';
 
 const getFloorText = (floorName) => {
 	return floorName[floorName.length - 1] === 'y'
@@ -40,11 +37,17 @@ const Attendancing = ({ location }) => {
 	const floorData = getFloorData();
 	const today = getDay(floorData);
 
+	const to = `/${location.pathname.split('/')[1]}/${
+		location.pathname.split('/')[2]
+	}`;
+
+	console.log(to);
+
 	return (
 		<S.Container>
 			<Header>
 				<S.HeaderWhere>
-					<S.HeaderBackBtn onClick={onBack} />
+					<S.HeaderBackBtn as={Link} to={to} />
 					<S.HeaderFloor>{Floor}</S.HeaderFloor>
 				</S.HeaderWhere>
 				<S.HeaderWhen>

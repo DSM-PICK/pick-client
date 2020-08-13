@@ -15,17 +15,17 @@ export const CLASS_ANCHOR_ITEMS = [
 	{
 		text: '4층',
 		imgLink: '',
-		link: '/attendance/class/floor4',
+		link: '/attendance/class/floor4/0',
 	},
 	{
 		text: '3층',
 		imgLink: '',
-		link: '/attendance/class/floor3',
+		link: '/attendance/class/floor3/0',
 	},
 	{
 		text: '2층',
 		imgLink: '',
-		link: '/attendance/class/floor2',
+		link: '/attendance/class/floor2/0',
 	},
 ];
 
@@ -33,21 +33,21 @@ export const CLUB_ANCHOR_ITEMS = [
 	{
 		text: '4층',
 		imgLink: '',
-		link: '/attendance/club/floor4',
+		link: '/attendance/club/floor4/0',
 	},
 	{
 		text: '3층',
 		imgLink: '',
-		link: '/attendance/club/floor3',
+		link: '/attendance/club/floor3/0',
 	},
 	{
 		text: '2층',
 		imgLink: '',
-		link: '/attendance/club/floor2',
+		link: '/attendance/club/floor2/0',
 	},
 	{
 		text: '자습실',
 		imgLink: '',
-		link: '/attendance/club/selfstudy',
+		link: '/attendance/club/selfstudy/0',
 	},
 ];
