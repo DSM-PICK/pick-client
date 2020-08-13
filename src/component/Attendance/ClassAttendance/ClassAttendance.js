@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from '../styles';
 import AttendanceBody from '../body/AttendanceBody';
 import Header from '../../Header/Header';
-import { Link } from 'react-router-dom';
-import { IoIosArrowBack } from 'react-icons/io';
 import { CLASS_ANCHOR_ITEMS } from '../Constant';
 import Footer from '../../Footer/Footer';
+
+const onBack = () => {
+	history.back();
+};
 
 const AttendanceClass = () => {
 	const anchorItems = CLASS_ANCHOR_ITEMS;
@@ -13,8 +15,8 @@ const AttendanceClass = () => {
 	return (
 		<S.Container>
 			<Header>
-				<S.HeaderBackBtn as={Link} to="/main" />
-				<S.HeaderText>교실 자습</S.HeaderText>
+				<S.HeaderBackBtn onClick={onBack} />
+				<S.HeaderFloor>교실 자습</S.HeaderFloor>
 			</Header>
 			<AttendanceBody anchorItems={anchorItems} />
 			<Footer />

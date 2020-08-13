@@ -40,8 +40,6 @@ const Attendancing = ({ location }) => {
 	const floorData = getFloorData();
 	const today = getDay(floorData);
 
-	console.log(today);
-
 	return (
 		<S.Container>
 			<Header>
