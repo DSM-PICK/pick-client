@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const HeaderWhere = styled.div`
 	display: flex;
+	align-items: center;
 `;
 
 export const HeaderBackBtn = styled.div`
