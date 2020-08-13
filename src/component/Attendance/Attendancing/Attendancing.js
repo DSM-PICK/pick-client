@@ -4,6 +4,7 @@ import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
 import Body from '../../Body/Body';
 import AttendanceNav from './AttendanceNav/AttendanceNav';
+import * as Data from './Constant';
 
 const onBack = () => {
 	history.back();
@@ -31,7 +32,7 @@ const Attendancing = ({ location }) => {
 				</S.HeaderWhen>
 				<S.HeaderWho>{`감독교사 ${`김정은`}`}</S.HeaderWho>
 			</Header>
-			<Body>{Floor !== '자습실' && <AttendanceNav />}</Body>
+			<Body>{Floor !== '자습실' && <AttendanceNav data={Data} />}</Body>
 			<Footer />
 		</S.Container>
 	);
