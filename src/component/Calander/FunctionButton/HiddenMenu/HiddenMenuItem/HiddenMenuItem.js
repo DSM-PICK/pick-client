@@ -1,5 +1,4 @@
-import React, { useEffect, memo } from "react";
-import HiddenMenu from "../HiddenMenu";
+import React, { memo } from "react";
 import * as S from "../../styles";
 
 const HiddenMenuItem = ({ content, src, onClick }) => {
