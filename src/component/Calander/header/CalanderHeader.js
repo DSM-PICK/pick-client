@@ -4,11 +4,21 @@ import * as S from "./styles";
 const CalanderHeader = () => {
   return (
     <S.Container>
-      <S.DayHeader>월</S.DayHeader>
-      <S.DayHeader>화</S.DayHeader>
-      <S.DayHeader>수</S.DayHeader>
-      <S.DayHeader>목</S.DayHeader>
-      <S.DayHeader>금</S.DayHeader>
+      <S.DayHeader>
+        <div>월</div>
+      </S.DayHeader>
+      <S.DayHeader>
+        <div>화</div>
+      </S.DayHeader>
+      <S.DayHeader>
+        <div>수</div>
+      </S.DayHeader>
+      <S.DayHeader>
+        <div>목</div>
+      </S.DayHeader>
+      <S.DayHeader>
+        <div>금</div>
+      </S.DayHeader>
     </S.Container>
   );
 };

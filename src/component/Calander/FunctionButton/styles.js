@@ -11,7 +11,6 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   outline: none;
-  transition: 0.45s;
   background-color: #2764a7;
   border-radius: 50%;
   border: none;

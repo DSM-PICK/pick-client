@@ -7,6 +7,13 @@ export const SELECT_FIRST_DAY_SAGA = "calander/SELECT_FIRST_DAY_SAGA";
 export const SELECT_SECOND_DAY = "calander/SELECT_SECOND_DAY";
 export const SELECT_SECOND_DAY_TEACHER = "calander/SELECT_SECOND_DAY_TEACHER";
 
+export const RESOLVE_CHANGE_TEACHER_SAGA =
+  "calander/RESOLVE_CHANGE_TEACHER_SAGA";
+export const REJECT_CHANGE_TEACHER_SAGA = "calander/REJECT_CHANGE_TEACHER_SAGA";
+
+export const SUCCESS_CHANGE_TEACHER = "calander/SUCCESS_CHANGE_TEACHER";
+export const FAIL_CHANGE_TEACHER = "calander/FAIL_CHANGE_TEACHER";
+
 export const defaultStatus = () => ({
   type: DEFAULT_STATUS,
 });
@@ -38,5 +45,23 @@ export const selectSecondDay = (payload) => ({
 
 export const selectSecondDayTeacher = (payload) => ({
   type: SELECT_SECOND_DAY_TEACHER,
+  payload,
+});
+
+export const resolveChangeTeacherSaga = () => ({
+  type: RESOLVE_CHANGE_TEACHER_SAGA,
+});
+
+export const rejectChangeTeacherSaga = () => ({
+  type: REJECT_CHANGE_TEACHER_SAGA,
+});
+
+export const successChangeTeacher = (payload) => ({
+  type: SUCCESS_CHANGE_TEACHER,
+  payload,
+});
+
+export const failChangeTeacher = (payload) => ({
+  type: FAIL_CHANGE_TEACHER,
   payload,
 });
