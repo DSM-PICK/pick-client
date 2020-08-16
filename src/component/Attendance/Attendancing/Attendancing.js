@@ -6,6 +6,7 @@ import Body from '../../Body/Body';
 import AttendanceNav from './AttendanceNav/AttendanceNav';
 import * as Data from './Constant';
 import { Link } from 'react-router-dom';
+import AttendanceSection from './AttendanceSection/AttendanceSection';
 
 const getFloorText = (floorName) => {
 	return floorName[floorName.length - 1] === 'y'
@@ -56,6 +57,7 @@ const Attendancing = ({ location }) => {
 			</Header>
 			<Body>
 				{Floor !== '자습실' && <AttendanceNav floors={floorData.locations} />}
+				<AttendanceSection />
 			</Body>
 			<Footer />
 		</S.Container>
