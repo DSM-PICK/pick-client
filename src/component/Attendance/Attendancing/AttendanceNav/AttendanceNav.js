@@ -5,8 +5,6 @@ import AttendanceNavItem from './AttendanceNavItem/AttendanceNavItem';
 const AttendanceNav = (props) => {
 	const { floors } = props;
 
-	console.log(floors);
-
 	return (
 		<S.Container>
 			{floors.map((data, index) => (

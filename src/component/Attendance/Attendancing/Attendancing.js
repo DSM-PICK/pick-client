@@ -14,8 +14,8 @@ const getFloorText = (floorName) => {
 };
 
 const getFloorData = (floor) => {
-	console.log(Data);
-	console.log(Data.CLUB_FLOOR2);
+	// console.log(Data);
+	// console.log(Data.CLUB_FLOOR2);
 	return Data.CLUB_FLOOR2;
 };
 
