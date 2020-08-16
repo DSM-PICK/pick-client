@@ -41,8 +41,6 @@ const Attendancing = ({ location }) => {
 		location.pathname.split('/')[2]
 	}`;
 
-	console.log(to);
-
 	return (
 		<S.Container>
 			<Header>

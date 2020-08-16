@@ -5,7 +5,7 @@ export const Container = styled.div`
 	font-size: 28px;
 	font-weight: bold;
 	text-align: center;
-	min-width: 160px;
+	min-width: 180px;
 	color: black;
 	text-decoration: none;
 `;
