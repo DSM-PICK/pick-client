@@ -4,6 +4,9 @@ export const GlobalStyle = createGlobalStyle`
     * {
         font-family:나눔고딕 !important;
     }
+    *::-webkit-scrollbar {
+        display: none;
+    }
     .sc-fznZeY {
         height: 100%;
     }

@@ -30,7 +30,9 @@ export const HeaderFloor = styled.div`
 
 export const HeaderWhen = styled.div`
 	display: flex;
+	height: 80px;
 	flex-direction: column;
+	justify-content: space-evenly;
 `;
 
 export const HeaderMonthAndDay = styled.p`
