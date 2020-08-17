@@ -40,5 +40,6 @@ export const Attendance = styled.div`
 	display: flex;
 	width: 100%;
 	height: 100%;
-	background: skyblue;
+	overflow-y: auto;
+	flex-direction: column;
 `;

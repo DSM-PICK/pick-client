@@ -32,6 +32,11 @@ const getDay = (floorData) => {
 	return [month, day];
 };
 
+const isClub = () => {
+	console.log(location.pathname[15]);
+	return location.pathname[15] === 's' ? false : true;
+};
+
 const Attendancing = ({ location }) => {
 	const Floor = getFloorText(location.pathname.split('/')[3]);
 
@@ -57,7 +62,7 @@ const Attendancing = ({ location }) => {
 			</Header>
 			<Body>
 				{Floor !== '자습실' && <AttendanceNav floors={floorData.locations} />}
-				<AttendanceSection />
+				{isClub() && <AttendanceSection data0={Data.CLUB_FLOOR4_0} />}
 			</Body>
 			<Footer />
 		</S.Container>
