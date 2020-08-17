@@ -1,9 +1,12 @@
 import React from 'react';
 import * as S from './styles';
 import AttendanceRowTop from './AttendanceRowTop/AttendanceRowTop';
+import AttendanceRow from './AttendanceRow/AttendanceRow';
 
 const AttendanceSection = (props) => {
 	const { data0 } = props;
+
+	console.log(data0);
 
 	return (
 		<S.Container>
@@ -13,7 +16,11 @@ const AttendanceSection = (props) => {
 				<S.Head>{`부장 : ${data0.head}`}</S.Head>
 			</S.Article>
 			<AttendanceRowTop />
-			<S.Attendance></S.Attendance>
+			<S.Attendance>
+				{data0.attendance.map((attendance) => (
+					<AttendanceRow key={attendance.sequence} attendance={attendance} />
+				))}
+			</S.Attendance>
 		</S.Container>
 	);
 };
