@@ -5,6 +5,7 @@ export const Container = styled.div`
 	width: 100%;
 	height: 238px;
 	margin: 10px 0;
+	margin-top: ${(props) => (props.text === '4층' ? '50px' : '10px')};
 	background: ${(props) =>
 			props.url.length > 1 ? `url(${props.url})` : '#fafafa'}
 		no-repeat center;
