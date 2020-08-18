@@ -49,13 +49,13 @@ const AttendanceRow = (props) => {
 				<S.SectionClass>
 					<AttendanceCell></AttendanceCell>
 				</S.SectionClass>
+				<S.SectionClass>
+					<AttendanceCell></AttendanceCell>
+				</S.SectionClass>
+				<S.SectionClass>
+					<AttendanceCell></AttendanceCell>
+				</S.SectionClass>
 				{/* <S.SectionClass>
-					<AttendanceCell></AttendanceCell>
-				</S.SectionClass>
-				<S.SectionClass>
-					<AttendanceCell></AttendanceCell>
-				</S.SectionClass>
-				<S.SectionClass>
 					<AttendanceCell></AttendanceCell>
 				</S.SectionClass> */}
 			</S.SectionClassWrap>
