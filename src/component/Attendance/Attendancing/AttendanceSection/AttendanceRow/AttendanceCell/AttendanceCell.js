@@ -45,21 +45,6 @@ const AttendanceCell = () => {
 							onClickItem={onClickItem}
 						/>
 					))}
-					{/* <S.Item onClick={() => onClick(value)} value={1}>
-						외출
-					</S.Item>
-					<S.Item onClick={() => onClick(value)} value={2}>
-						현체
-					</S.Item>
-					<S.Item onClick={() => onClick(value)} value={3}>
-						병결
-					</S.Item>
-					<S.Item onClick={() => onClick(value)} value={4}>
-						공결
-					</S.Item>
-					<S.Item onClick={() => onClick(value)} value={5}>
-						무단
-					</S.Item> */}
 				</S.Wrap>
 			</S.ValueButton>
 		</S.Container>
