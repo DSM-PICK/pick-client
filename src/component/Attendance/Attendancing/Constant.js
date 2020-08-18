@@ -47,7 +47,7 @@ export const CLUB_FLOOR4 = {
 };
 
 export const CLUB_FLOOR4_0 = {
-	attendance: [
+	attendances: [
 		{
 			gradeClassNumber: 2417,
 			name: '이진혁',
@@ -87,7 +87,7 @@ export const CLUB_FLOOR4_0 = {
 };
 
 export const CLUB_FLOOR4_1 = {
-	attendance: [
+	attendances: [
 		{
 			gradeClassNumber: 2417,
 			name: '이진혁',

@@ -34,6 +34,7 @@ export const SectionClassWrap = styled.div`
 	display: flex;
 	width: 100%;
 	height: 100%;
+	align-items: center;
 `;
 
 export const SectionClass = styled.div`
@@ -44,4 +45,20 @@ export const SectionClass = styled.div`
 	color: #707070;
 	align-items: center;
 	justify-content: center;
+`;
+
+export const SectionSelectClass = styled.select`
+	display: flex;
+	width: 80%;
+	height: 50%;
+	font-size: 22px;
+	color: #707070;
+	border: 1px solid #707070;
+	border-radius: 20px;
+	align-items: center;
+	justify-content: center;
+`;
+
+export const SectionOptionClass = styled.option`
+	display: flex;
 `;
