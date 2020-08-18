@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import AttendanceItem from './AttendanceItem/AttendanceItem';
 
-const AttendanceCell = () => {
+const AttendanceCell = (props) => {
 	const [state, setState] = useState(false);
-
 	const [text, setText] = useState('출석');
-
 	const states = [
 		{
 			value: '출석',

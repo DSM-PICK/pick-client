@@ -11,6 +11,22 @@ const AttendanceRow = (props) => {
 	const [nineState, setNineState] = useState('출석');
 	const [tenState, setTenState] = useState('출석');
 
+	const onSevenClick = (value) => {
+		setSevenState(value);
+	};
+
+	const onEightClick = (value) => {
+		setEightState(value);
+	};
+
+	const onNineClick = (value) => {
+		setNineState(value);
+	};
+
+	const onTenClick = (value) => {
+		setTenState(value);
+	};
+
 	let classDatas = classData.attendances.filter(
 		(attendance) => attendance.sequence !== sequence,
 	);
@@ -36,8 +52,6 @@ const AttendanceRow = (props) => {
 		attendances: [...classDatas],
 	};
 
-	// onClick={() => onChangeRow(data)}
-
 	console.log(data);
 
 	return (
@@ -46,18 +60,18 @@ const AttendanceRow = (props) => {
 			<S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
 			<S.SectionName>{name}</S.SectionName>
 			<S.SectionClassWrap>
-				<S.SectionClass>
-					<AttendanceCell></AttendanceCell>
-				</S.SectionClass>
-				<S.SectionClass>
-					<AttendanceCell></AttendanceCell>
-				</S.SectionClass>
-				<S.SectionClass>
-					<AttendanceCell></AttendanceCell>
-				</S.SectionClass>
 				{/* <S.SectionClass>
-					<AttendanceCell></AttendanceCell>
+					<AttendanceCell onSevenClick={onSevenClick}></AttendanceCell>
 				</S.SectionClass> */}
+				<S.SectionClass>
+					<AttendanceCell onEightClick={onEightClick}></AttendanceCell>
+				</S.SectionClass>
+				<S.SectionClass>
+					<AttendanceCell onNineClick={onNineClick}></AttendanceCell>
+				</S.SectionClass>
+				<S.SectionClass>
+					<AttendanceCell onTenClick={onTenClick}></AttendanceCell>
+				</S.SectionClass>
 			</S.SectionClassWrap>
 		</S.Containter>
 	);
