@@ -19,9 +19,11 @@ const Main = () => {
 			</Header>
 			<Body>
 				<S.MainBodyTopText>
-					<S.MainBodyTopWho>{'김정은'}</S.MainBodyTopWho> 선생님은 <br />
-					<S.MainBodyTopWhen>{'오늘 저녁'}</S.MainBodyTopWhen> 자습감독
-					이십니다.
+					<S.MainBodyTopWho>{'김정은'} 선생님은</S.MainBodyTopWho>
+					<S.MainBodyTopWhen>
+						<S.MainBodyTopWhenTime>{'오늘 저녁 '}</S.MainBodyTopWhenTime>
+						자습감독 이십니다.
+					</S.MainBodyTopWhen>
 				</S.MainBodyTopText>
 				<S.MainBodyOffwork>
 					힘내세요! 퇴근까지
@@ -31,6 +33,10 @@ const Main = () => {
 				<S.MainBodyBox>
 					<S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
 					<AttendanceBody anchorItems={anchorItems} />
+				</S.MainBodyBox>
+				<S.MainBodyBox>
+					<S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
+					<S.MainBodyBoxSection></S.MainBodyBoxSection>
 				</S.MainBodyBox>
 				<S.MainBodyLogoutLayout>
 					<S.MainBodyLogoutButton>로그아웃</S.MainBodyLogoutButton>

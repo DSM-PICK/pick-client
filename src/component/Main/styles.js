@@ -15,16 +15,22 @@ export const MainHeaderLogo = styled.div`
 `;
 
 export const MainBodyTopText = styled.div`
+	display: flex;
 	height: 120px;
-	margin-top: 12px;
+	margin-top: 62px;
+	color: #20223e;
 	font-size: 50px;
 	font-weight: bold;
 	text-align: center;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
 `;
 
-export const MainBodyTopWho = styled.span``;
-
-export const MainBodyTopWhen = styled.span`
+export const MainBodyTopWho = styled.div``;
+export const MainBodyTopWhen = styled.div``;
+export const MainBodyTopWhoName = styled.span``;
+export const MainBodyTopWhenTime = styled.span`
 	color: #2764a7;
 `;
 
@@ -42,19 +48,20 @@ export const MainBodyOffworkWhen = styled.span`
 export const MainBodyBox = styled.div`
 	position: relative;
 	width: 100%;
-	height: 300px;
+	color: #20223e;
+	padding: 10px 0 20px 0;
 
 	& > div {
 		display: flex;
-		padding: 0;
 		border: none;
+		padding: 20px 0;
 		flex-direction: row;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 
 	& > div > a {
-		width: 45%;
+		width: 49%;
 	}
 `;
 
@@ -65,11 +72,22 @@ export const MainBodyBoxText = styled.p`
 	font-weight: bold;
 `;
 
-export const MainBodyLogoutLayout = styled.div`
+export const MainBodyBoxSection = styled.div`
 	display: flex;
 	width: 100%;
+	height: 300px;
+	margin: 10px 0;
+	border-radius: 60px;
+	box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
+`;
+
+export const MainBodyLogoutLayout = styled.div`
+	position: absolute;
+	display: flex;
 	height: 74px;
-	margin-top: auto;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 146px;
 	align-items: center;
 	justify-content: center;
 `;

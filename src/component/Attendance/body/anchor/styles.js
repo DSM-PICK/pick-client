@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
 	display: flex;
 	width: 100%;
-	height: 238px;
+	height: 180px;
 	margin: 10px 0;
 	margin-top: ${(props) => (props.text === '4층' ? '50px' : '10px')};
 	background: ${(props) =>
@@ -13,7 +13,7 @@ export const Container = styled.div`
 	font-size: 40px;
 	text-decoration: none;
 	color: ${(props) => (props.url.length > 1 ? 'white' : 'black')};
-	line-height: 238px;
+	line-height: 180px;
 	text-align: center;
 	border-radius: 60px;
 	flex-direction: column;
