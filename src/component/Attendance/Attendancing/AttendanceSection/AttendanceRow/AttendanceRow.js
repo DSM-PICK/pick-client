@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import AttendanceCell from './AttendanceCell/AttendanceCell';
 
@@ -6,53 +6,61 @@ const AttendanceRow = (props) => {
 	const { gradeClassNumber, name, sequence } = props.attendance;
 	const { onChangeRow } = props;
 	const { classData } = props;
-	const [sevenState, setSevenState] = useState('1');
-	const [eightState, setEightState] = useState('1');
-	const [nineState, setNineState] = useState('출석');
-	const [tenState, setTenState] = useState('출석');
+	let sevenState = '출석';
+	let eightState = '출석';
+	let nineState = '출석';
+	let tenState = '출석';
 
 	const onSevenClick = (value) => {
-		setSevenState(value);
+		sevenState = value;
+		onDataChange();
 	};
 
 	const onEightClick = (value) => {
-		setEightState(value);
+		eightState = value;
+		onDataChange();
 	};
 
 	const onNineClick = (value) => {
-		setNineState(value);
+		nineState = value;
+		onDataChange();
 	};
 
 	const onTenClick = (value) => {
-		setTenState(value);
+		tenState = value;
+		onDataChange();
 	};
 
-	let classDatas = classData.attendances.filter(
-		(attendance) => attendance.sequence !== sequence,
-	);
+	const onDataChange = () => {
+		let classDatas = classData.attendances.filter(
+			(attendance) => attendance.sequence !== sequence,
+		);
 
-	classDatas = classDatas.concat({
-		gradeClassNumber: gradeClassNumber,
-		name: name,
-		sequence: sequence,
-		state: {
-			seven: sevenState,
-			eight: eightState,
-			nine: nineState,
-			ten: tenState,
-		},
-	});
+		classDatas = classDatas.concat({
+			gradeClassNumber: gradeClassNumber,
+			name: name,
+			sequence: sequence,
+			state: {
+				seven: sevenState,
+				eight: eightState,
+				nine: nineState,
+				ten: tenState,
+			},
+		});
 
-	classDatas.sort(function (a, b) {
-		return a.sequence - b.sequence;
-	});
+		classDatas.sort(function (a, b) {
+			return a.sequence - b.sequence;
+		});
 
-	let data = {
-		...classData,
-		attendances: [...classDatas],
+		let datas = {
+			...classData,
+			attendances: [...classDatas],
+		};
+
+		console.log(datas);
+
+		onChangeRow(datas);
 	};
-
-	console.log(data);
 
 	return (
 		<S.Containter>
@@ -61,16 +69,16 @@ const AttendanceRow = (props) => {
 			<S.SectionName>{name}</S.SectionName>
 			<S.SectionClassWrap>
 				{/* <S.SectionClass>
-					<AttendanceCell onSevenClick={onSevenClick}></AttendanceCell>
+					<AttendanceCell onClassClick={onSevenClick}></AttendanceCell>
 				</S.SectionClass> */}
 				<S.SectionClass>
-					<AttendanceCell onEightClick={onEightClick}></AttendanceCell>
+					<AttendanceCell onClassClick={onEightClick}></AttendanceCell>
 				</S.SectionClass>
 				<S.SectionClass>
-					<AttendanceCell onNineClick={onNineClick}></AttendanceCell>
+					<AttendanceCell onClassClick={onNineClick}></AttendanceCell>
 				</S.SectionClass>
 				<S.SectionClass>
-					<AttendanceCell onTenClick={onTenClick}></AttendanceCell>
+					<AttendanceCell onClassClick={onTenClick}></AttendanceCell>
 				</S.SectionClass>
 			</S.SectionClassWrap>
 		</S.Containter>

@@ -3,6 +3,8 @@ import * as S from './styles';
 import AttendanceItem from './AttendanceItem/AttendanceItem';
 
 const AttendanceCell = (props) => {
+	const { onClassClick } = props;
+
 	const [state, setState] = useState(false);
 	const [text, setText] = useState('출석');
 	const states = [
@@ -28,12 +30,12 @@ const AttendanceCell = (props) => {
 
 	const onClickItem = (value) => {
 		setText(value);
-		console.log(value);
+		onClassClick(value);
 	};
 
 	return (
 		<S.Container onClick={() => setState(!state)} state={state}>
-			<S.ValueButton state={state}>
+			<S.ValueButton state={state} text={text}>
 				{text}
 				<S.Wrap>
 					{states.map((state) => (

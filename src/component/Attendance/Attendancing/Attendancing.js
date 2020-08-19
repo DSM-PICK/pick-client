@@ -33,7 +33,6 @@ const getDay = (floorData) => {
 };
 
 const isClub = () => {
-	console.log(location.pathname[15]);
 	return location.pathname[15] === 's' ? false : true;
 };
 

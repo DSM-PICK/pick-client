@@ -8,11 +8,8 @@ const AttendanceSection = (props) => {
 	const [classData, setClassData] = useState(data0);
 
 	const onChangeRow = (data) => {
-		console.log(data);
 		setClassData(data);
 	};
-
-	console.log(classData);
 
 	return (
 		<S.Container>
