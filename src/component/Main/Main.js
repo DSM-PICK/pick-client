@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as G from '../../GlobalStyle';
 import * as S from './styles';
 import Header from '../Header/Header';
@@ -6,9 +6,16 @@ import Body from '../Body/Body';
 import Footer from '../Footer/Footer';
 import AttendanceBody from '../Attendance/body/AttendanceBody';
 import { MAIN_ANCHOR_ITEMS } from '../Attendance/Constant';
+import Modal from './Modal/Modal';
 
 const Main = () => {
 	const anchorItems = MAIN_ANCHOR_ITEMS;
+
+	const [onModal, setOnModal] = useState(false);
+
+	const onModalClick = () => {
+		setOnModal(!onModal);
+	};
 
 	return (
 		<G.GlobalContainer>
@@ -39,8 +46,11 @@ const Main = () => {
 					<S.MainBodyBoxSection></S.MainBodyBoxSection>
 				</S.MainBodyBox>
 				<S.MainBodyLogoutLayout>
-					<S.MainBodyLogoutButton>로그아웃</S.MainBodyLogoutButton>
+					<S.MainBodyLogoutButton onClick={onModalClick}>
+						로그아웃
+					</S.MainBodyLogoutButton>
 				</S.MainBodyLogoutLayout>
+				{onModal && <Modal onModalClick={onModalClick} />}
 			</Body>
 			<Footer />
 		</G.GlobalContainer>
