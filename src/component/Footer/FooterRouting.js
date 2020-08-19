@@ -17,7 +17,7 @@ const FooterRouting = () => {
 			/>
 			<Route
 				path={['/attendance/class/', '/attendance/club/']}
-				component={SaveFooter}
+				render={() => <SaveFooter />}
 			/>
 		</Switch>
 	);
