@@ -2,19 +2,34 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import AttendanceRowTop from './AttendanceRowTop/AttendanceRowTop';
 import AttendanceRow from './AttendanceRow/AttendanceRow';
+import * as Data from '../Constant';
 
 const isClub = () => {
 	return location.pathname[15] === 's' ? false : true;
 };
 
 const isSelfStudy = () => {
-	console.log(location.pathname[17]);
 	return location.pathname[17] === 's' ? true : false;
 };
 
+const getClassLocation = (locations) => {
+	return locations[location.pathname[location.pathname.length - 1]];
+};
+
+const getClassData = () => {
+	console.log(location.pathname);
+	console.log(Number(location.pathname[location.pathname.length - 1]));
+	return Number(location.pathname[location.pathname.length - 1]) % 2 === 0
+		? Data.CLUB_FLOOR4_0
+		: console.log('1');
+};
+
 const AttendanceSection = (props) => {
-	const { data0 } = props;
-	const [classData, setClassData] = useState(data0);
+	const { locations } = props;
+	const [classData, setClassData] = useState(getClassData());
+	console.log(classData);
+
+	const classLocation = getClassLocation(locations);
 
 	const onChangeRow = (data) => {
 		setClassData(data);
@@ -25,7 +40,7 @@ const AttendanceSection = (props) => {
 			{isClub() && !isSelfStudy() && (
 				<S.Article>
 					<S.Name>{classData.name}</S.Name>
-					<S.Location>{`세미나실 2-1`}</S.Location>
+					<S.Location>{classLocation.location}</S.Location>
 					<S.Head>{`부장 : ${classData.head}`}</S.Head>
 				</S.Article>
 			)}

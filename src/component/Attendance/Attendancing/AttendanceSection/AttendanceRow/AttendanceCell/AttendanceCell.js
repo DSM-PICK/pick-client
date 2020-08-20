@@ -5,8 +5,6 @@ import AttendanceItem from './AttendanceItem/AttendanceItem';
 const AttendanceCell = (props) => {
 	const { onClassClick } = props;
 
-	console.log(props.sequence);
-
 	const [state, setState] = useState(false);
 	const [text, setText] = useState('출석');
 	const states = [

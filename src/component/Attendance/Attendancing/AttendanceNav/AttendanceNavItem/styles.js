@@ -6,7 +6,7 @@ export const Container = styled.div`
 	font-weight: bold;
 	text-align: center;
 	min-width: 180px;
-	color: black;
+	color: ${(props) => (props.done === 'true' ? '#C4C4C4' : 'black')};
 	text-decoration: none;
 `;
 

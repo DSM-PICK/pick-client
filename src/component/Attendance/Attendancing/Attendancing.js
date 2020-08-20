@@ -15,9 +15,13 @@ const getFloorText = (floorName) => {
 };
 
 const getFloorData = (floor) => {
-	// console.log(Data);
+	// console.log(floor);
 	// console.log(Data.CLUB_FLOOR2);
-	return Data.CLUB_FLOOR2;
+	return floor === '2층'
+		? Data.CLUB_FLOOR2
+		: floor === '3층'
+		? Data.CLUB_FLOOR3
+		: Data.CLUB_FLOOR4;
 };
 
 const getDay = (floorData) => {
@@ -35,7 +39,7 @@ const getDay = (floorData) => {
 const Attendancing = ({ location }) => {
 	const Floor = getFloorText(location.pathname.split('/')[3]);
 
-	const floorData = getFloorData();
+	const floorData = getFloorData(Floor);
 	const today = getDay(floorData);
 
 	const to = `/${location.pathname.split('/')[1]}/${
@@ -57,7 +61,7 @@ const Attendancing = ({ location }) => {
 			</Header>
 			<Body>
 				{Floor !== '자습실' && <AttendanceNav floors={floorData.locations} />}
-				<AttendanceSection data0={Data.CLUB_FLOOR4_0} />
+				<AttendanceSection locations={floorData.locations} />
 			</Body>
 			<Footer />
 		</S.Container>
