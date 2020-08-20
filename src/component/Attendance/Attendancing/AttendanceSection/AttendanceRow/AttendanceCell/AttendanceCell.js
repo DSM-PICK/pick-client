@@ -5,6 +5,8 @@ import AttendanceItem from './AttendanceItem/AttendanceItem';
 const AttendanceCell = (props) => {
 	const { onClassClick } = props;
 
+	console.log(props.sequence);
+
 	const [state, setState] = useState(false);
 	const [text, setText] = useState('출석');
 	const states = [
@@ -34,12 +36,17 @@ const AttendanceCell = (props) => {
 	};
 
 	return (
-		<S.Container onClick={() => setState(!state)} state={state}>
-			<S.ValueButton state={state} text={text}>
+		<S.Container
+			onClick={() => setState(!state)}
+			sequence={props.sequence}
+			state={state}
+		>
+			<S.ValueButton sequence={props.sequence} state={state} text={text}>
 				{text}
-				<S.Wrap>
+				<S.Wrap sequence={props.sequence}>
 					{states.map((state) => (
 						<AttendanceItem
+							sequence={props.sequence}
 							key={state.value}
 							state={state}
 							onClickItem={onClickItem}

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
-	height: 100%;
+	height: calc(100% - 50px);
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -11,8 +11,7 @@ export const Container = styled.div`
 export const Article = styled.div`
 	display: flex;
 	width: 100%;
-	height: 80px;
-	margin: 61px 0 53px 0;
+	margin: 61px 0 13px 0;
 	flex-direction: column;
 	justify-content: space-around;
 `;
@@ -26,8 +25,9 @@ export const Name = styled.div`
 
 export const Location = styled.div`
 	text-align: center;
-	font-size: 28px;
-	color: #707070;
+	font-size: ${(props) => (props.location === '자습실' ? '32px' : '28px')};
+	font-weight: ${(props) => (props.location === '자습실' ? 'bold' : '300')};
+	color: #20223e;
 `;
 
 export const Head = styled.div`

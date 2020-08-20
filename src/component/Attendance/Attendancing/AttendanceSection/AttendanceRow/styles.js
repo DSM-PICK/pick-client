@@ -11,7 +11,7 @@ export const SectionSpan = styled.span`
 	display: flex;
 	height: 100%;
 	font-size: 28px;
-	color: black;
+	color: #20223e;
 	align-items: center;
 	justify-content: center;
 `;

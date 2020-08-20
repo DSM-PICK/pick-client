@@ -3,11 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
 	display: flex;
 	width: 100%;
-	height: 100px;
+	min-height: 100px;
 	background: #2764a7;
-	position: fixed;
-	bottom: 0;
-
+	margin-top: auto;
 	font-size: 38px;
 	font-weight: bold;
 	color: white;
@@ -18,7 +16,6 @@ export const Container = styled.div`
 export const Animation = styled.div`
 	position: absolute;
 	display: flex;
-	/* display: ${(props) => (props.saveAni ? 'flex' : 'none')}; */
 	bottom: 150px;
 	left: 50%;
 	transform: translateX(-50%);

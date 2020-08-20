@@ -69,16 +69,25 @@ const AttendanceRow = (props) => {
 			<S.SectionName>{name}</S.SectionName>
 			<S.SectionClassWrap>
 				{/* <S.SectionClass>
-					<AttendanceCell onClassClick={onSevenClick}></AttendanceCell>
+					<AttendanceCell sequence={sequence} onClassClick={onSevenClick}></AttendanceCell>
 				</S.SectionClass> */}
 				<S.SectionClass>
-					<AttendanceCell onClassClick={onEightClick}></AttendanceCell>
+					<AttendanceCell
+						sequence={sequence}
+						onClassClick={onEightClick}
+					></AttendanceCell>
 				</S.SectionClass>
 				<S.SectionClass>
-					<AttendanceCell onClassClick={onNineClick}></AttendanceCell>
+					<AttendanceCell
+						sequence={sequence}
+						onClassClick={onNineClick}
+					></AttendanceCell>
 				</S.SectionClass>
 				<S.SectionClass>
-					<AttendanceCell onClassClick={onTenClick}></AttendanceCell>
+					<AttendanceCell
+						sequence={sequence}
+						onClassClick={onTenClick}
+					></AttendanceCell>
 				</S.SectionClass>
 			</S.SectionClassWrap>
 		</S.Containter>

@@ -4,6 +4,7 @@ export const Containter = styled.div`
 	display: flex;
 	width: 100%;
 	height: 48px;
+	margin-top: 40px;
 	border-bottom: 1px solid #c4c4c4;
 `;
 

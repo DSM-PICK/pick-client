@@ -18,7 +18,26 @@ export const ValueButton = styled.button`
 	outline: none;
 
 	${(props) =>
-		props.state
+		props.state && props.sequence > 13
+			? css`
+					&:focus,
+					&:active {
+						background: white !important;
+						color: black;
+						border-radius: 0 0 30px 30px;
+						border-top: none;
+						ul {
+							transform: translate(0, -36px);
+							opacity: 1;
+							visibility: visible;
+							border-bottom: none;
+						}
+						ul:nth-child(1) {
+							border-radius: 30px 30px 0 0;
+						}
+					}
+			  `
+			: props.state
 			? css`
 					&:focus,
 					&:active {
@@ -30,6 +49,7 @@ export const ValueButton = styled.button`
 							transform: translate(0, 34px);
 							opacity: 1;
 							visibility: visible;
+							border-top: none;
 						}
 						ul:nth-child(1) {
 							border-radius: 0 0 30px 30px;
@@ -40,13 +60,21 @@ export const ValueButton = styled.button`
 
 	ul {
 		position: absolute;
-		top: 0px;
+		${(props) =>
+			props.sequence > 13
+				? css`
+						top: -284px;
+						border-bottom: none;
+				  `
+				: css`
+						top: 0px;
+						border-top: none;
+				  `}
 		left: 0;
 		width: 100%;
 		background: white;
 		color: black;
 		border: 1px solid #707070;
-		border-top: none;
 		border-radius: 30px;
 		z-index: 1;
 		opacity: 0;

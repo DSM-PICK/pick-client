@@ -65,4 +65,5 @@ export const GlobalStyle = createGlobalStyle`
 export const GlobalContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 `;
