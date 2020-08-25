@@ -16,7 +16,7 @@ export const Container = styled.div`
 export const FooterNavItem = styled.div`
 	display: flex;
 	width: 25%;
-	height: 80%;
+	height: 100%;
 	box-sizing: border-box;
 	border: none;
 	align-items: center;
@@ -28,5 +28,5 @@ export const FooterNavItem = styled.div`
 				: props.imglink
 				? `url(${props.imglink})`
 				: 'none'}
-		no-repeat center/30%;
+		no-repeat center/17%;
 `;
