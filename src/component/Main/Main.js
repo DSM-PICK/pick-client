@@ -32,6 +32,11 @@ const Main = () => {
 						자습감독 이십니다.
 					</S.MainBodyTopWhen>
 				</S.MainBodyTopText>
+				<S.MainBodyLogoutLayout>
+					<S.MainBodyLogoutButton onClick={onModalClick}>
+						로그아웃
+					</S.MainBodyLogoutButton>
+				</S.MainBodyLogoutLayout>
 				<S.MainBodyOffwork>
 					힘내세요! 퇴근까지
 					<S.MainBodyOffworkWhen>{' 2시간 38분'}</S.MainBodyOffworkWhen>{' '}
@@ -45,11 +50,6 @@ const Main = () => {
 					<S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
 					<S.MainBodyBoxSection></S.MainBodyBoxSection>
 				</S.MainBodyBox>
-				<S.MainBodyLogoutLayout>
-					<S.MainBodyLogoutButton onClick={onModalClick}>
-						로그아웃
-					</S.MainBodyLogoutButton>
-				</S.MainBodyLogoutLayout>
 				{onModal && <Modal onModalClick={onModalClick} />}
 			</Body>
 			<Footer />

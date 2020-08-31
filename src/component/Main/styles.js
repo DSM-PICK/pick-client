@@ -84,21 +84,21 @@ export const MainBodyBoxSection = styled.div`
 export const MainBodyLogoutLayout = styled.div`
 	position: absolute;
 	display: flex;
-	height: 74px;
-	left: 50%;
+	height: 27px;
+	left: calc(50% + 230px);
 	transform: translateX(-50%);
-	bottom: 146px;
+	top: 200px;
 	align-items: center;
 	justify-content: center;
 `;
 
 export const MainBodyLogoutButton = styled.button`
-	width: 286px;
-	height: 74px;
-	background: #2764a7;
-	font-size: 40px;
+	width: 98px;
+	height: 27px;
+	background: white;
+	font-size: 14px;
 	font-weight: bold;
-	color: white;
+	color: #707070;
 	border: 1px solid #707070;
 	border-radius: 30px;
 `;
