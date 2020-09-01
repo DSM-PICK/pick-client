@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import * as S from './styles';
 import * as C from './Constant';
 import PreReportState from './PreReportState/PreReportState';
+import PreReportName from './PreReportName/PreReportName';
+import PreReportDate from './PreReportDate/PreReportDate';
 
 const PreReport = () => {
 	const [preReportState, setPreReportState] = useState(['외출']);
@@ -30,9 +32,11 @@ const PreReport = () => {
 				</S.FuncKindName>
 				<S.FuncKindName>
 					<S.FuncTitle>이름</S.FuncTitle>
+					<PreReportName />
 				</S.FuncKindName>
 				<S.FuncDate>
 					<S.FuncTitle>날짜</S.FuncTitle>
+					<PreReportDate />
 				</S.FuncDate>
 				<S.FuncAdd>추가하기</S.FuncAdd>
 			</S.Func>
