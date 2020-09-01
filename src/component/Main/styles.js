@@ -72,13 +72,23 @@ export const MainBodyBoxText = styled.p`
 	font-weight: bold;
 `;
 
-export const MainBodyBoxSection = styled.div`
+export const MainBodyBoxBefore = styled.div`
 	display: flex;
 	width: 100%;
-	height: 300px;
+	height: 260px;
 	margin: 10px 0;
 	border-radius: 60px;
 	box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
+	background: #fafafa;
+	padding: 20px !important;
+`;
+
+export const MainBodyBoxBeforeFunc = styled.div`
+	display: flex;
+	height: 260px;
+	width: 421px;
+	border: 1px solid black;
+	margin-left: 20px;
 `;
 
 export const MainBodyLogoutLayout = styled.div`

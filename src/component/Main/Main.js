@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import AttendanceBody from '../Attendance/body/AttendanceBody';
 import { MAIN_ANCHOR_ITEMS } from '../Attendance/Constant';
 import Modal from './Modal/Modal';
+import PreReport from './PreReport/PreReport';
 
 const Main = () => {
 	const anchorItems = MAIN_ANCHOR_ITEMS;
@@ -48,7 +49,7 @@ const Main = () => {
 				</S.MainBodyBox>
 				<S.MainBodyBox>
 					<S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
-					<S.MainBodyBoxSection></S.MainBodyBoxSection>
+					<PreReport />
 				</S.MainBodyBox>
 				{onModal && <Modal onModalClick={onModalClick} />}
 			</Body>
