@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 import Body from '../Body/Body';
 import Footer from '../Footer/Footer';
 import AttendanceBody from '../Attendance/body/AttendanceBody';
-import { MAIN_ANCHOR_ITEMS } from '../Attendance/Constant';
+import { MAIN_ANCHOR_ITEMS, LOGO } from '../Attendance/Constant';
 import Modal from './Modal/Modal';
 import PreReport from './PreReport/PreReport';
 
@@ -22,7 +22,7 @@ const Main = () => {
 		<G.GlobalContainer>
 			<Header>
 				<S.MainHeader>
-					<S.MainHeaderLogo />
+					<S.MainHeaderLogo url={LOGO.imgLink} />
 				</S.MainHeader>
 			</Header>
 			<Body>
