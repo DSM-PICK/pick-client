@@ -3,12 +3,18 @@ import * as S from './styles';
 import getDateObj from '../../../../../../lib/calander';
 import Row from './Row/Row';
 
-const Body = () => {
-	const [date, setDate] = useState(getDateObj());
+const Body = (props) => {
+	const { calDate, today, month } = props;
+
 	return (
 		<S.Container>
-			{date.map((dateArr) => (
-				<Row dateArr={dateArr} />
+			{calDate.map((dateArr) => (
+				<Row
+					key={dateArr[0][0]}
+					dateArr={dateArr}
+					today={today}
+					month={month}
+				/>
 			))}
 		</S.Container>
 	);
