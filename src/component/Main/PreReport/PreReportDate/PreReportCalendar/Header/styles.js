@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const DayHeader = styled.div`
 	flex: 1;
 	font-size: 16px;
-	padding: 1px 0 6px 4px;
+	padding: 4px 0 6px 4px;
 
 	&:nth-child(n) {
 		border-right: 1px solid #c4c4c4;
