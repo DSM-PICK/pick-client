@@ -1,3 +1,5 @@
+export const LOGO = { imgLink: '../../../src/asset/Logo/Logo.svg' };
+
 export const MAIN_ANCHOR_ITEMS = [
 	{
 		text: '전공동아리',
