@@ -18,6 +18,7 @@ export const Month = styled.div`
 
 export const MonthText = styled.div`
 	display: flex;
+	width: 60px;
 	font-size: 24px;
 	font-weight: bold;
 	align-items: center;

@@ -11,29 +11,25 @@ const PreReportCalander = () => {
 	const [today, setToday] = useState(date.getDate());
 	const [calDate, setCalDate] = useState(getDateObj(year, month));
 
-	const checkDate = () => {
-		if (month < 0) {
+	const prevMonth = () => {
+		if (month == 0) {
 			setYear(year - 1);
 			setMonth(11);
-		} else if (month > 11) {
-			setYear(year + 1);
-			setMonth(0);
+		} else {
+			setMonth(month - 1);
 		}
-	};
-
-	const prevMonth = () => {
-		setMonth(month - 1);
-		checkDate();
 		setCalDate(getDateObj(year, month));
 	};
 
 	const nextMonth = () => {
-		setMonth(month + 1);
-		checkDate();
+		if (month == 11) {
+			setYear(year + 1);
+			setMonth(0);
+		} else {
+			setMonth(month + 1);
+		}
 		setCalDate(getDateObj(year, month));
 	};
-
-	console.log(year, month, today, calDate);
 
 	return (
 		<S.Container>
