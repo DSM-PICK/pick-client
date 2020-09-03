@@ -18,7 +18,7 @@ const PreReportCalander = () => {
 		} else {
 			setMonth(month - 1);
 		}
-		setCalDate(getDateObj(year, month));
+		setCalDate(getDateObj(year, month - 1));
 	};
 
 	const nextMonth = () => {
@@ -28,8 +28,10 @@ const PreReportCalander = () => {
 		} else {
 			setMonth(month + 1);
 		}
-		setCalDate(getDateObj(year, month));
+		setCalDate(getDateObj(year, month + 1));
 	};
+
+	console.log(year, month, today, calDate);
 
 	return (
 		<S.Container>
