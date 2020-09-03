@@ -4,8 +4,11 @@ import Body from './Body/Body';
 import Header from './Header/Header';
 import getDateObj from '../../../../../lib/calander';
 
-const PreReportCalander = () => {
+const PreReportCalander = (props) => {
+	const { height } = props;
+
 	const date = new Date();
+
 	const [year, setYear] = useState(date.getFullYear());
 	const [month, setMonth] = useState(date.getMonth());
 	const [today, setToday] = useState(date.getDate());
@@ -31,10 +34,8 @@ const PreReportCalander = () => {
 		setCalDate(getDateObj(year, month + 1));
 	};
 
-	console.log(year, month, today, calDate);
-
 	return (
-		<S.Container>
+		<S.Container height={height}>
 			<S.Month>
 				<S.MonthArrow onClick={prevMonth} />
 				<S.MonthText>{month + 1}월</S.MonthText>
