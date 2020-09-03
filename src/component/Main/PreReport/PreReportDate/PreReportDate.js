@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './styles';
 import PreReportCalander from './PreReportCalendar/PreReportCalander';
+import PreReportModal from './PreReportModal/PreReportModal';
 
 const PreReportDate = () => {
 	const [preMonth, setPreMonth] = useState('');
@@ -9,10 +10,22 @@ const PreReportDate = () => {
 	const [nextMonth, setNextMonth] = useState('');
 	const [nextDay, setNextDay] = useState('');
 	const [nextClassValue, setNextClassValue] = useState('');
+	const [modal, setModal] = useState(true);
+	const [height, setHeight] = useState('30px');
 
-	const onPreClick = () => {};
+	const onOffModal = () => {
+		setModal(!modal);
+	};
 
-	const onNextClick = () => {};
+	const onPreClick = () => {
+		setHeight('30px');
+		onOffModal();
+	};
+
+	const onNextClick = () => {
+		setHeight('60px');
+		onOffModal();
+	};
 
 	return (
 		<S.Container>
@@ -27,7 +40,8 @@ const PreReportDate = () => {
 				<S.Day day={nextDay}>일</S.Day>
 				<S.Class classValue={nextClassValue}>교시</S.Class>
 			</S.Date>
-			<PreReportCalander />
+			{modal && <PreReportCalander height={height} />}
+			{modal && <PreReportModal onOffModal={onOffModal} />}
 		</S.Container>
 	);
 };
