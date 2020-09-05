@@ -40,18 +40,28 @@ export const Day = styled.div`
 	}
 `;
 
-export const Class = styled.div`
+export const ClassText = styled.div`
+	position: absolute;
 	display: flex;
-	&::before {
-		content: '${(props) => (props.classValue ? props.classValue : '_')}';
-		width: 20px;
-		height: 26px;
-		font-size: 24px;
-		text-align: right;
+	right: 30px;
+`;
+
+export const Class = styled.input`
+	width: 34px;
+	height: 24px;
+	border: none;
+	background: #fafafa;
+	color: #20223e;
+	font-size: 24px;
+	text-align: right;
+
+	::placeholder {
+		font-weight: bold;
+		color: #20223e;
 	}
 `;
 
 export const Additional = styled.div`
 	display: flex;
-	margin-left: 10px;
+	margin-left: 40px;
 `;
