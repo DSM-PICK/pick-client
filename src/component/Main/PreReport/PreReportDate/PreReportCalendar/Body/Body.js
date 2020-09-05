@@ -4,16 +4,18 @@ import getDateObj from '../../../../../../lib/calander';
 import Row from './Row/Row';
 
 const Body = (props) => {
-	const { calDate, today, month } = props;
+	const { calcDate, month } = props;
+	const { onOffModal, onSelectDay } = props;
 
 	return (
 		<S.Container>
-			{calDate.map((dateArr) => (
+			{calcDate.map((dateArr) => (
 				<Row
 					key={dateArr[0][0]}
 					dateArr={dateArr}
-					today={today}
 					month={month}
+					onOffModal={onOffModal}
+					onSelectDay={onSelectDay}
 				/>
 			))}
 		</S.Container>
