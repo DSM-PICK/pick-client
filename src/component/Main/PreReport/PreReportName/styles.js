@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
-export const Container = styled.input`
+export const Container = styled.div`
 	position: absolute;
 	display: flex;
 	left: 80px;
+	width: 140px;
+	height: 27px;
+`;
+
+export const Name = styled.input`
+	display: flex;
 	width: 140px;
 	height: 27px;
 	border: none;
@@ -12,4 +18,5 @@ export const Container = styled.input`
 	color: black;
 	font-size: 24px;
 	text-align: center;
+	outline: none;
 `;
