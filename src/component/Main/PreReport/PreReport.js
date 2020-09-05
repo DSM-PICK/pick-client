@@ -24,6 +24,8 @@ const PreReport = () => {
 	const [preClassValue, setPreClassValue] = useState('');
 	const [nextClassValue, setNextClassValue] = useState('');
 
+	const [name, setName] = useState('');
+
 	const [modal, setModal] = useState(false);
 	const [height, setHeight] = useState('30px');
 	const [preNextState, setPreNextState] = useState('');
@@ -143,8 +145,13 @@ const PreReport = () => {
 		setPreReportState(changeState);
 	};
 
+	const onChangeName = useCallback((e) => {
+		setName(e.target.value);
+	});
+
 	const onSubmit = () => {
 		console.log(preReportState);
+		console.log(name);
 		console.log(preMonth, preDay, preClassValue);
 		console.log(nextMonth, nextDay, nextClassValue);
 	};
@@ -167,7 +174,7 @@ const PreReport = () => {
 				</S.FuncKindName>
 				<S.FuncKindName>
 					<S.FuncTitle>이름</S.FuncTitle>
-					<PreReportName />
+					<PreReportName name={name} onChangeName={onChangeName} />
 				</S.FuncKindName>
 				<S.FuncDate>
 					<S.FuncTitle>날짜</S.FuncTitle>
