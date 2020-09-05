@@ -1,18 +1,153 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import * as S from './styles';
 import * as C from './Constant';
 import PreReportState from './PreReportState/PreReportState';
 import PreReportName from './PreReportName/PreReportName';
 import PreReportDate from './PreReportDate/PreReportDate';
+import getDateObj from '../../../lib/calander';
 
 const PreReport = () => {
+	const date = new Date();
+
+	const preClassInput = useRef('');
+	const nextClassInput = useRef('');
+
 	const [preReportState, setPreReportState] = useState(['외출']);
+
+	const [calcYear, setCalcYear] = useState(date.getFullYear());
+	const [calcMonth, setCalcMonth] = useState(date.getMonth());
+	const [calcDate, setCalcDate] = useState(getDateObj(calcYear, calcMonth));
+	const [preMonth, setPreMonth] = useState('');
+	const [nextMonth, setNextMonth] = useState('');
+	const [preDay, setPreDay] = useState('');
+	const [nextDay, setNextDay] = useState('');
+	const [preClassValue, setPreClassValue] = useState('');
+	const [nextClassValue, setNextClassValue] = useState('');
+
+	const [modal, setModal] = useState(false);
+	const [height, setHeight] = useState('30px');
+	const [preNextState, setPreNextState] = useState('');
+
+	const onOffModal = () => {
+		setModal(!modal);
+	};
+
+	const onPreClick = () => {
+		preClassInput.current.blur();
+		setHeight('30px');
+		setPreNextState('pre');
+		onOffModal();
+	};
+
+	const onNextClick = () => {
+		nextClassInput.current.blur();
+		setHeight('64px');
+		setPreNextState('next');
+		onOffModal();
+	};
+
+	const onPreSelect = (day) => {
+		const tempPreMonth = calcMonth + 1;
+
+		setPreClassValue('');
+
+		if (nextMonth !== '') {
+			if (
+				tempPreMonth > nextMonth ||
+				(tempPreMonth == nextMonth && day > nextDay)
+			) {
+				setPreMonth(nextMonth);
+				setPreDay(nextDay);
+			} else {
+				setPreMonth(tempPreMonth);
+				setPreDay(day);
+			}
+		} else {
+			setPreMonth(tempPreMonth);
+			setPreDay(day);
+		}
+
+		preClassInput.current.focus();
+	};
+
+	const onNextSelect = (day) => {
+		const tempNextMonth = calcMonth + 1;
+
+		setNextClassValue('');
+
+		if (preMonth !== '') {
+			if (
+				tempNextMonth < preMonth ||
+				(tempNextMonth == preMonth && day < preDay)
+			) {
+				setNextMonth(preMonth);
+				setNextDay(preDay);
+			} else {
+				setNextMonth(tempNextMonth);
+				setNextDay(day);
+			}
+		} else {
+			setNextMonth(tempNextMonth);
+			setNextDay(day);
+		}
+
+		nextClassInput.current.focus();
+	};
+
+	const prevCalcMonth = () => {
+		if (calcMonth == 0) {
+			setCalcYear(calcYear - 1);
+			setCalcMonth(11);
+		} else {
+			setCalcMonth(calcMonth - 1);
+		}
+		setCalcDate(getDateObj(calcYear - 1, calcMonth - 1));
+	};
+
+	const nextCalcMonth = () => {
+		if (calcMonth == 11) {
+			setCalcYear(calcYear + 1);
+			setCalcMonth(0);
+		} else {
+			setCalcMonth(calcMonth + 1);
+		}
+		setCalcDate(getDateObj(calcYear + 1, calcMonth + 1));
+	};
+
+	const onSelectDay = (day) => {
+		preNextState === 'pre' ? onPreSelect(day) : onNextSelect(day);
+		onOffModal();
+	};
+
+	const onPreClassChange = useCallback((e) => {
+		if (e.target.value > 10) {
+			setPreClassValue(10);
+		} else if (e.target.value < 0) {
+			setPreClassValue(1);
+		} else {
+			setPreClassValue(Number(e.target.value));
+		}
+	}, []);
+
+	const onNextClassChange = useCallback((e) => {
+		if (e.target.value > 10) {
+			setNextClassValue(10);
+		} else if (e.target.value < 0) {
+			setNextClassValue(1);
+		} else {
+			setNextClassValue(Number(e.target.value));
+		}
+	}, []);
 
 	const onChangePreReportState = (changeState) => {
 		setPreReportState(changeState);
 	};
 
-	console.log(preReportState);
+	const onSubmit = () => {
+		console.log(preReportState);
+		console.log(preMonth, preDay, preClassValue);
+		console.log(nextMonth, nextDay, nextClassValue);
+	};
 
 	return (
 		<S.Container>
@@ -36,9 +171,32 @@ const PreReport = () => {
 				</S.FuncKindName>
 				<S.FuncDate>
 					<S.FuncTitle>날짜</S.FuncTitle>
-					<PreReportDate />
+					<PreReportDate
+						modal={modal}
+						height={height}
+						calcDate={calcDate}
+						calcMonth={calcMonth}
+						preMonth={preMonth}
+						nextMonth={nextMonth}
+						preDay={preDay}
+						nextDay={nextDay}
+						preClassValue={preClassValue}
+						nextClassValue={nextClassValue}
+						preClassInput={preClassInput}
+						nextClassInput={nextClassInput}
+						onOffModal={onOffModal}
+						onPreClick={onPreClick}
+						onNextClick={onNextClick}
+						onPreSelect={onPreSelect}
+						onNextSelect={onNextSelect}
+						prevCalcMonth={prevCalcMonth}
+						nextCalcMonth={nextCalcMonth}
+						onSelectDay={onSelectDay}
+						onPreClassChange={onPreClassChange}
+						onNextClassChange={onNextClassChange}
+					/>
 				</S.FuncDate>
-				<S.FuncAdd>추가하기</S.FuncAdd>
+				<S.FuncAdd onClick={onSubmit}>추가하기</S.FuncAdd>
 			</S.Func>
 			<S.Show></S.Show>
 		</S.Container>
