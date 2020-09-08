@@ -56,7 +56,7 @@ export const PreReportStates = styled.div`
 export const FuncTitle = styled.div`
 	position: absolute;
 	display: flex;
-	width: 50px;
+	width: 52px;
 	height: 26px;
 	font-size: 26px;
 	color: black;
