@@ -6,6 +6,7 @@ export const Container = styled.div`
 	left: 80px;
 	width: 140px;
 	height: 27px;
+	flex-direction: column;
 `;
 
 export const Name = styled.input`
