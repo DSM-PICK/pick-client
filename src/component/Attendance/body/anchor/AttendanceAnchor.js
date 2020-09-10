@@ -6,7 +6,7 @@ const AttendanceBody = (props) => {
 	const { text, link, imgLink } = props;
 
 	return (
-		<S.Container as={Link} to={link} url={imgLink}>
+		<S.Container as={Link} to={link} url={imgLink} text={text}>
 			{text}
 		</S.Container>
 	);

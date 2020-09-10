@@ -4,6 +4,9 @@ export const GlobalStyle = createGlobalStyle`
     * {
         font-family:나눔고딕 !important;
     }
+    *::-webkit-scrollbar {
+        display: none;
+    }
     .sc-fznZeY {
         height: 100%;
     }
@@ -63,4 +66,5 @@ export const GlobalStyle = createGlobalStyle`
 export const GlobalContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 `;

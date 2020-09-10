@@ -3,17 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
 	border-radius: 60px 60px 0 0;
 	flex: 1;
+	height: 100%;
 	background-color: #fafafa;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 `;
 
-export const HeaderBackBtn = styled.span`
-	position: absolute;
-	left: 30px;
-	top: 30px;
-
+export const HeaderBackBtn = styled.div`
 	display: flex;
 	width: 3em;
 	height: 3em;
@@ -23,11 +20,9 @@ export const HeaderBackBtn = styled.span`
 	background: url('../../../src/asset/Header/back.png') no-repeat center/100%;
 `;
 
-export const HeaderText = styled.span`
-	position: absolute;
-	left: 100px;
-	top: 30px;
+export const HeaderFloor = styled.div`
 	font-size: 38px;
-	font-weight: bold;
-	vertical-align: middle;
+	font-weight: bolder;
+	position: absolute;
+	margin-left: 80px;
 `;

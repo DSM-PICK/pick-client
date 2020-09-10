@@ -3,8 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
 	display: flex;
 	width: 100%;
-	height: 238px;
+	height: ${(props) =>
+		props.text === '전공동아리' || props.text === '교실자습'
+			? '180px'
+			: '238px'};
 	margin: 10px 0;
+	margin-top: ${(props) => (props.text === '4층' ? '50px' : '10px')};
 	background: ${(props) =>
 			props.url.length > 1 ? `url(${props.url})` : '#fafafa'}
 		no-repeat center;
@@ -12,7 +16,10 @@ export const Container = styled.div`
 	font-size: 40px;
 	text-decoration: none;
 	color: ${(props) => (props.url.length > 1 ? 'white' : 'black')};
-	line-height: 238px;
+	line-height: ${(props) =>
+		props.text === '전공동아리' || props.text === '교실자습'
+			? '180px'
+			: '238px'};
 	text-align: center;
 	border-radius: 60px;
 	flex-direction: column;
