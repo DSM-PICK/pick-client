@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from './styles';
 
-const AdminBody = (props) => {
+const AdminBodyFunc = (props) => {
 	return <S.Container>{props.children}</S.Container>;
 };
 
-export default AdminBody;
+export default AdminBodyFunc;
