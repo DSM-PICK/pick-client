@@ -6,12 +6,13 @@ import Main from './component/Main/Main';
 import AdminNav from './component/Admin/AdminNav/AdminNav';
 import Admin from './component/Admin/Admin';
 import AdminMain from './component/Admin/AdminMain/AdminMain';
+import AdminClub from './component/Admin/AdminClub/AdminClub';
 
 const Routing = () => {
 	return (
 		<Switch>
 			<Route exact path="/schedule" component={ScheduleContainer} />
-			<Route path="/admin" component={AdminMain} />
+			<Route path="/admin" component={AdminClub} />
 			<Route path="/attendance" component={AttendanceContainer} />
 			<Route path="/main" component={Main} />
 			{/* 404PAGE <Route component={NotFound} /> */}
