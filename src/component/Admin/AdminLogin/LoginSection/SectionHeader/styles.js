@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
-	width: 100%;
-	font-size: 16px;
-
-	justify-content: center;
+	color: ${(props) => props.color && props.color};
+	font-size: 30px;
+	font-weight: bold;
 `;

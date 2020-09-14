@@ -8,4 +8,5 @@ export const Container = styled.div`
 	background: #202831;
 	align-items: center;
 	flex-direction: column;
+	z-index: 4;
 `;

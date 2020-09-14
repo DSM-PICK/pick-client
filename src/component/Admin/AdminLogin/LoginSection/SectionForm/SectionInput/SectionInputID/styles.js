@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
-	width: 100%;
-	font-size: 16px;
+	border: none;
+	border-bottom: 1px solid #c4c4c4;
 
-	justify-content: center;
+	margin: 25px 0;
 `;
