@@ -12,7 +12,7 @@ const AdminMain = () => {
 		<S.Container>
 			<AdminNav />
 			<AdminBody>
-				<AdminBodyTitle imglink="../../../../src/asset/Logo/LogoForAdmin.png" />
+				<AdminBodyTitle imglink="/src/asset/Logo/LogoForAdmin.svg" />
 				<AdminBodyFunc>
 					<AdminMainText />
 					<AdminMainImgWrap />

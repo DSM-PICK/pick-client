@@ -3,16 +3,16 @@ import * as S from './styles';
 
 const AdminMainImgWrap = () => {
 	const imglinks = [
-		'../../../src/asset/Admin/AdminMain1.png',
-		'../../../src/asset/Admin/AdminMain2.png',
-		'../../../src/asset/Admin/AdminMain3.png',
-		'../../../src/asset/Admin/AdminMain4.png',
+		'/src/asset/Admin/AdminMain1.svg',
+		'/src/asset/Admin/AdminMain2.svg',
+		'/src/asset/Admin/AdminMain3.svg',
+		'/src/asset/Admin/AdminMain4.svg',
 	];
 
 	return (
 		<S.Container>
 			{imglinks.map((imglink) => (
-				<S.Img imglink={imglink} />
+				<S.Img key={imglink} imglink={imglink} />
 			))}
 		</S.Container>
 	);

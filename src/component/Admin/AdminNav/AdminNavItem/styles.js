@@ -63,4 +63,15 @@ export const Container = styled.div`
 						background: #13171a;
 					}
 			  `};
+
+	${(props) =>
+		props.text === '로그아웃' &&
+		css`
+			color: #e81a95;
+			margin: auto 0 20px 0;
+
+			&:hover {
+				color: #a73c7c;
+			}
+		`}
 `;
