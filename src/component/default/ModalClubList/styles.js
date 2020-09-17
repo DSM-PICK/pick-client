@@ -1,0 +1,8 @@
+import styled from "styled-components";
+
+export const Container = styled.div``;
+export const Row = styled.div`
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+`;
