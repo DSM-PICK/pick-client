@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 import AdminNavItem from './AdminNavItem/AdminNavItem';
+import AdminModal from '../AdminModal/AdminModal';
 
 const AdminNav = () => {
 	const itemDataSet = [
@@ -55,6 +56,7 @@ const AdminNav = () => {
 				/>
 			))}
 			<AdminNavItem text="로그아웃" size="middle" link="" />
+			<AdminModal />
 		</S.Container>
 	);
 };
