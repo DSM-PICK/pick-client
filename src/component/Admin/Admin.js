@@ -1,8 +1,8 @@
-import React from 'react';
-import AdminRouting from './AdminRouting';
+import React from "react";
+import AdminRouting from "./AdminRouting";
 
 const Admin = () => {
-	return <AdminRouting />;
+  return <AdminRouting />;
 };
 
 export default Admin;
