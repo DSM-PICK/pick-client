@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="50" height="79" viewBox="0 0 50 79">
-  <g id="그룹_403" data-name="그룹 403" transform="translate(-815 -1832)">
-    <text id="신고" transform="translate(840 1907)" fill="#707070" font-size="26" font-family="NanumGothic"><tspan x="-24.44" y="0">신고</tspan></text>
-    <path id="ic_announcement_24px" d="M40.059,2H6.229A4.223,4.223,0,0,0,2.021,6.229L2,44.288l8.458-8.458h29.6A4.241,4.241,0,0,0,44.288,31.6V6.229A4.241,4.241,0,0,0,40.059,2Zm-14.8,19.03H21.03V8.343h4.229Zm0,8.458H21.03V25.259h4.229Z" transform="translate(817 1830)" fill="#707070"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="55.163" height="82.888" viewBox="0 0 55.163 82.888">
+  <g id="그룹_401" data-name="그룹 401" transform="translate(-92.837 -1828.112)">
+    <text id="홈" transform="translate(120 1907)" fill="#707070" font-size="26" font-family="NanumGothic"><tspan x="-12.22" y="0">홈</tspan></text>
+    <path id="ic_home_24px" d="M24.065,49.888V33.34H35.1V49.888H48.888V27.823h8.274L29.581,3,2,27.823h8.274V49.888Z" transform="translate(90.837 1825.112)" fill="#707070"/>
   </g>
 </svg>
