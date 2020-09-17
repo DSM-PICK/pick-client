@@ -26,6 +26,7 @@ module.exports = {
     ],
   },
   output: {
+    publicPath: "/",
     path: path.join(__dirname, "/S3-Files"),
     filename: "bundle.min.js",
   },
