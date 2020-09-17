@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-	display: flex;
-	width: 15vw;
-	min-width: 200px;
-	height: 100%;
-	background: #202831;
-	align-items: center;
-	flex-direction: column;
-	z-index: 4;
+  display: flex;
+  min-width: 15vw;
+  height: 100%;
+  background: #202831;
+  align-items: center;
+  flex-direction: column;
+  z-index: 4;
 `;
