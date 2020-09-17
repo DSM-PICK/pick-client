@@ -1,6 +1,13 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+    @font-face {
+        font-family: "SangSangShinb7";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.1/SangSangShinb7.woff")
+        format("woff");
+        font-weight: normal;
+        font-style: normal;
+    }
     * {
         font-family:나눔고딕 !important;
     }
@@ -67,7 +74,12 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const GlobalContainer = styled.div`
+<<<<<<< Updated upstream
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+=======
+  display: flex;
+  flex-direction: column;
+>>>>>>> Stashed changes
 `;
