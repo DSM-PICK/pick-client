@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   date,
   calander,
   club,
-  modal,
+  modal
 });
 
 export default rootReducer;
