@@ -1,8 +1,12 @@
-import React from "react";
+import React, { memo } from "react";
 import * as S from "./styles";
 
-const ModalClubItem = () => {
-  return <S.Container>1101 김민석</S.Container>;
+const ModalClubItem = ({ number, name }) => {
+  return (
+    <S.Container>
+      {number} {name}
+    </S.Container>
+  );
 };
 
-export default ModalClubItem;
+export default memo(ModalClubItem);
