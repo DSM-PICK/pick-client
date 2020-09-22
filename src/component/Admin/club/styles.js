@@ -12,3 +12,13 @@ export const Header = styled.div`
   font-weight: lighter;
   text-align: center;
 `;
+
+export const Body = styled.div`
+  margin-top: 100px;
+`;
+
+export const ManagementButtonWrap = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+`;
