@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Where = styled.div`
+  color: #707070;
+  font-size: 12px;
+  margin-top: 10px;
+`;
+
 export const Container = styled.div`
   width: 300px;
   height: 120px;
@@ -11,15 +17,18 @@ export const Container = styled.div`
   border-radius: 10px;
   box-shadow: 0px 5px 7px 1px rgb(0, 0, 0, 0.1);
   margin: 25px;
+
+  &.active {
+    background-color: #e81a95;
+    color: white;
+
+    ${Where} {
+      color: white;
+    }
+  }
 `;
 
 export const CircleName = styled.div`
   font-size: 23px;
   font-weight: lighter;
-`;
-
-export const Where = styled.div`
-  color: #707070;
-  font-size: 12px;
-  margin-top: 10px;
 `;
