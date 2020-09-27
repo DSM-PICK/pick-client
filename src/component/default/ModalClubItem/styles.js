@@ -9,4 +9,10 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.selected {
+    background: #267dff;
+    border: 0.4px solid #707070;
+    color: white;
+  }
 `;

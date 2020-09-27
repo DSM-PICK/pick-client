@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import * as S from "./styles";
 
-const ModalClubItem = ({ number, name }) => {
+const ModalClubItem = ({ number, name, onClick }) => {
   return (
-    <S.Container>
+    <S.Container onClick={onClick ? onClick : undefined}>
       {number} {name}
     </S.Container>
   );
