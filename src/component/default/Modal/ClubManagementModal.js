@@ -28,6 +28,10 @@ const ClubManagementModal = () => {
     owner
   });
 
+  const cancelEdit = useCallback(() => {
+    setIsEdit(false);
+    setCircleData(data);
+  }, []);
   const changeIsEdit = useCallback(() => {
     setIsEdit(prev => !prev);
   }, []);
@@ -45,11 +49,7 @@ const ClubManagementModal = () => {
       return (
         <>
           <S.HeaderLeft>
-            <ImgButton
-              imgSrc={CancelIcon}
-              onClick={changeIsEdit}
-              color="#E81A95"
-            >
+            <ImgButton imgSrc={CancelIcon} onClick={cancelEdit} color="#E81A95">
               취소
             </ImgButton>
             <ImgButton imgSrc={SaveIcon} color="#267DFF" onClick={changeIsEdit}>
@@ -98,12 +98,12 @@ const ClubManagementModal = () => {
           </ImgButton>
         </S.HeaderLeft>
         <S.HeaderCenter>
-          <div>{name}</div>
-          <div>{where}</div>
+          <div>{circleData.name}</div>
+          <div>{circleData.where}</div>
         </S.HeaderCenter>
         <S.HeaderRight>
-          <div>담당 : {teacher}</div>
-          <div>부장 : {owner}</div>
+          <div>담당 : {circleData.teacher}</div>
+          <div>부장 : {circleData.owner}</div>
         </S.HeaderRight>
       </>
     );
