@@ -4,10 +4,10 @@ import ScheduleContainer from "./container/Schedule/ScheduleContainer";
 import AttendanceContainer from "./container/Attendance/AttendanceContainer";
 import Main from "./component/Main/Main";
 import IndexContainer from "./container/Index/IndexContainer";
-import AdminMain from "./component/Admin/AdminMain/AdminMain";
 import AdminRouting from "./component/Admin/AdminRouting";
 
 const Routing = () => {
+  console.log("라우팅");
   return (
     <Switch>
       <Route exact path="/" component={IndexContainer} />

@@ -1,11 +1,13 @@
 import React from "react";
 import * as S from "./styles";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import AdminMain from "./AdminMain/AdminMain";
 import AdminClub from "./AdminClub/AdminClub";
 import AdminPrint from "./AdminPrint/AdminPrint";
 import AdminNav from "./AdminNav/AdminNav";
 import AdminClubListContainer from "../../container/Admin/club/AdminClubListContainer";
+import AdminClubManagementContainer from "../../container/Admin/club/AdminClubManagementContainer";
+import AdminClubMemberContainer from "../../container/Admin/club/AdminClubMemberContainer";
 
 const AdminRouting = () => {
   return (
@@ -19,6 +21,17 @@ const AdminRouting = () => {
           exact
           path="/admin/club/list"
           component={AdminClubListContainer}
+        />
+        <Route
+          exact
+          path="/admin/club/management"
+          component={AdminClubManagementContainer}
+        />
+
+        <Route
+          exact
+          path="/admin/club/member"
+          component={AdminClubMemberContainer}
         />
       </Switch>
     </S.Container>

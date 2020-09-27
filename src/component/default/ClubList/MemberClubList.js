@@ -1,19 +1,22 @@
 import React from "react";
-import ListClubItemContainer from "../ClubItem/ListClubItemContainer";
 import * as S from "./styles";
 import withClubList from "./withClubList";
+import MemberClubItemContainer from "../ClubItem/MemberClubItemContainer";
 
-const ClubList = ({ data }) => {
+const MemberClubList = ({ data, step, setCircleData, setEditStep }) => {
   return (
     <>
       {data.map((clubData, rowIndex) => (
         <S.ClubRow key={rowIndex}>
           {clubData.map(({ name, where, id }, itemIndex) => (
-            <ListClubItemContainer
+            <MemberClubItemContainer
+              step={step}
               name={name}
-              wehre={where}
+              where={where}
               id={id}
+              setCircleData={setCircleData}
               key={String(rowIndex) + itemIndex}
+              setEditStep={setEditStep}
             />
           ))}
         </S.ClubRow>
@@ -22,4 +25,4 @@ const ClubList = ({ data }) => {
   );
 };
 
-export default withClubList(ClubList);
+export default withClubList(MemberClubList);

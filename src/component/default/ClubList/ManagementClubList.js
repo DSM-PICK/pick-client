@@ -1,18 +1,20 @@
 import React from "react";
-import ListClubItemContainer from "../ClubItem/ListClubItemContainer";
-import * as S from "./styles";
+import ManagementClubItemContainer from "../ClubItem/ManagementClubItemContainer";
 import withClubList from "./withClubList";
+import * as S from "./styles";
 
-const ClubList = ({ data }) => {
+const ManagementClubList = ({ data, changeSelectItem, isDeleteOn }) => {
   return (
     <>
       {data.map((clubData, rowIndex) => (
         <S.ClubRow key={rowIndex}>
           {clubData.map(({ name, where, id }, itemIndex) => (
-            <ListClubItemContainer
+            <ManagementClubItemContainer
               name={name}
-              wehre={where}
+              where={where}
               id={id}
+              isDeleteOn={isDeleteOn}
+              changeSelectItem={changeSelectItem}
               key={String(rowIndex) + itemIndex}
             />
           ))}
@@ -22,4 +24,4 @@ const ClubList = ({ data }) => {
   );
 };
 
-export default withClubList(ClubList);
+export default withClubList(ManagementClubList);

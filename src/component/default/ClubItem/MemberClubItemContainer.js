@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import ClubItem from "./ClubItem";
-import modalAction from "../../../module/action/modal";
 import { updateClubDetail } from "../../../module/action/club";
+import modalAction from "../../../module/action/modal";
+import ClubItem from "./ClubItem";
 
 const data = {
   where: "제1동아리실",
@@ -22,14 +22,32 @@ const data = {
     ]
   }
 };
-
-const ListClubItemContainer = ({ id, where, name }) => {
+const MemberClubItemContainer = ({
+  name,
+  where,
+  step,
+  id,
+  setCircleData,
+  setEditStep
+}) => {
   const dispatch = useDispatch();
-  const clickHandler = useCallback(() => {
+  const onClick = useCallback(() => {
+    if (step === 1) {
+      setCircleData(prev => ({
+        ...prev,
+        to: {
+          id,
+          name
+        }
+      }));
+      setEditStep(2);
+      return;
+    }
     dispatch(updateClubDetail(data));
     dispatch(modalAction.creater.modalOn());
-  }, []);
-  return <ClubItem name={name} where={where} id={id} onClick={clickHandler} />;
+  }, [step]);
+
+  return <ClubItem onClick={onClick} name={name} where={where} />;
 };
 
-export default ListClubItemContainer;
+export default MemberClubItemContainer;

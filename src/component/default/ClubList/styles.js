@@ -1,9 +1,25 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import {
+  Container as ClubItemContainer,
+  Where as ClubItemWhere
+} from "../ClubItem/style";
 
 export const Container = styled.div`
-  margin-top: 100px;
   background-color: white;
   padding: 30px;
+
+  & ${ClubItemContainer} {
+    ${props =>
+      !props.active &&
+      css`
+        background: white;
+        color: black;
+
+        ${ClubItemWhere} {
+          color: #707070;
+        }
+      `}
+  }
 `;
 
 export const ClubRow = styled.div`
