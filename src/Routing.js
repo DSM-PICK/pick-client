@@ -12,7 +12,7 @@ const Routing = () => {
     <Switch>
       <Route exact path="/" component={IndexContainer} />
       <Route exact path="/schedule" component={ScheduleContainer} />
-      <Route exact path="/attendance" component={AttendanceContainer} />
+      <Route path="/attendance" component={AttendanceContainer} />
       <Route exact path="/main" component={Main} />
       <Route path="/admin" component={AdminRouting} />
     </Switch>
