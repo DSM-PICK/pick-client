@@ -5,16 +5,18 @@ export const Container = styled.div`
   flex: 1;
   box-sizing: border-box;
   background-color: #fafafa;
+  position: relative;
 `;
 
 export const Header = styled.div`
   font-size: 40px;
+  padding-top: 70px;
   font-weight: lighter;
   text-align: center;
 `;
 
 export const Body = styled.div`
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const ManagementButtonWrap = styled.div`
