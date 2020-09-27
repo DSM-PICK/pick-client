@@ -2,20 +2,20 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import * as S from "./styles";
 
-const AdminNavItem = (props) => {
+const AdminNavItem = props => {
   const navSmallStyle = {
     height: "43px",
-    background: "#13171a",
+    background: "#13171a"
   };
 
   const navMiddleStyle = {
     height: "49px",
     color: "#64b1e7",
-    background: "#13171a",
+    background: "#13171a"
   };
 
   const navBigStyle = {
-    background: "#13171a",
+    background: "#13171a"
   };
 
   const navLogoutStyle = {};

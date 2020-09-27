@@ -1,27 +1,25 @@
 import React from "react";
+import ListClubItemContainer from "../ClubItem/ListClubItemContainer";
 import * as S from "./styles";
+import withClubList from "./withClubList";
 
-const sliceArray = (array, n) => {
-  const newArray = [];
-  const length = Math.floor(array.length / n);
-  for (let i = 0; i <= length; i++) newArray.push(array.splice(0, n));
-
-  return newArray;
-};
-
-const ClubList = ({ data, ItemComponent }) => {
-  const sliceData = sliceArray(data, 4);
+const ClubList = ({ data }) => {
   return (
-    <S.Container>
-      {sliceData.map((data, index) => (
-        <S.ClubRow key={index}>
-          {data.map(({ name, where, id }, index) => (
-            <ItemComponent key={index} name={name} where={where} id={id} />
+    <>
+      {data.map((clubData, rowIndex) => (
+        <S.ClubRow key={rowIndex}>
+          {clubData.map(({ name, where, id }, itemIndex) => (
+            <ListClubItemContainer
+              name={name}
+              wehre={where}
+              id={id}
+              key={String(rowIndex) + itemIndex}
+            />
           ))}
         </S.ClubRow>
       ))}
-    </S.Container>
+    </>
   );
 };
 
-export default ClubList;
+export default withClubList(ClubList);

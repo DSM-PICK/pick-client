@@ -1,27 +1,34 @@
 import { UPDATE_CLUB_DETAIL, UPDATE_CLUB_LIST } from "../../action/club";
 
 const initialState = {
-  detail: {},
-  list: [],
+  detail: {
+    name: "",
+    where: "",
+    teacher: "",
+    owner: "",
+    people: {
+      one: [],
+      two: [],
+      three: []
+    }
+  },
+  list: []
 };
 
 const clubReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_CLUB_LIST: {
+    case UPDATE_CLUB_LIST:
       return {
         ...state,
-        list: action.payload,
+        list: action.payload
       };
-    }
-    case UPDATE_CLUB_DETAIL: {
+    case UPDATE_CLUB_DETAIL:
       return {
         ...state,
-        detail: action.payload,
+        detail: action.payload
       };
-    }
-    default: {
+    default:
       return state;
-    }
   }
 };
 

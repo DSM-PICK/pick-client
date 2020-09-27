@@ -6,4 +6,13 @@ export const Container = styled.div`
   border-radius: 16px;
   border: 1px solid rgb(112, 112, 112, 0.5);
   margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.selected {
+    background: #267dff;
+    border: 0.4px solid #707070;
+    color: white;
+  }
 `;
