@@ -74,12 +74,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const GlobalContainer = styled.div`
-<<<<<<< Updated upstream
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-=======
   display: flex;
   flex-direction: column;
->>>>>>> Stashed changes
+  height: 100%;
 `;
