@@ -1,32 +1,38 @@
-import React from "react";
-import Modal from "./Modal";
+import React, { useCallback } from "react";
 import ModalClubList from "../ModalClubList/ModalClubList";
 import * as S from "./styles";
+import { useSelector } from "react-redux";
+import withModal from "./Modal";
 
 const ClubListModal = () => {
+  const data = useSelector(state => state.club.detail);
+  const {
+    name,
+    where,
+    teacher,
+    owner,
+    people: { one, two, three }
+  } = data;
+
   return (
-    <Modal>
+    <>
       <S.Header>
         <S.EmptyBox />
         <S.HeaderCenter>
-          <div>ABC Mart</div>
-          <div>정보보안 1실</div>
+          <div>{name}</div>
+          <div>{where}</div>
         </S.HeaderCenter>
-        <div>
-          <div>담당 : 신요셉</div>
-          <div>부장 : 김민석</div>
-        </div>
+        <S.HeaderRight>
+          <div>담당 : {teacher}</div>
+          <div>부장 : {owner}</div>
+        </S.HeaderRight>
       </S.Header>
       <S.Hr />
       <S.Body>
-        <ModalClubList
-          one={["ㅇ", "1", "2"]}
-          two={["1", "2", "3"]}
-          three={["1", "2", "3", 1, 1, 1, 1, 1, 1]}
-        />
+        <ModalClubList one={one} two={two} three={three} />
       </S.Body>
-    </Modal>
+    </>
   );
 };
 
-export default ClubListModal;
+export default withModal(ClubListModal);

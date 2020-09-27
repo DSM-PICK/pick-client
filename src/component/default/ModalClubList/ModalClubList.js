@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import ModalClubItem from "../ModalClubItem/ModalClubItem";
 import * as S from "./styles";
 
@@ -6,22 +6,22 @@ const ModalClubList = ({ one, two, three }) => {
   return (
     <S.Container>
       <S.Row>
-        {one.map((data) => (
-          <ModalClubItem />
+        {one.map(({ name, number }) => (
+          <ModalClubItem name={name} number={number} />
         ))}
       </S.Row>
       <S.Row>
-        {two.map((data) => (
-          <ModalClubItem />
+        {two.map(({ name, number }) => (
+          <ModalClubItem name={name} number={number} />
         ))}
       </S.Row>
       <S.Row>
-        {three.map((data) => (
-          <ModalClubItem />
+        {three.map(({ name, number }) => (
+          <ModalClubItem name={name} number={number} />
         ))}
       </S.Row>
     </S.Container>
   );
 };
 
-export default ModalClubList;
+export default memo(ModalClubList);

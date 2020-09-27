@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
+import AdminClubMember from "../../../component/Admin/club/AdminClubMember";
 import { useDispatch } from "react-redux";
-import AdminClubList from "../../../component/Admin/club/AdminClubList";
 import { updateClubList } from "../../../module/action/club";
 
 export const staticData = [
@@ -30,12 +30,12 @@ export const staticData = [
   }
 ];
 
-const AdminClubListContainer = () => {
+const AdminClubMemberContainer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateClubList(staticData));
   }, []);
-  return <AdminClubList />;
+  return <AdminClubMember />;
 };
 
-export default AdminClubListContainer;
+export default AdminClubMemberContainer;
