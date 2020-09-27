@@ -34,7 +34,7 @@ const AdminClubListContainer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateClubList(staticData));
-  }, [staticData]);
+  }, []);
   return <AdminClubList />;
 };
 
