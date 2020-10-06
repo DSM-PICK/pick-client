@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Container as ModalContainer } from "./Header/Modal/styles";
 import { IndexBackground } from "../../asset";
 
 export const Container = styled.div`
@@ -10,5 +11,9 @@ export const Container = styled.div`
   background-size: cover;
   * {
     font-family: "SangSangShinb7" !important;
+  }
+
+  ${ModalContainer} * {
+    font-family: "나눔고딕" !important;
   }
 `;
