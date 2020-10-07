@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from "react";
-import { requestApi } from "../../../../lib/requestApi";
+import { useDispatch } from "react-redux";
+import { loginActionCreater } from "../../../../module/action/login";
 import { Eye } from "../../../../asset";
 import * as S from "./styles";
 
 const LoginModal = () => {
+  const dispatch = useDispatch();
   const [typeIsPassword, setTypeIsPassword] = useState(true);
   const [loginInfo, setLoginInfo] = useState({
     id: "",
@@ -24,15 +26,7 @@ const LoginModal = () => {
   const requestLogin = useCallback(
     e => {
       e.preventDefault();
-      const { id, password } = loginInfo;
-      requestApi(
-        "post",
-        `/saturn/auth/access-refresh-token?id=${id}&pw=${password}`
-      ).then(res => {
-        const { accessToken, refreshToken } = res.data;
-        window.localStorage.setItem("accessToken", accessToken);
-        window.localStorage.setItem("refreshToken", refreshToken);
-      });
+      dispatch(loginActionCreater.requestLogin(loginInfo));
     },
     [loginInfo]
   );
