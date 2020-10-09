@@ -14,3 +14,4 @@ export { default as PlusIcon } from "./modal/plus.svg";
 export { default as DeleteIcon } from "./modal/delete.svg";
 export { default as whiteIcon } from "./modal/white-cancel.svg";
 export { default as changeArrow } from "./modal/changeArrow.svg";
+export { default as Eye } from "./modal/eye.svg";
