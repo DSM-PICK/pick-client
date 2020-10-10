@@ -1,4 +1,4 @@
-import adminModal from "../../action/admin_modal";
+import { MODAL_ON, MODAL_OFF } from "../../action/admin_modal";
 
 const initialState = {
   modalOn: false
@@ -6,14 +6,14 @@ const initialState = {
 
 const adminModalReducer = (state = initialState, action) => {
   switch (action.type) {
-    case adminModal.type.MODAL_ON: {
+    case MODAL_ON: {
       return {
         modalOn: true
       };
     }
-    case adminModal.type.MODAL_OFF: {
+    case MODAL_OFF: {
       return {
-        modalOff: false
+        modalOn: false
       };
     }
     default: {

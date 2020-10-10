@@ -23,12 +23,6 @@ const autoComplete = (state = initialState, action) => {
         autoComplete: action.payload
       };
     }
-    case ERR_AUTO_COMPLETE_TEXT: {
-      return {
-        ...state,
-        autoComplete: []
-      };
-    }
     default: {
       return state;
     }
