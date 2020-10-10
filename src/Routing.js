@@ -7,7 +7,6 @@ import AdminRouting from "./component/Admin/AdminRouting";
 import MainContainer from "./container/Main/MainContainer";
 
 const Routing = () => {
-  console.log("라우팅");
   return (
     <Switch>
       <Route exact path="/" component={IndexContainer} />

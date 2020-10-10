@@ -8,7 +8,7 @@ const ChangeCircle = ({ step, circleData }) => {
   return (
     <S.Container>
       <Circle circleName={from && from.name} />
-      {step === 2 && <img src={changeArrow} />}
+      {step === 2 && <img src={changeArrow} />  }
       <Circle circleName={to && to.name} />
     </S.Container>
   );
