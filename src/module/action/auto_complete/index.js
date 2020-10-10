@@ -3,7 +3,8 @@ export const SET_AUTO_COMPLETE_TEXT = "auto_complete/SET_AUTO_COMPLETE_TEXT";
 
 export const GET_AUTO_COMPLETE_TEXT_SAGA =
   "auto_complete/GET_AUTO_COMPLETE_TEXT_SAGA";
-export const ERR_AUTO_COMPLETE_TEXT = "auto_complete/ERR_AUTO_COMPLETE_TEXT";
+export const FAILURE_AUTO_COMPLETE_TEXT_SAGA = "auto_complete/ERR_AUTO_COMPLETE_TEXT_SAGA";
+export const SUCCESS_AUTO_COMPLETE_TEXT_SAGA = "auto_complete/SUCCESS_AUTO_COMPLETE_TEXT_SAGA";
 
 export const setText = payload => ({
   type: SET_TEXT,
@@ -19,7 +20,10 @@ export const getAutoCompleteTextSaga = () => ({
   type: GET_AUTO_COMPLETE_TEXT_SAGA
 });
 
-export const errAutoCompleteText = payload => ({
-  type: ERR_AUTO_COMPLETE_TEXT,
-  payload
+export const failureAutoCompleteTextSaga = () => ({
+  type: FAILURE_AUTO_COMPLETE_TEXT_SAGA
+});
+
+export const successAutoCompleteTextSaga = () => ({
+  type: SUCCESS_AUTO_COMPLETE_TEXT_SAGA
 });

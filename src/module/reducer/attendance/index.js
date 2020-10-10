@@ -1,33 +1,118 @@
 import {
-  GET_CLUB_FLOOR_DATA,
-  GET_CLASS_FLOOR_DATA,
-  GET_CLUB_DATA,
-  GET_CLASS_DATA
+  SET_CLUB_FIRST_DATA,
+  SET_CLUB_SECOND_DATA,
+  SET_CLUB_THIRD_DATA,
+  SET_CLUB_FORTH_DATA,
+  SET_SELF_STUDY_SECOND_DATA,
+  SET_SELF_STUDY_THIRD_DATA,
+  SET_SELF_STUDY_FORTH_DATA,, SET_FLOOR, SET_ATTENDANCE_DATA, SET_PERIOD, SET_STATE, SET_NUMBER
 } from "../../action/attendance";
 
 const initialState = {
+  clubFirstData = [],
+  clubSecondData = [],
+  clubThirdData = [],
+  clubForthData = [],
+  selfStudySecondData = [],
+  selfStudyThirdData = [],
+  selfStudyForthData = [],
+
+  activity: "",
   floor: "",
-  location: "",
-  floorData: {},
-  locationData: {}
+  priority: "",
+
+  number: "",
+  period: "",
+  state: "",
+
+  attendanceData = {},
 };
 
 const attendanceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CLUB_FLOOR_DATA: {
+    case SET_CLUB_FIRST_DATA: {
       return {
-        location: "CLUB",
-        floor: action.payload
-      };
+        ...state,
+        clubFirstData: action.payload,
+      }
     }
-    case GET_CLASS_FLOOR_DATA: {
-      return state;
+    case SET_CLUB_SECOND_DATA: {
+      return {
+        ...state,
+        clubSecondData: action.payload,
+      }
     }
-    case GET_CLUB_DATA: {
-      return state;
+    case SET_CLUB_THIRD_DATA: {
+      return {
+        ...state,
+        clubThirdData: action.payload,
+      }
     }
-    case GET_CLASS_DATA: {
-      return state;
+    case SET_CLUB_FORTH_DATA: {
+      return {
+        ...state,
+        clubForthData: action.payload,
+      }
+    }
+    case SET_SELF_STUDY_SECOND_DATA: {
+      return {
+        ...state,
+        selfStudySecondData: action.payload,
+      }
+    }
+    case SET_SELF_STUDY_THIRD_DATA: {
+      return {
+        ...state,
+        selfStudyThirdData: action.payload,
+      }
+    }
+    case SET_SELF_STUDY_FORTH_DATA: {
+      return {
+        ...state,
+        selfStudyForthData: action.payload,
+      }
+    }
+    case SET_ACTIVITY: {
+      return {
+        ...state,
+        activity: action.payload
+      }
+    }
+    case SET_FLOOR: {
+      return {
+        ...state,
+        floor: action.payload,
+      }
+    }
+    case SET_PRIORITY: {
+      return {
+        ...state,
+        priority: action.payload,
+      }
+    }
+    case SET_NUMBER: {
+      return {
+        ...state,
+        number: action.payload,
+      }
+    }
+    case SET_PERIOD: {
+      return {
+        ...state,
+        period: action.payload,
+      }
+    }
+    case SET_STATE: {
+      return {
+        ...state,
+        state: action.payload,
+      }
+    }
+    case SET_ATTENDANCE_DATA: {
+      return {
+        ...state,
+        attendanceData: action.payload
+      }
     }
     default: {
       return state;
