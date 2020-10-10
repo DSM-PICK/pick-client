@@ -23,6 +23,7 @@ const AdminRouting = () => {
           path="/admin/club/list"
           component={AdminClubListContainer}
         />
+        <Route component={AdminNotFound} />
       </Switch>
     </S.Container>
   );
