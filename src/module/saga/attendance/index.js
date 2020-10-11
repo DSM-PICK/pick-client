@@ -82,8 +82,8 @@ function* getAttendanceData(payload) {
 
 function* postAttendanceData(payload) {
   try {
-    const { floor, priority, number, period, state } = payload;
-    yield call(axios.post, `attendance/${floor}/${priority}`, {
+    const { number, period, state } = payload;
+    yield call(axios.post, `attendance/student-state`, {
       number,
       period,
       state
