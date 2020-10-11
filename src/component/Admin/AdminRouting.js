@@ -6,6 +6,7 @@ import AdminClub from "./AdminClub/AdminClub";
 import AdminPrint from "./AdminPrint/AdminPrint";
 import AdminNav from "./AdminNav/AdminNav";
 import AdminClubListContainer from "../../container/Admin/club/AdminClubListContainer";
+import AdminNotFound from "./AdminNotFound/AdminNotFound";
 import AdminClubManagementContainer from "../../container/Admin/club/AdminClubManagementContainer";
 import AdminClubMemberContainer from "../../container/Admin/club/AdminClubMemberContainer";
 
@@ -22,17 +23,7 @@ const AdminRouting = () => {
           path="/admin/club/list"
           component={AdminClubListContainer}
         />
-        <Route
-          exact
-          path="/admin/club/management"
-          component={AdminClubManagementContainer}
-        />
-
-        <Route
-          exact
-          path="/admin/club/member"
-          component={AdminClubMemberContainer}
-        />
+        <Route component={AdminNotFound} />
       </Switch>
     </S.Container>
   );
