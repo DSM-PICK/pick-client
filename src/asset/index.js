@@ -6,7 +6,7 @@ export { default as IndexBackground } from "./login/background.png";
 export { default as IndexIcon } from "./login/icon.svg";
 export { default as PickLogo } from "./Logo/PickLogo.svg";
 export { default as GithubLogo } from "./Logo/github.svg";
-export { default as FacebookLogo } from "./logo/facebook.svg";
+export { default as FacebookLogo } from "./Logo/facebook.svg";
 export { default as EditIcon } from "./modal/edit.svg";
 export { default as SaveIcon } from "./modal/save.svg";
 export { default as CancelIcon } from "./modal/cancel.svg";
