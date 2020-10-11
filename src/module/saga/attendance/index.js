@@ -1,6 +1,10 @@
 import axios from "axios";
 import { call, takeEvery } from "redux-saga/effects";
-import { SaturnApi } from "../../../lib/api";
+import {
+  methodType,
+  requestApiWithAccessToken,
+  requestGetApiWithAccessToken
+} from "../../../lib/requestApi";
 import {
   GET_CLUB_FLOOR_DATA_SAGA,
   GET_SELF_STUDY_FLOOR_DATA_SAGA,
@@ -30,8 +34,8 @@ function* getClubFloorData() {
     ];
     for (let i = 1; i < 5; i++) {
       const clubData = yield call(
-        axios.get,
-        `${SaturnApi}attendance/club/${i}`
+        requestGetApiWithAccessToken,
+        `/saturn​/attendance​/club​/${i}`
       );
       yield put(SET_CLUB_DATA_ACTIONS[i - 1](clubData));
       console.log(`동아리/${i} 리스트 불러오기 성공`);
@@ -51,8 +55,11 @@ function* getSelfStudyFloorData() {
       SET_SELF_STUDY_THIRD_DATA,
       SET_SELF_STUDY_FORTH_DATA
     ];
-    for (let i = 1; i < 4; i++) {
-      const selfStudyData = yield call(axios.get, `attendance/self-study/${i}`);
+    for (let i = 2; i < 5; i++) {
+      const selfStudyData = yield call(
+        requestGetApiWithAccessToken,
+        `/saturn​/attendance​/self-study/${i}`
+      );
       yield put(SET_SELF_STUDY_DATA_ACTIONS[i - 1](selfStudyData));
       console.log(`자습/${i} 리스트 불러오기 성공`);
     }
@@ -68,8 +75,8 @@ function* getAttendanceData(payload) {
   try {
     const { activity, floor, priority } = payload;
     const attendanceData = yield call(
-      axios.get,
-      `attendance/${activity}/${floor}/${priority}`
+      requestGetApiWithAccessToken,
+      `/saturn​/${activity}/${floor}/${priority}`
     );
     yield put(SET_ATTENDANCE_DATA(attendanceData));
     console.log(`출석 데이터 불러오기 성공`);
@@ -83,11 +90,16 @@ function* getAttendanceData(payload) {
 function* postAttendanceData(payload) {
   try {
     const { floor, priority, number, period, state } = payload;
-    yield call(axios.post, `attendance/${floor}/${priority}`, {
-      number,
-      period,
-      state
-    });
+    yield call(
+      requestApiWithAccessToken,
+      methodType.POST,
+      `saturn/attendance/${floor}/${priority}`,
+      JSON.stringify({
+        number,
+        period,
+        state
+      })
+    );
 
     console.log(`출석 데이터 저장 성공`);
   } catch (error) {
