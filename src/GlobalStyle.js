@@ -17,6 +17,9 @@ export const GlobalStyle = createGlobalStyle`
     .sc-fznZeY {
         height: 100%;
     }
+    #root {
+        height: 100%;
+    }
     html {
         height: 100%;
     }
@@ -71,12 +74,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const GlobalContainer = styled.div`
-<<<<<<< Updated upstream
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-=======
   display: flex;
   flex-direction: column;
->>>>>>> Stashed changes
+  height: 100%;
 `;

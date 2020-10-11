@@ -33,27 +33,15 @@ const requesetRefresh = async () => {
 export const checkIsLogin = async () => {
   try {
     const accessToken = window.localStorage.getItem("accessToken");
-    // await axios.post(
-    //   BASE_URL + "/saturn/auth/token",
-    //   {},
-    //   {
-    //     headers: {
-    //       [ACCESS_TOKEN_NAME]: accessToken
-    //     }
-    //   }
-    // );
-    // 정상적인 api
-
     await axios.post(
       BASE_URL + "/saturn/auth/token",
       {},
       {
         headers: {
-          token: accessToken
+          [ACCESS_TOKEN_NAME]: accessToken
         }
       }
     );
-    // api수정 되지 않아 임시로 진행 삭제에정
 
     return true;
   } catch (err) {
@@ -71,9 +59,6 @@ export const requestGetApiWithAccessToken = async (url, headers) => {
       throw null;
     }
     switch (err.response.status) {
-      case 403: {
-        return await axios.get(BASE_URL + url, { headers });
-      }
     }
     throw err.response;
   }

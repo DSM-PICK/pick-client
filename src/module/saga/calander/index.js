@@ -24,7 +24,7 @@ function* selectFirstDaySaga({ payload }) {
 
 function* rejectChangeTeacherSaga() {
   yield put(defaultStatus());
-}
+} 
 
 function* resolveChangeTeacherSaga() {
   try {

@@ -1,13 +1,21 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import TodayTeacher from "./TeacherBox/TodayTeacher";
 import IndexCalander from "./Calander/IndexCalander";
 import * as S from "./styles";
+import { useDispatch } from "react-redux";
+import { teacherActionCreater } from "../../../module/action/teacher";
 
 const IndexBody = () => {
+  const dispatch = useDispatch();
+
   const [isDays, setIsDays] = useState(true);
 
+  useEffect(() => {
+    dispatch(teacherActionCreater.getTeacherTodaySaga());
+  }, []);
+
   const changeIsDays = useCallback(() => {
-    setIsDays((prev) => !prev);
+    setIsDays(prev => !prev);
   }, []);
 
   return (
