@@ -1,21 +1,41 @@
-import React from 'react';
-import * as S from './styles';
-import { Switch, Route } from 'react-router-dom';
-import AdminMain from './AdminMain/AdminMain';
-import AdminClub from './AdminClub/AdminClub';
-import AdminPrint from './AdminPrint/AdminPrint';
-import AdminLogin from './AdminLogin/AdminLogin';
+import React from "react";
+import * as S from "./styles";
+import { Switch, Route } from "react-router-dom";
+import AdminMain from "./AdminMain/AdminMain";
+import AdminClub from "./AdminClub/AdminClub";
+import AdminPrint from "./AdminPrint/AdminPrint";
+import AdminNav from "./AdminNav/AdminNav";
+import AdminClubListContainer from "../../container/Admin/club/AdminClubListContainer";
+import AdminClubManagementContainer from "../../container/Admin/club/AdminClubManagementContainer";
+import AdminClubMemberContainer from "../../container/Admin/club/AdminClubMemberContainer";
 
 const AdminRouting = () => {
-	return (
-		<S.Container>
-			<Switch>
-				<Route exact path="/admin" component={AdminMain} />
-				<Route path="/admin/club" component={AdminClub} />
-				<Route path="/admin/print" component={AdminPrint} />
-			</Switch>
-		</S.Container>
-	);
+  return (
+    <S.Container>
+      <AdminNav />
+      <Switch>
+        <Route exact path="/admin" component={AdminMain} />
+        <Route exact path="/admin/club" component={AdminClub} />
+        <Route exact path="/admin/print" component={AdminPrint} />
+        <Route
+          exact
+          path="/admin/club/list"
+          component={AdminClubListContainer}
+        />
+        <Route
+          exact
+          path="/admin/club/management"
+          component={AdminClubManagementContainer}
+        />
+
+        <Route
+          exact
+          path="/admin/club/member"
+          component={AdminClubMemberContainer}
+        />
+      </Switch>
+    </S.Container>
+  );
 };
 
 export default AdminRouting;

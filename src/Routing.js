@@ -4,7 +4,7 @@ import ScheduleContainer from "./container/Schedule/ScheduleContainer";
 import AttendanceContainer from "./container/Attendance/AttendanceContainer";
 import Main from "./component/Main/Main";
 import IndexContainer from "./container/Index/IndexContainer";
-import AdminMain from "./component/Admin/AdminMain/AdminMain";
+import AdminRouting from "./component/Admin/AdminRouting";
 
 const Routing = () => {
   return (
@@ -13,7 +13,7 @@ const Routing = () => {
       <Route exact path="/schedule" component={ScheduleContainer} />
       <Route exact path="/attendance" component={AttendanceContainer} />
       <Route exact path="/main" component={Main} />
-      <Route path="/admin" component={AdminMain} />
+      <Route path="/admin" component={AdminRouting} />
     </Switch>
   );
 };
