@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 20px;
   display: flex;
   flex-direction: column;
@@ -11,12 +11,14 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   outline: none;
-  transition: 0.45s;
   background-color: #2764a7;
   border-radius: 50%;
   border: none;
   margin: 10px 0;
   transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const BigButton = styled(Button)`
@@ -26,8 +28,8 @@ export const BigButton = styled(Button)`
     css`
       transform: rotate(45deg);
     `};
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 `;
 
 export const MenuButton = styled(Button)`
@@ -42,7 +44,7 @@ export const MenuButton = styled(Button)`
 `;
 
 export const MenuText = styled.div`
-  width: 100px;
+  width: 130px;
   text-align: right;
   margin-right: 15px;
   font-size: 19px;
@@ -73,8 +75,8 @@ export const AnimationWrap = styled.div`
     ${(props) =>
       props.isOpen &&
       css`
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         transform: translate(0) !important;
       `}
   }
