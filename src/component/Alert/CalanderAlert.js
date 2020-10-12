@@ -7,15 +7,11 @@ import CalanderConfirmChangeTeacher from "./confirm/CalanderConfirmChangeTeacher
 import BottomAlert from "./BottomAlert/BottomAlert";
 
 const CalanderAlert = () => {
-  const state = useSelector((store) => store.calander.state);
-  const days = useSelector((store) => store.calander.changeDays);
+  const state = useSelector(store => store.calander.state);
+  const days = useSelector(store => store.calander.changeDays);
   const changeScheduleStatus = useSelector(
-    (store) => store.calander.changeScheduleStatus
+    store => store.calander.changeScheduleStatus
   );
-
-  useEffect(() => {
-    console.log("캘린더 얼랏");
-  });
 
   const render = useMemo(() => {
     switch (changeScheduleStatus) {
