@@ -1,6 +1,11 @@
 import axios from "axios";
 import { call, takeEvery } from "redux-saga/effects";
 import {
+  methodType,
+  requestApiWithAccessToken,
+  requestGetApiWithAccessToken
+} from "../../../lib/requestApi";
+import {
   SET_PRE_ABSENCE,
   GET_PRE_ABSENCE_SAGA,
   FAILURE_GET_PRE_ABSENCE_SAGA,
@@ -16,7 +21,10 @@ function* getPreAbsenceList() {
     month < 10 ? "0" + month : month
   }-${date.getDate()}`;
   try {
-    const preAbsenceList = yield call(axios.get, `pre-absence/date/${today}`);
+    const preAbsenceList = yield call(
+      requestGetApiWithAccessToken,
+      `pre-absence/date/${today}`
+    );
     yield put(SET_PRE_ABSENCE(preAbsenceList));
     console.log("사전 결석 리스트 불러오기 성공");
   } catch (error) {
@@ -29,7 +37,12 @@ function* getPreAbsenceList() {
 function* createPreAbsence(payload) {
   try {
     console.log(payload);
-    yield call(axios.post, "pre-absence", payload);
+    yield call(
+      requestApiWithAccessToken,
+      methodType.POST,
+      "pre-absence",
+      JSON.stringify(payload)
+    );
     yield put(GET_PRE_ABSENCE_SAGA);
     console.log("사전 결석 리스트 생성 성공");
   } catch (error) {
@@ -42,7 +55,11 @@ function* createPreAbsence(payload) {
 function* deletePreAbsence(payload) {
   try {
     console.log(payload);
-    yield call(axios.delete, `pre-absence/${payload}`);
+    yield call(
+      requestApiWithAccessToken,
+      methodType.DELETE,
+      `pre-absence/${payload}`
+    );
     yield put(GET_PRE_ABSENCE_SAGA);
     console.log("사전 결석 리스트 삭제 성공");
   } catch (error) {

@@ -5,12 +5,13 @@ import {
   GET_AUTO_COMPLETE_TEXT_SAGA,
   FAILURE_AUTO_COMPLETE_TEXT_SAGA
 } from "../../action/auto_complete";
+import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 
 function* getAutoCompleteText() {
   try {
     const text = yield select(store => store.autoComplete.text);
     const autoCompleteData = yield call(
-      axios.get,
+      requestGetApiWithAccessToken,
       `student/autocomplete/${text}`
     );
     yield put(SET_AUTO_COMPLETE_TEXT(autoCompleteData));
