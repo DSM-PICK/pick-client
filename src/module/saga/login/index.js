@@ -5,19 +5,13 @@ import { requestApi, methodType } from "../../../lib/requestApi";
 function* requestLogin(action) {
   const { id, password } = action.payload;
   try {
-    const res = yield call(
-      requestApi,
-      methodType.POST,
-      `/saturn/auth/access-refresh-token`,
-      {
-        id,
-        pw: password
-      }
-    );
+    const res = yield call(requestApi, methodType.POST, `/saturn/auth/login`, {
+      id,
+      pw: password
+    });
 
     const {
-      data: { accessToken, refreshToken },
-      status
+      data: { accessToken, refreshToken }
     } = res;
 
     window.localStorage.setItem("accessToken", accessToken);
