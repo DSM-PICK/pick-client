@@ -6,10 +6,6 @@ const Body = props => {
   const { calcDate, month, year } = props;
   const { onOffModal, onSelectDay } = props;
 
-  calcDate.map(dateArr =>
-    console.log(String(dateArr[0].month) + String(dateArr[0].date))
-  );
-
   return (
     <S.Container>
       {calcDate.map(dateArr => (
