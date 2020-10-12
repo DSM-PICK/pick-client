@@ -12,7 +12,6 @@ function* rootSaga() {
     autoCompleteSaga(),
     preAbsenceSaga(),
     attendanceSaga(),
-    calanderSaga(),
     loginSaga(),
     teacherSaga()
   ]);
