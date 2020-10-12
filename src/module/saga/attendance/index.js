@@ -33,9 +33,10 @@ function* getClubFloorData() {
       SET_CLUB_FORTH_DATA
     ];
     for (let i = 1; i < 5; i++) {
+      console.log("/" === "/");
       const clubData = yield call(
         requestGetApiWithAccessToken,
-        `/saturn​/attendance​/club​/${i}`
+        `/saturn/attendance/club/${i}`
       );
       yield put(SET_CLUB_DATA_ACTIONS[i - 1](clubData));
       console.log(`동아리/${i} 리스트 불러오기 성공`);
