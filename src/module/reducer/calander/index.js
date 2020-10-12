@@ -24,8 +24,7 @@ const calanderReducer = (state = defaultState, action) => {
     case SHOW_MY_SCHEDULE_STATUS: {
       return {
         ...state,
-        state: SHOW_MY_SCHEDULE_STATUS,
-        todayTeacher: action.payload
+        state: SHOW_MY_SCHEDULE_STATUS
       };
     }
     case DEFAULT_STATUS: {
