@@ -91,11 +91,15 @@ function* getAttendanceData(payload) {
 function* postAttendanceData(payload) {
   try {
     const { number, period, state } = payload;
-    yield call(axios.post, `attendance/student-state`, {
-      number,
-      period,
-      state
-    });
+    yield call(
+      methodType.POST,
+      `attendance/student-state`,
+      JSON.stringify({
+        number,
+        period,
+        state
+      })
+    );
 
     console.log(`출석 데이터 저장 성공`);
   } catch (error) {
