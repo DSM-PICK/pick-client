@@ -4,6 +4,7 @@ import * as C from "./Constant";
 import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
+import DeleteModal from "../Modal/DeleteModal";
 import getDateObj from "../../../lib/calander";
 
 const PreReport = () => {
@@ -30,8 +31,14 @@ const PreReport = () => {
   const [height, setHeight] = useState("30px");
   const [preNextState, setPreNextState] = useState("");
 
+  const [delModal, setDelModal] = useState(false);
+
   const onOffModal = () => {
     setModal(!modal);
+  };
+
+  const onOffDelModal = () => {
+    setDelModal(!delModal);
   };
 
   const onPreClick = () => {
@@ -177,7 +184,7 @@ const PreReport = () => {
           <PreReportName name={name} onChangeName={onChangeName} />
         </S.FuncKindName>
         <S.FuncDate>
-          <S.FuncTitle>날짜</S.FuncTitle>
+          <S.FuncTitle>기간</S.FuncTitle>
           <PreReportDate
             modal={modal}
             height={height}
@@ -206,7 +213,21 @@ const PreReport = () => {
         </S.FuncDate>
         <S.FuncAdd onClick={onSubmit}>추가하기</S.FuncAdd>
       </S.Func>
-      <S.Show></S.Show>
+      <S.Show>
+        <S.ShowHeader>
+          <S.ShowHeaderStd>학생</S.ShowHeaderStd>
+          <S.ShowHeaderKind>종류</S.ShowHeaderKind>
+          <S.ShowHeaderDate>기간</S.ShowHeaderDate>
+        </S.ShowHeader>
+        <S.ShowBody>
+          <S.ShowBodyBox onClick={onOffDelModal}>
+            <S.ShowBodyStd>2415 유시온</S.ShowBodyStd>
+            <S.ShowBodyKind>외출</S.ShowBodyKind>
+            <S.ShowBodyDate>8월 15일 7교시 ~ 8월 18일 9교시</S.ShowBodyDate>
+          </S.ShowBodyBox>
+        </S.ShowBody>
+        {delModal && <DeleteModal onOffDelModal={onOffDelModal} />}
+      </S.Show>
     </S.Container>
   );
 };

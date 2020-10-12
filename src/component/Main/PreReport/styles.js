@@ -74,6 +74,7 @@ export const FuncAdd = styled.button`
   color: white;
   font-size: 24px;
   text-align: center;
+  align-items: center;
   justify-content: center;
   background: #267dff;
   border: none;
@@ -81,10 +82,64 @@ export const FuncAdd = styled.button`
 `;
 
 export const Show = styled.div`
-  display: flexbox;
+  display: flex;
   width: 55%;
   height: 260px;
   border: 1px solid #707070;
   border-radius: 60px;
   background: white;
+  flex-direction: column;
+`;
+
+export const ShowHeader = styled.div`
+  display: flex;
+  width: 100%;
+  height: 20px;
+  padding: 10px 0;
+  justify-content: space-evenly;
+`;
+
+export const ShowHeaderStd = styled.p`
+  display: flex;
+  width: 130px;
+  color: #707070;
+  font-size: 20px;
+  justify-content: center;
+`;
+
+export const ShowHeaderKind = styled(ShowHeaderStd)`
+  width: 50px;
+`;
+
+export const ShowHeaderDate = styled(ShowHeaderStd)`
+  width: 350px;
+`;
+
+export const ShowBody = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+`;
+
+export const ShowBodyBox = styled.div`
+  display: flex;
+  width: 100%;
+  margin: 3px 0;
+  justify-content: space-evenly;
+`;
+
+export const ShowBodyStd = styled(ShowHeaderStd)`
+  color: #20223e;
+  font-size: 22px;
+`;
+
+export const ShowBodyKind = styled(ShowHeaderKind)`
+  color: #20223e;
+  font-size: 22px;
+`;
+
+export const ShowBodyDate = styled(ShowHeaderDate)`
+  color: #20223e;
+  font-size: 22px;
 `;
