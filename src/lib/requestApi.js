@@ -51,7 +51,7 @@ export const checkIsLogin = async () => {
 
 export const requestGetApiWithAccessToken = async (url, headers) => {
   try {
-    const res = await axios.get(BASE_URL + url, { headers });
+    const res = await axios.get(BASE_URL + url, { headers: {} });
     return res;
   } catch (err) {
     if (!err.response) {
@@ -64,7 +64,7 @@ export const requestGetApiWithAccessToken = async (url, headers) => {
   }
 };
 
-export const requestGetApi = async (method, url, headers) =>
+export const requestGetApi = async (url, headers) =>
   axios.get(BASE_URL + url, { headers });
 
 export const requestApi = async (method, url, body, headers) => {
