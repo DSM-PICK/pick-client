@@ -89,26 +89,12 @@ function* getAttendanceData(payload) {
 
 function* postAttendanceData(payload) {
   try {
-<<<<<<< HEAD
-    const { floor, priority, number, period, state } = payload;
-    yield call(
-      requestApiWithAccessToken,
-      methodType.POST,
-      `saturn/attendance/${floor}/${priority}`,
-      JSON.stringify({
-        number,
-        period,
-        state
-      })
-    );
-=======
     const { number, period, state } = payload;
     yield call(axios.post, `attendance/student-state`, {
       number,
       period,
       state
     });
->>>>>>> develop
 
     console.log(`출석 데이터 저장 성공`);
   } catch (error) {
