@@ -5,18 +5,18 @@ import {
   SELECT_FIRST_DAY,
   SELECT_SECOND_DAY,
   SELECT_SECOND_DAY_TEACHER,
+  GET_SCHEDULE
 } from "../../action/calander";
-import getDateObj from "../../../lib/calander";
 
 const defaultState = {
   state: DEFAULT_STATUS,
-  todayTeacher: "김정은",
-  calanderArr: getDateObj(),
+  todayTeacher: "안희명",
+  calanderArr: [],
   changeScheduleStatus: 1,
   changeDays: {
     first: {},
-    second: {},
-  },
+    second: {}
+  }
 };
 
 const calanderReducer = (state = defaultState, action) => {
@@ -25,13 +25,13 @@ const calanderReducer = (state = defaultState, action) => {
       return {
         ...state,
         state: SHOW_MY_SCHEDULE_STATUS,
-        todayTeacher: action.payload,
+        todayTeacher: action.payload
       };
     }
     case DEFAULT_STATUS: {
       return {
         ...state,
-        state: DEFAULT_STATUS,
+        state: DEFAULT_STATUS
       };
     }
     case CHANGE_MY_SCHEDULE_STATUS: {
@@ -39,7 +39,7 @@ const calanderReducer = (state = defaultState, action) => {
         ...state,
         state: CHANGE_MY_SCHEDULE_STATUS,
         changeScheduleStatus: action.payload,
-        changeDays: {},
+        changeDays: {}
       };
     }
     case SELECT_FIRST_DAY: {
@@ -47,8 +47,8 @@ const calanderReducer = (state = defaultState, action) => {
         ...state,
         changeScheduleStatus: 2,
         changeDays: {
-          first: action.payload,
-        },
+          first: action.payload
+        }
       };
     }
     case SELECT_SECOND_DAY: {
@@ -57,8 +57,8 @@ const calanderReducer = (state = defaultState, action) => {
         changeScheduleStatus: 3,
         changeDays: {
           ...state.changeDays,
-          second: action.payload,
-        },
+          second: action.payload
+        }
       };
     }
     case SELECT_SECOND_DAY_TEACHER: {
@@ -71,9 +71,15 @@ const calanderReducer = (state = defaultState, action) => {
           second: {
             ...state.changeDays.second,
             floor,
-            name,
-          },
-        },
+            name
+          }
+        }
+      };
+    }
+    case GET_SCHEDULE: {
+      return {
+        ...state,
+        calanderArr: action.payload
       };
     }
     default: {
