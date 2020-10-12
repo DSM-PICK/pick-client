@@ -23,6 +23,12 @@ function* selectFirstDaySaga({ payload }) {
       payloadDate = { name, floor, month, date };
     }
   });
+  if (!payloadDate) {
+    alert("해당 날짜에 업무가 없습니다.");
+    yield put(defaultStatus());
+    return;
+  }
+
   yield put(selectFirstDay(payloadDate));
 }
 
