@@ -7,6 +7,7 @@ import adminModal from "./admin_modal";
 import mainText from "./main_text";
 import preAbsence from "./pre_absence";
 import autoComplete from "./auto_complete";
+import teacher from "./teacher";
 
 const rootReducer = combineReducers({
   date,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   adminModal,
   mainText,
   preAbsence,
-  autoComplete
+  autoComplete,
+  teacher
 });
 
 export default rootReducer;
