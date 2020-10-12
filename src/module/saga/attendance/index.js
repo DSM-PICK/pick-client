@@ -1,5 +1,5 @@
 import axios from "axios";
-import { call, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import {
   methodType,
   requestApiWithAccessToken,
