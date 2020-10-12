@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./styles";
 import Body from "./Body/Body";
 import Header from "./Header/Header";
-import getDateObj from "../../../../../lib/calander";
 
 const PreReportCalander = props => {
   const { height, calcDate, calcMonth, calcYear } = props;
@@ -11,9 +10,9 @@ const PreReportCalander = props => {
   return (
     <S.Container height={height}>
       <S.Month>
-        <S.MonthArrow onClick={prevCalcMonth} />
+        <S.MonthArrow isLeft={true} onClick={prevCalcMonth} />
         <S.MonthText>{calcMonth + 1}월</S.MonthText>
-        <S.MonthArrow onClick={nextCalcMonth} />
+        <S.MonthArrow isLeft={false} onClick={nextCalcMonth} />
       </S.Month>
       <Header />
       <Body
