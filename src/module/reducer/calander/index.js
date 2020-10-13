@@ -10,7 +10,7 @@ import {
 
 const defaultState = {
   state: DEFAULT_STATUS,
-  todayTeacher: "안희명",
+  todayTeacher: window.localStorage.getItem("teacherName"),
   calanderArr: [],
   changeScheduleStatus: 1,
   changeDays: {
