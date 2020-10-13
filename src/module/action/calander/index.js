@@ -14,54 +14,66 @@ export const REJECT_CHANGE_TEACHER_SAGA = "calander/REJECT_CHANGE_TEACHER_SAGA";
 export const SUCCESS_CHANGE_TEACHER = "calander/SUCCESS_CHANGE_TEACHER";
 export const FAIL_CHANGE_TEACHER = "calander/FAIL_CHANGE_TEACHER";
 
+export const GET_SCHEDULE = "calander/GET_SCHEDULE";
+export const GET_SCHEDULE_SAGA = "calander/GET_SCHEDULE_SAGA";
+
 export const defaultStatus = () => ({
-  type: DEFAULT_STATUS,
+  type: DEFAULT_STATUS
 });
 
-export const showMySchedule = (payload) => ({
+export const showMySchedule = payload => ({
   type: SHOW_MY_SCHEDULE_STATUS,
-  payload,
+  payload
 });
 
-export const changeMySchedule = (payload) => ({
+export const changeMySchedule = payload => ({
   type: CHANGE_MY_SCHEDULE_STATUS,
-  payload,
+  payload
 });
 
-export const selectFirstDay = (payload) => ({
+export const selectFirstDay = payload => ({
   type: SELECT_FIRST_DAY,
-  payload,
+  payload
 });
 
-export const selectFirstDaySaga = (payload) => ({
+export const selectFirstDaySaga = payload => ({
   type: SELECT_FIRST_DAY_SAGA,
-  payload,
+  payload
 });
 
-export const selectSecondDay = (payload) => ({
+export const selectSecondDay = payload => ({
   type: SELECT_SECOND_DAY,
-  payload,
+  payload
 });
 
-export const selectSecondDayTeacher = (payload) => ({
+export const selectSecondDayTeacher = payload => ({
   type: SELECT_SECOND_DAY_TEACHER,
-  payload,
+  payload
 });
 
 export const resolveChangeTeacherSaga = () => ({
-  type: RESOLVE_CHANGE_TEACHER_SAGA,
+  type: RESOLVE_CHANGE_TEACHER_SAGA
 });
 
 export const rejectChangeTeacherSaga = () => ({
-  type: REJECT_CHANGE_TEACHER_SAGA,
+  type: REJECT_CHANGE_TEACHER_SAGA
 });
 
-export const successChangeTeacher = (payload) => ({
+export const successChangeTeacher = payload => ({
   type: SUCCESS_CHANGE_TEACHER,
-  payload,
+  payload
 });
 
-export const failChangeTeacher = (payload) => ({
+export const failChangeTeacher = payload => ({
   type: FAIL_CHANGE_TEACHER,
-  payload,
+  payload
+});
+
+export const getSchedule = payload => ({
+  type: GET_SCHEDULE,
+  payload
+});
+
+export const getScheduleSaga = () => ({
+  type: GET_SCHEDULE_SAGA
 });

@@ -6,7 +6,7 @@ import Body from "../Body/Body";
 import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
 import { MAIN_ANCHOR_ITEMS, LOGO } from "../Attendance/Constant";
-import Modal from "./Modal/Modal";
+import LogoutModal from "./Modal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOn, modalOff } from "../../module/action/admin_modal";
@@ -61,7 +61,7 @@ const Main = () => {
           <S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
-        {isOpen && <Modal onModalClick={onModalClick} />}
+        {isOpen && <LogoutModal onModalClick={onModalClick} />}
       </Body>
       <Footer />
     </G.GlobalContainer>

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
+  flex: 1 1 18%;
 
-  & > div:nth-child(5n) {
-    border-right: none;
+  &:nth-child(5) {
+    > div {
+      border-right: 0;
+    }
   }
 `;

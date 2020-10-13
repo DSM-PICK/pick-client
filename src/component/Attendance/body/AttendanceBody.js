@@ -13,7 +13,7 @@ const AttendanceBody = props => {
   ]);
 
   return (
-    <Body>
+    <Body height="auto">
       {anchorItems.map(anchorItems => (
         <AttendanceAnchor
           onClick={clubFloorDataGet()}

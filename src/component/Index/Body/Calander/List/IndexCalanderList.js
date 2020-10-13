@@ -1,35 +1,15 @@
 import React from "react";
-import IndexCalanderItem from "../Item/IndexCalanderItem";
+import { useSelector } from "react-redux";
+import IndexCalanderRow from "../Row/IndexCalanerRow";
 import * as S from "./styles";
 
 const IndexCalanderList = () => {
+  const data = useSelector(store => store.teacher.week);
   return (
     <S.Container>
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
-      <IndexCalanderItem />
+      {data.map(({ floor2, floor3, floor4 }) => (
+        <IndexCalanderRow floor2={floor2} floor3={floor3} floor4={floor4} />
+      ))}
     </S.Container>
   );
 };
