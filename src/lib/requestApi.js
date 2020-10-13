@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://api.dsm-pick.com";
+const BASE_URL = "https://api.dsm-pick.com";
 
 export const methodType = {
   GET: "get",

@@ -8,11 +8,11 @@ const getDateObj = (
   const date = new Date();
 
   if (!isNaN(monthData) && monthData < 0) {
-    monthData = 0;
-    yearData += 1;
-  } else if (!isNaN(monthData) && monthData > 11) {
-    monthData = 11;
     yearData -= 1;
+    monthData = 11;
+  } else if (!isNaN(monthData) && monthData > 11) {
+    yearData += 1;
+    monthData = 0;
   }
 
   const year = !isNaN(yearData) ? yearData : date.getFullYear();

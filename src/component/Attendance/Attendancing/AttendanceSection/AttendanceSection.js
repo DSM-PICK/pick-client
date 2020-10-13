@@ -5,7 +5,10 @@ import AttendanceRow from "./AttendanceRow/AttendanceRow";
 import * as Data from "../Constant";
 import { getLocationState } from "../../../../lib/attendanceAPI";
 import { useDispatch } from "react-redux";
-import { getAttendanceStdDataSaga } from "../../../../module/action/attendance";
+import {
+  getAttendanceStdDataSaga,
+  postAttendanceStdDataSaga
+} from "../../../../module/action/attendance";
 
 const getClassLocation = locations => {
   return locations[location.pathname[location.pathname.length - 1]];
@@ -36,6 +39,13 @@ const AttendanceSection = props => {
     console.log(`getAttendanceStdDataSaga`);
     dispatch(getAttendanceStdDataSaga({ floor: 3, priority: 4 }));
     // }, [dispatch]);
+  }, []);
+
+  useEffect(() => {
+    console.log(`postAttendanceStdDataSaga`);
+    dispatch(
+      postAttendanceStdDataSaga({ number: 2415, period: 8, state: "출석" })
+    );
   }, []);
 
   return (

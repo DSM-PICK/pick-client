@@ -113,10 +113,14 @@ function* getAttendanceStdData(payload) {
 
 function* postAttendanceStdData(payload) {
   try {
-    const { number, period, state } = payload;
+    const { number, period, state } = payload.payload;
+
+    console.log(number, period, state);
+
     yield call(
+      requestApiWithAccessToken,
       methodType.POST,
-      `attendance/student-state`,
+      `/saturn/attendance/student-state`,
       JSON.stringify({
         number,
         period,
