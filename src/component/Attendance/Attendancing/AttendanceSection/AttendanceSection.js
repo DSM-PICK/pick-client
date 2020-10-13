@@ -21,13 +21,12 @@ const getClassData = () => {
 };
 
 const AttendanceSection = props => {
-  const { locations } = props;
+  const { location, name, done, priority } = props.locations;
+  console.log(location, name, done, priority);
+
   const [classData, setClassData] = useState(getClassData());
 
-  const classLocation = getClassLocation(locations);
-
-  console.log("classLocation");
-  console.log(classLocation);
+  const classLocation = getClassLocation(location);
 
   const onChangeRow = data => {
     setClassData(data);
@@ -55,8 +54,8 @@ const AttendanceSection = props => {
     <S.Container>
       {!isSelfStudy && (
         <S.Article>
-          <S.Name>{classData.name}</S.Name>
-          <S.Location>{classLocation.location}</S.Location>
+          <S.Name>{name}</S.Name>
+          <S.Location>{location}</S.Location>
           <S.Head>{`부장 : ${classData.head}`}</S.Head>
         </S.Article>
       )}

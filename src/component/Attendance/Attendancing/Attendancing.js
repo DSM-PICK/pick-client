@@ -84,6 +84,9 @@ const Attendancing = ({ location }) => {
 
   teacherName = teacherName === null ? `"앗 오류!"` : teacherName;
 
+  console.log(`floorDatas`);
+  console.log(floorDatas);
+
   return (
     <S.Container>
       <Header>
@@ -99,7 +102,9 @@ const Attendancing = ({ location }) => {
       </Header>
       <Body state="attendance">
         {Floor !== "자습실" && <AttendanceNav floors={floorDatas} />}
-        <AttendanceSection locations={floorData.locations} />
+        {floorDatas.map(fData => (
+          <AttendanceSection key={fData.location} locations={fData} />
+        ))}
       </Body>
       <Footer />
     </S.Container>
