@@ -7,6 +7,7 @@ import AttendanceNav from "./AttendanceNav/AttendanceNav";
 import * as Data from "./Constant";
 import { Link } from "react-router-dom";
 import AttendanceSection from "./AttendanceSection/AttendanceSection";
+import { useSelector } from "react-redux";
 
 const getFloorText = floorName => {
   return floorName[floorName.length - 1] === "y"
@@ -40,11 +41,48 @@ const Attendancing = ({ location }) => {
   const Floor = getFloorText(location.pathname.split("/")[3]);
 
   const floorData = getFloorData(Floor);
-  const today = getDay(floorData);
 
   const to = `/${location.pathname.split("/")[1]}/${
     location.pathname.split("/")[2]
   }`;
+
+  const information = useSelector(state => state.attendance);
+  const { date, dayOfWeek, teachers, datas } = information;
+  const month = date.slice(0, 2);
+  const day = date.slice(2, 4);
+
+  let floorDatas = [];
+  let teacherName = `"앗 오류!"`;
+
+  switch (Floor) {
+    case "4층": {
+      floorDatas = datas.forthFloorData;
+      teacherName = teachers.forthTeacherName;
+      break;
+    }
+    case "3층": {
+      floorDatas = datas.thirdFloorData;
+      teacherName = teachers.thirdTeacherName;
+      break;
+    }
+    case "2층": {
+      floorDatas = datas.secondFloorData;
+      teacherName = teachers.secondTeacherName;
+      break;
+    }
+    case "자습실": {
+      floorDatas = datas.selfStudyData;
+      teacherName = teachers.selfStudyTeacherName;
+      break;
+    }
+    default: {
+      floorDatas = [];
+      teacherName = `"앗 오류!`;
+      break;
+    }
+  }
+
+  teacherName = teacherName === null ? `"앗 오류!"` : teacherName;
 
   return (
     <S.Container>
@@ -54,13 +92,13 @@ const Attendancing = ({ location }) => {
           <S.HeaderFloor>{Floor}</S.HeaderFloor>
         </S.HeaderWhere>
         <S.HeaderWhen>
-          <S.HeaderMonthAndDay>{`${today[0]}월 ${today[1]}일`}</S.HeaderMonthAndDay>
-          <S.HeaderDayOfTheWeek>{`${floorData.dayOfWeek}요일`}</S.HeaderDayOfTheWeek>
+          <S.HeaderMonthAndDay>{`${month}월 ${day}일`}</S.HeaderMonthAndDay>
+          <S.HeaderDayOfTheWeek>{`${dayOfWeek}요일`}</S.HeaderDayOfTheWeek>
         </S.HeaderWhen>
-        <S.HeaderWho>{`감독교사 ${floorData.teacherName}`}</S.HeaderWho>
+        <S.HeaderWho>{`감독교사 ${teacherName}`}</S.HeaderWho>
       </Header>
       <Body state="attendance">
-        {Floor !== "자습실" && <AttendanceNav floors={floorData.locations} />}
+        {Floor !== "자습실" && <AttendanceNav floors={floorDatas} />}
         <AttendanceSection locations={floorData.locations} />
       </Body>
       <Footer />

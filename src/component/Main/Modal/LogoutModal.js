@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import { Link } from "react-router-dom";
+import { Logout } from "../../../lib/requestApi";
 
 const LogoutModal = props => {
   const { onModalClick } = props;
@@ -15,7 +16,7 @@ const LogoutModal = props => {
         <S.ModalText>로그아웃하시겠습니까?</S.ModalText>
         <S.ModalBtnWrap>
           <S.ModalCancle onClick={onModalClick}>취소</S.ModalCancle>
-          <S.ModalOkay onClick={onModalClick} as={Link} to="/main">
+          <S.ModalOkay onClick={(onModalClick, Logout)} as={Link} to="/main">
             확인
           </S.ModalOkay>
         </S.ModalBtnWrap>
