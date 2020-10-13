@@ -54,7 +54,7 @@ const Main = () => {
           남았습니다.
         </S.MainBodyOffwork>
         <S.MainBodyBox>
-          <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
+          <S.MainBodyBoxText >출석하기</S.MainBodyBoxText>
           <AttendanceBody anchorItems={anchorItems} />
         </S.MainBodyBox>
         <S.MainBodyBox>

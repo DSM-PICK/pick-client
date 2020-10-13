@@ -8,6 +8,7 @@ import mainText from "./main_text";
 import preAbsence from "./pre_absence";
 import autoComplete from "./auto_complete";
 import teacher from "./teacher";
+import attendance from "./attendance";
 
 const rootReducer = combineReducers({
   date,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   mainText,
   preAbsence,
   autoComplete,
-  teacher
+  teacher,
+  attendance
 });
 
 export default rootReducer;
