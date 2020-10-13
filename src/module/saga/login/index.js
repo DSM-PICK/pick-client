@@ -11,11 +11,12 @@ function* requestLogin(action) {
     });
 
     const {
-      data: { accessToken, refreshToken }
+      data: { accessToken, refreshToken, teacherName }
     } = res;
 
     window.localStorage.setItem("accessToken", accessToken);
     window.localStorage.setItem("refreshToken", refreshToken);
+    window.localStorage.setItem("teacherName", teacherName);
     alert("로그인에 성공했습니다.");
     window.location.href = "/main ";
   } catch (err) {

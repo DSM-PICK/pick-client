@@ -10,10 +10,10 @@ const Routing = () => {
   return (
     <Switch>
       <Route exact path="/" component={IndexContainer} />
-      <Route path="/attendance" component={AttendanceContainer} />
       <Route exact path="/schedule" component={ScheduleContainer} />
-      <Route path="/attendance" component={AttendanceContainer} />
       <Route exact path="/main" component={MainContainer} />
+
+      <Route path="/attendance" component={AttendanceContainer} />
       <Route path="/admin" component={AdminRouting} />
     </Switch>
   );

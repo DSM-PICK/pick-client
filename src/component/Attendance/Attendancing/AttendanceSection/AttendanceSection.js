@@ -21,10 +21,12 @@ const getClassData = () => {
 };
 
 const AttendanceSection = props => {
-  const { locations } = props;
+  const { location, name, done, priority } = props.locations;
+  console.log(location, name, done, priority);
+
   const [classData, setClassData] = useState(getClassData());
 
-  const classLocation = getClassLocation(locations);
+  const classLocation = getClassLocation(location);
 
   const onChangeRow = data => {
     setClassData(data);
@@ -32,28 +34,28 @@ const AttendanceSection = props => {
 
   const isSelfStudy = getLocationState() === "class";
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // useCallback(() => {
-    console.log(`getAttendanceStdDataSaga`);
-    dispatch(getAttendanceStdDataSaga({ floor: 3, priority: 4 }));
-    // }, [dispatch]);
-  }, []);
-
-  useEffect(() => {
-    console.log(`postAttendanceStdDataSaga`);
-    dispatch(
-      postAttendanceStdDataSaga({ number: 2415, period: 8, state: "출석" })
-    );
-  }, []);
+  // const dispatch = useDispatch();
+  //
+  // useEffect(() => {
+  //   // useCallback(() => {
+  //   console.log(`getAttendanceStdDataSaga`);
+  //   dispatch(getAttendanceStdDataSaga({ floor: 3, priority: 4 }));
+  //   // }, [dispatch]);
+  // }, []);
+  //
+  // useEffect(() => {
+  //   console.log(`postAttendanceStdDataSaga`);
+  //   dispatch(
+  //     postAttendanceStdDataSaga({ number: 2415, period: 8, state: "출석" })
+  //   );
+  // }, []);
 
   return (
     <S.Container>
       {!isSelfStudy && (
         <S.Article>
-          <S.Name>{classData.name}</S.Name>
-          <S.Location>{classLocation.location}</S.Location>
+          <S.Name>{name}</S.Name>
+          <S.Location>{location}</S.Location>
           <S.Head>{`부장 : ${classData.head}`}</S.Head>
         </S.Article>
       )}
