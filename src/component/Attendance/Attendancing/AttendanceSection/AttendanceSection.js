@@ -26,27 +26,30 @@ const AttendanceSection = props => {
 
   const classLocation = getClassLocation(locations);
 
+  console.log("classLocation");
+  console.log(classLocation);
+
   const onChangeRow = data => {
     setClassData(data);
   };
 
   const isSelfStudy = getLocationState() === "class";
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // useCallback(() => {
-    console.log(`getAttendanceStdDataSaga`);
-    dispatch(getAttendanceStdDataSaga({ floor: 3, priority: 4 }));
-    // }, [dispatch]);
-  }, []);
-
-  useEffect(() => {
-    console.log(`postAttendanceStdDataSaga`);
-    dispatch(
-      postAttendanceStdDataSaga({ number: 2415, period: 8, state: "출석" })
-    );
-  }, []);
+  // const dispatch = useDispatch();
+  //
+  // useEffect(() => {
+  //   // useCallback(() => {
+  //   console.log(`getAttendanceStdDataSaga`);
+  //   dispatch(getAttendanceStdDataSaga({ floor: 3, priority: 4 }));
+  //   // }, [dispatch]);
+  // }, []);
+  //
+  // useEffect(() => {
+  //   console.log(`postAttendanceStdDataSaga`);
+  //   dispatch(
+  //     postAttendanceStdDataSaga({ number: 2415, period: 8, state: "출석" })
+  //   );
+  // }, []);
 
   return (
     <S.Container>
