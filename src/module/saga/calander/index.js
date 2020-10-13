@@ -1,6 +1,11 @@
-import { takeEvery, select, put } from "redux-saga/effects";
+import { takeEvery, select, put, call } from "redux-saga/effects";
 import getDateObj from "../../../lib/calander";
-import { requestApi, requestGetApi } from "../../../lib/requestApi";
+import {
+  methodType,
+  requestApi,
+  requestApiWithAccessToken,
+  requestGetApi
+} from "../../../lib/requestApi";
 import {
   SELECT_FIRST_DAY_SAGA,
   selectFirstDay,
@@ -38,11 +43,28 @@ function* rejectChangeTeacherSaga() {
 
 function* resolveChangeTeacherSaga() {
   try {
+    const year = new Date().getFullYear();
+    const {
+      first: { month: month1, floor: floor1, date: date1 },
+      second: { month: month2, floor: floor2, date: date2 }
+    } = yield select(store => store.calander.changeDays);
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PATCH,
+      "/mars/working-teacher",
+      {
+        date1: `${year}-${month1.fillZero(2)}-${date1.fillZero(2)}`,
+        date2: `${year}-${month2.fillZero(2)}-${date2.fillZero(2)}`,
+        floor1,
+        floor2
+      }
+    );
+    console.log(res);
     yield put(defaultStatus());
     yield put(successChangeTeacher(200));
     alert("성공하였습니다");
   } catch (err) {
-    yield put(failChangeTeacher(err.response.status));
     alert("실패했습니다");
   }
 }
