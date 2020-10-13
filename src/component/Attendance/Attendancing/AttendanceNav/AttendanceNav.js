@@ -3,17 +3,20 @@ import * as S from "./styles";
 import AttendanceNavItem from "./AttendanceNavItem/AttendanceNavItem";
 
 const AttendanceNav = props => {
-  const { floors } = props;
+  const { floors, a } = props;
 
   const [dones, setDones] = useState(floors);
 
   const doneAtt = location => {
     setDones(
       dones.map(done =>
-        done.location === location ? { ...done, done: true } : done
+        done.location === location ? { ...done, done: "done" } : done
       )
     );
   };
+
+  console.log(a);
+  console.log(props);
 
   return (
     <S.Container>
