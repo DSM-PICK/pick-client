@@ -1,12 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginActionCreater } from "../../../../module/action/login";
-import { Eye } from "../../../../asset";
+import PasswordEye from "../../../default/PasswordEye/PasswordEye";
 import * as S from "./styles";
 
 const LoginModal = () => {
   const dispatch = useDispatch();
   const [typeIsPassword, setTypeIsPassword] = useState(true);
+  const passwordRef = useRef();
   const [loginInfo, setLoginInfo] = useState({
     id: "",
     password: ""
@@ -22,6 +23,7 @@ const LoginModal = () => {
 
   const changeTypeIsPassword = useCallback(() => {
     setTypeIsPassword(prev => !prev);
+    passwordRef.current.focus();
   }, []);
   const requestLogin = useCallback(
     e => {
@@ -53,8 +55,12 @@ const LoginModal = () => {
                 onChange={changeLoginInfo}
                 type={typeIsPassword ? "password" : "text"}
                 placeholder="비밀번호를 입력하세요"
+                ref={passwordRef}
               />
-              <img src={Eye} onClick={changeTypeIsPassword} />
+              <PasswordEye
+                onClick={changeTypeIsPassword}
+                showPassword={typeIsPassword}
+              />
             </S.InputWrap>
             <S.LoginBtn>로그인</S.LoginBtn>
           </S.Body>
