@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import * as S from "./styles";
 import * as C from "./Constant";
 import PreReportState from "./PreReportState/PreReportState";
@@ -6,8 +7,28 @@ import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import DeleteModal from "../Modal/DeleteModal";
 import getDateObj from "../../../lib/calander";
+import { getAutoCompleteTextSaga } from "../../../module/action/auto_complete";
+import { makeMonth2Digit } from "../../../lib/attendanceAPI";
+import { createPreAbsenceSaga } from "../../../module/action/pre_absence";
 
 const PreReport = () => {
+  const dispatch = useDispatch();
+
+  const getAutoCompleteText = useCallback(
+    payload => {
+      dispatch(getAutoCompleteTextSaga(payload));
+    },
+    [dispatch]
+  );
+
+  const createPreAbsence = useCallback(
+    payload => {
+      console.log(payload);
+      dispatch(createPreAbsenceSaga(payload));
+    },
+    [dispatch]
+  );
+
   const date = new Date();
 
   const preClassInput = useRef("");
@@ -154,13 +175,20 @@ const PreReport = () => {
 
   const onChangeName = useCallback(e => {
     setName(e.target.value);
+    getAutoCompleteText(e.target.value);
   });
 
   const onSubmit = () => {
-    console.log(preReportState);
-    console.log(name);
-    console.log(preMonth, preDay, preClassValue);
-    console.log(nextMonth, nextDay, nextClassValue);
+    console.log(name.slice(0, 4));
+    const data = {
+      state: String(preReportState),
+      stdnum: Number(name.slice(0, 4)),
+      start_date: `${2020}-${makeMonth2Digit(preMonth)}-${preDay}`,
+      start_period: String(preClassValue),
+      end_date: `${2020}-${makeMonth2Digit(nextMonth)}-${nextDay}`,
+      end_period: String(nextClassValue)
+    };
+    createPreAbsence(data);
   };
 
   return (
@@ -211,7 +239,7 @@ const PreReport = () => {
             onNextClassChange={onNextClassChange}
           />
         </S.FuncDate>
-        <S.FuncAdd onClick={onSubmit}>추가하기</S.FuncAdd>
+        <S.FuncAdd onClick={() => onSubmit()}>추가하기</S.FuncAdd>
       </S.Func>
       <S.Show>
         <S.ShowHeader>

@@ -8,3 +8,7 @@ export const getLocationState = () => {
         // console.log("none");
       };
 };
+
+export const makeMonth2Digit = month => {
+  return month < 10 ? "0" + month : month;
+};
