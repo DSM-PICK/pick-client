@@ -27,7 +27,7 @@ function* getPreAbsenceList() {
       `/mars/pre-absence/date/${today}`
     );
     console.log(preAbsenceList);
-    yield put(setPreAbsence(preAbsenceList));
+    yield put(setPreAbsence(preAbsenceList.data));
     console.log("사전 결석 리스트 불러오기 성공");
   } catch (error) {
     // yield put(FAILURE_GET_PRE_ABSENCE_SAGA(error.response));
@@ -49,6 +49,7 @@ function* createPreAbsenceSaga(payload) {
       end_period
     } = payload.payload;
     console.log(state, stdnum, start_date, start_period, end_date, end_period);
+
     const res = yield call(
       requestApiWithAccessToken,
       methodType.POST,
@@ -62,6 +63,7 @@ function* createPreAbsenceSaga(payload) {
         end_period
       }
     );
+    console.log(res);
     console.log("사전 결석 리스트 생성 성공");
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());

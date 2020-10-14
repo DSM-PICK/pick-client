@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 import * as C from "./Constant";
 import PreReportState from "./PreReportState/PreReportState";
@@ -7,27 +7,35 @@ import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import DeleteModal from "../Modal/DeleteModal";
 import getDateObj from "../../../lib/calander";
-import { getAutoCompleteTextSaga } from "../../../module/action/auto_complete";
 import { makeMonth2Digit } from "../../../lib/attendanceAPI";
 import { createPreAbsenceSaga } from "../../../module/action/pre_absence";
 
 const PreReport = () => {
-  const dispatch = useDispatch();
+  const nameText = useSelector(state => state.autoComplete.text);
+  const preAbsenceList = useSelector(state => state.preAbsence.preAbsenceList);
 
-  const getAutoCompleteText = useCallback(
-    payload => {
-      dispatch(getAutoCompleteTextSaga(payload));
-    },
-    [dispatch]
-  );
+  console.log(preAbsenceList);
+
+  const dispatch = useDispatch();
 
   const createPreAbsence = useCallback(
     payload => {
-      console.log(payload);
       dispatch(createPreAbsenceSaga(payload));
     },
     [dispatch]
   );
+
+  const onSubmit = () => {
+    const data = {
+      state: String(preReportState),
+      stdnum: Number(nameText.slice(0, 4)),
+      start_date: `${2020}-${makeMonth2Digit(preMonth)}-${preDay}`,
+      start_period: String(preClassValue),
+      end_date: `${2020}-${makeMonth2Digit(nextMonth)}-${nextDay}`,
+      end_period: String(nextClassValue)
+    };
+    createPreAbsence(data);
+  };
 
   const date = new Date();
 
@@ -45,8 +53,6 @@ const PreReport = () => {
   const [nextDay, setNextDay] = useState("");
   const [preClassValue, setPreClassValue] = useState("");
   const [nextClassValue, setNextClassValue] = useState("");
-
-  const [name, setName] = useState("");
 
   const [modal, setModal] = useState(false);
   const [height, setHeight] = useState("30px");
@@ -173,24 +179,6 @@ const PreReport = () => {
     setPreReportState(changeState);
   };
 
-  const onChangeName = useCallback(e => {
-    setName(e.target.value);
-    getAutoCompleteText(e.target.value);
-  });
-
-  const onSubmit = () => {
-    console.log(name.slice(0, 4));
-    const data = {
-      state: String(preReportState),
-      stdnum: Number(name.slice(0, 4)),
-      start_date: `${2020}-${makeMonth2Digit(preMonth)}-${preDay}`,
-      start_period: String(preClassValue),
-      end_date: `${2020}-${makeMonth2Digit(nextMonth)}-${nextDay}`,
-      end_period: String(nextClassValue)
-    };
-    createPreAbsence(data);
-  };
-
   return (
     <S.Container>
       <S.Func>
@@ -209,7 +197,7 @@ const PreReport = () => {
         </S.FuncKindName>
         <S.FuncKindName>
           <S.FuncTitle>이름</S.FuncTitle>
-          <PreReportName name={name} onChangeName={onChangeName} />
+          <PreReportName />
         </S.FuncKindName>
         <S.FuncDate>
           <S.FuncTitle>기간</S.FuncTitle>
@@ -248,11 +236,14 @@ const PreReport = () => {
           <S.ShowHeaderDate>기간</S.ShowHeaderDate>
         </S.ShowHeader>
         <S.ShowBody>
-          <S.ShowBodyBox onClick={onOffDelModal}>
-            <S.ShowBodyStd>2415 유시온</S.ShowBodyStd>
-            <S.ShowBodyKind>외출</S.ShowBodyKind>
-            <S.ShowBodyDate>8월 15일 7교시 ~ 8월 18일 9교시</S.ShowBodyDate>
-          </S.ShowBodyBox>
+          {preAbsenceList &&
+            preAbsenceList.map(preAbsenceData => (
+              <S.ShowBodyBox onClick={onOffDelModal} key={preAbsenceData.id}>
+                <S.ShowBodyStd>{preAbsenceData.student_num}</S.ShowBodyStd>
+                <S.ShowBodyKind>{preAbsenceData.state}</S.ShowBodyKind>
+                <S.ShowBodyDate>{preAbsenceData.id}</S.ShowBodyDate>
+              </S.ShowBodyBox>
+            ))}
         </S.ShowBody>
         {delModal && <DeleteModal onOffDelModal={onOffDelModal} />}
       </S.Show>

@@ -90,7 +90,6 @@ export const requestApi = async (method, url, body, headers) => {
 
 export const requestApiWithAccessToken = async (method, url, body, headers) => {
   const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
-  console.log(body);
   try {
     const res = await axios[method](BASE_URL + url, body, {
       headers: {

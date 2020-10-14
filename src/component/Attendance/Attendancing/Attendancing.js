@@ -85,14 +85,6 @@ const Attendancing = ({ location }) => {
 
   teacherName = teacherName === null ? `"앗 오류!"` : teacherName;
 
-  console.log(`floorDatas`);
-  console.log(floorDatas);
-
-  console.log(`location`);
-  console.log(location);
-  console.log(location.pathname);
-  console.log(location.pathname.length);
-  console.log(location.pathname[location.pathname.length - 1]);
   const index = location.pathname[location.pathname.length - 1];
 
   return (

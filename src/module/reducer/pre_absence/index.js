@@ -25,10 +25,7 @@ const preAbsenceReducer = (state = initialState, action) => {
     case SET_PRE_ABSENCE: {
       return {
         ...state,
-        preAbsence: {
-          ...state.preAbsence,
-          preAbsenceList: action.payload
-        }
+        preAbsenceList: action.payload
       };
     }
     case SET_PRE_ABSENCE_STATE: {
