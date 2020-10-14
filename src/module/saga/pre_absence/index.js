@@ -53,17 +53,15 @@ function* createPreAbsenceSaga(payload) {
       requestApiWithAccessToken,
       methodType.POST,
       "/mars/pre-absence",
-      JSON.stringify({
+      {
         state,
         stdnum,
         start_date,
         start_period,
         end_date,
         end_period
-      })
+      }
     );
-    console.log(res);
-    // yield put(GET_PRE_ABSENCE_SAGA);
     console.log("사전 결석 리스트 생성 성공");
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
