@@ -34,6 +34,14 @@ const AttendanceSection = props => {
 
   const isSelfStudy = getLocationState() === "class";
 
+  console.log(classData);
+
+  for (let i = 0; i < classData.length; i++) {
+    console.log(classData[i]);
+  }
+
+  // const clData = classData.filter(cData => cData.attendance.se)
+
   // const dispatch = useDispatch();
   //
   // useEffect(() => {
