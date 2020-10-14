@@ -28,7 +28,7 @@ function* getTeacherTodaySaga() {
       data: { floor2, floor3, floor4 }
     } = yield call(
       requestGetApi,
-      `/mars/activity/dates/${year}-${month}-${date}ㅇ`
+      `/mars/activity/dates/${year}-${month}-${date}`
     );
     yield put(
       teacherActionCreater.getTeacherToday({

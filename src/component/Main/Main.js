@@ -5,11 +5,12 @@ import Header from "../Header/Header";
 import Body from "../Body/Body";
 import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
-import { MAIN_ANCHOR_ITEMS, LOGO } from "../Attendance/Constant";
+import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import LogoutModal from "./Modal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOn, modalOff } from "../../module/action/admin_modal";
+import { Logo } from "../../asset";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
@@ -25,14 +26,13 @@ const Main = () => {
   const onModalClick = () => {
     const modalDoing = isOpen ? modalClose : modalOpen;
     modalDoing();
-    console.log(isOpen);
   };
 
   return (
     <G.GlobalContainer>
       <Header>
         <S.MainHeader>
-          <S.MainHeaderLogo url={LOGO.imgLink} />
+          <S.MainHeaderLogo url={Logo} />
         </S.MainHeader>
       </Header>
       <Body>
@@ -54,7 +54,7 @@ const Main = () => {
           남았습니다.
         </S.MainBodyOffwork>
         <S.MainBodyBox>
-          <S.MainBodyBoxText >출석하기</S.MainBodyBoxText>
+          <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
           <AttendanceBody anchorItems={anchorItems} />
         </S.MainBodyBox>
         <S.MainBodyBox>

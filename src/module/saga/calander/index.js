@@ -2,18 +2,16 @@ import { takeEvery, select, put, call } from "redux-saga/effects";
 import getDateObj from "../../../lib/calander";
 import {
   methodType,
-  requestApi,
   requestApiWithAccessToken,
   requestGetApi
 } from "../../../lib/requestApi";
 import {
   SELECT_FIRST_DAY_SAGA,
   selectFirstDay,
+  getScheduleSaga as getScheduleAction,
   RESOLVE_CHANGE_TEACHER_SAGA,
   REJECT_CHANGE_TEACHER_SAGA,
   defaultStatus,
-  failChangeTeacher,
-  successChangeTeacher,
   GET_SCHEDULE_SAGA,
   getSchedule
 } from "../../action/calander";
@@ -60,12 +58,12 @@ function* resolveChangeTeacherSaga() {
         floor2
       }
     );
-    console.log(res);
+    yield put(getScheduleAction());
     yield put(defaultStatus());
-    yield put(successChangeTeacher(200));
     alert("성공하였습니다");
   } catch (err) {
     alert("실패했습니다");
+    yield put(defaultStatus());
   }
 }
 

@@ -15,7 +15,7 @@ import {
   SET_STATE,
   SET_NUMBER,
   SET_DATE,
-  SET_DAY_OF_WEEK,
+  SET_DAY_OF_WEEK
 } from "../../action/attendance";
 
 const initialState = {

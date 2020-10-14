@@ -87,6 +87,13 @@ const Attendancing = ({ location }) => {
   console.log(`floorDatas`);
   console.log(floorDatas);
 
+  console.log(`location`);
+  console.log(location);
+  console.log(location.pathname);
+  console.log(location.pathname.length);
+  console.log(location.pathname[location.pathname.length - 1]);
+  const index = location.pathname[location.pathname.length - 1];
+
   return (
     <S.Container>
       <Header>
@@ -102,9 +109,10 @@ const Attendancing = ({ location }) => {
       </Header>
       <Body state="attendance">
         {Floor !== "자습실" && <AttendanceNav floors={floorDatas} />}
-        {floorDatas.map(fData => (
-          <AttendanceSection key={fData.location} locations={fData} />
-        ))}
+        <AttendanceSection
+          key={floorDatas[index].location}
+          locations={floorDatas[index]}
+        />
       </Body>
       <Footer />
     </S.Container>

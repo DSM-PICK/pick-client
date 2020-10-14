@@ -15,3 +15,21 @@ export { default as DeleteIcon } from "./modal/delete.svg";
 export { default as whiteIcon } from "./modal/white-cancel.svg";
 export { default as changeArrow } from "./modal/changeArrow.svg";
 export { default as Eye } from "./modal/eye.svg";
+
+export { default as BackIcon } from "./Header/back.png";
+
+export { default as ClassPng } from "./attendance/attendanceClassPng.png";
+export { default as ClubPng } from "./attendance/attendanceClubPng.png";
+
+export { default as BugReportIcon } from "./Footer/bugreport.svg";
+export { default as BugReportOnIcon } from "./Footer/bugreportOn.svg";
+export { default as CalendarIcon } from "./Footer/calender.svg";
+export { default as CalendarOnIcon } from "./Footer/calenderOn.svg";
+export { default as HomeIcon } from "./Footer/home.svg";
+export { default as HomeOnIcon } from "./Footer/homeOn.svg";
+export { default as TonggeiIcon } from "./Footer/tonggei.svg";
+export { default as TonggeiOnIcon } from "./Footer/tonggeiOn.svg";
+
+export { default as Logo } from "./Logo/Logo.svg";
+export { default as LogoForAdmin } from "./Logo/LogoForAdmin.svg";
+export { default as PickLogoSVG } from "./Logo/PickLogo.svg";
