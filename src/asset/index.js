@@ -15,6 +15,7 @@ export { default as DeleteIcon } from "./modal/delete.svg";
 export { default as whiteIcon } from "./modal/white-cancel.svg";
 export { default as changeArrow } from "./modal/changeArrow.svg";
 export { default as Eye } from "./modal/eye.svg";
+export { default as CloseEye } from "./modal/closeEye.svg";
 
 export { default as BackIcon } from "./Header/back.png";
 
