@@ -8,6 +8,7 @@ import * as Data from "./Constant";
 import { Link } from "react-router-dom";
 import AttendanceSection from "./AttendanceSection/AttendanceSection";
 import { useSelector } from "react-redux";
+import { BackIcon } from "../../../asset/index";
 
 const getFloorText = floorName => {
   return floorName[floorName.length - 1] === "y"
@@ -98,7 +99,7 @@ const Attendancing = ({ location }) => {
     <S.Container>
       <Header>
         <S.HeaderWhere>
-          <S.HeaderBackBtn as={Link} to={to} />
+          <S.HeaderBackBtn as={Link} to={to} url={BackIcon} />
           <S.HeaderFloor>{Floor}</S.HeaderFloor>
         </S.HeaderWhere>
         <S.HeaderWhen>
