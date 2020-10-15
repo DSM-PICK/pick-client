@@ -23,7 +23,7 @@ const NameSelect = () => {
 
   return (
     <S.Container names={names}>
-      {names &&
+      {names.length > 0 &&
         names.map(name => (
           <ExName key={name} name={name} onClickName={onClickName} />
         ))}
