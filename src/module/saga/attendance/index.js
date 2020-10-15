@@ -1,4 +1,3 @@
-import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import {
   methodType,
@@ -85,11 +84,9 @@ function* getFloorData(payload) {
   }
 }
 
-function* getAttendanceStdData(payload) {
+function* getAttendanceStdDataSaga(payload) {
   try {
     const { floor, priority } = payload.payload;
-
-    console.log(payload, floor, priority);
 
     const attendanceData = yield call(
       requestGetApiWithAccessToken,
@@ -138,7 +135,7 @@ function* postAttendanceStdData(payload) {
 
 function* attendanceSaga() {
   yield takeEvery(GET_FLOOR_DATA_SAGA, getFloorData);
-  yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdData);
+  yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdDataSaga);
   yield takeEvery(POST_ATTENDANCE_STD_DATA_SAGA, postAttendanceStdData);
 }
 

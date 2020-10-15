@@ -119,6 +119,7 @@ export const ShowBody = styled.div`
   display: flex;
   width: 100%;
   height: auto;
+  overflow: auto;
   flex-direction: column;
 `;
 

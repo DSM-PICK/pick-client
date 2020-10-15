@@ -61,6 +61,7 @@ function* createPreAbsenceSaga(payload) {
         end_period
       }
     );
+    yield put({ type: GET_PRE_ABSENCE_SAGA });
     console.log("사전 결석 리스트 생성 성공");
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
@@ -74,11 +75,8 @@ function* deletePreAbsence(payload) {
     console.log(`deletePreAbsence`);
     const id = payload.payload;
 
-    yield call(
-      requestDeleteApiWithAccessToken,
-      `/mars/pre-absence/${id}`
-    );
-    yield put({type: GET_PRE_ABSENCE_SAGA});
+    yield call(requestDeleteApiWithAccessToken, `/mars/pre-absence/${id}`);
+    yield put({ type: GET_PRE_ABSENCE_SAGA });
     console.log(`${id} 사전 결석 리스트 삭제 성공`);
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
