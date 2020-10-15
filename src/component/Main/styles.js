@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  height: auto;
+  flex-direction: column;
+`;
+
 export const MainHeader = styled.div`
   display: flex;
   width: 100%;
