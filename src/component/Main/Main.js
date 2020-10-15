@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalOn, modalOff } from "../../module/action/admin_modal";
 import { Logo } from "../../asset";
 import { getPreAbsenceSaga } from "../../module/action/pre_absence";
+import Notice from "./Notice/Notice";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
@@ -28,11 +29,6 @@ const Main = () => {
     const modalDoing = isOpen ? modalClose : modalOpen;
     modalDoing();
   };
-
-  const getPreAbsence = useCallback(() => {
-    console.log(1);
-    dispatch(getPreAbsenceSaga());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getPreAbsenceSaga());
@@ -68,10 +64,12 @@ const Main = () => {
           <AttendanceBody anchorItems={anchorItems} />
         </S.MainBodyBox>
         <S.MainBodyBox>
-          <S.MainBodyBoxText onClick={() => getPreAbsence()}>
-            사전결석신고
-          </S.MainBodyBoxText>
+          <S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
           <PreReport />
+        </S.MainBodyBox>
+        <S.MainBodyBox>
+          <S.MainBodyBoxText>동아리 현황</S.MainBodyBoxText>
+          <Notice />
         </S.MainBodyBox>
         {isOpen && <LogoutModal onModalClick={onModalClick} />}
       </Body>

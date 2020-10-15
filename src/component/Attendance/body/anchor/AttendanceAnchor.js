@@ -21,12 +21,15 @@ const AttendanceBody = props => {
   );
   const getAttendanceStdDate = useCallback(
     floor => {
-      dispatch(getAttendanceStdDataSaga({ floor, priority: 0 }));
+      dispatch(getAttendanceStdDataSaga({ floor, priority: 2 }));
     },
     [dispatch]
   );
 
-  const floor = link.split("/")[3][link.split("/")[3].length - 1];
+  const onAnchorClick = () => {
+    if (link.length <= 17) return;
+    getAttendanceStdDate(link.split("/")[3][5]);
+  };
 
   useEffect(() => {
     if (getLocationState() === "class" || getLocationState() === "club") {
@@ -40,7 +43,7 @@ const AttendanceBody = props => {
       to={link}
       url={imgLink}
       text={text}
-      onClick={() => getAttendanceStdDate(floor)}
+      onClick={() => onAnchorClick()}
     >
       {text}
     </S.Container>
