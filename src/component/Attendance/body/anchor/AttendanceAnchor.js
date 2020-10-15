@@ -21,7 +21,7 @@ const AttendanceBody = props => {
   );
   const getAttendanceStdDate = useCallback(
     floor => {
-      dispatch(getAttendanceStdDataSaga({ floor, priority: 2 }));
+      dispatch(getAttendanceStdDataSaga({ floor, priority: 0 }));
     },
     [dispatch]
   );

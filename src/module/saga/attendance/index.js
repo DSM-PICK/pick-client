@@ -16,6 +16,7 @@ import {
   setForthTeacherName,
   setDate,
   setDayOfWeek,
+  setAttendanceStdData,
   GET_FLOOR_DATA_SAGA,
   SET_ATTENDANCE_STD_DATA,
   GET_ATTENDANCE_STD_DATA_SAGA,
@@ -93,9 +94,10 @@ function* getAttendanceStdDataSaga(payload) {
       `/saturn/attendance/student-state/${floor}/${priority}`
     );
 
-    console.log(attendanceData);
+    const atdData = attendanceData.data.attendances;
+    console.log(atdData);
 
-    yield put(SET_ATTENDANCE_DATA(attendanceData));
+    yield put(setAttendanceStdData(atdData));
     console.log(`출석 데이터 불러오기 성공`);
   } catch (error) {
     // yield put(FAILURE_GET_ATTENDANCE_STD_DATA_SAGA(error.response));
