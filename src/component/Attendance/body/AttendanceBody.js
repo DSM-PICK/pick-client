@@ -4,19 +4,12 @@ import Body from "../../Body/Body";
 import { ClassPng, ClubPng } from "../../../asset";
 
 const AttendanceBody = props => {
-  const { anchorItems } = props;
+  const { anchorItems, ismain } = props;
 
   const pngArr = [ClassPng, ClubPng];
-  const height = anchorItems.imgLink ? "auto" : "";
-
-  const isMain = () => {
-    return location.pathname === "/main" ? "main" : "none";
-  };
-
-  console.log(isMain());
 
   return (
-    <Body ismain={isMain()}>
+    <Body ismain={ismain}>
       {anchorItems.map((anchorItems, index) => (
         <AttendanceAnchor
           key={anchorItems.link}

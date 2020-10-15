@@ -40,7 +40,7 @@ const Main = () => {
           <S.MainHeaderLogo url={Logo} />
         </S.MainHeader>
       </Header>
-      <Body ismain="main">
+      <Body>
         <S.MainBodyTopText>
           <S.MainBodyTopWho>{"김정은"} 선생님은</S.MainBodyTopWho>
           <S.MainBodyTopWhen>
@@ -60,7 +60,7 @@ const Main = () => {
         </S.MainBodyOffwork>
         <S.MainBodyBox>
           <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
-          <AttendanceBody anchorItems={anchorItems} />
+          <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
