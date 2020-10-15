@@ -3,26 +3,20 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  height: ${props =>
-    props.text === "전공동아리" || props.text === "교실자습"
-      ? "180px"
-      : "238px"};
+  height: ${props => (props.ismain === "main" ? "180px" : "100%")};
   margin: 10px 0;
-  margin-top: ${props => (props.text === "4층" ? "50px" : "10px")};
+  margin-top: ${props => (props.text === "4층" ? "30px" : "10px")};
   background: ${props => (props.url ? `url(${props.url})` : "#fafafa")}
     no-repeat center;
-  box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
   font-size: 40px;
-  text-decoration: none;
   color: ${props => (props.url ? "white" : "black")};
-  line-height: ${props =>
-    props.text === "전공동아리" || props.text === "교실자습"
-      ? "180px"
-      : "238px"};
-  text-align: center;
+  text-decoration: none;
   border-radius: 60px;
-  flex-direction: column;
+  box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
   box-sizing: border-box;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
 
   &::before {
     content: "";

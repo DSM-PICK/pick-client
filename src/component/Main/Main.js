@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
-import * as G from "../../GlobalStyle";
+import React, { useCallback, useEffect } from "react";
 import * as S from "./styles";
 import Header from "../Header/Header";
 import Body from "../Body/Body";
@@ -35,13 +34,13 @@ const Main = () => {
   }, []);
 
   return (
-    <G.GlobalContainer>
+    <S.Container>
       <Header>
         <S.MainHeader>
           <S.MainHeaderLogo url={Logo} />
         </S.MainHeader>
       </Header>
-      <Body>
+      <Body ismain="main">
         <S.MainBodyTopText>
           <S.MainBodyTopWho>{"김정은"} 선생님은</S.MainBodyTopWho>
           <S.MainBodyTopWhen>
@@ -74,7 +73,7 @@ const Main = () => {
         {isOpen && <LogoutModal onModalClick={onModalClick} />}
       </Body>
       <Footer />
-    </G.GlobalContainer>
+    </S.Container>
   );
 };
 

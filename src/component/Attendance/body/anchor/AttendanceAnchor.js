@@ -37,12 +37,17 @@ const AttendanceBody = props => {
     }
   }, []);
 
+  const isMain = () => {
+    return location.pathname === "/main" ? "main" : "none";
+  };
+
   return (
     <S.Container
       as={Link}
       to={link}
       url={imgLink}
       text={text}
+      ismain={isMain()}
       onClick={() => onAnchorClick()}
     >
       {text}

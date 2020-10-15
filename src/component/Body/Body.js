@@ -2,7 +2,8 @@ import React from "react";
 import * as S from "./styles";
 
 const Body = props => {
-  return <S.Container height={props.height}>{props.children}</S.Container>;
+  console.log(props.ismain);
+  return <S.Container ismain={props.ismain}>{props.children}</S.Container>;
 };
 
 export default Body;
