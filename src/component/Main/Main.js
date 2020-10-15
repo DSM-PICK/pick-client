@@ -42,17 +42,19 @@ const Main = () => {
       </Header>
       <Body>
         <S.MainBodyTopText>
-          <S.MainBodyTopWho>{"김정은"} 선생님은</S.MainBodyTopWho>
+          <S.MainBodyTopWho>
+            {"김정은"} 선생님은 {/* <S.MainBodyLogoutLayout> */}
+            <S.MainBodyLogoutButton onClick={onModalClick}>
+              로그아웃
+            </S.MainBodyLogoutButton>
+            {/* </S.MainBodyLogoutLayout> */}
+          </S.MainBodyTopWho>
           <S.MainBodyTopWhen>
             <S.MainBodyTopWhenTime>{"오늘 저녁 "}</S.MainBodyTopWhenTime>
-            자습감독 이십니다.
+            자습감독이십니다.
           </S.MainBodyTopWhen>
         </S.MainBodyTopText>
-        <S.MainBodyLogoutLayout>
-          <S.MainBodyLogoutButton onClick={onModalClick}>
-            로그아웃
-          </S.MainBodyLogoutButton>
-        </S.MainBodyLogoutLayout>
+
         <S.MainBodyOffwork>
           힘내세요! 퇴근까지
           <S.MainBodyOffworkWhen>{" 2시간 38분"}</S.MainBodyOffworkWhen>{" "}
