@@ -2,7 +2,6 @@ import React, { useState, useRef, useCallback } from "react";
 import * as S from "./styles";
 import PreReportCalander from "./PreReportCalendar/PreReportCalander";
 import PreReportModal from "./PreReportModal/PreReportModal";
-import getDateObj from "../../../../lib/calander";
 
 const PreReportDate = props => {
   const {
@@ -35,9 +34,13 @@ const PreReportDate = props => {
 
   return (
     <S.Container>
-      <S.Date onClick={onPreClick}>
-        <S.Month month={preMonth}>월</S.Month>
-        <S.Day day={preDay}>일</S.Day>
+      <S.Date>
+        <S.Month month={preMonth} onClick={onPreClick}>
+          월
+        </S.Month>
+        <S.Day day={preDay} onClick={onPreClick}>
+          일
+        </S.Day>
         <S.Class
           type="number"
           min="1"
@@ -50,9 +53,13 @@ const PreReportDate = props => {
         <S.ClassText>교시</S.ClassText>
         <S.Additional>~</S.Additional>
       </S.Date>
-      <S.Date onClick={onNextClick}>
-        <S.Month month={nextMonth}>월</S.Month>
-        <S.Day day={nextDay}>일</S.Day>
+      <S.Date>
+        <S.Month month={nextMonth} onClick={onNextClick}>
+          월
+        </S.Month>
+        <S.Day day={nextDay} onClick={onNextClick}>
+          일
+        </S.Day>
         <S.Class
           type="number"
           min="1"
