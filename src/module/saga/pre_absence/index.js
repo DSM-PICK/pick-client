@@ -27,6 +27,7 @@ function* getPreAbsenceList() {
       requestGetApiWithAccessToken,
       `/mars/pre-absence/date/${today}`
     );
+    console.log(preAbsenceList);
     yield put(setPreAbsence(preAbsenceList.data));
     console.log("사전 결석 리스트 불러오기 성공");
   } catch (error) {
@@ -38,8 +39,6 @@ function* getPreAbsenceList() {
 
 function* createPreAbsenceSaga(payload) {
   try {
-    console.log(`createPreAbsenceSaga`);
-    console.log(payload.payload);
     const {
       state,
       stdnum,
@@ -48,7 +47,6 @@ function* createPreAbsenceSaga(payload) {
       end_date,
       end_period
     } = payload.payload;
-    console.log(state, stdnum, start_date, start_period, end_date, end_period);
 
     const res = yield call(
       requestApiWithAccessToken,
@@ -63,7 +61,6 @@ function* createPreAbsenceSaga(payload) {
         end_period
       }
     );
-    console.log(res);
     console.log("사전 결석 리스트 생성 성공");
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
@@ -81,7 +78,7 @@ function* deletePreAbsence(payload) {
       requestDeleteApiWithAccessToken,
       `/mars/pre-absence/${id}`
     );
-    // yield put(GET_PRE_ABSENCE_SAGA);
+    yield put({type: GET_PRE_ABSENCE_SAGA});
     console.log(`${id} 사전 결석 리스트 삭제 성공`);
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());

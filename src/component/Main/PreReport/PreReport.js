@@ -17,8 +17,6 @@ const PreReport = () => {
   const nameText = useSelector(state => state.autoComplete.text);
   const preAbsenceList = useSelector(state => state.preAbsence.preAbsenceList);
 
-  console.log(preAbsenceList);
-
   const dispatch = useDispatch();
 
   const createPreAbsence = useCallback(
