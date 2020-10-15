@@ -3,11 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   border-radius: 60px 60px 0 0;
   width: 100%;
-  /* height: calc(100vh - 210px); */
   height: ${props =>
-    props.height === "auto" ? "auto" : "calc(100vh - 210px)"};
+    props.ismain === "main" ? "auto" : "calc(100vh - 210px)"};
   background-color: white;
-  padding: 20px 50px 0px 50px;
+  padding: 20px 30px 0px 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
