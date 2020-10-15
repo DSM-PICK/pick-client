@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
 import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import LogoutModal from "./Modal/LogoutModal";
-import PreReport from "./PreReport/PreReport";
+import PreReport from "./PreReport/PreReports";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOn, modalOff } from "../../module/action/admin_modal";
 import { Logo } from "../../asset";
