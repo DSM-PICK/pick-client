@@ -54,7 +54,6 @@ export const checkIsLogin = async () => {
 export const requestGetApiWithAccessToken = async (url, headers) => {
   try {
     const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
-    console.log(accessToken);
     const res = await axios.get(BASE_URL + url, {
       headers: {
         [ACCESS_TOKEN_NAME]: accessToken

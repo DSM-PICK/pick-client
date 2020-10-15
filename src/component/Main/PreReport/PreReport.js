@@ -219,10 +219,7 @@ const PreReport = () => {
       return `something wrong`;
     }
   };
-
-  console.log(`PreReport`);
-  console.log(curPreAbsenceData);
-
+  
   return (
     <S.Container>
       <S.Func>
