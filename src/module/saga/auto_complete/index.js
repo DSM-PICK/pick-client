@@ -1,30 +1,33 @@
-import { takeEvery, select, put, call } from "redux-saga/effects";
-import axios from "axios";
+import { takeEvery, put, call } from "redux-saga/effects";
 import {
-  SET_AUTO_COMPLETE_TEXT,
+  setAutoCompleteText,
   GET_AUTO_COMPLETE_TEXT_SAGA,
   FAILURE_AUTO_COMPLETE_TEXT_SAGA
 } from "../../action/auto_complete";
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 
-function* getAutoCompleteText() {
+function* getAutoCompleteTextSaga(payload) {
   try {
-    const text = yield select(store => store.autoComplete.text);
-    const autoCompleteData = yield call(
-      requestGetApiWithAccessToken,
-      `student/autocomplete/${text}`
-    );
-    yield put(SET_AUTO_COMPLETE_TEXT(autoCompleteData));
-    console.log("자동 완성 성공");
+    const text = payload.payload;
+    console.log(text);
+    if (!!text) {
+      const autoCompleteData = yield call(
+        requestGetApiWithAccessToken,
+        `/mars/student/autocomplete/${text}`
+      );
+      console.log(autoCompleteData);
+      yield put(setAutoCompleteText(autoCompleteData.data));
+      console.log("자동 완성 성공");
+    }
   } catch (error) {
-    yield put(FAILURE_AUTO_COMPLETE_TEXT_SAGA(error.response.status));
+    // yield put(FAILURE_AUTO_COMPLETE_TEXT_SAGA(error.response.status));
     console.log("자동 완성 실패");
     console.log(error);
   }
 }
 
 function* autoCompleteSaga() {
-  yield takeEvery(GET_AUTO_COMPLETE_TEXT_SAGA, getAutoCompleteText);
+  yield takeEvery(GET_AUTO_COMPLETE_TEXT_SAGA, getAutoCompleteTextSaga);
 }
 
 export default autoCompleteSaga;

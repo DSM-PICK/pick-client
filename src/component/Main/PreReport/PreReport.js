@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 import * as C from "./Constant";
 import PreReportState from "./PreReportState/PreReportState";
@@ -6,8 +7,42 @@ import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import DeleteModal from "../Modal/DeleteModal";
 import getDateObj from "../../../lib/calander";
+import { makeMonth1Digit, makeMonth2Digit } from "../../../lib/attendanceAPI";
+import {
+  createPreAbsenceSaga,
+  getPreAbsenceSaga
+} from "../../../module/action/pre_absence";
 
 const PreReport = () => {
+  const nameText = useSelector(state => state.autoComplete.text);
+  const preAbsenceList = useSelector(state => state.preAbsence.preAbsenceList);
+
+  const dispatch = useDispatch();
+
+  const createPreAbsence = useCallback(
+    payload => {
+      dispatch(createPreAbsenceSaga(payload));
+    },
+    [dispatch]
+  );
+
+  const getPreAbsence = useCallback(() => {
+    dispatch(getPreAbsenceSaga());
+  }, [dispatch]);
+
+  const onSubmit = () => {
+    const data = {
+      state: String(preReportState),
+      stdnum: Number(nameText.slice(0, 4)),
+      start_date: `${2020}-${makeMonth2Digit(preMonth)}-${preDay}`,
+      start_period: String(preClassValue),
+      end_date: `${2020}-${makeMonth2Digit(nextMonth)}-${nextDay}`,
+      end_period: String(nextClassValue)
+    };
+    createPreAbsence(data);
+    getPreAbsence();
+  };
+
   const date = new Date();
 
   const preClassInput = useRef("");
@@ -25,20 +60,24 @@ const PreReport = () => {
   const [preClassValue, setPreClassValue] = useState("");
   const [nextClassValue, setNextClassValue] = useState("");
 
-  const [name, setName] = useState("");
-
   const [modal, setModal] = useState(false);
   const [height, setHeight] = useState("30px");
   const [preNextState, setPreNextState] = useState("");
 
   const [delModal, setDelModal] = useState(false);
 
+  const [curPreAbsenceData, setCurPreAbsenceData] = useState("");
+
   const onOffModal = () => {
     setModal(!modal);
   };
 
-  const onOffDelModal = () => {
+  const onOffDelModal = id => {
     setDelModal(!delModal);
+    if (!!id) {
+      console.log(`setCurPreAbsenceData : ${id}`);
+      setCurPreAbsenceData(id);
+    }
   };
 
   const onPreClick = () => {
@@ -152,17 +191,33 @@ const PreReport = () => {
     setPreReportState(changeState);
   };
 
-  const onChangeName = useCallback(e => {
-    setName(e.target.value);
-  });
+  const getPreAbsenceText = (
+    start_date,
+    start_period,
+    end_date,
+    end_period
+  ) => {
+    if (!!start_date && !!start_period && !!end_date && !!end_period) {
+      const spliting_sDate = start_date.split("-");
+      const spliting_eDate = end_date.split("-");
+      const s_month = spliting_sDate[1];
+      const s_day = spliting_sDate[2];
+      const e_month = spliting_eDate[1];
+      const e_day = spliting_eDate[2];
+      let returnStr = `${makeMonth1Digit(
+        s_month
+      )}월 ${s_day}일 ${start_period}교시 ~`;
+      if (s_month !== e_month || s_day !== e_day) {
+        returnStr += `${makeMonth1Digit(e_month)}월 ${e_day}일`;
+      }
+      returnStr += ` ${end_period}교시`;
 
-  const onSubmit = () => {
-    console.log(preReportState);
-    console.log(name);
-    console.log(preMonth, preDay, preClassValue);
-    console.log(nextMonth, nextDay, nextClassValue);
+      return returnStr;
+    } else {
+      return `something wrong`;
+    }
   };
-
+  
   return (
     <S.Container>
       <S.Func>
@@ -181,7 +236,7 @@ const PreReport = () => {
         </S.FuncKindName>
         <S.FuncKindName>
           <S.FuncTitle>이름</S.FuncTitle>
-          <PreReportName name={name} onChangeName={onChangeName} />
+          <PreReportName />
         </S.FuncKindName>
         <S.FuncDate>
           <S.FuncTitle>기간</S.FuncTitle>
@@ -211,7 +266,7 @@ const PreReport = () => {
             onNextClassChange={onNextClassChange}
           />
         </S.FuncDate>
-        <S.FuncAdd onClick={onSubmit}>추가하기</S.FuncAdd>
+        <S.FuncAdd onClick={() => onSubmit()}>추가하기</S.FuncAdd>
       </S.Func>
       <S.Show>
         <S.ShowHeader>
@@ -220,13 +275,32 @@ const PreReport = () => {
           <S.ShowHeaderDate>기간</S.ShowHeaderDate>
         </S.ShowHeader>
         <S.ShowBody>
-          <S.ShowBodyBox onClick={onOffDelModal}>
-            <S.ShowBodyStd>2415 유시온</S.ShowBodyStd>
-            <S.ShowBodyKind>외출</S.ShowBodyKind>
-            <S.ShowBodyDate>8월 15일 7교시 ~ 8월 18일 9교시</S.ShowBodyDate>
-          </S.ShowBodyBox>
+          {preAbsenceList &&
+            preAbsenceList.map(preAbsenceData => (
+              <S.ShowBodyBox
+                onClick={() => onOffDelModal(preAbsenceData.id)}
+                key={preAbsenceData.id}
+              >
+                <S.ShowBodyStd>{preAbsenceData.stdnum}</S.ShowBodyStd>
+                <S.ShowBodyKind>{preAbsenceData.state}</S.ShowBodyKind>
+                <S.ShowBodyDate>
+                  {getPreAbsenceText(
+                    preAbsenceData.start_date,
+                    preAbsenceData.start_period,
+                    preAbsenceData.end_date,
+                    preAbsenceData.end_period
+                  )}
+                </S.ShowBodyDate>
+              </S.ShowBodyBox>
+            ))}
         </S.ShowBody>
-        {delModal && <DeleteModal onOffDelModal={onOffDelModal} />}
+        {delModal && (
+          <DeleteModal
+            onOffDelModal={onOffDelModal}
+            curPreAbsenceData={curPreAbsenceData}
+            setCurPreAbsenceData={setCurPreAbsenceData}
+          />
+        )}
       </S.Show>
     </S.Container>
   );

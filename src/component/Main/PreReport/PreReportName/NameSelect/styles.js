@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: absolute;
-  display: ${props => (props.names ? "none" : "flex")};
+  display: ${props => (props.names ? "flex" : "none")};
   top: 30px;
   width: 140px;
   max-height: 190px;

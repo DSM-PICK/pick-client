@@ -121,11 +121,11 @@ function* postAttendanceStdData(payload) {
       requestApiWithAccessToken,
       methodType.POST,
       `/saturn/attendance/student-state`,
-      JSON.stringify({
+      {
         number,
         period,
         state
-      })
+      }
     );
 
     console.log(`출석 데이터 저장 성공`);

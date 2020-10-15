@@ -25,17 +25,14 @@ const preAbsenceReducer = (state = initialState, action) => {
     case SET_PRE_ABSENCE: {
       return {
         ...state,
-        preAbsence: {
-          ...preAbsence,
-          preAbsenceList: action.payload
-        }
+        preAbsenceList: action.payload
       };
     }
     case SET_PRE_ABSENCE_STATE: {
       return {
         ...state,
         preAbsence: {
-          ...preAbsence,
+          ...state.preAbsence,
           preAbsenceState: action.payload
         }
       };
@@ -44,7 +41,7 @@ const preAbsenceReducer = (state = initialState, action) => {
       return {
         ...state,
         preAbsence: {
-          ...preAbsence,
+          ...state.preAbsence,
           preAbsenceStdName: action.payload
         }
       };
@@ -53,7 +50,7 @@ const preAbsenceReducer = (state = initialState, action) => {
       return {
         ...state,
         preAbsence: {
-          ...preAbsence,
+          ...state.preAbsence,
           preAbsencePreDate: action.payload
         }
       };
@@ -62,7 +59,7 @@ const preAbsenceReducer = (state = initialState, action) => {
       return {
         ...state,
         preAbsence: {
-          ...preAbsence,
+          ...state.preAbsence,
           preAbsenceNextDate: action.payload
         }
       };
@@ -71,7 +68,7 @@ const preAbsenceReducer = (state = initialState, action) => {
       return {
         ...state,
         preAbsence: {
-          ...preAbsence,
+          ...state.preAbsence,
           preAbsencePrePeriod: action.payload
         }
       };
@@ -80,7 +77,7 @@ const preAbsenceReducer = (state = initialState, action) => {
       return {
         ...state,
         preAbsence: {
-          ...preAbsence,
+          ...state.preAbsence,
           preAbsenceNextPeriod: action.payload
         }
       };
