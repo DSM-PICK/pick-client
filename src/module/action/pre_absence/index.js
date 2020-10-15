@@ -69,8 +69,9 @@ export const failurecreatePreAbsenceSaga = payload => ({
   payload
 });
 
-export const deletePreAbsenceSaga = () => ({
-  type: DELETE_PRE_ABSENCE_SAGA
+export const deletePreAbsenceSaga = payload => ({
+  type: DELETE_PRE_ABSENCE_SAGA,
+  payload
 });
 
 export const failureDeletePreAbsenceSaga = () => ({

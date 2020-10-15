@@ -3,7 +3,8 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import {
   methodType,
   requestApiWithAccessToken,
-  requestGetApiWithAccessToken
+  requestGetApiWithAccessToken,
+  requestDeleteApiWithAccessToken
 } from "../../../lib/requestApi";
 import {
   setPreAbsence,
@@ -73,14 +74,15 @@ function* createPreAbsenceSaga(payload) {
 
 function* deletePreAbsence(payload) {
   try {
-    console.log(payload.payload);
+    console.log(`deletePreAbsence`);
+    const id = payload.payload;
+
     yield call(
-      requestApiWithAccessToken,
-      methodType.DELETE,
-      `/mars/pre-absence/${payload}`
+      requestDeleteApiWithAccessToken,
+      `/mars/pre-absence/${id}`
     );
     // yield put(GET_PRE_ABSENCE_SAGA);
-    console.log("사전 결석 리스트 삭제 성공");
+    console.log(`${id} 사전 결석 리스트 삭제 성공`);
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
     console.log(error);

@@ -200,8 +200,8 @@ const PreReport = () => {
     end_period
   ) => {
     if (!!start_date && !!start_period && !!end_date && !!end_period) {
-      spliting_sDate = start_date.split("-");
-      spliting_eDate = end_date.split("-");
+      const spliting_sDate = start_date.split("-");
+      const spliting_eDate = end_date.split("-");
       const s_month = spliting_sDate[1];
       const s_day = spliting_sDate[2];
       const e_month = spliting_eDate[1];
@@ -219,6 +219,9 @@ const PreReport = () => {
       return `something wrong`;
     }
   };
+
+  console.log(`PreReport`);
+  console.log(curPreAbsenceData);
 
   return (
     <S.Container>
@@ -279,8 +282,11 @@ const PreReport = () => {
         <S.ShowBody>
           {preAbsenceList &&
             preAbsenceList.map(preAbsenceData => (
-              <S.ShowBodyBox onClick={onOffDelModal} key={preAbsenceData.id}>
-                <S.ShowBodyStd>{preAbsenceData.student_num}</S.ShowBodyStd>
+              <S.ShowBodyBox
+                onClick={() => onOffDelModal(preAbsenceData.id)}
+                key={preAbsenceData.id}
+              >
+                <S.ShowBodyStd>{preAbsenceData.stdnum}</S.ShowBodyStd>
                 <S.ShowBodyKind>{preAbsenceData.state}</S.ShowBodyKind>
                 <S.ShowBodyDate>
                   {getPreAbsenceText(
