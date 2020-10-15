@@ -48,7 +48,8 @@ const Attendancing = ({ location }) => {
   }`;
 
   const information = useSelector(state => state.attendance);
-  const { date, dayOfWeek, teachers, datas } = information;
+
+  const { date, dayOfWeek, teachers, datas, attendanceData } = information;
   const month = date.slice(0, 2);
   const day = date.slice(2, 4);
 
@@ -82,6 +83,9 @@ const Attendancing = ({ location }) => {
       break;
     }
   }
+
+  console.log(`attendanceData`);
+  console.log(attendanceData);
 
   teacherName = teacherName === null ? `"앗 오류!"` : teacherName;
 
