@@ -5,17 +5,16 @@ export const Container = styled.div`
   width: calc(100% - 40px);
   height: 260px;
   margin: 10px 0;
+  padding: 20px !important;
   border-radius: 60px;
   box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
   background: #fafafa;
-  padding: 20px !important;
 `;
 
 export const Func = styled.div`
   display: flex;
   width: 40%;
   height: 260px;
-  margin-left: 20px;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
