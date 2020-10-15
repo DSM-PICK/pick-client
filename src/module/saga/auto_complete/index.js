@@ -9,6 +9,7 @@ import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 function* getAutoCompleteTextSaga(payload) {
   try {
     const text = payload.payload;
+    console.log(text);
     if (!!text) {
       const autoCompleteData = yield call(
         requestGetApiWithAccessToken,

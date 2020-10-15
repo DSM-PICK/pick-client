@@ -12,3 +12,7 @@ export const getLocationState = () => {
 export const makeMonth2Digit = month => {
   return month < 10 ? "0" + month : month;
 };
+
+export const makeMonth1Digit = month => {
+  return Number(month) < 10 && month.length === 2 ? month[1] : month;
+};

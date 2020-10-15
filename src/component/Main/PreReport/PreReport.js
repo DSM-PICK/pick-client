@@ -7,8 +7,11 @@ import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import DeleteModal from "../Modal/DeleteModal";
 import getDateObj from "../../../lib/calander";
-import { makeMonth2Digit } from "../../../lib/attendanceAPI";
-import { createPreAbsenceSaga } from "../../../module/action/pre_absence";
+import { makeMonth1Digit, makeMonth2Digit } from "../../../lib/attendanceAPI";
+import {
+  createPreAbsenceSaga,
+  getPreAbsenceSaga
+} from "../../../module/action/pre_absence";
 
 const PreReport = () => {
   const nameText = useSelector(state => state.autoComplete.text);
@@ -25,6 +28,10 @@ const PreReport = () => {
     [dispatch]
   );
 
+  const getPreAbsence = useCallback(() => {
+    dispatch(getPreAbsenceSaga());
+  }, [dispatch]);
+
   const onSubmit = () => {
     const data = {
       state: String(preReportState),
@@ -35,6 +42,7 @@ const PreReport = () => {
       end_period: String(nextClassValue)
     };
     createPreAbsence(data);
+    getPreAbsence();
   };
 
   const date = new Date();
@@ -60,12 +68,18 @@ const PreReport = () => {
 
   const [delModal, setDelModal] = useState(false);
 
+  const [curPreAbsenceData, setCurPreAbsenceData] = useState("");
+
   const onOffModal = () => {
     setModal(!modal);
   };
 
-  const onOffDelModal = () => {
+  const onOffDelModal = id => {
     setDelModal(!delModal);
+    if (!!id) {
+      console.log(`setCurPreAbsenceData : ${id}`);
+      setCurPreAbsenceData(id);
+    }
   };
 
   const onPreClick = () => {
@@ -179,6 +193,33 @@ const PreReport = () => {
     setPreReportState(changeState);
   };
 
+  const getPreAbsenceText = (
+    start_date,
+    start_period,
+    end_date,
+    end_period
+  ) => {
+    if (!!start_date && !!start_period && !!end_date && !!end_period) {
+      spliting_sDate = start_date.split("-");
+      spliting_eDate = end_date.split("-");
+      const s_month = spliting_sDate[1];
+      const s_day = spliting_sDate[2];
+      const e_month = spliting_eDate[1];
+      const e_day = spliting_eDate[2];
+      let returnStr = `${makeMonth1Digit(
+        s_month
+      )}월 ${s_day}일 ${start_period}교시 ~`;
+      if (s_month !== e_month || s_day !== e_day) {
+        returnStr += `${makeMonth1Digit(e_month)}월 ${e_day}일`;
+      }
+      returnStr += ` ${end_period}교시`;
+
+      return returnStr;
+    } else {
+      return `something wrong`;
+    }
+  };
+
   return (
     <S.Container>
       <S.Func>
@@ -241,11 +282,24 @@ const PreReport = () => {
               <S.ShowBodyBox onClick={onOffDelModal} key={preAbsenceData.id}>
                 <S.ShowBodyStd>{preAbsenceData.student_num}</S.ShowBodyStd>
                 <S.ShowBodyKind>{preAbsenceData.state}</S.ShowBodyKind>
-                <S.ShowBodyDate>{preAbsenceData.id}</S.ShowBodyDate>
+                <S.ShowBodyDate>
+                  {getPreAbsenceText(
+                    preAbsenceData.start_date,
+                    preAbsenceData.start_period,
+                    preAbsenceData.end_date,
+                    preAbsenceData.end_period
+                  )}
+                </S.ShowBodyDate>
               </S.ShowBodyBox>
             ))}
         </S.ShowBody>
-        {delModal && <DeleteModal onOffDelModal={onOffDelModal} />}
+        {delModal && (
+          <DeleteModal
+            onOffDelModal={onOffDelModal}
+            curPreAbsenceData={curPreAbsenceData}
+            setCurPreAbsenceData={setCurPreAbsenceData}
+          />
+        )}
       </S.Show>
     </S.Container>
   );
