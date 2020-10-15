@@ -32,7 +32,7 @@ export const FuncKindName = styled.div`
 export const PreReportStates = styled.div`
   position: absolute;
   display: flex;
-  left: 80px;
+  left: 65px;
   width: calc(100% - 80px);
   height: 40px;
   color: white;

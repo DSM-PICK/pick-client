@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React from "react";
 import * as S from "./styles";
 import PreReportCalander from "./PreReportCalendar/PreReportCalander";
 import PreReportModal from "./PreReportModal/PreReportModal";
