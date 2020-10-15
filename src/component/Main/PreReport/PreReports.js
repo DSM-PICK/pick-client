@@ -12,8 +12,9 @@ import {
   createPreAbsenceSaga,
   getPreAbsenceSaga
 } from "../../../module/action/pre_absence";
+import { setText } from "../../../module/action/auto_complete";
 
-const PreReport = () => {
+const PreReports = () => {
   const nameText = useSelector(state => state.autoComplete.text);
   const preAbsenceList = useSelector(state => state.preAbsence.preAbsenceList);
 
@@ -25,10 +26,25 @@ const PreReport = () => {
     },
     [dispatch]
   );
-
   const getPreAbsence = useCallback(() => {
     dispatch(getPreAbsenceSaga());
   }, [dispatch]);
+  const setNameText = useCallback(
+    text => {
+      dispatch(setText(text));
+    },
+    [dispatch]
+  );
+
+  const initState = () => {
+    setPreMonth("");
+    setNextMonth("");
+    setPreDay("");
+    setNextDay("");
+    setPreClassValue("");
+    setNextClassValue("");
+    setNameText("");
+  };
 
   const onSubmit = () => {
     const data = {
@@ -39,8 +55,10 @@ const PreReport = () => {
       end_date: `${2020}-${makeMonth2Digit(nextMonth)}-${nextDay}`,
       end_period: String(nextClassValue)
     };
+
     createPreAbsence(data);
     getPreAbsence();
+    initState();
   };
 
   const date = new Date();
@@ -81,14 +99,16 @@ const PreReport = () => {
   };
 
   const onPreClick = () => {
-    preClassInput.current.blur();
+    console.log(preClassValue);
+    if (!preClassValue) preClassInput.current.blur();
     setHeight("30px");
     setPreNextState("pre");
     onOffModal();
   };
 
   const onNextClick = () => {
-    nextClassInput.current.blur();
+    console.log(nextClassValue);
+    if (!nextClassValue) nextClassInput.current.blur();
     setHeight("64px");
     setPreNextState("next");
     onOffModal();
@@ -96,8 +116,6 @@ const PreReport = () => {
 
   const onPreSelect = day => {
     const tempPreMonth = calcMonth + 1;
-
-    setPreClassValue("");
 
     if (nextMonth !== "") {
       if (
@@ -115,13 +133,11 @@ const PreReport = () => {
       setPreDay(day);
     }
 
-    preClassInput.current.focus();
+    if (!preClassValue) preClassInput.current.focus();
   };
 
   const onNextSelect = day => {
     const tempNextMonth = calcMonth + 1;
-
-    setNextClassValue("");
 
     if (preMonth !== "") {
       if (
@@ -139,7 +155,7 @@ const PreReport = () => {
       setNextDay(day);
     }
 
-    nextClassInput.current.focus();
+    if (!nextClassValue) nextClassInput.current.focus();
   };
 
   const prevCalcMonth = () => {
@@ -217,7 +233,7 @@ const PreReport = () => {
       return `something wrong`;
     }
   };
-  
+
   return (
     <S.Container>
       <S.Func>
@@ -306,4 +322,4 @@ const PreReport = () => {
   );
 };
 
-export default PreReport;
+export default PreReports;
