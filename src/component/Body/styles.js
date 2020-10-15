@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  border-radius: 60px 60px 0 0;
+  display: flex;
   width: 100%;
   height: ${props =>
     props.ismain === "main" ? "auto" : "calc(100vh - 210px)"};
   background-color: white;
-  padding: 20px 30px 0px 30px;
+  padding: 10px 30px 30px 30px;
+  border-radius: 60px 60px 0 0;
   box-sizing: border-box;
-  display: flex;
+  overflow: auto;
   flex-direction: column;
   justify-content: flex-start;
 `;
