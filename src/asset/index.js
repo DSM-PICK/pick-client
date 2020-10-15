@@ -33,3 +33,5 @@ export { default as TonggeiOnIcon } from "./Footer/tonggeiOn.svg";
 export { default as Logo } from "./Logo/Logo.svg";
 export { default as LogoForAdmin } from "./Logo/LogoForAdmin.svg";
 export { default as PickLogoSVG } from "./Logo/PickLogo.svg";
+
+export { default as FAVICON } from "./favicon/FAVICON.png";

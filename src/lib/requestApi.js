@@ -22,7 +22,7 @@ export const requesetRefresh = async () => {
       }
     });
 
-    window.localStorage.setItem("ACCESS_TOKEN", res.data.accessToken);
+    window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
   } catch (err) {
     if (err.response.status === 403) {
       alert("토큰이 만료 되었습니다.");
@@ -88,8 +88,36 @@ export const requestApi = async (method, url, body, headers) => {
   }
 };
 
+export const requestDeleteApiWithAccessToken = async (url, headers) => {
+  const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
+  try {
+    const res = await axios[methodType.DELETE](BASE_URL + url, {
+      headers: {
+        [ACCESS_TOKEN_NAME]: accessToken,
+      }
+    });
+
+    return res;
+  } catch (err) {
+    console.log(err);
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    switch (err.response.status) {
+      case 403:
+      case 401:
+      case 410:
+        requesetRefresh();
+      default:
+    }
+    throw err.response;
+  }
+};
+
 export const requestApiWithAccessToken = async (method, url, body, headers) => {
   const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
+
   try {
     const res = await axios[method](BASE_URL + url, body, {
       headers: {
