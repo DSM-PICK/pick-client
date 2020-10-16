@@ -54,9 +54,9 @@ export const PreReportStates = styled.div`
 export const FuncTitle = styled.div`
   position: absolute;
   display: flex;
-  width: 52px;
+  width: auto;
   height: 26px;
-  font-size: 26px;
+  font-size: 22px;
   color: black;
   left: 0;
 `;
@@ -107,7 +107,7 @@ export const ShowHeaderStd = styled.p`
 `;
 
 export const ShowHeaderKind = styled(ShowHeaderStd)`
-  width: 50px;
+  width: 70px;
 `;
 
 export const ShowHeaderDate = styled(ShowHeaderStd)`
@@ -119,6 +119,7 @@ export const ShowBody = styled.div`
   width: 100%;
   height: auto;
   overflow: auto;
+  border-radius: 0 0 60px 60px;
   flex-direction: column;
 `;
 
@@ -126,6 +127,7 @@ export const ShowBodyBox = styled.div`
   display: flex;
   width: 100%;
   margin: 3px 0;
+  align-items: center;
   justify-content: space-evenly;
 `;
 
@@ -142,4 +144,6 @@ export const ShowBodyKind = styled(ShowHeaderKind)`
 export const ShowBodyDate = styled(ShowHeaderDate)`
   color: #20223e;
   font-size: 22px;
+  flex-direction: column;
+  margin-left: 5px;
 `;
