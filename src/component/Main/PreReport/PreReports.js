@@ -220,15 +220,19 @@ const PreReports = () => {
       const s_day = spliting_sDate[2];
       const e_month = spliting_eDate[1];
       const e_day = spliting_eDate[2];
-      let returnStr = `${makeMonth1Digit(
+      let returnStrF = `${makeMonth1Digit(
         s_month
-      )}월 ${s_day}일 ${start_period}교시 ~`;
+      )}월 ${s_day}일 ${start_period}교시 ~ `;
+      let returnStrS = "";
       if (s_month !== e_month || s_day !== e_day) {
-        returnStr += `${makeMonth1Digit(e_month)}월 ${e_day}일`;
+        returnStrS += `${makeMonth1Digit(e_month)}월 ${e_day}일`;
       }
-      returnStr += ` ${end_period}교시`;
 
-      return returnStr;
+      returnStrS += ` ${end_period}교시`;
+
+      // console.log(returnStr);
+
+      return [returnStrF, returnStrS];
     } else {
       return `something wrong`;
     }
@@ -305,7 +309,9 @@ const PreReports = () => {
                     preAbsenceData.start_period,
                     preAbsenceData.end_date,
                     preAbsenceData.end_period
-                  )}
+                  ).map(data => (
+                    <span>{data}</span>
+                  ))}
                 </S.ShowBodyDate>
               </S.ShowBodyBox>
             ))}
