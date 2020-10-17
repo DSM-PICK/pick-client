@@ -17,7 +17,7 @@ const getFloorText = floorName => {
 
 const Attendancing = () => {
   const information = useSelector(state => state.attendance);
-  const { date, dayOfWeek, teachers, datas, attendanceData } = information;
+  const { date, dayOfWeek, teachers, datas } = information;
   const month = date.slice(0, 2);
   const day = date.slice(2, 4);
 
@@ -25,6 +25,8 @@ const Attendancing = () => {
   const backUrl = `/${location.pathname.split("/")[1]}/${
     location.pathname.split("/")[2]
   }`;
+
+  const index = window.location.pathname[window.location.pathname.length - 1];
 
   let floorDatas = [];
   let teacherName = `"앗 오류!"`;
@@ -57,12 +59,7 @@ const Attendancing = () => {
     }
   }
 
-  console.log(`attendanceData`);
-  console.log(attendanceData);
-
   teacherName = !teacherName ? `"앗 오류!"` : teacherName;
-
-  const index = window.location.pathname[window.location.pathname.length - 1];
 
   return (
     <S.Container>
