@@ -82,7 +82,7 @@ export const FuncAdd = styled.button`
 
 export const Show = styled.div`
   display: flex;
-  width: 55%;
+  width: 58%;
   height: 260px;
   border: 1px solid #707070;
   border-radius: 60px;
