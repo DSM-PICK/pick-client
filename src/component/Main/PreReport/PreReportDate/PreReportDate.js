@@ -41,17 +41,19 @@ const PreReportDate = props => {
         <S.Day day={preDay} onClick={onPreClick}>
           일
         </S.Day>
-        <S.Class
-          type="number"
-          min="1"
-          max="10"
-          placeholder="__"
-          ref={preClassInput}
-          value={preClassValue}
-          onChange={onPreClassChange}
-        />
-        <S.ClassText>교시</S.ClassText>
-        <S.Additional>~</S.Additional>
+        <S.ClassWrap>
+          <S.Class
+            type="number"
+            min="1"
+            max="10"
+            placeholder="__"
+            ref={preClassInput}
+            value={preClassValue}
+            onChange={onPreClassChange}
+          />
+          <S.ClassText>교시</S.ClassText>
+          <S.Additional>~</S.Additional>
+        </S.ClassWrap>
       </S.Date>
       <S.Date>
         <S.Month month={nextMonth} onClick={onNextClick}>
@@ -60,16 +62,18 @@ const PreReportDate = props => {
         <S.Day day={nextDay} onClick={onNextClick}>
           일
         </S.Day>
-        <S.Class
-          type="number"
-          min="1"
-          max="10"
-          placeholder="__"
-          ref={nextClassInput}
-          value={nextClassValue}
-          onChange={onNextClassChange}
-        />
-        <S.ClassText>교시</S.ClassText>
+        <S.ClassWrap>
+          <S.Class
+            type="number"
+            min="1"
+            max="10"
+            placeholder="__"
+            ref={nextClassInput}
+            value={nextClassValue}
+            onChange={onNextClassChange}
+          />
+          <S.ClassText>교시</S.ClassText>
+        </S.ClassWrap>
       </S.Date>
       {modal && (
         <PreReportCalander
