@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0 20px;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: bold;
   text-align: center;
-  min-width: 180px;
+  width: auto;
+  padding: 0 30px;
   color: ${props => (props.done === "done" ? "#C4C4C4" : "black")};
   text-decoration: none;
+  transform: translateY(-5px);
 `;
 
 export const activeStyle = {

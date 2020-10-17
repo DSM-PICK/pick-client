@@ -31,12 +31,7 @@ const AttendanceSection = props => {
   const information = useSelector(state => state.attendance);
   const { clubHead, attendanceData } = information;
 
-  const isSelfStudy = getLocationState() === "class";
-
-  console.log(`locations`);
-  console.log(locations);
-  console.log(`information`);
-  console.log(information);
+  const isClub = getLocationState() === "club";
 
   const isSevenNull =
     !!Object.keys(attendanceData).length &&
@@ -44,17 +39,18 @@ const AttendanceSection = props => {
 
   return (
     <S.Container>
-      <S.Article>
-        <S.Name>{clubName}</S.Name>
-        <S.Location>{location}</S.Location>
-        <S.Head>{`부장 : ${clubHead}`}</S.Head>
-      </S.Article>
-
-      {/* {isSelfStudy && (
+      {isClub && (
+        <S.Article>
+          <S.Name>{clubName}</S.Name>
+          <S.Location>{location}</S.Location>
+          {!!clubHead && <S.Head>{`부장 : ${clubHead}`}</S.Head>}
+        </S.Article>
+      )}
+      {!isClub && (
         <S.Article>
           <S.Location location="자습실">{`자습실`}</S.Location>
         </S.Article>
-      )} */}
+      )}
       <AttendanceRowTop isSevenNull={isSevenNull} />
       <S.Attendance>
         {!!Object.keys(attendanceData).length &&
