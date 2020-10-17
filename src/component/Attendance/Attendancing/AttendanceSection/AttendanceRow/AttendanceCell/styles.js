@@ -18,7 +18,7 @@ export const ValueButton = styled.button`
   outline: none;
 
   ${props =>
-    props.state && props.sequence > 13
+    props.state && props.index > 8
       ? css`
           &:focus,
           &:active {
@@ -61,7 +61,7 @@ export const ValueButton = styled.button`
   ul {
     position: absolute;
     ${props =>
-      props.sequence > 9
+      props.index > 8
         ? css`
             top: -284px;
             border-bottom: none;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./styles";
 import AttendanceRowTop from "./AttendanceRowTop/AttendanceRowTop";
 import AttendanceRow from "./AttendanceRow/AttendanceRow";
@@ -28,12 +28,6 @@ const AttendanceSection = props => {
   const { locations } = props;
   const { location, name: clubName } = locations;
 
-  const [classData, setClassData] = useState(getClassData());
-
-  const onChangeRow = data => {
-    setClassData(data);
-  };
-
   const information = useSelector(state => state.attendance);
   const { clubHead, attendanceData } = information;
 
@@ -43,6 +37,11 @@ const AttendanceSection = props => {
   console.log(locations);
   console.log(`information`);
   console.log(information);
+
+  const isSevenNull =
+    !!Object.keys(attendanceData).length &&
+    attendanceData[0].state.seven === null;
+
   return (
     <S.Container>
       <S.Article>
@@ -56,16 +55,14 @@ const AttendanceSection = props => {
           <S.Location location="자습실">{`자습실`}</S.Location>
         </S.Article>
       )} */}
-      <AttendanceRowTop />
+      <AttendanceRowTop isSevenNull={isSevenNull} />
       <S.Attendance>
         {!!Object.keys(attendanceData).length &&
           attendanceData.map((attendance, index) => (
             <AttendanceRow
               key={attendance.gradeClassNumber}
               index={index}
-              classData={classData}
               attendance={attendance}
-              onChangeRow={onChangeRow}
             />
           ))}
       </S.Attendance>
