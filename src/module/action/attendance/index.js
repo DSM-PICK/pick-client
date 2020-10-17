@@ -20,13 +20,18 @@ export const SET_STATE = "attendance/SET_STATE";
 export const SET_DATE = "attendance/SET_DATE";
 export const SET_DAY_OF_WEEK = "attendance/SET_DAY_OF_WEEK";
 
+export const SET_CLUB_NAME = "attendance/SET_CLUB_NAME";
+export const SET_HEAD = "attendance/SET_HEAD";
 
-export const GET_FLOOR_DATA_SAGA = "attendance/GET_FLOOR_DATA_SAGA"; 
+export const GET_FLOOR_DATA_SAGA = "attendance/GET_FLOOR_DATA_SAGA";
 
 export const SET_ATTENDANCE_STD_DATA = "attendance/SET_ATTENDANCE_STD_DATA";
-export const GET_ATTENDANCE_STD_DATA_SAGA = "attendance/GET_ATTENDANCE_STD_DATA_SAGA"; 
-export const FAILURE_GET_ATTENDANCE_STD_DATA_SAGA = "attendance/FAILURE_GET_ATTENDANCE_STD_DATA_SAGA"; 
-export const POST_ATTENDANCE_STD_DATA_SAGA = "attendance/POST_ATTENDANCE_STD_DATA_SAGA";
+export const GET_ATTENDANCE_STD_DATA_SAGA =
+  "attendance/GET_ATTENDANCE_STD_DATA_SAGA";
+export const FAILURE_GET_ATTENDANCE_STD_DATA_SAGA =
+  "attendance/FAILURE_GET_ATTENDANCE_STD_DATA_SAGA";
+export const POST_ATTENDANCE_STD_DATA_SAGA =
+  "attendance/POST_ATTENDANCE_STD_DATA_SAGA";
 export const FAILURE_POST_ATTENDANCE_STD_DATA_SAGA =
   "attendance/FAILURE_POST_ATTENDANCE_STD_DATA_SAGA";
 
@@ -107,6 +112,16 @@ export const setDate = payload => ({
 
 export const setDayOfWeek = payload => ({
   type: SET_DAY_OF_WEEK,
+  payload
+});
+
+export const setClubName = payload => ({
+  type: SET_CLUB_NAME,
+  payload
+});
+
+export const setHead = payload => ({
+  type: SET_HEAD,
   payload
 });
 

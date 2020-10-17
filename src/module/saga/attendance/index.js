@@ -23,7 +23,9 @@ import {
   GET_ATTENDANCE_STD_DATA_SAGA,
   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
   POST_ATTENDANCE_STD_DATA_SAGA,
-  FAILURE_POST_ATTENDANCE_STD_DATA_SAGA
+  FAILURE_POST_ATTENDANCE_STD_DATA_SAGA,
+  setHead,
+  setClubName
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
@@ -99,8 +101,9 @@ function* getAttendanceStdDataSaga(payload) {
     );
 
     const atdData = attendanceData.data.attendances;
-    console.log(atdData);
+    const clubHead = attendanceData.data.head;
 
+    yield put(setHead(clubHead));
     yield put(setAttendanceStdData(atdData));
     console.log(`출석 데이터 불러오기 성공`);
   } catch (error) {
