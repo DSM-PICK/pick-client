@@ -62,10 +62,10 @@ export const requestGetApiWithAccessToken = async (url, headers) => {
     return res;
   } catch (err) {
     console.log(err);
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
-    }
+    // if (!err.response) {
+    //   alert("네트워크 상태를 확인해 주세요");
+    //   throw null;
+    // }
     switch (err.response.status) {
       case 403:
         requesetRefresh();
@@ -83,34 +83,36 @@ export const requestApi = async (method, url, body, headers) => {
     const res = await axios[method](BASE_URL + url, body, { headers });
     return res;
   } catch (err) {
-    !err.response && alert("네트워크 상태를 확인해 주세요");
+    console.log(err);
+    // !err.response && alert("네트워크 상태를 확인해 주세요");
     throw err.response;
   }
 };
 
 export const requestDeleteApiWithAccessToken = async (url, headers) => {
-  const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
   try {
+    const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
     const res = await axios[methodType.DELETE](BASE_URL + url, {
       headers: {
-        [ACCESS_TOKEN_NAME]: accessToken,
+        ...headers,
+        [ACCESS_TOKEN_NAME]: accessToken
       }
     });
 
     return res;
   } catch (err) {
     console.log(err);
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
-    }
-    switch (err.response.status) {
-      case 403:
-      case 401:
-      case 410:
-        requesetRefresh();
-      default:
-    }
+    // if (!err.response) {
+    //   alert("네트워크 상태를 확인해 주세요");
+    //   throw null;
+    // }
+    // switch (err.response.status) {
+    //   case 401:
+    //   case 403:
+    //   case 410:
+    //     requesetRefresh();
+    //   default:
+    // }
     throw err.response;
   }
 };
@@ -129,33 +131,34 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
     return res;
   } catch (err) {
     console.log(err);
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
-    }
-    switch (err.response.status) {
-      case 403:
-      case 401:
-      case 410:
-        requesetRefresh();
-      default:
-    }
+    // if (!err.response) {
+    //   alert("네트워크 상태를 확인해 주세요");
+    //   throw null;
+    // }
+    // switch (err.response.status) {
+    //   case 401:
+    //   case 403:
+    //   case 410:
+    //     requesetRefresh();
+    //   default:
+    // }
     throw err.response;
   }
 };
 
 export const Logout = () => {
   try {
-    if (!!window.localStorage.getItem(ACCESS_TOKEN)) {
+    !!window.localStorage.getItem(ACCESS_TOKEN) &&
       window.localStorage.removeItem(ACCESS_TOKEN);
-    }
-    if (!!window.localStorage.getItem(REFRESH_TOKEN)) {
+    !!window.localStorage.getItem(REFRESH_TOKEN) &&
       window.localStorage.removeItem(REFRESH_TOKEN);
+    window.location.href = "/";
+  } catch (err) {
+    console.log(err);
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
     }
     window.location.href = "/";
-    console.log("[Logout Success]");
-  } catch (err) {
-    console.log("[Logout Error]");
-    console.log(err);
   }
 };

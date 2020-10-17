@@ -10,7 +10,7 @@ import PreReport from "./PreReport/PreReports";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOn, modalOff } from "../../module/action/admin_modal";
 import { Logo } from "../../asset";
-import { getPreAbsenceSaga } from "../../module/action/pre_absence";
+import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
 import Notice from "./Notice/Notice";
 
 const Main = () => {
@@ -30,7 +30,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    dispatch(getPreAbsenceSaga());
+    dispatch(getPreAbsenceListSaga());
   }, []);
 
   return (

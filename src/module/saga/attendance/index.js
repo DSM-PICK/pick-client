@@ -5,6 +5,7 @@ import {
   requestApiWithAccessToken,
   requestGetApiWithAccessToken
 } from "../../../lib/requestApi";
+import { ATTENDANCE } from "../../../lib/REQUEST_URL";
 import {
   setSelfStudyData,
   setSecondFloorData,
@@ -56,10 +57,9 @@ function* getFloorData(payload) {
           `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
         );
     }
-    const selfStudyData = yield call(
-      requestGetApiWithAccessToken,
-      `/saturn/attendance/navigation/${floor}`
-    );
+    const REQUEST_URL = ATTENDANCE.GET_FLOOR_DATA_URL(floor);
+
+    const selfStudyData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
     console.log(`${payload.payload} 리스트 불러오기 성공`);
 
     console.log(selfStudyData);
@@ -88,10 +88,14 @@ function* getFloorData(payload) {
 function* getAttendanceStdDataSaga(payload) {
   try {
     const { floor, priority } = payload.payload;
+    const REQUEST_URL = ATTENDANCE.GET_ATTENDANCE_STD_DATA_SAGA_URL(
+      floor,
+      priority
+    );
 
     const attendanceData = yield call(
       requestGetApiWithAccessToken,
-      `/saturn/attendance/student-state/${floor}/${priority}`
+      REQUEST_URL
     );
 
     const atdData = attendanceData.data.attendances;
@@ -113,19 +117,15 @@ function* getAttendanceStdDataSaga(payload) {
 function* postAttendanceStdData(payload) {
   try {
     const { number, period, state } = payload.payload;
+    const REQUEST_URL = ATTENDANCE.POST_ATTENDANCE_STD_DATA_URL();
 
     console.log(number, period, state);
 
-    yield call(
-      requestApiWithAccessToken,
-      methodType.POST,
-      `/saturn/attendance/student-state`,
-      {
-        number,
-        period,
-        state
-      }
-    );
+    yield call(requestApiWithAccessToken, methodType.POST, REQUEST_URL, {
+      number,
+      period,
+      state
+    });
 
     console.log(`출석 데이터 저장 성공`);
   } catch (error) {

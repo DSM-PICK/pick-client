@@ -1,5 +1,7 @@
 import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
+import { makeMonth2Digit } from "../../../lib/attendanceAPI";
+import { PRE_ABSENCE } from "../../../lib/REQUEST_URL";
 import {
   methodType,
   requestApiWithAccessToken,
@@ -8,7 +10,7 @@ import {
 } from "../../../lib/requestApi";
 import {
   setPreAbsence,
-  GET_PRE_ABSENCE_SAGA,
+  GET_PRE_ABSENCE_LIST_SAGA,
   FAILURE_GET_PRE_ABSENCE_SAGA,
   CREATE_PRE_ABSENCE_SAGA,
   FAILURE_CREATE_PRE_ABSENCE_SAGA,
@@ -19,13 +21,15 @@ import {
 function* getPreAbsenceList() {
   try {
     const date = new Date();
-    let month = date.getMonth() + 1;
-    const today = `${date.getFullYear()}-${
-      month < 10 ? "0" + month : month
-    }-${date.getDate()}`;
+    const month = date.getMonth() + 1;
+    const todayStr = `${date.getFullYear()}-${makeMonth2Digit(
+      month
+    )}-${date.getDate()}`;
+    const REQUEST_URL = PRE_ABSENCE.GET_PRE_ABSENCE_LIST(todayStr);
+
     const preAbsenceList = yield call(
       requestGetApiWithAccessToken,
-      `/mars/pre-absence/date/${today}`
+      REQUEST_URL
     );
     console.log(preAbsenceList);
     yield put(setPreAbsence(preAbsenceList.data));
@@ -47,11 +51,12 @@ function* createPreAbsenceSaga(payload) {
       end_date,
       end_period
     } = payload.payload;
+    const REQUEST_URL = PRE_ABSENCE.CREATE_PRE_ABSENCE_SAGA();
 
     const res = yield call(
       requestApiWithAccessToken,
       methodType.POST,
-      "/mars/pre-absence",
+      REQUEST_URL,
       {
         state,
         stdnum,
@@ -61,7 +66,7 @@ function* createPreAbsenceSaga(payload) {
         end_period
       }
     );
-    yield put({ type: GET_PRE_ABSENCE_SAGA });
+    yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
     console.log("사전 결석 리스트 생성 성공");
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
@@ -72,11 +77,11 @@ function* createPreAbsenceSaga(payload) {
 
 function* deletePreAbsence(payload) {
   try {
-    console.log(`deletePreAbsence`);
     const id = payload.payload;
+    const REQUEST_URL = PRE_ABSENCE.DELETE_PRE_ABSENCE(id);
 
-    yield call(requestDeleteApiWithAccessToken, `/mars/pre-absence/${id}`);
-    yield put({ type: GET_PRE_ABSENCE_SAGA });
+    yield call(requestDeleteApiWithAccessToken, REQUEST_URL);
+    yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
     console.log(`${id} 사전 결석 리스트 삭제 성공`);
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
@@ -86,7 +91,7 @@ function* deletePreAbsence(payload) {
 }
 
 function* preAbsenceSaga() {
-  yield takeEvery(GET_PRE_ABSENCE_SAGA, getPreAbsenceList);
+  yield takeEvery(GET_PRE_ABSENCE_LIST_SAGA, getPreAbsenceList);
   yield takeEvery(CREATE_PRE_ABSENCE_SAGA, createPreAbsenceSaga);
   yield takeEvery(DELETE_PRE_ABSENCE_SAGA, deletePreAbsence);
 }
