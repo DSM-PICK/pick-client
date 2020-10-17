@@ -40,6 +40,10 @@ export const Day = styled.div`
   }
 `;
 
+export const ClassWrap = styled.div`
+  display: flex;
+`;
+
 export const ClassText = styled.div`
   display: flex;
 `;
@@ -54,7 +58,6 @@ export const Class = styled.input`
   font-size: 18px;
   text-align: right;
   outline: none;
-  float: left;
 
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
