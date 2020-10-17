@@ -33,6 +33,9 @@ const Main = () => {
     dispatch(getPreAbsenceListSaga());
   }, []);
 
+  const TEACHER_NAME = `teacherName`;
+  const teacherName = window.localStorage.getItem(TEACHER_NAME);
+
   return (
     <S.Container>
       <Header>
@@ -43,7 +46,7 @@ const Main = () => {
       <Body>
         <S.MainBodyTopText>
           <S.MainBodyTopWho>
-            {"김정은"} 선생님은 {/* <S.MainBodyLogoutLayout> */}
+            {teacherName} 선생님은 {/* <S.MainBodyLogoutLayout> */}
             <S.MainBodyLogoutButton onClick={onModalClick}>
               로그아웃
             </S.MainBodyLogoutButton>
