@@ -52,7 +52,7 @@ const PreReportDate = props => {
             onChange={onPreClassChange}
           />
           <S.ClassText>교시</S.ClassText>
-          <S.Additional>~</S.Additional>
+          <S.Additional>~!</S.Additional>
         </S.ClassWrap>
       </S.Date>
       <S.Date>
