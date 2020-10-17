@@ -46,9 +46,11 @@ export const ClassWrap = styled.div`
 
 export const ClassText = styled.div`
   display: flex;
+  width: 34px;
 `;
 
 export const Class = styled.input`
+  width: 26px;
   height: 26px;
   margin: -3px 0 0 0;
   padding: 0;
