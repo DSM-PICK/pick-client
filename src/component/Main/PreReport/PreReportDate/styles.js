@@ -54,6 +54,7 @@ export const Class = styled.input`
   font-size: 18px;
   text-align: right;
   outline: none;
+  float: left;
 
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
