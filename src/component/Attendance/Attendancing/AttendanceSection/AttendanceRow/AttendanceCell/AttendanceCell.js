@@ -3,11 +3,11 @@ import * as S from "./styles";
 import AttendanceItem from "./AttendanceItem/AttendanceItem";
 
 const AttendanceCell = props => {
-  const { index } = props;
+  const { index, periodState } = props;
   const { onClassClick } = props;
 
   const [state, setState] = useState(false);
-  const [text, setText] = useState("출석");
+  const [text, setText] = useState(periodState);
   const states = [
     {
       value: "출석"

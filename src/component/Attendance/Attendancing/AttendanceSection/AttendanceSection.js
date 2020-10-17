@@ -33,11 +33,6 @@ const AttendanceSection = props => {
 
   const isClub = getLocationState() === "club";
 
-  console.log(`locations`);
-  console.log(locations);
-  console.log(`information`);
-  console.log(information);
-
   const isSevenNull =
     !!Object.keys(attendanceData).length &&
     attendanceData[0].state.seven === null;
