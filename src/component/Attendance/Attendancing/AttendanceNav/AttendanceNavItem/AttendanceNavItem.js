@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
 import * as S from "./styles";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAttendanceStdDataSaga } from "../../../../../module/action/attendance";
 
 const AttendanceNavItem = props => {
-  const { data, index } = props;
+  const { data, floor, index, priority } = props;
   const { doneAtt } = props;
+
+  const dispatch = useDispatch();
+
+  const dataLoad = useCallback(() => {
+    dispatch(getAttendanceStdDataSaga({ floor, priority }));
+  }, [dispatch]);
 
   const to = `/${location.pathname.split("/")[1]}/${
     location.pathname.split("/")[2]
@@ -17,6 +25,7 @@ const AttendanceNavItem = props => {
       activeStyle={S.activeStyle}
       done={data.done}
       onClick={() => {
+        dataLoad();
         doneAtt(data.location);
       }}
     >

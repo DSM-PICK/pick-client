@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import * as S from "./styles";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getAttendanceStdDataSaga,
   getFloorDataSaga
@@ -11,7 +11,16 @@ import { getLocationState } from "../../../../lib/attendanceAPI";
 const AttendanceBody = props => {
   const { text, link, imgLink } = props;
 
+  const floorDatas = useSelector(state => state.attendance.datas);
+
   const dispatch = useDispatch();
+
+  const floorDataText = [
+    "selfStudyData",
+    "secondFloorData",
+    "thirdFloorData",
+    "forthFloorData"
+  ];
 
   const getFloorData = useCallback(
     text => {
@@ -20,15 +29,21 @@ const AttendanceBody = props => {
     [dispatch]
   );
   const getAttendanceStdDate = useCallback(
-    floor => {
-      dispatch(getAttendanceStdDataSaga({ floor, priority: 0 }));
+    (floor, floorData) => {
+      dispatch(
+        getAttendanceStdDataSaga({
+          floor,
+          priority: floorData[floorDataText[floor - 1]][0].priority
+        })
+      );
     },
     [dispatch]
   );
 
   const onAnchorClick = () => {
     if (link.length <= 17) return;
-    getAttendanceStdDate(link.split("/")[3][5]);
+    console.log(floorDatas);
+    getAttendanceStdDate(link.split("/")[3][5], floorDatas);
   };
 
   useEffect(() => {
@@ -37,9 +52,7 @@ const AttendanceBody = props => {
     }
   }, []);
 
-  const isMain = () => {
-    return location.pathname === "/main" ? "main" : "none";
-  };
+  const isMain = location.pathname === "/main" ? "main" : "none";
 
   return (
     <S.Container
@@ -47,7 +60,7 @@ const AttendanceBody = props => {
       to={link}
       url={imgLink}
       text={text}
-      ismain={isMain()}
+      ismain={isMain}
       onClick={() => onAnchorClick()}
     >
       {text}

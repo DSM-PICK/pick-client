@@ -5,9 +5,9 @@ import AttendanceCell from "./AttendanceCell/AttendanceCell";
 const AttendanceRow = props => {
   const { gradeClassNumber, name, sequence } = props.attendance;
   const { onChangeRow } = props;
-  const { classData } = props;
+  const { classData, index } = props;
 
-  //   console.log(props);
+  console.log(props);
 
   let sevenState = "출석";
   let eightState = "출석";
@@ -59,38 +59,24 @@ const AttendanceRow = props => {
       ...classData,
       attendances: [...classDatas]
     };
-
-    // console.log(datas);
-
     onChangeRow(datas);
   };
 
   return (
     <S.Containter>
-      <S.SectionSeq>{sequence}</S.SectionSeq>
+      <S.SectionSeq>{index + 1}</S.SectionSeq>
       <S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
       <S.SectionName>{name}</S.SectionName>
       <S.SectionClassWrap>
-        {/* <S.SectionClass>
-					<AttendanceCell sequence={sequence} onClassClick={onSevenClick}></AttendanceCell>
-				</S.SectionClass> */}
+        <AttendanceCell sequence={sequence} onClassClick={onSevenClick} />
         <S.SectionClass>
-          <AttendanceCell
-            sequence={sequence}
-            onClassClick={onEightClick}
-          ></AttendanceCell>
+          <AttendanceCell sequence={sequence} onClassClick={onEightClick} />
         </S.SectionClass>
         <S.SectionClass>
-          <AttendanceCell
-            sequence={sequence}
-            onClassClick={onNineClick}
-          ></AttendanceCell>
+          <AttendanceCell sequence={sequence} onClassClick={onNineClick} />
         </S.SectionClass>
         <S.SectionClass>
-          <AttendanceCell
-            sequence={sequence}
-            onClassClick={onTenClick}
-          ></AttendanceCell>
+          <AttendanceCell sequence={sequence} onClassClick={onTenClick} />
         </S.SectionClass>
       </S.SectionClassWrap>
     </S.Containter>

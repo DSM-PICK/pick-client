@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import AttendanceAnchor from "./anchor/AttendanceAnchor";
 import Body from "../../Body/Body";
 import { ClassPng, ClubPng } from "../../../asset";
+import { useDispatch } from "react-redux";
+import { getAttendanceStdDataSaga } from "../../../module/action/attendance";
 
 const AttendanceBody = props => {
   const { anchorItems, ismain } = props;
