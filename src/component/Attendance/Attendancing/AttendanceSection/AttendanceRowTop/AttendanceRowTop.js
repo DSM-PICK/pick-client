@@ -10,7 +10,8 @@ const AttendanceRowTop = props => {
       <S.SectionStdNum>학번</S.SectionStdNum>
       <S.SectionName>이름</S.SectionName>
       <S.SectionClassWrap>
-        {isSevenNull && <S.SectionClass>7교시</S.SectionClass>}
+        {!isSevenNull && <S.SectionClass>7교시</S.SectionClass>}
+
         <S.SectionClass>8교시</S.SectionClass>
         <S.SectionClass>9교시</S.SectionClass>
         <S.SectionClass>10교시</S.SectionClass>
