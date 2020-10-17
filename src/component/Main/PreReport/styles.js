@@ -126,24 +126,28 @@ export const ShowBody = styled.div`
 export const ShowBodyBox = styled.div`
   display: flex;
   width: 100%;
-  margin: 3px 0;
+  padding: 6px 0;
+  border-bottom: 1px solid #808080;
   align-items: center;
   justify-content: space-evenly;
 `;
 
 export const ShowBodyStd = styled(ShowHeaderStd)`
-  color: #20223e;
+  color: ${props =>
+    props.curPreAbsenceData == props.id ? "#1A6EEB" : "#20223e"};
   font-size: 22px;
 `;
 
 export const ShowBodyKind = styled(ShowHeaderKind)`
-  color: #20223e;
+  color: ${props =>
+    props.curPreAbsenceData == props.id ? "#1A6EEB" : "#20223e"};
   font-size: 22px;
 `;
 
 export const ShowBodyDate = styled(ShowHeaderDate)`
-  color: #20223e;
+  color: ${props =>
+    props.curPreAbsenceData == props.id ? "#1A6EEB" : "#20223e"};
   font-size: 22px;
   flex-direction: column;
-  margin-left: 5px;
+  margin-left: 15px;
 `;

@@ -3,7 +3,7 @@ import * as S from "./styles";
 import AttendanceNavItem from "./AttendanceNavItem/AttendanceNavItem";
 
 const AttendanceNav = props => {
-  const { floors, a } = props;
+  const { floors, Floor } = props;
 
   const [dones, setDones] = useState(floors);
 
@@ -15,9 +15,6 @@ const AttendanceNav = props => {
     );
   };
 
-  console.log(a);
-  console.log(props);
-
   return (
     <S.Container>
       {dones !== undefined &&
@@ -25,8 +22,10 @@ const AttendanceNav = props => {
           <AttendanceNavItem
             key={data.location}
             data={data}
+            floor={Floor[0]}
             index={index}
             doneAtt={doneAtt}
+            priority={data.priority}
           />
         ))}
     </S.Container>

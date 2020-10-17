@@ -10,6 +10,7 @@ import getDateObj from "../../../lib/calander";
 import { makeMonth1Digit, makeMonth2Digit } from "../../../lib/attendanceAPI";
 import {
   createPreAbsenceSaga,
+  getPreAbsenceListSaga,
   getPreAbsenceSaga
 } from "../../../module/action/pre_absence";
 import { setText } from "../../../module/action/auto_complete";
@@ -26,8 +27,8 @@ const PreReports = () => {
     },
     [dispatch]
   );
-  const getPreAbsence = useCallback(() => {
-    dispatch(getPreAbsenceSaga());
+  const getPreAbsenceList = useCallback(() => {
+    dispatch(getPreAbsenceListSaga());
   }, [dispatch]);
   const setNameText = useCallback(
     text => {
@@ -57,7 +58,7 @@ const PreReports = () => {
     };
 
     createPreAbsence(data);
-    getPreAbsence();
+    getPreAbsenceList();
     initState();
   };
 
@@ -298,19 +299,32 @@ const PreReports = () => {
           {preAbsenceList &&
             preAbsenceList.map(preAbsenceData => (
               <S.ShowBodyBox
-                onClick={() => onOffDelModal(preAbsenceData.id)}
                 key={preAbsenceData.id}
+                onClick={() => onOffDelModal(preAbsenceData.id)}
               >
-                <S.ShowBodyStd>{preAbsenceData.stdnum}</S.ShowBodyStd>
-                <S.ShowBodyKind>{preAbsenceData.state}</S.ShowBodyKind>
-                <S.ShowBodyDate>
+                <S.ShowBodyStd
+                  id={preAbsenceData.id}
+                  curPreAbsenceData={curPreAbsenceData}
+                >
+                  {preAbsenceData.stdnum}
+                </S.ShowBodyStd>
+                <S.ShowBodyKind
+                  id={preAbsenceData.id}
+                  curPreAbsenceData={curPreAbsenceData}
+                >
+                  {preAbsenceData.state}
+                </S.ShowBodyKind>
+                <S.ShowBodyDate
+                  id={preAbsenceData.id}
+                  curPreAbsenceData={curPreAbsenceData}
+                >
                   {getPreAbsenceText(
                     preAbsenceData.start_date,
                     preAbsenceData.start_period,
                     preAbsenceData.end_date,
                     preAbsenceData.end_period
                   ).map(data => (
-                    <span>{data}</span>
+                    <span key={data}>{data}</span>
                   ))}
                 </S.ShowBodyDate>
               </S.ShowBodyBox>

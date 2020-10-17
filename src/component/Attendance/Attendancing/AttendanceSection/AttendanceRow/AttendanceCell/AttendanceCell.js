@@ -3,6 +3,7 @@ import * as S from "./styles";
 import AttendanceItem from "./AttendanceItem/AttendanceItem";
 
 const AttendanceCell = props => {
+  const { index } = props;
   const { onClassClick } = props;
 
   const [state, setState] = useState(false);
@@ -34,17 +35,12 @@ const AttendanceCell = props => {
   };
 
   return (
-    <S.Container
-      onClick={() => setState(!state)}
-      sequence={props.sequence}
-      state={state}
-    >
-      <S.ValueButton sequence={props.sequence} state={state} text={text}>
+    <S.Container onClick={() => setState(!state)}>
+      <S.ValueButton index={index} state={state} text={text}>
         {text}
-        <S.Wrap sequence={props.sequence}>
+        <S.Wrap>
           {states.map(state => (
             <AttendanceItem
-              sequence={props.sequence}
               key={state.value}
               state={state}
               onClickItem={onClickItem}
