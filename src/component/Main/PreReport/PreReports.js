@@ -306,7 +306,7 @@ const PreReports = () => {
                   id={preAbsenceData.id}
                   curPreAbsenceData={curPreAbsenceData}
                 >
-                  {preAbsenceData.stdnum}
+                  {`${preAbsenceData.stdnum} ${preAbsenceData.name}`}
                 </S.ShowBodyStd>
                 <S.ShowBodyKind
                   id={preAbsenceData.id}

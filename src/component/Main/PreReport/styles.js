@@ -82,7 +82,7 @@ export const FuncAdd = styled.button`
 
 export const Show = styled.div`
   display: flex;
-  width: 55%;
+  width: 58%;
   height: 260px;
   border: 1px solid #707070;
   border-radius: 60px;
@@ -111,7 +111,7 @@ export const ShowHeaderKind = styled(ShowHeaderStd)`
 `;
 
 export const ShowHeaderDate = styled(ShowHeaderStd)`
-  width: 350px;
+  width: 200px;
 `;
 
 export const ShowBody = styled.div`
