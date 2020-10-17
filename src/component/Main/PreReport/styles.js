@@ -111,7 +111,7 @@ export const ShowHeaderKind = styled(ShowHeaderStd)`
 `;
 
 export const ShowHeaderDate = styled(ShowHeaderStd)`
-  width: 350px;
+  width: 200px;
 `;
 
 export const ShowBody = styled.div`
