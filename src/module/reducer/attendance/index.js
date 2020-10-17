@@ -15,7 +15,9 @@ import {
   SET_STATE,
   SET_NUMBER,
   SET_DATE,
-  SET_DAY_OF_WEEK
+  SET_DAY_OF_WEEK,
+  SET_HEAD,
+  SET_CLUB_NAME
 } from "../../action/attendance";
 
 const initialState = {
@@ -44,6 +46,8 @@ const initialState = {
   period: "",
   state: "",
 
+  clubName: "",
+  clubHead: "",
   attendanceData: {}
 };
 
@@ -167,6 +171,18 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         dayOfWeek: action.payload
+      };
+    }
+    case SET_CLUB_NAME: {
+      return {
+        ...state,
+        clubName: action.payload
+      };
+    }
+    case SET_HEAD: {
+      return {
+        ...state,
+        clubHead: action.payload
       };
     }
     case SET_ATTENDANCE_STD_DATA: {

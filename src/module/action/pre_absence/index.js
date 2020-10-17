@@ -9,7 +9,8 @@ export const SET_PRE_ABSENCE_PRE_PERIOD =
 export const SET_PRE_ABSENCE_NEXT_PERIOD =
   "pre_absence/SET_PRE_ABSENCE_NEXT_PERIOD";
 
-export const GET_PRE_ABSENCE_SAGA = "pre_absence/GET_PRE_ABSENCE_SAGA";
+export const GET_PRE_ABSENCE_LIST_SAGA =
+  "pre_absence/GET_PRE_ABSENCE_LIST_SAGA";
 export const FAILURE_GET_PRE_ABSENCE_SAGA =
   "pre_absence/FAILURE_GET_PRE_ABSENCE_SAGA";
 export const CREATE_PRE_ABSENCE_SAGA = "pre_absence/CREATE_PRE_ABSENCE_SAGA";
@@ -49,8 +50,8 @@ export const setPreReportNextPeriod = payload => ({
   payload
 });
 
-export const getPreAbsenceSaga = payload => ({
-  type: GET_PRE_ABSENCE_SAGA,
+export const getPreAbsenceListSaga = payload => ({
+  type: GET_PRE_ABSENCE_LIST_SAGA,
   payload
 });
 

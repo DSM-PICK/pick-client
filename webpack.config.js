@@ -27,7 +27,7 @@ module.exports = {
   output: {
     publicPath: "/",
     path: path.join(__dirname, "/S3-Files"),
-    filename: "bundle.min.[chunkhash].js"
+    filename: "bundle.min.[hash].js"
   },
   plugins: [
     new HtmlWebpackPlugin({
