@@ -1,8 +1,8 @@
 import React from "react";
 import * as S from "./styles";
 
-const AttendanceRowTop = z => {
-  const isSeven = false;
+const AttendanceRowTop = props => {
+  const { isSevenNull } = props;
 
   return (
     <S.Containter>
@@ -10,7 +10,7 @@ const AttendanceRowTop = z => {
       <S.SectionStdNum>학번</S.SectionStdNum>
       <S.SectionName>이름</S.SectionName>
       <S.SectionClassWrap>
-        {isSeven && <S.SectionClass>7교시</S.SectionClass>}
+        {isSevenNull && <S.SectionClass>7교시</S.SectionClass>}
         <S.SectionClass>8교시</S.SectionClass>
         <S.SectionClass>9교시</S.SectionClass>
         <S.SectionClass>10교시</S.SectionClass>
