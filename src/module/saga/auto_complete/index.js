@@ -18,9 +18,7 @@ function* getAutoCompleteTextSaga(payload) {
         requestGetApiWithAccessToken,
         REQUEST_URL
       );
-      console.log(autoCompleteData);
       yield put(setAutoCompleteText(autoCompleteData.data));
-      console.log("자동 완성 성공");
     } else {
       throw new Error(
         "getAutoCompleteTextSaga : There is no parameter (autocomplete text)."

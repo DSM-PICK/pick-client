@@ -11,7 +11,6 @@ function* getMainTextRemainingDate() {
     const REQUEST_URL = WORKING_TEACHER.REMAINING_DATE_URL();
     const remainingDate = yield call(requestGetApiWithAccessToken, REQUEST_URL);
     yield put(setMainTextRemainingDate(remainingDate.data.remaining_date));
-    console.log(`감독 선생님 일정 공지 확인 성공`);
   } catch (e) {
     console.log(e);
     console.log(`감독 선생님 일정 공지 확인 실패`);

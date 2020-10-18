@@ -31,7 +31,6 @@ function* getPreAbsenceList() {
       REQUEST_URL
     );
     yield put(setPreAbsence(preAbsenceList.data));
-    console.log("사전 결석 리스트 불러오기 성공");
   } catch (error) {
     // yield put(FAILURE_GET_PRE_ABSENCE_SAGA(error.response));
     console.log(error);
@@ -65,7 +64,6 @@ function* createPreAbsenceSaga(payload) {
       }
     );
     yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
-    console.log("사전 결석 리스트 생성 성공");
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
     console.log(error);
@@ -80,7 +78,6 @@ function* deletePreAbsence(payload) {
 
     yield call(requestDeleteApiWithAccessToken, REQUEST_URL);
     yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
-    console.log(`${id} 사전 결석 리스트 삭제 성공`);
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
     console.log(error);
