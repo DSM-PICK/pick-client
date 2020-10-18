@@ -17,9 +17,23 @@ const mainTextReducer = (state = initialState, action) => {
       };
     }
     case SET_MAIN_TEXT_REMAINING_DATE: {
+      let remainDateText = "";
+      switch (action.payload) {
+        case 0:
+          remainDateText = "오늘";
+          break;
+        case 1:
+          remainDateText = "내일";
+          break;
+        case 2:
+          remainDateText = "모레";
+          break;
+        default:
+          remainDateText = `${action.payload}일 후`;
+      }
       return {
         ...state,
-        remainingDate: action.payload
+        remainingDate: remainDateText
       };
     }
     default: {
