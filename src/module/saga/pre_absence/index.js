@@ -1,4 +1,3 @@
-import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { makeMonth2Digit } from "../../../lib/attendanceAPI";
 import { PRE_ABSENCE } from "../../../lib/REQUEST_URL";
@@ -31,7 +30,6 @@ function* getPreAbsenceList() {
       requestGetApiWithAccessToken,
       REQUEST_URL
     );
-    console.log(preAbsenceList);
     yield put(setPreAbsence(preAbsenceList.data));
     console.log("사전 결석 리스트 불러오기 성공");
   } catch (error) {

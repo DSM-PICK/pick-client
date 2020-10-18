@@ -12,6 +12,7 @@ import { modalOn, modalOff } from "../../module/action/admin_modal";
 import { Logo } from "../../asset";
 import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
 import Notice from "./Notice/Notice";
+import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
@@ -19,7 +20,9 @@ const Main = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(state => state.adminModal.modalOn);
   const mainText = useSelector(state => state.mainText.mainText);
+  const remainingDate = useSelector(state => state.mainText.remainingDate);
   const preAbsence = useSelector(state => state.preAbsence.preAbsence);
+  console.log(remainingDate);
 
   const modalOpen = useCallback(() => dispatch(modalOn()), [dispatch]);
   const modalClose = useCallback(() => dispatch(modalOff()), [dispatch]);
@@ -31,6 +34,7 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(getPreAbsenceListSaga());
+    dispatch(getMainTextRemainingDateSaga());
   }, []);
 
   const TEACHER_NAME = `teacherName`;
@@ -53,7 +57,7 @@ const Main = () => {
             {/* </S.MainBodyLogoutLayout> */}
           </S.MainBodyTopWho>
           <S.MainBodyTopWhen>
-            <S.MainBodyTopWhenTime>{"오늘 저녁 "}</S.MainBodyTopWhenTime>
+            <S.MainBodyTopWhenTime>{`${remainingDate} 저녁 `}</S.MainBodyTopWhenTime>
             자습감독이십니다.
           </S.MainBodyTopWhen>
         </S.MainBodyTopText>
