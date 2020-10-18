@@ -10,14 +10,14 @@ import noticeSaga from "./notice";
 
 function* rootSaga() {
   yield all([
-    calanderSaga(),
-    autoCompleteSaga(),
-    preAbsenceSaga(),
     attendanceSaga(),
+    autoCompleteSaga(),
+    calanderSaga(),
     loginSaga(),
-    teacherSaga(),
     mainTextSaga(),
-    noticeSaga()
+    noticeSaga(),
+    teacherSaga(),
+    preAbsenceSaga()
   ]);
 }
 

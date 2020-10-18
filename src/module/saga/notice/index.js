@@ -3,6 +3,7 @@ import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 import { NOTICE_LIST } from "../../../lib/REQUEST_URL";
 import {
   GET_NOTICE_LIST_SAGA,
+  SET_CLUB_NOTICE_LIST,
   SET_MEMBER_NOTICE_LIST
 } from "../../action/notice";
 
@@ -15,7 +16,8 @@ function* getNoticeListSaga() {
 
     console.log(res);
 
-    // yield put({ type: SET_MEMBER_NOTICE_LIST, payload: res.})
+    yield put({ type: SET_MEMBER_NOTICE_LIST, payload: res.data.memberList });
+    yield put({ type: SET_CLUB_NOTICE_LIST, payload: res.data.clubList });
   } catch (err) {
     console.log(err);
   }
