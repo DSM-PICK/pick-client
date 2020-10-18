@@ -52,7 +52,7 @@ function* createPreAbsenceSaga(payload) {
 
     const res = yield call(
       requestApiWithAccessToken,
-      methodType.PATCH,
+      methodType.POST,
       REQUEST_URL,
       {
         state,

@@ -107,12 +107,12 @@ function* getAttendanceStdDataSaga(payload) {
   }
 }
 
-function* postAttendanceStdData(payload) {
+function* patchAttendanceStdData(payload) {
   try {
     const { number, period, state } = payload.payload;
     const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
 
-    yield call(requestApiWithAccessToken, methodType.POST, REQUEST_URL, {
+    yield call(requestApiWithAccessToken, methodType.PATCH, REQUEST_URL, {
       number,
       period,
       state
@@ -127,7 +127,7 @@ function* postAttendanceStdData(payload) {
 function* attendanceSaga() {
   yield takeEvery(GET_FLOOR_DATA_SAGA, getFloorData);
   yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdDataSaga);
-  yield takeEvery(POST_ATTENDANCE_STD_DATA_SAGA, postAttendanceStdData);
+  yield takeEvery(POST_ATTENDANCE_STD_DATA_SAGA, patchAttendanceStdData);
 }
 
 export default attendanceSaga;
