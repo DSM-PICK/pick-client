@@ -14,8 +14,6 @@ const Item = props => {
       ? true
       : false;
 
-  isToday ? console.log(year, month, date) : "";
-
   return (
     <S.Container onClick={() => onSelectDay(date)}>
       <S.Date isActive={isActive} isToday={isToday}>

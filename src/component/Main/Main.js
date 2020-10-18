@@ -35,7 +35,6 @@ const Main = () => {
 
   useEffect(() => {
     checkPageWithLogin();
-
     dispatch(getPreAbsenceListSaga());
     dispatch(getMainTextRemainingDateSaga());
   }, []);

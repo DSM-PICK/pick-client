@@ -16,6 +16,11 @@ const DeleteModal = props => {
     dispatch(deletePreAbsenceSaga(curAbsenceId));
   }, [dispatch]);
 
+  const onCancle = useCallback(() => {
+    setCurAbsenceId("");
+    onOffDelModal();
+  }, [curAbsenceId]);
+
   const [selectAbsenceData, setSelectAbsenceData] = useState({
     end_date: "",
     end_period: "",
@@ -55,7 +60,7 @@ const DeleteModal = props => {
   }, []);
 
   return (
-    <S.Container onClick={onOffDelModal}>
+    <S.Container onClick={onCancle}>
       <S.Modal onClick={event => onNoModalClick(event)}>
         <S.ModalText>
           삭제하시겠습니까?
@@ -70,7 +75,7 @@ const DeleteModal = props => {
           </S.ModalSubText>
         </S.ModalText>
         <S.ModalBtnWrap>
-          <S.ModalCancle onClick={onOffDelModal}>취소</S.ModalCancle>
+          <S.ModalCancle onClick={onCancle}>취소</S.ModalCancle>
           <S.ModalOkay onClick={onDelete} as={`div`}>
             삭제
           </S.ModalOkay>
