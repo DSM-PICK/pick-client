@@ -24,7 +24,7 @@ function* getPreAbsenceList() {
     const todayStr = `${date.getFullYear()}-${makeMonth2Digit(
       month
     )}-${date.getDate()}`;
-    const REQUEST_URL = PRE_ABSENCE.GET_PRE_ABSENCE_LIST(todayStr);
+    const REQUEST_URL = PRE_ABSENCE.PRE_ABSENCE_LIST_URL(todayStr);
 
     const preAbsenceList = yield call(
       requestGetApiWithAccessToken,
@@ -49,7 +49,7 @@ function* createPreAbsenceSaga(payload) {
       end_date,
       end_period
     } = payload.payload;
-    const REQUEST_URL = PRE_ABSENCE.CREATE_PRE_ABSENCE_SAGA();
+    const REQUEST_URL = PRE_ABSENCE.CREATE_PRE_ABSENCE_URL();
 
     const res = yield call(
       requestApiWithAccessToken,
@@ -76,7 +76,7 @@ function* createPreAbsenceSaga(payload) {
 function* deletePreAbsence(payload) {
   try {
     const id = payload.payload;
-    const REQUEST_URL = PRE_ABSENCE.DELETE_PRE_ABSENCE(id);
+    const REQUEST_URL = PRE_ABSENCE.DELETE_PRE_ABSENCE_URL(id);
 
     yield call(requestDeleteApiWithAccessToken, REQUEST_URL);
     yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });

@@ -8,10 +8,9 @@ import { WORKING_TEACHER } from "../../../lib/REQUEST_URL";
 
 function* getMainTextRemainingDate() {
   try {
-    const REQUEST_URL = WORKING_TEACHER.REMAINING_DATE();
+    const REQUEST_URL = WORKING_TEACHER.REMAINING_DATE_URL();
     const remainingDate = yield call(requestGetApiWithAccessToken, REQUEST_URL);
-    console.log(remainingDate);
-    yield put(setMainTextRemainingDate(remainingDate.remaining_date));
+    yield put(setMainTextRemainingDate(remainingDate.data.remaining_date));
     console.log(`감독 선생님 일정 공지 확인 성공`);
   } catch (e) {
     console.log(e);

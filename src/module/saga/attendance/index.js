@@ -59,7 +59,7 @@ function* getFloorData(payload) {
           `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
         );
     }
-    const REQUEST_URL = ATTENDANCE.GET_FLOOR_DATA_URL(floor);
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(floor);
 
     const selfStudyData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
     console.log(`${payload.payload} 리스트 불러오기 성공`);
@@ -90,10 +90,7 @@ function* getFloorData(payload) {
 function* getAttendanceStdDataSaga(payload) {
   try {
     const { floor, priority } = payload.payload;
-    const REQUEST_URL = ATTENDANCE.GET_ATTENDANCE_STD_DATA_SAGA_URL(
-      floor,
-      priority
-    );
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(floor, priority);
 
     const attendanceData = yield call(
       requestGetApiWithAccessToken,
@@ -120,7 +117,7 @@ function* getAttendanceStdDataSaga(payload) {
 function* postAttendanceStdData(payload) {
   try {
     const { number, period, state } = payload.payload;
-    const REQUEST_URL = ATTENDANCE.POST_ATTENDANCE_STD_DATA_URL();
+    const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
 
     console.log(number, period, state);
 
