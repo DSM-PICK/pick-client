@@ -1,18 +1,19 @@
 import React, { useCallback, useEffect } from "react";
 import * as S from "./styles";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Body from "../Body/Body";
 import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
-import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import LogoutModal from "./Modal/LogoutModal";
 import PreReport from "./PreReport/PreReports";
-import { useDispatch, useSelector } from "react-redux";
-import { modalOn, modalOff } from "../../module/action/admin_modal";
-import { Logo } from "../../asset";
-import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
 import Notice from "./Notice/Notice";
+import { Logo } from "../../asset";
+import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
+import { modalOn, modalOff } from "../../module/action/admin_modal";
+import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
+import { checkPageWithLogin } from "../../lib/requestApi";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
@@ -22,7 +23,6 @@ const Main = () => {
   const mainText = useSelector(state => state.mainText.mainText);
   const remainingDate = useSelector(state => state.mainText.remainingDate);
   const preAbsence = useSelector(state => state.preAbsence.preAbsence);
-  console.log(remainingDate);
 
   const modalOpen = useCallback(() => dispatch(modalOn()), [dispatch]);
   const modalClose = useCallback(() => dispatch(modalOff()), [dispatch]);
@@ -33,6 +33,7 @@ const Main = () => {
   };
 
   useEffect(() => {
+    checkPageWithLogin();
     dispatch(getPreAbsenceListSaga());
     dispatch(getMainTextRemainingDateSaga());
   }, []);
