@@ -35,6 +35,7 @@ export const requesetRefresh = async () => {
 export const checkIsLogin = async () => {
   try {
     const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
+    console.log(accessToken);
     await axios.post(
       BASE_URL + "/saturn/auth/token",
       {},
@@ -49,6 +50,16 @@ export const checkIsLogin = async () => {
   } catch (err) {
     return false;
   }
+};
+
+export const checkPageWithLogin = () => {
+  checkIsLogin().then(isLogin => {
+    console.log(`isLogin? ${isLogin}`);
+    if (!isLogin) {
+      alert("로그인이 필요한 서비스입니다.");
+      location.href = "/";
+    }
+  });
 };
 
 export const requestGetApiWithAccessToken = async (url, headers) => {
@@ -85,6 +96,12 @@ export const requestApi = async (method, url, body, headers) => {
   } catch (err) {
     console.log(err);
     // !err.response && alert("네트워크 상태를 확인해 주세요");
+
+    switch (err.response.status) {
+      case 403:
+        requesetRefresh();
+      default:
+    }
     throw err.response;
   }
 };
@@ -106,13 +123,13 @@ export const requestDeleteApiWithAccessToken = async (url, headers) => {
     //   alert("네트워크 상태를 확인해 주세요");
     //   throw null;
     // }
-    // switch (err.response.status) {
-    //   case 401:
-    //   case 403:
-    //   case 410:
-    //     requesetRefresh();
-    //   default:
-    // }
+    switch (err.response.status) {
+      case 401:
+      case 403:
+      case 410:
+        requesetRefresh();
+      default:
+    }
     throw err.response;
   }
 };
@@ -137,13 +154,13 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
     //   alert("네트워크 상태를 확인해 주세요");
     //   throw null;
     // }
-    // switch (err.response.status) {
-    //   case 401:
-    //   case 403:
-    //   case 410:
-    //     requesetRefresh();
-    //   default:
-    // }
+    switch (err.response.status) {
+      case 401:
+      case 403:
+      case 410:
+        requesetRefresh();
+      default:
+    }
     throw err.response;
   }
 };
@@ -158,7 +175,7 @@ export const Logout = () => {
   } catch (err) {
     console.log(err);
     if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
+      alert("로그아웃에 실패했습니다.");
       throw null;
     }
     window.location.href = "/";
