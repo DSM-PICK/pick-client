@@ -33,3 +33,9 @@ export const WORKING_TEACHER = {
     return `/mars/working-teacher/user/remaining-date`;
   }
 };
+
+export const NOTICE_LIST = {
+  NOTICE_LIST_URL: () => {
+    return `/saturn/main/notice`;
+  }
+};
