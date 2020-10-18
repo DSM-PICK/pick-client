@@ -1,29 +1,35 @@
 export const ATTENDANCE = {
-  GET_FLOOR_DATA_URL: floor => {
+  ATTENDANCE_NAVIGATION_URL: floor => {
     return `/saturn/attendance/navigation/${floor}`;
   },
-  GET_ATTENDANCE_STD_DATA_SAGA_URL: (floor, priority) => {
-    return `/saturn/attendance/student-state/${floor}/${priority}`;
-  },
-  POST_ATTENDANCE_STD_DATA_URL: () => {
+  CHANGE_ATTENDANCE_STATE_URL: () => {
     return `/saturn/attendance/student-state`;
+  },
+  ATTENDANCE_LIST_URL: (floor, priority) => {
+    return `/saturn/attendance/student-state/${floor}/${priority}`;
   }
 };
 
 export const AUTO_COMPLETE = {
-  GET_AUTO_COMPLETE_TEXT_SAGA: text => {
+  AUTO_COMPLETE_STUDENT_URL: text => {
     return `/mars/student/autocomplete/${text}`;
   }
 };
 
 export const PRE_ABSENCE = {
-  GET_PRE_ABSENCE_LIST: date => {
+  PRE_ABSENCE_LIST_URL: date => {
     return `/mars/pre-absence/date/${date}`;
   },
-  CREATE_PRE_ABSENCE_SAGA: () => {
+  CREATE_PRE_ABSENCE_URL: () => {
     return `/mars/pre-absence`;
   },
-  DELETE_PRE_ABSENCE: id => {
+  DELETE_PRE_ABSENCE_URL: id => {
     return `/mars/pre-absence/${id}`;
+  }
+};
+
+export const WORKING_TEACHER = {
+  REMAINING_DATE_URL: () => {
+    return `/mars/working-teacher/user/remaining-date`;
   }
 };

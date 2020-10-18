@@ -14,6 +14,7 @@ import {
   getPreAbsenceSaga
 } from "../../../module/action/pre_absence";
 import { setText } from "../../../module/action/auto_complete";
+import PreReportShow from "./PreReportShow/PreReportShow";
 
 const PreReports = () => {
   const nameText = useSelector(state => state.autoComplete.text);
@@ -22,14 +23,13 @@ const PreReports = () => {
   const dispatch = useDispatch();
 
   const createPreAbsence = useCallback(
-    payload => {
-      dispatch(createPreAbsenceSaga(payload));
-    },
+    payload => dispatch(createPreAbsenceSaga(payload)),
     [dispatch]
   );
-  const getPreAbsenceList = useCallback(() => {
-    dispatch(getPreAbsenceListSaga());
-  }, [dispatch]);
+  const getPreAbsenceList = useCallback(
+    () => dispatch(getPreAbsenceListSaga()),
+    [dispatch]
+  );
   const setNameText = useCallback(
     text => {
       dispatch(setText(text));
@@ -289,7 +289,8 @@ const PreReports = () => {
         </S.FuncDate>
         <S.FuncAdd onClick={() => onSubmit()}>추가하기</S.FuncAdd>
       </S.Func>
-      <S.Show>
+      <PreReportShow preAbsenceList={preAbsenceList} />
+      {/* <S.Show>
         <S.ShowHeader>
           <S.ShowHeaderStd>학생</S.ShowHeaderStd>
           <S.ShowHeaderKind>종류</S.ShowHeaderKind>
@@ -337,7 +338,7 @@ const PreReports = () => {
             setCurPreAbsenceData={setCurPreAbsenceData}
           />
         )}
-      </S.Show>
+      </S.Show> */}
     </S.Container>
   );
 };

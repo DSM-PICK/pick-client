@@ -25,6 +25,14 @@ export const Modal = styled.div`
   /* z-index: 4; */
 `;
 
+export const ModalSubText = styled.p`
+  display: flex;
+  width: 100%;
+  font-size: 22px;
+  font-weight: bold;
+  color: #20223e;
+`;
+
 export const ModalText = styled.div`
   display: flex;
   width: 100%;

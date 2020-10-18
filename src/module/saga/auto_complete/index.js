@@ -11,16 +11,14 @@ function* getAutoCompleteTextSaga(payload) {
   try {
     const text = payload.payload;
 
-    const REQUEST_URL = AUTO_COMPLETE.GET_AUTO_COMPLETE_TEXT_SAGA(text);
+    const REQUEST_URL = AUTO_COMPLETE.AUTO_COMPLETE_STUDENT_URL(text);
 
     if (!!text) {
       const autoCompleteData = yield call(
         requestGetApiWithAccessToken,
         REQUEST_URL
       );
-      console.log(autoCompleteData);
       yield put(setAutoCompleteText(autoCompleteData.data));
-      console.log("자동 완성 성공");
     } else {
       throw new Error(
         "getAutoCompleteTextSaga : There is no parameter (autocomplete text)."
