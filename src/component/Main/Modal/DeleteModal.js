@@ -4,19 +4,16 @@ import { useDispatch } from "react-redux";
 import { deletePreAbsenceSaga } from "../../../module/action/pre_absence";
 
 const DeleteModal = props => {
-  const { curPreAbsenceData } = props;
+  const { curAbsenceId } = props;
   const { onOffDelModal, setCurPreAbsenceData } = props;
-
 
   const dispatch = useDispatch();
 
   const onDelete = useCallback(() => {
-      onOffDelModal();
-      setCurPreAbsenceData("");
-      dispatch(deletePreAbsenceSaga(curPreAbsenceData));
-    },
-    [dispatch]
-  );
+    onOffDelModal();
+    setCurPreAbsenceData("");
+    dispatch(deletePreAbsenceSaga(curAbsenceId));
+  }, [dispatch]);
 
   const onNoModalClick = event => {
     event.stopPropagation();
@@ -28,10 +25,7 @@ const DeleteModal = props => {
         <S.ModalText>삭제하시겠습니까?</S.ModalText>
         <S.ModalBtnWrap>
           <S.ModalCancle onClick={onOffDelModal}>취소</S.ModalCancle>
-          <S.ModalOkay
-            onClick={() => onDelete(curPreAbsenceData)}
-            as={`div`}
-          >
+          <S.ModalOkay onClick={() => onDelete(curPreAbsenceData)} as={`div`}>
             삭제
           </S.ModalOkay>
         </S.ModalBtnWrap>
