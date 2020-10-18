@@ -14,7 +14,6 @@ export const Container = styled.div`
 `;
 
 export const Modal = styled.div`
-  /* position: relative; */
   display: flex;
   width: 640px;
   height: 300px;
@@ -22,27 +21,41 @@ export const Modal = styled.div`
   border: 1px solid #707070;
   border-radius: 60px;
   flex-direction: column;
-  /* z-index: 4; */
-`;
-
-export const ModalSubText = styled.p`
-  display: flex;
-  width: 100%;
-  font-size: 22px;
-  font-weight: bold;
-  color: #20223e;
 `;
 
 export const ModalText = styled.div`
   display: flex;
   width: 100%;
   height: 200px;
-  align-items: center;
-  justify-content: center;
+  color: #20223e;
   font-size: 38px;
   font-weight: bold;
-  color: #20223e;
   box-sizing: border-box;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+`;
+
+export const ModalSubText = styled.p`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  color: #20223e;
+  font-size: 26px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const FirstSpan = styled.span`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
+
+export const SecondSpan = styled(FirstSpan)`
+  width: auto;
+  margin: 10px 0 0 0;
 `;
 
 export const ModalBtnWrap = styled.div`

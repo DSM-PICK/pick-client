@@ -290,55 +290,6 @@ const PreReports = () => {
         <S.FuncAdd onClick={() => onSubmit()}>추가하기</S.FuncAdd>
       </S.Func>
       <PreReportShow preAbsenceList={preAbsenceList} />
-      {/* <S.Show>
-        <S.ShowHeader>
-          <S.ShowHeaderStd>학생</S.ShowHeaderStd>
-          <S.ShowHeaderKind>종류</S.ShowHeaderKind>
-          <S.ShowHeaderDate>기간</S.ShowHeaderDate>
-        </S.ShowHeader>
-        <S.ShowBody>
-          {preAbsenceList &&
-            preAbsenceList.map(preAbsenceData => (
-              <S.ShowBodyBox
-                key={preAbsenceData.id}
-                onClick={() => onOffDelModal(preAbsenceData.id)}
-              >
-                <S.ShowBodyStd
-                  id={preAbsenceData.id}
-                  curPreAbsenceData={curPreAbsenceData}
-                >
-                  {`${preAbsenceData.stdnum} ${preAbsenceData.name}`}
-                </S.ShowBodyStd>
-                <S.ShowBodyKind
-                  id={preAbsenceData.id}
-                  curPreAbsenceData={curPreAbsenceData}
-                >
-                  {preAbsenceData.state}
-                </S.ShowBodyKind>
-                <S.ShowBodyDate
-                  id={preAbsenceData.id}
-                  curPreAbsenceData={curPreAbsenceData}
-                >
-                  {getPreAbsenceText(
-                    preAbsenceData.start_date,
-                    preAbsenceData.start_period,
-                    preAbsenceData.end_date,
-                    preAbsenceData.end_period
-                  ).map(data => (
-                    <span key={data}>{data}</span>
-                  ))}
-                </S.ShowBodyDate>
-              </S.ShowBodyBox>
-            ))}
-        </S.ShowBody>
-        {delModal && (
-          <DeleteModal
-            onOffDelModal={onOffDelModal}
-            curPreAbsenceData={curPreAbsenceData}
-            setCurPreAbsenceData={setCurPreAbsenceData}
-          />
-        )}
-      </S.Show> */}
     </S.Container>
   );
 };

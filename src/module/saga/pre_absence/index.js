@@ -78,6 +78,8 @@ function* deletePreAbsence(payload) {
 
     yield call(requestDeleteApiWithAccessToken, REQUEST_URL);
     yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
+
+    alert(`사전 결석 신고 삭제를 성공하였습니다.`);
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
     console.log(error);

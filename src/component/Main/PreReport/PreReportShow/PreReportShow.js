@@ -26,7 +26,7 @@ const PreReportShow = props => {
         <S.ShowHeaderDate>기간</S.ShowHeaderDate>
       </S.ShowHeader>
       <S.ShowBody>
-        {preAbsenceList &&
+        {!!preAbsenceList.length ? (
           preAbsenceList.map(preAbsenceData => (
             <S.ShowBodyBox
               key={preAbsenceData.id}
@@ -55,7 +55,12 @@ const PreReportShow = props => {
                 ))}
               </S.ShowBodyDate>
             </S.ShowBodyBox>
-          ))}
+          ))
+        ) : (
+          <S.ShowBodyNoneItemText>
+            사전 결석 신고 명단이 없습니다.
+          </S.ShowBodyNoneItemText>
+        )}
       </S.ShowBody>
       {delModal && (
         <DeleteModal
