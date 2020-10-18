@@ -69,6 +69,17 @@ export const ShowBodyDate = styled(ShowHeaderDate)`
   margin-left: 15px;
 `;
 
+export const ShowBodyNoneItemText = styled.p`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: #20223e;
+  font-size: 28px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const ShowCheckDelBtn = styled.button`
   position: absolute;
   display: flex;

@@ -6,13 +6,13 @@ import { getPreAbsenceText } from "../../../lib/attendanceAPI";
 
 const DeleteModal = props => {
   const { curAbsenceId, preAbsenceList } = props;
-  const { onOffDelModal, setCurPreAbsenceData } = props;
+  const { onOffDelModal, setCurAbsenceId } = props;
 
   const dispatch = useDispatch();
 
   const onDelete = useCallback(() => {
     onOffDelModal();
-    setCurPreAbsenceData("");
+    setCurAbsenceId("");
     dispatch(deletePreAbsenceSaga(curAbsenceId));
   }, [dispatch]);
 
@@ -34,6 +34,7 @@ const DeleteModal = props => {
   const dataChangeText = () => {
     const {
       name,
+      state,
       stdnum,
       start_date,
       start_period,
@@ -41,7 +42,7 @@ const DeleteModal = props => {
       end_period
     } = selectAbsenceData;
     const textArr = [
-      `${stdnum} ${name}`,
+      `${stdnum} ${name} : [${state}] `,
       ...getPreAbsenceText(start_date, start_period, end_date, end_period)
     ];
     return textArr;
@@ -56,11 +57,21 @@ const DeleteModal = props => {
   return (
     <S.Container onClick={onOffDelModal}>
       <S.Modal onClick={event => onNoModalClick(event)}>
-        <S.ModalText>삭제하시겠습니까?</S.ModalText>
-        <S.ModalSubText>{dataChangeText().map(text => text)}</S.ModalSubText>
+        <S.ModalText>
+          삭제하시겠습니까?
+          <S.ModalSubText>
+            {dataChangeText().map((text, index) =>
+              !!index ? (
+                <S.SecondSpan key={index}>{text}</S.SecondSpan>
+              ) : (
+                <S.FirstSpan key={index}>{text}</S.FirstSpan>
+              )
+            )}
+          </S.ModalSubText>
+        </S.ModalText>
         <S.ModalBtnWrap>
           <S.ModalCancle onClick={onOffDelModal}>취소</S.ModalCancle>
-          <S.ModalOkay onClick={() => onDelete(curPreAbsenceData)} as={`div`}>
+          <S.ModalOkay onClick={onDelete} as={`div`}>
             삭제
           </S.ModalOkay>
         </S.ModalBtnWrap>
