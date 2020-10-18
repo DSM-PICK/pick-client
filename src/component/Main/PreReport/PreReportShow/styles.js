@@ -37,7 +37,7 @@ export const ShowHeaderDate = styled(ShowHeaderStd)`
 export const ShowBody = styled.div`
   display: flex;
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow: auto;
   border-radius: 0 0 60px 60px;
   flex-direction: column;
