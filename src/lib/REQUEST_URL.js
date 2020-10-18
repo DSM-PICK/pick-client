@@ -27,3 +27,9 @@ export const PRE_ABSENCE = {
     return `/mars/pre-absence/${id}`;
   }
 };
+
+export const WORKING_TEACHER = {
+  REMAINING_DATE: () => {
+    return `/mars/working-teacher/user/remaining-date`;
+  }
+};
