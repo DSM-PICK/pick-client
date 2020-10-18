@@ -1,43 +1,30 @@
 import {
-  SET_MAIN_TEXT_NAME,
   SET_MAIN_TEXT_DATE,
-  SET_MAIN_TEXT_REMAIN_TIME
+  SET_MAIN_TEXT_REMAINING_DATE
 } from "../../action/main_text";
 
 const initialState = {
   mainText: {
-    name: "",
     date: "",
-    remainTime: ""
+    remainingDate: ""
   }
 };
 
 const mainTextReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MAIN_TEXT_NAME: {
-      return {
-        mainText: {
-          name: action.payload,
-          ...date,
-          ...remainTime
-        }
-      };
-    }
     case SET_MAIN_TEXT_DATE: {
       return {
         mainText: {
-          ...name,
-          date: action.payload,
-          ...remainTime
+          ...state,
+          date: action.payload
         }
       };
     }
-    case SET_MAIN_TEXT_REMAIN_TIME: {
+    case SET_MAIN_TEXT_REMAINING_DATE: {
       return {
         mainText: {
-          ...name,
-          ...date,
-          remainTime: action.payload
+          ...state,
+          remainingDate: action.payload
         }
       };
     }
