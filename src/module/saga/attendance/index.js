@@ -24,7 +24,8 @@ import {
   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
   POST_ATTENDANCE_STD_DATA_SAGA,
   FAILURE_POST_ATTENDANCE_STD_DATA_SAGA,
-  setHead
+  setHead,
+  setSchedule
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
@@ -58,20 +59,27 @@ function* getFloorData(payload) {
           `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
         );
     }
-    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(floor);
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(floor);
 
     const selfStudyData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    const { date, dayOfWeek, teacherName, locations } = selfStudyData.data;
+    const {
+      date,
+      schedule,
+      dayOfWeek,
+      locations,
+      teacherName
+    } = selfStudyData.data;
 
     yield put(setDate(date));
+    yield put(setSchedule(schedule));
     yield put(setDayOfWeek(dayOfWeek));
     yield put(setFloorData(locations));
     yield put(setFloorTeacherName(teacherName));
   } catch (error) {
     console.log(error);
     // yield put(FAILURE_GET_SELF_STUDY_FLOOR_DATA_SAGA(error.response));
-    // console.log(error);
+
     switch (error.status) {
       case 403:
         requesetRefresh();

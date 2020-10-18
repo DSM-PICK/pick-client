@@ -42,7 +42,6 @@ const AttendanceBody = props => {
 
   const onAnchorClick = () => {
     if (link.length <= 17) return;
-    console.log(floorDatas);
     getAttendanceStdDate(link.split("/")[3][5], floorDatas);
   };
 

@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import * as S from "./styles";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAttendanceStdDataSaga } from "../../../../../module/action/attendance";
 
 const AttendanceNavItem = props => {
