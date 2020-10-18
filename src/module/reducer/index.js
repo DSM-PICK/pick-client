@@ -9,18 +9,20 @@ import preAbsence from "./pre_absence";
 import autoComplete from "./auto_complete";
 import teacher from "./teacher";
 import attendance from "./attendance";
+import notice from "./notice";
 
 const rootReducer = combineReducers({
-  date,
+  adminModal,
+  attendance,
+  autoComplete,
   calander,
   club,
-  modal,
-  adminModal,
+  date,
   mainText,
+  modal,
+  notice,
   preAbsence,
-  autoComplete,
-  teacher,
-  attendance
+  teacher
 });
 
 export default rootReducer;
