@@ -21,4 +21,4 @@ function* mainText() {
   yield takeEvery(GET_MAIN_TEXT_REMAINING_DATE_SAGA, getMainTextRemainingDate);
 }
 
-export default mainText;
+export default mainTextSaga;

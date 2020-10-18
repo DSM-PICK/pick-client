@@ -5,7 +5,8 @@ import calanderSaga from "./calander";
 import preAbsenceSaga from "./pre_absence";
 import loginSaga from "./login";
 import teacherSaga from "./teacher";
-import mainText from "./main_text";
+import mainTextSaga from "./main_text";
+import noticeSaga from "./notice";
 
 function* rootSaga() {
   yield all([
@@ -15,7 +16,8 @@ function* rootSaga() {
     attendanceSaga(),
     loginSaga(),
     teacherSaga(),
-    mainText()
+    mainTextSaga(),
+    noticeSaga()
   ]);
 }
 

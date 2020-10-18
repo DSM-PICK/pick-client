@@ -13,6 +13,7 @@ import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import { modalOn, modalOff } from "../../module/action/admin_modal";
 import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
+import { getNoticeListSaga } from "../../module/action/notice";
 import { checkPageWithLogin } from "../../lib/requestApi";
 
 const Main = () => {
@@ -34,6 +35,7 @@ const Main = () => {
 
   useEffect(() => {
     checkPageWithLogin();
+    dispatch(getNoticeListSaga());
     dispatch(getPreAbsenceListSaga());
     dispatch(getMainTextRemainingDateSaga());
   }, []);
