@@ -83,20 +83,8 @@ const PreReports = () => {
   const [height, setHeight] = useState("30px");
   const [preNextState, setPreNextState] = useState("");
 
-  const [delModal, setDelModal] = useState(false);
-
-  const [curPreAbsenceData, setCurPreAbsenceData] = useState("");
-
   const onOffModal = () => {
     setModal(!modal);
-  };
-
-  const onOffDelModal = id => {
-    setDelModal(!delModal);
-    if (!!id) {
-      console.log(`setCurPreAbsenceData : ${id}`);
-      setCurPreAbsenceData(id);
-    }
   };
 
   const onPreClick = () => {
@@ -206,37 +194,6 @@ const PreReports = () => {
 
   const onChangePreReportState = changeState => {
     setPreReportState(changeState);
-  };
-
-  const getPreAbsenceText = (
-    start_date,
-    start_period,
-    end_date,
-    end_period
-  ) => {
-    if (!!start_date && !!start_period && !!end_date && !!end_period) {
-      const spliting_sDate = start_date.split("-");
-      const spliting_eDate = end_date.split("-");
-      const s_month = spliting_sDate[1];
-      const s_day = spliting_sDate[2];
-      const e_month = spliting_eDate[1];
-      const e_day = spliting_eDate[2];
-      let returnStrF = `${makeMonth1Digit(
-        s_month
-      )}월 ${s_day}일 ${start_period}교시 ~ `;
-      let returnStrS = "";
-      if (s_month !== e_month || s_day !== e_day) {
-        returnStrS += `${makeMonth1Digit(e_month)}월 ${e_day}일`;
-      }
-
-      returnStrS += ` ${end_period}교시`;
-
-      // console.log(returnStr);
-
-      return [returnStrF, returnStrS];
-    } else {
-      return `something wrong`;
-    }
   };
 
   return (
