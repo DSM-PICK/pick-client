@@ -9,15 +9,13 @@ import {
 
 function* getNoticeListSaga() {
   try {
-    console.log("getNoticeListSaga");
     const REQUEST_URL = NOTICE_LIST.NOTICE_LIST_URL();
 
     const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+    const { memberList, clubList } = res.data;
 
-    console.log(res);
-
-    yield put({ type: SET_MEMBER_NOTICE_LIST, payload: res.data.memberList });
-    yield put({ type: SET_CLUB_NOTICE_LIST, payload: res.data.clubList });
+    yield put({ type: SET_MEMBER_NOTICE_LIST, payload: memberList });
+    yield put({ type: SET_CLUB_NOTICE_LIST, payload: clubList });
   } catch (err) {
     console.log(err);
   }

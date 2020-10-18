@@ -13,8 +13,6 @@ const Notice = () => {
     dispatch(getNoticeListSaga());
   }, []);
 
-  console.log(clubNotice, memberNotice);
-
   return (
     <S.Container>
       <S.Section>
