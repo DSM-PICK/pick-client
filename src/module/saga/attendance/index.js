@@ -30,12 +30,15 @@ import {
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
+  console.log(payload);
   try {
     const { locationState, text } = payload.payload;
 
     let floor = "";
     let setFloorData;
     let setFloorTeacherName;
+
+    console.log(text);
 
     switch (text) {
       case "4층":
