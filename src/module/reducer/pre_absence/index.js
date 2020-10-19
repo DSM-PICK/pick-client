@@ -1,28 +1,48 @@
 import {
-  SET_PRE_ABSENCE,
+  SET_PRE_ABSENCE_LIST,
   SET_PRE_ABSENCE_STATE,
-  SET_PRE_ABSENCE_STD_NAME,
   SET_PRE_ABSENCE_PRE_DATE,
   SET_PRE_ABSENCE_NEXT_DATE,
-  SET_PRE_ABSENCE_PRE_PERIOD,
-  SET_PRE_ABSENCE_NEXT_PERIOD
+  INIT_PRE_ABSENCE_DATA,
+  SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT,
+  SET_PRE_ABSENCE_TEXT
 } from "../../action/pre_absence";
 
 const initialState = {
+  text: "",
+  autoComplete: [],
+
   preAbsenceList: [],
-  preAbsence: {
-    preAbsenceState: "외출",
-    preAbsenceStdName: "",
-    preAbsencePreDate: "",
-    preAbsencePrePeriod: "",
-    preAbsenceNextDate: "",
-    preAbsenceNextPeriod: ""
+  state: "외출",
+  preDate: {
+    year: "",
+    month: "",
+    day: "",
+    period: ""
+  },
+  nextDate: {
+    year: "",
+    month: "",
+    day: "",
+    period: ""
   }
 };
 
 const preAbsenceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRE_ABSENCE: {
+    case SET_PRE_ABSENCE_TEXT: {
+      return {
+        ...state,
+        text: action.payload
+      };
+    }
+    case SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT: {
+      return {
+        ...state,
+        autoComplete: action.payload
+      };
+    }
+    case SET_PRE_ABSENCE_LIST: {
       return {
         ...state,
         preAbsenceList: action.payload
@@ -31,54 +51,50 @@ const preAbsenceReducer = (state = initialState, action) => {
     case SET_PRE_ABSENCE_STATE: {
       return {
         ...state,
-        preAbsence: {
-          ...state.preAbsence,
-          preAbsenceState: action.payload
-        }
-      };
-    }
-    case SET_PRE_ABSENCE_STD_NAME: {
-      return {
-        ...state,
-        preAbsence: {
-          ...state.preAbsence,
-          preAbsenceStdName: action.payload
-        }
+        state: action.payload
       };
     }
     case SET_PRE_ABSENCE_PRE_DATE: {
+      const { year, month, day, period } = action.payload;
       return {
         ...state,
-        preAbsence: {
-          ...state.preAbsence,
-          preAbsencePreDate: action.payload
+        preDate: {
+          year: year,
+          month: month,
+          day: day,
+          period: period
         }
       };
     }
     case SET_PRE_ABSENCE_NEXT_DATE: {
+      const { year, month, day, period } = action.payload;
       return {
         ...state,
-        preAbsence: {
-          ...state.preAbsence,
-          preAbsenceNextDate: action.payload
+        nextDate: {
+          year: year,
+          month: month,
+          day: day,
+          period: period
         }
       };
     }
-    case SET_PRE_ABSENCE_PRE_PERIOD: {
+    case INIT_PRE_ABSENCE_DATA: {
       return {
         ...state,
-        preAbsence: {
-          ...state.preAbsence,
-          preAbsencePrePeriod: action.payload
-        }
-      };
-    }
-    case SET_PRE_ABSENCE_NEXT_PERIOD: {
-      return {
-        ...state,
-        preAbsence: {
-          ...state.preAbsence,
-          preAbsenceNextPeriod: action.payload
+        text: "",
+        autoComplete: [],
+        state: "외출",
+        nextDate: {
+          year: "",
+          month: "",
+          day: "",
+          period: ""
+        },
+        preDate: {
+          year: "",
+          month: "",
+          period: "",
+          day: ""
         }
       };
     }
