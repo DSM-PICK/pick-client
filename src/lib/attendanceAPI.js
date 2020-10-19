@@ -1,5 +1,7 @@
 export const getLocationState = () => {
   const locationPath = location.pathname.split("/")[2];
+  console.log(location);
+  console.log(locationPath);
   return locationPath === "class"
     ? "self-study"
     : locationPath === "club"
