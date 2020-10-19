@@ -7,7 +7,7 @@ export const getLocationState = () => {
     : locationPath === "club"
     ? "club"
     : function () {
-        // console.log("none")
+        // console.log("none"
       };
 };
 
