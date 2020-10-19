@@ -165,7 +165,7 @@ const PreReports = () => {
           <PreReportName />
         </S.FuncKindName>
         <S.FuncDate>
-          <S.FuncTitle>기간</S.FuncTitle>
+          <S.FuncTitle> 기간</S.FuncTitle>
           <PreReportDate
             modal={modal}
             height={height}
