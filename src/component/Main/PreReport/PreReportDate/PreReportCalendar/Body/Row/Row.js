@@ -3,18 +3,15 @@ import * as S from "./styles";
 import Item from "./Item/Item";
 
 const Row = props => {
-  const { dateArr, month, year } = props;
+  const { dateArr } = props;
   const { onOffModal, onSelectDay } = props;
 
   return (
     <S.Container>
-      {dateArr.map(({ date, isActive }) => (
+      {dateArr.map(date => (
         <Item
-          key={date}
-          isActive={isActive}
+          key={date.date}
           date={date}
-          month={month}
-          year={year}
           onOffModal={onOffModal}
           onSelectDay={onSelectDay}
         />

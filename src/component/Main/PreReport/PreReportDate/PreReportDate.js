@@ -10,12 +10,8 @@ const PreReportDate = props => {
     calcDate,
     calcMonth,
     calcYear,
-    preMonth,
-    nextMonth,
-    preDay,
-    nextDay,
-    preClassValue,
-    nextClassValue,
+    preDate,
+    nextDate,
     preClassInput,
     nextClassInput
   } = props;
@@ -23,8 +19,6 @@ const PreReportDate = props => {
     onOffModal,
     onPreClick,
     onNextClick,
-    onPreSelect,
-    onNextSelect,
     prevCalcMonth,
     nextCalcMonth,
     onSelectDay,
@@ -35,10 +29,10 @@ const PreReportDate = props => {
   return (
     <S.Container>
       <S.Date>
-        <S.Month month={preMonth} onClick={onPreClick}>
+        <S.Month month={preDate.month} onClick={onPreClick}>
           월
         </S.Month>
-        <S.Day day={preDay} onClick={onPreClick}>
+        <S.Day day={preDate.day} onClick={onPreClick}>
           일
         </S.Day>
         <S.ClassWrap>
@@ -48,7 +42,7 @@ const PreReportDate = props => {
             max="10"
             placeholder="__"
             ref={preClassInput}
-            value={preClassValue}
+            value={preDate.period}
             onChange={onPreClassChange}
           />
           <S.ClassText>교시</S.ClassText>
@@ -56,10 +50,10 @@ const PreReportDate = props => {
         </S.ClassWrap>
       </S.Date>
       <S.Date>
-        <S.Month month={nextMonth} onClick={onNextClick}>
+        <S.Month month={nextDate.month} onClick={onNextClick}>
           월
         </S.Month>
-        <S.Day day={nextDay} onClick={onNextClick}>
+        <S.Day day={nextDate.day} onClick={onNextClick}>
           일
         </S.Day>
         <S.ClassWrap>
@@ -69,7 +63,7 @@ const PreReportDate = props => {
             max="10"
             placeholder="__"
             ref={nextClassInput}
-            value={nextClassValue}
+            value={nextDate.period}
             onChange={onNextClassChange}
           />
           <S.ClassText>교시</S.ClassText>
