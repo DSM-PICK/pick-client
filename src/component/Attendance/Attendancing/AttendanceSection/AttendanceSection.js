@@ -2,8 +2,8 @@ import React from "react";
 import * as S from "./styles";
 import AttendanceRowTop from "./AttendanceRowTop/AttendanceRowTop";
 import AttendanceRow from "./AttendanceRow/AttendanceRow";
-import { getLocationState } from "../../../../lib/attendanceApi";
 import { useSelector } from "react-redux";
+import { getLocationState } from "../../../../lib/attendanceApi";
 
 const AttendanceSection = props => {
   !props.locations
