@@ -70,8 +70,6 @@ function* getFloorData(payload) {
 
     const selfStudyData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    console.log(selfStudyData);
-
     const {
       date,
       schedule,

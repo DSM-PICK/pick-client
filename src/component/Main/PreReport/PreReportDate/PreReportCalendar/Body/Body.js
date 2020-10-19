@@ -3,7 +3,7 @@ import * as S from "./styles";
 import Row from "./Row/Row";
 
 const Body = props => {
-  const { calcDate, year } = props;
+  const { calcDate } = props;
   const { onOffModal, onSelectDay } = props;
 
   return (
@@ -12,7 +12,6 @@ const Body = props => {
         <Row
           key={String(dateArr[0].month) + String(dateArr[0].date)}
           dateArr={dateArr}
-          year={year}
           onOffModal={onOffModal}
           onSelectDay={onSelectDay}
         />

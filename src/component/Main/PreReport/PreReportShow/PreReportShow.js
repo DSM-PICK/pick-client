@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { getPreAbsenceText } from "../../../../lib/attendanceApi";
 import DeleteModal from "../../Modal/DeleteModal";
 import * as S from "./styles";
 
-const PreReportShow = props => {
-  const { preAbsenceList } = props;
+const PreReportShow = () => {
+  const preAbsenceList = useSelector(state => state.preAbsence.preAbsenceList);
 
   const [delModal, setDelModal] = useState(false);
   const [curAbsenceId, setCurAbsenceId] = useState("");
@@ -32,19 +33,11 @@ const PreReportShow = props => {
               key={preAbsenceData.id}
               onClick={() => onShowBodyBoxClick(preAbsenceData.id)}
             >
-              <S.ShowBodyStd id={preAbsenceData.id} curAbsenceId={curAbsenceId}>
+              <S.ShowBodyStd>
                 {`${preAbsenceData.stdnum} ${preAbsenceData.name}`}
               </S.ShowBodyStd>
-              <S.ShowBodyKind
-                id={preAbsenceData.id}
-                curAbsenceId={curAbsenceId}
-              >
-                {preAbsenceData.state}
-              </S.ShowBodyKind>
-              <S.ShowBodyDate
-                id={preAbsenceData.id}
-                curAbsenceId={curAbsenceId}
-              >
+              <S.ShowBodyKind>{preAbsenceData.state}</S.ShowBodyKind>
+              <S.ShowBodyDate>
                 {getPreAbsenceText(
                   preAbsenceData.start_date,
                   preAbsenceData.start_period,

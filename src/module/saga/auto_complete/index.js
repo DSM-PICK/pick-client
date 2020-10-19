@@ -1,9 +1,9 @@
 import { takeEvery, put, call } from "redux-saga/effects";
 import {
-  setAutoCompleteText,
   GET_AUTO_COMPLETE_TEXT_SAGA,
   FAILURE_AUTO_COMPLETE_TEXT_SAGA
 } from "../../action/auto_complete";
+import { setPreAbsenceAutoCompleteText } from "../../action/pre_absence";
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 import { AUTO_COMPLETE } from "../../../lib/requestUrl";
 
@@ -18,7 +18,7 @@ function* getAutoCompleteTextSaga(payload) {
         requestGetApiWithAccessToken,
         REQUEST_URL
       );
-      yield put(setAutoCompleteText(autoCompleteData.data));
+      yield put(setPreAbsenceAutoCompleteText(autoCompleteData.data));
     } else {
       throw new Error(
         "getAutoCompleteTextSaga : There is no parameter (autocomplete text)."
