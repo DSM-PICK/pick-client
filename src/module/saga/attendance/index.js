@@ -36,7 +36,6 @@ function* getFloorData(payload) {
     let floor = "";
     let setFloorData;
     let setFloorTeacherName;
-
     switch (text) {
       case "4층":
         floor = 4;
@@ -111,6 +110,8 @@ function* getAttendanceStdDataSaga(payload) {
       REQUEST_URL
     );
 
+    console.log(attendanceData);
+
     const atdData = attendanceData.data.attendances;
     const clubHead = attendanceData.data.head;
 
@@ -132,11 +133,18 @@ function* patchAttendanceStdData(payload) {
     const { number, period, state } = payload.payload;
     const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
 
-    yield call(requestApiWithAccessToken, methodType.PATCH, REQUEST_URL, {
-      number,
-      period,
-      state
-    });
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PATCH,
+      REQUEST_URL,
+      {
+        number,
+        period,
+        state
+      }
+    );
+
+    console.log(res);
   } catch (error) {
     // yield put(FAILURE_POST_ATTENDANCE_STD_DATA_SAGA(error.response));
     console.log(error);
