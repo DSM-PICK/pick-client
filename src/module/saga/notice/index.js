@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
-import { NOTICE_LIST } from "../../../lib/REQUEST_URL";
+import { NOTICE_LIST } from "../../../lib/requestUrl";
 import {
   GET_NOTICE_LIST_SAGA,
   SET_CLUB_NOTICE_LIST,

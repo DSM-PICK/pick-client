@@ -53,17 +53,14 @@ export const ShowBodyBox = styled.div`
 `;
 
 export const ShowBodyStd = styled(ShowHeaderStd)`
-  color: ${props => (props.curAbsenceId == props.id ? "#1A6EEB" : "#20223e")};
   font-size: 22px;
 `;
 
 export const ShowBodyKind = styled(ShowHeaderKind)`
-  color: ${props => (props.curAbsenceId == props.id ? "#1A6EEB" : "#20223e")};
   font-size: 22px;
 `;
 
 export const ShowBodyDate = styled(ShowHeaderDate)`
-  color: ${props => (props.curAbsenceId == props.id ? "#1A6EEB" : "#20223e")};
   font-size: 22px;
   flex-direction: column;
   margin-left: 15px;

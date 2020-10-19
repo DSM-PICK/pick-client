@@ -1,12 +1,12 @@
 export const ATTENDANCE = {
-  ATTENDANCE_NAVIGATION_URL: floor => {
-    return `/saturn/attendance/navigation/${floor}`;
+  ATTENDANCE_NAVIGATION_URL: (schedule, floor) => {
+    return `/saturn/attendance/navigation/${schedule}/${floor}`;
   },
   CHANGE_ATTENDANCE_STATE_URL: () => {
     return `/saturn/attendance/student-state`;
   },
-  ATTENDANCE_LIST_URL: (floor, priority) => {
-    return `/saturn/attendance/student-state/${floor}/${priority}`;
+  ATTENDANCE_LIST_URL: (schedule, floor, priority) => {
+    return `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
   }
 };
 

@@ -1,22 +1,21 @@
 import React, { useCallback } from "react";
 import * as S from "./styles";
 import ExName from "./ExName/ExName";
-import PreReportModal from "../../PreReportDate/PreReportModal/PreReportModal";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setAutoCompleteText,
-  setText
-} from "../../../../../module/action/auto_complete";
+  setPreAbsenceAutoCompleteText,
+  setPreAbsenceText
+} from "../../../../../module/action/pre_absence";
 
 const NameSelect = () => {
-  const names = useSelector(state => state.autoComplete.autoComplete);
+  const names = useSelector(state => state.preAbsence.autoComplete);
 
   const dispatch = useDispatch();
 
   const onClickName = useCallback(
     payload => {
-      dispatch(setText(payload));
-      dispatch(setAutoCompleteText([]));
+      dispatch(setPreAbsenceText(payload));
+      dispatch(setPreAbsenceAutoCompleteText([]));
     },
     [dispatch]
   );

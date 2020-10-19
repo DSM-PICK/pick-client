@@ -41,10 +41,10 @@ export const InformationWrap = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  /* margin: 0 20px 0 0; */
-  border-radius: 10px 10px 30px 30px;
+  padding: ${props => (props.attr === "club" ? "0 0 0 20px" : "0")};
   overflow: auto;
   flex-direction: column;
+  box-sizing: border-box;
 `;
 
 export const Information = styled.p`

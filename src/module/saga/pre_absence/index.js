@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { makeMonth2Digit } from "../../../lib/attendanceAPI";
-import { PRE_ABSENCE } from "../../../lib/REQUEST_URL";
+import { makeMonth2Digit } from "../../../lib/attendanceApi";
+import { PRE_ABSENCE } from "../../../lib/requestUrl";
 import {
   methodType,
   requestApiWithAccessToken,
@@ -8,13 +8,14 @@ import {
   requestDeleteApiWithAccessToken
 } from "../../../lib/requestApi";
 import {
-  setPreAbsence,
+  setPreAbsenceList,
   GET_PRE_ABSENCE_LIST_SAGA,
   FAILURE_GET_PRE_ABSENCE_SAGA,
   CREATE_PRE_ABSENCE_SAGA,
   FAILURE_CREATE_PRE_ABSENCE_SAGA,
   DELETE_PRE_ABSENCE_SAGA,
-  FAILURE_DELETE_PRE_ABSENCE_SAGA
+  FAILURE_DELETE_PRE_ABSENCE_SAGA,
+  INIT_PRE_ABSENCE_DATA
 } from "../../action/pre_absence";
 
 function* getPreAbsenceList() {
@@ -30,7 +31,7 @@ function* getPreAbsenceList() {
       requestGetApiWithAccessToken,
       REQUEST_URL
     );
-    yield put(setPreAbsence(preAbsenceList.data));
+    yield put(setPreAbsenceList(preAbsenceList.data));
   } catch (error) {
     // yield put(FAILURE_GET_PRE_ABSENCE_SAGA(error.response));
     console.log(error);
@@ -63,7 +64,11 @@ function* createPreAbsenceSaga(payload) {
         end_period
       }
     );
+
+    console.log(res);
+
     yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
+    yield put({ type: INIT_PRE_ABSENCE_DATA });
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
     console.log(error);

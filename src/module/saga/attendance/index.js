@@ -1,11 +1,12 @@
 import { call, put, takeEvery } from "redux-saga/effects";
+import { getLocationState } from "../../../lib/attendanceApi";
 import {
   methodType,
   requesetRefresh,
   requestApiWithAccessToken,
   requestGetApiWithAccessToken
 } from "../../../lib/requestApi";
-import { ATTENDANCE } from "../../../lib/REQUEST_URL";
+import { ATTENDANCE } from "../../../lib/requestUrl";
 import {
   setSelfStudyData,
   setSecondFloorData,
@@ -24,15 +25,19 @@ import {
   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
   POST_ATTENDANCE_STD_DATA_SAGA,
   FAILURE_POST_ATTENDANCE_STD_DATA_SAGA,
-  setHead
+  setHead,
+  setSchedule
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
   try {
+    const { locationState, text } = payload.payload;
+
     let floor = "";
     let setFloorData;
     let setFloorTeacherName;
-    switch (payload.payload) {
+
+    switch (text) {
       case "4층":
         floor = 4;
         setFloorData = setForthFloorData;
@@ -58,20 +63,31 @@ function* getFloorData(payload) {
           `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
         );
     }
-    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(floor);
+
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      locationState,
+      floor
+    );
 
     const selfStudyData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    const { date, dayOfWeek, teacherName, locations } = selfStudyData.data;
+    const {
+      date,
+      schedule,
+      dayOfWeek,
+      locations,
+      teacherName
+    } = selfStudyData.data;
 
     yield put(setDate(date));
+    yield put(setSchedule(schedule));
     yield put(setDayOfWeek(dayOfWeek));
     yield put(setFloorData(locations));
     yield put(setFloorTeacherName(teacherName));
   } catch (error) {
     console.log(error);
     // yield put(FAILURE_GET_SELF_STUDY_FLOOR_DATA_SAGA(error.response));
-    // console.log(error);
+
     switch (error.status) {
       case 403:
         requesetRefresh();
@@ -84,7 +100,11 @@ function* getFloorData(payload) {
 function* getAttendanceStdDataSaga(payload) {
   try {
     const { floor, priority } = payload.payload;
-    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(floor, priority);
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
+      getLocationState(),
+      floor,
+      priority
+    );
 
     const attendanceData = yield call(
       requestGetApiWithAccessToken,
