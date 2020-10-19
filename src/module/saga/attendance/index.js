@@ -30,16 +30,12 @@ import {
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
-  console.log(payload);
   try {
     const { locationState, text } = payload.payload;
 
     let floor = "";
     let setFloorData;
     let setFloorTeacherName;
-
-    console.log(text);
-
     switch (text) {
       case "4층":
         floor = 4;
@@ -66,8 +62,6 @@ function* getFloorData(payload) {
           `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
         );
     }
-
-    console.log(floor);
 
     const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
       locationState,
@@ -116,6 +110,8 @@ function* getAttendanceStdDataSaga(payload) {
       REQUEST_URL
     );
 
+    console.log(attendanceData);
+
     const atdData = attendanceData.data.attendances;
     const clubHead = attendanceData.data.head;
 
@@ -137,11 +133,18 @@ function* patchAttendanceStdData(payload) {
     const { number, period, state } = payload.payload;
     const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
 
-    yield call(requestApiWithAccessToken, methodType.PATCH, REQUEST_URL, {
-      number,
-      period,
-      state
-    });
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PATCH,
+      REQUEST_URL,
+      {
+        number,
+        period,
+        state
+      }
+    );
+
+    console.log(res);
   } catch (error) {
     // yield put(FAILURE_POST_ATTENDANCE_STD_DATA_SAGA(error.response));
     console.log(error);
