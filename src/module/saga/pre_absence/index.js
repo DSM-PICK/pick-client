@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { makeMonth2Digit } from "../../../lib/attendanceAPI";
-import { PRE_ABSENCE } from "../../../lib/REQUEST_URL";
+import { makeMonth2Digit } from "../../../lib/attendanceApi";
+import { PRE_ABSENCE } from "../../../lib/requestUrl";
 import {
   methodType,
   requestApiWithAccessToken,

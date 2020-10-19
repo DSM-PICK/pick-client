@@ -5,7 +5,7 @@ import {
   requestApiWithAccessToken,
   requestGetApiWithAccessToken
 } from "../../../lib/requestApi";
-import { ATTENDANCE } from "../../../lib/REQUEST_URL";
+import { ATTENDANCE } from "../../../lib/requestUrl";
 import {
   setSelfStudyData,
   setSecondFloorData,
@@ -30,10 +30,13 @@ import {
 
 function* getFloorData(payload) {
   try {
+    const { locationState, text } = payload.payload;
+
     let floor = "";
     let setFloorData;
     let setFloorTeacherName;
-    switch (payload.payload) {
+
+    switch (text) {
       case "4층":
         floor = 4;
         setFloorData = setForthFloorData;
@@ -59,9 +62,15 @@ function* getFloorData(payload) {
           `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
         );
     }
-    const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(floor);
+
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      locationState,
+      floor
+    );
 
     const selfStudyData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+
+    console.log(selfStudyData);
 
     const {
       date,

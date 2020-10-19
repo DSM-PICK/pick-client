@@ -4,7 +4,7 @@ const {
   setMainTextRemainingDate
 } = require("../../action/main_text");
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
-import { WORKING_TEACHER } from "../../../lib/REQUEST_URL";
+import { WORKING_TEACHER } from "../../../lib/requestUrl";
 
 function* getMainTextRemainingDate() {
   try {

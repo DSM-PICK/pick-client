@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getPreAbsenceText } from "../../../../lib/attendanceAPI";
+import { getPreAbsenceText } from "../../../../lib/attendanceApi";
 import DeleteModal from "../../Modal/DeleteModal";
 import * as S from "./styles";
 

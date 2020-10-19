@@ -6,7 +6,7 @@ import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
-import { makeMonth2Digit } from "../../../lib/attendanceAPI";
+import { makeMonth2Digit } from "../../../lib/attendanceApi";
 import {
   createPreAbsenceSaga,
   getPreAbsenceListSaga

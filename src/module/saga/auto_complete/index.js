@@ -5,7 +5,7 @@ import {
   FAILURE_AUTO_COMPLETE_TEXT_SAGA
 } from "../../action/auto_complete";
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
-import { AUTO_COMPLETE } from "../../../lib/REQUEST_URL";
+import { AUTO_COMPLETE } from "../../../lib/requestUrl";
 
 function* getAutoCompleteTextSaga(payload) {
   try {
