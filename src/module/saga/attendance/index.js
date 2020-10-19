@@ -64,6 +64,8 @@ function* getFloorData(payload) {
         );
     }
 
+    console.log(floor);
+
     const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
       locationState,
       floor
