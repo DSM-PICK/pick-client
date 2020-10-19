@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
+import { getLocationState } from "../../../lib/attendanceApi";
 import {
   methodType,
   requesetRefresh,
@@ -99,7 +100,11 @@ function* getFloorData(payload) {
 function* getAttendanceStdDataSaga(payload) {
   try {
     const { floor, priority } = payload.payload;
-    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(floor, priority);
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
+      getLocationState(),
+      floor,
+      priority
+    );
 
     const attendanceData = yield call(
       requestGetApiWithAccessToken,
