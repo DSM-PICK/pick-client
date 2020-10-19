@@ -26,6 +26,7 @@ const getDateObj = (
 
   for (let i = 1; i <= thisMonthLastDate; i++) {
     calanderArr.push({
+      year: year,
       date: i,
       month: month + 1,
       isActive: true
@@ -34,14 +35,16 @@ const getDateObj = (
 
   for (let i = 0; i < falseDateLength; i++) {
     calanderArr.unshift({
+      year: month === 0 ? year - 1 : year,
       date: prevMonthLastDay - i,
-      month,
+      month: month === 0 ? 12 : month,
       isActive: false
     });
   }
 
   for (let i = 41; calanderArr.length <= 41; i--) {
     calanderArr.push({
+      year: month + 2 > 12 ? year + 1 : year,
       date: 42 - i,
       month: month + 2 > 12 ? 1 : month + 2,
       isActive: false
