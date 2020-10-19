@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import { useDispatch } from "react-redux";
 import { deletePreAbsenceSaga } from "../../../module/action/pre_absence";
-import { getPreAbsenceText } from "../../../lib/attendanceAPI";
+import { getPreAbsenceText } from "../../../lib/attendanceApi";
 
 const DeleteModal = props => {
   const { curAbsenceId, preAbsenceList } = props;

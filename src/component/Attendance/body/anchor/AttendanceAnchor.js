@@ -6,7 +6,7 @@ import {
   getAttendanceStdDataSaga,
   getFloorDataSaga
 } from "../../../../module/action/attendance";
-import { getLocationState } from "../../../../lib/attendanceAPI";
+import { getLocationState } from "../../../../lib/attendanceApi";
 
 const AttendanceBody = props => {
   const { text, link, imgLink } = props;
@@ -23,8 +23,8 @@ const AttendanceBody = props => {
   ];
 
   const getFloorData = useCallback(
-    text => {
-      dispatch(getFloorDataSaga(text));
+    (locationState, text) => {
+      dispatch(getFloorDataSaga({ locationState, text }));
     },
     [dispatch]
   );
@@ -42,13 +42,12 @@ const AttendanceBody = props => {
 
   const onAnchorClick = () => {
     if (link.length <= 17) return;
-    console.log(floorDatas);
     getAttendanceStdDate(link.split("/")[3][5], floorDatas);
   };
 
   useEffect(() => {
-    if (getLocationState() === "class" || getLocationState() === "club") {
-      getFloorData(props.text);
+    if (getLocationState() === "self-study" || getLocationState() === "club") {
+      getFloorData(getLocationState(), props.text);
     }
   }, []);
 

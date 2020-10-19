@@ -2,21 +2,8 @@ import React from "react";
 import * as S from "./styles";
 import AttendanceRowTop from "./AttendanceRowTop/AttendanceRowTop";
 import AttendanceRow from "./AttendanceRow/AttendanceRow";
-import * as Data from "../Constant";
-import { getLocationState } from "../../../../lib/attendanceAPI";
+import { getLocationState } from "../../../../lib/attendanceApi";
 import { useSelector } from "react-redux";
-
-const getClassData = () => {
-  return Number(location.pathname[location.pathname.length - 1]) % 2 === 0
-    ? Data.CLUB_FLOOR4_0
-    : Data.CLUB_FLOOR4_1;
-};
-
-const getFloorText = floorName => {
-  return floorName[floorName.length - 1] !== "y"
-    ? `${Number(floorName[floorName.length - 1])}층`
-    : "자습실";
-};
 
 const AttendanceSection = props => {
   !props.locations
@@ -25,13 +12,10 @@ const AttendanceSection = props => {
       : (window.location.href = "/attendance/class")
     : "";
 
-  const { locations } = props;
-  const { location, name: clubName } = locations;
+  const { location, name: clubName } = props.locations;
 
   const information = useSelector(state => state.attendance);
-  const { clubHead, attendanceData } = information;
-
-  const isClub = getLocationState() === "club";
+  const { clubHead, attendanceData, schedule } = information;
 
   const isSevenNull =
     !!Object.keys(attendanceData).length &&
@@ -39,14 +23,13 @@ const AttendanceSection = props => {
 
   return (
     <S.Container>
-      {isClub && (
+      {schedule === "club" ? (
         <S.Article>
           <S.Name>{clubName}</S.Name>
           <S.Location>{location}</S.Location>
           {!!clubHead && <S.Head>{`부장 : ${clubHead}`}</S.Head>}
         </S.Article>
-      )}
-      {!isClub && (
+      ) : (
         <S.Article>
           <S.Location location="자습실">{`자습실`}</S.Location>
         </S.Article>

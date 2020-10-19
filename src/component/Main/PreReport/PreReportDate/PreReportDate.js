@@ -2,79 +2,48 @@ import React from "react";
 import * as S from "./styles";
 import PreReportCalander from "./PreReportCalendar/PreReportCalander";
 import PreReportModal from "./PreReportModal/PreReportModal";
+import { useSelector } from "react-redux";
 
 const PreReportDate = props => {
-  const {
-    modal,
-    height,
-    calcDate,
-    calcMonth,
-    calcYear,
-    preMonth,
-    nextMonth,
-    preDay,
-    nextDay,
-    preClassValue,
-    nextClassValue,
-    preClassInput,
-    nextClassInput
-  } = props;
+  const { modal, height, calcDate, calcMonth, calcYear } = props;
   const {
     onOffModal,
-    onPreClick,
-    onNextClick,
-    onPreSelect,
-    onNextSelect,
-    prevCalcMonth,
-    nextCalcMonth,
     onSelectDay,
-    onPreClassChange,
-    onNextClassChange
+    onClassChange,
+    onPreReportClick,
+    onClickCalcMonth
   } = props;
+
+  const preAbsenceData = useSelector(state => state.preAbsence);
+  const { preDate, nextDate } = preAbsenceData;
+  const dateArr = [preDate, nextDate];
+  const refInputArr = [props.preClassInput, props.nextClassInput];
 
   return (
     <S.Container>
-      <S.Date>
-        <S.Month month={preMonth} onClick={onPreClick}>
-          월
-        </S.Month>
-        <S.Day day={preDay} onClick={onPreClick}>
-          일
-        </S.Day>
-        <S.ClassWrap>
-          <S.Class
-            type="number"
-            min="1"
-            max="10"
-            placeholder="__"
-            ref={preClassInput}
-            value={preClassValue}
-            onChange={onPreClassChange}
-          />
-          <S.ClassText>교시</S.ClassText>
-          <S.Additional>~</S.Additional>
-        </S.ClassWrap>
-      </S.Date>
-      <S.Date>
-        <S.Month month={nextMonth} onClick={onNextClick}>
-          월
-        </S.Month>
-        <S.Day day={nextDay} onClick={onNextClick}>
-          일
-        </S.Day>
-        <S.ClassWrap>
-          <S.Class
-            type="number"
-            min="1"
-            max="10"
-            placeholder="__"
-            ref={nextClassInput}
-            value={nextClassValue}
-            onChange={onNextClassChange}
-          />
-          <S.ClassText>교시</S.ClassText>
-        </S.ClassWrap>
-      </S.Date>
+      {dateArr.map((date, index) => (
+        <S.Date key={index}>
+          <S.Month month={date.month} onClick={() => onPreReportClick(!index)}>
+            월
+          </S.Month>
+          <S.Day day={date.day} onClick={() => onPreReportClick(!index)}>
+            일
+          </S.Day>
+          <S.ClassWrap>
+            <S.Class
+              type="number"
+              min="1"
+              max="10"
+              placeholder="__"
+              ref={refInputArr[index]}
+              value={date.period}
+              onChange={e => onClassChange(!index, e)}
+            />
+            <S.ClassText>교시</S.ClassText>
+            {!index && <S.Additional>~</S.Additional>}
+          </S.ClassWrap>
+        </S.Date>
+      ))}
       {modal && (
         <PreReportCalander
           height={height}
@@ -83,8 +52,7 @@ const PreReportDate = props => {
           calcYear={calcYear}
           onOffModal={onOffModal}
           onSelectDay={onSelectDay}
-          prevCalcMonth={prevCalcMonth}
-          nextCalcMonth={nextCalcMonth}
+          onClickCalcMonth={onClickCalcMonth}
         />
       )}
       {modal && <PreReportModal onOffModal={onOffModal} />}

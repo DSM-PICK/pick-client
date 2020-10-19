@@ -9,9 +9,9 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   color: ${props =>
-    props.stateName == props.preReportState ? "white" : "black"};
+    props.stateName === props.preReportState ? "white" : "black"};
   background: ${props =>
-    props.stateName == props.preReportState ? "#267dff" : "white"};
+    props.stateName === props.preReportState ? "#267dff" : "white"};
 
   border-top: 1px solid #707070;
   border-bottom: 1px solid #707070;

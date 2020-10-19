@@ -17,7 +17,7 @@ const Notice = () => {
     <S.Container>
       <S.Section>
         <S.Header>동아리원</S.Header>
-        <S.InformationWrap>
+        <S.InformationWrap attr="member">
           {!!memberNotice.length &&
             memberNotice.map(data => (
               <S.Information key={data}>{data}</S.Information>
@@ -26,7 +26,7 @@ const Notice = () => {
       </S.Section>
       <S.Section>
         <S.Header>동아리</S.Header>
-        <S.InformationWrap>
+        <S.InformationWrap attr="club">
           {!!clubNotice.length &&
             clubNotice.map(data => (
               <S.Information key={data}>{data}</S.Information>
