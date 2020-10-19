@@ -1,6 +1,6 @@
 export const ATTENDANCE = {
-  ATTENDANCE_NAVIGATION_URL: floor => {
-    return `/saturn/attendance/navigation/${floor}`;
+  ATTENDANCE_NAVIGATION_URL: (schedule, floor) => {
+    return `/saturn/attendance/navigation/${schedule}/${floor}`;
   },
   CHANGE_ATTENDANCE_STATE_URL: () => {
     return `/saturn/attendance/student-state`;
