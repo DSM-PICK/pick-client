@@ -6,9 +6,11 @@ import { AdminLoginBackground } from "../../../asset/Admin/Admin";
 
 const AdminLogin = () => {
   return (
-    <S.Container url={AdminLoginBackground}>
-      <LeftLoginSection />
-      <RightLoginSection />
+    <S.Container>
+      <S.ContainerBackground url={AdminLoginBackground}>
+        <LeftLoginSection />
+        <RightLoginSection />
+      </S.ContainerBackground>
     </S.Container>
   );
 };
