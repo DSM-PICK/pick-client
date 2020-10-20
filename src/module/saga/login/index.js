@@ -1,5 +1,5 @@
 import { call, takeEvery } from "redux-saga/effects";
-import { loginAction } from "../../action/login";
+import { loginAction, loginConstant } from "../../action/login";
 import { requestApi, methodType } from "../../../lib/requestApi";
 
 function* requestLogin(action) {
@@ -31,6 +31,7 @@ function* requestLogin(action) {
 
 function* loginSaga() {
   yield takeEvery(loginAction.REQUEST_LOGIN, requestLogin);
+  yield takeEvery(loginAction.REQUEST_ADMIN_LOGIN_SAGA, requestAdminLoginSaga);
 }
 
 export default loginSaga;
