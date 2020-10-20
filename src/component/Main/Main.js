@@ -18,7 +18,6 @@ import { checkPageWithLogin } from "../../lib/requestApi";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
-
   const dispatch = useDispatch();
   const isOpen = useSelector(state => state.adminModal.modalOn);
   const mainText = useSelector(state => state.mainText.mainText);

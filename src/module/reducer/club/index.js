@@ -2,15 +2,15 @@ import { UPDATE_CLUB_DETAIL, UPDATE_CLUB_LIST } from "../../action/club";
 
 const initialState = {
   detail: {
-    name: "",
-    where: "",
-    teacher: "",
-    owner: "",
-    people: {
-      one: [],
-      two: [],
-      three: []
-    }
+    club: {
+      name: "",
+      location: "",
+      teacher: "",
+      club_head: "",
+      floor: "",
+      priority: 0
+    },
+    students: []
   },
   list: []
 };

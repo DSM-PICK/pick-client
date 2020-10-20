@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import React from "react";
 import SectionInput from "../SectionInput";
 import * as S from "./styles";
