@@ -1,16 +1,20 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   width: 500px;
   height: 515px;
   border: 1px solid #707070;
   background: white;
   flex-direction: column;
+  top: 0;
+  left: 0;
+  margin: 50% 0 0 50%;
   z-index: 3;
+  transform: translateX(-50%) translateY(-50%);
 
-  transform: ${props => props.height && `translateY(${props.height})`};
+  /* transform: ${props => props.height && `translateY(${props.height})`}; */
 `;
 
 export const Month = styled.div`
