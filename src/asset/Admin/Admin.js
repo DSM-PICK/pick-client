@@ -11,3 +11,6 @@ export { default as NOTFOUND } from "./NOT_FOUND.svg";
 export { default as NotFound } from "./NotFound.svg";
 export { default as NotFound404 } from "./NotFound404.svg";
 export { default as NotFoundText } from "./NotFoundText.svg";
+
+export { default as AdminLoginBackground } from "./Login/background.svg";
+export { default as ShowPwIcon } from "./Login/show_pw.svg";
