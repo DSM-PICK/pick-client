@@ -1,17 +1,17 @@
 import React from "react";
 import * as S from "./styles";
 import AdminBody from "../AdminBody/AdminBody";
-import AdminNav from "../AdminNav/AdminNav";
 import AdminBodyTitle from "../AdminBody/AdminBodyTitle/AdminBodyTitle";
 import AdminBodyFunc from "../AdminBody/AdminBodyFunc/AdminBodyFunc";
 import AdminMainText from "./AdminMainText/AdminMainText";
 import AdminMainImgWrap from "./AdminMainImgWrap/AdminMainImgWrap";
+import { LogoForAdmin } from "../../../asset/index";
 
 const AdminMain = () => {
   return (
     <S.Container>
       <AdminBody>
-        <AdminBodyTitle imglink="/src/asset/Logo/LogoForAdmin.svg" />
+        <AdminBodyTitle imglink={LogoForAdmin} />
         <AdminBodyFunc>
           <AdminMainText />
           <AdminMainImgWrap />

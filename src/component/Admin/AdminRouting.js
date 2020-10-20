@@ -25,13 +25,11 @@ const AdminRouting = () => {
           path="/admin/club/list"
           component={AdminClubListContainer}
         />
-
         <Route
           exact
           path="/admin/club/management"
           component={AdminClubManagementContainer}
         />
-
         <Route
           exact
           path="/admin/club/member"
