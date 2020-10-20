@@ -19,8 +19,8 @@ const Notice = () => {
         <S.Header>동아리원</S.Header>
         <S.InformationWrap attr="member">
           {!!memberNotice.length &&
-            memberNotice.map(data => (
-              <S.Information key={data}>{data}</S.Information>
+            memberNotice.map((data, index) => (
+              <S.Information key={data + index}>{data}</S.Information>
             ))}
         </S.InformationWrap>
       </S.Section>
@@ -28,8 +28,8 @@ const Notice = () => {
         <S.Header>동아리</S.Header>
         <S.InformationWrap attr="club">
           {!!clubNotice.length &&
-            clubNotice.map(data => (
-              <S.Information key={data}>{data}</S.Information>
+            clubNotice.map((data, index) => (
+              <S.Information key={data + index}>{data}</S.Information>
             ))}
         </S.InformationWrap>
       </S.Section>

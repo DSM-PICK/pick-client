@@ -8,7 +8,7 @@ import {
   methodType,
   requestApiWithAccessToken,
   requestGetApiWithAccessToken,
-  requestDeleteApiWithAccessToken
+  requestDelApiWithAccessToken
 } from "../../../lib/requestApi";
 import {
   setPreAbsenceList,
@@ -91,7 +91,7 @@ function* deletePreAbsence(payload) {
     const id = payload.payload;
     const REQUEST_URL = PRE_ABSENCE.DELETE_PRE_ABSENCE_URL(id);
 
-    yield call(requestDeleteApiWithAccessToken, REQUEST_URL);
+    yield call(requestDelApiWithAccessToken, REQUEST_URL);
     yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());

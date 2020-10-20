@@ -7,8 +7,7 @@ export const methodType = {
   GET: "get",
   POST: "post",
   PUT: "put",
-  PATCH: "patch",
-  DELETE: "delete"
+  PATCH: "patch"
 };
 
 const ACCESS_TOKEN_NAME = "Authorization";
@@ -152,6 +151,24 @@ export const requestGetApiWithAccessToken = async (url, headers) => {
     switch (errStatus) {
     }
 
+    throw errStatus;
+  }
+};
+
+export const requestDelApiWithAccessToken = async (url, headers) => {
+  const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
+
+  try {
+    const res = await requestDeleteApi(url, {
+      [ACCESS_TOKEN_NAME]: accessToken,
+      ...headers
+    });
+
+    return res;
+  } catch (errStatus) {
+    switch (errStatus) {
+      case 403:
+    }
     throw errStatus;
   }
 };
