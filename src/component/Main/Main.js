@@ -22,7 +22,6 @@ const Main = () => {
   const isOpen = useSelector(state => state.adminModal.modalOn);
   const mainText = useSelector(state => state.mainText.mainText);
   const remainingDate = useSelector(state => state.mainText.remainingDate);
-  const preAbsence = useSelector(state => state.preAbsence.preAbsence);
 
   const modalOpen = useCallback(() => dispatch(modalOn()), [dispatch]);
   const modalClose = useCallback(() => dispatch(modalOff()), [dispatch]);

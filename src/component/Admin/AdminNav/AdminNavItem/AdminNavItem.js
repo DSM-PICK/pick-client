@@ -1,8 +1,10 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import * as S from "./styles";
 
 const AdminNavItem = props => {
+  const { link, size, text, imgLink } = props;
+
   const navSmallStyle = {
     height: "43px",
     background: "#13171a"
@@ -34,13 +36,13 @@ const AdminNavItem = props => {
     <S.Container
       as={NavLink}
       exact
-      to={props.link}
+      to={link}
+      size={size}
+      text={text}
       activeStyle={navStyle}
-      size={props.size}
-      text={props.text}
-      imglink={props.imgLink}
+      link={imgLink}
     >
-      {props.text}
+      {text}
     </S.Container>
   );
 };

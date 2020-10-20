@@ -1,15 +1,10 @@
-import React from 'react';
-import * as S from './styles';
-import AdminNavItem from './AdminNavItem/AdminNavItem';
-import AdminModal from '../AdminModal/AdminModal';
+import React from "react";
+import * as S from "./styles";
+import AdminNavItem from "./AdminNavItem/AdminNavItem";
+import { WhiteLogo } from "../../../asset/index";
 
 const AdminNav = () => {
-  const itemDataSet = [
-    {
-      size: "big",
-      imgLink: "/src/asset/Logo/WhiteLogo.svg",
-      link: "/admin"
-    },
+  const itemDataSets = [
     {
       size: "small",
       text: "동아리",
@@ -45,7 +40,14 @@ const AdminNav = () => {
 
   return (
     <S.Container>
-      {itemDataSet.map(item => (
+      <AdminNavItem
+        text={""}
+        size={"big"}
+        link={"/admin"}
+        imgLink={WhiteLogo}
+        navlink={""}
+      />
+      {itemDataSets.map(item => (
         <AdminNavItem
           key={item.text + item.link}
           text={item.text}
