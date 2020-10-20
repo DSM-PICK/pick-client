@@ -17,7 +17,7 @@ const getFloorText = floorName => {
 
 const Attendancing = () => {
   const information = useSelector(state => state.attendance);
-  const { date, dayOfWeek, teachers, datas, schedule } = information;
+  const { date, dayOfWeek, teachers, datas } = information;
   const month = date.slice(0, 2);
   const day = date.slice(2, 4);
 
@@ -75,7 +75,7 @@ const Attendancing = () => {
         <S.HeaderWho>{`감독교사 ${teacherName}`}</S.HeaderWho>
       </Header>
       <Body state="attendance">
-        {schedule === "club" && (
+        {floorDatas.name !== "자습실" && (
           <AttendanceNav floors={floorDatas} Floor={Floor} />
         )}
         <AttendanceSection

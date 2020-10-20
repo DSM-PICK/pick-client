@@ -15,7 +15,7 @@ const AttendanceSection = props => {
   const { location, name: clubName } = props.locations;
 
   const information = useSelector(state => state.attendance);
-  const { clubHead, attendanceData, schedule } = information;
+  const { clubHead, attendanceData } = information;
 
   const isSevenNull =
     !!Object.keys(attendanceData).length &&
@@ -23,7 +23,7 @@ const AttendanceSection = props => {
 
   return (
     <S.Container>
-      {schedule === "club" ? (
+      {clubName !== "self-study" ? (
         <S.Article>
           <S.Name>{clubName}</S.Name>
           <S.Location>{location}</S.Location>
