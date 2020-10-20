@@ -150,16 +150,8 @@ export const requestGetApiWithAccessToken = async (url, headers) => {
     return res;
   } catch (errStatus) {
     switch (errStatus) {
-  } catch (err) {
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
     }
-    switch (err.response.status) {
-      case 403:
-        requesetRefresh();
-      default:
-    }
+
     throw errStatus;
   }
 };
@@ -177,35 +169,8 @@ export const requestDeleteApiWithAccessToken = async (url, headers) => {
     return res;
   } catch (errStatus) {
     switch (errStatus) {
-  } 
+    }
     throw errStatus;
-  }
-};
-
-export const requestDeleteApiWithAccessToken = async (url, headers) => {
-  try {
-    const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
-    const res = await axios[methodType.DELETE](BASE_URL + url, {
-      headers: {
-        ...headers,
-        [ACCESS_TOKEN_NAME]: accessToken
-      }
-    });
-
-    return res;
-  } catch (err) {
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
-    }
-    switch (err.response.status) {
-      case 401:
-      case 403:
-      case 410:
-        requesetRefresh();
-      default:
-    }
-    throw err;
   }
 };
 
@@ -222,7 +187,7 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
   } catch (errStatus) {
     switch (errStatus) {
       case 403:
-  } 
+    }
     throw errStatus;
   }
 };

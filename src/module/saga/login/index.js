@@ -1,6 +1,10 @@
 import { call, takeEvery } from "redux-saga/effects";
 import { loginAction, loginConstant } from "../../action/login";
-import { requestApi, methodType } from "../../../lib/requestApi";
+import {
+  requestApi,
+  methodType,
+  requestAdminApiWithAccessToken
+} from "../../../lib/requestApi";
 
 function* requestLogin(action) {
   const { id, password } = action.payload;
@@ -26,6 +30,32 @@ function* requestLogin(action) {
       }
     }
     console.log(err);
+  }
+}
+
+function* requestAdminLoginSaga(action) {
+  const { id, password } = action.payload;
+  try {
+    const res = yield call(
+      requestAdminApiWithAccessToken,
+      methodType.POST,
+      `/venus/auth`,
+      {
+        id,
+        pw: password
+      }
+    );
+
+    const { access_token, refresh_token } = res.data;
+
+    window.localStorage.setItem(loginConstant.ADMIN_ACCESS_TOKEN, access_token);
+    window.localStorage.setItem(
+      loginConstant.ADMIN_REFRESH_TOKEN,
+      refresh_token
+    );
+    window.location.href = "/admin";
+  } catch (err) {
+    alert("아이디 또는 비밀번호가 맞지 않습니다");
   }
 }
 
