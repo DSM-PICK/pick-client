@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0 20px;
-  font-size: 28px;
-  font-weight: bold;
-  text-align: center;
-  min-width: 180px;
+  display: flex;
+  min-width: max-content;
+  padding: 0 35px;
   color: ${props => (props.done === "done" ? "#C4C4C4" : "black")};
+  font-size: 26px;
+  font-weight: bold;
   text-decoration: none;
+  transform: translateY(-5px);
+  justify-content: center;
 `;
 
 export const activeStyle = {

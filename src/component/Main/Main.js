@@ -1,22 +1,27 @@
-import React, { useCallback, useState } from "react";
-import * as G from "../../GlobalStyle";
+import React, { useCallback, useEffect } from "react";
 import * as S from "./styles";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Body from "../Body/Body";
 import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
-import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import LogoutModal from "./Modal/LogoutModal";
-import PreReport from "./PreReport/PreReport";
-import { useDispatch, useSelector } from "react-redux";
-import { modalOn, modalOff } from "../../module/action/admin_modal";
+import PreReport from "./PreReport/PreReports";
+import Notice from "./Notice/Notice";
 import { Logo } from "../../asset";
+import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
+import { modalOn, modalOff } from "../../module/action/admin_modal";
+import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
+import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
+import { getNoticeListSaga } from "../../module/action/notice";
+import { checkPageWithLogin } from "../../lib/requestApi";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
   const dispatch = useDispatch();
   const isOpen = useSelector(state => state.adminModal.modalOn);
   const mainText = useSelector(state => state.mainText.mainText);
+  const remainingDate = useSelector(state => state.mainText.remainingDate);
   const preAbsence = useSelector(state => state.preAbsence.preAbsence);
 
   const modalOpen = useCallback(() => dispatch(modalOn()), [dispatch]);
@@ -27,8 +32,17 @@ const Main = () => {
     modalDoing();
   };
 
+  useEffect(() => {
+    checkPageWithLogin();
+    dispatch(getPreAbsenceListSaga());
+    dispatch(getMainTextRemainingDateSaga());
+  }, []);
+
+  const TEACHER_NAME = `teacherName`;
+  const teacherName = window.localStorage.getItem(TEACHER_NAME);
+
   return (
-    <G.GlobalContainer>
+    <S.Container>
       <Header>
         <S.MainHeader>
           <S.MainHeaderLogo url={Logo} />
@@ -36,17 +50,19 @@ const Main = () => {
       </Header>
       <Body>
         <S.MainBodyTopText>
-          <S.MainBodyTopWho>{"김정은"} 선생님은</S.MainBodyTopWho>
+          <S.MainBodyTopWho>
+            {teacherName} 선생님은 {/* <S.MainBodyLogoutLayout> */}
+            <S.MainBodyLogoutButton onClick={onModalClick}>
+              로그아웃
+            </S.MainBodyLogoutButton>
+            {/* </S.MainBodyLogoutLayout> */}
+          </S.MainBodyTopWho>
           <S.MainBodyTopWhen>
-            <S.MainBodyTopWhenTime>{"오늘 저녁 "}</S.MainBodyTopWhenTime>
-            자습감독 이십니다.
+            <S.MainBodyTopWhenTime>{`${remainingDate} 저녁 `}</S.MainBodyTopWhenTime>
+            자습감독이십니다.
           </S.MainBodyTopWhen>
         </S.MainBodyTopText>
-        <S.MainBodyLogoutLayout>
-          <S.MainBodyLogoutButton onClick={onModalClick}>
-            로그아웃
-          </S.MainBodyLogoutButton>
-        </S.MainBodyLogoutLayout>
+
         <S.MainBodyOffwork>
           힘내세요! 퇴근까지
           <S.MainBodyOffworkWhen>{" 2시간 38분"}</S.MainBodyOffworkWhen>{" "}
@@ -54,16 +70,20 @@ const Main = () => {
         </S.MainBodyOffwork>
         <S.MainBodyBox>
           <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
-          <AttendanceBody anchorItems={anchorItems} />
+          <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
+        <S.MainBodyBox>
+          <S.MainBodyBoxText>동아리 현황</S.MainBodyBoxText>
+          <Notice />
+        </S.MainBodyBox>
         {isOpen && <LogoutModal onModalClick={onModalClick} />}
       </Body>
       <Footer />
-    </G.GlobalContainer>
+    </S.Container>
   );
 };
 

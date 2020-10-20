@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from "./styles";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
 import Body from "../../Body/Body";
 import AttendanceNav from "./AttendanceNav/AttendanceNav";
-import * as Data from "./Constant";
-import { Link } from "react-router-dom";
 import AttendanceSection from "./AttendanceSection/AttendanceSection";
-import { useSelector } from "react-redux";
+import { BackIcon } from "../../../asset/index";
 
 const getFloorText = floorName => {
   return floorName[floorName.length - 1] === "y"
@@ -15,41 +15,18 @@ const getFloorText = floorName => {
     : `${Number(floorName[floorName.length - 1])}층`;
 };
 
-const getFloorData = floor => {
-  // console.log(floor);
-  // console.log(Data.CLUB_FLOOR2);
-  return floor === "2층"
-    ? Data.CLUB_FLOOR2
-    : floor === "3층"
-    ? Data.CLUB_FLOOR3
-    : Data.CLUB_FLOOR4;
-};
-
-const getDay = floorData => {
-  let month = String(floorData.date).substring(0, 2);
-  let day = String(floorData.date).substring(2, 4);
-  if (month[0] == 0) {
-    month = month[1];
-  }
-  if (day[0] == 0) {
-    day = day[1];
-  }
-  return [month, day];
-};
-
-const Attendancing = ({ location }) => {
-  const Floor = getFloorText(location.pathname.split("/")[3]);
-
-  const floorData = getFloorData(Floor);
-
-  const to = `/${location.pathname.split("/")[1]}/${
-    location.pathname.split("/")[2]
-  }`;
-
+const Attendancing = () => {
   const information = useSelector(state => state.attendance);
   const { date, dayOfWeek, teachers, datas } = information;
   const month = date.slice(0, 2);
   const day = date.slice(2, 4);
+
+  const Floor = getFloorText(location.pathname.split("/")[3]);
+  const backUrl = `/${location.pathname.split("/")[1]}/${
+    location.pathname.split("/")[2]
+  }`;
+
+  const index = window.location.pathname[window.location.pathname.length - 1];
 
   let floorDatas = [];
   let teacherName = `"앗 오류!"`;
@@ -82,23 +59,13 @@ const Attendancing = ({ location }) => {
     }
   }
 
-  teacherName = teacherName === null ? `"앗 오류!"` : teacherName;
-
-  console.log(`floorDatas`);
-  console.log(floorDatas);
-
-  console.log(`location`);
-  console.log(location);
-  console.log(location.pathname);
-  console.log(location.pathname.length);
-  console.log(location.pathname[location.pathname.length - 1]);
-  const index = location.pathname[location.pathname.length - 1];
+  teacherName = !teacherName ? `"앗 오류!"` : teacherName;
 
   return (
     <S.Container>
       <Header>
         <S.HeaderWhere>
-          <S.HeaderBackBtn as={Link} to={to} />
+          <S.HeaderBackBtn as={Link} to={backUrl} url={BackIcon} />
           <S.HeaderFloor>{Floor}</S.HeaderFloor>
         </S.HeaderWhere>
         <S.HeaderWhen>
@@ -108,9 +75,11 @@ const Attendancing = ({ location }) => {
         <S.HeaderWho>{`감독교사 ${teacherName}`}</S.HeaderWho>
       </Header>
       <Body state="attendance">
-        {Floor !== "자습실" && <AttendanceNav floors={floorDatas} />}
+        {floorDatas.name !== "자습실" && (
+          <AttendanceNav floors={floorDatas} Floor={Floor} />
+        )}
         <AttendanceSection
-          key={floorDatas[index].location}
+          key={floorDatas[index]}
           locations={floorDatas[index]}
         />
       </Body>

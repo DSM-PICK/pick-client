@@ -20,28 +20,12 @@ function* requestLogin(action) {
     alert("로그인에 성공했습니다.");
     window.location.href = "/main ";
   } catch (err) {
-    alert("아이디 또는 비밀번호가 맞지 않습니다.");
-  }
-}
-
-function* requestAdminLoginSaga(action) {
-  const { id, password } = action.payload;
-  try {
-    const res = yield call(requestApi, methodType.POST, "/venus/auth", {
-      pw: password,
-      id
-    });
-
-    const { access_token, refresh_token } = res.data;
-
-    window.localStorage.setItem(loginConstant.ADMIN_ACCESS_TOKEN, access_token);
-    window.localStorage.setItem(
-      loginConstant.ADMIN_REFRESH_TOKEN,
-      refresh_token
-    );
-    window.location.href = "/admin";
-  } catch (err) {
-    alert("아이디 또는 비밀번호가 맞지 않습니다.");
+    switch (err.status) {
+      case 404: {
+        alert("아이디 또는 비밀번호가 잘못되었습니다!");
+      }
+    }
+    console.log(err);
   }
 }
 

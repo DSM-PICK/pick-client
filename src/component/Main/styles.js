@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  height: auto;
+  flex-direction: column;
+`;
+
 export const MainHeader = styled.div`
   display: flex;
   width: 100%;
@@ -30,7 +36,10 @@ export const MainBodyTopText = styled.div`
   flex-direction: column;
 `;
 
-export const MainBodyTopWho = styled.div``;
+export const MainBodyTopWho = styled.div`
+  display: flex;
+  align-items: center;
+`;
 export const MainBodyTopWhen = styled.div``;
 export const MainBodyTopWhoName = styled.span``;
 export const MainBodyTopWhenTime = styled.span`
@@ -96,17 +105,19 @@ export const MainBodyBoxBeforeFunc = styled.div`
 `;
 
 export const MainBodyLogoutLayout = styled.div`
-  position: absolute;
-  display: flex;
+  position: relative;
+  display: inline-block;
   height: 27px;
-  left: calc(50% + 230px);
-  transform: translateX(-50%);
-  top: 200px;
+  width: 98px;
+  /* left: calc(50% + 230px); */
+  /* transform: translateX(-50%); */
+  /* top: 200px; */
   align-items: center;
   justify-content: center;
 `;
 
 export const MainBodyLogoutButton = styled.button`
+  margin-left: 20px;
   width: 98px;
   height: 27px;
   background: white;

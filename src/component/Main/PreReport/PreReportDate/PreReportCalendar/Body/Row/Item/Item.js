@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./styles";
 
 const Item = props => {
-  const { isActive, date, month, year } = props;
+  const { isActive, date, month, year } = props.date;
   const { onSelectDay } = props;
 
   const now = new Date();
@@ -14,10 +14,8 @@ const Item = props => {
       ? true
       : false;
 
-  isToday ? console.log(year, month, date) : "";
-
   return (
-    <S.Container onClick={() => onSelectDay(date)}>
+    <S.Container onClick={() => onSelectDay(year, month, date)}>
       <S.Date isActive={isActive} isToday={isToday}>
         {date}
       </S.Date>

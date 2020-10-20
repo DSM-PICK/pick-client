@@ -1,97 +1,81 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as S from "./styles";
 import AttendanceCell from "./AttendanceCell/AttendanceCell";
+import { useDispatch } from "react-redux";
+import { postAttendanceStdDataSaga } from "../../../../../module/action/attendance";
 
 const AttendanceRow = props => {
-  const { gradeClassNumber, name, sequence } = props.attendance;
-  const { onChangeRow } = props;
-  const { classData } = props;
+  const { index } = props;
+  const { name, state: states, gradeClassNumber } = props.attendance;
 
-  //   console.log(props);
+  const statesArr = Object.values(states).filter(state => !!state);
 
-  let sevenState = "출석";
-  let eightState = "출석";
-  let nineState = "출석";
-  let tenState = "출석";
+  const dispatch = useDispatch();
 
   const onSevenClick = value => {
-    sevenState = value;
-    onDataChange();
+    dispatch(
+      postAttendanceStdDataSaga({
+        number: gradeClassNumber,
+        period: 7,
+        state: value
+      })
+    );
+    console.log(gradeClassNumber, 7, value);
   };
 
   const onEightClick = value => {
-    eightState = value;
-    onDataChange();
+    dispatch(
+      postAttendanceStdDataSaga({
+        number: gradeClassNumber,
+        period: 8,
+        state: value
+      })
+    );
+    console.log(gradeClassNumber, 8, value);
   };
 
   const onNineClick = value => {
-    nineState = value;
-    onDataChange();
+    dispatch(
+      postAttendanceStdDataSaga({
+        number: gradeClassNumber,
+        period: 9,
+        state: value
+      })
+    );
+    console.log(gradeClassNumber, 9, value);
   };
 
   const onTenClick = value => {
-    tenState = value;
-    onDataChange();
-  };
-
-  const onDataChange = () => {
-    let classDatas = classData.attendances.filter(
-      attendance => attendance.sequence !== sequence
+    dispatch(
+      postAttendanceStdDataSaga({
+        number: gradeClassNumber,
+        period: 10,
+        state: value
+      })
     );
-
-    classDatas = classDatas.concat({
-      gradeClassNumber: gradeClassNumber,
-      name: name,
-      sequence: sequence,
-      state: {
-        seven: sevenState,
-        eight: eightState,
-        nine: nineState,
-        ten: tenState
-      }
-    });
-
-    classDatas.sort(function (a, b) {
-      return a.sequence - b.sequence;
-    });
-
-    let datas = {
-      ...classData,
-      attendances: [...classDatas]
-    };
-
-    // console.log(datas);
-
-    onChangeRow(datas);
+    console.log(gradeClassNumber, 10, value);
   };
+
+  const onClickFuncArr =
+    statesArr.length === 3
+      ? [onEightClick, onNineClick, onTenClick]
+      : [onSevenClick, onEightClick, onNineClick, onTenClick];
 
   return (
     <S.Containter>
-      <S.SectionSeq>{sequence}</S.SectionSeq>
+      <S.SectionSeq>{index + 1}</S.SectionSeq>
       <S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
       <S.SectionName>{name}</S.SectionName>
       <S.SectionClassWrap>
-        {/* <S.SectionClass>
-					<AttendanceCell sequence={sequence} onClassClick={onSevenClick}></AttendanceCell>
-				</S.SectionClass> */}
-        <S.SectionClass>
-          <AttendanceCell
-            sequence={sequence}
-            onClassClick={onEightClick}
-          ></AttendanceCell>
-        </S.SectionClass>
-        <S.SectionClass>
-          <AttendanceCell
-            sequence={sequence}
-            onClassClick={onNineClick}
-          ></AttendanceCell>
-        </S.SectionClass>
-        <S.SectionClass>
-          <AttendanceCell
-            sequence={sequence}
-            onClassClick={onTenClick}
-          ></AttendanceCell>
-        </S.SectionClass>
+        {statesArr.map((state, index) => (
+          <S.SectionClass key={state + index}>
+            <AttendanceCell
+              index={index}
+              periodState={state}
+              onClassClick={onClickFuncArr[index]}
+            />
+          </S.SectionClass>
+        ))}
       </S.SectionClassWrap>
     </S.Containter>
   );

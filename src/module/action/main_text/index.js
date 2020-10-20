@@ -1,16 +1,19 @@
-export const SET_MAIN_TEXT_NAME = "main_text/SET_MAIN_TEXT_NAME";
 export const SET_MAIN_TEXT_DATE = "main_text/SET_MAIN_TEXT_DATE";
-export const SET_MAIN_TEXT_REMAIN_TIME = "main_text/SET_MAIN_TEXT_REMAIN_TIME";
+export const SET_MAIN_TEXT_REMAINING_DATE =
+  "main_text/SET_MAIN_TEXT_REMAINING_DATE";
 
-export const setMainText = payload => ({
-  type: SET_MAIN_TEXT_NAME,
-  payload
-});
+export const GET_MAIN_TEXT_REMAINING_DATE_SAGA =
+  "main_text/GET_MAIN_TEXT_REMAINING_DATE_SAGA";
+
 export const setMainTextDate = payload => ({
   type: SET_MAIN_TEXT_DATE,
   payload
 });
-export const setMainTextRemainTime = payload => ({
-  type: SET_MAIN_TEXT_REMAIN_TIME,
+export const setMainTextRemainingDate = payload => ({
+  type: SET_MAIN_TEXT_REMAINING_DATE,
   payload
+});
+
+export const getMainTextRemainingDateSaga = () => ({
+  type: GET_MAIN_TEXT_REMAINING_DATE_SAGA
 });

@@ -24,4 +24,6 @@ export const PasswordWrap = styled.div`
     right: 0;
     transform: translateY(-50%);
   }
+  align-items: flex-start;
+  flex-direction: column;
 `;

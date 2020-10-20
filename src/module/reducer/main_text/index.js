@@ -1,44 +1,39 @@
 import {
-  SET_MAIN_TEXT_NAME,
   SET_MAIN_TEXT_DATE,
-  SET_MAIN_TEXT_REMAIN_TIME
+  SET_MAIN_TEXT_REMAINING_DATE
 } from "../../action/main_text";
 
 const initialState = {
-  mainText: {
-    name: "",
-    date: "",
-    remainTime: ""
-  }
+  date: "",
+  remainingDate: ""
 };
 
 const mainTextReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MAIN_TEXT_NAME: {
-      return {
-        mainText: {
-          name: action.payload,
-          ...date,
-          ...remainTime
-        }
-      };
-    }
     case SET_MAIN_TEXT_DATE: {
       return {
-        mainText: {
-          ...name,
-          date: action.payload,
-          ...remainTime
-        }
+        ...state,
+        date: action.payload
       };
     }
-    case SET_MAIN_TEXT_REMAIN_TIME: {
+    case SET_MAIN_TEXT_REMAINING_DATE: {
+      let remainDateText = "";
+      switch (action.payload) {
+        case 0:
+          remainDateText = "오늘";
+          break;
+        case 1:
+          remainDateText = "내일";
+          break;
+        case 2:
+          remainDateText = "모레";
+          break;
+        default:
+          remainDateText = `${action.payload}일 후`;
+      }
       return {
-        mainText: {
-          ...name,
-          ...date,
-          remainTime: action.payload
-        }
+        ...state,
+        remainingDate: remainDateText
       };
     }
     default: {

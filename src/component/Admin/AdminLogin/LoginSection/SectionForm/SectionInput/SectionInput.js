@@ -22,6 +22,9 @@ const SectionInput = props => {
       type={type}
     />
   );
+  const { type, ph_text } = props;
+
+  return <S.Container placeholder={ph_text} type={type} />;
 };
 
 export default SectionInput;

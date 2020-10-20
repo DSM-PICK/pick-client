@@ -6,16 +6,21 @@ import preAbsenceSaga from "./pre_absence";
 import loginSaga from "./login";
 import teacherSaga from "./teacher";
 import clubSaga from "./club";
+import mainTextSaga from "./main_text";
+import noticeSaga from "./notice";
 
 function* rootSaga() {
   yield all([
-    calanderSaga(),
-    autoCompleteSaga(),
-    preAbsenceSaga(),
     attendanceSaga(),
+    autoCompleteSaga(),
+    calanderSaga(),
     loginSaga(),
     teacherSaga(),
-    clubSaga()
+    clubSaga(),
+    mainTextSaga(),
+    noticeSaga(),
+    teacherSaga(),
+    preAbsenceSaga()
   ]);
 }
 

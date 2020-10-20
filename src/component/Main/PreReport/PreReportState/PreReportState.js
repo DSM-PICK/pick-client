@@ -1,19 +1,29 @@
-import React from 'react';
-import * as S from './styles';
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPreAbsenceState } from "../../../../module/action/pre_absence";
+import * as S from "./styles";
 
-const PreReportState = (props) => {
-	const { stateName, preReportState } = props;
-	const { onChangePreReportState } = props;
+const PreReportState = props => {
+  const { stateName } = props;
 
-	return (
-		<S.Container
-			onClick={() => onChangePreReportState(stateName)}
-			stateName={stateName}
-			preReportState={preReportState}
-		>
-			{stateName}
-		</S.Container>
-	);
+  const preReportState = useSelector(state => state.preAbsence.state);
+
+  const dispatch = useDispatch();
+
+  const setAbsenceState = useCallback(
+    payload => dispatch(setPreAbsenceState(payload)),
+    [dispatch]
+  );
+
+  return (
+    <S.Container
+      onClick={() => setAbsenceState(stateName)}
+      stateName={stateName}
+      preReportState={preReportState}
+    >
+      {stateName}
+    </S.Container>
+  );
 };
 
 export default PreReportState;

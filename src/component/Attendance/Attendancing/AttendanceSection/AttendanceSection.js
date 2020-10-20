@@ -1,87 +1,49 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import * as S from "./styles";
 import AttendanceRowTop from "./AttendanceRowTop/AttendanceRowTop";
 import AttendanceRow from "./AttendanceRow/AttendanceRow";
-import * as Data from "../Constant";
-import { getLocationState } from "../../../../lib/attendanceAPI";
-import { useDispatch } from "react-redux";
-import {
-  getAttendanceStdDataSaga,
-  postAttendanceStdDataSaga
-} from "../../../../module/action/attendance";
-
-const getClassLocation = locations => {
-  return locations[location.pathname[location.pathname.length - 1]];
-};
-
-const getClassData = () => {
-  return Number(location.pathname[location.pathname.length - 1]) % 2 === 0
-    ? Data.CLUB_FLOOR4_0
-    : Data.CLUB_FLOOR4_1;
-};
+import { useSelector } from "react-redux";
+import { getLocationState } from "../../../../lib/attendanceApi";
 
 const AttendanceSection = props => {
-  const { location, name, done, priority } = props.locations;
-  console.log(location, name, done, priority);
+  !props.locations
+    ? getLocationState() === "club"
+      ? (window.location.href = "/attendance/club")
+      : (window.location.href = "/attendance/class")
+    : "";
 
-  const [classData, setClassData] = useState(getClassData());
+  const { location, name: clubName } = props.locations;
 
-  const classLocation = getClassLocation(location);
+  const information = useSelector(state => state.attendance);
+  const { clubHead, attendanceData } = information;
 
-  const onChangeRow = data => {
-    setClassData(data);
-  };
-
-  const isSelfStudy = getLocationState() === "class";
-
-  console.log(classData);
-
-  for (let i = 0; i < classData.length; i++) {
-    console.log(classData[i]);
-  }
-
-  // const clData = classData.filter(cData => cData.attendance.se)
-
-  // const dispatch = useDispatch();
-  //
-  // useEffect(() => {
-  //   // useCallback(() => {
-  //   console.log(`getAttendanceStdDataSaga`);
-  //   dispatch(getAttendanceStdDataSaga({ floor: 3, priority: 4 }));
-  //   // }, [dispatch]);
-  // }, []);
-  //
-  // useEffect(() => {
-  //   console.log(`postAttendanceStdDataSaga`);
-  //   dispatch(
-  //     postAttendanceStdDataSaga({ number: 2415, period: 8, state: "출석" })
-  //   );
-  // }, []);
+  const isSevenNull =
+    !!Object.keys(attendanceData).length &&
+    attendanceData[0].state.seven === null;
 
   return (
     <S.Container>
-      {!isSelfStudy && (
+      {clubName !== "self-study" ? (
         <S.Article>
-          <S.Name>{name}</S.Name>
+          <S.Name>{clubName}</S.Name>
           <S.Location>{location}</S.Location>
-          <S.Head>{`부장 : ${classData.head}`}</S.Head>
+          {!!clubHead && <S.Head>{`부장 : ${clubHead}`}</S.Head>}
         </S.Article>
-      )}
-      {isSelfStudy && (
+      ) : (
         <S.Article>
           <S.Location location="자습실">{`자습실`}</S.Location>
         </S.Article>
       )}
-      <AttendanceRowTop />
+      <AttendanceRowTop isSevenNull={isSevenNull} />
       <S.Attendance>
-        {classData.attendances.map(attendance => (
-          <AttendanceRow
-            key={attendance.sequence}
-            attendance={attendance}
-            classData={classData}
-            onChangeRow={onChangeRow}
-          />
-        ))}
+        {!!Object.keys(attendanceData).length &&
+          attendanceData.map((attendance, index) => (
+            <AttendanceRow
+              key={attendance.gradeClassNumber}
+              index={index}
+              attendance={attendance}
+            />
+          ))}
       </S.Attendance>
     </S.Container>
   );

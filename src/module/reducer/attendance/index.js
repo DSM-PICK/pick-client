@@ -7,15 +7,12 @@ import {
   SET_SECOND_TEACHER_NAME,
   SET_THIRD_TEACHER_NAME,
   SET_FORTH_TEACHER_NAME,
-  SET_PRIORITY,
-  SET_FLOOR,
   SET_ATTENDANCE_STD_DATA,
-  SET_ACTIVITY,
-  SET_PERIOD,
-  SET_STATE,
-  SET_NUMBER,
   SET_DATE,
-  SET_DAY_OF_WEEK
+  SET_DAY_OF_WEEK,
+  SET_HEAD,
+  SET_CLUB_NAME,
+  SET_SCHEDULE
 } from "../../action/attendance";
 
 const initialState = {
@@ -36,13 +33,9 @@ const initialState = {
   date: "",
   dayOfWeek: "",
 
-  activity: "",
-  floor: "",
-  priority: "",
-
-  number: "",
-  period: "",
-  state: "",
+  schedule: "",
+  clubName: "",
+  clubHead: "",
 
   attendanceData: {}
 };
@@ -121,42 +114,6 @@ const attendanceReducer = (state = initialState, action) => {
         }
       };
     }
-    case SET_ACTIVITY: {
-      return {
-        ...state,
-        activity: action.payload
-      };
-    }
-    case SET_FLOOR: {
-      return {
-        ...state,
-        floor: action.payload
-      };
-    }
-    case SET_PRIORITY: {
-      return {
-        ...state,
-        priority: action.payload
-      };
-    }
-    case SET_NUMBER: {
-      return {
-        ...state,
-        number: action.payload
-      };
-    }
-    case SET_PERIOD: {
-      return {
-        ...state,
-        period: action.payload
-      };
-    }
-    case SET_STATE: {
-      return {
-        ...state,
-        state: action.payload
-      };
-    }
     case SET_DATE: {
       return {
         ...state,
@@ -167,6 +124,24 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         dayOfWeek: action.payload
+      };
+    }
+    case SET_SCHEDULE: {
+      return {
+        ...state,
+        schedule: action.payload
+      };
+    }
+    case SET_CLUB_NAME: {
+      return {
+        ...state,
+        clubName: action.payload
+      };
+    }
+    case SET_HEAD: {
+      return {
+        ...state,
+        clubHead: action.payload
       };
     }
     case SET_ATTENDANCE_STD_DATA: {
