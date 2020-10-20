@@ -26,7 +26,7 @@ export const requesetRefresh = async () => {
 
     window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
   } catch (err) {
-    if (err.status === 403) {
+    if (err.response.status === 403) {
       alert("인증이 만료되어 재인증이 필요합니다.");
       window.localStorage.clear();
       window.location.href = "/";
@@ -55,9 +55,13 @@ export const checkIsLogin = async () => {
 
 export const checkPageWithLogin = () => {
   checkIsLogin().then(isLogin => {
-    if (!isLogin) {
+    if (!window.localStorage.getItem(REFRESH_TOKEN)) {
       alert("로그인이 필요한 서비스입니다.");
       location.href = "/";
+    }
+    if (!isLogin) {
+      requesetRefresh();
+      console.log("refresh");
     }
   });
 };
@@ -73,12 +77,11 @@ export const requestGetApiWithAccessToken = async (url, headers) => {
     });
     return res;
   } catch (err) {
-    console.log(err);
-    // if (!err.response) {
-    //   alert("네트워크 상태를 확인해 주세요");
-    //   throw null;
-    // }
-    switch (err.status) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    switch (err.response.status) {
       case 403:
         requesetRefresh();
       default:
@@ -95,10 +98,12 @@ export const requestApi = async (method, url, body, headers) => {
     const res = await axios[method](BASE_URL + url, body, { headers });
     return res;
   } catch (err) {
-    console.log(err);
-    // !err.response && alert("네트워크 상태를 확인해 주세요");
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
 
-    switch (err.status) {
+    switch (err.response.status) {
       case 403:
         requesetRefresh();
       default:
@@ -119,12 +124,11 @@ export const requestDeleteApiWithAccessToken = async (url, headers) => {
 
     return res;
   } catch (err) {
-    console.log(err);
-    // if (!err.response) {
-    //   alert("네트워크 상태를 확인해 주세요");
-    //   throw null;
-    // }
-    switch (err.status) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    switch (err.response.status) {
       case 401:
       case 403:
       case 410:
@@ -148,12 +152,11 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
 
     return res;
   } catch (err) {
-    console.log(err);
-    // if (!err.response) {
-    //   alert("네트워크 상태를 확인해 주세요");
-    //   throw null;
-    // }
-    switch (err.status) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    switch (err.response.status) {
       case 401:
       case 403:
       case 410:

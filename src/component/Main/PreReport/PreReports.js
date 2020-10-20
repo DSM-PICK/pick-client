@@ -6,7 +6,7 @@ import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
-import { makeMonth2Digit } from "../../../lib/attendanceApi";
+import { makeDate2Digit } from "../../../lib/attendanceApi";
 import {
   getPreAbsenceListSaga,
   createPreAbsenceSaga,
@@ -43,13 +43,13 @@ const PreReports = () => {
     const data = {
       state: String(state),
       stdnum: Number(nameText.slice(0, 4)),
-      start_date: `${preDate.year}-${makeMonth2Digit(preDate.month)}-${
-        preDate.day
-      }`,
+      start_date: `${preDate.year}-${makeDate2Digit(
+        preDate.month
+      )}-${makeDate2Digit(preDate.day)}`,
       start_period: String(preDate.period),
-      end_date: `${nextDate.year}-${makeMonth2Digit(nextDate.month)}-${
-        nextDate.day
-      }`,
+      end_date: `${nextDate.year}-${makeDate2Digit(
+        nextDate.month
+      )}-${makeDate2Digit(nextDate.day)}`,
       end_period: String(nextDate.period)
     };
 
