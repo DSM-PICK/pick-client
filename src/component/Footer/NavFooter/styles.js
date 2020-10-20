@@ -27,5 +27,5 @@ export const FooterNavItem = styled.div`
         : props.imglink
         ? `url(${props.imglink})`
         : "none"}
-    no-repeat center/90% 90%;
+    no-repeat center/80% 80%;
 `;

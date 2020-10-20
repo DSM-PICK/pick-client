@@ -70,8 +70,6 @@ function* getFloorData(payload) {
 
     const floorData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    console.log(floorData);
-
     const {
       date,
       schedule,
@@ -86,7 +84,6 @@ function* getFloorData(payload) {
     yield put(setFloorData(locations));
     yield put(setFloorTeacherName(teacherName));
   } catch (error) {
-    console.log(error);
     // yield put(FAILURE_GET_SELF_STUDY_FLOOR_DATA_SAGA(error.response));
 
     switch (error.status) {
@@ -112,8 +109,6 @@ function* getAttendanceStdDataSaga(payload) {
       REQUEST_URL
     );
 
-    console.log(attendanceData);
-
     const atdData = attendanceData.data.attendances;
     const clubHead = attendanceData.data.head;
 
@@ -121,7 +116,6 @@ function* getAttendanceStdDataSaga(payload) {
     yield put(setAttendanceStdData(atdData));
   } catch (error) {
     // yield put(FAILURE_GET_ATTENDANCE_STD_DATA_SAGA(error.response));
-    console.log(error);
     console.log("출석 데이터 불러오기 실패");
     switch (error.status) {
       case 403:
