@@ -6,6 +6,7 @@ export const Container = styled.input`
   width: calc(25vw - 30px);
   min-width: 300px;
   border: none;
+  border-bottom: 1px solid gray;
   color: #000000;
   font-size: 20px;
   outline: none;
