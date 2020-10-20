@@ -1,4 +1,5 @@
 import axios from "axios";
+import { loginConstant } from "../module/action/login";
 
 const BASE_URL = "https://api.dsm-pick.com";
 
@@ -9,21 +10,69 @@ export const methodType = {
   PATCH: "patch",
   DELETE: "delete"
 };
+
 const ACCESS_TOKEN_NAME = "Authorization";
 
 const ACCESS_TOKEN = "accessToken";
 const REFRESH_TOKEN = "refreshToken";
 const TEACHER_NAME = "teacherName";
 
+export const requestGetApi = async (url, headers) => {
+  try {
+    const res = await axios.get(BASE_URL + url, {
+      headers
+    });
+
+    return res;
+  } catch (err) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    throw err.response.status;
+  }
+};
+
+export const requestDeleteApi = async (url, headers) => {
+  try {
+    const res = await axios.delete(BASE_URL + url, {
+      headers
+    });
+
+    return res;
+  } catch (err) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    throw err.response.status;
+  }
+};
+
+export const requestApi = async (method, url, body, headers) => {
+  try {
+    const res = await axios[method](BASE_URL + url, body, {
+      headers
+    });
+
+    return res;
+  } catch (err) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    throw err.response.status;
+  }
+};
+
 export const requesetRefresh = async () => {
   try {
     const refreshToken = window.localStorage.getItem(REFRESH_TOKEN);
-    const res = await axios.get(`${BASE_URL}/saturn/auth/access-token`, {
+    await requestGetApi(`/saturn/auth/access-token`, {
       headers: {
         [ACCESS_TOKEN_NAME]: refreshToken
       }
     });
-
     window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
   } catch (err) {
     if (err.response.status === 403) {
@@ -31,6 +80,30 @@ export const requesetRefresh = async () => {
       window.localStorage.clear();
       window.location.href = "/";
     }
+  }
+};
+
+export const requesetAdminRefresh = async () => {
+  try {
+    const refreshToken = window.localStorage.getItem(
+      loginConstant.ADMIN_REFRESH_TOKEN
+    );
+    const res = await requestApi(
+      methodType.PATCH,
+      `/venus/auth`,
+      {},
+      {
+        "x-refresh-token": "Bearer " + refreshToken
+      }
+    );
+    window.localStorage.setItem(
+      loginConstant.ADMIN_ACCESS_TOKEN,
+      res.data.access_token
+    );
+    console.log(res.data.access_token);
+  } catch (errStatus) {
+    window.localStorage.clear();
+    window.location.href = "/admin/login";
   }
 };
 
@@ -69,73 +142,35 @@ export const checkPageWithLogin = () => {
 export const requestGetApiWithAccessToken = async (url, headers) => {
   try {
     const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
-    const res = await axios.get(BASE_URL + url, {
-      headers: {
-        ...headers,
-        [ACCESS_TOKEN_NAME]: accessToken
-      }
+    const res = await requestGetApi(url, {
+      [ACCESS_TOKEN_NAME]: accessToken,
+      ...headers
     });
+
     return res;
-  } catch (err) {
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
-    }
-    switch (err.response.status) {
-      case 403:
-        requesetRefresh();
-      default:
-    }
-    throw err;
-  }
-};
-
-export const requestGetApi = async (url, headers) =>
-  axios.get(BASE_URL + url, { headers });
-
-export const requestApi = async (method, url, body, headers) => {
-  try {
-    const res = await axios[method](BASE_URL + url, body, { headers });
-    return res;
-  } catch (err) {
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
+  } catch (errStatus) {
+    switch (errStatus) {
     }
 
-    switch (err.response.status) {
-      case 403:
-        requesetRefresh();
-      default:
-    }
-    throw err.response;
+    throw errStatus;
   }
 };
 
 export const requestDeleteApiWithAccessToken = async (url, headers) => {
   try {
-    const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
-    const res = await axios[methodType.DELETE](BASE_URL + url, {
-      headers: {
-        ...headers,
-        [ACCESS_TOKEN_NAME]: accessToken
-      }
+    const accessToken = window.localStorage.getItem(
+      loginConstant.ADMIN_ACCESS_TOKEN
+    );
+    const res = await requestDeleteApi(url, {
+      [ACCESS_TOKEN_NAME]: "Bearer " + accessToken,
+      ...headers
     });
 
     return res;
-  } catch (err) {
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
+  } catch (errStatus) {
+    switch (errStatus) {
     }
-    switch (err.response.status) {
-      case 401:
-      case 403:
-      case 410:
-        requesetRefresh();
-      default:
-    }
-    throw err;
+    throw errStatus;
   }
 };
 
@@ -143,27 +178,66 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
   const accessToken = window.localStorage.getItem(ACCESS_TOKEN);
 
   try {
-    const res = await axios[method](BASE_URL + url, body, {
-      headers: {
-        [ACCESS_TOKEN_NAME]: accessToken,
-        ...headers
-      }
+    const res = await requestApi(method, url, body, {
+      [ACCESS_TOKEN_NAME]: accessToken,
+      ...headers
     });
 
     return res;
-  } catch (err) {
-    if (!err.response) {
-      alert("네트워크 상태를 확인해 주세요");
-      throw null;
-    }
-    switch (err.response.status) {
-      case 401:
+  } catch (errStatus) {
+    switch (errStatus) {
       case 403:
-      case 410:
-        requesetRefresh();
+    }
+    throw errStatus;
+  }
+};
+
+export const requestAdminGetApiWithAccessToken = async (url, headers) => {
+  try {
+    const accessToken = window.localStorage.getItem(
+      loginConstant.ADMIN_ACCESS_TOKEN
+    );
+    const res = await requestGetApi(url, {
+      [ACCESS_TOKEN_NAME]: "Bearer " + accessToken,
+      ...headers
+    });
+
+    return res;
+  } catch (errStatus) {
+    switch (errStatus) {
+      case 410: {
+        requesetAdminRefresh();
+      }
       default:
     }
-    throw err;
+    throw errStatus;
+  }
+};
+
+export const requestAdminApiWithAccessToken = async (
+  method,
+  url,
+  body,
+  headers
+) => {
+  try {
+    const accessToken = window.localStorage.getItem(
+      loginConstant.ADMIN_ACCESS_TOKEN
+    );
+    const res = await requestApi(method, url, body, {
+      [ACCESS_TOKEN_NAME]: "Bearer " + accessToken,
+      ...headers
+    });
+
+    return res;
+  } catch (errStatus) {
+    switch (errStatus) {
+      case 410: {
+        requesetAdminRefresh();
+      }
+      default:
+    }
+    throw errStatus;
   }
 };
 

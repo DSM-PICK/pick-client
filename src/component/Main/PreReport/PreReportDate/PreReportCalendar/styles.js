@@ -29,13 +29,8 @@ export const MonthText = styled.div`
   justify-content: center;
 `;
 
-export const MonthArrow = styled.div`
+export const MonthArrow = styled.img`
   display: flex;
   width: 20px;
   height: 20px;
-  background: ${props =>
-      props.isLeft
-        ? `url('./src/asset/Calendar/calendarModalLeft.svg')`
-        : `url('./src/asset/Calendar/calendarModalRight.svg')`}
-    no-repeat;
 `;

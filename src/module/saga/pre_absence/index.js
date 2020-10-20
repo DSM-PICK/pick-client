@@ -53,7 +53,7 @@ function* createPreAbsenceSaga(payload) {
     } = payload.payload;
     const REQUEST_URL = PRE_ABSENCE.CREATE_PRE_ABSENCE_URL();
 
-    const isRightData = checkPreAbsenceData(
+    const isDataRight = checkPreAbsenceData(
       state,
       stdnum,
       start_date,
@@ -80,7 +80,9 @@ function* createPreAbsenceSaga(payload) {
     yield put({ type: INIT_PRE_ABSENCE_DATA });
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
-    alert("사전 결석 신고를 실패했습니다.");
+    if (!!error.response) {
+      alert("사전 결석 신고를 실패했습니다.");
+    }
   }
 }
 

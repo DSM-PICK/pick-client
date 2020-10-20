@@ -81,24 +81,25 @@ export const checkPreAbsenceData = (
   end_date,
   end_period
 ) => {
-  if (isRightState(state)) {
+  if (!PreAbsenceReg.isRightState(state)) {
     alert(`출석 상태는 "외출", "현체", "병결", "공결" 중 하나여야합니다.`);
-    throw new Error(`State is not in "외출", "현체", "병결", "공결"`);
+    throw new Error(`State(${state}) is not in "외출", "현체", "병결", "공결"`);
   }
-  if (isRightStdnum(stdnum)) {
+  if (!PreAbsenceReg.isRightStdnum(stdnum)) {
     alert(`이름이 올바르지 않습니다.`);
-    throw new Error(`Invalid stdnum`);
+    throw new Error(`Invalid stdnum(${stdnum})`);
   }
   for (let date of [start_date, end_date]) {
-    if (isRightDate(date)) {
+    if (!PreAbsenceReg.isRightDate(date)) {
       alert(`날짜가 올바르지 않습니다.`);
-      throw new Error(`Invalid Date`);
+      throw new Error(`Invalid Date(${date})`);
     }
   }
   for (let period of [start_period, end_period]) {
-    if (isRightPeriod(period)) {
+    if (!PreAbsenceReg.isRightPeriod(period)) {
       alert(`교시가 올바르지 않습니다.`);
-      throw new Error(`Invalid Period`);
+      throw new Error(`Invalid Period(${period})`);
     }
   }
+  return true;
 };

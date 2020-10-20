@@ -50,7 +50,7 @@ function* getTeacherTodaySaga() {
 
 function* getTeacherWeekSaga() {
   const now = new Date();
-  now.setDate(now.getDate() - (now.getDay() - 1));
+  now.setDate(now.getDate() - now.getDay());
 
   const dateArr = [];
   for (let i = 1; i <= 5; i++) {

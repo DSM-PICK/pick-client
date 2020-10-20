@@ -15,6 +15,7 @@ export { default as DeleteIcon } from "./modal/delete.svg";
 export { default as whiteIcon } from "./modal/white-cancel.svg";
 export { default as changeArrow } from "./modal/changeArrow.svg";
 export { default as Eye } from "./modal/eye.svg";
+export { default as CloseEye } from "./modal/closeEye.svg";
 
 export { default as BackIcon } from "./Header/back.png";
 
@@ -31,7 +32,11 @@ export { default as TonggeiIcon } from "./Footer/tonggei.svg";
 export { default as TonggeiOnIcon } from "./Footer/tonggeiOn.svg";
 
 export { default as Logo } from "./Logo/Logo.svg";
+export { default as WhiteLogo } from "./Logo/WhiteLogo.svg";
 export { default as LogoForAdmin } from "./Logo/LogoForAdmin.svg";
 export { default as PickLogoSVG } from "./Logo/PickLogo.svg";
 
 export { default as FAVICON } from "./favicon/FAVICON.png";
+
+export { default as CalendarModalLeft } from "./Calendar/calendarModalLeft.svg";
+export { default as CalendarModalRight } from "./Calendar/calendarModalRight.svg";

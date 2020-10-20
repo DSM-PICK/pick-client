@@ -29,7 +29,7 @@ const IndexHeader = () => {
           {date.month}월 {date.date}일
         </S.P>
       </S.Body>
-      {loginModalIsOpen && <LoginModal />}
+      {loginModalIsOpen && <LoginModal closeModal={changeLoginModalIsOpen} />}
     </S.Container>
   );
 };
