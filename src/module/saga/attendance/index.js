@@ -68,7 +68,9 @@ function* getFloorData(payload) {
       floor
     );
 
-    const selfStudyData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+    const floorData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+
+    console.log(floorData);
 
     const {
       date,
@@ -76,7 +78,7 @@ function* getFloorData(payload) {
       dayOfWeek,
       locations,
       teacherName
-    } = selfStudyData.data;
+    } = floorData.data;
 
     yield put(setDate(date));
     yield put(setSchedule(schedule));

@@ -51,8 +51,8 @@ export const Information = styled.p`
   display: flex;
   width: 100%;
   height: auto;
-  padding: 3px;
+  padding: 5px;
   color: #000000;
-  font-size: 22px;
+  font-size: 20px;
   text-align: left;
 `;

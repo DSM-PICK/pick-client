@@ -26,10 +26,6 @@ export const requesetRefresh = async () => {
 
     window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
   } catch (err) {
-    console.log(`err`);
-    console.log(err);
-    console.log(err.status);
-    console.log(err.response);
     if (err.response.status === 403) {
       alert("인증이 만료되어 재인증이 필요합니다.");
       window.localStorage.clear();
@@ -81,12 +77,11 @@ export const requestGetApiWithAccessToken = async (url, headers) => {
     });
     return res;
   } catch (err) {
-    console.log(err);
-    // if (!err.response) {
-    //   alert("네트워크 상태를 확인해 주세요");
-    //   throw null;
-    // }
-    switch (err.status) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    switch (err.response.status) {
       case 403:
         requesetRefresh();
       default:
@@ -103,10 +98,12 @@ export const requestApi = async (method, url, body, headers) => {
     const res = await axios[method](BASE_URL + url, body, { headers });
     return res;
   } catch (err) {
-    console.log(err);
-    // !err.response && alert("네트워크 상태를 확인해 주세요");
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
 
-    switch (err.status) {
+    switch (err.response.status) {
       case 403:
         requesetRefresh();
       default:
@@ -127,12 +124,11 @@ export const requestDeleteApiWithAccessToken = async (url, headers) => {
 
     return res;
   } catch (err) {
-    console.log(err);
-    // if (!err.response) {
-    //   alert("네트워크 상태를 확인해 주세요");
-    //   throw null;
-    // }
-    switch (err.status) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    switch (err.response.status) {
       case 401:
       case 403:
       case 410:
@@ -156,12 +152,11 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
 
     return res;
   } catch (err) {
-    console.log(err);
-    // if (!err.response) {
-    //   alert("네트워크 상태를 확인해 주세요");
-    //   throw null;
-    // }
-    switch (err.status) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    switch (err.response.status) {
       case 401:
       case 403:
       case 410:
