@@ -20,7 +20,7 @@ function* requestLogin(action) {
     alert("로그인에 성공했습니다.");
     window.location.href = "/main ";
   } catch (err) {
-    console.log(err);
+    alert("아이디 또는 비밀번호가 맞지 않습니다.");
   }
 }
 
