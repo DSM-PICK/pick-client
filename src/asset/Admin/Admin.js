@@ -14,3 +14,5 @@ export { default as NotFoundText } from "./NotFoundText.svg";
 
 export { default as AdminLoginBackground } from "./Login/background.svg";
 export { default as ShowPwIcon } from "./Login/show_pw.svg";
+
+export { default as AdminPrintSvg } from "./AdminPrint.svg";
