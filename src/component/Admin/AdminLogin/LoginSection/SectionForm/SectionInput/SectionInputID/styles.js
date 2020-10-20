@@ -1,9 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-	display: flex;
-	border: none;
-	border-bottom: 1px solid #c4c4c4;
+  display: flex;
+  border: none;
 
-	margin: 25px 0;
+  margin: 25px 0;
 `;

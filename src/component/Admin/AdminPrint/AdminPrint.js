@@ -1,8 +1,8 @@
 import React from "react";
+import { AdminClubDownload, AdminPrintSvg } from "../../../asset/Admin/Admin";
 import AdminBody from "../AdminBody/AdminBody";
 import AdminBodyFunc from "../AdminBody/AdminBodyFunc/AdminBodyFunc";
 import AdminBodyTitle from "../AdminBody/AdminBodyTitle/AdminBodyTitle";
-import AdminNav from "../AdminNav/AdminNav";
 import * as S from "./styles";
 
 const AdminPrint = () => {
@@ -12,11 +12,9 @@ const AdminPrint = () => {
         <AdminBodyTitle title="출석기록 출력" />
         <AdminBodyFunc>
           <S.AbsoluteBackground>
-            <S.AbsoluteImg imglink={"/src/asset/Admin/AdminPrint.svg"} />
+            <S.AbsoluteImg imglink={AdminPrintSvg} />
             <S.DownloadTag>
-              <S.DownloadImg
-                imglink={"/src/asset/Admin/AdminClubDownload.svg"}
-              ></S.DownloadImg>
+              <S.DownloadImg imglink={AdminClubDownload}></S.DownloadImg>
               <S.DownloadBtn type="button" value="파일 다운로드" />
             </S.DownloadTag>
           </S.AbsoluteBackground>
