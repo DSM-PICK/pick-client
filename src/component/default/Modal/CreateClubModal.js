@@ -3,13 +3,16 @@ import { SaveIcon } from "../../../asset";
 import ImgButton from "./ImgButton/ImgButton";
 import ModalCreateClubList from "../ModalClubList/ModalCreateClubList";
 import * as S from "./styles";
+import { useDispatch } from "react-redux";
+import { addClubSaga } from "../../../module/action/club";
 
 const CreateClubModal = ({ isOpen, setFunc }) => {
+  const dispatch = useDispatch();
   const [createCircleData, setCreateCircleData] = useState({
     name: "",
-    where: "",
+    location: "",
     teacher: "",
-    owner: ""
+    club_head: ""
   });
   const [createSutdnetArray, setCreateSutdnetArray] = useState([]);
   const addCreateSutdnetArray = useCallback(newStudentStr => {
@@ -26,12 +29,22 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
   }, []);
 
   const changeCircleData = useCallback(e => {
-    const { target, value } = e;
+    const { name, value } = e.target;
     setCreateCircleData(prev => ({
       ...prev,
-      [target]: value
+      [name]: value
     }));
   }, []);
+
+  const addClub = useCallback(() => {
+    const { name, location, teacher, club_head } = createCircleData;
+    if (!name || !location || !teacher || !club_head) {
+      alert("빈칸을 모두 채워주세요");
+      return;
+    }
+
+    dispatch(addClubSaga(createCircleData));
+  }, [createCircleData]);
   return (
     <>
       {isOpen && (
@@ -39,7 +52,7 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
           <S.Modal ref={modalRef}>
             <S.Header>
               <S.HeaderLeft>
-                <ImgButton imgSrc={SaveIcon} onClick={() => {}} color="#267DFF">
+                <ImgButton imgSrc={SaveIcon} onClick={addClub} color="#267DFF">
                   저장
                 </ImgButton>
               </S.HeaderLeft>
@@ -56,8 +69,8 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
                   onChange={changeCircleData}
                   fontSize={15}
                   color="#707070"
-                  name="where"
-                  value={createCircleData.where}
+                  name="location"
+                  value={createCircleData.location}
                 />
               </S.HeaderCenter>
               <S.HeaderRight active={true}>
@@ -74,8 +87,8 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
                   onChange={changeCircleData}
                   fontSize={13}
                   color="#707070"
-                  name="owner"
-                  value={createCircleData.owner}
+                  name="club_head"
+                  value={createCircleData.club_head}
                 />
               </S.HeaderRight>
             </S.Header>

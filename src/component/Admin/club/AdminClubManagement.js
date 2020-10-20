@@ -1,14 +1,17 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ManagementClubList from "../../default/ClubList/ManagementClubList";
 import ClubManagementModal from "../../default/Modal/ClubManagementModal";
 import * as S from "./styles";
+import { useDispatch } from "react-redux";
 import ImgButton from "../../default/Modal/ImgButton/ImgButton";
 import { DeleteIcon, PlusIcon } from "../../../asset";
 import ClubManagementFooterNotification from "../../default/Notification/footer/ClubManagementFooterNotification";
 import CreateClubModal from "../../default/Modal/CreateClubModal";
+import { deleteClubSaga } from "../../../module/action/club";
 
 const AdminClubManagement = () => {
+  const dispatch = useDispatch();
   const data = useSelector(state => state.club.list);
   const [isDeleteOn, setIsDeleteOn] = useState(false);
   const [selectItem, setSelectItem] = useState([]);
@@ -17,10 +20,15 @@ const AdminClubManagement = () => {
     setIsDeleteOn(prev => !prev);
   }, []);
 
-  const changeSelectItem = useCallback(newId => {
+  const deleteClub = useCallback(() => {
+    dispatch(deleteClubSaga(selectItem));
+  }, [selectItem]);
+
+  const changeSelectItem = useCallback(newName => {
     setSelectItem(prev => {
-      if (prev.includes(newId)) return prev.filter(clubId => clubId !== newId);
-      return prev.concat(newId);
+      if (prev.includes(newName))
+        return prev.filter(clubName => clubName !== newName);
+      return prev.concat(newName);
     });
   }, []);
 
@@ -58,6 +66,7 @@ const AdminClubManagement = () => {
         />
         <CreateClubModal isOpen={isAddMode} setFunc={setIsAddMode} />
         <ClubManagementFooterNotification
+          deleteClub={deleteClub}
           isDeleteMode={selectItem.length > 0}
           active={isDeleteOn}
         />

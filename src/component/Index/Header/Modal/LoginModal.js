@@ -4,10 +4,11 @@ import { loginActionCreater } from "../../../../module/action/login";
 import PasswordEye from "../../../default/PasswordEye/PasswordEye";
 import * as S from "./styles";
 
-const LoginModal = () => {
+const LoginModal = ({ closeModal }) => {
   const dispatch = useDispatch();
   const [typeIsPassword, setTypeIsPassword] = useState(true);
   const passwordRef = useRef();
+  const modalRef = useRef();
   const [loginInfo, setLoginInfo] = useState({
     id: "",
     password: ""
@@ -32,10 +33,16 @@ const LoginModal = () => {
     },
     [loginInfo]
   );
+  const modalOff = useCallback(e => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  }, []);
+
   return (
-    <S.Container>
+    <S.Container onClick={modalOff}>
       <form onSubmit={requestLogin}>
-        <S.Modal>
+        <S.Modal ref={modalRef}>
           <S.Header>
             <S.Title>로그인</S.Title>
             <S.Hr />
