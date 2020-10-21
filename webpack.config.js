@@ -19,8 +19,12 @@ module.exports = {
         }
       },
       {
-        test: /\.(jpg|png|jpeg|bmp|gif|svg|ico)?$/,
+        test: /\.(jpg|png|jpeg|bmp|gif|svg)?$/,
         loader: "file-loader"
+      },
+      {
+        test: /\.(ico)$/,
+        use: "file-loader?name=assets/[name].[ext]"
       }
     ]
   },
