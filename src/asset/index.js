@@ -36,7 +36,7 @@ export { default as WhiteLogo } from "./Logo/WhiteLogo.svg";
 export { default as LogoForAdmin } from "./Logo/LogoForAdmin.svg";
 export { default as PickLogoSVG } from "./Logo/PickLogo.svg";
 
-export { default as FAVICON } from "./favicon/FAVICON.png";
+// export { default as FAVICON } from "./favicon/FAVICON.png";
 
 export { default as CalendarModalLeft } from "./Calendar/calendarModalLeft.svg";
 export { default as CalendarModalRight } from "./Calendar/calendarModalRight.svg";

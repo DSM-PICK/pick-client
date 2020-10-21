@@ -67,14 +67,13 @@ export const requestApi = async (method, url, body, headers) => {
 export const requesetRefresh = async () => {
   try {
     const refreshToken = window.localStorage.getItem(REFRESH_TOKEN);
-    await requestGetApi(`/saturn/auth/access-token`, {
-      headers: {
-        [ACCESS_TOKEN_NAME]: refreshToken
-      }
+    const res = await requestGetApi(`/saturn/auth/access-token`, {
+      [ACCESS_TOKEN_NAME]: refreshToken
     });
     window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
+    window.location.href = window.location.href;
   } catch (err) {
-    if (err.response.status === 403) {
+    if (err === 403 || err.response.status === 403) {
       alert("인증이 만료되어 재인증이 필요합니다.");
       window.localStorage.clear();
       window.location.href = "/";
@@ -133,7 +132,6 @@ export const checkPageWithLogin = () => {
     }
     if (!isLogin) {
       requesetRefresh();
-      console.log("refresh");
     }
   });
 };
