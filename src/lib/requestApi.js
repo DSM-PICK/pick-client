@@ -129,8 +129,7 @@ export const checkPageWithLogin = () => {
     if (!window.localStorage.getItem(REFRESH_TOKEN)) {
       alert("로그인이 필요한 서비스입니다.");
       location.href = "/";
-    }
-    if (!isLogin) {
+    } else if (!isLogin) {
       requesetRefresh();
     }
   });
