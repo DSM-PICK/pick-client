@@ -19,12 +19,8 @@ module.exports = {
         }
       },
       {
-        test: /\.(jpg|png|jpeg|bmp|gif|svg)?$/,
+        test: /\.(jpg|png|jpeg|bmp|gif|svg|ico)?$/,
         loader: "file-loader"
-      },
-      {
-        test: /\.(ico)$/,
-        use: "file-loader?name=assets/[name].[ext]"
       }
     ]
   },
@@ -36,7 +32,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html"
-      // favicon: "./public/favicon.ico"
     })
   ],
   devServer: {
