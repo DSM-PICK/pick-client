@@ -55,6 +55,8 @@ export const MainBodyOffwork = styled.div`
 
 export const MainBodyOffworkWhen = styled.span`
   color: #2764a7;
+  font-size: 32px;
+  font-weight: bold;
 `;
 
 export const MainBodyBox = styled.div`
