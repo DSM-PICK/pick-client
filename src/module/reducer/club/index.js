@@ -1,4 +1,8 @@
-import { UPDATE_CLUB_DETAIL, UPDATE_CLUB_LIST } from "../../action/club";
+import {
+  GET_CLUB_LOCATION,
+  UPDATE_CLUB_DETAIL,
+  UPDATE_CLUB_LIST
+} from "../../action/club";
 
 const initialState = {
   detail: {
@@ -12,7 +16,8 @@ const initialState = {
     },
     students: []
   },
-  list: []
+  list: [],
+  location: []
 };
 
 const clubReducer = (state = initialState, action) => {
@@ -26,6 +31,11 @@ const clubReducer = (state = initialState, action) => {
       return {
         ...state,
         detail: action.payload
+      };
+    case GET_CLUB_LOCATION:
+      return {
+        ...state,
+        location: action.payload
       };
     default:
       return state;

@@ -1,23 +1,29 @@
-import React, { useCallback, useRef, useState } from "react";
-import { SaveIcon } from "../../../asset";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { CancelIcon, SaveIcon } from "../../../asset";
 import ImgButton from "./ImgButton/ImgButton";
 import ModalCreateClubList from "../ModalClubList/ModalCreateClubList";
 import * as S from "./styles";
-import { useDispatch } from "react-redux";
-import { addClubSaga } from "../../../module/action/club";
+import LocationView from "./LocationView/LocationView";
+import { useDispatch, useSelector } from "react-redux";
+import { addClubSaga, getClubLocationSaga } from "../../../module/action/club";
 
 const CreateClubModal = ({ isOpen, setFunc }) => {
   const dispatch = useDispatch();
+
   const [createCircleData, setCreateCircleData] = useState({
     name: "",
     location: "",
     teacher: "",
     club_head: ""
   });
+
+  useEffect(() => {
+    dispatch(getClubLocationSaga(createCircleData.location));
+  }, [createCircleData.location]);
+
   const [createSutdnetArray, setCreateSutdnetArray] = useState([]);
-  const addCreateSutdnetArray = useCallback(newStudentStr => {
-    const [number, name] = newStudentStr.split(" ");
-    setCreateSutdnetArray(prev => prev.concat({ number, name }));
+  const addCreateSutdnetArray = useCallback(newStudentNum => {
+    setCreateSutdnetArray(prev => prev.concat(newStudentNum));
   }, []);
 
   const modalRef = useRef();
@@ -36,15 +42,34 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
     }));
   }, []);
 
+  const setLocation = useCallback(location => {
+    setCreateCircleData(prev => ({
+      ...prev,
+      location
+    }));
+  }, []);
+
+  const cencelButton = useCallback(() => {
+    setCreateCircleData({
+      name: "",
+      location: "",
+      teacher: "",
+      club_head: ""
+    });
+    setCreateSutdnetArray([]);
+  }, []);
+
   const addClub = useCallback(() => {
     const { name, location, teacher, club_head } = createCircleData;
     if (!name || !location || !teacher || !club_head) {
       alert("빈칸을 모두 채워주세요");
       return;
     }
+    dispatch(
+      addClubSaga({ clubData: createCircleData, member: createSutdnetArray })
+    );
+  }, [createCircleData, createSutdnetArray]);
 
-    dispatch(addClubSaga(createCircleData));
-  }, [createCircleData]);
   return (
     <>
       {isOpen && (
@@ -52,6 +77,13 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
           <S.Modal ref={modalRef}>
             <S.Header>
               <S.HeaderLeft>
+                <ImgButton
+                  imgSrc={CancelIcon}
+                  onClick={cencelButton}
+                  color="#E81A95"
+                >
+                  취소
+                </ImgButton>
                 <ImgButton imgSrc={SaveIcon} onClick={addClub} color="#267DFF">
                   저장
                 </ImgButton>
@@ -64,14 +96,18 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
                   name="name"
                   value={createCircleData.name}
                 />
-                <S.Input
-                  placeholder="동아리 실"
-                  onChange={changeCircleData}
-                  fontSize={15}
-                  color="#707070"
-                  name="location"
-                  value={createCircleData.location}
-                />
+                <S.ViewWrap>
+                  <S.Input
+                    autoComplete="off"
+                    placeholder="동아리 실"
+                    onChange={changeCircleData}
+                    fontSize={15}
+                    color="#707070"
+                    name="location"
+                    value={createCircleData.location}
+                  />
+                  <LocationView onClick={setLocation} />
+                </S.ViewWrap>
               </S.HeaderCenter>
               <S.HeaderRight active={true}>
                 <S.Input

@@ -16,7 +16,7 @@ export const Header = styled.div`
 `;
 
 export const Body = styled.div`
-  margin-top: 50px;
+  padding-top: 50px;
 `;
 
 export const ManagementButtonWrap = styled.div`

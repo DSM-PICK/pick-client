@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import ModalClubList from "../ModalClubList/ModalClubList";
 import * as S from "./styles";
 import { useSelector } from "react-redux";
