@@ -106,7 +106,8 @@ export const checkPreAbsenceData = (
 
 export const getRemainTime = remainingDate => {
   const date = new Date();
-  let [hour, minute] = remainingDate == 0 ? [20, 30] : [9, 30];
+
+  let [hour, minute] = remainingDate == 0 ? [20, 30] : [16, 30];
   if (date.getDay() === 0 || date.getDay() === 6) {
     return `주말`;
   }
