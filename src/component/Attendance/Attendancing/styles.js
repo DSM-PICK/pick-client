@@ -29,9 +29,12 @@ export const HeaderFloor = styled.div`
 `;
 
 export const HeaderWhen = styled.div`
+  position: absolute;
   display: flex;
+  margin: 0 0 0 50%;
   height: 80px;
   flex-direction: column;
+  transform: translateX(-90%);
   justify-content: space-evenly;
 `;
 
@@ -47,6 +50,9 @@ export const HeaderDayOfTheWeek = styled.p`
 `;
 
 export const HeaderWho = styled.div`
+  display: flex;
   font-size: 30px;
   font-weight: bold;
+  align-items: center;
+  flex-direction: column;
 `;
