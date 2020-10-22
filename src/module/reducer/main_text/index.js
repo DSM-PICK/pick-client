@@ -1,6 +1,12 @@
-import { SET_MAIN_TEXT_REMAINING_DATE } from "../../action/main_text";
+import {
+  SET_MAIN_TEXT,
+  SET_MAIN_TEXT_REMAINING_DATE,
+  SET_SUB_TEXT
+} from "../../action/main_text";
 
 const initialState = {
+  subText: [],
+  mainText: "",
   remainingDate: ""
 };
 
@@ -24,6 +30,29 @@ const mainTextReducer = (state = initialState, action) => {
       return {
         ...state,
         remainingDate: remainDateText
+      };
+    }
+    case SET_SUB_TEXT: {
+      let subText = [];
+      switch (action.payload) {
+        case "주말":
+          subText = ["오늘은 ", "입니다!"];
+          break;
+        case "퇴근":
+          subText = ["지금은 ", "시간입니다!"];
+          break;
+        default:
+          subText = ["퇴근까지 ", " 남았습니다!"];
+      }
+      return {
+        ...state,
+        subText: subText
+      };
+    }
+    case SET_MAIN_TEXT: {
+      return {
+        ...state,
+        mainText: action.payload
       };
     }
     default: {
