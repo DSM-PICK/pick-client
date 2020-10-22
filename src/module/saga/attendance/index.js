@@ -86,7 +86,7 @@ function* getFloorData(payload) {
   } catch (error) {
     // yield put(FAILURE_GET_SELF_STUDY_FLOOR_DATA_SAGA(error.response));
 
-    switch (error.status) {
+    switch (error) {
       case 403:
         requesetRefresh();
     }
@@ -114,7 +114,8 @@ function* getAttendanceStdDataSaga(payload) {
     yield put(setAttendanceStdData(atdData));
   } catch (error) {
     // yield put(FAILURE_GET_ATTENDANCE_STD_DATA_SAGA(error.response));
-    switch (error.status) {
+
+    switch (error) {
       case 403:
         requesetRefresh();
     }

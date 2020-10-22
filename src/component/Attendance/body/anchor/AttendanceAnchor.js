@@ -28,13 +28,16 @@ const AttendanceBody = props => {
     },
     [dispatch]
   );
+
   const getAttendanceStdDate = useCallback(
     (floor, floorData, clickE) => {
       try {
+        const floorIndex = !!isNaN(floor) ? 0 : Number(floor) - 1;
+
         dispatch(
           getAttendanceStdDataSaga({
-            floor,
-            priority: floorData[floorDataText[floor - 1]][0].priority
+            floor: floorIndex + 1,
+            priority: floorData[floorDataText[floorIndex]][0].priority
           })
         );
       } catch (err) {
