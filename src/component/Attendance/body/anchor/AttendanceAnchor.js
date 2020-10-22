@@ -29,20 +29,25 @@ const AttendanceBody = props => {
     [dispatch]
   );
   const getAttendanceStdDate = useCallback(
-    (floor, floorData) => {
-      dispatch(
-        getAttendanceStdDataSaga({
-          floor,
-          priority: floorData[floorDataText[floor - 1]][0].priority
-        })
-      );
+    (floor, floorData, clickE) => {
+      try {
+        dispatch(
+          getAttendanceStdDataSaga({
+            floor,
+            priority: floorData[floorDataText[floor - 1]][0].priority
+          })
+        );
+      } catch (err) {
+        alert("데이터가 없습니다.");
+        clickE.preventDefault();
+      }
     },
     [dispatch]
   );
 
-  const onAnchorClick = () => {
+  const onAnchorClick = clickE => {
     if (link.length <= 17) return;
-    getAttendanceStdDate(link.split("/")[3][5], floorDatas);
+    getAttendanceStdDate(link.split("/")[3][5], floorDatas, clickE);
   };
 
   useEffect(() => {
@@ -60,7 +65,7 @@ const AttendanceBody = props => {
       url={imgLink}
       text={text}
       ismain={isMain}
-      onClick={() => onAnchorClick()}
+      onClick={clickE => onAnchorClick(clickE)}
     >
       {text}
     </S.Container>
