@@ -15,6 +15,7 @@ const ACCESS_TOKEN_NAME = "Authorization";
 const ACCESS_TOKEN = "accessToken";
 const REFRESH_TOKEN = "refreshToken";
 const TEACHER_NAME = "teacherName";
+const REMAIN_DATE = "remainDate";
 
 export const requestGetApi = async (url, headers) => {
   try {
@@ -257,6 +258,8 @@ export const requestAdminApiWithAccessToken = async (
 
 export const Logout = () => {
   try {
+    !!window.localStorage.getItem(REMAIN_DATE) &&
+      window.localStorage.removeItem(REMAIN_DATE);
     !!window.localStorage.getItem(TEACHER_NAME) &&
       window.localStorage.removeItem(TEACHER_NAME);
     !!window.localStorage.getItem(ACCESS_TOKEN) &&

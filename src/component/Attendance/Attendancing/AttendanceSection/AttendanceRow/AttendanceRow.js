@@ -20,7 +20,6 @@ const AttendanceRow = props => {
         state: value
       })
     );
-    console.log(gradeClassNumber, 7, value);
   };
 
   const onEightClick = value => {
@@ -31,7 +30,6 @@ const AttendanceRow = props => {
         state: value
       })
     );
-    console.log(gradeClassNumber, 8, value);
   };
 
   const onNineClick = value => {
@@ -42,7 +40,6 @@ const AttendanceRow = props => {
         state: value
       })
     );
-    console.log(gradeClassNumber, 9, value);
   };
 
   const onTenClick = value => {
@@ -53,7 +50,6 @@ const AttendanceRow = props => {
         state: value
       })
     );
-    console.log(gradeClassNumber, 10, value);
   };
 
   const onClickFuncArr =
@@ -67,12 +63,12 @@ const AttendanceRow = props => {
       <S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
       <S.SectionName>{name}</S.SectionName>
       <S.SectionClassWrap>
-        {statesArr.map((state, index) => (
-          <S.SectionClass key={state + index}>
+        {statesArr.map((state, idx) => (
+          <S.SectionClass key={state + idx}>
             <AttendanceCell
               index={index}
               periodState={state}
-              onClassClick={onClickFuncArr[index]}
+              onClassClick={onClickFuncArr[idx]}
             />
           </S.SectionClass>
         ))}

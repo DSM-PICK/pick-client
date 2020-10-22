@@ -118,11 +118,15 @@ const PreReports = () => {
     const tmpMonth = isSetPre ? 11 : 0;
 
     if (calcMonth === 0) {
-      setCalcYear(calcYear + calc);
-      setCalcMonth(tmpMonth);
+      setCalcYear(isSetPre ? calcYear + calc : calcYear);
+      setCalcMonth(isSetPre ? tmpMonth : calcMonth + calc);
+    } else if (calcMonth === 11) {
+      setCalcYear(isSetPre ? calcYear : calcYear + calc);
+      setCalcMonth(isSetPre ? calcMonth + calc : tmpMonth);
     } else {
       setCalcMonth(calcMonth + calc);
     }
+    console.log(calcYear, calcMonth + calc);
     setCalcDate(getDateObj(calcYear, calcMonth + calc));
   };
 

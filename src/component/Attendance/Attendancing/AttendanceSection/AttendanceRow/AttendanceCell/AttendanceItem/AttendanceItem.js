@@ -6,7 +6,7 @@ const AttendanceItem = props => {
   const { onClickItem } = props;
 
   return (
-    <S.Container onClick={() => onClickItem(state.value)}>
+    <S.Container onClick={clickE => onClickItem(state.value, clickE)}>
       {state.value}
     </S.Container>
   );
