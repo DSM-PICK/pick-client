@@ -120,6 +120,9 @@ const PreReports = () => {
     if (calcMonth === 0) {
       setCalcYear(calcYear + calc);
       setCalcMonth(tmpMonth);
+    } else if (calcMonth === 11) {
+      setCalcYear(calcYear + calc);
+      setCalcMonth(tmpMonth);
     } else {
       setCalcMonth(calcMonth + calc);
     }
