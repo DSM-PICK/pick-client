@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const ValueButton = styled.button`
   outline: none;
 
   ${props =>
-    props.state && props.index > 8
+    props.state && props.index < 8
       ? css`
           &:focus,
           &:active {
