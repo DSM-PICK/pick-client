@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
+  width: 130px;
 
   &.selected {
     background: #267dff;
