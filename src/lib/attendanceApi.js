@@ -39,13 +39,11 @@ export const getPreAbsenceText = (
     const e_month = spliting_eDate[1];
     const e_day = spliting_eDate[2];
 
-    let returnStrF = `${makeDate1Digit(
-      s_month
-    )}월 ${s_day}일 ${start_period}교시 ~ `;
+    let returnStrF = `${s_month}월 ${s_day}일 ${start_period}교시 ~ `;
     let returnStrS = "";
 
     if (s_month !== e_month || s_day !== e_day) {
-      returnStrS += `${makeDate1Digit(e_month)}월 ${e_day}일`;
+      returnStrS += `${e_month}월 ${e_day}일`;
     }
 
     returnStrS += ` ${end_period}교시`;
