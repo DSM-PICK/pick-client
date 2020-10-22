@@ -80,6 +80,9 @@ function* createPreAbsenceSaga(payload) {
     yield put({ type: INIT_PRE_ABSENCE_DATA });
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
+    // if (error.response.status === 409) {
+    //   alert("사전 결석 기간이 겹칩니다.");
+    // }
     if (!!error.response) {
       alert("사전 결석 신고를 실패했습니다.");
     }
