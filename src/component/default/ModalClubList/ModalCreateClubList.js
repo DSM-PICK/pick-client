@@ -27,11 +27,11 @@ const ModalCreateClubList = ({ data, setData }) => {
             value={createStudentData}
             onChange={onChange}
             onKeyDown={checkEnter}
-            placeholder="ex) 1101 홍길동"
+            placeholder="ex) 1101"
           />
         </ModalClubItemContainer>
-        {data.map(({ name, number }) => (
-          <ModalClubItem name={name} number={number} />
+        {data.map((num, index) => (
+          <ModalClubItem key={index + num} number={num} />
         ))}
       </S.Row>
     </S.Container>
