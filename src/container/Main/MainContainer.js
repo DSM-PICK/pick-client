@@ -4,9 +4,8 @@ import Main from "../../component/Main/Main";
 
 const MainContainer = () => {
   const REMAIN_DATE = window.localStorage.getItem("remainDate");
-  let mainText = useSelector(state => state.mainText.mainText);
+  const mainText = useSelector(state => state.mainText.mainText);
 
-  console.log(`${mainText} - mainText`);
   return <Main remain={REMAIN_DATE} text={mainText} />;
 };
 
