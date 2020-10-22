@@ -268,3 +268,12 @@ export const Logout = () => {
     window.location.href = "/";
   }
 };
+
+export const checkAdminIsLogin = async () => {
+  try {
+    await requestAdminGetApiWithAccessToken("/venus/auth/check");
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
