@@ -20,13 +20,12 @@ import {
 import { checkPageWithLogin } from "../../lib/requestApi";
 import { getRemainTime } from "../../lib/attendanceApi";
 
-const Main = () => {
+const Main = props => {
   useEffect(() => {
     checkPageWithLogin();
   }, []);
 
   const anchorItems = MAIN_ANCHOR_ITEMS;
-  const REMAIN_DATE = "remainDate";
   const TEACHER_NAME = `teacherName`;
   const dispatch = useDispatch();
   const isOpen = useSelector(state => state.adminModal.modalOn);
@@ -34,15 +33,14 @@ const Main = () => {
   const subText = useSelector(state => state.mainText.subText);
   const remainingDate = useSelector(state => state.mainText.remainingDate);
 
-  const remainDateText = window.localStorage.getItem(REMAIN_DATE);
   const teacherName = window.localStorage.getItem(TEACHER_NAME);
 
   const setSubTexts = useCallback(
-    () => dispatch(setSubText(getRemainTime(remainDateText))),
+    text => dispatch(setSubText(getRemainTime(text))),
     [dispatch]
   );
   const setMainTexts = useCallback(
-    () => dispatch(setMainText(getRemainTime(remainDateText))),
+    text => dispatch(setMainText(getRemainTime(text))),
     [dispatch]
   );
   const modalOpen = useCallback(() => dispatch(modalOn()), [dispatch]);
@@ -53,12 +51,12 @@ const Main = () => {
     modalDoing();
   };
 
-  setTimeout(() => {
-    setSubTexts();
-    setMainTexts();
-  }, 500);
-
   useEffect(() => {
+    setInterval(() => {
+      setSubTexts(props.remain);
+      setMainTexts(props.remain);
+    }, 2000);
+
     checkPageWithLogin();
     dispatch(getPreAbsenceListSaga());
     dispatch(getMainTextRemainingDateSaga());

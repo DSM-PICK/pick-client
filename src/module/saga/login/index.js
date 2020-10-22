@@ -1,10 +1,11 @@
-import { call, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import { loginAction, loginConstant } from "../../action/login";
 import {
   requestApi,
   methodType,
   requestAdminApiWithAccessToken
 } from "../../../lib/requestApi";
+import { GET_MAIN_TEXT_REMAINING_DATE_SAGA } from "../../action/main_text";
 
 function* requestLogin(action) {
   const { id, password } = action.payload;
@@ -21,6 +22,7 @@ function* requestLogin(action) {
     window.localStorage.setItem("accessToken", accessToken);
     window.localStorage.setItem("refreshToken", refreshToken);
     window.localStorage.setItem("teacherName", teacherName);
+    put({ type: GET_MAIN_TEXT_REMAINING_DATE_SAGA });
     alert("로그인에 성공했습니다.");
     window.location.href = "/main ";
   } catch (err) {
