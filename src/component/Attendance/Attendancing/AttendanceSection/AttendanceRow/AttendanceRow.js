@@ -67,12 +67,12 @@ const AttendanceRow = props => {
       <S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
       <S.SectionName>{name}</S.SectionName>
       <S.SectionClassWrap>
-        {statesArr.map((state, index) => (
-          <S.SectionClass key={state + index}>
+        {statesArr.map((state, idx) => (
+          <S.SectionClass key={state + idx}>
             <AttendanceCell
               index={index}
               periodState={state}
-              onClassClick={onClickFuncArr[index]}
+              onClassClick={onClickFuncArr[idx]}
             />
           </S.SectionClass>
         ))}
