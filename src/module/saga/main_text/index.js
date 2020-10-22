@@ -3,7 +3,6 @@ const {
   GET_MAIN_TEXT_REMAINING_DATE_SAGA,
   setMainTextRemainingDate
 } = require("../../action/main_text");
-import { getRemainTime } from "../../../lib/attendanceApi";
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 import { WORKING_TEACHER } from "../../../lib/requestUrl";
 
