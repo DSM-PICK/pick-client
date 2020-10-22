@@ -17,15 +17,12 @@ const MemberClubItemContainer = ({
     if (step === 1) {
       setCircleData(prev => ({
         ...prev,
-        to: {
-          id,
-          name
-        }
+        to: name
       }));
       setEditStep(2);
       return;
     }
-    dispatch(updateClubDetailSaga());
+    dispatch(updateClubDetailSaga(name));
     dispatch(modalAction.creater.modalOn());
   }, [step]);
 
