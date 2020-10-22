@@ -83,6 +83,8 @@ export const Hr = styled.div`
 export const Body = styled.div`
   padding: 20px;
   flex: 1;
+  max-height: 500px;
+  overflow-y: scroll;
   box-sizing: border-box;
 `;
 

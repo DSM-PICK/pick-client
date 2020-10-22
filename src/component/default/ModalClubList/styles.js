@@ -5,7 +5,6 @@ export const Row = styled.div`
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  d
 `;
 
 export const CraeteInput = styled.input`
