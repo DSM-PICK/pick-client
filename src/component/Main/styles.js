@@ -26,7 +26,7 @@ export const MainHeaderLogo = styled.div`
 export const MainBodyTopText = styled.div`
   display: flex;
   height: 120px;
-  margin-top: 62px;
+  margin: 62px 0;
   color: #20223e;
   font-size: 50px;
   font-weight: bold;
