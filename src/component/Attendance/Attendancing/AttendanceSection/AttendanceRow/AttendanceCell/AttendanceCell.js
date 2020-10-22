@@ -34,8 +34,12 @@ const AttendanceCell = props => {
     onClassClick(value);
   };
 
+  const onClickCell = () => {
+    setState(!state);
+  };
+
   return (
-    <S.Container onClick={() => setState(!state)}>
+    <S.Container onClick={() => onClickCell()}>
       <S.ValueButton index={index} state={state} text={text}>
         {text}
         <S.Wrap>

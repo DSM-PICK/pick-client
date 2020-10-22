@@ -21,6 +21,10 @@ import { checkPageWithLogin } from "../../lib/requestApi";
 import { getRemainTime } from "../../lib/attendanceApi";
 
 const Main = () => {
+  useEffect(() => {
+    checkPageWithLogin();
+  }, []);
+
   const anchorItems = MAIN_ANCHOR_ITEMS;
   const REMAIN_DATE = "remainDate";
   const TEACHER_NAME = `teacherName`;
@@ -52,7 +56,7 @@ const Main = () => {
   setTimeout(() => {
     setSubTexts();
     setMainTexts();
-  }, 1000);
+  }, 500);
 
   useEffect(() => {
     checkPageWithLogin();

@@ -89,9 +89,7 @@ function* getFloorData(payload) {
     switch (error.status) {
       case 403:
         requesetRefresh();
-        console.log("requestRefresh");
     }
-    console.log("자습 리스트 불러오기 실패");
   }
 }
 
@@ -116,7 +114,6 @@ function* getAttendanceStdDataSaga(payload) {
     yield put(setAttendanceStdData(atdData));
   } catch (error) {
     // yield put(FAILURE_GET_ATTENDANCE_STD_DATA_SAGA(error.response));
-    console.log("출석 데이터 불러오기 실패");
     switch (error.status) {
       case 403:
         requesetRefresh();
@@ -139,12 +136,8 @@ function* patchAttendanceStdData(payload) {
         state
       }
     );
-
-    console.log(res);
   } catch (error) {
     // yield put(FAILURE_POST_ATTENDANCE_STD_DATA_SAGA(error.response));
-    console.log(error);
-    console.log("출석 데이터 저장 실패");
   }
 }
 
