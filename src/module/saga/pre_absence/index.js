@@ -81,10 +81,13 @@ function* createPreAbsenceSaga(payload) {
     yield put({ type: INIT_PRE_ABSENCE_DATA });
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
-    // if (error.response.status === 409) {
-    //   alert("사전 결석 기간이 겹칩니다.");
-    // }
-    if (!!error.response) {
+    switch (error) {
+      case 404:
+        alert("사전 결석 신고를 실패했습니다.");
+      case 409:
+        alert("사전 결석 기간이 겹칩니다.");
+    }
+    if (!error) {
       alert("사전 결석 신고를 실패했습니다.");
     }
   }
@@ -99,7 +102,7 @@ function* deletePreAbsence(payload) {
     yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
-    console.log(error);
+    // console.log(error);
   }
 }
 
