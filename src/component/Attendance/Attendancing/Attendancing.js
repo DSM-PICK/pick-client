@@ -29,7 +29,7 @@ const Attendancing = () => {
   const index = window.location.pathname[window.location.pathname.length - 1];
 
   let floorDatas = [];
-  let teacherName = `"앗 오류!"`;
+  let teacherName = ``;
 
   switch (Floor) {
     case "4층": {
@@ -54,12 +54,12 @@ const Attendancing = () => {
     }
     default: {
       floorDatas = [];
-      teacherName = `"앗 오류!`;
+      teacherName = ``;
       break;
     }
   }
 
-  teacherName = !teacherName ? `"앗 오류!"` : teacherName;
+  teacherName = !teacherName ? `` : teacherName;
 
   return (
     <S.Container>
@@ -72,12 +72,12 @@ const Attendancing = () => {
           <S.HeaderMonthAndDay>{`${month}월 ${day}일`}</S.HeaderMonthAndDay>
           <S.HeaderDayOfTheWeek>{`${dayOfWeek}요일`}</S.HeaderDayOfTheWeek>
         </S.HeaderWhen>
-        <S.HeaderWho>{`감독교사 ${teacherName}`}</S.HeaderWho>
+        <S.HeaderWho>
+          {!!teacherName ? `감독교사 ${teacherName}` : ` `}
+        </S.HeaderWho>
       </Header>
       <Body state="attendance">
-        {floorDatas.name !== "자습실" && (
-          <AttendanceNav floors={floorDatas} Floor={Floor} />
-        )}
+        {!!teacherName && <AttendanceNav floors={floorDatas} Floor={Floor} />}
         <AttendanceSection
           key={floorDatas[index]}
           locations={floorDatas[index]}
