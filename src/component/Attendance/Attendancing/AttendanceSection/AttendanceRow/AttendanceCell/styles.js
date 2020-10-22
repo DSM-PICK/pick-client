@@ -18,7 +18,7 @@ export const ValueButton = styled.button`
   outline: none;
 
   ${props =>
-    props.state && props.index < 8
+    props.state && props.index > 8
       ? css`
           &:focus,
           &:active {
@@ -37,7 +37,7 @@ export const ValueButton = styled.button`
             }
           }
         `
-      : props.state
+      : props.state && props.index <= 8
       ? css`
           &:focus,
           &:active {
