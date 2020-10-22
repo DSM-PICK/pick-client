@@ -34,6 +34,7 @@ function* getPreAbsenceList() {
       requestGetApiWithAccessToken,
       REQUEST_URL
     );
+
     yield put(setPreAbsenceList(preAbsenceList.data));
   } catch (error) {
     // yield put(FAILURE_GET_PRE_ABSENCE_SAGA(error.response));

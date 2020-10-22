@@ -17,51 +17,10 @@ export const ValueButton = styled.button`
   box-sizing: border-box;
   outline: none;
 
-  ${props =>
-    props.state && props.index > 8
-      ? css`
-          &:focus,
-          &:active {
-            background: white !important;
-            color: black;
-            border-radius: 0 0 20px 20px;
-            border-top: none;
-            ul {
-              transform: translate(0, -36px);
-              opacity: 1;
-              visibility: visible;
-              border-bottom: none;
-            }
-            ul:nth-child(1) {
-              border-radius: 20px 20px 0 0;
-            }
-          }
-        `
-      : props.state && props.index <= 8
-      ? css`
-          &:focus,
-          &:active {
-            background: white !important;
-            color: black;
-            border-radius: 20px 20px 0 0;
-            border-bottom: none;
-            ul {
-              transform: translate(0, 34px);
-              opacity: 1;
-              visibility: visible;
-              border-top: none;
-            }
-            ul:nth-child(1) {
-              border-radius: 0 0 20px 20px;
-            }
-          }
-        `
-      : ""}
-
   ul {
     position: absolute;
     ${props =>
-      props.index > 8
+      props.index > 5
         ? css`
             top: -284px;
             border-bottom: none;
@@ -79,7 +38,9 @@ export const ValueButton = styled.button`
     z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s ease;
+    /* display: none; */
+    transition: 0.3s ease-in-out;
+    transition-delay: 0.1s;
 
     box-sizing: border-box;
 
@@ -95,6 +56,49 @@ export const ValueButton = styled.button`
       justify-content: center;
     }
   }
+
+  ${props =>
+    props.state && props.index > 5
+      ? css`
+          &:focus,
+          &:active {
+            background: white !important;
+            color: black;
+            border-radius: 0 0 20px 20px;
+            border-top: none;
+            ul {
+              transform: translate(0, -36px);
+              opacity: 1;
+              visibility: visible;
+              /* display: block; */
+              border-bottom: none;
+            }
+            ul:nth-child(1) {
+              border-radius: 20px 20px 0 0;
+            }
+          }
+        `
+      : props.state && props.index <= 5
+      ? css`
+          &:focus,
+          &:active {
+            background: white !important;
+            color: black;
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+            ul {
+              transform: translate(0, 34px);
+              opacity: 1;
+              visibility: visible;
+              /* display: block; */
+              border-top: none;
+            }
+            ul:nth-child(1) {
+              border-radius: 0 0 20px 20px;
+            }
+          }
+        `
+      : ""}
 `;
 
 export const Wrap = styled.ul`
