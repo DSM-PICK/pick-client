@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, memo } from "react";
+import React, { useCallback, useRef, memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import modalAction from "../../../module/action/modal";
 import * as S from "./styles";

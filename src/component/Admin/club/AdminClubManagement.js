@@ -22,6 +22,10 @@ const AdminClubManagement = () => {
 
   const deleteClub = useCallback(() => {
     dispatch(deleteClubSaga(selectItem));
+    setSelectItem([]);
+    document
+      .querySelectorAll("div.active")
+      .forEach(element => element.classList.remove("active"));
   }, [selectItem]);
 
   const changeSelectItem = useCallback(newName => {

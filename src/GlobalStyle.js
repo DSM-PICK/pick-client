@@ -8,8 +8,11 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: normal;
         font-style: normal;
     }
+
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
     * {
-        font-family:나눔고딕 !important;
+        font-family:Noto Sans KR !important;
     }
     *::-webkit-scrollbar {
         display: none;

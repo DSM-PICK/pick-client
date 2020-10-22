@@ -11,10 +11,12 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 4;
+  overflow-y: scroll;
 `;
 
 export const Modal = styled.div`
   width: 40%;
+  min-width: 440px;
   height: 75%;
   background-color: white;
   border-radius: 10px;
@@ -81,6 +83,8 @@ export const Hr = styled.div`
 export const Body = styled.div`
   padding: 20px;
   flex: 1;
+  max-height: 500px;
+  overflow-y: scroll;
   box-sizing: border-box;
 `;
 
@@ -100,4 +104,8 @@ export const Input = styled.input`
   & + & {
     margin-top: 10px;
   }
+`;
+
+export const ViewWrap = styled.div`
+  position: relative;
 `;

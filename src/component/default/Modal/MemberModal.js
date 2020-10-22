@@ -8,14 +8,10 @@ import { CancelIcon, EditIcon, SaveIcon } from "../../../asset";
 import MemberManagementFooterNotification from "../Notification/footer/MemberManagementFooterNotification";
 
 const MemerModal = ({ step, setEditStep, setCircleData }) => {
-  const data = useSelector(state => state.club.detail);
   const {
-    name,
-    where,
-    teacher,
-    owner,
-    people: { one, two, three }
-  } = data;
+    club: { name, location, teacher, club_head, floor, priority },
+    students
+  } = useSelector(state => state.club.detail);
 
   const [isEdit, setIsEdit] = useState(false);
   const [edtingMember, setEdtingMember] = useState([]);
@@ -23,17 +19,21 @@ const MemerModal = ({ step, setEditStep, setCircleData }) => {
   useEffect(() => {
     setCircleData(prev => ({
       ...prev,
-      from: {
-        id: 0,
-        name
-      }
+      students: edtingMember
     }));
-  }, []);
+  }, [edtingMember]);
+
+  useEffect(() => {
+    setCircleData(prev => ({
+      ...prev,
+      from: name
+    }));
+  }, [name]);
 
   const selectMember = useCallback(number => {
     setEdtingMember(prev => {
       if (prev.includes(number)) {
-        return prev;
+        return prev.filter(studentNumber => studentNumber !== number);
       }
       return prev.concat(number);
     });
@@ -41,6 +41,10 @@ const MemerModal = ({ step, setEditStep, setCircleData }) => {
 
   const cancelMember = useCallback(() => {
     setIsEdit(false);
+    setEdtingMember([]);
+    document.querySelectorAll(".selected").forEach(element => {
+      element.classList.remove("selected");
+    });
   }, []);
 
   const changeIsEdit = useCallback(() => {
@@ -60,9 +64,6 @@ const MemerModal = ({ step, setEditStep, setCircleData }) => {
               >
                 취소
               </ImgButton>
-              <ImgButton color="#267DFF" imgSrc={SaveIcon}>
-                저장
-              </ImgButton>
             </>
           ) : (
             <ImgButton color="#267DFF" imgSrc={EditIcon} onClick={changeIsEdit}>
@@ -72,21 +73,20 @@ const MemerModal = ({ step, setEditStep, setCircleData }) => {
         </S.HeaderLeft>
         <S.HeaderCenter>
           <div>{name}</div>
-          <div>{where}</div>
+          <div>{location}</div>
         </S.HeaderCenter>
         <S.HeaderRight>
           <div>담당 : {teacher}</div>
-          <div>부장 : {owner}</div>
+          <div>부장 : {club_head}</div>
         </S.HeaderRight>
       </S.Header>
       <S.Hr />
       <S.Body>
         <ModalMenberClubList
-          one={one}
-          two={two}
-          three={three}
+          students={students}
           step={step}
           selectMember={selectMember}
+          isEdit={isEdit}
         />
         {isEdit && (
           <MemberManagementFooterNotification
