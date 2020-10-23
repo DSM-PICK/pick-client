@@ -41,8 +41,9 @@ export const InformationWrap = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  padding: ${props => (props.attr === "club" ? "0 0 0 20px" : "0")};
-  overflow: auto;
+  padding: ${props => (props.attr === "club" ? "0 0 0 20px" : "0 20px 0 0")};
+  overflow-x: hidden;
+  overflow-y: auto;
   flex-direction: column;
   box-sizing: border-box;
 `;
