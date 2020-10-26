@@ -16,11 +16,11 @@ export const MainHeader = styled.div`
 
 export const MainHeaderLogo = styled.div`
   width: 500px;
-  height: 60px;
+  height: 40px;
   background: ${props =>
       props.url.length > 1 ? `url(${props.url})` : "#ffffff"}
     no-repeat;
-  background-size: 500px 60px;
+  background-size: 500px 40px;
 `;
 
 export const MainBodyTopText = styled.div`
