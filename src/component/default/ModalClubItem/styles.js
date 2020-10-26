@@ -7,6 +7,7 @@ export const Container = styled.div`
   border: 1px solid rgb(112, 112, 112, 0.5);
   margin: 5px;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   width: 130px;

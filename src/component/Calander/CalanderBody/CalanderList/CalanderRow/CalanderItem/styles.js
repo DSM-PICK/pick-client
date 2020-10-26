@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 17px 10px;
-  color: ${(props) => (props.isActive ? "#20223E" : "#C4C4C4")};
+  color: ${props => (props.isActive ? "#20223E" : "#C4C4C4")};
   border: 1px solid rgba(112, 112, 112, 0.05);
 `;
 
@@ -30,10 +30,11 @@ export const Body = styled.div`
 
 export const TeacherName = styled.div`
   padding: 5px 0;
+  height: 20px;
   @media (max-width: 500px) {
     font-size: 12px;
   }
-  ${(props) =>
+  ${props =>
     props.isActive &&
     css`
       background-color: #2764a7;
