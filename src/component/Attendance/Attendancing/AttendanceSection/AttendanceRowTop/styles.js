@@ -19,15 +19,15 @@ export const SectionSpan = styled.span`
 `;
 
 export const SectionSeq = styled(SectionSpan)`
-  min-width: 54px;
+  min-width: 44px;
 `;
 
 export const SectionStdNum = styled(SectionSpan)`
-  min-width: 170px;
+  min-width: 100px;
 `;
 
 export const SectionName = styled(SectionSpan)`
-  min-width: 120px;
+  min-width: 100px;
 `;
 
 export const SectionClassWrap = styled.div`
