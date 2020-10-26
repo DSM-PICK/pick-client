@@ -8,5 +8,5 @@ export const Container = styled.div`
   height: 110px;
   padding: 0 3%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
