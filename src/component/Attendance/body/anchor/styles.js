@@ -11,7 +11,7 @@ export const Container = styled.div`
   font-size: 30px;
   color: ${props => (props.url ? "white" : "black")};
   text-decoration: none;
-  border-radius: 60px;
+  border-radius: 40px;
   box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
   box-sizing: border-box;
   text-align: center;
