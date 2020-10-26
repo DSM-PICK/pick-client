@@ -8,7 +8,8 @@ import {
   methodType,
   requestApiWithAccessToken,
   requestGetApiWithAccessToken,
-  requestDelApiWithAccessToken
+  requestDelApiWithAccessToken,
+  requesetRefresh
 } from "../../../lib/requestApi";
 import {
   setPreAbsenceList,
@@ -84,8 +85,13 @@ function* createPreAbsenceSaga(payload) {
     switch (error) {
       case 404:
         alert("사전 결석 신고를 실패했습니다.");
+        break;
       case 409:
         alert("사전 결석 기간이 겹칩니다.");
+        break;
+      case 410:
+        requesetRefresh();
+        break;
     }
     if (!error) {
       alert("사전 결석 신고를 실패했습니다.");
