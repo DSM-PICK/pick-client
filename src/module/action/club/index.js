@@ -15,6 +15,19 @@ export const GET_CLUB_LOCATION_SAGA = "club/GET_CLUB_LOCATION_SAGA";
 
 export const MOVE_STUDENT_SAGA = "club/MOVE_STUDENT_SAGA";
 
+export const GET_STUDENT_SAGA = "club/GET_STUDENT_SAGA";
+export const GET_STUDENT = "club/GET_STUDENT";
+
+export const getStudent = payload => ({
+  type: GET_STUDENT,
+  payload
+});
+
+export const getStudentSaga = payload => ({
+  type: GET_STUDENT_SAGA,
+  payload
+});
+
 export const updateClubList = payload => ({
   type: UPDATE_CLUB_LIST,
   payload

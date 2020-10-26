@@ -6,7 +6,6 @@ const TodayTeacher = ({ floor, teacher }) => {
     <S.Container>
       <div>{floor}층</div>
       <div>{teacher}</div>
-      <div>제2 교무실</div>
     </S.Container>
   );
 };
