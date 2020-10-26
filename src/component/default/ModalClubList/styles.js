@@ -11,6 +11,8 @@ export const MemberWrap = styled.div`
   top: 100%;
   text-align: center;
   width: 100%;
+  max-height: 100px;
+  z-index: 10;
   padding: 10px;
   overflow-y: auto;
 `;
