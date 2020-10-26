@@ -24,7 +24,11 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
 
   const [createSutdnetArray, setCreateSutdnetArray] = useState([]);
   const addCreateSutdnetArray = useCallback(newStudentNum => {
-    setCreateSutdnetArray(prev => prev.concat(newStudentNum));
+    if (newStudentNum)
+      setCreateSutdnetArray(prev => {
+        if (prev.includes(newStudentNum)) return prev;
+        return prev.concat(newStudentNum);
+      });
   }, []);
 
   const modalRef = useRef();
