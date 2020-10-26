@@ -8,39 +8,38 @@ export const Container = styled.div`
 
 export const ValueButton = styled.button`
   width: 100%;
-  min-height: 36px;
-  font-size: 26px;
+  min-height: 28px;
+  font-size: 20px;
   background: ${props => (props.text == "출석" ? "white" : "#2764A7")};
   color: ${props => (props.text == "출석" ? "black" : "white")};
   border: 1px solid #707070;
-  border-radius: 20px;
+  border-radius: 12px;
   box-sizing: border-box;
   outline: none;
+  transition: 0.3s ease-in-out;
 
   ul {
     position: absolute;
+    left: 0;
+    width: 100%;
+    background: white;
+    color: black;
+    border: 1px solid #707070;
+    border-radius: 12px;
     ${props =>
       props.index > 5
         ? css`
-            top: -284px;
+            top: -164px;
             border-bottom: none;
           `
         : css`
             top: 0px;
             border-top: none;
           `}
-    left: 0;
-    width: 100%;
-    background: white;
-    color: black;
-    border: 1px solid #707070;
-    border-radius: 30px;
     z-index: 1;
     opacity: 0;
     visibility: hidden;
-    /* display: none; */
     transition: 0.3s ease-in-out;
-    transition-delay: 0.1s;
 
     box-sizing: border-box;
 
@@ -49,8 +48,8 @@ export const ValueButton = styled.button`
       z-index: 2;
       display: flex;
       width: 100%;
-      height: 40px;
-      padding: 7px 0;
+      height: 28px;
+      padding: 2px 0;
       color: black;
       align-items: center;
       justify-content: center;
@@ -64,17 +63,16 @@ export const ValueButton = styled.button`
           &:active {
             background: white !important;
             color: black;
-            border-radius: 0 0 20px 20px;
+            border-radius: 0 0 12px 12px;
             border-top: none;
             ul {
-              transform: translate(0, -36px);
+              transform: translate(0, -26px);
               opacity: 1;
               visibility: visible;
-              /* display: block; */
               border-bottom: none;
             }
             ul:nth-child(1) {
-              border-radius: 20px 20px 0 0;
+              border-radius: 12px 12px 0 0;
             }
           }
         `
@@ -84,17 +82,16 @@ export const ValueButton = styled.button`
           &:active {
             background: white !important;
             color: black;
-            border-radius: 20px 20px 0 0;
+            border-radius: 12px 12px 0 0;
             border-bottom: none;
             ul {
-              transform: translate(0, 34px);
+              transform: translate(0, 26px);
               opacity: 1;
               visibility: visible;
-              /* display: block; */
               border-top: none;
             }
             ul:nth-child(1) {
-              border-radius: 0 0 20px 20px;
+              border-radius: 0 0 12px 12px;
             }
           }
         `
