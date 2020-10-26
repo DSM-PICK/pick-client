@@ -25,8 +25,11 @@ export const HeaderBackBtn = styled.div`
 `;
 
 export const HeaderFloor = styled.div`
+  display: flex;
+  height: 48px;
   font-size: 38px;
   font-weight: bolder;
+  align-items: center;
 `;
 
 export const HeaderWhen = styled.div`
