@@ -8,8 +8,9 @@ export const Row = styled.div`
 `;
 export const MemberWrap = styled.div`
   position: absolute;
-  top: 100%;
+  top: 105%;
   text-align: center;
+  background-color: white;
   width: 100%;
   max-height: 100px;
   z-index: 10;
