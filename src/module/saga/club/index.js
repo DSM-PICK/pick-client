@@ -35,37 +35,28 @@ function* upadteClubDetailSaga(action) {
 }
 
 function* changeClubDataSaga(action) {
-  const { name } = action.payload;
+  const [name, data] = action.payload;
   try {
     yield requestAdminApiWithAccessToken(
       methodType.PATCH,
       `/venus/club/${name}`,
-      action.payload
+      data
     );
+    alert("성공했습니다");
     yield put(updateClubListSagaCreater());
   } catch (err) {}
 }
 
 function* addClubSaga(action) {
+  const { clubData, member } = action.payload;
   try {
-    yield requestAdminApiWithAccessToken(
-      methodType.POST,
-      "/venus/club",
-      action.payload.clubData
-    );
-
-    yield requestAdminApiWithAccessToken(
-      methodType.PATCH,
-      `/venus/club/students`,
-      {
-        students_num: action.payload.member,
-        to_club_name: action.payload.clubData.name
-      }
-    );
-
-    alert("추가에 성공했습니다");
+    yield requestAdminApiWithAccessToken(methodType.POST, "/venus/club", {
+      students_num: member,
+      club: clubData
+    });
 
     yield put(updateClubListSagaCreater());
+    alert("성공 했습니다");
   } catch (err) {
     alert("오류가 발생했습니다");
   }
