@@ -4,7 +4,7 @@ import ImgButton from "./ImgButton/ImgButton";
 import ModalCreateClubList from "../ModalClubList/ModalCreateClubList";
 import * as S from "./styles";
 import LocationView from "./LocationView/LocationView";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import modalAction from "../../../module/action/modal";
 import { addClubSaga, getClubLocationSaga } from "../../../module/action/club";
 
