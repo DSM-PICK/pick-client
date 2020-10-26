@@ -10,6 +10,12 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
+export const HeaderWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const HeaderBackBtn = styled.div`
   display: flex;
   width: 3em;
@@ -21,8 +27,9 @@ export const HeaderBackBtn = styled.div`
 `;
 
 export const HeaderFloor = styled.div`
+  display: flex;
+  height: 48px;
   font-size: 38px;
   font-weight: bolder;
-  position: absolute;
-  margin-left: 80px;
+  align-items: center;
 `;

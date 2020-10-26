@@ -13,8 +13,10 @@ const AttendanceClass = () => {
   return (
     <S.Container>
       <Header>
-        <S.HeaderBackBtn as={Link} to="/main" imglink={BackIcon} />
-        <S.HeaderFloor>교실 자습</S.HeaderFloor>
+        <S.HeaderWrap>
+          <S.HeaderBackBtn as={Link} to="/main" imglink={BackIcon} />
+          <S.HeaderFloor>교실 자습</S.HeaderFloor>
+        </S.HeaderWrap>
       </Header>
       <AttendanceBody anchorItems={anchorItems} />
       <Footer />
