@@ -8,12 +8,11 @@ export const Row = styled.div`
 `;
 export const MemberWrap = styled.div`
   position: absolute;
-  top: 105%;
+  top: 100%;
   text-align: center;
   width: 100%;
-  height: 120px;
+  padding: 10px;
   overflow-y: auto;
-  background-color: white;
 `;
 
 export const CraeteInput = styled.input`

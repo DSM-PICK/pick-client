@@ -8,8 +8,15 @@ import { getStudentSaga, GET_STUDENT_SAGA } from "../../../module/action/club";
 const ModalCreateClubList = ({ data, setData }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
+  const [isOpen, setIsOpen] = useState(false);
   const students = useSelector(store => store.club.students);
   const [createStudentData, setCreateStudentData] = useState("");
+
+  const changeIsOpen = useCallback(e => {
+    if (e.key === "Enter") {
+      setIsOpen(prev => !prev);
+    }
+  }, []);
   const onChange = useCallback(e => {
     dispatch(getStudentSaga(e.target.value));
     setCreateStudentData(e.target.value);
@@ -21,21 +28,23 @@ const ModalCreateClubList = ({ data, setData }) => {
           <S.CraeteInput
             value={createStudentData}
             onChange={onChange}
+            onKeyDown={changeIsOpen}
             ref={inputRef}
             placeholder="ex) 1101"
           />
           <S.MemberWrap>
-            {students.map(({ name, num }) => (
-              <S.MemberItem
-                onClick={() => {
-                  setData(num);
-                  setCreateStudentData("");
-                  inputRef.current.focus();
-                }}
-              >
-                {num} {name}
-              </S.MemberItem>
-            ))}
+            {isOpen &&
+              students.map(({ name, num }) => (
+                <S.MemberItem
+                  onClick={() => {
+                    setData(num);
+                    setCreateStudentData("");
+                    inputRef.current.focus();
+                  }}
+                >
+                  {num} {name}
+                </S.MemberItem>
+              ))}
           </S.MemberWrap>
         </ModalClubItemContainer>
         {data.map((num, index) => (
