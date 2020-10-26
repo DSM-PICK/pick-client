@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  height: ${props => (props.ismain === "main" ? "180px" : "100%")};
+  height: ${props => (props.ismain === "main" ? "130px" : "150px")};
   margin: 10px 0;
   margin-top: ${props => (props.text === "4층" ? "30px" : "10px")};
   background: ${props => (props.url ? `url(${props.url})` : "#fafafa")}
     no-repeat center;
-  font-size: 40px;
+  font-size: 30px;
   color: ${props => (props.url ? "white" : "black")};
   text-decoration: none;
   border-radius: 60px;
