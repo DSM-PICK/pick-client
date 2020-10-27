@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   width: 58%;
   height: 260px;
-  border: 1px solid #707070;
+  border: 1px solid #d0d0d0;
   border-radius: 60px;
   background: white;
   flex-direction: column;
@@ -39,7 +39,7 @@ export const ShowBody = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  border-radius: 0 0 60px 60px;
+  border-radius: 0 0 40px 40px;
   flex-direction: column;
 `;
 
