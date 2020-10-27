@@ -18,8 +18,8 @@ export const HeaderWrap = styled.div`
 
 export const HeaderBackBtn = styled.div`
   display: flex;
-  width: 3em;
-  height: 3em;
+  width: 30px;
+  height: 30px;
   margin-right: 20px;
   align-items: center;
   justify-content: center;
@@ -29,7 +29,7 @@ export const HeaderBackBtn = styled.div`
 export const HeaderFloor = styled.div`
   display: flex;
   height: 48px;
-  font-size: 38px;
+  font-size: 28px;
   font-weight: bolder;
   align-items: center;
 `;

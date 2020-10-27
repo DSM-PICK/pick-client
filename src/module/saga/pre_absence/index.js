@@ -39,7 +39,10 @@ function* getPreAbsenceList() {
     yield put(setPreAbsenceList(preAbsenceList.data));
   } catch (error) {
     // yield put(FAILURE_GET_PRE_ABSENCE_SAGA(error.response));
-    console.log(error);
+    // switch (error) {
+    //   case 410:
+    //     requesetRefresh();
+    // }
   }
 }
 
@@ -109,6 +112,10 @@ function* deletePreAbsence(payload) {
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
     // console.log(error);
+    switch (error) {
+      case 410:
+        requesetRefresh();
+    }
   }
 }
 
