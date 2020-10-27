@@ -16,19 +16,19 @@ export const MainHeader = styled.div`
 
 export const MainHeaderLogo = styled.div`
   width: 500px;
-  height: 60px;
+  height: 40px;
   background: ${props =>
       props.url.length > 1 ? `url(${props.url})` : "#ffffff"}
     no-repeat;
-  background-size: 500px 60px;
+  background-size: 500px 40px;
 `;
 
 export const MainBodyTopText = styled.div`
   display: flex;
   height: 120px;
-  margin: 62px 0;
+  margin: 32px 0;
   color: #20223e;
-  font-size: 50px;
+  font-size: 38px;
   font-weight: bold;
   text-align: center;
   align-items: center;
@@ -64,12 +64,11 @@ export const MainBodyBox = styled.div`
   width: 100%;
   height: auto;
   color: #20223e;
-  padding: 10px 0 20px 0;
 
   & > div {
     display: flex;
     border: none;
-    padding: 20px 0;
+    padding: 0 0 20px 0;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -81,9 +80,9 @@ export const MainBodyBox = styled.div`
 `;
 
 export const MainBodyBoxText = styled.p`
-  height: 34px;
-  margin-left: 30px;
-  font-size: 32px;
+  /* height: 34px; */
+  /* margin-left: 30px; */
+  font-size: 24px;
   font-weight: bold;
 `;
 
@@ -106,26 +105,14 @@ export const MainBodyBoxBeforeFunc = styled.div`
   margin-left: 20px;
 `;
 
-export const MainBodyLogoutLayout = styled.div`
-  position: relative;
-  display: inline-block;
-  height: 27px;
-  width: 98px;
-  /* left: calc(50% + 230px); */
-  /* transform: translateX(-50%); */
-  /* top: 200px; */
-  align-items: center;
-  justify-content: center;
-`;
-
 export const MainBodyLogoutButton = styled.button`
-  margin-left: 20px;
-  width: 98px;
-  height: 27px;
+  width: 80px;
+  height: 25px;
   background: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   color: #707070;
   border: 1px solid #707070;
   border-radius: 30px;
+  margin-left: 10px;
 `;

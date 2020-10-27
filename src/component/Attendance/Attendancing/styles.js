@@ -16,8 +16,8 @@ export const HeaderWhere = styled.div`
 
 export const HeaderBackBtn = styled.div`
   display: flex;
-  width: 3em;
-  height: 3em;
+  width: 30px;
+  height: 30px;
   margin-right: 20px;
   align-items: center;
   justify-content: center;
@@ -25,34 +25,40 @@ export const HeaderBackBtn = styled.div`
 `;
 
 export const HeaderFloor = styled.div`
-  font-size: 38px;
+  display: flex;
+  height: 48px;
+  font-size: 28px;
   font-weight: bolder;
+  align-items: center;
 `;
 
 export const HeaderWhen = styled.div`
   position: absolute;
   display: flex;
   margin: 0 0 0 50%;
-  height: 80px;
+  height: 60px;
   flex-direction: column;
-  transform: translateX(-50%);
-  justify-content: space-evenly;
+  transform: translateX(-80%);
+  justify-content: center;
 `;
 
 export const HeaderMonthAndDay = styled.p`
+  padding-bottom: 3px;
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
 export const HeaderDayOfTheWeek = styled.p`
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 200;
 `;
 
 export const HeaderWho = styled.div`
   display: flex;
-  font-size: 30px;
+  padding-right: 10px;
+  font-size: 24px;
   font-weight: bold;
   align-items: center;
   flex-direction: column;
