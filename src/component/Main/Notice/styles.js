@@ -6,10 +6,10 @@ export const Container = styled.div`
   width: calc(100% - 40px);
   height: 200px;
   margin: 10px 0;
-  border-radius: 60px;
+  border-radius: 40px;
   box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
   background: #fafafa;
-  padding: 20px 20px 10px 20px !important;
+  padding: 10px 20px !important;
   align-items: center;
 
   &::after {
@@ -36,6 +36,7 @@ export const Header = styled.div`
   font-size: 18px;
   font-weight: bold;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const InformationWrap = styled.div`
