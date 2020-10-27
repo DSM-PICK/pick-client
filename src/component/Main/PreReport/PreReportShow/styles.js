@@ -13,25 +13,25 @@ export const Container = styled.div`
 export const ShowHeader = styled.div`
   display: flex;
   width: 100%;
-  height: 20px;
-  padding: 10px 0;
+  height: 14px;
+  padding: 10px 0 6px 0;
   justify-content: space-evenly;
 `;
 
 export const ShowHeaderStd = styled.p`
   display: flex;
-  width: 130px;
+  width: 100px;
   color: #707070;
-  font-size: 20px;
+  font-size: 14px;
   justify-content: center;
 `;
 
 export const ShowHeaderKind = styled(ShowHeaderStd)`
-  width: 70px;
+  width: 40px;
 `;
 
 export const ShowHeaderDate = styled(ShowHeaderStd)`
-  width: 200px;
+  width: 260px;
 `;
 
 export const ShowBody = styled.div`
@@ -46,24 +46,21 @@ export const ShowBody = styled.div`
 export const ShowBodyBox = styled.div`
   display: flex;
   width: 100%;
-  padding: 6px 0;
-  border-bottom: 1px solid #808080;
+  padding: 5px 0;
   align-items: center;
   justify-content: space-evenly;
 `;
 
 export const ShowBodyStd = styled(ShowHeaderStd)`
-  font-size: 22px;
+  font-size: 16px;
 `;
 
 export const ShowBodyKind = styled(ShowHeaderKind)`
-  font-size: 22px;
+  font-size: 16px;
 `;
 
 export const ShowBodyDate = styled(ShowHeaderDate)`
-  font-size: 22px;
-  flex-direction: column;
-  margin-left: 15px;
+  font-size: 16px;
 `;
 
 export const ShowBodyNoneItemText = styled.p`
@@ -74,19 +71,5 @@ export const ShowBodyNoneItemText = styled.p`
   font-size: 28px;
   font-weight: bold;
   align-items: center;
-  justify-content: center;
-`;
-
-export const ShowCheckDelBtn = styled.button`
-  position: absolute;
-  display: flex;
-  width: 90px;
-  height: 32px;
-  margin: 0 0 0 25%;
-  color: #ffffff;
-  font-size: 22px;
-  background: #e81a95;
-  border-radius: 8px;
-  transform: translateX(-50%) translateY(-120%);
   justify-content: center;
 `;
