@@ -105,21 +105,7 @@ export const MainBodyBoxBeforeFunc = styled.div`
   margin-left: 20px;
 `;
 
-export const MainBodyLogoutLayout = styled.div`
-  position: relative;
-  display: inline-block;
-  height: 27px;
-  width: 98px;
-  /* left: calc(50% + 230px); */
-  /* transform: translateX(-50%); */
-  /* top: 200px; */
-  align-items: center;
-  justify-content: center;
-`;
-
 export const MainBodyLogoutButton = styled.button`
-  /* position: absolute; */
-  /* right: 170px; */
   width: 80px;
   height: 25px;
   background: white;
@@ -128,4 +114,5 @@ export const MainBodyLogoutButton = styled.button`
   color: #707070;
   border: 1px solid #707070;
   border-radius: 30px;
+  margin-left: 10px;
 `;
