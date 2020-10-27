@@ -4,12 +4,12 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   width: calc(100% - 40px);
-  height: 260px;
+  height: 200px;
   margin: 10px 0;
   border-radius: 60px;
   box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.16);
   background: #fafafa;
-  padding: 20px !important;
+  padding: 20px 20px 10px 20px !important;
   align-items: center;
 
   &::after {
@@ -18,7 +18,7 @@ export const Container = styled.div`
     left: 50%;
     width: 1px;
     height: 100%;
-    background: #707070;
+    background: #d0d0d0;
   }
 `;
 
@@ -33,7 +33,8 @@ export const Section = styled.div`
 export const Header = styled.div`
   display: flex;
   color: #000000;
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: bold;
   align-items: center;
 `;
 
@@ -53,7 +54,7 @@ export const Information = styled.p`
   width: 100%;
   height: auto;
   padding: 5px;
-  color: #000000;
-  font-size: 20px;
+  color: #808080;
+  font-size: 16px;
   text-align: left;
 `;
