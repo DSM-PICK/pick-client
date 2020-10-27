@@ -52,14 +52,17 @@ export const ShowBodyBox = styled.div`
 `;
 
 export const ShowBodyStd = styled(ShowHeaderStd)`
+  color: #303030;
   font-size: 16px;
 `;
 
 export const ShowBodyKind = styled(ShowHeaderKind)`
+  color: #303030;
   font-size: 16px;
 `;
 
 export const ShowBodyDate = styled(ShowHeaderDate)`
+  color: #303030;
   font-size: 16px;
 `;
 
