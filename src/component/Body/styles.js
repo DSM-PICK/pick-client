@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   height: ${props =>
-    props.ismain === "main" ? "auto" : "calc(100vh - 175px)"};
+    props.ismain === "main" ? "auto" : "calc(100vh - 135px)"};
   background-color: white;
   padding: 10px 30px 30px 30px;
   border-radius: 40px 40px 0 0;
