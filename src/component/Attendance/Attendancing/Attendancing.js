@@ -83,7 +83,6 @@ const Attendancing = () => {
           locations={floorDatas[index]}
         />
       </Body>
-      <Footer />
     </S.Container>
   );
 };
