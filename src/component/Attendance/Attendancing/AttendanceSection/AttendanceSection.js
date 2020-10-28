@@ -15,8 +15,7 @@ const AttendanceSection = props => {
     const isSevenNull =
       !!Object.keys(attendanceData).length &&
       attendanceData[0].state.seven === null;
-    console.log(`clubName`);
-    console.log(clubName);
+
     return (
       <S.Container>
         {clubName !== "자습" ? (
