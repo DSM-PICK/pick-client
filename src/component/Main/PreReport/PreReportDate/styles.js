@@ -46,7 +46,7 @@ export const ClassWrap = styled.div`
 
 export const ClassText = styled.div`
   display: flex;
-  width: 34px;
+  width: 36px;
 `;
 
 export const Class = styled.input`

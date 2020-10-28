@@ -10,7 +10,9 @@ import {
   updateClubListSaga as updateClubListSagaCreater,
   GET_CLUB_LOCATION_SAGA,
   getClubLocation,
-  MOVE_STUDENT_SAGA
+  MOVE_STUDENT_SAGA,
+  GET_STUDENT_SAGA,
+  getStudent
 } from "../../action/club";
 import {
   methodType,
@@ -108,6 +110,17 @@ function* moveClubSaga(action) {
   }
 }
 
+function* getStudentSaga(action) {
+  try {
+    const res = yield call(
+      requestAdminGetApiWithAccessToken,
+      `/venus/students/search?num_and_name=${action.payload}`
+    );
+    yield put(getStudent(res.data));
+    console.log(res);
+  } catch (err) {}
+}
+
 function* clubSaga() {
   yield takeEvery(UPDATE_CLUB_LIST_SAGA, updateClubListSaga);
   yield takeEvery(UPDATE_CLUB_DETAIL_SAGA, upadteClubDetailSaga);
@@ -116,6 +129,7 @@ function* clubSaga() {
   yield takeEvery(DELETE_CLUB_SAGA, deleteClubSaga);
   yield takeEvery(GET_CLUB_LOCATION_SAGA, getClubLocationSaga);
   yield takeEvery(MOVE_STUDENT_SAGA, moveClubSaga);
+  yield takeEvery(GET_STUDENT_SAGA, getStudentSaga);
 }
 
 export default clubSaga;

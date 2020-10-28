@@ -4,7 +4,7 @@ import ImgButton from "./ImgButton/ImgButton";
 import ModalCreateClubList from "../ModalClubList/ModalCreateClubList";
 import * as S from "./styles";
 import LocationView from "./LocationView/LocationView";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import modalAction from "../../../module/action/modal";
 import { addClubSaga, getClubLocationSaga } from "../../../module/action/club";
 
@@ -24,7 +24,11 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
 
   const [createSutdnetArray, setCreateSutdnetArray] = useState([]);
   const addCreateSutdnetArray = useCallback(newStudentNum => {
-    setCreateSutdnetArray(prev => prev.concat(newStudentNum));
+    if (newStudentNum)
+      setCreateSutdnetArray(prev => {
+        if (prev.includes(newStudentNum)) return prev;
+        return prev.concat(newStudentNum);
+      });
   }, []);
 
   const modalRef = useRef();

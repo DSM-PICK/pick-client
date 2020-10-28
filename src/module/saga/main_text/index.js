@@ -3,7 +3,10 @@ const {
   GET_MAIN_TEXT_REMAINING_DATE_SAGA,
   setMainTextRemainingDate
 } = require("../../action/main_text");
-import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
+import {
+  requesetRefresh,
+  requestGetApiWithAccessToken
+} from "../../../lib/requestApi";
 import { WORKING_TEACHER } from "../../../lib/requestUrl";
 
 function* getMainTextRemainingDate() {
@@ -16,8 +19,11 @@ function* getMainTextRemainingDate() {
 
     window.localStorage.setItem(REMAIN_DATE, remainingDate.data.remaining_date);
   } catch (e) {
-    console.log(e);
-    console.log(`감독 선생님 일정 공지 확인 실패`);
+    switch (e) {
+      case 410: {
+        requesetRefresh();
+      }
+    }
   }
 }
 
