@@ -21,7 +21,7 @@ const AttendanceSection = props => {
         {clubName !== "자습" ? (
           <S.Article>
             <S.Name>{clubName}</S.Name>
-            <S.Location>{location}</S.Location>
+            {clubName !== location && <S.Location>{location}</S.Location>}
             {!!clubHead && <S.Head>{`부장 : ${clubHead}`}</S.Head>}
           </S.Article>
         ) : (
