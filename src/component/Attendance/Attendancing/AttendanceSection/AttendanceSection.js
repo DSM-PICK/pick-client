@@ -20,13 +20,18 @@ const AttendanceSection = props => {
       <S.Container>
         {clubName !== "자습" ? (
           <S.Article>
-            <S.StdCount>{`부원수 : ${attendanceData.length}명`}</S.StdCount>
+            <S.StdCount>
+              {attendanceData.length && `부원수 : ${attendanceData.length}명`}
+            </S.StdCount>
             <S.Name>{clubName}</S.Name>
             {clubName !== location && <S.Location>{location}</S.Location>}
             {!!clubHead && <S.Head>{`부장 : ${clubHead}`}</S.Head>}
           </S.Article>
         ) : (
           <S.Article>
+            <S.StdCount>
+              {attendanceData.length && `부원수 : ${attendanceData.length}명`}
+            </S.StdCount>
             <S.Location location="자습실">{`자습실`}</S.Location>
           </S.Article>
         )}
