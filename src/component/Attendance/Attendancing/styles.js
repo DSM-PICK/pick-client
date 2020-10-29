@@ -59,6 +59,7 @@ export const HeaderDayOfTheWeek = styled.p`
 export const HeaderWho = styled.div`
   display: flex;
   padding-right: 10px;
+  margin-right: 20px;
   font-size: 24px;
   font-weight: bold;
   align-items: center;
