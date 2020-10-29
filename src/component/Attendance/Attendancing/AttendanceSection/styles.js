@@ -31,11 +31,15 @@ export const Location = styled.div`
   color: #20223e;
 `;
 
-export const Head = styled.div`
+export const Head = styled.p`
   position: absolute;
   right: 50px;
   font-size: 20px;
   font-weight: 300;
+`;
+
+export const StdCount = styled(Head)`
+  left: 50px;
 `;
 
 export const Attendance = styled.div`
