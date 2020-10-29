@@ -10,18 +10,19 @@ export const Container = styled.div`
 
 export const HeaderWhere = styled.div`
   display: flex;
+  margin-left: 20px;
+  height: 60px;
   align-items: center;
   justify-content: center;
 `;
 
 export const HeaderBackBtn = styled.div`
   display: flex;
-  width: 30px;
-  height: 30px;
-  margin-right: 20px;
+  width: 60px;
+  height: 60px;
   align-items: center;
   justify-content: center;
-  background: ${props => `url('${props.url}') no-repeat center/100%`};
+  background: ${props => `url('${props.url}') no-repeat center/50%`};
 `;
 
 export const HeaderFloor = styled.div`
