@@ -28,7 +28,7 @@ function* getPreAbsenceList() {
     const month = date.getMonth() + 1;
     const todayStr = `${date.getFullYear()}-${makeDate2Digit(
       month
-    )}-${date.getDate()}`;
+    )}-${makeDate2Digit(date.getDate())}`;
     const REQUEST_URL = PRE_ABSENCE.PRE_ABSENCE_LIST_URL(todayStr);
 
     const preAbsenceList = yield call(
