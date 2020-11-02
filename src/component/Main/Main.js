@@ -72,7 +72,7 @@ const Main = () => {
           <PreReport />
         </S.MainBodyBox>
         <S.MainBodyBox>
-          <S.MainBodyBoxText>동아리 현황</S.MainBodyBoxText>
+          <S.MainBodyBoxText>동아리현황</S.MainBodyBoxText>
           <Notice />
         </S.MainBodyBox>
         {isOpen && <LogoutModal onModalClick={onModalClick} />}

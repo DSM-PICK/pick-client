@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 58%;
   height: 260px;
   border: 1px solid #d0d0d0;
-  border-radius: 60px;
+  border-radius: 30px;
   background: white;
   flex-direction: column;
 `;
@@ -39,7 +39,7 @@ export const ShowBody = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  border-radius: 0 0 40px 40px;
+  border-radius: 0 0 30px 30px;
   flex-direction: column;
 `;
 
@@ -75,4 +75,8 @@ export const ShowBodyNoneItemText = styled.p`
   font-weight: bold;
   align-items: center;
   justify-content: center;
+`;
+
+export const ShowBodyTextItem = styled.span`
+  margin-right: 5px;
 `;
