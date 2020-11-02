@@ -40,13 +40,13 @@ export const PreReportStates = styled.div`
   border-radius: 15px;
 
   & > div:first-child {
-    border-left: 1px solid #707070;
+    border-left: 1px solid #d0d0d0;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
   }
 
   & > div:last-child {
-    border-right: 1px solid #707070;
+    border-right: 1px solid #d0d0d0;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
   }
