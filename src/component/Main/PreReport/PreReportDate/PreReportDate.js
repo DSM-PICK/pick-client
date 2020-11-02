@@ -32,8 +32,6 @@ const PreReportDate = props => {
           <S.ClassWrap>
             <S.Class
               type="number"
-              min="1"
-              max="10"
               placeholder="__"
               ref={refInputArr[index]}
               value={date.period}
