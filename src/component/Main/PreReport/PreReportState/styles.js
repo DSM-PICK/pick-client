@@ -13,6 +13,6 @@ export const Container = styled.div`
   background: ${props =>
     props.stateName === props.preReportState ? "#267dff" : "white"};
 
-  border-top: 1px solid #707070;
-  border-bottom: 1px solid #707070;
+  border-top: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
 `;
