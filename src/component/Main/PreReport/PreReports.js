@@ -139,10 +139,11 @@ const PreReports = () => {
     (isSetPre, e) => {
       const setDate = isSetPre ? setPreDate : setNextDate;
       const date = isSetPre ? preDate : nextDate;
-      if (e.target.value > 10) {
+
+      if (Number(e.target.value) > 10) {
         setDate({ ...date, period: 10 });
-      } else if (e.target.value < 1) {
-        setDate({ ...date, period: 1 });
+      } else if (Number(e.target.value) < 1) {
+        setDate({ ...date, period: 0 });
       } else {
         setDate({
           ...date,
