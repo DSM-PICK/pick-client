@@ -1,12 +1,12 @@
 import React from "react";
 import AttendanceAnchor from "./anchor/AttendanceAnchor";
 import Body from "../../Body/Body";
-import { ClassPng, ClubPng } from "../../../asset";
+import { ClubPng, ClassPng } from "../../../asset";
 
 const AttendanceBody = props => {
   const { anchorItems, ismain } = props;
 
-  const pngArr = [ClassPng, ClubPng];
+  const pngArr = [ClubPng, ClassPng];
 
   return (
     <Body ismain={ismain}>

@@ -8,18 +8,18 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  align-items: center;
   justify-content: center;
   z-index: 3;
 `;
 
 export const Modal = styled.div`
+  margin-top: 45%;
   display: flex;
-  width: 640px;
+  width: 540px;
   height: 300px;
   background: white;
   border: 1px solid #707070;
-  border-radius: 60px;
+  border-radius: 30px;
   flex-direction: column;
 `;
 
@@ -28,7 +28,7 @@ export const ModalText = styled.div`
   width: 100%;
   height: 200px;
   color: #20223e;
-  font-size: 38px;
+  font-size: 32px;
   font-weight: bold;
   box-sizing: border-box;
   align-items: center;
@@ -42,7 +42,7 @@ export const ModalSubText = styled.p`
   width: 100%;
   color: #20223e;
   font-size: 26px;
-  font-weight: bold;
+  font-weight: 400;
   align-items: center;
   justify-content: center;
 `;
