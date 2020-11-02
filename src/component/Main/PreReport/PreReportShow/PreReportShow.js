@@ -44,7 +44,7 @@ const PreReportShow = () => {
                   preAbsenceData.end_date,
                   preAbsenceData.end_period
                 ).map(text => (
-                  <span key={text}>{text}</span>
+                  <S.ShowBodyTextItem key={text}>{text}</S.ShowBodyTextItem>
                 ))}
               </S.ShowBodyDate>
             </S.ShowBodyBox>
