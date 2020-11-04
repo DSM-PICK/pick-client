@@ -33,10 +33,10 @@ const Developer = () => {
           <div>© 2020 Team PICK. All rights reserved.</div>
         </div>
         <div>
-          <a href="https://facebook.com" target="_blank">
+          <a href="https://github.com/DSM-PICK" target="_blank">
             <img src={GithubLogo} />
           </a>
-          <a href="https://github.com" target="_blank">
+          <a href="https://facebook.com" target="_blank">
             <img src={FacebookLogo} />
           </a>
         </div>
