@@ -12,7 +12,8 @@ export const ValueButton = styled.button`
   font-size: 20px;
   background: ${props => (props.text == "출석" ? "white" : "#2764A7")};
   color: ${props => (props.text == "출석" ? "black" : "white")};
-  border: 1px solid #707070;
+  border: ${props =>
+    !props.state && props.text !== "출석" ? "none" : "1px solid #707070"};
   border-radius: 12px;
   box-sizing: border-box;
   outline: none;
