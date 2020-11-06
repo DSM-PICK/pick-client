@@ -8,22 +8,11 @@ import {
   changeMySchedule,
   CHANGE_MY_SCHEDULE_STATUS,
   defaultStatus,
-  SHOW_MY_SCHEDULE_STATUS,
+  SHOW_MY_SCHEDULE_STATUS
 } from "../../../../module/action/calander";
 
-const HiddenMenuContainer = ({ isOpen, state }) => {
-  useEffect(() => {
-    console.log("HiddenMenuContainer");
-  });
+const HiddenMenuContainer = ({ state }) => {
   const dispatch = useDispatch();
-
-  const dispatchShowMySchedule = useCallback(() => {
-    if (state === SHOW_MY_SCHEDULE_STATUS) {
-      dispatch(defaultStatus());
-      return;
-    }
-    dispatch(showMySchedule("오유신"));
-  }, [dispatch, state]);
 
   const dispatchChangeMySchedule = useCallback(() => {
     if (state === CHANGE_MY_SCHEDULE_STATUS) {
@@ -34,12 +23,7 @@ const HiddenMenuContainer = ({ isOpen, state }) => {
   }, [dispatch, state]);
 
   return (
-    <S.AnimationWrap isOpen={isOpen}>
-      <HiddenMenuItem
-        onClick={dispatchShowMySchedule}
-        content="내 일정 보기"
-        src={FocusIcon}
-      />
+    <S.AnimationWrap>
       <HiddenMenuItem
         onClick={dispatchChangeMySchedule}
         content="일정 교체"
