@@ -77,9 +77,9 @@ const CalanderItemContainer = ({
     <CalanderItem
       isActive={isActive}
       isActives={[
-        state === SHOW_MY_SCHEDULE_STATUS && floor2 === todayTeacher,
-        state === SHOW_MY_SCHEDULE_STATUS && floor3 === todayTeacher,
-        state === SHOW_MY_SCHEDULE_STATUS && floor4 === todayTeacher
+        state && floor2 === todayTeacher,
+        state && floor3 === todayTeacher,
+        state && floor4 === todayTeacher
       ]}
       names={[floor2, floor3, floor4]}
       date={date}

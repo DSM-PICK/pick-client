@@ -8,7 +8,7 @@ import { defaultStatus, DEFAULT_STATUS } from "../../../module/action/calander";
 const FunctionButtonContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  const state = useSelector((store) => store.calander.state);
+  const state = useSelector(store => store.calander.state);
 
   const changeIsOpen = useCallback(() => {
     const nextValue = !isOpen;
@@ -21,12 +21,6 @@ const FunctionButtonContainer = () => {
   return (
     <S.Container>
       <HiddenMenuContainer isOpen={isOpen} state={state} />
-      <S.ButtonWrap>
-        <S.MenuText />
-        <S.BigButton onClick={changeIsOpen} isOpen={isOpen}>
-          <img src={MenuAddIcon} />
-        </S.BigButton>
-      </S.ButtonWrap>
     </S.Container>
   );
 };

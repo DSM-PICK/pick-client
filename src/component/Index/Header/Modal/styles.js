@@ -13,8 +13,9 @@ export const Container = styled.div`
 `;
 
 export const Modal = styled.div`
-  width: 640px;
-  height: 500px;
+  width: 470px;
+  height: 390px;
+  margin-bottom: 200px;
   box-sizing: border-box;
   border-radius: 70px;
   background: #f5f5f5;
@@ -30,7 +31,7 @@ export const Modal = styled.div`
 `;
 
 export const Header = styled.div`
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 
 export const Title = styled.div`
@@ -76,7 +77,7 @@ export const InputWrap = styled.div`
 
 export const LoginBtn = styled.button`
   width: 250px;
-  margin-top: 30px;
+  margin-top: 50px;
   padding: 15px 0;
   border-radius: 24px;
   border: none;
