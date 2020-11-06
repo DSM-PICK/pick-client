@@ -17,6 +17,13 @@ export const FAIL_CHANGE_TEACHER = "calander/FAIL_CHANGE_TEACHER";
 export const GET_SCHEDULE = "calander/GET_SCHEDULE";
 export const GET_SCHEDULE_SAGA = "calander/GET_SCHEDULE_SAGA";
 
+export const SET_DATE = "calander/SET_DATE";
+
+export const setDate = payload => ({
+  type: SET_DATE,
+  payload
+});
+
 export const defaultStatus = () => ({
   type: DEFAULT_STATUS
 });
