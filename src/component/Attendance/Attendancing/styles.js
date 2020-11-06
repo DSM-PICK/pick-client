@@ -10,7 +10,6 @@ export const Container = styled.div`
 
 export const HeaderWhere = styled.div`
   display: flex;
-  margin-left: 20px;
   height: 60px;
   align-items: center;
   justify-content: center;
