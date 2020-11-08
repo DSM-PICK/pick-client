@@ -4,11 +4,15 @@ import CalanderHeader from "./CalanderHeader/CalanderHeader";
 import CalanderBody from "./CalanderBody/CalanderBody";
 import FunctionButtonContainer from "./FunctionButton/FunctionButtonContainer";
 import { useDispatch } from "react-redux";
-import { getScheduleSaga } from "../../module/action/calander";
+import { getScheduleSaga, setDate } from "../../module/action/calander";
 
 const Calander = () => {
   const dispatch = useDispatch();
   useEffect(() => {
+    const data = new Date();
+    const year = data.getFullYear();
+    const month = data.getMonth();
+    dispatch(setDate({ year, month }));
     dispatch(getScheduleSaga());
   }, []);
 

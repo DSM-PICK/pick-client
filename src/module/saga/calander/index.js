@@ -68,9 +68,7 @@ function* resolveChangeTeacherSaga() {
 }
 
 function* getScheduleSaga() {
-  const nowDateObj = new Date();
-  const year = nowDateObj.getFullYear();
-  const month = nowDateObj.getMonth();
+  const { year, month } = yield select(store => store.calander);
 
   const data = getDateObj(year, month);
   const oneArray = data.reduce((state, dateArr) => state.concat(dateArr), []);
