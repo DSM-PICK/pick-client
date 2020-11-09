@@ -23,8 +23,9 @@ const Header = () => {
   ];
 
   const HeaderLinkButtonCss = {
-    width: "82px",
-    height: "34px"
+    flex: "1",
+    color: "#ffffff",
+    fontWeight: "bold"
   };
 
   return (
