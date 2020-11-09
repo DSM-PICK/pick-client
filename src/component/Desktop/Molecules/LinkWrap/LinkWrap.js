@@ -9,7 +9,12 @@ const LinkWrap = props => {
   return (
     <S.Container>
       {LinkButtonData.map(data => (
-        <LinkButton text={data.text} path={data.path} css={LinkButtonCss} />
+        <LinkButton
+          key={data.text}
+          text={data.text}
+          path={data.path}
+          css={LinkButtonCss}
+        />
       ))}
     </S.Container>
   );
