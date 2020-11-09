@@ -1,4 +1,5 @@
 import React from "react";
+import HeaderImg from "../../Molecules/Img/HeaderImg/HeaderImg";
 import LinkWrap from "../../Molecules/LinkWrap/LinkWrap";
 import * as S from "./styles";
 
@@ -30,6 +31,7 @@ const Header = () => {
 
   return (
     <S.Container>
+      <HeaderImg />
       <LinkWrap
         LinkButtonData={initValue}
         LinkButtonCss={HeaderLinkButtonCss}
