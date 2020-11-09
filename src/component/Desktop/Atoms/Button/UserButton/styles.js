@@ -12,9 +12,9 @@ export const UBContainer = styled(Container)`
   &::after {
     content: " ";
     position: absolute;
-    right: -3px;
-    border-top: 8px solid #ffffff;
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
+    right: 0px;
+    border-top: 6px solid #ffffff;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
   }
 `;
