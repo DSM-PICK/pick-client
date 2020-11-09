@@ -1,10 +1,10 @@
 import React from "react";
-import { Logo } from "../../../../../asset";
+import { WhiteLogo } from "../../../../../asset";
 import Img from "../../../Atoms/Img/Img";
 import * as S from "./styles";
 
 const HeaderImg = () => {
-  const img = Logo;
+  const img = WhiteLogo;
 
   return (
     <S.Container>
