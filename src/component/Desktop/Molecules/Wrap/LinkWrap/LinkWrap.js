@@ -1,10 +1,9 @@
 import React from "react";
-import LinkButton from "../../Atoms/LinkButton/LinkButton";
+import LinkButton from "../../../Atoms/LinkButton/LinkButton";
 import * as S from "./styles";
 
 const LinkWrap = props => {
-  const { LinkButtonData } = props;
-  const { LinkButtonCss } = props;
+  const { LinkButtonCss, LinkButtonData } = props;
 
   return (
     <S.Container>
