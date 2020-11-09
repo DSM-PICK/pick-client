@@ -7,7 +7,7 @@ export const Container = styled.div`
   padding: 0 10%;
   background: #001ac7;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 export const Wrap = styled.div`
