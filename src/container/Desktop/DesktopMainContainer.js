@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "../../component/Desktop/Main/Main";
+import Main from "../../component/Desktop/Templates/Main/Main";
 
 const DesktopMainContainer = () => {
   return <Main />;
