@@ -1,7 +1,8 @@
 import React from "react";
 import HeaderImg from "../../Molecules/Img/HeaderImg/HeaderImg";
-import LinkWrap from "../../Molecules/LinkWrap/LinkWrap";
+import LinkWrap from "../../Molecules/Wrap/LinkWrap/LinkWrap";
 import * as S from "./styles";
+import UserWrap from "./UserWrap/UserWrap";
 
 const Header = () => {
   const initValue = [
@@ -32,10 +33,13 @@ const Header = () => {
   return (
     <S.Container>
       <HeaderImg />
-      <LinkWrap
-        LinkButtonData={initValue}
-        LinkButtonCss={HeaderLinkButtonCss}
-      />
+      <S.Wrap>
+        <LinkWrap
+          LinkButtonData={initValue}
+          LinkButtonCss={HeaderLinkButtonCss}
+        />
+        <UserWrap />
+      </S.Wrap>
     </S.Container>
   );
 };
