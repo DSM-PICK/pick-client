@@ -1,5 +1,5 @@
 import React from "react";
-import { UserDefaultSvg } from "../../../../../asset";
+import { UserDefaultSvg } from "../../../../../asset/Desktop/index";
 import UserButton from "../../../Atoms/Button/UserButton/UserButton";
 import Img from "../../../Atoms/Img/Img";
 import * as S from "./styles";
