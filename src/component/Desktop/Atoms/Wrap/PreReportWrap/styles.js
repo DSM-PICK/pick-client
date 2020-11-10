@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   width: ${props => props.width};
   height: ${props => props.height};
   padding: 10px 50px;
