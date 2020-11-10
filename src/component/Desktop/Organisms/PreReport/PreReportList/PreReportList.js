@@ -1,9 +1,9 @@
 import React from "react";
 import * as S from "./styles";
-import PreReportLabel from "../../Atoms/Label/PreReportLabel/PreReportLabel";
-import PreReportWrap from "../../Atoms/Wrap/PreReportWrap/PreReportWrap";
-import PreReportListTextWrap from "../../Molecules/Wrap/PreReportListTextWrap/PreReportListTextWrap";
-import PreReportListBtnWrap from "../../Molecules/Wrap/PreReportListBtnWrap/PreReportListBtnWrap";
+import PreReportLabel from "../../../Atoms/Label/PreReportLabel/PreReportLabel";
+import PreReportWrap from "../../../Atoms/Wrap/PreReportWrap/PreReportWrap";
+import PreReportListTextWrap from "../../../Molecules/Wrap/PreReportListTextWrap/PreReportListTextWrap";
+import PreReportListBtnWrap from "../../../Molecules/Wrap/PreReportListBtnWrap/PreReportListBtnWrap";
 
 const PreReportList = () => {
   const PreReportWrapCSS = {
