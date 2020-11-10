@@ -3,7 +3,8 @@ import { Container } from "../styles";
 
 export const UBContainer = styled(Container)`
   position: relative;
-  width: auto;
+  flex: none;
+  width: 70px;
 
   &:hover {
     cursor: pointer;
