@@ -3,6 +3,7 @@ import * as S from "./styles";
 import PreReportLabel from "../../Atoms/Label/PreReportLabel/PreReportLabel";
 import PreReportWrap from "../../Atoms/Wrap/PreReportWrap/PreReportWrap";
 import PreReportListTextWrap from "../../Molecules/Wrap/PreReportListTextWrap/PreReportListTextWrap";
+import PreReportListBtnWrap from "../../Molecules/Wrap/PreReportListBtnWrap/PreReportListBtnWrap";
 
 const PreReportList = () => {
   const PreReportWrapCSS = {
@@ -50,7 +51,7 @@ const PreReportList = () => {
 
   return (
     <S.Container>
-      <PreReportLabel>사전 결석 목록</PreReportLabel>
+      <PreReportLabel text={"사전 결석 목록"} />
       <PreReportWrap css={PreReportWrapCSS}>
         <PreReportListTextWrap
           ParagraphCSS={HeaderParagraphCSS}
@@ -64,6 +65,9 @@ const PreReportList = () => {
               ParagraphTexts={data}
             />
           ))}
+        <S.MiddleSetting>
+          <PreReportListBtnWrap />
+        </S.MiddleSetting>
       </PreReportWrap>
     </S.Container>
   );
