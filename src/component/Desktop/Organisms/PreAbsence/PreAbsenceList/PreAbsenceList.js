@@ -1,12 +1,13 @@
 import React from "react";
 import * as S from "./styles";
-import PreReportLabel from "../../Atoms/Label/PreReportLabel/PreReportLabel";
-import PreReportWrap from "../../Atoms/Wrap/PreReportWrap/PreReportWrap";
-import PreReportListTextWrap from "../../Molecules/Wrap/PreReportListTextWrap/PreReportListTextWrap";
-import PreReportListBtnWrap from "../../Molecules/Wrap/PreReportListBtnWrap/PreReportListBtnWrap";
+import PreAbsenceLabel from "../../../Atoms/Label/PreAbsenceLabel/PreAbsenceLabel";
+import PreAbsenceWrap from "../../../Atoms/Wrap/PreAbsenceWrap/PreAbsenceWrap";
+import PreAbsenceListTextWrap from "../../../Molecules/Wrap/PreAbsenceListTextWrap/PreAbsenceListTextWrap";
+import PreAbsenceListBtnWrap from "../../../Molecules/Wrap/PreAbsenceListBtnWrap/PreAbsenceBtnWrap";
+import SearchWrap from "../../../Molecules/Wrap/SearchWrap/SearchWrap";
 
-const PreReportList = () => {
-  const PreReportWrapCSS = {
+const PreAbsenceList = () => {
+  const PreAbsenceWrapCSS = {
     width: "900px",
     height: "700px",
     radiusSize: "40px"
@@ -51,26 +52,27 @@ const PreReportList = () => {
 
   return (
     <S.Container>
-      <PreReportLabel text={"사전 결석 목록"} />
-      <PreReportWrap css={PreReportWrapCSS}>
-        <PreReportListTextWrap
+      <SearchWrap />
+      <PreAbsenceLabel text={"사전 결석 목록"} />
+      <PreAbsenceWrap css={PreAbsenceWrapCSS}>
+        <PreAbsenceListTextWrap
           ParagraphCSS={HeaderParagraphCSS}
           ParagraphTexts={HeaderParagraphTexts}
         />
         {BodyParagraphTexts &&
           BodyParagraphTexts.map(data => (
-            <PreReportListTextWrap
+            <PreAbsenceListTextWrap
               key={data.stdnum + data.during}
               ParagraphCSS={BodyParagraphCSS}
               ParagraphTexts={data}
             />
           ))}
         <S.MiddleSetting>
-          <PreReportListBtnWrap />
+          <PreAbsenceListBtnWrap />
         </S.MiddleSetting>
-      </PreReportWrap>
+      </PreAbsenceWrap>
     </S.Container>
   );
 };
 
-export default PreReportList;
+export default PreAbsenceList;

@@ -5,4 +5,14 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const MainWrap = styled.div``;
+export const MainWrap = styled.div`
+  display: flex;
+  margin: 40px 10%;
+`;
+
+export const SubWrap = styled.div`
+  display: flex;
+  margin: 0 0 0 40px;
+  flex-direction: column;
+  justify-content: space-between;
+`;
