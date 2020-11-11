@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 
-const PreReportListTextWrap = props => {
+const PreAbsenceListTextWrap = props => {
   const { ParagraphTexts } = props;
   const { ParagraphCSS } = props;
   const { stdnum, name, state, during, reason } = ParagraphTexts;
@@ -17,4 +17,4 @@ const PreReportListTextWrap = props => {
   );
 };
 
-export default PreReportListTextWrap;
+export default PreAbsenceListTextWrap;

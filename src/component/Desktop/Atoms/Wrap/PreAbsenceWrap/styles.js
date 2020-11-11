@@ -7,5 +7,5 @@ export const Container = styled.div`
   padding: 10px 50px;
   border-top-right-radius: ${props => props.radiusSize};
   border-bottom-left-radius: ${props => props.radiusSize};
-  box-shadow: 1px 2px 8px #000000;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.16);
 `;
