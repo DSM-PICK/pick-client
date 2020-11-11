@@ -4,6 +4,7 @@ import PreAbsenceLabel from "../../../Atoms/Label/PreAbsenceLabel/PreAbsenceLabe
 import PreAbsenceWrap from "../../../Atoms/Wrap/PreAbsenceWrap/PreAbsenceWrap";
 import PreAbsenceListTextWrap from "../../../Molecules/Wrap/PreAbsenceListTextWrap/PreAbsenceListTextWrap";
 import PreAbsenceListBtnWrap from "../../../Molecules/Wrap/PreAbsenceListBtnWrap/PreAbsenceBtnWrap";
+import SearchWrap from "../../../Molecules/Wrap/SearchWrap/SearchWrap";
 
 const PreAbsenceList = () => {
   const PreAbsenceWrapCSS = {
@@ -51,6 +52,7 @@ const PreAbsenceList = () => {
 
   return (
     <S.Container>
+      <SearchWrap />
       <PreAbsenceLabel text={"사전 결석 목록"} />
       <PreAbsenceWrap css={PreAbsenceWrapCSS}>
         <PreAbsenceListTextWrap
