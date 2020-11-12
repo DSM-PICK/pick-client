@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   display: flex;
-  flex: ${props => props.css.flex};
-  margin: ${props => (props.css.margin ? props.css.margin : "0")};
-  padding: ${props => (props.css.padding ? props.css.padding : "0")};
-  color: ${props => props.css.color};
-  font-size: ${props => (props.css.fontSize ? props.css.fontSize : "15px")};
-  font-weight: ${props =>
-    props.css.fontWeight ? props.css.fontWeight : "normal"};
-  border: ${props => (props.css.border ? props.css.border : "none")};
-  background: ${props =>
-    props.css.background ? props.css.background : "none"};
+  width: ${props => props.width};
+  height: ${props => props.height};
+  margin: ${props => (props.margin ? props.margin : "0")};
+  padding: ${props => (props.padding ? props.padding : "0")};
+  color: ${props => (props.color ? props.color : "#ffffff")};
+  font-size: ${props => (props.fontSize ? props.fontSize : "15px")};
+  font-weight: ${props => (props.fontWeight ? props.fontWeight : "normal")};
+  border: ${props => (props.border ? props.border : "none")};
+  border-radius: ${props => (props.radiusSize ? props.radiusSize : "0")};
+  background: ${props => (props.background ? props.background : "none")};
 
   outline: none;
   text-decoration: none;
