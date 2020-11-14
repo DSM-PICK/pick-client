@@ -11,11 +11,7 @@ import DesktopPreAbsenceContainer from "./container/Desktop/DesktopPreAbsenceCon
 const Routing = () => {
   return (
     <Switch>
-      <Route
-        exact
-        path="/m/pre-absence"
-        component={DesktopPreAbsenceContainer}
-      />
+      <Route exact path="/t" component={DesktopPreAbsenceContainer} />
 
       <Route exact path="/" component={IndexContainer} />
       <Route exact path="/schedule" component={ScheduleContainer} />
