@@ -24,7 +24,7 @@ function* requestLogin(action) {
     window.localStorage.setItem("teacherName", teacherName);
     put({ type: GET_MAIN_TEXT_REMAINING_DATE_SAGA });
     alert("로그인에 성공했습니다.");
-    window.location.href = "/main ";
+    window.location.href = "/t/main ";
   } catch (err) {
     switch (err.status) {
       case 404: {
