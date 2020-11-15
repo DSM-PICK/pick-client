@@ -1,10 +1,9 @@
-export const SET_SELF_STUDY_DATA = "attendance/SET_SELF_STUDY_DATA";
+export const SET_FIRST_FLOOR_DATA = "attendance/SET_FIRST_FLOOR_DATA";
 export const SET_SECOND_FLOOR_DATA = "attendance/SET_SECOND_FLOOR_DATA";
 export const SET_THIRD_FLOOR_DATA = "attendance/SET_THIRD_FLOOR_DATA";
 export const SET_FORTH_FLOOR_DATA = "attendance/SET_FORTH_FLOOR_DATA";
 
-export const SET_SELF_STUDY_TEACHER_NAME =
-  "attendance/SET_SELF_STUDY_TEACHER_NAME";
+export const SET_FIRST_TEACHER_NAME = "attendance/SET_FIRST_TEACHER_NAME";
 export const SET_SECOND_TEACHER_NAME = "attendance/SET_SECOND_TEACHER_NAME";
 export const SET_THIRD_TEACHER_NAME = "attendance/SET_THIRD_TEACHER_NAME";
 export const SET_FORTH_TEACHER_NAME = "attendance/SET_FORTH_TEACHER_NAME";
@@ -44,13 +43,13 @@ export const setForthFloorData = payload => ({
   payload
 });
 
-export const setSelfStudyData = payload => ({
-  type: SET_SELF_STUDY_DATA,
+export const setFirstFloorData = payload => ({
+  type: SET_FIRST_FLOOR_DATA,
   payload
 });
 
-export const setSelfStudyTeacherName = payload => ({
-  type: SET_SELF_STUDY_TEACHER_NAME,
+export const setFirstTeacherName = payload => ({
+  type: SET_FIRST_TEACHER_NAME,
   payload
 });
 
