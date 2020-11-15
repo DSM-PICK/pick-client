@@ -17,11 +17,9 @@ const Routing = () => {
       <Route exact path="/t/schedule" component={ScheduleContainer} />
       <Route exact path="/t/main" component={MainContainer} />
       <Route path="/t/attendance" component={AttendanceContainer} />
+
       <Route path="/admin" component={AdminRouting} />
-      {/* <Route
-        path={["/t/bugreport", "/t/statistics"]}
-        component={NotFoundContainer}
-      /> */}
+
       <Route path="*" component={NotFoundContainer} />
     </Switch>
   );
