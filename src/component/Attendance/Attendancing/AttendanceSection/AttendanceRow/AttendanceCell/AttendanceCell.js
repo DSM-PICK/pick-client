@@ -41,7 +41,7 @@ const AttendanceCell = props => {
   return (
     <S.Container onClick={() => onClickCell()}>
       <S.ValueButton index={index} state={state} text={text}>
-        {!state && text}
+        {!state && text !== "출석" && text}
         <S.Wrap>
           {states.map(state => (
             <AttendanceItem

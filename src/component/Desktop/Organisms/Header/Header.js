@@ -11,12 +11,12 @@ const Header = () => {
       path: "/attendance"
     },
     {
-      text: "결석 신고",
-      path: "/somepath"
+      text: "사전 결석",
+      path: "/pre-absence"
     },
     {
       text: "출석 통계",
-      path: "/tonggei"
+      path: "/stats"
     },
     {
       text: "동아리",
