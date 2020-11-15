@@ -1,22 +1,25 @@
 import React, { useEffect } from "react";
 import * as S from "./styles";
 import { Switch, Route } from "react-router-dom";
-import AttendanceClass from "../../component/Attendance/ClassAttendance/ClassAttendance";
-import AttendanceClub from "../../component/Attendance/ClubAttendance/ClubAttendance";
 import Attendancing from "./Attendancing/Attendancing";
+import SelectAttendance from "./SelectAttendance/SelectAttendance";
 import { checkPageWithLogin } from "../../lib/requestApi";
 
 const AttendanceRouting = () => {
   useEffect(() => {
     checkPageWithLogin();
   }, []);
+
   return (
     <S.Container>
       <Switch>
-        <Route exact path="/t/attendance/class" component={AttendanceClass} />
-        <Route exact path="/t/attendance/club" component={AttendanceClub} />
         <Route
-          path={["/t/attendance/class/", "/t/attendance/club/"]}
+          exact
+          path={["/t/attendance/self-study", "/t/attendance/club"]}
+          component={SelectAttendance}
+        />
+        <Route
+          path={["/t/attendance/self-study/", "/t/attendance/club/"]}
           component={Attendancing}
         />
       </Switch>
