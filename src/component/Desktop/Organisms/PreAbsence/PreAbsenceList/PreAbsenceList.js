@@ -10,7 +10,8 @@ const PreAbsenceList = () => {
   const PreAbsenceWrapCSS = {
     width: "900px",
     height: "700px",
-    radiusSize: "40px"
+    radiusSize: "40px",
+    placeContent: "start stretch"
   };
 
   const HeaderParagraphCSS = {
@@ -31,7 +32,7 @@ const PreAbsenceList = () => {
     padding: "0 0 11px 0",
     color: "#333336",
     fontSize: "16px",
-    fontWeight: "normal"
+    fontWeight: "500"
   };
   const BodyParagraphTexts = [
     {

@@ -5,7 +5,7 @@ import PreAbsenceReport from "../../Organisms/PreAbsence/PreAbsenceReport/PreAbs
 import PreAbsenceList from "../../Organisms/PreAbsence/PreAbsenceList/PreAbsenceList";
 import PreAbsenceStats from "../../Organisms/PreAbsence/PreAbsenceStats/PreAbsenceStats";
 
-const Main = () => {
+const PreAbsence = () => {
   return (
     <S.Container>
       <Header />
@@ -20,4 +20,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default PreAbsence;

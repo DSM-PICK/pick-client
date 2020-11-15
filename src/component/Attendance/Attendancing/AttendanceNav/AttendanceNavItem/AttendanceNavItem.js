@@ -16,7 +16,9 @@ const AttendanceNavItem = props => {
 
   const to = `/${location.pathname.split("/")[1]}/${
     location.pathname.split("/")[2]
-  }/${location.pathname.split("/")[3]}/${index}`;
+  }/${location.pathname.split("/")[3]}/${
+    location.pathname.split("/")[4]
+  }/${index}`;
 
   return (
     <S.Container

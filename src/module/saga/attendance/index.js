@@ -8,11 +8,11 @@ import {
 } from "../../../lib/requestApi";
 import { ATTENDANCE } from "../../../lib/requestUrl";
 import {
-  setSelfStudyData,
+  setFirstFloorData,
   setSecondFloorData,
   setThirdFloorData,
   setForthFloorData,
-  setSelfStudyTeacherName,
+  setFirstTeacherName,
   setSecondTeacherName,
   setThirdTeacherName,
   setForthTeacherName,
@@ -54,8 +54,8 @@ function* getFloorData(payload) {
         break;
       case "자습실":
         floor = 1;
-        setFloorData = setSelfStudyData;
-        setFloorTeacherName = setSelfStudyTeacherName;
+        setFloorData = setFirstFloorData;
+        setFloorTeacherName = setFirstTeacherName;
         break;
       default:
         throw new Error(

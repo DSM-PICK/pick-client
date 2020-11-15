@@ -1,9 +1,9 @@
 import {
-  SET_SELF_STUDY_DATA,
+  SET_FIRST_FLOOR_DATA,
   SET_SECOND_FLOOR_DATA,
   SET_THIRD_FLOOR_DATA,
   SET_FORTH_FLOOR_DATA,
-  SET_SELF_STUDY_TEACHER_NAME,
+  SET_FIRST_TEACHER_NAME,
   SET_SECOND_TEACHER_NAME,
   SET_THIRD_TEACHER_NAME,
   SET_FORTH_TEACHER_NAME,
@@ -17,14 +17,14 @@ import {
 
 const initialState = {
   datas: {
-    selfStudyData: [],
+    firstFloorData: [],
     secondFloorData: [],
     thirdFloorData: [],
     forthFloorData: []
   },
 
   teachers: {
-    selfStudyTeacherName: "",
+    firstTeacherName: "",
     secondTeacherName: "",
     thirdTeacherName: "",
     forthTeacherName: ""
@@ -42,12 +42,12 @@ const initialState = {
 
 const attendanceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SELF_STUDY_DATA: {
+    case SET_FIRST_FLOOR_DATA: {
       return {
         ...state,
         datas: {
           ...state.datas,
-          selfStudyData: action.payload
+          firstFloorData: action.payload
         }
       };
     }
@@ -78,12 +78,12 @@ const attendanceReducer = (state = initialState, action) => {
         }
       };
     }
-    case SET_SELF_STUDY_TEACHER_NAME: {
+    case SET_FIRST_TEACHER_NAME: {
       return {
         ...state,
         teachers: {
           ...state.teachers,
-          selfStudyTeacherName: action.payload
+          firstTeacherName: action.payload
         }
       };
     }

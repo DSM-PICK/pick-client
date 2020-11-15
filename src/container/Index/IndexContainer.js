@@ -8,7 +8,7 @@ const IndexContainer = () => {
   const history = useHistory();
   useEffect(() => {
     checkIsLogin().then(isLogin => {
-      isLogin && history.push("/main");
+      isLogin && history.push("/t/main");
     });
   }, []);
 

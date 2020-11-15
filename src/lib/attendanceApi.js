@@ -1,12 +1,6 @@
 export const getLocationState = () => {
-  const locationPath = location.pathname.split("/")[2];
-  return locationPath === "class"
-    ? "self-study"
-    : locationPath === "club"
-    ? "club"
-    : function () {
-        // console.log("none");
-      };
+  const locationPath = location.pathname.split("/")[3];
+  return locationPath;
 };
 
 export const makeDate2Digit = month => {

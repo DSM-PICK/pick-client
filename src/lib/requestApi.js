@@ -77,7 +77,7 @@ export const requesetRefresh = async () => {
     if (err === 403 || err.response.status === 403) {
       alert("인증이 만료되어 재인증이 필요합니다.");
       window.localStorage.clear();
-      window.location.href = "/";
+      window.location.href = "/t/";
     }
   }
 };
@@ -129,7 +129,7 @@ export const checkPageWithLogin = () => {
   checkIsLogin().then(isLogin => {
     if (!window.localStorage.getItem(REFRESH_TOKEN)) {
       alert("로그인이 필요한 서비스입니다.");
-      location.href = "/";
+      location.href = "/t/";
     } else if (!isLogin) {
       requesetRefresh();
     }
@@ -266,9 +266,9 @@ export const Logout = () => {
       window.localStorage.removeItem(ACCESS_TOKEN);
     !!window.localStorage.getItem(REFRESH_TOKEN) &&
       window.localStorage.removeItem(REFRESH_TOKEN);
-    window.location.href = "/";
+    window.location.href = "/t/";
   } catch (err) {
-    window.location.href = "/";
+    window.location.href = "/t/";
   }
 };
 
