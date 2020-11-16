@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./styles";
 import PreAbsenceLabel from "../../../Atoms/Label/PreAbsenceLabel/PreAbsenceLabel";
-import PreReportLabel from "../../../Atoms/Label/PreAbsenceLabel/PreAbsenceLabel";
 import PreReportWrap from "../../../Atoms/Wrap/PreAbsenceWrap/PreAbsenceWrap";
 
 const PreAbsenceReport = () => {
@@ -22,7 +21,7 @@ const PreAbsenceReport = () => {
 
   return (
     <S.Container>
-      <PreReportLabel text={"사전 결석 신고"} />
+      <PreAbsenceLabel text={"사전 결석 신고"} />
       <PreReportWrap css={PreReportWrapCSS}>
         <S.LeftWrap>
           <PreAbsenceLabel text={"결석자"} css={PreAbsenceLabelCSS} />
