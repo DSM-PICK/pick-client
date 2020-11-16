@@ -12,7 +12,7 @@ const PreReportCalander = props => {
   const { height, calcDate, calcMonth } = props;
   const { onOffModal, onSelectDay, onClickCalcMonth } = props;
 
-  const margin = isBrowser ? "50% 0 0 50%" : "5% 0 0 50%";
+  const margin = isBrowser ? "5% 0 0 50%" : "50% 0 0 50%";
   return (
     <S.Container margin={margin}>
       <S.Month>
