@@ -18,15 +18,4 @@ export const Container = styled.div`
   text-align: center;
   justify-content: center;
   flex-direction: column;
-  /* 
-  &::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    filter: blur(10px);
-  } */
 `;

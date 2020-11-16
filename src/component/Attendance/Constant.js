@@ -28,7 +28,7 @@ export const CLUB_ANCHOR_ITEMS = [
     link: "/t/attendance/club/floor2/0"
   },
   {
-    text: "자습실",
+    text: "창조실",
     imgLink: "",
     link: "/t/attendance/club/floor1/0"
   }
@@ -51,7 +51,7 @@ export const SELF_STUDY_ANCHOR_ITEMS = [
     link: "/t/attendance/self-study/floor2/0"
   },
   {
-    text: "자습실",
+    text: "창조실",
     imgLink: "",
     link: "/t/attendance/self-study/floor1/0"
   }

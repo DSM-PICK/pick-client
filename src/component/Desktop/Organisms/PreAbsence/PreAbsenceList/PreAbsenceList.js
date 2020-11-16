@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from "./styles";
 import PreAbsenceLabel from "../../../Atoms/Label/PreAbsenceLabel/PreAbsenceLabel";
-import PreAbsenceWrap from "../../../Atoms/Wrap/PreAbsenceWrap/PreAbsenceWrap";
+import WaterDropWrap from "../../../Atoms/Wrap/WaterDropWrap/WaterDropWrap";
 import PreAbsenceListTextWrap from "../../../Molecules/Wrap/PreAbsenceListTextWrap/PreAbsenceListTextWrap";
 import PreAbsenceListBtnWrap from "../../../Molecules/Wrap/PreAbsenceListBtnWrap/PreAbsenceBtnWrap";
 import SearchWrap from "../../../Molecules/Wrap/SearchWrap/SearchWrap";
 
 const PreAbsenceList = () => {
-  const PreAbsenceWrapCSS = {
+  const WaterDropWrapCSS = {
     width: "900px",
     height: "700px",
     radiusSize: "40px",
@@ -55,7 +55,7 @@ const PreAbsenceList = () => {
     <S.Container>
       <SearchWrap />
       <PreAbsenceLabel text={"사전 결석 목록"} />
-      <PreAbsenceWrap css={PreAbsenceWrapCSS}>
+      <WaterDropWrap css={WaterDropWrapCSS}>
         <PreAbsenceListTextWrap
           ParagraphCSS={HeaderParagraphCSS}
           ParagraphTexts={HeaderParagraphTexts}
@@ -71,7 +71,7 @@ const PreAbsenceList = () => {
         <S.MiddleSetting>
           <PreAbsenceListBtnWrap />
         </S.MiddleSetting>
-      </PreAbsenceWrap>
+      </WaterDropWrap>
     </S.Container>
   );
 };

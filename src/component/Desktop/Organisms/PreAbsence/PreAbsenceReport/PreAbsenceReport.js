@@ -1,11 +1,10 @@
 import React from "react";
 import * as S from "./styles";
 import PreAbsenceLabel from "../../../Atoms/Label/PreAbsenceLabel/PreAbsenceLabel";
-import PreReportLabel from "../../../Atoms/Label/PreAbsenceLabel/PreAbsenceLabel";
-import PreReportWrap from "../../../Atoms/Wrap/PreAbsenceWrap/PreAbsenceWrap";
+import WaterDropWrap from "../../../Atoms/Wrap/WaterDropWrap/WaterDropWrap";
 
 const PreAbsenceReport = () => {
-  const PreReportWrapCSS = {
+  const WaterDropWrapCSS = {
     width: "500px",
     height: "310px",
     radiusSize: "30px",
@@ -22,8 +21,8 @@ const PreAbsenceReport = () => {
 
   return (
     <S.Container>
-      <PreReportLabel text={"사전 결석 신고"} />
-      <PreReportWrap css={PreReportWrapCSS}>
+      <PreAbsenceLabel text={"사전 결석 신고"} />
+      <WaterDropWrap css={WaterDropWrapCSS}>
         <S.LeftWrap>
           <PreAbsenceLabel text={"결석자"} css={PreAbsenceLabelCSS} />
         </S.LeftWrap>
@@ -33,7 +32,7 @@ const PreAbsenceReport = () => {
         <S.RightBottomWrap>
           <PreAbsenceLabel text={"사전 결석 통계"} css={PreAbsenceLabelCSS} />
         </S.RightBottomWrap>
-      </PreReportWrap>
+      </WaterDropWrap>
     </S.Container>
   );
 };
