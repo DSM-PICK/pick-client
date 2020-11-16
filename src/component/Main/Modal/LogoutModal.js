@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./styles";
 import { Link } from "react-router-dom";
 import { Logout } from "../../../lib/requestApi";
+import { isBrowser } from "react-device-detect";
 
 const LogoutModal = props => {
   const { onModalClick } = props;
