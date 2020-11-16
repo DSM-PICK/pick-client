@@ -10,8 +10,10 @@ const LogoutModal = props => {
     event.stopPropagation();
   };
 
+  const margin = isBrowser ? "5% 0 0 0" : "45% 0 0 0";
+
   return (
-    <S.Container onClick={onModalClick}>
+    <S.Container margin={margin} onClick={onModalClick}>
       <S.Modal onClick={event => onNoModalClick(event)}>
         <S.ModalText>로그아웃하시겠습니까?</S.ModalText>
         <S.ModalBtnWrap>

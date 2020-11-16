@@ -52,7 +52,7 @@ function* getFloorData(payload) {
         setFloorData = setSecondFloorData;
         setFloorTeacherName = setSecondTeacherName;
         break;
-      case "자습실":
+      case "창조실":
         floor = 1;
         setFloorData = setFirstFloorData;
         setFloorTeacherName = setFirstTeacherName;
@@ -77,6 +77,8 @@ function* getFloorData(payload) {
       locations,
       teacherName
     } = floorData.data;
+
+    console.log(floorData);
 
     yield put(setDate(date));
     yield put(setSchedule(schedule));
