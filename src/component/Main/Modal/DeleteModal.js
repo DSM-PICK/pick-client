@@ -63,8 +63,8 @@ const DeleteModal = props => {
   const margin = isBrowser ? "5% 0 0 0" : "45% 0 0 0";
 
   return (
-    <S.Container margin={margin} onClick={onCancle}>
-      <S.Modal onClick={event => onNoModalClick(event)}>
+    <S.Container onClick={onCancle}>
+      <S.Modal margin={margin} onClick={event => onNoModalClick(event)}>
         <S.ModalText>
           삭제하시겠습니까?
           <S.ModalSubText>
