@@ -25,7 +25,7 @@ export const Modal = styled.div`
 
 export const ModalText = styled.div`
   display: flex;
-  width: 100%;
+  width: 540px;
   height: 200px;
   color: #20223e;
   font-size: 32px;
