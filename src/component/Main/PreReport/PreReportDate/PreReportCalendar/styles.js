@@ -10,11 +10,9 @@ export const Container = styled.div`
   flex-direction: column;
   top: 0;
   left: 0;
-  margin: 50% 0 0 50%;
+  margin: 5% 0 0 50%;
   z-index: 3;
-  transform: translateX(-50%) translateY(-50%);
-
-  /* transform: ${props => props.height && `translateY(${props.height})`}; */
+  transform: translateX(-50%);
 `;
 
 export const Month = styled.div`
