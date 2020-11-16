@@ -52,14 +52,14 @@ function* getFloorData(payload) {
         setFloorData = setSecondFloorData;
         setFloorTeacherName = setSecondTeacherName;
         break;
-      case "자습실":
+      case "창조실":
         floor = 1;
         setFloorData = setFirstFloorData;
         setFloorTeacherName = setFirstTeacherName;
         break;
       default:
         throw new Error(
-          `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
+          `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "창조실"`
         );
     }
 
