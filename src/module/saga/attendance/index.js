@@ -78,6 +78,8 @@ function* getFloorData(payload) {
       teacherName
     } = floorData.data;
 
+    console.log(floorData);
+
     yield put(setDate(date));
     yield put(setSchedule(schedule));
     yield put(setDayOfWeek(dayOfWeek));

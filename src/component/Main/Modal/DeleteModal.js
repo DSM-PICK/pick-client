@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { useDispatch } from "react-redux";
 import { deletePreAbsenceSaga } from "../../../module/action/pre_absence";
 import { getPreAbsenceText } from "../../../lib/attendanceApi";
+import { isBrowser } from "react-device-detect";
 
 const DeleteModal = props => {
   const { curAbsenceId, preAbsenceList } = props;
@@ -59,8 +60,10 @@ const DeleteModal = props => {
     );
   }, []);
 
+  const margin = isBrowser ? "5% 0 0 0" : "45% 0 0 0";
+
   return (
-    <S.Container onClick={onCancle}>
+    <S.Container margin={margin} onClick={onCancle}>
       <S.Modal onClick={event => onNoModalClick(event)}>
         <S.ModalText>
           삭제하시겠습니까?
