@@ -59,7 +59,7 @@ function* getFloorData(payload) {
         break;
       default:
         throw new Error(
-          `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
+          `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "창조실"`
         );
     }
 
