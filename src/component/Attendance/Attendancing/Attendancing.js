@@ -12,7 +12,7 @@ const getFloorText = splitPathnames => {
   const floor = splitPathnames[splitPathnames.length - 2]; // floorN 형식의 pathname. 자세한 건 노션 참조.
   const floorNum = floor[floor.length - 1];
 
-  return floorNum != 1 ? `${floorNum}층` : "자습실";
+  return floorNum != 1 ? `${floorNum}층` : "창조실";
 };
 
 const Attendancing = () => {
@@ -29,7 +29,7 @@ const Attendancing = () => {
 
   const index = location.pathname[location.pathname.length - 1];
 
-  const notFloor = "자습실";
+  const notFloor = "창조실";
 
   let floorDatas = [];
   let teacherName = ``;
@@ -50,7 +50,7 @@ const Attendancing = () => {
       teacherName = teachers.secondTeacherName;
       break;
     }
-    case "자습실": {
+    case "창조실": {
       floorDatas = datas.firstFloorData;
       teacherName = teachers.selfStudyTeacherName;
       break;
