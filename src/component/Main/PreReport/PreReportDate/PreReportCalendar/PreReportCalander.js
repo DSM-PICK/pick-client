@@ -6,13 +6,15 @@ import {
   CalendarModalLeft,
   CalendarModalRight
 } from "../../../../../asset/index";
+import { isBrowser } from "react-device-detect";
 
 const PreReportCalander = props => {
   const { height, calcDate, calcMonth } = props;
   const { onOffModal, onSelectDay, onClickCalcMonth } = props;
 
+  const margin = isBrowser ? "50% 0 0 50%" : "5% 0 0 50%";
   return (
-    <S.Container height={height}>
+    <S.Container margin={margin}>
       <S.Month>
         <S.MonthArrow
           src={CalendarModalLeft}
