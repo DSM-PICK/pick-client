@@ -18,7 +18,7 @@ const LogoutModal = props => {
         <S.ModalText>로그아웃하시겠습니까?</S.ModalText>
         <S.ModalBtnWrap>
           <S.ModalCancle onClick={onModalClick}>취소</S.ModalCancle>
-          <S.ModalOkay onClick={(onModalClick, Logout)} as={Link} to="/main">
+          <S.ModalOkay onClick={(onModalClick, Logout)} as={Link} to="/t/main">
             확인
           </S.ModalOkay>
         </S.ModalBtnWrap>
