@@ -8,7 +8,8 @@ export const Container = styled.div`
 
 export const MainWrap = styled.div`
   display: grid;
-  grid-template: repeat(5, 1fr) / 3fr 2fr;
+  grid-gap: 120px;
+  grid-template: repeat(4, 1fr) / 3fr 2fr;
   height: 100%;
   padding: 0 10%;
 `;
