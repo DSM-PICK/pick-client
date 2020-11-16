@@ -10,7 +10,7 @@ export const Container = styled.div`
   flex-direction: column;
   top: 0;
   left: 0;
-  margin: 5% 0 0 50%;
+  margin: ${props => (props.margin ? props.margin : "5% 0 0 50%")};
   z-index: 3;
   transform: translateX(-50%);
 `;
