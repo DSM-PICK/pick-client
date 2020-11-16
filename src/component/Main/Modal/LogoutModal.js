@@ -13,6 +13,10 @@ const LogoutModal = props => {
 
   const margin = isBrowser ? "5% 0 0 0" : "45% 0 0 0";
 
+  console.log("LogoutModal");
+  console.log(isBrowser);
+  console.log(margin);
+
   return (
     <S.Container onClick={onModalClick}>
       <S.Modal margin={margin} onClick={event => onNoModalClick(event)}>
