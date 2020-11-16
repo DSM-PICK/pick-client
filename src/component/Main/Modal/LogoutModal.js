@@ -14,8 +14,8 @@ const LogoutModal = props => {
   const margin = isBrowser ? "5% 0 0 0" : "45% 0 0 0";
 
   return (
-    <S.Container margin={margin} onClick={onModalClick}>
-      <S.Modal onClick={event => onNoModalClick(event)}>
+    <S.Container onClick={onModalClick}>
+      <S.Modal margin={margin} onClick={event => onNoModalClick(event)}>
         <S.ModalText>로그아웃하시겠습니까?</S.ModalText>
         <S.ModalBtnWrap>
           <S.ModalCancle onClick={onModalClick}>취소</S.ModalCancle>
