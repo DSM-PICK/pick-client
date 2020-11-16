@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Modal = styled.div`
-  margin-top: 45%;
+  margin: ${props => (props.margin ? props.margin : "45%")};
   display: flex;
   width: 540px;
   height: 300px;
