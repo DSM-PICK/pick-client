@@ -62,6 +62,10 @@ const DeleteModal = props => {
 
   const margin = isBrowser ? "5% 0 0 0" : "45% 0 0 0";
 
+  console.log("DelModal");
+  console.log(isBrowser);
+  console.log(margin);
+
   return (
     <S.Container onClick={onCancle}>
       <S.Modal margin={margin} onClick={event => onNoModalClick(event)}>
