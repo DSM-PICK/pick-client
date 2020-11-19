@@ -51,7 +51,7 @@ const PreReportShow = () => {
           ))
         ) : (
           <S.ShowBodyNoneItemText>
-            사전 결석 신고 명단이 없습니다.
+            사전 신고 명단이 없습니다.
           </S.ShowBodyNoneItemText>
         )}
       </S.ShowBody>
