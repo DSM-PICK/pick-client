@@ -13,6 +13,9 @@ const AttendanceCell = props => {
       value: "출석"
     },
     {
+      value: "이동"
+    },
+    {
       value: "외출"
     },
     {
