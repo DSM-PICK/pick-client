@@ -6,7 +6,7 @@ import * as S from "./styles";
 const PreReportState = props => {
   const { stateName } = props;
 
-  const preReportState = useSelector(state => state.preAbsence.state);
+  const preReportState = useSelector(state => state.preReport.state);
 
   const dispatch = useDispatch();
 
