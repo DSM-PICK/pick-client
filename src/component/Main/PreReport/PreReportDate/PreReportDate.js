@@ -14,7 +14,7 @@ const PreReportDate = props => {
     onClickCalcMonth
   } = props;
 
-  const preAbsenceData = useSelector(state => state.preAbsence);
+  const preAbsenceData = useSelector(state => state.preReport);
   const { preDate, nextDate } = preAbsenceData;
   const dateArr = [preDate, nextDate];
   const refInputArr = [props.preClassInput, props.nextClassInput];
