@@ -28,7 +28,7 @@ const initialState = {
   }
 };
 
-const preAbsenceReducer = (state = initialState, action) => {
+const preReportReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PRE_ABSENCE_TEXT: {
       return {
@@ -104,4 +104,4 @@ const preAbsenceReducer = (state = initialState, action) => {
   }
 };
 
-export default preAbsenceReducer;
+export default preReportReducer;
