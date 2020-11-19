@@ -87,17 +87,17 @@ function* createPreAbsenceSaga(payload) {
     // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
     switch (error) {
       case 404:
-        alert("사전 결석 신고를 실패했습니다.");
+        alert("사전 신고를 실패했습니다.");
         break;
       case 409:
-        alert("사전 결석 기간이 겹칩니다.");
+        alert("사전 신고 기간이 겹칩니다.");
         break;
       case 410:
         requesetRefresh();
         break;
     }
     if (!error) {
-      alert("사전 결석 신고를 실패했습니다.");
+      alert("사전 신고를 실패했습니다.");
     }
   }
 }
@@ -119,10 +119,10 @@ function* deletePreAbsence(payload) {
   }
 }
 
-function* preAbsenceSaga() {
+function* preReportSaga() {
   yield takeEvery(GET_PRE_ABSENCE_LIST_SAGA, getPreAbsenceList);
   yield takeEvery(CREATE_PRE_ABSENCE_SAGA, createPreAbsenceSaga);
   yield takeEvery(DELETE_PRE_ABSENCE_SAGA, deletePreAbsence);
 }
 
-export default preAbsenceSaga;
+export default preReportSaga;
