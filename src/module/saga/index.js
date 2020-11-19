@@ -2,7 +2,7 @@ import { all } from "redux-saga/effects";
 import attendanceSaga from "./attendance";
 import autoCompleteSaga from "./auto_complete";
 import calanderSaga from "./calander";
-import preAbsenceSaga from "./pre_absence";
+import preReportSaga from "./pre_report";
 import loginSaga from "./login";
 import teacherSaga from "./teacher";
 import clubSaga from "./club";
@@ -20,7 +20,7 @@ function* rootSaga() {
     mainTextSaga(),
     noticeSaga(),
     teacherSaga(),
-    preAbsenceSaga()
+    preReportSaga()
   ]);
 }
 

@@ -5,7 +5,7 @@ import DeleteModal from "../../Modal/DeleteModal";
 import * as S from "./styles";
 
 const PreReportShow = () => {
-  const preAbsenceList = useSelector(state => state.preAbsence.preAbsenceList);
+  const preAbsenceList = useSelector(state => state.preReport.preAbsenceList);
 
   const [delModal, setDelModal] = useState(false);
   const [curAbsenceId, setCurAbsenceId] = useState("");
