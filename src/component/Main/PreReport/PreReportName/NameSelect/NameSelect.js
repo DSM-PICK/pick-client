@@ -8,7 +8,7 @@ import {
 } from "../../../../../module/action/pre_absence";
 
 const NameSelect = () => {
-  const names = useSelector(state => state.preAbsence.autoComplete);
+  const names = useSelector(state => state.preReport.autoComplete);
 
   const dispatch = useDispatch();
 

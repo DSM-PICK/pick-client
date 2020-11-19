@@ -7,8 +7,8 @@ export const Container = styled(Link)`
   justify-content: center;
 
   color: #ffffff;
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 500;
   text-decoration: none;
   border-radius: ${props => props.radiussize};
   background: ${props =>
