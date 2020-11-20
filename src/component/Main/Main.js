@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Body from "../Body/Body";
 import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
-import LogoutModal from "./Modal/LogoutModal";
+import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReports";
 import Notice from "./Notice/Notice";
 import { Logo } from "../../asset";
