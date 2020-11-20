@@ -2,6 +2,9 @@ export const SET_PRE_ABSENCE_TEXT = "pre_absence/SET_PRE_ABSENCE_TEXT";
 export const SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT =
   "pre_absence/SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT";
 
+export const SET_SELECTED_PRE_ABSENCE_ID =
+  "pre_absence/SET_SELECTED_PRE_ABSENCE_ID";
+
 export const SET_PRE_ABSENCE_LIST = "pre_absence/SET_PRE_ABSENCE_LIST";
 export const SET_PRE_ABSENCE_STATE = "pre_absence/SET_PRE_ABSENCE_STATE";
 export const SET_PRE_ABSENCE_PRE_DATE = "pre_absence/SET_PRE_ABSENCE_PRE_DATE";
@@ -27,6 +30,11 @@ export const setPreAbsenceText = payload => ({
 
 export const setPreAbsenceAutoCompleteText = payload => ({
   type: SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT,
+  payload
+});
+
+export const setSelectedPreAbsenceId = payload => ({
+  type: SET_SELECTED_PRE_ABSENCE_ID,
   payload
 });
 
