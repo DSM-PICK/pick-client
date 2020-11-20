@@ -5,13 +5,15 @@ import {
   SET_PRE_ABSENCE_NEXT_DATE,
   INIT_PRE_ABSENCE_DATA,
   SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT,
-  SET_PRE_ABSENCE_TEXT
+  SET_PRE_ABSENCE_TEXT,
+  SET_SELECTED_PRE_ABSENCE_ID
 } from "../../action/pre_absence";
 
 const initialState = {
   text: "",
   autoComplete: [],
 
+  selectedPreAbsenceId: "",
   preAbsenceList: [],
   state: "외출",
   preDate: {
@@ -40,6 +42,12 @@ const preReportReducer = (state = initialState, action) => {
       return {
         ...state,
         autoComplete: action.payload
+      };
+    }
+    case SET_SELECTED_PRE_ABSENCE_ID: {
+      return {
+        ...state,
+        selectedPreAbsenceId: action.payload
       };
     }
     case SET_PRE_ABSENCE_LIST: {
