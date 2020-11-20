@@ -126,7 +126,7 @@ const PreReports = () => {
     } else {
       setCalcMonth(calcMonth + calc);
     }
-    console.log(calcYear, calcMonth + calc);
+
     setCalcDate(getDateObj(calcYear, calcMonth + calc));
   };
 
