@@ -9,14 +9,10 @@ import {
 import { isBrowser } from "react-device-detect";
 
 const PreReportCalander = props => {
-  const { height, calcDate, calcMonth } = props;
+  const { calcDate, calcMonth } = props;
   const { onOffModal, onSelectDay, onClickCalcMonth } = props;
 
   const margin = isBrowser ? "5% 0 0 50%" : "50% 0 0 50%";
-
-  console.log("PreReport");
-  console.log(isBrowser);
-  console.log(margin);
 
   return (
     <S.Container margin={margin}>

@@ -17,8 +17,8 @@ import PreReportShow from "./PreReportShow/PreReportShow";
 
 const PreReports = () => {
   const nameText = useSelector(state => state.preReport.text);
-  const preAbsenceData = useSelector(state => state.preReport);
-  const { state, preDate, nextDate } = preAbsenceData;
+  const preReportData = useSelector(state => state.preReport);
+  const { state, preDate, nextDate } = preReportData;
 
   const dispatch = useDispatch();
 
@@ -126,7 +126,7 @@ const PreReports = () => {
     } else {
       setCalcMonth(calcMonth + calc);
     }
-    console.log(calcYear, calcMonth + calc);
+
     setCalcDate(getDateObj(calcYear, calcMonth + calc));
   };
 

@@ -101,26 +101,3 @@ export const checkPreAbsenceData = (
   }
   return true;
 };
-
-export const getRemainTime = remainingDate => {
-  const date = new Date();
-
-  let [hour, minute] = remainingDate == 0 ? [20, 30] : [16, 30];
-  if (date.getDay() === 0 || date.getDay() === 6) {
-    return `주말`;
-  }
-  hour -= date.getHours();
-  minute -= date.getMinutes();
-  if (hour < 0 || (hour == 0 && minute <= 0)) {
-    return `퇴근`;
-  }
-
-  if (minute < 0) {
-    hour -= 1;
-    minute += 60;
-  }
-
-  let text = !!hour ? `${hour}시간 ${minute}분` : `${minute}분`;
-
-  return text;
-};
