@@ -27,7 +27,7 @@ const Main = () => {
 
   const teacherName = window.localStorage.getItem(TEACHER_NAME);
 
-  const onModalClick = useCallback(() => {
+  const ShowLogoutModal = useCallback(() => {
     dispatch(showModal(LogoutModal));
   }, [dispatch]);
 
@@ -48,7 +48,7 @@ const Main = () => {
         <S.MainBodyTopText>
           <S.MainBodyTopWho>
             {teacherName} 선생님은
-            <S.MainBodyLogoutButton onClick={onModalClick}>
+            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>
               로그아웃
             </S.MainBodyLogoutButton>
           </S.MainBodyTopWho>
