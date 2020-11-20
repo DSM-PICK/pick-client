@@ -1,12 +1,6 @@
 export const getLocationState = () => {
-  const locationPath = location.pathname.split("/")[2];
-  return locationPath === "class"
-    ? "self-study"
-    : locationPath === "club"
-    ? "club"
-    : function () {
-        // console.log("none");
-      };
+  const locationPath = location.pathname.split("/")[3];
+  return locationPath;
 };
 
 export const makeDate2Digit = month => {
@@ -56,7 +50,9 @@ export const getPreAbsenceText = (
 
 export const PreAbsenceReg = {
   isRightState: state => {
-    return ["외출", "현체", "병결", "공결"].includes(state) ? true : false;
+    return ["외출", "이동", "현체", "병결", "공결"].includes(state)
+      ? true
+      : false;
   },
   isRightStdnum: stdnum => {
     const re = /\d{4}/;
@@ -80,8 +76,12 @@ export const checkPreAbsenceData = (
   end_period
 ) => {
   if (!PreAbsenceReg.isRightState(state)) {
-    alert(`출석 상태는 "외출", "현체", "병결", "공결" 중 하나여야합니다.`);
-    throw new Error(`State(${state}) is not in "외출", "현체", "병결", "공결"`);
+    alert(
+      `출석 상태는 "외출", "이동" "현체", "병결", "공결" 중 하나여야합니다.`
+    );
+    throw new Error(
+      `State(${state}) is not in "외출", "이동", "현체", "병결", "공결"`
+    );
   }
   if (!PreAbsenceReg.isRightStdnum(stdnum)) {
     alert(`이름이 올바르지 않습니다.`);

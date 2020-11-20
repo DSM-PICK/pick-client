@@ -5,7 +5,7 @@ import DeleteModal from "../../Modal/DeleteModal";
 import * as S from "./styles";
 
 const PreReportShow = () => {
-  const preAbsenceList = useSelector(state => state.preAbsence.preAbsenceList);
+  const preAbsenceList = useSelector(state => state.preReport.preAbsenceList);
 
   const [delModal, setDelModal] = useState(false);
   const [curAbsenceId, setCurAbsenceId] = useState("");
@@ -51,7 +51,7 @@ const PreReportShow = () => {
           ))
         ) : (
           <S.ShowBodyNoneItemText>
-            사전 결석 신고 명단이 없습니다.
+            사전 신고 명단이 없습니다.
           </S.ShowBodyNoneItemText>
         )}
       </S.ShowBody>

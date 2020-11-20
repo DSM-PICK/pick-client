@@ -19,10 +19,13 @@ function* getAutoCompleteTextSaga(payload) {
         REQUEST_URL
       );
       yield put(setPreAbsenceAutoCompleteText(autoCompleteData.data));
+      // } else {
+      //   throw new Error(
+      //     "getAutoCompleteTextSaga : There is no parameter (autocomplete text)."
+      //   );
+      // }
     } else {
-      throw new Error(
-        "getAutoCompleteTextSaga : There is no parameter (autocomplete text)."
-      );
+      yield put(setPreAbsenceAutoCompleteText(""));
     }
   } catch (error) {
     // yield put(FAILURE_AUTO_COMPLETE_TEXT_SAGA(error.response.status));

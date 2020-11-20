@@ -6,7 +6,7 @@ import { getAutoCompleteTextSaga } from "../../../../module/action/auto_complete
 import { setPreAbsenceText } from "../../../../module/action/pre_absence";
 
 const PreReportName = () => {
-  const nameText = useSelector(state => state.preAbsence.text);
+  const nameText = useSelector(state => state.preReport.text);
 
   const dispatch = useDispatch();
 

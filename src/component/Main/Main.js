@@ -68,7 +68,7 @@ const Main = () => {
           <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
-          <S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
+          <S.MainBodyBoxText>사전신고</S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
         <S.MainBodyBox>

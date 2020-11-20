@@ -38,7 +38,7 @@ export const HeaderWhen = styled.div`
   margin: 0 0 0 50%;
   height: 60px;
   flex-direction: column;
-  transform: translateX(-80%);
+  transform: translateX(-50%);
   justify-content: center;
 `;
 

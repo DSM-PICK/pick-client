@@ -13,15 +13,15 @@ import {
   TonggeiOnIcon
 } from "../../../asset";
 const checkPath = pathname => {
-  return pathname === "/main" ||
-    pathname === "/attendance/class" ||
-    pathname === "/attendance/club"
+  return pathname === "/t/main" ||
+    pathname === "/t/attendance/class" ||
+    pathname === "/t/attendance/club"
     ? 0
-    : location.pathname === "/schedule"
+    : location.pathname === "/t/schedule"
     ? 1
-    : location.pathname === "/bugreport"
+    : location.pathname === "/t/bugreport"
     ? 2
-    : location.pathname === "/tonggei"
+    : location.pathname === "/t/tonggei"
     ? 3
     : -1;
 };
@@ -38,7 +38,7 @@ const NavFooter = ({ location }) => {
 
   return (
     <S.Container>
-      {linkIndex !== -1 ? (
+      {linkIndex !== -1 &&
         FooterNav.map((footerItem, index) =>
           linkIndex === index ? (
             <S.FooterNavItem
@@ -55,10 +55,7 @@ const NavFooter = ({ location }) => {
               imglink={imgArr[index][0]}
             />
           )
-        )
-      ) : (
-        <Redirect to="/main" />
-      )}
+        )}
     </S.Container>
   );
 };

@@ -8,11 +8,11 @@ import {
 } from "../../../lib/requestApi";
 import { ATTENDANCE } from "../../../lib/requestUrl";
 import {
-  setSelfStudyData,
+  setFirstFloorData,
   setSecondFloorData,
   setThirdFloorData,
   setForthFloorData,
-  setSelfStudyTeacherName,
+  setFirstTeacherName,
   setSecondTeacherName,
   setThirdTeacherName,
   setForthTeacherName,
@@ -52,14 +52,14 @@ function* getFloorData(payload) {
         setFloorData = setSecondFloorData;
         setFloorTeacherName = setSecondTeacherName;
         break;
-      case "자습실":
+      case "창조실":
         floor = 1;
-        setFloorData = setSelfStudyData;
-        setFloorTeacherName = setSelfStudyTeacherName;
+        setFloorData = setFirstFloorData;
+        setFloorTeacherName = setFirstTeacherName;
         break;
       default:
         throw new Error(
-          `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "자습실"`
+          `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "창조실"`
         );
     }
 
@@ -77,6 +77,8 @@ function* getFloorData(payload) {
       locations,
       teacherName
     } = floorData.data;
+
+    console.log(floorData);
 
     yield put(setDate(date));
     yield put(setSchedule(schedule));

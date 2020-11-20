@@ -3,8 +3,8 @@ import * as S from "./styles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getAttendanceStdDataSaga,
-  getFloorDataSaga
+  getFloorDataSaga,
+  getAttendanceStdDataSaga
 } from "../../../../module/action/attendance";
 import { getLocationState } from "../../../../lib/attendanceApi";
 
@@ -16,7 +16,7 @@ const AttendanceBody = props => {
   const dispatch = useDispatch();
 
   const floorDataText = [
-    "selfStudyData",
+    "firstFloorData",
     "secondFloorData",
     "thirdFloorData",
     "forthFloorData"
@@ -33,7 +33,6 @@ const AttendanceBody = props => {
     (floor, floorData, clickE) => {
       try {
         const floorIndex = !!isNaN(floor) ? 0 : Number(floor) - 1;
-
         dispatch(
           getAttendanceStdDataSaga({
             floor: floorIndex + 1,
@@ -41,25 +40,25 @@ const AttendanceBody = props => {
           })
         );
       } catch (err) {
-        alert("데이터가 없습니다.");
+        alert(`${text}의 데이터가 없습니다.`);
         clickE.preventDefault();
       }
     },
     [dispatch]
   );
 
-  const onAnchorClick = clickE => {
-    if (link.length <= 17) return;
-    getAttendanceStdDate(link.split("/")[3][5], floorDatas, clickE);
+  const onAnchorClick = clickEvent => {
+    if (!link.split("/")[4]) return;
+    getAttendanceStdDate(link.split("/")[4][5], floorDatas, clickEvent);
   };
 
   useEffect(() => {
     if (getLocationState() === "self-study" || getLocationState() === "club") {
-      getFloorData(getLocationState(), props.text);
+      getFloorData(getLocationState(), text);
     }
   }, []);
 
-  const isMain = location.pathname === "/main" ? "main" : "none";
+  const isMain = location.pathname === "/t/main" ? "main" : "none";
 
   return (
     <S.Container
