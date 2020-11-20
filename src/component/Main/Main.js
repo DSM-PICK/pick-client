@@ -58,8 +58,8 @@ const Main = () => {
             </S.MainBodyLogoutButton>
           </S.MainBodyTopWho>
           <S.MainBodyTopWhen>
-            <S.MainBodyTopWhenTime>{`${remainingDate} 저녁 `}</S.MainBodyTopWhenTime>
-            자습감독이십니다.
+            <S.MainBodyTopWhenTime>{remainingDate[0]}</S.MainBodyTopWhenTime>
+            {remainingDate[1]}
           </S.MainBodyTopWhen>
         </S.MainBodyTopText>
 
