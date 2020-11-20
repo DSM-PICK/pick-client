@@ -29,6 +29,9 @@ export const ModalOkay = styled.button`
   font-size: 30px;
   font-weight: 400;
   text-decoration: none;
+  border: none;
+  background: none;
+  outline: none;
 
   align-items: center;
   justify-content: center;
