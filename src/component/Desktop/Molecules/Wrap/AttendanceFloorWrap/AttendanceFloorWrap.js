@@ -5,7 +5,7 @@ const AttendanceFloorWrap = props => {
   return (
     <S.Container>
       <S.Label>{props.text}</S.Label>
-      {props.children}
+      <S.Wrap>{props.children}</S.Wrap>
     </S.Container>
   );
 };
