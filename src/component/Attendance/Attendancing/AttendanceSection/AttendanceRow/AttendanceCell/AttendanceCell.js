@@ -46,7 +46,9 @@ const AttendanceCell = props => {
       <S.ValueButton index={index} state={state} text={text}>
         {!state && text !== "출석" && text}
         <S.Wrap>
-          {states.map(state => (
+          {states.map(state => 
+            state.value !== text &&
+          (
             <AttendanceItem
               key={state.value}
               state={state}
