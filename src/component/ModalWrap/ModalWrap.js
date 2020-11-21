@@ -10,7 +10,10 @@ const ModalWrap = props => {
   return (
     <>
       {isShow && (
-        <S.Container onClick={ModalOff}>{Modal && <Modal />}</S.Container>
+        <S.Container>
+          <S.Overlay onClick={ModalOff} />
+          <Modal />
+        </S.Container>
       )}
     </>
   );
