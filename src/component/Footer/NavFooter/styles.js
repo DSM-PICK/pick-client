@@ -14,18 +14,25 @@ export const Container = styled.div`
 
 export const FooterNavItem = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
   width: 25%;
   height: 100%;
+  padding: 9px 0;
   box-sizing: border-box;
   border: none;
-  align-items: center;
-  justify-content: center;
+  text-decoration: none;
+`;
 
-  background: ${props =>
-      props.imgonlink
-        ? `url(${props.imgonlink})`
-        : props.imglink
-        ? `url(${props.imglink})`
-        : "none"}
-    no-repeat center/80% 80%;
+export const FooterNavImg = styled.img`
+  display: flex;
+  width: 40px;
+  height: 70%;
+`;
+
+export const FooterNavText = styled.p`
+  color: ${props => (props.here ? "#2764A7" : "#707070")};
+  font-size: 20px;
+  font-weight: 400;
 `;
