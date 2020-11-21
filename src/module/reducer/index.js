@@ -9,6 +9,7 @@ import preReport from "./pre_report";
 import teacher from "./teacher";
 import attendance from "./attendance";
 import notice from "./notice";
+import modalWrap from "./modal_wrap";
 
 const rootReducer = combineReducers({
   adminModal,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   date,
   mainText,
   modal,
+  modalWrap,
   notice,
   preReport,
   teacher

@@ -31,7 +31,7 @@ export const ShowHeaderKind = styled(ShowHeaderStd)`
 `;
 
 export const ShowHeaderDate = styled(ShowHeaderStd)`
-  width: 260px;
+  width: 275px;
 `;
 
 export const ShowBody = styled.div`

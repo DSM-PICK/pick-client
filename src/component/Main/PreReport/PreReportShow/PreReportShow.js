@@ -1,22 +1,28 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { getPreAbsenceText } from "../../../../lib/attendanceApi";
-import DeleteModal from "../../Modal/DeleteModal";
+import React, { useCallback } from "react";
 import * as S from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { getPreAbsenceText } from "../../../../lib/attendanceApi";
+import { showModal } from "../../../../module/action/modal_wrap";
+import DeleteModal from "../../../Modal/DeleteModal/DeleteModal";
+import { setSelectedPreAbsenceId } from "../../../../module/action/pre_absence";
 
 const PreReportShow = () => {
   const preAbsenceList = useSelector(state => state.preReport.preAbsenceList);
 
-  const [delModal, setDelModal] = useState(false);
-  const [curAbsenceId, setCurAbsenceId] = useState("");
-
-  const onOffDelModal = () => {
-    setDelModal(!delModal);
-  };
+  const dispatch = useDispatch();
+  const ShowDeleteModal = useCallback(() => {
+    dispatch(showModal(DeleteModal));
+  }, [dispatch]);
+  const SelectPreAbsenceId = useCallback(
+    id => {
+      dispatch(setSelectedPreAbsenceId(id));
+    },
+    [dispatch]
+  );
 
   const onShowBodyBoxClick = id => {
-    setDelModal(true);
-    setCurAbsenceId(id);
+    ShowDeleteModal();
+    SelectPreAbsenceId(id);
   };
 
   return (
@@ -55,14 +61,6 @@ const PreReportShow = () => {
           </S.ShowBodyNoneItemText>
         )}
       </S.ShowBody>
-      {delModal && (
-        <DeleteModal
-          curAbsenceId={curAbsenceId}
-          onOffDelModal={onOffDelModal}
-          preAbsenceList={preAbsenceList}
-          setCurAbsenceId={setCurAbsenceId}
-        />
-      )}
     </S.Container>
   );
 };
