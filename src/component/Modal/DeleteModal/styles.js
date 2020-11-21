@@ -1,28 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  position: fixed;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  z-index: 3;
-`;
-
-export const Modal = styled.div`
-  margin: ${props => (props.margin ? props.margin : "45%")};
-  display: flex;
-  width: 540px;
-  height: 300px;
-  background: white;
-  border: 1px solid #707070;
-  border-radius: 30px;
-  flex-direction: column;
-`;
-
 export const ModalText = styled.div`
   display: flex;
   width: 100%;
@@ -67,12 +44,16 @@ export const ModalBtnWrap = styled.div`
   justify-content: center;
 `;
 
-export const ModalOkay = styled.div`
+export const ModalOkay = styled.button`
   display: flex;
   width: 100%;
   color: black;
   font-size: 30px;
   text-decoration: none;
+  border: none;
+  background: none;
+  outline: none;
+
   align-items: center;
   justify-content: center;
 `;

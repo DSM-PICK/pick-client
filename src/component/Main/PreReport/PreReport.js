@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 import * as C from "./Constant";
@@ -11,17 +11,30 @@ import {
   getPreAbsenceListSaga,
   createPreAbsenceSaga,
   setPreAbsenceNextDate,
-  setPreAbsencePreDate
+  setPreAbsencePreDate,
+  setPreAbsenceUtils,
+  setPreAbsenceCalcDate,
+  setPreAbsenceCalcYear,
+  setPreAbsenceCalcMonth,
+  setPreAbsenceIsClickPreState
 } from "../../../module/action/pre_absence";
 import PreReportShow from "./PreReportShow/PreReportShow";
+import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
+import { dropModal, showModal } from "../../../module/action/modal_wrap";
 
 const PreReports = () => {
   const nameText = useSelector(state => state.preReport.text);
-  const preAbsenceData = useSelector(state => state.preReport);
-  const { state, preDate, nextDate } = preAbsenceData;
+  const preReportData = useSelector(state => state.preReport);
+  const { state, preDate, nextDate } = preReportData;
 
   const dispatch = useDispatch();
 
+  const ShowCalendarModal = useCallback(() => {
+    dispatch(showModal(CalendarModal));
+  }, [dispatch]);
+  const DropCalendarModal = useCallback(() => {
+    dispatch(dropModal());
+  }, [dispatch]);
   const createPreAbsence = useCallback(
     payload => dispatch(createPreAbsenceSaga(payload)),
     [dispatch]
@@ -36,6 +49,26 @@ const PreReports = () => {
   );
   const setNextDate = useCallback(
     payload => dispatch(setPreAbsenceNextDate(payload)),
+    [dispatch]
+  );
+  const setUtils = useCallback(
+    payload => dispatch(setPreAbsenceUtils(payload)),
+    [dispatch]
+  );
+  const setCalcDate = useCallback(
+    payload => dispatch(setPreAbsenceCalcDate(payload)),
+    [dispatch]
+  );
+  const setCalcYear = useCallback(
+    payload => dispatch(setPreAbsenceCalcYear(payload)),
+    [dispatch]
+  );
+  const setCalcMonth = useCallback(
+    payload => dispatch(setPreAbsenceCalcMonth(payload)),
+    [dispatch]
+  );
+  const setPreState = useCallback(
+    payload => dispatch(setPreAbsenceIsClickPreState(payload)),
     [dispatch]
   );
 
@@ -57,30 +90,15 @@ const PreReports = () => {
     getPreAbsenceList();
   };
 
-  const date = new Date();
-
   const preClassInput = useRef("");
   const nextClassInput = useRef("");
-
-  const [calcYear, setCalcYear] = useState(date.getFullYear());
-  const [calcMonth, setCalcMonth] = useState(date.getMonth());
-  const [calcDate, setCalcDate] = useState(getDateObj(calcYear, calcMonth));
-
-  const [modal, setModal] = useState(false);
-  const [height, setHeight] = useState("30px");
-  const [preNextState, setPreNextState] = useState("");
-
-  const onOffModal = () => {
-    setModal(!modal);
-  };
 
   const onPreReportClick = isSetPre => {
     const date = isSetPre ? preDate : nextDate;
     const inputRef = isSetPre ? preClassInput : nextClassInput;
     if (!date.period) inputRef.current.blur();
-    setPreNextState(isSetPre ? "pre" : "next");
-    setHeight(isSetPre ? "30px" : "64px");
-    onOffModal();
+    setPreState(isSetPre ? "pre" : "next");
+    ShowCalendarModal();
   };
 
   const onPreNextSelect = (year, month, day, isSetPre) => {
@@ -113,46 +131,51 @@ const PreReports = () => {
     if (!date.period) refInput.current.focus();
   };
 
-  const onClickCalcMonth = isSetPre => {
-    const calc = isSetPre ? -1 : 1;
+  const onClickCalcMonth = (year, month, isSetPre) => {
+    const calcs = isSetPre ? -1 : 1;
     const tmpMonth = isSetPre ? 11 : 0;
 
-    if (calcMonth === 0) {
-      setCalcYear(isSetPre ? calcYear + calc : calcYear);
-      setCalcMonth(isSetPre ? tmpMonth : calcMonth + calc);
-    } else if (calcMonth === 11) {
-      setCalcYear(isSetPre ? calcYear : calcYear + calc);
-      setCalcMonth(isSetPre ? calcMonth + calc : tmpMonth);
+    if (month === 0) {
+      setCalcYear(isSetPre ? year + calcs : year);
+      setCalcMonth(isSetPre ? tmpMonth : month + calcs);
+    } else if (month === 11) {
+      setCalcYear(isSetPre ? year : year + calcs);
+      setCalcMonth(isSetPre ? month + calcs : tmpMonth);
     } else {
-      setCalcMonth(calcMonth + calc);
+      setCalcMonth(month + calcs);
     }
-    console.log(calcYear, calcMonth + calc);
-    setCalcDate(getDateObj(calcYear, calcMonth + calc));
+
+    setCalcDate(getDateObj(year, month + calcs));
   };
 
-  const onSelectDay = (year, month, date) => {
-    onPreNextSelect(year, month, date, preNextState === "pre");
-    onOffModal();
+  const onSelectDay = (year, month, date, state) => {
+    onPreNextSelect(year, month, date, state === "pre");
+    DropCalendarModal();
   };
 
-  const onClassChange = useCallback(
-    (isSetPre, e) => {
-      const setDate = isSetPre ? setPreDate : setNextDate;
-      const date = isSetPre ? preDate : nextDate;
+  const onClassChange = useCallback((isSetPre, date, e) => {
+    const setDate = isSetPre ? setPreDate : setNextDate;
 
-      if (Number(e.target.value) > 10) {
-        setDate({ ...date, period: 10 });
-      } else if (Number(e.target.value) < 1) {
-        setDate({ ...date, period: 0 });
-      } else {
-        setDate({
-          ...date,
-          period: Number(e.target.value)
-        });
-      }
-    },
-    [date]
-  );
+    if (Number(e.target.value) > 10) {
+      setDate({ ...date, period: 10 });
+    } else if (Number(e.target.value) < 1) {
+      setDate({ ...date, period: 0 });
+    } else {
+      setDate({
+        ...date,
+        period: Number(e.target.value)
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    const date = new Date();
+
+    setUtils([onSelectDay, onClickCalcMonth]);
+    setCalcYear(date.getFullYear());
+    setCalcMonth(date.getMonth());
+    setCalcDate(getDateObj(date.getFullYear(), date.getMonth()));
+  }, []);
 
   return (
     <S.Container>
@@ -170,19 +193,9 @@ const PreReports = () => {
           <PreReportName />
         </S.FuncKindName>
         <S.FuncDate>
-          <S.FuncTitle> 기간</S.FuncTitle>
+          <S.FuncTitle>기간</S.FuncTitle>
           <PreReportDate
-            modal={modal}
-            height={height}
-            calcDate={calcDate}
-            calcMonth={calcMonth}
-            calcYear={calcYear}
-            preClassInput={preClassInput}
-            nextClassInput={nextClassInput}
-            onOffModal={onOffModal}
-            onClickCalcMonth={onClickCalcMonth}
-            onSelectDay={onSelectDay}
-            onPreNextSelect={onPreNextSelect}
+            refInputArr={[preClassInput, nextClassInput]}
             onClassChange={onClassChange}
             onPreReportClick={onPreReportClick}
           />
