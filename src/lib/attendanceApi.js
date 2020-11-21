@@ -19,7 +19,7 @@ export const getFloorNToN = text => {
   return !isNaN(text[text.length - 1]) ? Number(text[text.length - 1]) : 1;
 };
 
-export const getPreAbsenceText = (
+export const getPreReportText = (
   start_date,
   start_period,
   end_date,
@@ -48,7 +48,7 @@ export const getPreAbsenceText = (
   }
 };
 
-export const PreAbsenceReg = {
+export const PreReportReg = {
   isRightState: state => {
     return ["외출", "이동", "현체", "병결", "공결"].includes(state)
       ? true
@@ -67,7 +67,7 @@ export const PreAbsenceReg = {
   }
 };
 
-export const checkPreAbsenceData = (
+export const checkPreReportData = (
   state,
   stdnum,
   start_date,
@@ -75,7 +75,7 @@ export const checkPreAbsenceData = (
   end_date,
   end_period
 ) => {
-  if (!PreAbsenceReg.isRightState(state)) {
+  if (!PreReportReg.isRightState(state)) {
     alert(
       `출석 상태는 "외출", "이동" "현체", "병결", "공결" 중 하나여야합니다.`
     );
@@ -83,18 +83,18 @@ export const checkPreAbsenceData = (
       `State(${state}) is not in "외출", "이동", "현체", "병결", "공결"`
     );
   }
-  if (!PreAbsenceReg.isRightStdnum(stdnum)) {
+  if (!PreReportReg.isRightStdnum(stdnum)) {
     alert(`이름이 올바르지 않습니다.`);
     throw new Error(`Invalid stdnum(${stdnum})`);
   }
   for (let date of [start_date, end_date]) {
-    if (!PreAbsenceReg.isRightDate(date)) {
+    if (!PreReportReg.isRightDate(date)) {
       alert(`날짜가 올바르지 않습니다.`);
       throw new Error(`Invalid Date(${date})`);
     }
   }
   for (let period of [start_period, end_period]) {
-    if (!PreAbsenceReg.isRightPeriod(period)) {
+    if (!PreReportReg.isRightPeriod(period)) {
       alert(`교시가 올바르지 않습니다.`);
       throw new Error(`Invalid Period(${period})`);
     }

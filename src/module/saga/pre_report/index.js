@@ -1,9 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import {
-  makeDate2Digit,
-  checkPreAbsenceData
-} from "../../../lib/attendanceApi";
-import { PRE_ABSENCE } from "../../../lib/requestUrl";
+import { makeDate2Digit, checkPreReportData } from "../../../lib/attendanceApi";
+import { PRE_REPORT } from "../../../lib/requestUrl";
 import {
   methodType,
   requestApiWithAccessToken,
@@ -12,33 +9,30 @@ import {
   requesetRefresh
 } from "../../../lib/requestApi";
 import {
-  setPreAbsenceList,
-  GET_PRE_ABSENCE_LIST_SAGA,
-  FAILURE_GET_PRE_ABSENCE_SAGA,
-  CREATE_PRE_ABSENCE_SAGA,
-  FAILURE_CREATE_PRE_ABSENCE_SAGA,
-  DELETE_PRE_ABSENCE_SAGA,
-  FAILURE_DELETE_PRE_ABSENCE_SAGA,
-  INIT_PRE_ABSENCE_DATA
-} from "../../action/pre_absence";
+  setPreReportList,
+  GET_PRE_REPORT_LIST_SAGA,
+  FAILURE_GET_PRE_REPORT_SAGA,
+  CREATE_PRE_REPORT_SAGA,
+  FAILURE_CREATE_PRE_REPORT_SAGA,
+  DELETE_PRE_REPORT_SAGA,
+  FAILURE_DELETE_PRE_REPORT_SAGA,
+  INIT_PRE_REPORT_DATA
+} from "../../action/pre_report";
 
-function* getPreAbsenceList() {
+function* getPreReportList() {
   try {
     const date = new Date();
     const month = date.getMonth() + 1;
     const todayStr = `${date.getFullYear()}-${makeDate2Digit(
       month
     )}-${makeDate2Digit(date.getDate())}`;
-    const REQUEST_URL = PRE_ABSENCE.PRE_ABSENCE_LIST_URL(todayStr);
+    const REQUEST_URL = PRE_REPORT.PRE_REPORT_LIST_URL(todayStr);
 
-    const preAbsenceList = yield call(
-      requestGetApiWithAccessToken,
-      REQUEST_URL
-    );
+    const preReportList = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    yield put(setPreAbsenceList(preAbsenceList.data));
+    yield put(setPreReportList(preReportList.data));
   } catch (error) {
-    // yield put(FAILURE_GET_PRE_ABSENCE_SAGA(error.response));
+    // yield put(FAILURE_GET_PRE_REPORT_SAGA(error.response));
     // switch (error) {
     //   case 410:
     //     requesetRefresh();
@@ -46,7 +40,7 @@ function* getPreAbsenceList() {
   }
 }
 
-function* createPreAbsenceSaga(payload) {
+function* createPreReportSaga(payload) {
   try {
     const {
       state,
@@ -56,9 +50,9 @@ function* createPreAbsenceSaga(payload) {
       end_date,
       end_period
     } = payload.payload;
-    const REQUEST_URL = PRE_ABSENCE.CREATE_PRE_ABSENCE_URL();
+    const REQUEST_URL = PRE_REPORT.CREATE_PRE_REPORT_URL();
 
-    const isDataRight = checkPreAbsenceData(
+    const isDataRight = checkPreReportData(
       state,
       stdnum,
       start_date,
@@ -81,10 +75,10 @@ function* createPreAbsenceSaga(payload) {
       }
     );
 
-    yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
-    yield put({ type: INIT_PRE_ABSENCE_DATA });
+    yield put({ type: GET_PRE_REPORT_LIST_SAGA });
+    yield put({ type: INIT_PRE_REPORT_DATA });
   } catch (error) {
-    // yield put(FAILURE_CREATE_PRE_ABSENCE_SAGA());
+    // yield put(FAILURE_CREATE_PRE_REPORT_SAGA());
     switch (error) {
       case 404:
         alert("사전 신고를 실패했습니다.");
@@ -102,15 +96,15 @@ function* createPreAbsenceSaga(payload) {
   }
 }
 
-function* deletePreAbsence(payload) {
+function* deletePreReport(payload) {
   try {
     const id = payload.payload;
-    const REQUEST_URL = PRE_ABSENCE.DELETE_PRE_ABSENCE_URL(id);
+    const REQUEST_URL = PRE_REPORT.DELETE_PRE_REPORT_URL(id);
 
     yield call(requestDelApiWithAccessToken, REQUEST_URL);
-    yield put({ type: GET_PRE_ABSENCE_LIST_SAGA });
+    yield put({ type: GET_PRE_REPORT_LIST_SAGA });
   } catch (error) {
-    // yield put(FAILURE_DELETE_PRE_ABSENCE_SAGA());
+    // yield put(FAILURE_DELETE_PRE_REPORT_SAGA());
     // console.log(error);
     switch (error) {
       case 410:
@@ -120,9 +114,9 @@ function* deletePreAbsence(payload) {
 }
 
 function* preReportSaga() {
-  yield takeEvery(GET_PRE_ABSENCE_LIST_SAGA, getPreAbsenceList);
-  yield takeEvery(CREATE_PRE_ABSENCE_SAGA, createPreAbsenceSaga);
-  yield takeEvery(DELETE_PRE_ABSENCE_SAGA, deletePreAbsence);
+  yield takeEvery(GET_PRE_REPORT_LIST_SAGA, getPreReportList);
+  yield takeEvery(CREATE_PRE_REPORT_SAGA, createPreReportSaga);
+  yield takeEvery(DELETE_PRE_REPORT_SAGA, deletePreReport);
 }
 
 export default preReportSaga;
