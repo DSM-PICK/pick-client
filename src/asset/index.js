@@ -29,8 +29,8 @@ export { default as CalendarIcon } from "./Footer/calender.svg";
 export { default as CalendarOnIcon } from "./Footer/calenderOn.svg";
 export { default as HomeIcon } from "./Footer/home.svg";
 export { default as HomeOnIcon } from "./Footer/homeOn.svg";
-export { default as TonggeiIcon } from "./Footer/tonggei.svg";
-export { default as TonggeiOnIcon } from "./Footer/tonggeiOn.svg";
+export { default as AdminIcon } from "./Footer/admin.svg";
+export { default as AdminOnIcon } from "./Footer/adminOn.svg";
 
 export { default as Logo } from "./Logo/Logo.svg";
 export { default as WhiteLogo } from "./Logo/WhiteLogo.svg";
