@@ -6,7 +6,7 @@ import Body from "../Body/Body";
 import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
-import PreReport from "./PreReport/PreReports";
+import PreReport from "./PreReport/PreReport";
 import Notice from "./Notice/Notice";
 import { Logo } from "../../asset";
 import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
