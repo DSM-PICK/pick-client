@@ -19,7 +19,7 @@ export const FooterNavItem = styled.div`
   flex-direction: column;
   width: 25%;
   height: 100%;
-  padding: 9px 0;
+  padding: 5px 0;
   box-sizing: border-box;
   border: none;
   text-decoration: none;
@@ -28,7 +28,7 @@ export const FooterNavItem = styled.div`
 export const FooterNavImg = styled.img`
   display: flex;
   width: 40px;
-  height: 70%;
+  height: 60%;
 `;
 
 export const FooterNavText = styled.p`
