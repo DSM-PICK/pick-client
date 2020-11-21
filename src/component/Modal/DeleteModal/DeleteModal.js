@@ -1,16 +1,16 @@
 import React, { useCallback } from "react";
 import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePreAbsenceSaga } from "../../../module/action/pre_absence";
-import { getPreAbsenceText } from "../../../lib/attendanceApi";
+import { deletePreReportSaga } from "../../../module/action/pre_report";
+import { getPreReportText } from "../../../lib/attendanceApi";
 import Modal from "../Modal";
 import { dropModal } from "../../../module/action/modal_wrap";
 
 const DeleteModal = () => {
-  const selectPreAbsenceId = useSelector(
-    state => state.preReport.selectedPreAbsenceId
+  const selectPreReportId = useSelector(
+    state => state.preReport.selectedPreReportId
   );
-  const preAbsenceList = useSelector(state => state.preReport.preAbsenceList);
+  const preReportList = useSelector(state => state.preReport.preReportList);
 
   const dispatch = useDispatch();
   const ModalOff = useCallback(() => {
@@ -18,7 +18,7 @@ const DeleteModal = () => {
   }, [dispatch]);
   const onDelete = useCallback(() => {
     ModalOff();
-    dispatch(deletePreAbsenceSaga(selectPreAbsenceId));
+    dispatch(deletePreReportSaga(selectPreReportId));
   }, [dispatch]);
 
   const dataChangeText = () => {
@@ -30,10 +30,10 @@ const DeleteModal = () => {
       start_period,
       end_date,
       end_period
-    } = preAbsenceList.filter(data => data.id === selectPreAbsenceId)[0];
+    } = preReportList.filter(data => data.id === selectPreReportId)[0];
     const textArr = [
       `${stdnum} ${name} : [${state}] `,
-      ...getPreAbsenceText(start_date, start_period, end_date, end_period)
+      ...getPreReportText(start_date, start_period, end_date, end_period)
     ];
     return textArr;
   };

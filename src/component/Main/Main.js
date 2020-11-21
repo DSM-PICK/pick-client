@@ -10,7 +10,7 @@ import PreReport from "./PreReport/PreReport";
 import Notice from "./Notice/Notice";
 import { Logo } from "../../asset";
 import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
-import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
+import { getPreReportListSaga } from "../../module/action/pre_report";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
 import { checkPageWithLogin } from "../../lib/requestApi";
 import { showModal } from "../../module/action/modal_wrap/index";
@@ -33,7 +33,7 @@ const Main = () => {
 
   useEffect(() => {
     checkPageWithLogin();
-    dispatch(getPreAbsenceListSaga());
+    dispatch(getPreReportListSaga());
     dispatch(getMainTextRemainingDateSaga());
   }, []);
 
