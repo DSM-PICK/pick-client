@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
-import Body from "./Body/Body";
-import Header from "./Header/Header";
+import Body from "../Body/Body";
+import Header from "../Header/Header";
 import {
   CalendarModalLeft,
   CalendarModalRight
@@ -10,7 +10,7 @@ import { isBrowser } from "react-device-detect";
 
 const PreReportCalander = props => {
   const { calcDate, calcMonth } = props;
-  const { onOffModal, onSelectDay, onClickCalcMonth } = props;
+  const { onSelectDay, onClickCalcMonth } = props;
 
   const margin = isBrowser ? "5% 0 0 50%" : "50% 0 0 50%";
 
@@ -28,11 +28,7 @@ const PreReportCalander = props => {
         />
       </S.Month>
       <Header />
-      <Body
-        calcDate={calcDate}
-        onOffModal={onOffModal}
-        onSelectDay={onSelectDay}
-      />
+      <Body calcDate={calcDate} onSelectDay={onSelectDay} />
     </S.Container>
   );
 };
