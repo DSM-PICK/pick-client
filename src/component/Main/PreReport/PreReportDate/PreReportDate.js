@@ -26,7 +26,9 @@ const PreReportDate = props => {
               placeholder="__"
               ref={refInputArr[index]}
               value={date.period}
-              onChange={e => onClassChange(!index, dateArr[index], e)}
+              onChange={e =>
+                onClassChange(!index, dateArr[index], preDate, nextDate, e)
+              }
             />
             <S.ClassText>교시</S.ClassText>
             {!index && <S.Additional>~</S.Additional>}

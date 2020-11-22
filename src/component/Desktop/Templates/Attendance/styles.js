@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
+  background: #e5e5e5;
 `;
 
 export const MainWrap = styled.div`
