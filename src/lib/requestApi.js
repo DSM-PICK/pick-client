@@ -16,6 +16,8 @@ const ACCESS_TOKEN = "accessToken";
 const REFRESH_TOKEN = "refreshToken";
 const TEACHER_NAME = "teacherName";
 const REMAIN_DATE = "remainDate";
+const REFRESH_ADMIN = "REFRESH_ADMIN";
+const JWT_ADMIN = "JWT_ADMIN";
 
 export const requestGetApi = async (url, headers) => {
   try {
@@ -258,14 +260,21 @@ export const requestAdminApiWithAccessToken = async (
 
 export const Logout = state => {
   try {
-    !!window.localStorage.getItem(REMAIN_DATE) &&
-      window.localStorage.removeItem(REMAIN_DATE);
-    !!window.localStorage.getItem(TEACHER_NAME) &&
-      window.localStorage.removeItem(TEACHER_NAME);
-    !!window.localStorage.getItem(ACCESS_TOKEN) &&
-      window.localStorage.removeItem(ACCESS_TOKEN);
-    !!window.localStorage.getItem(REFRESH_TOKEN) &&
-      window.localStorage.removeItem(REFRESH_TOKEN);
+    if (state === "admin") {
+      !!window.localStorage.getItem(REMAIN_DATE) &&
+        window.localStorage.removeItem(REMAIN_DATE);
+      !!window.localStorage.getItem(TEACHER_NAME) &&
+        window.localStorage.removeItem(TEACHER_NAME);
+      !!window.localStorage.getItem(ACCESS_TOKEN) &&
+        window.localStorage.removeItem(ACCESS_TOKEN);
+      !!window.localStorage.getItem(REFRESH_TOKEN) &&
+        window.localStorage.removeItem(REFRESH_TOKEN);
+    } else {
+      !!window.localStorage.getItem(JWT_ADMIN) &&
+        window.localStorage.removeItem(JWT_ADMIN);
+      !!window.localStorage.getItem(REFRESH_ADMIN) &&
+        window.localStorage.removeItem(REFRESH_ADMIN);
+    }
   } catch (err) {
   } finally {
     window.location.href = state === "admin" ? "/admin/login" : "/t";
