@@ -256,7 +256,7 @@ export const requestAdminApiWithAccessToken = async (
   }
 };
 
-export const Logout = () => {
+export const Logout = state => {
   try {
     !!window.localStorage.getItem(REMAIN_DATE) &&
       window.localStorage.removeItem(REMAIN_DATE);
@@ -266,9 +266,9 @@ export const Logout = () => {
       window.localStorage.removeItem(ACCESS_TOKEN);
     !!window.localStorage.getItem(REFRESH_TOKEN) &&
       window.localStorage.removeItem(REFRESH_TOKEN);
-    window.location.href = "/t/";
   } catch (err) {
-    window.location.href = "/t/";
+  } finally {
+    window.location.href = state === "admin" ? "/admin/login" : "/t";
   }
 };
 
