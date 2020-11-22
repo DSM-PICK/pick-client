@@ -49,9 +49,11 @@ export const Header = styled.div`
 
 export const HeaderCenter = styled.div`
   text-align: center;
+  div {
+    font-weight: bolder;
+  }
   & > div:nth-child(1) {
     font-size: 25px;
-    font-weight: lighter;
     color: black;
   }
 `;
@@ -65,6 +67,9 @@ export const HeaderLeft = styled.div`
 
 export const HeaderRight = styled.div`
   text-align: right;
+  div {
+    font-weight: bolder;
+  }
   ${props => props.active && "align-items:flex-end;"}
   > input {
     display: inline;

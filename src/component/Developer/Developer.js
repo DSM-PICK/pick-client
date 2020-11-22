@@ -36,7 +36,10 @@ const Developer = () => {
           <a href="https://github.com/DSM-PICK" target="_blank">
             <img src={GithubLogo} />
           </a>
-          <a href="https://facebook.com" target="_blank">
+          <a
+            href="https://www.facebook.com/PICK-for-DSM-106692937936709"
+            target="_blank"
+          >
             <img src={FacebookLogo} />
           </a>
         </div>
