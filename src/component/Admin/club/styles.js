@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Header = styled.div`
   font-size: 40px;
   padding-top: 70px;
-  font-weight: lighter;
+  font-weight: bold;
   text-align: center;
 `;
 

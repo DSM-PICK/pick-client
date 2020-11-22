@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPreAbsenceState } from "../../../../module/action/pre_absence";
+import { setPreReportState } from "../../../../module/action/pre_report";
 import * as S from "./styles";
 
 const PreReportState = props => {
@@ -10,14 +10,14 @@ const PreReportState = props => {
 
   const dispatch = useDispatch();
 
-  const setAbsenceState = useCallback(
-    payload => dispatch(setPreAbsenceState(payload)),
+  const setReportState = useCallback(
+    payload => dispatch(setPreReportState(payload)),
     [dispatch]
   );
 
   return (
     <S.Container
-      onClick={() => setAbsenceState(stateName)}
+      onClick={() => setReportState(stateName)}
       stateName={stateName}
       preReportState={preReportState}
     >

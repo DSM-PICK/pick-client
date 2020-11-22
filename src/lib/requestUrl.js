@@ -16,14 +16,14 @@ export const AUTO_COMPLETE = {
   }
 };
 
-export const PRE_ABSENCE = {
-  PRE_ABSENCE_LIST_URL: date => {
+export const PRE_REPORT = {
+  PRE_REPORT_LIST_URL: date => {
     return `/mars/pre-absence/date/${date}`;
   },
-  CREATE_PRE_ABSENCE_URL: () => {
+  CREATE_PRE_REPORT_URL: () => {
     return `/mars/pre-absence`;
   },
-  DELETE_PRE_ABSENCE_URL: id => {
+  DELETE_PRE_REPORT_URL: id => {
     return `/mars/pre-absence/${id}`;
   }
 };

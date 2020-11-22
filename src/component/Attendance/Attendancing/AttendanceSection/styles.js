@@ -35,7 +35,7 @@ export const Head = styled.p`
   position: absolute;
   right: 50px;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 600;
 `;
 
 export const StdCount = styled(Head)`

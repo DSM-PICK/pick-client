@@ -3,7 +3,7 @@ import * as S from "./styles";
 import NameSelect from "./NameSelect/NameSelect";
 import { useDispatch, useSelector } from "react-redux";
 import { getAutoCompleteTextSaga } from "../../../../module/action/auto_complete";
-import { setPreAbsenceText } from "../../../../module/action/pre_absence";
+import { setPreReportText } from "../../../../module/action/pre_report";
 
 const PreReportName = () => {
   const nameText = useSelector(state => state.preReport.text);
@@ -12,7 +12,7 @@ const PreReportName = () => {
 
   const onChangeName = useCallback(
     e => {
-      dispatch(setPreAbsenceText(e.target.value));
+      dispatch(setPreReportText(e.target.value));
       dispatch(getAutoCompleteTextSaga(e.target.value));
     },
     [dispatch]

@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import { FooterNav } from "../Constant";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   BugReportIcon,
   BugReportOnIcon,
@@ -9,8 +9,8 @@ import {
   CalendarOnIcon,
   HomeIcon,
   HomeOnIcon,
-  TonggeiIcon,
-  TonggeiOnIcon
+  AdminIcon,
+  AdminOnIcon
 } from "../../../asset";
 const checkPath = pathname => {
   return pathname === "/t/main" ||
@@ -21,7 +21,7 @@ const checkPath = pathname => {
     ? 1
     : location.pathname === "/t/bugreport"
     ? 2
-    : location.pathname === "/t/tonggei"
+    : location.pathname === "/t/admin"
     ? 3
     : -1;
 };
@@ -33,7 +33,7 @@ const NavFooter = ({ location }) => {
     [HomeIcon, HomeOnIcon],
     [CalendarIcon, CalendarOnIcon],
     [BugReportIcon, BugReportOnIcon],
-    [TonggeiIcon, TonggeiOnIcon]
+    [AdminIcon, AdminOnIcon]
   ];
 
   return (
@@ -45,15 +45,19 @@ const NavFooter = ({ location }) => {
               key={imgArr[index][1]}
               as={NavLink}
               to={{ pathname: footerItem.link, state: { indexNum: index } }}
-              imgonlink={imgArr[index][1]}
-            />
+            >
+              <S.FooterNavImg src={imgArr[index][1]} />
+              <S.FooterNavText here={true}>{footerItem.text}</S.FooterNavText>
+            </S.FooterNavItem>
           ) : (
             <S.FooterNavItem
               key={imgArr[index][0]}
               as={NavLink}
               to={{ pathname: footerItem.link, state: { indexNum: index } }}
-              imglink={imgArr[index][0]}
-            />
+            >
+              <S.FooterNavImg  src={imgArr[index][0]} />
+              <S.FooterNavText here={false}>{footerItem.text}</S.FooterNavText>
+            </S.FooterNavItem>
           )
         )}
     </S.Container>

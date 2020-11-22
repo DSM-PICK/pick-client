@@ -1,22 +1,28 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { getPreAbsenceText } from "../../../../lib/attendanceApi";
-import DeleteModal from "../../Modal/DeleteModal";
+import React, { useCallback } from "react";
 import * as S from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { getPreReportText } from "../../../../lib/attendanceApi";
+import { showModal } from "../../../../module/action/modal_wrap";
+import DeleteModal from "../../../Modal/DeleteModal/DeleteModal";
+import { setSelectedPreReportId } from "../../../../module/action/pre_report";
 
 const PreReportShow = () => {
-  const preAbsenceList = useSelector(state => state.preReport.preAbsenceList);
+  const preReportList = useSelector(state => state.preReport.preReportList);
 
-  const [delModal, setDelModal] = useState(false);
-  const [curAbsenceId, setCurAbsenceId] = useState("");
-
-  const onOffDelModal = () => {
-    setDelModal(!delModal);
-  };
+  const dispatch = useDispatch();
+  const ShowDeleteModal = useCallback(() => {
+    dispatch(showModal(DeleteModal));
+  }, [dispatch]);
+  const SelectPreReportId = useCallback(
+    id => {
+      dispatch(setSelectedPreReportId(id));
+    },
+    [dispatch]
+  );
 
   const onShowBodyBoxClick = id => {
-    setDelModal(true);
-    setCurAbsenceId(id);
+    ShowDeleteModal();
+    SelectPreReportId(id);
   };
 
   return (
@@ -27,22 +33,22 @@ const PreReportShow = () => {
         <S.ShowHeaderDate>기간</S.ShowHeaderDate>
       </S.ShowHeader>
       <S.ShowBody>
-        {!!preAbsenceList.length ? (
-          preAbsenceList.map(preAbsenceData => (
+        {!!preReportList.length ? (
+          preReportList.map(preReportData => (
             <S.ShowBodyBox
-              key={preAbsenceData.id}
-              onClick={() => onShowBodyBoxClick(preAbsenceData.id)}
+              key={preReportData.id}
+              onClick={() => onShowBodyBoxClick(preReportData.id)}
             >
               <S.ShowBodyStd>
-                {`${preAbsenceData.stdnum} ${preAbsenceData.name}`}
+                {`${preReportData.stdnum} ${preReportData.name}`}
               </S.ShowBodyStd>
-              <S.ShowBodyKind>{preAbsenceData.state}</S.ShowBodyKind>
+              <S.ShowBodyKind>{preReportData.state}</S.ShowBodyKind>
               <S.ShowBodyDate>
-                {getPreAbsenceText(
-                  preAbsenceData.start_date,
-                  preAbsenceData.start_period,
-                  preAbsenceData.end_date,
-                  preAbsenceData.end_period
+                {getPreReportText(
+                  preReportData.start_date,
+                  preReportData.start_period,
+                  preReportData.end_date,
+                  preReportData.end_period
                 ).map(text => (
                   <S.ShowBodyTextItem key={text}>{text}</S.ShowBodyTextItem>
                 ))}
@@ -55,14 +61,6 @@ const PreReportShow = () => {
           </S.ShowBodyNoneItemText>
         )}
       </S.ShowBody>
-      {delModal && (
-        <DeleteModal
-          curAbsenceId={curAbsenceId}
-          onOffDelModal={onOffDelModal}
-          preAbsenceList={preAbsenceList}
-          setCurAbsenceId={setCurAbsenceId}
-        />
-      )}
     </S.Container>
   );
 };

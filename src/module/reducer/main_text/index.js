@@ -1,7 +1,7 @@
 import { SET_MAIN_TEXT_REMAINING_DATE } from "../../action/main_text";
 
 const initialState = {
-  remainingDate: ""
+  remainingDate: []
 };
 
 const mainTextReducer = (state = initialState, action) => {
@@ -9,6 +9,12 @@ const mainTextReducer = (state = initialState, action) => {
     case SET_MAIN_TEXT_REMAINING_DATE: {
       let remainDateText = "";
       switch (action.payload) {
+        case -1:
+          remainDateText = "데이터가 없습니다.";
+          return {
+            ...state,
+            remainingDate: ["다음 자습감독일", " 데이터가 없습니다."]
+          };
         case 0:
           remainDateText = "오늘";
           break;
@@ -23,7 +29,7 @@ const mainTextReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        remainingDate: remainDateText
+        remainingDate: [remainDateText, " 저녁 자습감독이십니다."]
       };
     }
     default: {

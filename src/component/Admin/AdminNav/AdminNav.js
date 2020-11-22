@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import AdminNavItem from "./AdminNavItem/AdminNavItem";
 import { WhiteLogo } from "../../../asset/index";
 
 const AdminNav = () => {
+  const [zoomLevel, setZoomLevel] = useState(0);
   const itemDataSets = [
     {
       size: "small",
@@ -24,19 +25,26 @@ const AdminNav = () => {
       size: "middle",
       text: "동아리원 관리",
       link: "/admin/club/member"
-    },
-    {
-      size: "small",
-      text: "기타",
-      link: "/admin/print",
-      navlink: true
-    },
-    {
-      size: "middle",
-      text: "출석기록 출력",
-      link: "/admin/print"
     }
   ];
+
+  useEffect(() => {
+    const zoomLevel = Number(window.localStorage.getItem("zoomLevel")) || 1;
+    setZoomLevel(zoomLevel);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("zoomLevel", zoomLevel);
+    document.body.style.zoom = zoomLevel;
+  }, [zoomLevel]);
+
+  const addZoomLevel = useCallback(() => {
+    setZoomLevel(prev => prev + 0.1);
+  }, []);
+
+  const minusZoomLevel = useCallback(() => {
+    setZoomLevel(prev => prev - 0.1);
+  }, []);
 
   return (
     <S.Container>
@@ -57,7 +65,12 @@ const AdminNav = () => {
           navlink={item.navlink}
         />
       ))}
+
       <AdminNavItem text="로그아웃" size="middle" link="" />
+      <S.ButtonWrap>
+        <S.Button onClick={addZoomLevel}>+</S.Button>
+        <S.Button onClick={minusZoomLevel}>-</S.Button>
+      </S.ButtonWrap>
     </S.Container>
   );
 };

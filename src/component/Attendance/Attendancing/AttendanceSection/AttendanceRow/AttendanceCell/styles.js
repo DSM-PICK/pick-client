@@ -10,8 +10,8 @@ export const ValueButton = styled.button`
   width: 100%;
   min-height: 28px;
   font-size: 20px;
-  background: ${props => (props.text == "출석" ? "white" : "#2764A7")};
-  color: ${props => (props.text == "출석" ? "black" : "white")};
+  background: ${props => (props.text === "출석" ? "#ffffff" : "#2764A7")};
+  color: ${props => (props.text === "출석" ? "#2764A7" : "#ffffff")};
   border: ${props =>
     !props.state && props.text !== "출석" ? "none" : "1px solid #707070"};
   border-radius: 12px;
@@ -63,7 +63,8 @@ export const ValueButton = styled.button`
           &:focus,
           &:active {
             background: white !important;
-            color: black;
+            color: none;
+            font-weight: bold;
             border-radius: 0 0 12px 12px;
             border-top: none;
             ul {
@@ -82,7 +83,7 @@ export const ValueButton = styled.button`
           &:focus,
           &:active {
             background: white !important;
-            color: black;
+            color: none;
             border-radius: 12px 12px 0 0;
             border-bottom: none;
             ul {

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Logout } from "../../../../lib/requestApi";
 import * as S from "./styles";
 
 const AdminNavItem = props => {
@@ -32,8 +33,13 @@ const AdminNavItem = props => {
     ? navMiddleStyle
     : navBigStyle;
 
+  const onClick = () => {
+    props.text === "로그아웃" && Logout("admin");
+  };
+
   return (
     <S.Container
+      onClick={onClick}
       as={NavLink}
       exact
       to={link}
