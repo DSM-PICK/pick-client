@@ -32,7 +32,6 @@ const AdminRouting = () => {
           <Route exact path="/admin" component={AdminMain} />
           <Route exact path="/admin/login" component={AdminLogin} />
           <Route exact path="/admin/club" component={AdminClub} />
-          <Route exact path="/admin/print" component={AdminPrint} />
           <Route
             exact
             path="/admin/club/list"
