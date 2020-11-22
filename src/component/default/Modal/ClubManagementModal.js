@@ -184,7 +184,7 @@ const ClubManagementModal = () => {
         </S.HeaderCenter>
         <S.HeaderRight>
           <div>담당 : {circleData.teacher || "선생님 정보가 없어요"}</div>
-          <div>부장 : {circleData.club_head}</div>
+          <div>부장 : {circleData.club_head || "부장이 없어요"}</div>
         </S.HeaderRight>
       </>
     );
