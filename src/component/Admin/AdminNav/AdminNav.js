@@ -25,17 +25,6 @@ const AdminNav = () => {
       size: "middle",
       text: "동아리원 관리",
       link: "/admin/club/member"
-    },
-    {
-      size: "small",
-      text: "기타",
-      link: "/admin/print",
-      navlink: true
-    },
-    {
-      size: "middle",
-      text: "출석기록 출력",
-      link: "/admin/print"
     }
   ];
 
