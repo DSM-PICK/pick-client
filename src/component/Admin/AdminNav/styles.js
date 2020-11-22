@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const ButtonWrap = styled.div`
   position: absolute;
-  top: 42%;
+  top: 31%;
   left: 20px;
 `;
 

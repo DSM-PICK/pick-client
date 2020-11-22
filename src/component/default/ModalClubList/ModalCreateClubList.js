@@ -30,8 +30,9 @@ const ModalCreateClubList = ({ data, setData }) => {
             <S.MemberWrap>
               {students.map(({ name, num }) => (
                 <S.MemberItem
+                  key={num + name}
                   onClick={() => {
-                    setData(num);
+                    setData(`${num} ${name}`);
                     setCreateStudentData("");
                     inputRef.current.focus();
                   }}

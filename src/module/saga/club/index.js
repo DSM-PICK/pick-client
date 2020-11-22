@@ -56,13 +56,19 @@ function* changeClubDataSaga(action) {
 function* addClubSaga(action) {
   const { clubData, member } = action.payload;
   try {
+    const numbers = member.map(numName => numName.split(" ")[0]);
+    const names = member.map(numName => numName.split(" ")[1]);
+    if (!names.includes(clubData.club_head)) {
+      alert("동아리장은 동아리원이여야 합니다");
+      return;
+    }
     yield requestAdminApiWithAccessToken(methodType.POST, "/venus/club", {
-      students_num: member,
+      students_num: numbers,
       club: clubData
     });
 
     yield put(updateClubListSagaCreater());
-    alert("성공 했습니다");
+    alert("성공했습니다");
   } catch (err) {
     alert("오류가 발생했습니다");
   }
@@ -108,7 +114,7 @@ function* moveClubSaga(action) {
     );
 
     yield put(updateClubListSagaCreater());
-    alert("성공 했습니다");
+    alert("성공했습니다");
   } catch (err) {
     alert("오류가 발생했습니다");
   }
