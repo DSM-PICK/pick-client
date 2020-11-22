@@ -100,7 +100,7 @@ const PreReports = () => {
     ShowCalendarModal();
   };
 
-  const onPreNextSelect = (year, month, day, isSetPre) => {
+  const onPreNextSelect = (year, month, day, isSetPre, preDate, nextDate) => {
     const date = isSetPre ? preDate : nextDate;
     const otherDate = isSetPre ? nextDate : preDate;
     const refInput = isSetPre ? preClassInput : nextClassInput;
@@ -147,12 +147,12 @@ const PreReports = () => {
     setCalcDate(getDateObj(year, month + calcs));
   };
 
-  const onSelectDay = (year, month, date, state) => {
-    onPreNextSelect(year, month, date, state === "pre");
+  const onSelectDay = (year, month, date, state, preDate, nextDate) => {
+    onPreNextSelect(year, month, date, state === "pre", preDate, nextDate);
     DropCalendarModal();
   };
 
-  const onClassChange = useCallback((isSetPre, date, e) => {
+  const onClassChange = useCallback((isSetPre, date, preDate, nextDate, e) => {
     const setDate = isSetPre ? setPreDate : setNextDate;
 
     if (Number(e.target.value) > 10) {

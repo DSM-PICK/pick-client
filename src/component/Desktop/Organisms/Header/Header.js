@@ -25,9 +25,14 @@ const Header = () => {
   ];
 
   const HeaderLinkButtonCss = {
-    flex: "1",
-    color: "#ffffff",
-    fontWeight: "bold"
+    width: "88px",
+    height: "43px",
+    color: "#000000",
+    fontWeight: "bold",
+    radiusSize: "14px",
+    boxShadow:
+      "inset 5px 5px 13px 0px rgba(215, 215, 215, 0.9), inset -5px -5px 10px 0px rgba(255, 255, 255, 0.9), inset 5px -5px 10px 0px rgba(215, 215, 215, 0.2), inset -5px 5px 10px 0px rgba(215, 215, 215, 0.2), -1px -1px 2px 0px rgba(215, 215, 215, 0.5), 1px 1px 2px 0px rgba(255, 255, 255, 0.3)",
+    background: "#efefef"
   };
 
   return (
