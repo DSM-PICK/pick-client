@@ -261,6 +261,11 @@ export const requestAdminApiWithAccessToken = async (
 export const Logout = state => {
   try {
     if (state === "admin") {
+      !!window.localStorage.getItem(JWT_ADMIN) &&
+        window.localStorage.removeItem(JWT_ADMIN);
+      !!window.localStorage.getItem(REFRESH_ADMIN) &&
+        window.localStorage.removeItem(REFRESH_ADMIN);
+    } else {
       !!window.localStorage.getItem(REMAIN_DATE) &&
         window.localStorage.removeItem(REMAIN_DATE);
       !!window.localStorage.getItem(TEACHER_NAME) &&
@@ -269,11 +274,6 @@ export const Logout = state => {
         window.localStorage.removeItem(ACCESS_TOKEN);
       !!window.localStorage.getItem(REFRESH_TOKEN) &&
         window.localStorage.removeItem(REFRESH_TOKEN);
-    } else {
-      !!window.localStorage.getItem(JWT_ADMIN) &&
-        window.localStorage.removeItem(JWT_ADMIN);
-      !!window.localStorage.getItem(REFRESH_ADMIN) &&
-        window.localStorage.removeItem(REFRESH_ADMIN);
     }
   } catch (err) {
   } finally {
