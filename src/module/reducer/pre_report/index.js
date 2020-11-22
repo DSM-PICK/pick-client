@@ -1,26 +1,26 @@
 import {
-  SET_PRE_ABSENCE_LIST,
-  SET_PRE_ABSENCE_STATE,
-  SET_PRE_ABSENCE_PRE_DATE,
-  SET_PRE_ABSENCE_NEXT_DATE,
-  INIT_PRE_ABSENCE_DATA,
-  SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT,
-  SET_PRE_ABSENCE_TEXT,
-  SET_SELECTED_PRE_ABSENCE_ID,
-  SET_PRE_ABSENCE_UTILS,
-  SET_PRE_ABSENCE_CALC_DATE,
-  SET_PRE_ABSENCE_CALC_YEAR,
-  SET_PRE_ABSENCE_CALC_MONTH,
-  SET_PRE_ABSENCE_CALC_DAY,
-  SET_PRE_ABSENCE_IS_CLICK_PRE_STATE
-} from "../../action/pre_absence";
+  SET_PRE_REPORT_LIST,
+  SET_PRE_REPORT_STATE,
+  SET_PRE_REPORT_PRE_DATE,
+  SET_PRE_REPORT_NEXT_DATE,
+  INIT_PRE_REPORT_DATA,
+  SET_PRE_REPORT_AUTO_COMPLETE_TEXT,
+  SET_PRE_REPORT_TEXT,
+  SET_SELECTED_PRE_REPORT_ID,
+  SET_PRE_REPORT_UTILS,
+  SET_PRE_REPORT_CALC_DATE,
+  SET_PRE_REPORT_CALC_YEAR,
+  SET_PRE_REPORT_CALC_MONTH,
+  SET_PRE_REPORT_CALC_DAY,
+  SET_PRE_REPORT_IS_CLICK_PRE_STATE
+} from "../../action/pre_report";
 
 const initialState = {
   text: "",
   autoComplete: [],
 
-  selectedPreAbsenceId: "",
-  preAbsenceList: [],
+  selectedPreReportId: "",
+  preReportList: [],
   state: "외출",
   isClickPreState: "",
   preDate: {
@@ -46,43 +46,43 @@ const initialState = {
 
 const preReportReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRE_ABSENCE_TEXT: {
+    case SET_PRE_REPORT_TEXT: {
       return {
         ...state,
         text: action.payload
       };
     }
-    case SET_PRE_ABSENCE_AUTO_COMPLETE_TEXT: {
+    case SET_PRE_REPORT_AUTO_COMPLETE_TEXT: {
       return {
         ...state,
         autoComplete: action.payload
       };
     }
-    case SET_SELECTED_PRE_ABSENCE_ID: {
+    case SET_SELECTED_PRE_REPORT_ID: {
       return {
         ...state,
-        selectedPreAbsenceId: action.payload
+        selectedPreReportId: action.payload
       };
     }
-    case SET_PRE_ABSENCE_LIST: {
+    case SET_PRE_REPORT_LIST: {
       return {
         ...state,
-        preAbsenceList: action.payload
+        preReportList: action.payload
       };
     }
-    case SET_PRE_ABSENCE_STATE: {
+    case SET_PRE_REPORT_STATE: {
       return {
         ...state,
         state: action.payload
       };
     }
-    case SET_PRE_ABSENCE_IS_CLICK_PRE_STATE: {
+    case SET_PRE_REPORT_IS_CLICK_PRE_STATE: {
       return {
         ...state,
         isClickPreState: action.payload
       };
     }
-    case SET_PRE_ABSENCE_PRE_DATE: {
+    case SET_PRE_REPORT_PRE_DATE: {
       const { year, month, day, period } = action.payload;
       return {
         ...state,
@@ -94,7 +94,7 @@ const preReportReducer = (state = initialState, action) => {
         }
       };
     }
-    case SET_PRE_ABSENCE_NEXT_DATE: {
+    case SET_PRE_REPORT_NEXT_DATE: {
       const { year, month, day, period } = action.payload;
       return {
         ...state,
@@ -106,7 +106,7 @@ const preReportReducer = (state = initialState, action) => {
         }
       };
     }
-    case INIT_PRE_ABSENCE_DATA: {
+    case INIT_PRE_REPORT_DATA: {
       return {
         ...state,
         text: "",
@@ -126,19 +126,19 @@ const preReportReducer = (state = initialState, action) => {
         }
       };
     }
-    case SET_PRE_ABSENCE_UTILS: {
+    case SET_PRE_REPORT_UTILS: {
       return {
         ...state,
         utils: action.payload
       };
     }
-    case SET_PRE_ABSENCE_CALC_DATE: {
+    case SET_PRE_REPORT_CALC_DATE: {
       return {
         ...state,
         calcDate: action.payload
       };
     }
-    case SET_PRE_ABSENCE_CALC_YEAR: {
+    case SET_PRE_REPORT_CALC_YEAR: {
       return {
         ...state,
         calc: {
@@ -147,7 +147,7 @@ const preReportReducer = (state = initialState, action) => {
         }
       };
     }
-    case SET_PRE_ABSENCE_CALC_MONTH: {
+    case SET_PRE_REPORT_CALC_MONTH: {
       return {
         ...state,
         calc: {
@@ -156,7 +156,7 @@ const preReportReducer = (state = initialState, action) => {
         }
       };
     }
-    case SET_PRE_ABSENCE_CALC_DAY: {
+    case SET_PRE_REPORT_CALC_DAY: {
       return {
         ...state,
         calc: {
