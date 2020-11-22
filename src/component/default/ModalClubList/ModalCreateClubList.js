@@ -8,15 +8,9 @@ import { getStudentSaga, GET_STUDENT_SAGA } from "../../../module/action/club";
 const ModalCreateClubList = ({ data, setData }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
-  const [isOpen, setIsOpen] = useState(false);
   const students = useSelector(store => store.club.students);
   const [createStudentData, setCreateStudentData] = useState("");
 
-  const changeIsOpen = useCallback(e => {
-    if (e.key === "Enter") {
-      setIsOpen(prev => !prev);
-    }
-  }, []);
   const onChange = useCallback(e => {
     dispatch(getStudentSaga(e.target.value));
     setCreateStudentData(e.target.value);
@@ -28,13 +22,13 @@ const ModalCreateClubList = ({ data, setData }) => {
           <S.CraeteInput
             value={createStudentData}
             onChange={onChange}
-            onKeyDown={changeIsOpen}
             ref={inputRef}
             placeholder="ex) 1101"
           />
-          <S.MemberWrap>
-            {isOpen &&
-              students.map(({ name, num }) => (
+
+          {createStudentData.length ? (
+            <S.MemberWrap>
+              {students.map(({ name, num }) => (
                 <S.MemberItem
                   onClick={() => {
                     setData(num);
@@ -45,7 +39,10 @@ const ModalCreateClubList = ({ data, setData }) => {
                   {num} {name}
                 </S.MemberItem>
               ))}
-          </S.MemberWrap>
+            </S.MemberWrap>
+          ) : (
+            ""
+          )}
         </ModalClubItemContainer>
         {data.map((num, index) => (
           <ModalClubItem key={index + num} number={num} />

@@ -9,6 +9,7 @@ export const Row = styled.div`
 export const MemberWrap = styled.div`
   position: absolute;
   top: 105%;
+  border: 1px solid black;
   text-align: center;
   background-color: white;
   width: 100%;
