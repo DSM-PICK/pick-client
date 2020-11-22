@@ -22,18 +22,22 @@ import {
 } from "../../../lib/requestApi";
 
 function* updateClubListSaga(action) {
-  const res = yield requestAdminGetApiWithAccessToken(`/venus/clubs`, {
-    "Cache-Control": "no-store"
-  });
-  yield put(updateClubList(res.data));
+  try {
+    const res = yield requestAdminGetApiWithAccessToken(`/venus/clubs`, {
+      "Cache-Control": "no-store"
+    });
+    yield put(updateClubList(res.data));
+  } catch (err) {}
 }
 
 function* upadteClubDetailSaga(action) {
-  const res = yield requestAdminGetApiWithAccessToken(
-    `/venus/club/${action.payload}`
-  );
+  try {
+    const res = yield requestAdminGetApiWithAccessToken(
+      `/venus/club/${action.payload}`
+    );
 
-  yield put(updateClubDetail(res.data));
+    yield put(updateClubDetail(res.data));
+  } catch (err) {}
 }
 
 function* changeClubDataSaga(action) {

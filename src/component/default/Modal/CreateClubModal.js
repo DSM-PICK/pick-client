@@ -65,9 +65,18 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
   }, []);
 
   const addClub = useCallback(() => {
-    const { name, location, teacher, club_head } = createCircleData;
-    if (!name || !location || !teacher || !club_head) {
+    const { name, location, club_head } = createCircleData;
+    if (!name.trim() || !location || !club_head) {
       alert("빈칸을 모두 채워주세요");
+      return;
+    }
+    const noneList = ["/", "?", "%", "#"];
+    const isInclueNoneChar = noneList.reduce(
+      (state, noneChar) => state || name.includes(noneChar),
+      false
+    );
+    if (isInclueNoneChar) {
+      alert("/, ?, %, #는 삽입 불가합니다");
       return;
     }
     dispatch(
