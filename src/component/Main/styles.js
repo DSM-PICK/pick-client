@@ -79,11 +79,34 @@ export const MainBodyBox = styled.div`
   }
 `;
 
-export const MainBodyBoxText = styled.p`
+export const MainBodyBoxText = styled.span`
   /* height: 34px; */
   /* margin-left: 30px; */
+  display: flex;
   font-size: 24px;
   font-weight: bold;
+`;
+
+export const MainBodyBoxHelp = styled.div`
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background: ${props => `url(${props.url}) no-repeat 100% / 100%`};
+
+  &:hover {
+    cursor: pointer;
+    &::after {
+      position: absolute;
+      top: 4px;
+      left: 30px;
+      content: "사전 결석 신고자 목록에는 오늘이 포함된 날짜의 학생만 보입니다";
+      width: max-content;
+      height: 100px;
+      font-size: 14px;
+      color: #000000;
+      background: none;
+    }
+  }
 `;
 
 export const MainBodyBoxBefore = styled.div`
