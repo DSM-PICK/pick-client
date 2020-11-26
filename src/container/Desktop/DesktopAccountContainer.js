@@ -1,5 +1,5 @@
 import React from "react";
-import Account from "../../component/Desktop/Templates/Login/Account";
+import Account from "../../component/Desktop/Templates/Account/Account";
 
 const DesktopAccountContainer = () => {
   return <Account />;
