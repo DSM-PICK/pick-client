@@ -54,7 +54,7 @@ const LoginForm = () => {
         name={"id"}
         type={"text"}
         style={InputStyle}
-        inputValue={loginInfo.id}
+        value={loginInfo.id}
         placeholder={"아이디를 입력하세요"}
         onChange={onChangeLoginInfo}
       />
@@ -62,7 +62,7 @@ const LoginForm = () => {
         name={"password"}
         type={"password"}
         style={InputStyle}
-        inputValue={loginInfo.password}
+        value={loginInfo.password}
         placeholder={"비밀번호를 입력하세요"}
         onChange={onChangeLoginInfo}
       />
