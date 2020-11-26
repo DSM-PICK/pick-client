@@ -2,7 +2,7 @@ import React from "react";
 import LoginWrap from "../../Organisms/Login/Login/LoginWrap";
 import * as S from "./styles";
 
-const Login = () => {
+const Account = () => {
   return (
     <S.Container>
       <LoginWrap />
@@ -10,4 +10,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Account;
