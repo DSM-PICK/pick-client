@@ -33,6 +33,7 @@ export { default as HomeOnIcon } from "./Footer/homeOn.svg";
 export { default as AdminIcon } from "./Footer/admin.svg";
 export { default as AdminOnIcon } from "./Footer/adminOn.svg";
 
+export { default as LogoPick } from "./Logo/LogoPick.png";
 export { default as WhiteLogoPick } from "./Logo/WhiteLogoPick.svg";
 export { default as LogoForAdmin } from "./Logo/LogoForAdmin.svg";
 
