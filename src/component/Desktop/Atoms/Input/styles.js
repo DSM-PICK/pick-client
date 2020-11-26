@@ -22,4 +22,8 @@ export const Input = styled.input`
     color: #999999;
     font-size: 18px;
   }
+
+  &:hover {
+    cursor: ${props => props.type === "submit" && "pointer"};
+  }
 `;
