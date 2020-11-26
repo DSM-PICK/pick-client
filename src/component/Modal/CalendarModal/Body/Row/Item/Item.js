@@ -5,8 +5,10 @@ import { useSelector } from "react-redux";
 const Item = props => {
   const { isActive, date, month, year } = props.date;
 
-  const onSelectDay = useSelector(state => state.preReport.utils[0]);
-  const isClickPreState = useSelector(state => state.preReport.isClickPreState);
+  const preReportData = useSelector(state => state.preReport);
+  const onSelectDay = preReportData.utils[0];
+  const { isClickPreState } = preReportData;
+  const { preDate, nextDate } = preReportData;
 
   const now = new Date();
 
@@ -19,7 +21,9 @@ const Item = props => {
 
   return (
     <S.Container
-      onClick={() => onSelectDay(year, month, date, isClickPreState)}
+      onClick={() =>
+        onSelectDay(year, month, date, isClickPreState, preDate, nextDate)
+      }
     >
       <S.Date isActive={isActive} isToday={isToday}>
         {date}
