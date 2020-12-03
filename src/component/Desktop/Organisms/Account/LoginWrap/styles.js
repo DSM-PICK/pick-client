@@ -1,23 +1,31 @@
 import styled from "styled-components";
-import { UpOn } from "../../../CSS/BoxShadow";
+import { UpOnShadow } from "../../../CSS/BoxShadow";
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  width: 630px;
+  display: grid;
+  gap: 30px;
+  grid-template: 48px 1fr 23px / 1fr;
+  place-content: center;
+  width: 580px;
   height: 655px;
-  padding: 80px 88px 30px 88px;
+  padding: 50px 96px 30px 96px;
   border-radius: 32px;
   box-sizing: border-box;
-  box-shadow: ${UpOn};
+  box-shadow: ${UpOnShadow};
   background: #efefef;
 `;
 
+export const ImgWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
 export const ImgStyle = {
-  width: "246px",
-  height: "54px"
+  width: "224px",
+  height: "48px"
 };
 
 export const LinkStyle = {
