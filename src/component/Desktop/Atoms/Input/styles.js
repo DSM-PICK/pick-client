@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { DownOn, Normal, UpOn } from "../../CSS/BoxShadow";
+import styled from "styled-components";
+import { DownOnShadow, NormalShadow, UpOnShadow } from "../../CSS/BoxShadow";
 
 export const Input = styled.input`
   padding: ${props => props.padding};
@@ -13,10 +13,10 @@ export const Input = styled.input`
   background: ${props => props.background};
   box-shadow: ${props =>
     props.boxShadow === "Normal"
-      ? Normal
+      ? NormalShadow
       : props.boxShadow === "UpOn"
-      ? UpOn
-      : DownOn};
+      ? UpOnShadow
+      : DownOnShadow};
 
   &::placeholder {
     color: #999999;

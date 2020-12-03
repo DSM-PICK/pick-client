@@ -10,7 +10,7 @@ const Input = ({ style, name, type, value, placeholder, onChange }) => {
       value={value}
       placeholder={placeholder}
       autoComplete={"off"}
-      onChange={onChange}
+      onChange={e => onChange(e)}
     />
   );
 };
