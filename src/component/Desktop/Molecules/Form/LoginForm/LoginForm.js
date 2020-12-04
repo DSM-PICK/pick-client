@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import * as S from "./styles";
 import Input from "../../../Atoms/Input/Input";
 import Label from "../../../Atoms/Label/Label";
+import Button from "../../../Atoms/Button/Button";
 
 const LoginForm = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -24,7 +25,7 @@ const LoginForm = () => {
     e => {
       e.preventDefault();
 
-      console.log(loginInfo.id, loginInfo.password);
+      console.log(loginInfo);
     },
     [loginInfo]
   );
@@ -49,16 +50,8 @@ const LoginForm = () => {
       onChange: onChangeLoginInfo
     },
     {
-      TagName: Input,
-      name: "password",
-      type: "password",
-      style: S.InputStyle,
-      value: loginInfo.password,
-      placeholder: "비밀번호를 입력하세요",
-      onChange: onChangeLoginInfo
-    },
-    {
       TagName: Label,
+      name: "errorLabel",
       style: S.LabelStyle,
       value: "가입코드가 올바르지 않습니다"
     },

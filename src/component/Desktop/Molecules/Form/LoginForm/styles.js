@@ -2,27 +2,28 @@ import styled from "styled-components";
 
 export const Container = styled.form`
   display: grid;
-  gap: 32px;
-  grid-template: 62px 62px 62px 1fr 70px / 1fr;
+  grid-template: 85px 85px 1fr 70px / 1fr;
   width: 100%;
 `;
 
-export const LabelStyle = {
-  isCenter: true,
-  color: "#FF5959",
-  fontSize: "16px",
-  fontWeight: "600",
-  visibility: "visible"
-};
-
 export const InputStyle = {
-  padding: "20px 40px",
+  margin: "14px 0",
+  padding: "0 30px",
   color: "#555555",
-  fontSize: "18px",
+  fontSize: "16px",
   fontWeight: "500",
   borderRadius: "32px",
   background: "#efefef",
   boxShadow: "DownOn"
+};
+
+export const LabelStyle = {
+  isCenter: true,
+  padding: "14px 0",
+  color: "#FF5959",
+  fontSize: "15px",
+  fontWeight: "600",
+  visibility: "visible"
 };
 
 export const SubmitStyle = {
