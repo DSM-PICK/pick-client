@@ -9,6 +9,7 @@ export const Link = styled.a`
   color: ${props => props.color};
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
+  background: ${props => props.background};
 
   text-decoration: none;
 `;
