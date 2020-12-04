@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const Container = styled.label`
   display: flex;
   visibility: ${props => props.visibility};
+  padding: ${props => props.padding};
   color: ${props => props.color};
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
