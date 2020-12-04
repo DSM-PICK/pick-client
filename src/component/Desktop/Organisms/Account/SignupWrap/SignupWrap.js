@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./styles";
-import Link from "../../../Atoms/Link/Link";
+import CenterLink from "../../../Atoms/Link/CenterLink/CenterLink";
 import Img from "../../../Atoms/Img/Img";
 import SignupForm from "../../../Molecules/Form/LoginForm/SignupForm/SignupForm";
 import { LogoPick } from "../../../../../asset";
@@ -11,14 +11,16 @@ const SignupWrap = () => {
 
   return (
     <S.Container>
-      <Img img={LogoPick} style={S.ImgStyle} />
+      <S.ImgWrap>
+        <Img img={LogoPick} style={S.ImgStyle} />
+      </S.ImgWrap>
       {isAccounted ? (
         <>
           <UserCheckForm
             isAccounted={isAccounted}
             setIsAccounted={setIsAccounted}
           />
-          <Link
+          <CenterLink
             to={"/login"}
             text={"이미 계정이 있습니다"}
             style={S.LinkStyle}
