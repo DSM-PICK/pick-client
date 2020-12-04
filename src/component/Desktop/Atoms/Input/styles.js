@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { DownOnShadow, NormalShadow, UpOnShadow } from "../../CSS/BoxShadow";
 
 export const Input = styled.input`
+  margin: ${props => props.margin};
   padding: ${props => props.padding};
   color: ${props => props.color};
   font-size: ${props => props.fontSize};
