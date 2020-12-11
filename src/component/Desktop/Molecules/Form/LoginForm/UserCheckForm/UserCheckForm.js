@@ -2,12 +2,41 @@ import React, { useCallback, useState } from "react";
 import * as S from "./styles";
 import Input from "../../../../Atoms/Input/Input";
 import Label from "../../../../Atoms/Label/Label";
-import Button from "../../../../Atoms/Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  requestAuthenticateSaga,
+  setAuthenticateError,
+  setName
+} from "../../../../../../module/action/account";
 
-const UserCheckForm = ({ isAccounted, setIsAccounted }) => {
+const UserCheckForm = () => {
+  const authenticateError = useSelector(
+    state => state.account.authenticateError
+  );
+
+  const dispatch = useDispatch();
+
+  const setUserCheckFormName = useCallback(
+    name => {
+      dispatch(setName(name));
+    },
+    [dispatch]
+  );
+  const authenticateCheck = useCallback(
+    authenticationNumber => {
+      dispatch(
+        requestAuthenticateSaga({ authenticationNumber: authenticationNumber })
+      );
+    },
+    [dispatch]
+  );
+  const setAuthenticateFormError = useCallback(() => {
+    dispatch(setAuthenticateError("이름을 입력해주세요"));
+  }, [dispatch]);
+
   const [checkInfo, setCheckInfo] = useState({
     name: "",
-    accountCode: ""
+    authenticationNumber: ""
   });
 
   const onChangeCheckInfo = useCallback(
@@ -25,6 +54,12 @@ const UserCheckForm = ({ isAccounted, setIsAccounted }) => {
     e => {
       e.preventDefault();
       console.log(checkInfo);
+      if (checkInfo.name === "") {
+        setAuthenticateFormError();
+      } else {
+        setUserCheckFormName(checkInfo.name);
+        authenticateCheck(checkInfo.authenticationNumber);
+      }
     },
     [checkInfo]
   );
@@ -41,10 +76,10 @@ const UserCheckForm = ({ isAccounted, setIsAccounted }) => {
     },
     {
       TagName: Input,
-      name: "accountCode",
+      name: "authenticationNumber",
       type: "text",
       style: S.InputStyle,
-      value: checkInfo.accountCode,
+      value: checkInfo.authenticationNumber,
       placeholder: "인증번호를 입력하세요",
       onChange: onChangeCheckInfo
     },
@@ -52,17 +87,14 @@ const UserCheckForm = ({ isAccounted, setIsAccounted }) => {
       TagName: Label,
       name: "errorLabel",
       style: S.LabelStyle,
-      value: "가입코드가 올바르지 않습니다"
+      value: authenticateError
     },
     {
-      TagName: Button,
+      TagName: Input,
       name: "submit",
       type: "submit",
       style: S.SubmitStyle,
-      value: "다음",
-      onClick: isAccounted => {
-        setIsAccounted(!isAccounted);
-      }
+      value: "다음"
     }
   ];
 
