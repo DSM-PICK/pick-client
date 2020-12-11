@@ -2,18 +2,26 @@ import {
   SET_AUTHENTICATE_ERROR,
   SET_IS_ACCOUNTED,
   SET_LOGIN_ERROR,
+  SET_NAME,
   SET_SIGN_UP_ERROR
-} from "../../action/signup";
+} from "../../action/account";
 
 const initialState = {
+  name: "",
   isAccounted: false,
   loginError: "",
   signupError: "",
   authenticateError: ""
 };
 
-const signupReducer = (state = initialState, action) => {
+const accountReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_NAME: {
+      return {
+        ...state,
+        name: action.payload
+      };
+    }
     case SET_IS_ACCOUNTED: {
       return {
         ...state,
@@ -27,7 +35,6 @@ const signupReducer = (state = initialState, action) => {
       };
     }
     case SET_SIGN_UP_ERROR: {
-      console.log(action);
       return {
         ...state,
         signupError: action.payload
@@ -45,4 +52,4 @@ const signupReducer = (state = initialState, action) => {
   }
 };
 
-export default signupReducer;
+export default accountReducer;
