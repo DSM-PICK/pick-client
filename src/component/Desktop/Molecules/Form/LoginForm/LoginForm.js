@@ -1,14 +1,37 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import Input from "../../../Atoms/Input/Input";
 import Label from "../../../Atoms/Label/Label";
-import Button from "../../../Atoms/Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { loginActionCreater } from "../../../../../module/action/login";
+import { setLoginError } from "../../../../../module/action/account";
 
 const LoginForm = () => {
+  const loginError = useSelector(state => state.account.loginError);
+
   const [loginInfo, setLoginInfo] = useState({
     id: "",
     password: ""
   });
+  const loginInfo2Korean = {
+    id: "아이디",
+    password: "비밀번호"
+  };
+
+  const dispatch = useDispatch();
+
+  const setLoginFormError = useCallback(
+    error => {
+      dispatch(setLoginError(error));
+    },
+    [dispatch]
+  );
+  const requestLogin = useCallback(
+    loginReqInfo => {
+      dispatch(loginActionCreater.requestLogin(loginReqInfo));
+    },
+    [loginInfo]
+  );
 
   const onChangeLoginInfo = useCallback(
     e => {
@@ -25,7 +48,18 @@ const LoginForm = () => {
     e => {
       e.preventDefault();
 
-      console.log(loginInfo);
+      for (let info in loginInfo) {
+        if (loginInfo[info] === "") {
+          setLoginFormError(`${loginInfo2Korean[info]} 칸이 비어있습니다`);
+          return;
+        }
+      }
+
+      requestLogin({
+        id: loginInfo.id,
+        password: loginInfo.password,
+        device: "desktop"
+      });
     },
     [loginInfo]
   );
@@ -53,7 +87,7 @@ const LoginForm = () => {
       TagName: Label,
       name: "errorLabel",
       style: S.LabelStyle,
-      value: "가입코드가 올바르지 않습니다"
+      value: loginError
     },
     {
       TagName: Input,
