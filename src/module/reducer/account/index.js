@@ -3,6 +3,7 @@ import {
   SET_IS_ACCOUNTED,
   SET_LOGIN_ERROR,
   SET_NAME,
+  SET_PW_CHANGE_ERROR,
   SET_SIGN_UP_ERROR
 } from "../../action/account";
 
@@ -11,6 +12,7 @@ const initialState = {
   isAccounted: false,
   loginError: "",
   signupError: "",
+  pwChangeError: "",
   authenticateError: ""
 };
 
@@ -38,6 +40,12 @@ const accountReducer = (state = initialState, action) => {
       return {
         ...state,
         signupError: action.payload
+      };
+    }
+    case SET_PW_CHANGE_ERROR: {
+      return {
+        ...state,
+        pwChangeError: action.payload
       };
     }
     case SET_AUTHENTICATE_ERROR: {
