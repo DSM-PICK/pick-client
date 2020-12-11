@@ -11,10 +11,11 @@ import {
   REQUEST_SIGN_UP_SAGA,
   SET_AUTHENTICATE_ERROR,
   SET_IS_ACCOUNTED
-} from "../../action/signup";
+} from "../../action/account";
 
 function* requestSignUp(action) {
   const { id, name, password, confirmPassword } = action.payload;
+
   try {
     const res = yield call(requestApi, methodType.POST, AUTH.SIGN_UP_URL(), {
       id: id,
@@ -33,14 +34,12 @@ function* requestSignUp(action) {
         alert("아이디 또는 비밀번호의 형식이 잘못되었습니다.");
       }
     }
-    console.log(err);
   }
 }
 
 function* requestAuthenticate(action) {
   const { authenticationNumber } = action.payload;
   try {
-    console.log(AUTH.AUTHENTICATE_URL());
     const res = yield call(
       requestApi,
       methodType.POST,
@@ -72,9 +71,9 @@ function* requestAuthenticate(action) {
   }
 }
 
-function* signupSaga() {
+function* accountSaga() {
   yield takeEvery(REQUEST_SIGN_UP_SAGA, requestSignUp);
   yield takeEvery(REQUEST_AUTHENTICATE_SAGA, requestAuthenticate);
 }
 
-export default signupSaga;
+export default accountSaga;
