@@ -42,7 +42,7 @@ function* requestSignUp(action) {
 
 function* requestPwChange(action) {
   try {
-    const { newPassword, confirmPassword } = action.payload;
+    const { newPassword, confirmNewPassword } = action.payload;
 
     const requestUrl = AUTH.PW_CHANGE_URL();
 
@@ -52,11 +52,14 @@ function* requestPwChange(action) {
       requestUrl,
       {
         newPassword: newPassword,
-        confirmPassword: confirmPassword
+        confirmNewPassword: confirmNewPassword
       }
     );
 
     yield put({ type: SET_PW_CHANGE_ERROR, payload: "" });
+    alert("비밀번호 변경에 성공하였습니다");
+
+    /*!!Need Redirect Code!!*/
 
     console.log(res);
   } catch (error) {
