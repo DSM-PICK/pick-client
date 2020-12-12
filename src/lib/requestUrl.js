@@ -44,6 +44,9 @@ export const AUTH = {
   SIGN_UP_URL: () => {
     return `/saturn/auth/join`;
   },
+  PW_CHANGE_URL: () => {
+    return `/saturn/auth/password`;
+  },
   AUTHENTICATE_URL: () => {
     return `/saturn/auth/authentication-number`;
   }
