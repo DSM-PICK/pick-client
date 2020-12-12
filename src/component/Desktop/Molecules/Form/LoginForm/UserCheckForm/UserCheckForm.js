@@ -53,7 +53,7 @@ const UserCheckForm = () => {
   const onSubmit = useCallback(
     e => {
       e.preventDefault();
-      console.log(checkInfo);
+
       if (checkInfo.name === "") {
         setAuthenticateFormError();
       } else {
