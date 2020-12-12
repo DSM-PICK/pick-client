@@ -4,27 +4,25 @@ import Input from "../../../../Atoms/Input/Input";
 import Label from "../../../../Atoms/Label/Label";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  requestSignUpSaga,
+  requestPwChangeSaga,
   setSignUpError
 } from "../../../../../../module/action/account";
 
 const PwChangeForm = () => {
-  const signupError = useSelector(state => state.account.signupError);
-  const name = useSelector(state => state.account.name);
+  const pwChangeError = useSelector(state => state.account.pwChangeError);
 
   const dispatch = useDispatch();
 
-  const setSignUpFormError = useCallback(
+  const setPwChangeFormError = useCallback(
     error => {
       dispatch(setSignUpError(error));
     },
     [dispatch]
   );
 
-  const signUp = useCallback(
-    (name, loginInfo) => {
-      console.log(name);
-      dispatch(requestSignUpSaga({ name, ...loginInfo }));
+  const pwChange = useCallback(
+    loginInfo => {
+      dispatch(requestPwChangeSaga({ ...loginInfo }));
     },
     [dispatch]
   );
@@ -55,22 +53,22 @@ const PwChangeForm = () => {
 
       for (let info in loginInfo) {
         if (loginInfo[info] === "") {
-          setSignUpFormError(`${loginInfo2Korean[info]} 칸이 비어있습니다`);
+          setPwChangeFormError(`${loginInfo2Korean[info]} 칸이 비어있습니다`);
           return;
         }
       }
 
       if (loginInfo.password !== loginInfo.confirmPassword) {
-        setSignUpFormError("비밀번호를 다시 확인해주세요");
+        setPwChangeFormError("비밀번호가 일치하지 않습니다");
       }
 
-      signUp(name, loginInfo);
+      pwChange(loginInfo);
       console.log("비밀번호 변경 성공");
     },
     [loginInfo]
   );
 
-  const SignupFormStaticData = [
+  const PwChangeFormStaticData = [
     {
       TagName: Input,
       name: "newPassword",
@@ -93,7 +91,7 @@ const PwChangeForm = () => {
       TagName: Label,
       name: "errorLabel",
       style: S.LabelStyle,
-      value: signupError
+      value: pwChangeError
     },
     {
       TagName: Input,
@@ -106,7 +104,7 @@ const PwChangeForm = () => {
 
   return (
     <S.Container onSubmit={onSubmit}>
-      {SignupFormStaticData.map(
+      {PwChangeFormStaticData.map(
         ({ TagName, name, type, style, value, placeholder, onChange }) => (
           <TagName
             key={name}
