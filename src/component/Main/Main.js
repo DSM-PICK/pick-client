@@ -8,9 +8,9 @@ import AttendanceBody from "../Attendance/body/AttendanceBody";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
 import Notice from "./Notice/Notice";
-import { Logo } from "../../asset";
+import { HelpIcon, Logo } from "../../asset";
 import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
-import { getPreAbsenceListSaga } from "../../module/action/pre_absence";
+import { getPreReportListSaga } from "../../module/action/pre_report";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
 import { checkPageWithLogin } from "../../lib/requestApi";
 import { showModal } from "../../module/action/modal_wrap/index";
@@ -33,7 +33,7 @@ const Main = () => {
 
   useEffect(() => {
     checkPageWithLogin();
-    dispatch(getPreAbsenceListSaga());
+    dispatch(getPreReportListSaga());
     dispatch(getMainTextRemainingDateSaga());
   }, []);
 
@@ -63,7 +63,10 @@ const Main = () => {
           <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
-          <S.MainBodyBoxText>사전신고</S.MainBodyBoxText>
+          <S.MainBodyBoxText>
+            <span>사전신고</span>
+            <S.MainBodyBoxHelp url={HelpIcon} />
+          </S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
         <S.MainBodyBox>

@@ -4,6 +4,7 @@ export const Where = styled.div`
   color: #707070;
   font-size: 12px;
   margin-top: 10px;
+  font-weight: bold;
 `;
 
 export const Container = styled.div`
@@ -17,6 +18,10 @@ export const Container = styled.div`
   border-radius: 10px;
   box-shadow: 0px 5px 7px 1px rgb(0, 0, 0, 0.1);
   margin: 25px;
+  transition: 0.2s all;
+  &:hover {
+    transform: scale(1.15);
+  }
 
   &.active {
     background-color: #e81a95;
@@ -30,5 +35,5 @@ export const Container = styled.div`
 
 export const CircleName = styled.div`
   font-size: 23px;
-  font-weight: lighter;
+  font-weight: bold;
 `;

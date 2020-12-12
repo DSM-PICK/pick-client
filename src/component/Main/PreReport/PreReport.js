@@ -8,16 +8,16 @@ import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
 import { makeDate2Digit } from "../../../lib/attendanceApi";
 import {
-  getPreAbsenceListSaga,
-  createPreAbsenceSaga,
-  setPreAbsenceNextDate,
-  setPreAbsencePreDate,
-  setPreAbsenceUtils,
-  setPreAbsenceCalcDate,
-  setPreAbsenceCalcYear,
-  setPreAbsenceCalcMonth,
-  setPreAbsenceIsClickPreState
-} from "../../../module/action/pre_absence";
+  getPreReportListSaga,
+  createPreReportSaga,
+  setPreReportNextDate,
+  setPreReportPreDate,
+  setPreReportUtils,
+  setPreReportCalcDate,
+  setPreReportCalcYear,
+  setPreReportCalcMonth,
+  setPreReportIsClickPreState
+} from "../../../module/action/pre_report";
 import PreReportShow from "./PreReportShow/PreReportShow";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
@@ -35,40 +35,39 @@ const PreReports = () => {
   const DropCalendarModal = useCallback(() => {
     dispatch(dropModal());
   }, [dispatch]);
-  const createPreAbsence = useCallback(
-    payload => dispatch(createPreAbsenceSaga(payload)),
+  const createPreReport = useCallback(
+    payload => dispatch(createPreReportSaga(payload)),
     [dispatch]
   );
-  const getPreAbsenceList = useCallback(
-    () => dispatch(getPreAbsenceListSaga()),
-    [dispatch]
-  );
+  const getPreReportList = useCallback(() => dispatch(getPreReportListSaga()), [
+    dispatch
+  ]);
   const setPreDate = useCallback(
-    payload => dispatch(setPreAbsencePreDate(payload)),
+    payload => dispatch(setPreReportPreDate(payload)),
     [dispatch]
   );
   const setNextDate = useCallback(
-    payload => dispatch(setPreAbsenceNextDate(payload)),
+    payload => dispatch(setPreReportNextDate(payload)),
     [dispatch]
   );
   const setUtils = useCallback(
-    payload => dispatch(setPreAbsenceUtils(payload)),
+    payload => dispatch(setPreReportUtils(payload)),
     [dispatch]
   );
   const setCalcDate = useCallback(
-    payload => dispatch(setPreAbsenceCalcDate(payload)),
+    payload => dispatch(setPreReportCalcDate(payload)),
     [dispatch]
   );
   const setCalcYear = useCallback(
-    payload => dispatch(setPreAbsenceCalcYear(payload)),
+    payload => dispatch(setPreReportCalcYear(payload)),
     [dispatch]
   );
   const setCalcMonth = useCallback(
-    payload => dispatch(setPreAbsenceCalcMonth(payload)),
+    payload => dispatch(setPreReportCalcMonth(payload)),
     [dispatch]
   );
   const setPreState = useCallback(
-    payload => dispatch(setPreAbsenceIsClickPreState(payload)),
+    payload => dispatch(setPreReportIsClickPreState(payload)),
     [dispatch]
   );
 
@@ -86,8 +85,8 @@ const PreReports = () => {
       end_period: String(nextDate.period)
     };
 
-    createPreAbsence(data);
-    getPreAbsenceList();
+    createPreReport(data);
+    getPreReportList();
   };
 
   const preClassInput = useRef("");
@@ -101,7 +100,7 @@ const PreReports = () => {
     ShowCalendarModal();
   };
 
-  const onPreNextSelect = (year, month, day, isSetPre) => {
+  const onPreNextSelect = (year, month, day, isSetPre, preDate, nextDate) => {
     const date = isSetPre ? preDate : nextDate;
     const otherDate = isSetPre ? nextDate : preDate;
     const refInput = isSetPre ? preClassInput : nextClassInput;
@@ -148,12 +147,12 @@ const PreReports = () => {
     setCalcDate(getDateObj(year, month + calcs));
   };
 
-  const onSelectDay = (year, month, date, state) => {
-    onPreNextSelect(year, month, date, state === "pre");
+  const onSelectDay = (year, month, date, state, preDate, nextDate) => {
+    onPreNextSelect(year, month, date, state === "pre", preDate, nextDate);
     DropCalendarModal();
   };
 
-  const onClassChange = useCallback((isSetPre, date, e) => {
+  const onClassChange = useCallback((isSetPre, date, preDate, nextDate, e) => {
     const setDate = isSetPre ? setPreDate : setNextDate;
 
     if (Number(e.target.value) > 10) {

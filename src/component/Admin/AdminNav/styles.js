@@ -3,22 +3,17 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   position: relative;
-  width: 15vw;
   min-width: 220px;
   height: 100%;
   background: #202831;
   align-items: center;
   flex-direction: column;
   z-index: 4;
-
-  @media (max-width: 1150px) {
-    width: 172px;
-  }
 `;
 
 export const ButtonWrap = styled.div`
   position: absolute;
-  top: 42%;
+  top: 31%;
   left: 20px;
 `;
 

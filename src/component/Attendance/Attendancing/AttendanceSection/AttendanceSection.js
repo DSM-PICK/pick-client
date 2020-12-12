@@ -18,7 +18,7 @@ const AttendanceSection = props => {
 
     return (
       <S.Container>
-        {clubName !== "자습" ? (
+        {clubName !== "창조실" ? (
           <S.Article>
             <S.StdCount>
               {attendanceData.length && `학생수 : ${attendanceData.length}명`}
@@ -32,7 +32,7 @@ const AttendanceSection = props => {
             <S.StdCount>
               {attendanceData.length && `학생수 : ${attendanceData.length}명`}
             </S.StdCount>
-            <S.Location location="자습실">{`자습실`}</S.Location>
+            <S.Location location="창조실">{`창조실`}</S.Location>
           </S.Article>
         )}
         <AttendanceRowTop isSevenNull={isSevenNull} />
@@ -49,7 +49,6 @@ const AttendanceSection = props => {
       </S.Container>
     );
   } catch (err) {
-    console.log(err);
     getLocationState() === "club"
       ? (window.location.href = "/t/attendance/club")
       : (window.location.href = "/t/attendance/self-study");

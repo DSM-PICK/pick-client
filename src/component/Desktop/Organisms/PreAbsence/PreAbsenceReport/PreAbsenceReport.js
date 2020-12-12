@@ -5,8 +5,8 @@ import WaterDropWrap from "../../../Atoms/Wrap/WaterDropWrap/WaterDropWrap";
 
 const PreAbsenceReport = () => {
   const WaterDropWrapCSS = {
-    width: "500px",
-    height: "310px",
+    width: "100%",
+    height: "100%",
     radiusSize: "30px",
     setGird: true,
     gridRow: "7fr 8fr",

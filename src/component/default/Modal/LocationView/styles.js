@@ -10,6 +10,7 @@ export const Container = styled.div`
   border: 1px solid #707070;
   border-radius: 16px;
   background-color: white;
+  z-index: 2;
 `;
 
 export const Item = styled.div`

@@ -8,8 +8,8 @@ import SearchWrap from "../../../Molecules/Wrap/SearchWrap/SearchWrap";
 
 const PreAbsenceList = () => {
   const WaterDropWrapCSS = {
-    width: "900px",
-    height: "700px",
+    width: "100%",
+    height: "100%",
     radiusSize: "40px",
     placeContent: "start stretch"
   };

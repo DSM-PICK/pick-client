@@ -24,7 +24,7 @@ export const Container = styled.div`
 
 export const Section = styled.div`
   display: flex;
-  width: 100%;
+  width: 50%;
   height: 100%;
   align-items: center;
   flex-direction: column;

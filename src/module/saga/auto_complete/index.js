@@ -3,7 +3,7 @@ import {
   GET_AUTO_COMPLETE_TEXT_SAGA,
   FAILURE_AUTO_COMPLETE_TEXT_SAGA
 } from "../../action/auto_complete";
-import { setPreAbsenceAutoCompleteText } from "../../action/pre_absence";
+import { setPreReportAutoCompleteText } from "../../action/pre_report";
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 import { AUTO_COMPLETE } from "../../../lib/requestUrl";
 
@@ -18,14 +18,14 @@ function* getAutoCompleteTextSaga(payload) {
         requestGetApiWithAccessToken,
         REQUEST_URL
       );
-      yield put(setPreAbsenceAutoCompleteText(autoCompleteData.data));
+      yield put(setPreReportAutoCompleteText(autoCompleteData.data));
       // } else {
       //   throw new Error(
       //     "getAutoCompleteTextSaga : There is no parameter (autocomplete text)."
       //   );
       // }
     } else {
-      yield put(setPreAbsenceAutoCompleteText(""));
+      yield put(setPreReportAutoCompleteText(""));
     }
   } catch (error) {
     // yield put(FAILURE_AUTO_COMPLETE_TEXT_SAGA(error.response.status));

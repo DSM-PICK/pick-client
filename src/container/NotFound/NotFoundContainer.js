@@ -6,7 +6,8 @@ const NotFoundContainer = () => {
   useEffect(() => {
     setTimeout(() => {
       alert("지원하지 않는 페이지입니다.");
-      window.location.href = isTablet ? "/t/main" : "/attendance";
+      window.location.href = "/t/main";
+      // window.location.href = isTablet ? "/t/main" : "/attendance"; 추후 데스크톱 배포시 지원
     }, 500);
   }, []);
   return <NotFound />;

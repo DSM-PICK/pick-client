@@ -19,6 +19,7 @@ export { default as CloseEye } from "./modal/closeEye.svg";
 export { default as changeClub } from "./Logo/changeClub.svg";
 
 export { default as BackIcon } from "./Header/back.png";
+export { default as HelpIcon } from "./Header/help.svg";
 
 export { default as ClassPng } from "./attendance/attendanceClassPng.png";
 export { default as ClubPng } from "./attendance/attendanceClubPng.png";
