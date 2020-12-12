@@ -4,14 +4,14 @@ import CenterLink from "../../../Atoms/Link/CenterLink/CenterLink";
 import Img from "../../../Atoms/Img/Img";
 import { LogoPick } from "../../../../../asset";
 import { useDispatch } from "react-redux";
-import { setLoginError } from "../../../../../module/action/account";
+import { setPwChangeError } from "../../../../../module/action/account";
 import PwChangeForm from "../../../Molecules/Form/LoginForm/PwChangeForm/PwChangeForm";
 
 const PwChangeWrap = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setLoginError(""));
+    dispatch(setPwChangeError(""));
   }, []);
 
   return (
