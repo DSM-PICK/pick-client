@@ -5,7 +5,7 @@ import Label from "../../../../Atoms/Label/Label";
 import { useDispatch, useSelector } from "react-redux";
 import {
   requestPwChangeSaga,
-  setSignUpError
+  setPwChangeError
 } from "../../../../../../module/action/account";
 
 const PwChangeForm = () => {
@@ -15,7 +15,7 @@ const PwChangeForm = () => {
 
   const setPwChangeFormError = useCallback(
     error => {
-      dispatch(setSignUpError(error));
+      dispatch(setPwChangeError(error));
     },
     [dispatch]
   );
@@ -29,11 +29,11 @@ const PwChangeForm = () => {
 
   const [loginInfo, setLoginInfo] = useState({
     newPassword: "",
-    confirmPassword: ""
+    confirmNewPassword: ""
   });
   const loginInfo2Korean = {
     newPassword: "비밀번호",
-    confirmPassword: "비밀번호 재입력"
+    confirmNewPassword: "비밀번호 재입력"
   };
 
   const onChangeLoginInfo = useCallback(
@@ -58,12 +58,12 @@ const PwChangeForm = () => {
         }
       }
 
-      if (loginInfo.password !== loginInfo.confirmPassword) {
+      if (loginInfo.newPassword !== loginInfo.confirmNewPassword) {
         setPwChangeFormError("비밀번호가 일치하지 않습니다");
+        return;
       }
 
       pwChange(loginInfo);
-      console.log("비밀번호 변경 성공");
     },
     [loginInfo]
   );
@@ -74,17 +74,17 @@ const PwChangeForm = () => {
       name: "newPassword",
       type: "password",
       style: S.InputStyle,
-      value: loginInfo.password,
+      value: loginInfo.newPassword,
       placeholder: "새로운 비밀번호를 입력하세요",
       onChange: onChangeLoginInfo
     },
     {
       TagName: Input,
-      name: "confirmPassword",
+      name: "confirmNewPassword",
       type: "password",
       style: S.InputStyle,
-      value: loginInfo.confirmPassword,
-      placeholder: "새로운 비밀번호가 다시 입력하세요",
+      value: loginInfo.confirmNewPassword,
+      placeholder: "새로운 비밀번호를 다시 입력하세요",
       onChange: onChangeLoginInfo
     },
     {
