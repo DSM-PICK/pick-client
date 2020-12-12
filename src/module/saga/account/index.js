@@ -3,14 +3,17 @@ import { loginAction, loginConstant } from "../../action/login";
 import {
   requestApi,
   methodType,
-  requestAdminApiWithAccessToken
+  requestAdminApiWithAccessToken,
+  requestApiWithAccessToken
 } from "../../../lib/requestApi";
 import { AUTH } from "../../../lib/requestUrl";
 import {
   REQUEST_AUTHENTICATE_SAGA,
+  REQUEST_PW_CHANGE_SAGA,
   REQUEST_SIGN_UP_SAGA,
   SET_AUTHENTICATE_ERROR,
-  SET_IS_ACCOUNTED
+  SET_IS_ACCOUNTED,
+  SET_PW_CHANGE_ERROR
 } from "../../action/account";
 
 function* requestSignUp(action) {
@@ -34,6 +37,35 @@ function* requestSignUp(action) {
         alert("아이디 또는 비밀번호의 형식이 잘못되었습니다.");
       }
     }
+  }
+}
+
+function* requestPwChange(action) {
+  try {
+    const { newPassword, confirmPassword } = action.payload;
+
+    const requestUrl = AUTH.PW_CHANGE_URL();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PUT,
+      requestUrl,
+      {
+        newPassword: newPassword,
+        confirmPassword: confirmPassword
+      }
+    );
+
+    yield put({ type: SET_PW_CHANGE_ERROR, payload: "" });
+
+    console.log(res);
+  } catch (error) {
+    yield put({
+      type: SET_PW_CHANGE_ERROR,
+      payload: "비밀번호 형식이 올바르지 않습니다"
+    });
+
+    console.log(error);
   }
 }
 
@@ -73,6 +105,7 @@ function* requestAuthenticate(action) {
 
 function* accountSaga() {
   yield takeEvery(REQUEST_SIGN_UP_SAGA, requestSignUp);
+  yield takeEvery(REQUEST_PW_CHANGE_SAGA, requestPwChange);
   yield takeEvery(REQUEST_AUTHENTICATE_SAGA, requestAuthenticate);
 }
 
