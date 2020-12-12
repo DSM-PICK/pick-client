@@ -23,7 +23,6 @@ const SignupForm = () => {
 
   const signUp = useCallback(
     (name, loginInfo) => {
-      console.log(name);
       dispatch(requestSignUpSaga({ name, ...loginInfo }));
     },
     [dispatch]
@@ -64,10 +63,10 @@ const SignupForm = () => {
 
       if (loginInfo.password !== loginInfo.confirmPassword) {
         setSignUpFormError("비밀번호를 다시 확인해주세요");
+        return;
       }
 
       signUp(name, loginInfo);
-      console.log("회원가입 성공");
     },
     [loginInfo]
   );
