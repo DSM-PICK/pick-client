@@ -1,7 +1,20 @@
 import styled from "styled-components";
 
-export const Container = styled.h2`
-  color: #20223e;
-  font-size: 38px;
-  font-weight: 800;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Date = styled.p`
+  color: #000000;
+  font-size: 30px;
+  font-weight: bold;
+`;
+
+export const DayOfWeek = styled.p`
+  color: #000000;
+  font-size: 18px;
+  font-weight: 400;
 `;
