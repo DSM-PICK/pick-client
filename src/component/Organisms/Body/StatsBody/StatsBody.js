@@ -7,7 +7,9 @@ const StatsBody = () => {
   return (
     <Body>
       {StatsBodyStaticData.map(data => (
-        <BigLinkButton key={data.text} link={data.link} text={data.text} />
+        <S.BigLinkButtonWrap key={data.text}>
+          <BigLinkButton link={data.link} text={data.text} />
+        </S.BigLinkButtonWrap>
       ))}
     </Body>
   );
