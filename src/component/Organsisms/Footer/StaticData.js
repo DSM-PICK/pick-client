@@ -11,26 +11,26 @@ import {
 
 export const FooterStaticData = [
   {
-    imgLink: HomeIcon,
-    imgOnLink: HomeOnIcon,
+    assetLink: HomeIcon,
+    assetOnLink: HomeOnIcon,
     link: "/t/main",
     text: "홈"
   },
   {
-    imgLink: CalendarIcon,
-    imgOnLink: CalendarOnIcon,
+    assetLink: CalendarIcon,
+    assetOnLink: CalendarOnIcon,
     link: "/t/schedule",
     text: "일정"
   },
   {
-    imgLink: StatsIcon,
-    imgOnLink: StatsOnIcon,
+    assetLink: StatsIcon,
+    assetOnLink: StatsOnIcon,
     link: "/t/stats",
     text: "통계"
   },
   {
-    imgLink: AdminIcon,
-    imgOnLink: AdminOnIcon,
+    assetLink: AdminIcon,
+    assetOnLink: AdminOnIcon,
     link: "/t/admin",
     text: "관리"
   }
