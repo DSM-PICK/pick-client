@@ -3,7 +3,6 @@ import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Body from "../Body/Body";
-// import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
