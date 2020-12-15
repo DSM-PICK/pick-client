@@ -1,8 +1,8 @@
 import React from "react";
 import * as S from "./styles";
 
-const Header = () => {
-  return <S.Container></S.Container>;
+const Header = props => {
+  return <S.Container>{props.children}</S.Container>;
 };
 
 export default Header;
