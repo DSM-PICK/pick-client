@@ -5,7 +5,7 @@ export const StatsBodyStaticData = [
   },
   {
     link: "",
-    text: "반별 통계(for 담임선생님)"
+    text: "반별 통계 (for 담임선생님)"
   },
   {
     link: "",
