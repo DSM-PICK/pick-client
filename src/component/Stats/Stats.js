@@ -1,13 +1,12 @@
 import React from "react";
 import * as S from "./styles";
-import Header from "../Header/Header.js";
-import Footer from "../Footer/Footer.js";
+import HeaderOnlyTitle from "../Organisms/Header/HeaderOnlyTitle/HeaderOnlyTitle";
+import Footer from "../Organisms/Footer/Footer";
 
 const Stats = () => {
   return (
     <S.Container>
-      <Header />
-      {/* <StatsBody /> */}
+      <HeaderOnlyTitle title={"통계"} />
       <Footer />
     </S.Container>
   );
