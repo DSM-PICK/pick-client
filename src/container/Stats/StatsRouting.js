@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import StatsForClassContainer from "./StatsForClassContainer";
+import StatsForClassFloorContainer from "./StatsForClassFloorContainer";
 import StatsMainContainer from "./StatsMainContainer";
-import StatsScheduleContainer from "./StatsScheduleContainer";
+import StatsScheduleFloorContainer from "./StatsScheduleFloorContainer";
 
 const StatsRouting = () => {
   return (
@@ -12,12 +12,12 @@ const StatsRouting = () => {
         <Route
           exact
           path={"/t/stats/schedule"}
-          component={StatsScheduleContainer}
+          component={StatsScheduleFloorContainer}
         />
         <Route
           exact
           path={"/t/stats/class"}
-          component={StatsForClassContainer}
+          component={StatsForClassFloorContainer}
         />
       </Switch>
     </>

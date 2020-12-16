@@ -1,5 +1,5 @@
 import React from "react";
-import StatsSchedule from "../../component/Stats/StatsSchedule/StatsSchedule";
+import StatsScheduleFloor from "../../component/Stats/StatsScheduleFloor/StatsScheduleFloor";
 import {
   STATS_PAGE_TITLE,
   STATS_URL
@@ -9,7 +9,7 @@ const StatsScheduleFloorContainer = () => {
   const statsMainUrl = STATS_URL.statsMain;
   const statsScheduleTitle = STATS_PAGE_TITLE.statsSchedule;
 
-  return <StatsSchedule link={statsMainUrl} title={statsScheduleTitle} />;
+  return <StatsScheduleFloor link={statsMainUrl} title={statsScheduleTitle} />;
 };
 
 export default StatsScheduleFloorContainer;
