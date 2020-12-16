@@ -1,8 +1,9 @@
 import React from "react";
 import * as S from "./styles";
-import Body from "../../../Molecules/Body/Body";
-import { StatsBodyStaticData } from "./StaticData";
-import BigLinkButton from "../../../Atoms/BigLinkButton/BigLinkButton";
+import Body from "../../../../Molecules/Body/Body";
+import { StatsBodyStaticData } from "../StaticData";
+import BigLinkButton from "../../../../Atoms/BigLinkButton/BigLinkButton";
+
 const StatsBody = () => {
   const date = new Date();
 
