@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import StatsForClassContainer from "./StatsForClassFloorContainer";
+import StatsForClassContainer from "./StatsForClassContainer";
 import StatsForClassFloorContainer from "./StatsForClassFloorContainer";
 import StatsMainContainer from "./StatsMainContainer";
 import StatsScheduleFloorContainer from "./StatsScheduleFloorContainer";
