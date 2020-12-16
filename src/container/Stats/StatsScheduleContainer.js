@@ -6,7 +6,7 @@ import {
 } from "../../component/Stats/StatsStaticData";
 
 const StatsScheduleContainer = () => {
-  const statsMainUrl = STATS_URL.statsMain;
+  const statsScheduleUrl = STATS_URL.statsSchedule;
   const statsScheduleTitle = STATS_PAGE_TITLE.statsSchedule;
 
   const date = new Date();
@@ -18,7 +18,7 @@ const StatsScheduleContainer = () => {
 
   return (
     <StatsSchedule
-      link={statsMainUrl}
+      link={statsScheduleUrl}
       title={statsScheduleTitle}
       month={month}
       day={day}
