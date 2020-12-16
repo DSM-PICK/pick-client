@@ -8,9 +8,7 @@ const StatsForClassFloor = props => {
 
   return (
     <S.Container>
-      <S.HeaderOnlyTitleWrap>
-        <HeaderWithBackBtn link={link} title={title} />
-      </S.HeaderOnlyTitleWrap>
+      <HeaderWithBackBtn link={link} title={title} />
       <StatsForClassBody />
     </S.Container>
   );
