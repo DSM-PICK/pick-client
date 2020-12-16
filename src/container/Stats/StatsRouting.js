@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import StatsForClassContainer from "./StatsForClassFloorContainer";
 import StatsForClassFloorContainer from "./StatsForClassFloorContainer";
 import StatsMainContainer from "./StatsMainContainer";
 import StatsScheduleFloorContainer from "./StatsScheduleFloorContainer";
@@ -19,6 +20,7 @@ const StatsRouting = () => {
           path={"/t/stats/class"}
           component={StatsForClassFloorContainer}
         />
+        <Route path={"/t/stats/class/"} component={StatsForClassContainer} />
       </Switch>
     </>
   );
