@@ -7,7 +7,9 @@ const StatsForClass = props => {
 
   return (
     <S.Container>
-      <HeaderWithBackBtn link={link} title={title} />
+      <S.HeaderOnlyTitleWrap>
+        <HeaderWithBackBtn link={link} title={title} />
+      </S.HeaderOnlyTitleWrap>
     </S.Container>
   );
 };
