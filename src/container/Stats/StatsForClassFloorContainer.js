@@ -1,5 +1,5 @@
 import React from "react";
-import StatsForClassFloor from "../../component/Stats/StatsForClassFloor/StatsForClassFloor";
+import StatsForClass from "../../component/Stats/StatsForClass/StatsForClass";
 import {
   STATS_PAGE_TITLE,
   STATS_URL
@@ -9,7 +9,7 @@ const StatsForClassContainer = () => {
   const statsMainUrl = STATS_URL.statsMain;
   const statsForClassTitle = STATS_PAGE_TITLE.statsForClass;
 
-  return <StatsForClassFloor link={statsMainUrl} title={statsForClassTitle} />;
+  return <StatsForClass link={statsMainUrl} title={statsForClassTitle} />;
 };
 
 export default StatsForClassContainer;
