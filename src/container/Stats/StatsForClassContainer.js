@@ -7,7 +7,7 @@ import {
 } from "../../component/Stats/StatsStaticData";
 
 const StatsForClassContainer = () => {
-  const statsMainUrl = STATS_URL.statsMain;
+  const statsForClassUrl = STATS_URL.statsForClass;
   const statsForClassTitle = STATS_PAGE_TITLE.statsForClass;
 
   const date = new Date();
@@ -19,7 +19,7 @@ const StatsForClassContainer = () => {
 
   return (
     <StatsForClass
-      link={statsMainUrl}
+      link={statsForClassUrl}
       title={statsForClassTitle}
       month={month}
       day={day}
