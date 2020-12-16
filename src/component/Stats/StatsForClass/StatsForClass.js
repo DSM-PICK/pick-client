@@ -1,17 +1,13 @@
 import React from "react";
 import * as S from "./styles";
-import StatsForClassBody from "../../Organisms/Body/StatsBody/StatsForClassBody/StatsForClassBody";
-import HeaderWithBackBtn from "../../Organisms/Header/HeaderWithBackBtn/HeaderWithBackBtn";
+import HeaderFullOptions from "../../Organisms/Header/HeaderFullOptions/HeaderFullOptions";
 
 const StatsForClass = props => {
   const { link, title } = props;
 
   return (
     <S.Container>
-      <S.HeaderOnlyTitleWrap>
-        <HeaderWithBackBtn link={link} title={title} />
-      </S.HeaderOnlyTitleWrap>
-      <StatsForClassBody />
+      <HeaderFullOptions link={link} title={title} />
     </S.Container>
   );
 };
