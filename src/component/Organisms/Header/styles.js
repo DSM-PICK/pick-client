@@ -5,7 +5,6 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   min-height: 80px;
-  padding: 0 49px;
   background: rgba(0, 0, 0, 0);
   box-sizing: border-box;
 `;
