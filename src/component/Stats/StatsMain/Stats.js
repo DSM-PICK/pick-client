@@ -4,10 +4,12 @@ import HeaderOnlyTitle from "../../Organisms/Header/HeaderOnlyTitle/HeaderOnlyTi
 import Footer from "../../Organisms/Footer/Footer";
 import StatsBody from "../../Organisms/Body/StatsBody/StatsBody";
 
-const Stats = () => {
+const Stats = props => {
+  const { title } = props;
+
   return (
     <S.Container>
-      <HeaderOnlyTitle title={"통계"} />
+      <HeaderOnlyTitle title={title} />
       <StatsBody />
       <Footer />
     </S.Container>
