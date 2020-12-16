@@ -29,3 +29,22 @@ export const StatsForClassBodyStaticData = [
     text: "3학년"
   }
 ];
+
+export const StatsScheduleBodyStaticData = [
+  {
+    link: STATS_URL.statsSchedule + "/4",
+    text: "4층"
+  },
+  {
+    link: STATS_URL.statsSchedule + "/3",
+    text: "3층"
+  },
+  {
+    link: STATS_URL.statsSchedule + "/2",
+    text: "2층"
+  },
+  {
+    link: STATS_URL.statsSchedule + "/1",
+    text: "자습실"
+  }
+];
