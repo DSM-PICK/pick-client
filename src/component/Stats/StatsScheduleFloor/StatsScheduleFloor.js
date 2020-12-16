@@ -8,9 +8,7 @@ const StatsScheduleFloor = props => {
 
   return (
     <S.Container>
-      <S.HeaderOnlyTitleWrap>
-        <HeaderWithBackBtn link={link} title={title} />
-      </S.HeaderOnlyTitleWrap>
+      <HeaderWithBackBtn link={link} title={title} />
       <StatsScheduleBody />
     </S.Container>
   );
