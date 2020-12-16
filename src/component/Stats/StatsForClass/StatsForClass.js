@@ -1,4 +1,5 @@
 import React from "react";
+import StatsForClassBody from "../../Organisms/Body/StatsBody/StatsForClassBody/StatsForClassBody";
 import HeaderWithBackBtn from "../../Organisms/Header/HeaderWithBackBtn/HeaderWithBackBtn";
 import * as S from "./styles";
 
@@ -10,6 +11,7 @@ const StatsForClass = props => {
       <S.HeaderOnlyTitleWrap>
         <HeaderWithBackBtn link={link} title={title} />
       </S.HeaderOnlyTitleWrap>
+      <StatsForClassBody />
     </S.Container>
   );
 };
