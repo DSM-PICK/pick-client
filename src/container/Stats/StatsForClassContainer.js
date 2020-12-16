@@ -10,7 +10,22 @@ const StatsForClassContainer = () => {
   const statsMainUrl = STATS_URL.statsMain;
   const statsForClassTitle = STATS_PAGE_TITLE.statsForClass;
 
-  return <StatsForClass link={statsMainUrl} title={statsForClassTitle} />;
+  const date = new Date();
+  const [month, day, dayOfWeek] = [
+    date.getMonth() + 1,
+    date.getDate(),
+    date.getDay()
+  ];
+
+  return (
+    <StatsForClass
+      link={statsMainUrl}
+      title={statsForClassTitle}
+      month={month}
+      day={day}
+      dayOfWeek={dayOfWeek}
+    />
+  );
 };
 
 export default StatsForClassContainer;
