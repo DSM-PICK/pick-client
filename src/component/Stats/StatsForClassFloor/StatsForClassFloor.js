@@ -1,9 +1,9 @@
 import React from "react";
+import * as S from "./styles";
 import StatsForClassBody from "../../Organisms/Body/StatsBody/StatsForClassBody/StatsForClassBody";
 import HeaderWithBackBtn from "../../Organisms/Header/HeaderWithBackBtn/HeaderWithBackBtn";
-import * as S from "./styles";
 
-const StatsForClass = props => {
+const StatsForClassFloor = props => {
   const { link, title } = props;
 
   return (
@@ -16,4 +16,4 @@ const StatsForClass = props => {
   );
 };
 
-export default StatsForClass;
+export default StatsForClassFloor;

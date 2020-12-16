@@ -3,7 +3,7 @@ import * as S from "./styles";
 import HeaderWithBackBtn from "../../Organisms/Header/HeaderWithBackBtn/HeaderWithBackBtn";
 import StatsScheduleBody from "../../Organisms/Body/StatsBody/StatsScheduleBody/StatsScheduleBody";
 
-const StatsSchedule = props => {
+const StatsScheduleFloor = props => {
   const { link, title } = props;
 
   return (
@@ -16,4 +16,4 @@ const StatsSchedule = props => {
   );
 };
 
-export default StatsSchedule;
+export default StatsScheduleFloor;
