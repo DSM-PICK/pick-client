@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
-import StatsForClassBody from "../../Organisms/Body/StatsBody/StatsForClassBody/StatsForClassBody";
 import HeaderWithBackBtn from "../../Organisms/Header/HeaderWithBackBtn/HeaderWithBackBtn";
+import StatsScheduleBody from "../../Organisms/Body/StatsBody/StatsScheduleBody/StatsScheduleBody";
 
 const StatsSchedule = props => {
   const { link, title } = props;
@@ -11,7 +11,7 @@ const StatsSchedule = props => {
       <S.HeaderOnlyTitleWrap>
         <HeaderWithBackBtn link={link} title={title} />
       </S.HeaderOnlyTitleWrap>
-      <StatsForClassBody />
+      <StatsScheduleBody />
     </S.Container>
   );
 };
