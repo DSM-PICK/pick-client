@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from "./styles";
 import Body from "../../../../Molecules/Body/Body";
-import { StatsForClassBodyStaticData } from "../StaticData";
+import { StatsScheduleBodyStaticData } from "../StaticData";
 import BigLinkButton from "../../../../Atoms/BigLinkButton/BigLinkButton";
 
 const StatsScheduleBody = () => {
   return (
     <Body>
-      {StatsForClassBodyStaticData.map(data => (
+      {StatsScheduleBodyStaticData.map(data => (
         <S.BigLinkButtonWrap key={data.text}>
           <BigLinkButton link={data.link} text={data.text} />
         </S.BigLinkButtonWrap>
