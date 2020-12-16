@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 export const Container = styled(Link)`
   display: flex;
-  width: 60px;
-  height: 60px;
   align-items: center;
   justify-content: center;
-  background: ${props => `url('${props.url}') no-repeat center/50%`};
+  padding: 40px;
+  width: 0px;
+  height: 0px;
+  background: ${props => `url('${props.url}') no-repeat center/40px 40px`};
 `;
