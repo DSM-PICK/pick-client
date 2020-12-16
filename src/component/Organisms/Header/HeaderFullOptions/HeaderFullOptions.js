@@ -11,10 +11,16 @@ const HeaderFullOptions = props => {
 
   return (
     <Header>
-      <HeaderBackBtn link={link} />
-      <HeaderTitle title={title} />
-      <HeaderDate month={month} day={day} dayOfWeek={dayOfWeek} />
-      <HeaderTeacher name={name} />
+      <S.HeaderWrap>
+        <S.TitleWrap>
+          <HeaderBackBtn link={link} />
+          <HeaderTitle title={title} />
+        </S.TitleWrap>
+        <HeaderDate month={month} day={day} dayOfWeek={dayOfWeek} />
+        <S.TeacherWrap>
+          <HeaderTeacher name={name} />
+        </S.TeacherWrap>
+      </S.HeaderWrap>
     </Header>
   );
 };
