@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Date = styled.p`
   color: #000000;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
 `;
 
