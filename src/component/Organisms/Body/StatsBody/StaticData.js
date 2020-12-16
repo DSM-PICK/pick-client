@@ -10,7 +10,7 @@ export const StatsBodyStaticData = [
     text: STATS_PAGE_TITLE.statsForClass + "(for 담임선생님)"
   },
   {
-    link: STATS_URL.statsSchedule,
-    text: STATS_PAGE_TITLE.statsSchedule
+    link: STATS_URL.statsGraph,
+    text: STATS_PAGE_TITLE.statsGraph
   }
 ];
