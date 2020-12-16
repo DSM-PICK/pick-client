@@ -1,14 +1,16 @@
+import { STATS_PAGE_TITLE, STATS_URL } from "../../../Stats/StatsStaticData";
+
 export const StatsBodyStaticData = [
   {
-    link: "",
-    text: "일정 통계"
+    link: STATS_URL.statsSchedule,
+    text: STATS_PAGE_TITLE.statsSchedule
   },
   {
-    link: "",
-    text: "반별 통계 (for 담임선생님)"
+    link: STATS_URL.statsForClass,
+    text: STATS_PAGE_TITLE.statsForClass + "(for 담임선생님)"
   },
   {
-    link: "",
-    text: "통계 그래프"
+    link: STATS_URL.statsSchedule,
+    text: STATS_PAGE_TITLE.statsSchedule
   }
 ];
