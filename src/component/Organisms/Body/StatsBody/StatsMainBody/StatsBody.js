@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import Body from "../../../../Molecules/Body/Body";
-import { StatsBodyStaticData } from "../StaticData";
+import { StatsMainBodyStaticData } from "../StaticData";
 import BigLinkButton from "../../../../Atoms/BigLinkButton/BigLinkButton";
 
 const StatsBody = () => {
@@ -23,7 +23,7 @@ const StatsBody = () => {
           {`통계 확인을 원하는 날짜를 선택해주세요`}
         </S.BigLinkButtonText>
       </S.SetDateButton>
-      {StatsBodyStaticData.map(data => (
+      {StatsMainBodyStaticData.map(data => (
         <S.BigLinkButtonWrap key={data.text}>
           <BigLinkButton link={data.link} text={data.text} />
         </S.BigLinkButtonWrap>
