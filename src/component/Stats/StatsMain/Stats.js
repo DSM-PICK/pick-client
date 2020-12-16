@@ -9,7 +9,9 @@ const Stats = props => {
 
   return (
     <S.Container>
-      <HeaderOnlyTitle title={title} />
+      <S.HeaderOnlyTitleWrap>
+        <HeaderOnlyTitle title={title} />
+      </S.HeaderOnlyTitleWrap>
       <StatsBody />
       <Footer />
     </S.Container>
