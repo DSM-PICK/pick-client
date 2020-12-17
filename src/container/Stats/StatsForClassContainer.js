@@ -1,14 +1,19 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import StatsForClass from "../../component/Stats/StatsForClass/StatsForClass";
 
-import {
-  STATS_PAGE_TITLE,
-  STATS_URL
-} from "../../component/Stats/StatsStaticData";
+import { STATS_URL } from "../../component/Stats/StatsStaticData";
 
 const StatsForClassContainer = () => {
+  const location = useLocation();
   const statsForClassUrl = STATS_URL.statsForClass;
-  const statsForClassTitle = STATS_PAGE_TITLE.statsForClass;
+  let statsForClassTitle;
+
+  try {
+    statsForClassTitle = location.state.title;
+  } catch (err) {
+    window.location.href = "/t/stats/class";
+  }
 
   const date = new Date();
   const [month, day, dayOfWeek] = [
