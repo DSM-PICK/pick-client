@@ -1,7 +1,8 @@
 import axios from "axios";
 import { loginConstant } from "../module/action/login";
 
-const BASE_URL = "https://api.dsm-pick.com";
+// const BASE_URL = "https://api.dsm-pick.com";
+const BASE_URL = "https://replica-api.dsm-pick.com";
 
 export const methodType = {
   GET: "get",
