@@ -27,3 +27,10 @@ export const BigLinkButtonText = styled.p`
   font-size: 18px;
   font-weight: 400;
 `;
+
+export const StatsMainBodyCalendarWrap = styled.div`
+  --heightA: -929px;
+  position: absolute;
+  bottom: var(--heightA);
+  width: 100%;
+`;
