@@ -30,7 +30,7 @@ export const ValueButton = styled.button`
     ${props =>
       props.index > 5
         ? css`
-            top: -164px;
+            top: -123px;
             border-bottom: none;
           `
         : css`

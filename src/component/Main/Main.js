@@ -3,7 +3,6 @@ import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Body from "../Body/Body";
-import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
@@ -14,6 +13,7 @@ import { getPreReportListSaga } from "../../module/action/pre_report";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
 import { checkPageWithLogin } from "../../lib/requestApi";
 import { showModal } from "../../module/action/modal_wrap/index";
+import Footer from "../Organisms/Footer/Footer";
 
 const Main = () => {
   useEffect(() => {
@@ -64,8 +64,8 @@ const Main = () => {
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>
-            <span>사전신고</span>
-            <S.MainBodyBoxHelp url={HelpIcon} />
+            <span>출결변동내역</span>
+            {/* <S.MainBodyBoxHelp url={HelpIcon} /> */}
           </S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
