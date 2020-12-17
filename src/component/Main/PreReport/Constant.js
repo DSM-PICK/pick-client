@@ -1,1 +1,1 @@
-export const PreReportStates = ["외출", "이동", "현체", "병결", "공결"];
+export const PreReportStates = ["외출", "현체", "귀가", "이동", "취업"];
