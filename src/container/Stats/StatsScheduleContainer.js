@@ -1,13 +1,18 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import StatsSchedule from "../../component/Stats/StatsSchedule/StatsSchedule";
-import {
-  STATS_PAGE_TITLE,
-  STATS_URL
-} from "../../component/Stats/StatsStaticData";
+import { STATS_URL } from "../../component/Stats/StatsStaticData";
 
 const StatsScheduleContainer = () => {
+  const location = useLocation();
   const statsScheduleUrl = STATS_URL.statsSchedule;
-  const statsScheduleTitle = STATS_PAGE_TITLE.statsSchedule;
+  let statsScheduleTitle;
+
+  try {
+    statsScheduleTitle = location.state.title;
+  } catch (err) {
+    window.location.href = "/t/stats/schedule";
+  }
 
   const date = new Date();
   const [month, day, dayOfWeek] = [
