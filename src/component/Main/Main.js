@@ -64,7 +64,7 @@ const Main = () => {
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>
-            <span>사전신고</span>
+            <span>출결변동내역</span>
             <S.MainBodyBoxHelp url={HelpIcon} />
           </S.MainBodyBoxText>
           <PreReport />
