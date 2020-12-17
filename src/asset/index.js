@@ -32,6 +32,8 @@ export { default as HomeIcon } from "./Footer/home.svg";
 export { default as HomeOnIcon } from "./Footer/homeOn.svg";
 export { default as AdminIcon } from "./Footer/admin.svg";
 export { default as AdminOnIcon } from "./Footer/adminOn.svg";
+export { default as StatsIcon } from "./Footer/stats.svg";
+export { default as StatsOnIcon } from "./Footer/statsOn.svg";
 
 export { default as Logo } from "./Logo/Logo.svg";
 export { default as WhiteLogo } from "./Logo/WhiteLogo.svg";

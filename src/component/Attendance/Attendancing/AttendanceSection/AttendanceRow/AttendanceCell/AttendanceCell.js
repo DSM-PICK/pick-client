@@ -22,10 +22,7 @@ const AttendanceCell = props => {
       value: "현체"
     },
     {
-      value: "병결"
-    },
-    {
-      value: "공결"
+      value: "귀가"
     },
     {
       value: "무단"
