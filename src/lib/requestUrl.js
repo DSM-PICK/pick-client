@@ -7,6 +7,9 @@ export const ATTENDANCE = {
   },
   ATTENDANCE_LIST_URL: (schedule, floor, priority) => {
     return `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
+  },
+  ATTENDANCE_STD_MEMO: (stdNum, period) => {
+    return `/saturn/attendance/memo/${stdNum}/${period}`;
   }
 };
 
