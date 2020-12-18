@@ -11,6 +11,7 @@ export const Container = styled.div`
 
 export const Name = styled.input`
   display: flex;
+  padding: 0;
   width: 140px;
   height: 27px;
   border: none;
