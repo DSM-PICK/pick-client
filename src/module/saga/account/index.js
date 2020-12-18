@@ -48,7 +48,7 @@ function* requestPwChange(action) {
 
     const res = yield call(
       requestApiWithAccessToken,
-      methodType.PUT,
+      methodType.PATCH,
       requestUrl,
       {
         newPassword: newPassword,
