@@ -26,7 +26,8 @@ import {
   POST_ATTENDANCE_STD_DATA_SAGA,
   FAILURE_POST_ATTENDANCE_STD_DATA_SAGA,
   setHead,
-  setSchedule
+  setSchedule,
+  SET_ATTENDANCE_STD_MEMO_SAGA
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
@@ -142,10 +143,29 @@ function* patchAttendanceStdData(payload) {
   }
 }
 
+function* attendanceStdMemo(payload) {
+  try {
+    const { memo } = payload.payload;
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_STD_MEMO();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PATCH,
+      REQUEST_URL,
+      { memo }
+    );
+
+    console.log(memo);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* attendanceSaga() {
   yield takeEvery(GET_FLOOR_DATA_SAGA, getFloorData);
   yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdDataSaga);
   yield takeEvery(POST_ATTENDANCE_STD_DATA_SAGA, patchAttendanceStdData);
+  yield takeEvery(SET_ATTENDANCE_STD_MEMO_SAGA, attendanceStdMemo);
 }
 
 export default attendanceSaga;
