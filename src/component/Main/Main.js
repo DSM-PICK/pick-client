@@ -59,13 +59,12 @@ const Main = () => {
         </S.MainBodyTopText>
 
         <S.MainBodyBox>
-          <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
+          <S.MainBodyBoxText>출석부</S.MainBodyBoxText>
           <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>
             <span>출결변동내역</span>
-            {/* <S.MainBodyBoxHelp url={HelpIcon} /> */}
           </S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
