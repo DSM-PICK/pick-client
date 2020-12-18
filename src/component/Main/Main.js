@@ -7,7 +7,7 @@ import AttendanceBody from "../Attendance/body/AttendanceBody";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
 import Notice from "./Notice/Notice";
-import { HelpIcon, Logo } from "../../asset";
+import { Logo } from "../../asset";
 import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import { getPreReportListSaga } from "../../module/action/pre_report";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
@@ -16,10 +16,6 @@ import { showModal } from "../../module/action/modal_wrap/index";
 import Footer from "../Organisms/Footer/Footer";
 
 const Main = () => {
-  useEffect(() => {
-    checkPageWithLogin();
-  }, []);
-
   const anchorItems = MAIN_ANCHOR_ITEMS;
   const TEACHER_NAME = `teacherName`;
   const dispatch = useDispatch();
