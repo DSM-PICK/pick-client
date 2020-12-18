@@ -28,6 +28,9 @@ export const POST_ATTENDANCE_STD_DATA_SAGA =
 export const FAILURE_POST_ATTENDANCE_STD_DATA_SAGA =
   "attendance/FAILURE_POST_ATTENDANCE_STD_DATA_SAGA";
 
+export const SET_ATTENDANCE_STD_MEMO_SAGA =
+  "attendance/SET_ATTENDANCE_STD_MEMO_SAGA";
+
 export const setSecondFloorData = payload => ({
   type: SET_SECOND_FLOOR_DATA,
   payload
@@ -120,5 +123,9 @@ export const postAttendanceStdDataSaga = payload => ({
 
 export const failurePostAttendanceStdDataSaga = payload => ({
   type: FAILURE_POST_ATTENDANCE_STD_DATA_SAGA,
+  payload
+});
+export const setAttendanceStdMemoSaga = payload => ({
+  type: SET_ATTENDANCE_STD_MEMO_SAGA,
   payload
 });
