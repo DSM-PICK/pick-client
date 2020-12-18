@@ -4,7 +4,7 @@ export { default as ChangeScheduleIcon } from "./schedule/ChangeScheduleIcon.png
 export { default as arrowIcon } from "./schedule/arrowIcon.png";
 export { default as IndexBackground } from "./login/background.png";
 export { default as IndexIcon } from "./login/icon.svg";
-export { default as PickLogo } from "./Logo/PickLogo.svg";
+export { default as LogoPickWithCap } from "./Logo/LogoPickWithCap.svg";
 export { default as GithubLogo } from "./Logo/github.svg";
 export { default as FacebookLogo } from "./Logo/facebook.svg";
 export { default as EditIcon } from "./modal/edit.svg";
@@ -32,11 +32,12 @@ export { default as HomeIcon } from "./Footer/home.svg";
 export { default as HomeOnIcon } from "./Footer/homeOn.svg";
 export { default as AdminIcon } from "./Footer/admin.svg";
 export { default as AdminOnIcon } from "./Footer/adminOn.svg";
+export { default as StatsIcon } from "./Footer/stats.svg";
+export { default as StatsOnIcon } from "./Footer/statsOn.svg";
 
-export { default as Logo } from "./Logo/Logo.svg";
-export { default as WhiteLogo } from "./Logo/WhiteLogo.svg";
+export { default as LogoPick } from "./Logo/LogoPick.png";
+export { default as WhiteLogoPick } from "./Logo/WhiteLogoPick.svg";
 export { default as LogoForAdmin } from "./Logo/LogoForAdmin.svg";
-export { default as PickLogoSVG } from "./Logo/PickLogo.svg";
 
 export { default as PICK_FAVICON } from "./favicon/favicon.ico";
 
