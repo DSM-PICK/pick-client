@@ -10,7 +10,12 @@ export const ValueButton = styled.button`
   width: 100%;
   min-height: 28px;
   font-size: 20px;
-  background: ${props => (props.text === "출석" ? "#ffffff" : "#2764A7")};
+  background: ${props =>
+    props.text === "출석"
+      ? "#ffffff"
+      : props.text === "취업"
+      ? "#bbbbbb"
+      : "#2764A7"};
   color: ${props => (props.text === "출석" ? "#2764A7" : "#ffffff")};
   border: ${props =>
     !props.state && props.text !== "출석" ? "none" : "1px solid #707070"};
