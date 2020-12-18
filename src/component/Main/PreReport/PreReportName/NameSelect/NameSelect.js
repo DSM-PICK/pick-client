@@ -7,7 +7,8 @@ import {
   setPreReportText
 } from "../../../../../module/action/pre_report";
 
-const NameSelect = () => {
+const NameSelect = props => {
+  const { selectedNameIndex } = props;
   const names = useSelector(state => state.preReport.autoComplete);
 
   const dispatch = useDispatch();
