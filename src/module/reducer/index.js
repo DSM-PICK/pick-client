@@ -10,8 +10,10 @@ import teacher from "./teacher";
 import attendance from "./attendance";
 import notice from "./notice";
 import modalWrap from "./modal_wrap";
+import account from "./account";
 
 const rootReducer = combineReducers({
+  account,
   adminModal,
   attendance,
   calander,

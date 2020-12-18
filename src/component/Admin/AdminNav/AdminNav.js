@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import AdminNavItem from "./AdminNavItem/AdminNavItem";
-import { WhiteLogo } from "../../../asset/index";
+import { WhiteLogoPick } from "../../../asset/index";
 
 const AdminNav = () => {
   const [zoomLevel, setZoomLevel] = useState(0);
@@ -52,7 +52,7 @@ const AdminNav = () => {
         text={""}
         size={"big"}
         link={"/admin"}
-        imgLink={WhiteLogo}
+        imgLink={WhiteLogoPick}
         navlink={""}
       />
       {itemDataSets.map(item => (

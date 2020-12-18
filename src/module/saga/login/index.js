@@ -6,9 +6,10 @@ import {
   requestAdminApiWithAccessToken
 } from "../../../lib/requestApi";
 import { GET_MAIN_TEXT_REMAINING_DATE_SAGA } from "../../action/main_text";
+import { SET_LOGIN_ERROR } from "../../action/account";
 
 function* requestLogin(action) {
-  const { id, password } = action.payload;
+  const { id, password, device } = action.payload;
   try {
     const res = yield call(requestApi, methodType.POST, `/saturn/auth/login`, {
       id,
@@ -24,10 +25,19 @@ function* requestLogin(action) {
     window.localStorage.setItem("teacherName", teacherName);
     put({ type: GET_MAIN_TEXT_REMAINING_DATE_SAGA });
     alert("로그인에 성공했습니다.");
-    window.location.href = "/t/main ";
+
+    if (device === "desktop") {
+      window.location.href = "/t/main ";
+    } else {
+      window.location.href = "/t/main ";
+    }
   } catch (err) {
     switch (err) {
       case 404: {
+        yield put({
+          type: SET_LOGIN_ERROR,
+          payload: "아이디 또는 비밀번호가 잘못되었습니다."
+        });
         alert("아이디 또는 비밀번호가 잘못되었습니다.");
       }
     }

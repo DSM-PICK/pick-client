@@ -1,15 +1,30 @@
 import styled from "styled-components";
+import { DownOnShadow, NormalShadow, UpOnShadow } from "../../CSS/BoxShadow";
 
-export const Container = styled.input`
-  width: ${props => props.width};
-  height: ${props => props.height};
-  padding: none;
-  border: ${props => props.border};
-  border-radius: ${props => props.radiusSize};
-  background: ${props => props.background};
-
-  color: #333336;
-  font-size: 15px;
-
+export const Input = styled.input`
+  margin: ${props => props.margin};
+  padding: ${props => props.padding};
+  color: ${props => props.color};
+  font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
+  border: none;
   outline: none;
+  border-radius: ${props => props.borderRadius};
+  box-sizing: border-box;
+  background: ${props => props.background};
+  box-shadow: ${props =>
+    props.boxShadow === "Normal"
+      ? NormalShadow
+      : props.boxShadow === "UpOn"
+      ? UpOnShadow
+      : DownOnShadow};
+
+  &::placeholder {
+    color: #999999;
+    font-size: 18px;
+  }
+
+  &:hover {
+    cursor: ${props => props.type === "submit" && "pointer"};
+  }
 `;

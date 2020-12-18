@@ -1,20 +1,25 @@
 import styled from "styled-components";
+import { DownOnShadow, NormalShadow, UpOnShadow } from "../../CSS/BoxShadow";
 
-export const Container = styled.button`
-  display: flex;
-  width: ${props => props.width};
-  height: ${props => props.height};
-  margin: ${props => (props.margin ? props.margin : "0")};
-  padding: ${props => (props.padding ? props.padding : "0")};
-  color: ${props => (props.color ? props.color : "#ffffff")};
-  font-size: ${props => (props.fontSize ? props.fontSize : "15px")};
-  font-weight: ${props => (props.fontWeight ? props.fontWeight : "normal")};
-  border: ${props => (props.border ? props.border : "none")};
-  border-radius: ${props => (props.radiusSize ? props.radiusSize : "0")};
-  background: ${props => (props.background ? props.background : "none")};
-
+export const Button = styled.button`
+  margin: ${props => props.margin};
+  padding: ${props => props.padding};
+  color: ${props => props.color};
+  font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
+  border: none;
   outline: none;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
+  border-radius: ${props => props.borderRadius};
+  box-sizing: border-box;
+  background: ${props => props.background};
+  box-shadow: ${props =>
+    props.boxShadow === "Normal"
+      ? NormalShadow
+      : props.boxShadow === "UpOn"
+      ? UpOnShadow
+      : DownOnShadow};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
