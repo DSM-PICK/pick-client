@@ -13,6 +13,7 @@ const AttendanceRow = props => {
   );
   const cascadeState = ["귀가"];
   const periodArr = statesArr.length === 3 ? [8, 9, 10] : [7, 8, 9, 10];
+  const todayPeriod = statesArr.length === 3 ? 8 : 7;
 
   const dispatch = useDispatch();
   const postAttendanceStdData = useCallback(
@@ -29,15 +30,15 @@ const AttendanceRow = props => {
   );
   const onStateChange = (period, value) => {
     if (~cascadeState.findIndex(state => state === value)) {
-      cascadeClick(period, value);
+      cascadeChange(period, value);
     } else {
+      viewChange(period, value);
       postAttendanceStdData(period, value);
-      onClickItems(period, value);
     }
   };
-  const cascadeClick = (period, value) => {
+  const cascadeChange = (period, value) => {
     let tempArr = [];
-    for (let i = 0; i < period - 7; i++) {
+    for (let i = 0; i < period - todayPeriod; i++) {
       tempArr.push(statesArr[i]);
     }
     for (let p = period; p <= 10; p++) {
@@ -46,11 +47,11 @@ const AttendanceRow = props => {
     }
     setStatesArr(tempArr);
   };
-  const onClickItems = useCallback(
+  const viewChange = useCallback(
     (period, value) => {
       setStatesArr(
         statesArr.map((state, index) => {
-          if (index === period - 7) {
+          if (index === period - todayPeriod) {
             return value;
           }
           return state;
@@ -73,7 +74,6 @@ const AttendanceRow = props => {
               period={periodArr[idx]}
               periodState={state}
               onStateChange={onStateChange}
-              onClickItems={onClickItems}
             />
           </S.SectionClass>
         ))}
