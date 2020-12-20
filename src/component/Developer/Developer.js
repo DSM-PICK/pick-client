@@ -1,5 +1,5 @@
 import React from "react";
-import { FacebookLogo, GithubLogo, PickLogo } from "../../asset";
+import { FacebookLogo, GithubLogo, LogoPickWithCap } from "../../asset";
 import * as S from "./styles";
 
 const Developer = () => {
@@ -29,7 +29,7 @@ const Developer = () => {
       <S.Hr />
       <S.Footer>
         <div>
-          <img src={PickLogo} />
+          <img src={LogoPickWithCap} />
           <div>© 2020 Team PICK. All rights reserved.</div>
         </div>
         <div>
