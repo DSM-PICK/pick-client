@@ -5,8 +5,6 @@ const ExName = props => {
   const { name, isSelected } = props;
   const { onClickName } = props;
 
-  isSelected && console.log(name);
-
   return (
     <S.Container isSelected={isSelected} onClick={() => onClickName(name)}>
       {name}
