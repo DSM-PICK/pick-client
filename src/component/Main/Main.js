@@ -44,9 +44,7 @@ const Main = () => {
         <S.MainBodyTopText>
           <S.MainBodyTopWho>
             {teacherName} 선생님은
-            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>
-              로그아웃
-            </S.MainBodyLogoutButton>
+            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>로그아웃</S.MainBodyLogoutButton>
           </S.MainBodyTopWho>
           <S.MainBodyTopWhen>
             <S.MainBodyTopWhenTime>{remainingDate[0]}</S.MainBodyTopWhenTime>
@@ -56,7 +54,7 @@ const Main = () => {
 
         <S.MainBodyBox>
           <S.MainBodyBoxText>출석부</S.MainBodyBoxText>
-          <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
+          <AttendanceBody anchorItems={anchorItems} mode={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>

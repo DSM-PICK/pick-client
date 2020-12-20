@@ -4,19 +4,17 @@ import Body from "../../Body/Body";
 import { ClubPng, ClassPng } from "../../../asset";
 
 const AttendanceBody = props => {
-  const { anchorItems, ismain } = props;
+  const { anchorItems, mode } = props;
 
   const pngArr = [ClubPng, ClassPng];
 
   return (
-    <Body ismain={ismain}>
+    <Body mode={mode}>
       {anchorItems.map((anchorItems, index) => (
         <AttendanceAnchor
           key={anchorItems.link}
           text={anchorItems.text}
-          imgLink={
-            anchorItems.imgLink === "" ? anchorItems.imgLink : pngArr[index]
-          }
+          imgLink={anchorItems.imgLink === "" ? anchorItems.imgLink : pngArr[index]}
           link={anchorItems.link}
         />
       ))}
