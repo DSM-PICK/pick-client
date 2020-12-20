@@ -1,13 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
-	display: flex;
-	width: 130px;
-	height: 30px;
-	padding: 5px 5px;
-	color: #707070;
-	font-size: 22px;
-	align-items: center;
-	justify-content: center;
-	z-index: 3;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  padding: 5px 5px;
+  ${css`
+    ${props => props.isSelected && "background: blue"}
+  `};
+  color: #707070;
+  font-size: 22px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  z-index: 3;
 `;

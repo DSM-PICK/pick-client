@@ -8,7 +8,7 @@ import {
 } from "../../../../../module/action/pre_report";
 
 const NameSelect = props => {
-  const { selectedNameIndex } = props;
+  const { nameSelectRef, selectedNameIndex } = props;
   const names = useSelector(state => state.preReport.autoComplete);
 
   const dispatch = useDispatch();
@@ -22,10 +22,15 @@ const NameSelect = props => {
   );
 
   return (
-    <S.Container names={names}>
+    <S.Container ref={nameSelectRef} names={names}>
       {names.length > 0 &&
-        names.map(name => (
-          <ExName key={name} name={name} onClickName={onClickName} />
+        names.map((name, index) => (
+          <ExName
+            key={name}
+            name={name}
+            onClickName={onClickName}
+            isSelected={index === selectedNameIndex}
+          />
         ))}
     </S.Container>
   );

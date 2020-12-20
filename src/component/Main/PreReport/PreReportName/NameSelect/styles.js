@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: ${props => (props.names.length > 0 ? "flex" : "none")};
   top: 27px;
   width: 140px;
-  max-height: 190px;
+  max-height: 182px;
   background: white;
   border: 1px solid #707070;
   box-sizing: border-box;
