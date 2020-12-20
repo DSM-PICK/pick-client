@@ -69,7 +69,6 @@ export const ValueButton = styled.button`
           &:active {
             background: white !important;
             color: none;
-            font-weight: bold;
             border-radius: 0 0 12px 12px;
             border-top: none;
             ul {
