@@ -30,13 +30,13 @@ const AttendanceRow = props => {
   );
   const onStateChange = (period, value) => {
     if (~cascadeState.findIndex(state => state === value)) {
-      cascadeChange(period, value);
+      cascadeViewChange(period, value);
     } else {
       viewChange(period, value);
       postAttendanceStdData(period, value);
     }
   };
-  const cascadeChange = (period, value) => {
+  const cascadeViewChange = (period, value) => {
     let tempArr = [];
     for (let i = 0; i < period - todayPeriod; i++) {
       tempArr.push(statesArr[i]);
