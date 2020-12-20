@@ -33,6 +33,7 @@ const PreReportName = () => {
       dispatch(getAutoCompleteTextSaga(e.target.value));
       if (e.target.value === "") {
         setSelectedNameIndex(-1);
+        setViewIndex(-1);
       }
     },
     [dispatch]
@@ -81,6 +82,7 @@ const PreReportName = () => {
     if (selectedNameIndex === -1) {
       setSelectedNameIndex(0);
       setViewIndex(0);
+      nameSelectRef.current.scrollTo(0, 0);
     } else if (selectedNameIndex === names.length - 1) {
       setSelectedNameIndex(0);
       setViewIndex(0);
@@ -100,6 +102,7 @@ const PreReportName = () => {
 
   const onKeyDownArrowUp = useCallback(() => {
     if (selectedNameIndex === -1) {
+      nameSelectRef.current.scrollTo(0, 0);
     } else if (selectedNameIndex === 0) {
       setSelectedNameIndex(names.length - 1);
       setViewIndex(Math.min(names.length - 1, 5));
@@ -126,8 +129,12 @@ const PreReportName = () => {
   }, [names, selectedNameIndex]);
 
   useEffect(() => {
+    setViewIndex(-1);
     setSelectedNameIndex(-1);
+    nameSelectRef.current.scrollTo(0, 0);
   }, [names]);
+
+  console.log(viewIndex, selectedNameIndex);
 
   return (
     <S.Container>
