@@ -6,9 +6,9 @@ export const Container = styled.div`
   height: 30px;
   padding: 5px 5px;
   ${css`
-    ${props => props.isSelected && "background: blue"}
+    ${props => props.isSelected && "background: #267DFF"}
   `};
-  color: #707070;
+  color: ${props => (props.isSelected ? "white" : "#707070")};
   font-size: 22px;
   align-items: center;
   justify-content: center;
