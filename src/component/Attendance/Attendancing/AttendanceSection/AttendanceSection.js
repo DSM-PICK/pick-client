@@ -13,8 +13,7 @@ const AttendanceSection = props => {
     const { clubHead, attendanceData } = information;
 
     const isSevenNull =
-      !!Object.keys(attendanceData).length &&
-      attendanceData[0].state.seven === null;
+      attendanceData.length && attendanceData[0].state.seven === null;
 
     return (
       <S.Container>
@@ -37,7 +36,7 @@ const AttendanceSection = props => {
         )}
         <AttendanceRowTop isSevenNull={isSevenNull} />
         <S.Attendance>
-          {!!Object.keys(attendanceData).length &&
+          {attendanceData.length &&
             attendanceData.map((attendance, index) => (
               <AttendanceRow
                 key={attendance.gradeClassNumber}
