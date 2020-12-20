@@ -54,6 +54,7 @@ const LoginModal = ({ closeModal }) => {
                 onChange={changeLoginInfo}
                 type="text"
                 placeholder="이메일을 입력하세요"
+                autoCapitalize="off"
               />
             </S.InputWrap>
             <S.InputWrap>
