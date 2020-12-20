@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: absolute;
   display: flex;
   left: 65px;
-  width: 219px;
+  width: min-content;
   height: 60px;
   background: #fafafa;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Date = styled.div`
   display: flex;
-  width: 219px;
+  width: min-content;
   height: 26px;
   font-size: 18px;
 `;
