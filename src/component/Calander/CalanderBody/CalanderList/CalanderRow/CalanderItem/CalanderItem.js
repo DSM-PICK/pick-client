@@ -1,10 +1,21 @@
 import React, { memo, useEffect } from "react";
 import * as S from "./styles";
 
-const CalanderItem = ({ isActive, isActives, date, onClick, names, error }) => {
+const CalanderItem = ({
+  isToday,
+  isActive,
+  isActives,
+  date,
+  onClick,
+  names,
+  error
+}) => {
   return (
     <S.Container isActive={isActive} onClick={onClick}>
-      <S.Header>{date}</S.Header>
+      <S.Header active={isToday}>
+        {isToday && <S.ActiveCircle />}
+        <S.CircleP>{date}</S.CircleP>
+      </S.Header>
       <S.Body>
         {error ? (
           <>
