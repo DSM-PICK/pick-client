@@ -24,7 +24,6 @@ function* requestLogin(action) {
     window.localStorage.setItem("refreshToken", refreshToken);
     window.localStorage.setItem("teacherName", teacherName);
     put({ type: GET_MAIN_TEXT_REMAINING_DATE_SAGA });
-    alert("로그인에 성공했습니다.");
 
     if (device === "desktop") {
       window.location.href = "/t/main ";
