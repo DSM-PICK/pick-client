@@ -16,10 +16,6 @@ import { showModal } from "../../module/action/modal_wrap/index";
 import Footer from "../Organisms/Footer/Footer";
 
 const Main = () => {
-  useEffect(() => {
-    checkPageWithLogin();
-  }, []);
-
   const anchorItems = MAIN_ANCHOR_ITEMS;
   const TEACHER_NAME = `teacherName`;
   const dispatch = useDispatch();
@@ -59,13 +55,12 @@ const Main = () => {
         </S.MainBodyTopText>
 
         <S.MainBodyBox>
-          <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
-          <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
+          <S.MainBodyBoxText>출석부</S.MainBodyBoxText>
+          <AttendanceBody anchorItems={anchorItems} mode={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>
             <span>출결변동내역</span>
-            {/* <S.MainBodyBoxHelp url={HelpIcon} /> */}
           </S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>

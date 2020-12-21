@@ -79,6 +79,10 @@ export const FuncAdd = styled.button`
   background: #267dff;
   border: none;
   border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Show = styled.div`
