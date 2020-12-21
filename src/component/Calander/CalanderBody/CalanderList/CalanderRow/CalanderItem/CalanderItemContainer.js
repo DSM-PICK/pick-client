@@ -15,7 +15,8 @@ const CalanderItemContainer = ({
   floor2,
   floor3,
   floor4,
-  error
+  error,
+  isToday
 }) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.calander.state);
@@ -84,6 +85,7 @@ const CalanderItemContainer = ({
       names={[floor2, floor3, floor4]}
       date={date}
       error={error}
+      isToday={isToday}
       onClick={onClick}
     />
   );

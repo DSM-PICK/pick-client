@@ -12,6 +12,32 @@ const AttendanceSection = props => {
     const information = useSelector(state => state.attendance);
     const { clubHead, attendanceData } = information;
 
+    !!Object.keys(attendanceData).length &&
+      (console.log(
+        attendanceData
+          .map(data => data.state)
+          .map(data => data.seven)
+          .filter(text => text === "출석").length
+      ),
+      console.log(
+        attendanceData
+          .map(data => data.state)
+          .map(data => data.eight)
+          .filter(text => text === "출석").length
+      ),
+      console.log(
+        attendanceData
+          .map(data => data.state)
+          .map(data => data.nine)
+          .filter(text => text === "출석").length
+      ),
+      console.log(
+        attendanceData
+          .map(data => data.state)
+          .map(data => data.ten)
+          .filter(text => text === "출석").length
+      ));
+
     const isSevenNull =
       attendanceData.length && attendanceData[0].state.seven === null;
     const stateData =

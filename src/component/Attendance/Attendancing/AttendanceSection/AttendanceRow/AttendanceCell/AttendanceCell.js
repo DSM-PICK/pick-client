@@ -35,7 +35,8 @@ const AttendanceCell = props => {
   };
 
   const onClickCell = () => {
-    if (text !== "취업") setState(!state);
+    if (text === "취업") return;
+    setState(!state);
   };
 
   return (

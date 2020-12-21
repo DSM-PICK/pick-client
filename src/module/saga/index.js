@@ -8,6 +8,7 @@ import teacherSaga from "./teacher";
 import clubSaga from "./club";
 import mainTextSaga from "./main_text";
 import noticeSaga from "./notice";
+import accountSaga from "./account";
 
 function* rootSaga() {
   yield all([
@@ -20,7 +21,8 @@ function* rootSaga() {
     mainTextSaga(),
     noticeSaga(),
     teacherSaga(),
-    preReportSaga()
+    preReportSaga(),
+    accountSaga()
   ]);
 }
 

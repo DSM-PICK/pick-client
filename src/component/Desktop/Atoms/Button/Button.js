@@ -1,14 +1,19 @@
 import React from "react";
 import * as S from "./styles";
 
-const Button = props => {
-  const { css, text } = props;
-  const { ButtonClick } = props;
+const Button = ({ style, name, type, value, onClick }) => {
+  console.log("button");
 
   return (
-    <S.Container onClick={ButtonClick} css={css}>
-      {text}
-    </S.Container>
+    <S.Button
+      {...style}
+      name={name}
+      type={type}
+      autoComplete={"off"}
+      onClick={e => onClick(e)}
+    >
+      {value}
+    </S.Button>
   );
 };
 
