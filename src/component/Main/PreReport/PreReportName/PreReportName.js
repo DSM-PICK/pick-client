@@ -134,8 +134,6 @@ const PreReportName = () => {
     nameSelectRef.current.scrollTo(0, 0);
   }, [names]);
 
-  console.log(viewIndex, selectedNameIndex);
-
   return (
     <S.Container>
       <S.Name
