@@ -77,7 +77,7 @@ const Attendancing = () => {
           {!!teacherName ? `감독교사 ${teacherName}` : ``}
         </S.HeaderWho>
       </Header>
-      <Body>
+      <Body mode="attendance">
         {notFloor !== FloorText && (
           <AttendanceNav floors={floorDatas} Floor={FloorText} />
         )}

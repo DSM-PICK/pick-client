@@ -14,7 +14,7 @@ export const ValueButton = styled.button`
     props.text === "출석"
       ? "#ffffff"
       : props.text === "취업"
-      ? "#707070"
+      ? "#bbbbbb"
       : "#2764A7"};
   color: ${props => (props.text === "출석" ? "#2764A7" : "#ffffff")};
   border: ${props =>
@@ -23,6 +23,10 @@ export const ValueButton = styled.button`
   box-sizing: border-box;
   outline: none;
   transition: 0.3s ease-in-out;
+
+  &:hover {
+    cursor: ${props => props.text !== "취업" && "pointer"};
+  }
 
   ul {
     position: absolute;

@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: absolute;
   display: ${props => (props.names.length > 0 ? "flex" : "none")};
-  top: 30px;
+  top: 27px;
   width: 140px;
-  max-height: 190px;
+  max-height: 182px;
   background: white;
   border: 1px solid #707070;
   box-sizing: border-box;

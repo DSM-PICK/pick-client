@@ -138,4 +138,8 @@ export const MainBodyLogoutButton = styled.button`
   border: 1px solid #707070;
   border-radius: 30px;
   margin-left: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
