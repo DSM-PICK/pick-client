@@ -44,7 +44,9 @@ const Main = () => {
         <S.MainBodyTopText>
           <S.MainBodyTopWho>
             {teacherName} 선생님은
-            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>로그아웃</S.MainBodyLogoutButton>
+            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>
+              로그아웃
+            </S.MainBodyLogoutButton>
           </S.MainBodyTopWho>
           <S.MainBodyTopWhen>
             <S.MainBodyTopWhenTime>{remainingDate[0]}</S.MainBodyTopWhenTime>

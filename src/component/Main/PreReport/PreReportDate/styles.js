@@ -27,6 +27,9 @@ export const Month = styled.div`
     font-size: 18px;
     text-align: right;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Day = styled.div`
@@ -37,6 +40,9 @@ export const Day = styled.div`
     height: 26px;
     font-size: 18px;
     text-align: right;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
 

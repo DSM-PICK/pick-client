@@ -15,4 +15,8 @@ export const Container = styled.div`
 
   border-top: 1px solid #d0d0d0;
   border-bottom: 1px solid #d0d0d0;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

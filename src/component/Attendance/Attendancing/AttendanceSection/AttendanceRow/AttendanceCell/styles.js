@@ -24,6 +24,10 @@ export const ValueButton = styled.button`
   outline: none;
   transition: 0.3s ease-in-out;
 
+  &:hover {
+    cursor: ${props => props.text !== "취업" && "pointer"};
+  }
+
   ul {
     position: absolute;
     left: 0;
