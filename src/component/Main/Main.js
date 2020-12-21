@@ -7,7 +7,7 @@ import AttendanceBody from "../Attendance/body/AttendanceBody";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
 import Notice from "./Notice/Notice";
-import { HelpIcon, Logo } from "../../asset";
+import { Logo } from "../../asset";
 import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import { getPreReportListSaga } from "../../module/action/pre_report";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
@@ -16,10 +16,6 @@ import { showModal } from "../../module/action/modal_wrap/index";
 import Footer from "../Organisms/Footer/Footer";
 
 const Main = () => {
-  useEffect(() => {
-    checkPageWithLogin();
-  }, []);
-
   const anchorItems = MAIN_ANCHOR_ITEMS;
   const TEACHER_NAME = `teacherName`;
   const dispatch = useDispatch();
@@ -48,9 +44,7 @@ const Main = () => {
         <S.MainBodyTopText>
           <S.MainBodyTopWho>
             {teacherName} 선생님은
-            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>
-              로그아웃
-            </S.MainBodyLogoutButton>
+            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>로그아웃</S.MainBodyLogoutButton>
           </S.MainBodyTopWho>
           <S.MainBodyTopWhen>
             <S.MainBodyTopWhenTime>{remainingDate[0]}</S.MainBodyTopWhenTime>
@@ -59,13 +53,12 @@ const Main = () => {
         </S.MainBodyTopText>
 
         <S.MainBodyBox>
-          <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
-          <AttendanceBody anchorItems={anchorItems} ismain={"main"} />
+          <S.MainBodyBoxText>출석부</S.MainBodyBoxText>
+          <AttendanceBody anchorItems={anchorItems} mode={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>
             <span>출결변동내역</span>
-            {/* <S.MainBodyBoxHelp url={HelpIcon} /> */}
           </S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>

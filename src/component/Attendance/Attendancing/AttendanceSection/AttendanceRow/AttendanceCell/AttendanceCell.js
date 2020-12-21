@@ -3,8 +3,8 @@ import * as S from "./styles";
 import AttendanceItem from "./AttendanceItem/AttendanceItem";
 
 const AttendanceCell = props => {
-  const { index, periodState } = props;
-  const { onClassClick } = props;
+  const { index, period, periodState } = props;
+  const { onStateChange } = props;
 
   const [state, setState] = useState(false);
   const [text, setText] = useState(periodState);
@@ -31,11 +31,11 @@ const AttendanceCell = props => {
 
   const onClickItem = value => {
     setText(value);
-    onClassClick(value);
+    onStateChange(period, value);
   };
 
   const onClickCell = () => {
-    setState(!state);
+    if (text !== "취업") setState(!state);
   };
 
   return (

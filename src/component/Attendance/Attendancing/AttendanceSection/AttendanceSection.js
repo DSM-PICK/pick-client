@@ -13,15 +13,27 @@ const AttendanceSection = props => {
     const { clubHead, attendanceData } = information;
 
     const isSevenNull =
-      !!Object.keys(attendanceData).length &&
-      attendanceData[0].state.seven === null;
+      attendanceData.length && attendanceData[0].state.seven === null;
+    const stateData =
+      attendanceData.length && attendanceData.map(data => data.state);
+    const employmentCount =
+      stateData && stateData.filter(state => state.eight === "취업").length;
+    const attendanceCountArr = stateData && [
+      stateData.filter(state => state.seven === "출석").length,
+      stateData.filter(state => state.eight === "출석").length,
+      stateData.filter(state => state.nine === "출석").length,
+      stateData.filter(state => state.ten === "출석").length
+    ];
 
     return (
       <S.Container>
         {clubName !== "창조실" ? (
           <S.Article>
             <S.StdCount>
-              {attendanceData.length && `학생수 : ${attendanceData.length}명`}
+              {attendanceData.length &&
+                `학생수 : ${attendanceData.length}명 (${
+                  attendanceData.length - employmentCount
+                }명)`}
             </S.StdCount>
             <S.Name>{clubName}</S.Name>
             {clubName !== location && <S.Location>{location}</S.Location>}
@@ -37,7 +49,7 @@ const AttendanceSection = props => {
         )}
         <AttendanceRowTop isSevenNull={isSevenNull} />
         <S.Attendance>
-          {!!Object.keys(attendanceData).length &&
+          {attendanceData.length &&
             attendanceData.map((attendance, index) => (
               <AttendanceRow
                 key={attendance.gradeClassNumber}

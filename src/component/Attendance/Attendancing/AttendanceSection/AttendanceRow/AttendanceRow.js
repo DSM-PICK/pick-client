@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import * as S from "./styles";
 import AttendanceCell from "./AttendanceCell/AttendanceCell";
 import { useDispatch } from "react-redux";
@@ -8,54 +8,58 @@ const AttendanceRow = props => {
   const { index } = props;
   const { name, state: states, gradeClassNumber } = props.attendance;
 
-  const statesArr = Object.values(states).filter(state => !!state);
+  const [statesArr, setStatesArr] = useState(
+    Object.values(states).filter(state => !!state)
+  );
+  const cascadeState = ["귀가"];
+  const periodArr = statesArr.length === 3 ? [8, 9, 10] : [7, 8, 9, 10];
+  const todayPeriod = statesArr.length === 3 ? 8 : 7;
 
   const dispatch = useDispatch();
-
-  const onSevenClick = value => {
-    dispatch(
-      postAttendanceStdDataSaga({
-        number: gradeClassNumber,
-        period: 7,
-        state: value
-      })
-    );
+  const postAttendanceStdData = useCallback(
+    (period, value) => {
+      dispatch(
+        postAttendanceStdDataSaga({
+          number: gradeClassNumber,
+          period,
+          state: value
+        })
+      );
+    },
+    [dispatch, gradeClassNumber]
+  );
+  const onStateChange = (period, value) => {
+    if (~cascadeState.findIndex(state => state === value)) {
+      cascadeViewChange(period, value);
+    } else {
+      viewChange(period, value);
+      postAttendanceStdData(period, value);
+    }
   };
-
-  const onEightClick = value => {
-    dispatch(
-      postAttendanceStdDataSaga({
-        number: gradeClassNumber,
-        period: 8,
-        state: value
-      })
-    );
+  const cascadeViewChange = (period, value) => {
+    let tempArr = [];
+    for (let i = 0; i < period - todayPeriod; i++) {
+      tempArr.push(statesArr[i]);
+    }
+    for (let p = period; p <= 10; p++) {
+      postAttendanceStdData(p, value);
+      tempArr.push(value);
+    }
+    setStatesArr(tempArr);
   };
-
-  const onNineClick = value => {
-    dispatch(
-      postAttendanceStdDataSaga({
-        number: gradeClassNumber,
-        period: 9,
-        state: value
-      })
-    );
-  };
-
-  const onTenClick = value => {
-    dispatch(
-      postAttendanceStdDataSaga({
-        number: gradeClassNumber,
-        period: 10,
-        state: value
-      })
-    );
-  };
-
-  const onClickFuncArr =
-    statesArr.length === 3
-      ? [onEightClick, onNineClick, onTenClick]
-      : [onSevenClick, onEightClick, onNineClick, onTenClick];
+  const viewChange = useCallback(
+    (period, value) => {
+      setStatesArr(
+        statesArr.map((state, index) => {
+          if (index === period - todayPeriod) {
+            return value;
+          }
+          return state;
+        })
+      );
+    },
+    [statesArr]
+  );
 
   return (
     <S.Containter>
@@ -67,8 +71,9 @@ const AttendanceRow = props => {
           <S.SectionClass key={state + idx}>
             <AttendanceCell
               index={index}
+              period={periodArr[idx]}
               periodState={state}
-              onClassClick={onClickFuncArr[idx]}
+              onStateChange={onStateChange}
             />
           </S.SectionClass>
         ))}
