@@ -13,7 +13,7 @@ const AttendanceCell = props => {
       value: "출석"
     },
     {
-      value: "이동"
+      value: "여섯글자너봐"
     },
     {
       value: "외출"

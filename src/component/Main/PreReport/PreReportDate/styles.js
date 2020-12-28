@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: absolute;
   display: flex;
-  left: 65px;
   width: min-content;
-  height: 60px;
+  height: min-content;
   background: #fafafa;
-  flex-direction: column;
   justify-content: space-between;
 `;
 

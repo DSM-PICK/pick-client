@@ -6,7 +6,11 @@ import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
-import { makeDate2Digit } from "../../../lib/attendanceApi";
+import {
+  checkPreReportData,
+  checkPreReportName,
+  makeDate2Digit
+} from "../../../lib/attendanceApi";
 import {
   getPreReportListSaga,
   createPreReportSaga,
@@ -16,17 +20,20 @@ import {
   setPreReportCalcDate,
   setPreReportCalcYear,
   setPreReportCalcMonth,
-  setPreReportIsClickPreState
+  setPreReportIsClickPreState,
+  setNames,
+  setPreReportText
 } from "../../../module/action/pre_report";
 import PreReportShow from "./PreReportShow/PreReportShow";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
+import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
 
 const PreReports = () => {
   const nameText = useSelector(state => state.preReport.text);
+  const nameArr = useSelector(state => state.preReport.names);
   const preReportData = useSelector(state => state.preReport);
   const { state, preDate, nextDate } = preReportData;
-
   const dispatch = useDispatch();
 
   const ShowCalendarModal = useCallback(() => {
@@ -70,11 +77,26 @@ const PreReports = () => {
     payload => dispatch(setPreReportIsClickPreState(payload)),
     [dispatch]
   );
+  const setNameArr = useCallback(payload => dispatch(setNames(payload)), [
+    dispatch
+  ]);
+  const setNameComplete = useCallback(
+    payload => dispatch(setPreReportText(payload)),
+    [dispatch]
+  );
+
+  const onEnroll = useCallback(() => {
+    if (!!~nameArr.findIndex(name => name === nameText)) {
+      alert("중복된 이름입니다.");
+    } else if (checkPreReportName(nameText)) {
+      setNameArr([...nameArr, nameText]);
+      setNameComplete("");
+    }
+  }, [nameArr, nameText]);
 
   const onSubmit = () => {
     const data = {
       state: String(state),
-      stdnum: Number(nameText.slice(0, 4)),
       start_date: `${preDate.year}-${makeDate2Digit(
         preDate.month
       )}-${makeDate2Digit(preDate.day)}`,
@@ -85,7 +107,9 @@ const PreReports = () => {
       end_period: String(nextDate.period)
     };
 
-    createPreReport(data);
+    for (let name of nameArr) {
+      createPreReport({ ...data, stdnum: Number(name.slice(0, 4)) });
+    }
     getPreReportList();
   };
 
@@ -179,29 +203,31 @@ const PreReports = () => {
   return (
     <S.Container>
       <S.Func>
-        <S.FuncKindName>
+        <S.FuncKindState>
           <S.FuncTitle>종류</S.FuncTitle>
           <S.PreReportStates>
             {C.PreReportStates.map(state => (
               <PreReportState key={state} stateName={state} />
             ))}
           </S.PreReportStates>
-        </S.FuncKindName>
-        <S.FuncKindName>
-          <S.FuncTitle>이름</S.FuncTitle>
-          <PreReportName />
-        </S.FuncKindName>
+        </S.FuncKindState>
         <S.FuncDate>
-          <S.FuncTitle>기간</S.FuncTitle>
+          <S.FuncTitle>날짜</S.FuncTitle>
           <PreReportDate
             refInputArr={[preClassInput, nextClassInput]}
             onClassChange={onClassChange}
             onPreReportClick={onPreReportClick}
           />
         </S.FuncDate>
-        <S.FuncAdd onClick={onSubmit}>추가하기</S.FuncAdd>
+        <S.FuncKindName>
+          <S.FuncTitle>이름</S.FuncTitle>
+          <S.FuncNameWrap>
+            <PreReportName />
+            <S.FuncAdd onClick={onEnroll}>추가</S.FuncAdd>
+          </S.FuncNameWrap>
+        </S.FuncKindName>
       </S.Func>
-      <PreReportShow />
+      <PreReportEnroll onSubmit={onSubmit} />
     </S.Container>
   );
 };

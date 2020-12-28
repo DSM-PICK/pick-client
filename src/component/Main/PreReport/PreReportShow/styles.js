@@ -2,36 +2,32 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  width: 58%;
+  padding: 0 20px;
+  width: 100%;
   height: 260px;
-  border: 1px solid #d0d0d0;
   border-radius: 30px;
-  background: white;
   flex-direction: column;
 `;
 
 export const ShowHeader = styled.div`
-  display: flex;
+  display: grid;
+  grid-template: 1fr / 100px 60px 300px 60px 1fr;
+  gap: 12px;
   width: 100%;
   height: 14px;
   padding: 10px 0 6px 0;
   justify-content: space-evenly;
 `;
 
-export const ShowHeaderStd = styled.p`
+export const ShowHeaderItem = styled.div`
   display: flex;
-  width: 100px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   color: #707070;
   font-size: 14px;
-  justify-content: center;
-`;
-
-export const ShowHeaderKind = styled(ShowHeaderStd)`
-  width: 40px;
-`;
-
-export const ShowHeaderDate = styled(ShowHeaderStd)`
-  width: 275px;
+  font-weight: 400;
 `;
 
 export const ShowBody = styled.div`
@@ -44,26 +40,22 @@ export const ShowBody = styled.div`
 `;
 
 export const ShowBodyBox = styled.div`
-  display: flex;
+  display: grid;
+  grid-template: 1fr / 100px 60px 300px 60px 1fr;
+  gap: 12px;
   width: 100%;
   padding: 5px 0;
+`;
+
+export const ShowBodyBoxItem = styled.div`
+  display: flex;
   align-items: center;
-  justify-content: space-evenly;
-`;
-
-export const ShowBodyStd = styled(ShowHeaderStd)`
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   color: #303030;
   font-size: 16px;
-`;
-
-export const ShowBodyKind = styled(ShowHeaderKind)`
-  color: #303030;
-  font-size: 16px;
-`;
-
-export const ShowBodyDate = styled(ShowHeaderDate)`
-  color: #303030;
-  font-size: 16px;
+  font-weight: 400;
 `;
 
 export const ShowBodyNoneItemText = styled.p`

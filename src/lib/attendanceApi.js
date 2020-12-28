@@ -54,6 +54,10 @@ export const PreReportReg = {
       ? true
       : false;
   },
+  isRightStdNumName: stdnum => {
+    const re = /\d{4}\s[가-힣]/;
+    return re.test(stdnum);
+  },
   isRightStdnum: stdnum => {
     const re = /\d{4}/;
     return re.test(stdnum);
@@ -67,6 +71,13 @@ export const PreReportReg = {
   }
 };
 
+export const checkPreReportName = stdnum => {
+  if (!PreReportReg.isRightStdNumName(stdnum)) {
+    alert(`이름이 올바르지 않습니다.`);
+    return false;
+  }
+  return true;
+};
 export const checkPreReportData = (
   state,
   stdnum,

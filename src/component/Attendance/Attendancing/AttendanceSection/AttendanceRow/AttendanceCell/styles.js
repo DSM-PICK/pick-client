@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const ValueButton = styled.button`
   width: 100%;
   min-height: 28px;
-  font-size: 20px;
+  font-size: ${props => (props.text.length > 5 ? "16px" : "20px")};
   background: ${props =>
     props.text === "출석"
       ? "#ffffff"

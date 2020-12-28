@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: absolute;
   display: flex;
-  left: 65px;
   width: 140px;
   height: 27px;
   flex-direction: column;
+  margin-right: 20px;
 `;
 
 export const Name = styled.input`

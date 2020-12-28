@@ -15,6 +15,7 @@ import { checkPageWithLogin } from "../../lib/requestApi";
 import { showModal } from "../../module/action/modal_wrap/index";
 import Footer from "../Organisms/Footer/Footer";
 import { LOCAL_TEACHER_NAME } from "../../lib/localStorage";
+import PreReportShowWrap from "./PreReport/PreReportView/PreReportShowView";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
@@ -61,9 +62,15 @@ const Main = () => {
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>
-            <span>출결변동내역</span>
+            <span>출결변동사항 등록</span>
           </S.MainBodyBoxText>
           <PreReport />
+        </S.MainBodyBox>
+        <S.MainBodyBox>
+          <S.MainBodyBoxText>
+            <span>출결변동내역</span>
+          </S.MainBodyBoxText>
+          <PreReportShowWrap />
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>동아리현황</S.MainBodyBoxText>
