@@ -10,10 +10,7 @@ import { getScheduleSaga, setDate } from "../../module/action/calander";
 import Footer from "../../component/Organisms/Footer/Footer";
 
 const ScheduleContainer = () => {
-  const { year, month } = useSelector(store => store.calander);
-  const dispatch = useDispatch();
   const history = useHistory();
-  const dragStartX = useRef();
 
   useEffect(() => {
     checkIsLogin().then(isLogin => {
@@ -21,36 +18,8 @@ const ScheduleContainer = () => {
     });
   }, []);
 
-  const dragStart = useCallback(e => {
-    dragStartX.current = e.clientX;
-  }, []);
-
-  const dragEnd = useCallback(
-    e => {
-      if (dragStartX.current - e.clientX > 0) {
-        dispatch(
-          setDate({
-            year: month === 11 ? year + 1 : year,
-            month: month === 11 ? 0 : month + 1
-          })
-        );
-        dispatch(getScheduleSaga());
-      } else {
-        console.log(month === 0 ? 11 : month - 1);
-        dispatch(
-          setDate({
-            year: month === 0 ? year - 1 : year,
-            month: month === 0 ? 11 : month - 1
-          })
-        );
-        dispatch(getScheduleSaga());
-      }
-    },
-    [year, month]
-  );
-
   return (
-    <G.GlobalContainer draggable onDragStart={dragStart} onDragEnd={dragEnd}>
+    <G.GlobalContainer>
       <ScheduleHeader />
       <Calander />
       <Footer />
