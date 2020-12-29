@@ -22,12 +22,15 @@ export const ActiveCircle = styled.div`
   height: 40px;
   background-color: #2764a7;
   transform: translate(-50%, -50%);
+
+  & + div {
+    color: white;
+  }
 `;
 
 export const Header = styled.div`
   width: 20px;
   position: relative;
-
   text-align: center;
   height: 20px;
   font-weight: bold;

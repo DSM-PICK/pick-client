@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   CHANGE_MY_SCHEDULE_STATUS,
   selectFirstDaySaga,
-  selectSecondDay,
-  SHOW_MY_SCHEDULE_STATUS
+  selectSecondDay
 } from "../../../../../../module/action/calander";
 import CalanderItem from "./CalanderItem";
 
