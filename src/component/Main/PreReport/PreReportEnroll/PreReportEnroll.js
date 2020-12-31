@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
-import PreReportEnrollItem from "./PreReportEnrollItem/PreReportEnrollItem";
 import { useSelector } from "react-redux";
+import PreReportEnrollItemContainer from "./PreReportEnrollItem/PreReportEnrollItemContainer";
 
 const PreReportEnroll = props => {
   const { onSubmit } = props;
@@ -11,8 +11,8 @@ const PreReportEnroll = props => {
   return (
     <S.Container>
       <S.StdListWrap>
-        {nameArr.map((name, index) => (
-          <PreReportEnrollItem key={index} name={name} />
+        {nameArr.map(name => (
+          <PreReportEnrollItemContainer key={name} name={name} />
         ))}
       </S.StdListWrap>
       <S.SubmitBtn onClick={onSubmit}>등록</S.SubmitBtn>
