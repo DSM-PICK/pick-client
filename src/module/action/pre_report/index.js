@@ -2,6 +2,7 @@ export const SET_PRE_REPORT_TEXT = "pre_report/SET_PRE_REPORT_TEXT";
 export const SET_PRE_REPORT_AUTO_COMPLETE_TEXT =
   "pre_report/SET_PRE_REPORT_AUTO_COMPLETE_TEXT";
 export const SET_NAMES = "pre_report/SET_NAMES";
+export const DELETE_NAMES = "pre_report/DELETE_NAMES";
 
 export const SET_SELECTED_PRE_REPORT_ID =
   "pre_report/SET_SELECTED_PRE_REPORT_ID";
@@ -40,6 +41,10 @@ export const setPreReportAutoCompleteText = payload => ({
 });
 export const setNames = payload => ({
   type: SET_NAMES,
+  payload
+});
+export const deleteNames = payload => ({
+  type: DELETE_NAMES,
   payload
 });
 
