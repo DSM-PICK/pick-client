@@ -75,8 +75,10 @@ function* createPreReportSaga(payload) {
       }
     );
 
-    yield put({ type: GET_PRE_REPORT_LIST_SAGA });
     yield put({ type: INIT_PRE_REPORT_DATA });
+    yield put({ type: GET_PRE_REPORT_LIST_SAGA });
+
+    console.log(res);
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_REPORT_SAGA());
     switch (error) {
