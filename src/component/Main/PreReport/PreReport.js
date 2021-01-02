@@ -6,13 +6,8 @@ import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
+import { checkPreReportName, makeDate2Digit } from "../../../lib/attendanceApi";
 import {
-  checkPreReportData,
-  checkPreReportName,
-  makeDate2Digit
-} from "../../../lib/attendanceApi";
-import {
-  getPreReportListSaga,
   createPreReportSaga,
   setPreReportNextDate,
   setPreReportPreDate,
@@ -24,7 +19,6 @@ import {
   setNames,
   setPreReportText
 } from "../../../module/action/pre_report";
-import PreReportShow from "./PreReportShow/PreReportShow";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
 import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
@@ -46,9 +40,6 @@ const PreReports = () => {
     payload => dispatch(createPreReportSaga(payload)),
     [dispatch]
   );
-  const getPreReportList = useCallback(() => dispatch(getPreReportListSaga()), [
-    dispatch
-  ]);
   const setPreDate = useCallback(
     payload => dispatch(setPreReportPreDate(payload)),
     [dispatch]
@@ -110,7 +101,6 @@ const PreReports = () => {
     for (let name of nameArr) {
       createPreReport({ ...data, stdnum: Number(name.slice(0, 4)) });
     }
-    getPreReportList();
   };
 
   const preClassInput = useRef("");
