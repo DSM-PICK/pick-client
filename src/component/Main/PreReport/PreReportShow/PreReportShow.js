@@ -55,8 +55,8 @@ const PreReportShow = () => {
                   <S.ShowBodyTextItem key={text}>{text}</S.ShowBodyTextItem>
                 ))}
               </S.ShowBodyBoxItem>
-              <S.ShowBodyBoxItem>김정은</S.ShowBodyBoxItem>
-              <S.ShowBodyBoxItem>잉잉잉잉잉</S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>{preReportData.teacher}</S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>{preReportData.memo}</S.ShowBodyBoxItem>
             </S.ShowBodyBox>
           ))
         ) : (
