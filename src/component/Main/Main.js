@@ -72,10 +72,10 @@ const Main = () => {
           </S.MainBodyBoxText>
           <PreReportShowWrap />
         </S.MainBodyBox>
-        <S.MainBodyBox>
+        {/* <S.MainBodyBox>
           <S.MainBodyBoxText>동아리현황</S.MainBodyBoxText>
           <Notice />
-        </S.MainBodyBox>
+        </S.MainBodyBox> */}
       </Body>
       <Footer />
     </S.Container>
