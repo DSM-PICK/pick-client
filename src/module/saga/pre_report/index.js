@@ -30,6 +30,8 @@ function* getPreReportList() {
 
     const preReportList = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
+    console.log(preReportList);
+
     yield put(setPreReportList(preReportList.data));
   } catch (error) {
     // yield put(FAILURE_GET_PRE_REPORT_SAGA(error.response));
@@ -43,6 +45,7 @@ function* getPreReportList() {
 function* createPreReportSaga(payload) {
   try {
     const {
+      remark,
       state,
       stdnum,
       start_date,
@@ -66,6 +69,7 @@ function* createPreReportSaga(payload) {
       methodType.POST,
       REQUEST_URL,
       {
+        memo: remark || "",
         state,
         stdnum,
         start_date,
