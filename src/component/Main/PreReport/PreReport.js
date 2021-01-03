@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from "react";
+import React, { useRef, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 import * as C from "./Constant";
@@ -17,17 +17,20 @@ import {
   setPreReportCalcMonth,
   setPreReportIsClickPreState,
   setNames,
+  setRemark,
   setPreReportText
 } from "../../../module/action/pre_report";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
 import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
+import PreReportRemark from "./PreReportRemark/PreReportRemark";
 
 const PreReports = () => {
+  const [remarkMemo, setRemarkMemo] = useState("");
   const nameText = useSelector(state => state.preReport.text);
   const nameArr = useSelector(state => state.preReport.names);
   const preReportData = useSelector(state => state.preReport);
-  const { state, preDate, nextDate } = preReportData;
+  const { remark: memo, state, preDate, nextDate } = preReportData;
   const dispatch = useDispatch();
 
   const ShowCalendarModal = useCallback(() => {
@@ -75,6 +78,16 @@ const PreReports = () => {
     payload => dispatch(setPreReportText(payload)),
     [dispatch]
   );
+  const setMemo = useCallback(payload => dispatch(setRemark(payload)), [
+    dispatch
+  ]);
+  const onAddRemark = useCallback(() => {
+    setMemo(remarkMemo);
+  }, [remarkMemo]);
+
+  const onChangeRemark = useCallback(e => {
+    setRemarkMemo(e.target.value);
+  }, []);
 
   const onEnroll = useCallback(() => {
     if (!!~nameArr.findIndex(name => name === nameText)) {
@@ -87,6 +100,7 @@ const PreReports = () => {
 
   const onSubmit = () => {
     const data = {
+      remark: memo,
       state: String(state),
       start_date: `${preDate.year}-${makeDate2Digit(
         preDate.month
@@ -215,6 +229,16 @@ const PreReports = () => {
             <PreReportName />
             <S.FuncAdd onClick={onEnroll}>추가</S.FuncAdd>
           </S.FuncNameWrap>
+        </S.FuncKindName>
+        <S.FuncKindName>
+          <S.FuncTitle>비고</S.FuncTitle>
+          <S.FuncNameWrap>
+            <PreReportRemark
+              remark={remarkMemo}
+              onChangeRemark={onChangeRemark}
+            />
+          </S.FuncNameWrap>
+          <S.FuncAdd onClick={onAddRemark}>저장</S.FuncAdd>
         </S.FuncKindName>
       </S.Func>
       <PreReportEnroll onSubmit={onSubmit} />
