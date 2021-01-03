@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  width: 50%;
+  justify-content: space-evenly;
+  width: 100%;
   min-height: 29px;
   color: black;
   font-size: 18px;

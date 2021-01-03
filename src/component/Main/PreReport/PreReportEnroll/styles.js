@@ -11,8 +11,8 @@ export const Container = styled.div`
 
 export const StdListWrap = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
-  padding: 0 30px;
+  grid-template: repeat(auto-fill, 29px) / repeat(auto-fill, minmax(50%, 1fr));
+  padding: 0 20px;
   border: 1px solid #707070;
   border-radius: 30px;
   background: white;
