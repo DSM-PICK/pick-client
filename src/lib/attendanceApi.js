@@ -50,7 +50,7 @@ export const getPreReportText = (
 
 export const PreReportReg = {
   isRightState: state => {
-    return ["외출", "이동", "현체", "병결", "공결"].includes(state)
+    return ["외출", "현체", "귀가", "이동", "취업"].includes(state)
       ? true
       : false;
   },
@@ -88,10 +88,10 @@ export const checkPreReportData = (
 ) => {
   if (!PreReportReg.isRightState(state)) {
     alert(
-      `출석 상태는 "외출", "이동" "현체", "병결", "공결" 중 하나여야합니다.`
+      `출석 상태는 "외출", "현체", "귀가", "이동", "취업" 중 하나여야합니다.`
     );
     throw new Error(
-      `State(${state}) is not in "외출", "이동", "현체", "병결", "공결"`
+      `State(${state}) is not in "외출", "현체", "귀가", "이동", "취업"`
     );
   }
   if (!PreReportReg.isRightStdnum(stdnum)) {
