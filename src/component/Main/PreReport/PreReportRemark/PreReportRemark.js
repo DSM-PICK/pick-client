@@ -1,11 +1,13 @@
 import React from "react";
 import * as S from "./styles";
-import Remark from "./Remark/Remark";
 
-const PreReportRemark = () => {
+const PreReportRemark = props => {
+  const { remark } = props;
+  const { onChangeRemark } = props;
+
   return (
     <S.Container>
-      <Remark />
+      <S.Input value={remark} onChange={e => onChangeRemark(e)} />
     </S.Container>
   );
 };
