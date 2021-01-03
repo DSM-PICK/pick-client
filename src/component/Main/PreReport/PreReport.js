@@ -83,6 +83,8 @@ const PreReports = () => {
   ]);
   const onAddRemark = useCallback(() => {
     setMemo(remarkMemo);
+
+    alert("저장되었습니다.");
   }, [remarkMemo]);
 
   const onChangeRemark = useCallback(e => {
@@ -99,6 +101,8 @@ const PreReports = () => {
   }, [nameArr, nameText]);
 
   const onSubmit = () => {
+    setRemarkMemo("");
+
     const data = {
       remark: memo,
       state: String(state),
