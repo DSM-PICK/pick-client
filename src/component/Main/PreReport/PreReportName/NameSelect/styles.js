@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: absolute;
   display: ${props => (props.names.length > 0 ? "flex" : "none")};
-  top: 27px;
+  top: 34px;
   width: 140px;
   max-height: 182px;
   background: white;
