@@ -50,9 +50,13 @@ export const getPreReportText = (
 
 export const PreReportReg = {
   isRightState: state => {
-    return ["외출", "이동", "현체", "병결", "공결"].includes(state)
+    return ["외출", "현체", "귀가", "이동", "취업"].includes(state)
       ? true
       : false;
+  },
+  isRightStdNumName: stdnum => {
+    const re = /\d{4}\s[가-힣]/;
+    return re.test(stdnum);
   },
   isRightStdnum: stdnum => {
     const re = /\d{4}/;
@@ -67,6 +71,13 @@ export const PreReportReg = {
   }
 };
 
+export const checkPreReportName = stdnum => {
+  if (!PreReportReg.isRightStdNumName(stdnum)) {
+    alert(`이름이 올바르지 않습니다.`);
+    return false;
+  }
+  return true;
+};
 export const checkPreReportData = (
   state,
   stdnum,
@@ -77,10 +88,10 @@ export const checkPreReportData = (
 ) => {
   if (!PreReportReg.isRightState(state)) {
     alert(
-      `출석 상태는 "외출", "이동" "현체", "병결", "공결" 중 하나여야합니다.`
+      `출석 상태는 "외출", "현체", "귀가", "이동", "취업" 중 하나여야합니다.`
     );
     throw new Error(
-      `State(${state}) is not in "외출", "이동", "현체", "병결", "공결"`
+      `State(${state}) is not in "외출", "현체", "귀가", "이동", "취업"`
     );
   }
   if (!PreReportReg.isRightStdnum(stdnum)) {

@@ -7,17 +7,19 @@ import AttendanceBody from "../Attendance/body/AttendanceBody";
 import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
 import Notice from "./Notice/Notice";
-import { HelpIcon, LogoPickWithCap } from "../../asset";
+import { LogoPickWithCap } from "../../asset";
 import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
 import { getPreReportListSaga } from "../../module/action/pre_report";
 import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
 import { checkPageWithLogin } from "../../lib/requestApi";
 import { showModal } from "../../module/action/modal_wrap/index";
 import Footer from "../Organisms/Footer/Footer";
+import { LOCAL_TEACHER_NAME } from "../../lib/localStorage";
+import PreReportShowWrap from "./PreReport/PreReportView/PreReportShowView";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
-  const TEACHER_NAME = `teacherName`;
+  const TEACHER_NAME = LOCAL_TEACHER_NAME;
   const dispatch = useDispatch();
   const remainingDate = useSelector(state => state.mainText.remainingDate);
 
@@ -60,14 +62,20 @@ const Main = () => {
         </S.MainBodyBox>
         <S.MainBodyBox>
           <S.MainBodyBoxText>
-            <span>출결변동내역</span>
+            <span>출결변동사항 등록</span>
           </S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
         <S.MainBodyBox>
+          <S.MainBodyBoxText>
+            <span>출결변동내역</span>
+          </S.MainBodyBoxText>
+          <PreReportShowWrap />
+        </S.MainBodyBox>
+        {/* <S.MainBodyBox>
           <S.MainBodyBoxText>동아리현황</S.MainBodyBoxText>
           <Notice />
-        </S.MainBodyBox>
+        </S.MainBodyBox> */}
       </Body>
       <Footer />
     </S.Container>

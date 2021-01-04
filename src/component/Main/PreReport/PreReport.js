@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from "react";
+import React, { useRef, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 import * as C from "./Constant";
@@ -6,9 +6,8 @@ import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
-import { makeDate2Digit } from "../../../lib/attendanceApi";
+import { checkPreReportName, makeDate2Digit } from "../../../lib/attendanceApi";
 import {
-  getPreReportListSaga,
   createPreReportSaga,
   setPreReportNextDate,
   setPreReportPreDate,
@@ -16,17 +15,22 @@ import {
   setPreReportCalcDate,
   setPreReportCalcYear,
   setPreReportCalcMonth,
-  setPreReportIsClickPreState
+  setPreReportIsClickPreState,
+  setNames,
+  setRemark,
+  setPreReportText
 } from "../../../module/action/pre_report";
-import PreReportShow from "./PreReportShow/PreReportShow";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
+import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
+import PreReportRemark from "./PreReportRemark/PreReportRemark";
 
 const PreReports = () => {
+  const [remarkMemo, setRemarkMemo] = useState("");
   const nameText = useSelector(state => state.preReport.text);
+  const nameArr = useSelector(state => state.preReport.names);
   const preReportData = useSelector(state => state.preReport);
-  const { state, preDate, nextDate } = preReportData;
-
+  const { remark: memo, state, preDate, nextDate } = preReportData;
   const dispatch = useDispatch();
 
   const ShowCalendarModal = useCallback(() => {
@@ -39,9 +43,6 @@ const PreReports = () => {
     payload => dispatch(createPreReportSaga(payload)),
     [dispatch]
   );
-  const getPreReportList = useCallback(() => dispatch(getPreReportListSaga()), [
-    dispatch
-  ]);
   const setPreDate = useCallback(
     payload => dispatch(setPreReportPreDate(payload)),
     [dispatch]
@@ -70,11 +71,41 @@ const PreReports = () => {
     payload => dispatch(setPreReportIsClickPreState(payload)),
     [dispatch]
   );
+  const setNameArr = useCallback(payload => dispatch(setNames(payload)), [
+    dispatch
+  ]);
+  const setNameComplete = useCallback(
+    payload => dispatch(setPreReportText(payload)),
+    [dispatch]
+  );
+  const setMemo = useCallback(payload => dispatch(setRemark(payload)), [
+    dispatch
+  ]);
+  const onAddRemark = useCallback(() => {
+    setMemo(remarkMemo);
+
+    alert("저장되었습니다.");
+  }, [remarkMemo]);
+
+  const onChangeRemark = useCallback(e => {
+    setRemarkMemo(e.target.value);
+  }, []);
+
+  const onEnroll = useCallback(() => {
+    if (!!~nameArr.findIndex(name => name === nameText)) {
+      alert("중복된 이름입니다.");
+    } else if (checkPreReportName(nameText)) {
+      setNameArr([...nameArr, nameText]);
+      setNameComplete("");
+    }
+  }, [nameArr, nameText]);
 
   const onSubmit = () => {
+    setRemarkMemo("");
+
     const data = {
+      remark: memo,
       state: String(state),
-      stdnum: Number(nameText.slice(0, 4)),
       start_date: `${preDate.year}-${makeDate2Digit(
         preDate.month
       )}-${makeDate2Digit(preDate.day)}`,
@@ -85,8 +116,9 @@ const PreReports = () => {
       end_period: String(nextDate.period)
     };
 
-    createPreReport(data);
-    getPreReportList();
+    for (let name of nameArr) {
+      createPreReport({ ...data, stdnum: Number(name.slice(0, 4)) });
+    }
   };
 
   const preClassInput = useRef("");
@@ -179,29 +211,41 @@ const PreReports = () => {
   return (
     <S.Container>
       <S.Func>
-        <S.FuncKindName>
+        <S.FuncKindState>
           <S.FuncTitle>종류</S.FuncTitle>
           <S.PreReportStates>
             {C.PreReportStates.map(state => (
               <PreReportState key={state} stateName={state} />
             ))}
           </S.PreReportStates>
-        </S.FuncKindName>
-        <S.FuncKindName>
-          <S.FuncTitle>이름</S.FuncTitle>
-          <PreReportName />
-        </S.FuncKindName>
+        </S.FuncKindState>
         <S.FuncDate>
-          <S.FuncTitle>기간</S.FuncTitle>
+          <S.FuncTitle>날짜</S.FuncTitle>
           <PreReportDate
             refInputArr={[preClassInput, nextClassInput]}
             onClassChange={onClassChange}
             onPreReportClick={onPreReportClick}
           />
         </S.FuncDate>
-        <S.FuncAdd onClick={onSubmit}>추가하기</S.FuncAdd>
+        <S.FuncKindName>
+          <S.FuncTitle>이름</S.FuncTitle>
+          <S.FuncNameWrap>
+            <PreReportName />
+            <S.FuncAdd onClick={onEnroll}>추가</S.FuncAdd>
+          </S.FuncNameWrap>
+        </S.FuncKindName>
+        <S.FuncKindName>
+          <S.FuncTitle>비고</S.FuncTitle>
+          <S.FuncNameWrap>
+            <PreReportRemark
+              remark={remarkMemo}
+              onChangeRemark={onChangeRemark}
+            />
+          </S.FuncNameWrap>
+          <S.FuncAdd onClick={onAddRemark}>저장</S.FuncAdd>
+        </S.FuncKindName>
       </S.Func>
-      <PreReportShow />
+      <PreReportEnroll onSubmit={onSubmit} />
     </S.Container>
   );
 };
