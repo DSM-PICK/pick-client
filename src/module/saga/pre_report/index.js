@@ -30,8 +30,6 @@ function* getPreReportList() {
 
     const preReportList = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    console.log(preReportList);
-
     yield put(setPreReportList(preReportList.data));
   } catch (error) {
     // yield put(FAILURE_GET_PRE_REPORT_SAGA(error.response));
@@ -81,8 +79,6 @@ function* createPreReportSaga(payload) {
 
     yield put({ type: INIT_PRE_REPORT_DATA });
     yield put({ type: GET_PRE_REPORT_LIST_SAGA });
-
-    console.log(res);
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_REPORT_SAGA());
     switch (error) {
