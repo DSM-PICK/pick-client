@@ -1,3 +1,44 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: grid;
+  align-items: center;
+  gap: 67px;
+  grid-template: 1fr / 1fr 523px 293px 122px 1fr;
+  width: 100%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.9);
+`;
+
+export const GridItem = styled.div``;
+
+export const ImgWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const ImgCSS = {
+  width: "113px",
+  height: "25px"
+};
+
+export const NavLinkWrap = styled.div`
+  display: flex;
+`;
+export const NavLinkCSS = {
+  width: "max-content",
+  height: "23px",
+  color: "#909090",
+  fontSize: "16px",
+  fontWeight: "400",
+  color_hover: "#505050",
+  display: "flex",
+  alignitems: "center",
+  justifycontent: "center"
+};
+export const NavLinkActiveStyle = {
+  width: "max-content",
+  height: "23px",
+  color: "#000000",
+  fontSize: "16px",
+  fontWeight: "700"
+};
