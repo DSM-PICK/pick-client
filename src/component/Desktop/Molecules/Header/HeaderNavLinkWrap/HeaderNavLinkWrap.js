@@ -1,5 +1,5 @@
 import React from "react";
-import NavLink from "../../Atoms/NavLink/NavLink";
+import NavLink from "../../../Atoms/NavLink/NavLink";
 import * as S from "./styles";
 
 const HeaderNavLinkWrap = props => {
