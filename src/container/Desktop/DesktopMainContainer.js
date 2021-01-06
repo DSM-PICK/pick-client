@@ -1,7 +1,8 @@
 import React from "react";
+import Main from "../../component/Desktop/Templates/Main/Main";
 
 const DesktopMainContainer = () => {
-  return <div></div>;
+  return <Main />;
 };
 
 export default DesktopMainContainer;
