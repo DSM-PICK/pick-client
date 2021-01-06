@@ -111,11 +111,11 @@ export const MainBodyLogoutButton = styled.button`
   left: 25px;
   width: 100px;
   height: 25px;
-  background: none;
+  color: #ff406e;
   font-size: 20px;
   font-weight: bold;
-  color: #ff406e;
   border: none;
+  background: none;
 
   &:hover {
     cursor: pointer;
