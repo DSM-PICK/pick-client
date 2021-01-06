@@ -8,10 +8,10 @@ export const Container = styled.div`
 
 export const MainHeader = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const MainHeaderLogo = styled.div`
@@ -87,28 +87,6 @@ export const MainBodyBoxText = styled.span`
   font-weight: bold;
 `;
 
-export const MainBodyBoxHelp = styled.div`
-  position: relative;
-  width: 22px;
-  height: 22px;
-  background: ${props => `url(${props.url}) no-repeat 100% / 100%`};
-
-  &:hover {
-    cursor: pointer;
-    &::after {
-      position: absolute;
-      top: 4px;
-      left: 30px;
-      content: "사전 결석 신고자 목록에는 오늘이 포함된 날짜의 학생만 보입니다";
-      width: max-content;
-      height: 100px;
-      font-size: 14px;
-      color: #000000;
-      background: none;
-    }
-  }
-`;
-
 export const MainBodyBoxBefore = styled.div`
   display: flex;
   width: 100%;
@@ -129,6 +107,8 @@ export const MainBodyBoxBeforeFunc = styled.div`
 `;
 
 export const MainBodyLogoutButton = styled.button`
+  position: absolute;
+  left: 25px;
   width: 80px;
   height: 25px;
   background: white;
@@ -137,7 +117,6 @@ export const MainBodyLogoutButton = styled.button`
   color: #707070;
   border: 1px solid #707070;
   border-radius: 30px;
-  margin-left: 10px;
 
   &:hover {
     cursor: pointer;
