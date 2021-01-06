@@ -12,4 +12,8 @@ export const Container = styled(NavLink)`
   &:hover {
     color: ${props => props.color_hover || "#505050"};
   }
+
+  display: ${props => props.display || "flex"};
+  align-items: ${props => props.alignitems || "baseline"};
+  justify-content: ${props => props.justifycontent || "baseline"};
 `;
