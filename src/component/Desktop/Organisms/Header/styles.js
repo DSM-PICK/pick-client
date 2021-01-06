@@ -8,6 +8,7 @@ export const Container = styled.div`
   width: 100%;
   height: 60px;
   background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 1px 1px 0px rgba(144, 144, 144, 0.2);
 `;
 
 export const GridItem = styled.div``;
