@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import NotFoundContainer from "../NotFound/NotFoundContainer";
-import DesktopMainContainer from "./DesktopMainContainer";
+import DesktopMainContainer from "./Main/DesktopMainContainer";
 
 const DesktopRouting = () => {
   return (
