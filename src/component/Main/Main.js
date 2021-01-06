@@ -39,23 +39,21 @@ const Main = () => {
     <S.Container>
       <Header>
         <S.MainHeader>
+          <S.MainBodyLogoutButton onClick={ShowLogoutModal}>
+            로그아웃
+          </S.MainBodyLogoutButton>
           <S.MainHeaderLogo url={LogoPickWithCap} />
+          <div />
         </S.MainHeader>
       </Header>
       <Body>
         <S.MainBodyTopText>
-          <S.MainBodyTopWho>
-            {teacherName} 선생님은
-            <S.MainBodyLogoutButton onClick={ShowLogoutModal}>
-              로그아웃
-            </S.MainBodyLogoutButton>
-          </S.MainBodyTopWho>
+          <S.MainBodyTopWho>{teacherName} 선생님은</S.MainBodyTopWho>
           <S.MainBodyTopWhen>
             <S.MainBodyTopWhenTime>{remainingDate[0]}</S.MainBodyTopWhenTime>
             {remainingDate[1]}
           </S.MainBodyTopWhen>
         </S.MainBodyTopText>
-
         <S.MainBodyBox>
           <S.MainBodyBoxText>출석부</S.MainBodyBoxText>
           <AttendanceBody anchorItems={anchorItems} mode={"main"} />
