@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../../Organisms/Header/Header";
+import DesktopHeaderContainer from "../../../../container/Desktop/Header/DesktopHeaderContainer";
 import * as S from "./styles";
 
 const Main = () => {
   return (
     <S.Container>
-      <Header />
+      <DesktopHeaderContainer />
     </S.Container>
   );
 };
