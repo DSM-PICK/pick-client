@@ -26,7 +26,7 @@ export const FooterStaticData = [
     assetLink: StatsIcon,
     assetOnLink: StatsOnIcon,
     link: "/t/stats",
-    text: "통계"
+    text: "조회"
   },
   {
     assetLink: AdminIcon,
