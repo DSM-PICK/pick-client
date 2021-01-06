@@ -6,9 +6,13 @@ import DesktopAccountContainer from "./DesktopAccountContainer";
 const DesktopRouting = () => {
   return (
     <Switch>
-      <Route path="/" component={DesktopAccountContainer} />
+      <Route path="/" exact component={DesktopAccountContainer} />
+      {/* <Route path="/login" exact component={} /> */}
+      {/* <Route path="/pre-report" exact component={} /> */}
+      {/* <Route path="/schedule" exact component={} /> */}
+      {/* <Route path="/stats" exact component={} /> */}
 
-      <Route path="*" component={NotFoundContainer} />
+      <Route component={NotFoundContainer} />
     </Switch>
   );
 };
