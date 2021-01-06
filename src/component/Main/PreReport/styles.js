@@ -13,12 +13,23 @@ export const Container = styled.div`
 `;
 
 export const Func = styled.div`
-  display: flex;
+  display: grid;
+  gap: 30px;
+  grid-template: 40px 30px 40px / 1fr;
   width: 40%;
   height: 260px;
+
+  @media only screen and (max-width: 1100px) {
+    width: 390px;
+  }
+`;
+
+export const FuncKindState = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 40px;
   align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
 `;
 
 export const FuncKindName = styled.div`
@@ -27,13 +38,10 @@ export const FuncKindName = styled.div`
   width: 100%;
   height: 40px;
   align-items: center;
-  justify-content: space-around;
 `;
 
 export const PreReportStates = styled.div`
-  position: absolute;
   display: flex;
-  left: 65px;
   width: calc(100% - 80px);
   height: 40px;
   color: white;
@@ -53,26 +61,25 @@ export const PreReportStates = styled.div`
 `;
 
 export const FuncTitle = styled.div`
-  position: absolute;
   display: flex;
-  width: auto;
+  width: max-content;
   height: 26px;
   font-size: 22px;
   color: black;
-  left: 0;
+  margin-right: 20px;
 `;
 
 export const FuncDate = styled(FuncKindName)`
   display: flex;
-  height: 80px;
+  height: 30px;
 `;
 
 export const FuncAdd = styled.button`
   display: flex;
-  width: 100%;
-  height: 40px;
+  width: 70px;
+  height: 27px;
   color: white;
-  font-size: 24px;
+  font-size: 18px;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -83,6 +90,10 @@ export const FuncAdd = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const FuncNameWrap = styled.div`
+  display: flex;
 `;
 
 export const Show = styled.div`

@@ -43,3 +43,5 @@ export { default as PICK_FAVICON } from "./favicon/favicon.ico";
 
 export { default as CalendarModalLeft } from "./Calendar/calendarModalLeft.svg";
 export { default as CalendarModalRight } from "./Calendar/calendarModalRight.svg";
+
+export { default as DeleteBtn } from "./attendance/deleteBtn.svg";

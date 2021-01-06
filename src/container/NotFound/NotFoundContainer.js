@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { isTablet } from "react-device-detect";
 import NotFound from "../../component/NotFound/NotFound";
 
 const NotFoundContainer = () => {
@@ -7,7 +6,7 @@ const NotFoundContainer = () => {
     setTimeout(() => {
       alert("지원하지 않는 페이지입니다.");
       window.location.href = "/t/main";
-      // window.location.href = isTablet ? "/t/main" : "/attendance"; 추후 데스크톱 배포시 지원
+      // window.location.href = isTablet ? "/t/main" : "/"; 추후 데스크톱 배포시 지원
     }, 500);
   }, []);
   return <NotFound />;
