@@ -5,7 +5,9 @@ import HeaderNavLinkWrap from "../../Molecules/Header/HeaderNavLinkWrap/HeaderNa
 import HeaderUserWrap from "../../Molecules/Header/HeaderUserWrap/HeaderUserWrap";
 import * as S from "./styles";
 
-const Header = () => {
+const Header = props => {
+  const { userName } = props;
+
   return (
     <S.Container>
       <S.GridItem />
@@ -18,7 +20,7 @@ const Header = () => {
           activeStyle={S.NavLinkActiveStyle}
         />
       </S.NavLinkWrap>
-      <HeaderUserWrap userName={"최아린"} />
+      <HeaderUserWrap userName={userName} />
       <S.GridItem />
     </S.Container>
   );
