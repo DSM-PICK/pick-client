@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import NotFoundContainer from "../NotFound/NotFoundContainer";
-import DesktopAccountContainer from "./DesktopAccountContainer";
+import DesktopMainContainer from "./DesktopMainContainer";
 
 const DesktopRouting = () => {
   return (
     <Switch>
-      <Route path="/" exact component={DesktopAccountContainer} />
+      <Route path="/" exact component={DesktopMainContainer} />
       {/* <Route path="/login" exact component={} /> */}
       {/* <Route path="/pre-report" exact component={} /> */}
       {/* <Route path="/schedule" exact component={} /> */}
