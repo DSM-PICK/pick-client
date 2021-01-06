@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import ScheduleHeader from "../../component/ScheduleHeader/ScheduleHeader";
 import Calander from "../../component/Calander/Calander";
-// import Footer from "../../component/Footer/Footer";
 import * as G from "../../GlobalStyle";
 import { useHistory } from "react-router";
 import { checkIsLogin } from "../../lib/requestApi";
