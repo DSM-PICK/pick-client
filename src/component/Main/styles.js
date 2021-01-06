@@ -109,14 +109,13 @@ export const MainBodyBoxBeforeFunc = styled.div`
 export const MainBodyLogoutButton = styled.button`
   position: absolute;
   left: 25px;
-  width: 80px;
+  width: 100px;
   height: 25px;
-  background: white;
-  font-size: 12px;
+  background: none;
+  font-size: 20px;
   font-weight: bold;
-  color: #707070;
-  border: 1px solid #707070;
-  border-radius: 30px;
+  color: #ff406e;
+  border: none;
 
   &:hover {
     cursor: pointer;
