@@ -3,7 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div``;
 
 export const LableHeader = styled.div`
-  display: flex;
+  display: grid;
+  column-gap: 12px;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
   margin: 0 0 7px 0;
 `;
 
