@@ -7,7 +7,7 @@ export const Toggle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 120px;
+  width: 128px;
   height: 20px;
   padding: 1px;
   border-radius: 5px;
@@ -26,16 +26,17 @@ export const ToggleText = styled.div`
   font-size: 12px;
   font-weight: 400;
   user-select: none;
+  padding: 0 2px;
   transition: all 0.3s ease-in-out;
 `;
 
 export const ToggleItem = styled.div`
   position: absolute;
   z-index: 2;
-  width: ${props => (props.toggle ? "64px" : "52px")};
+  width: ${props => (props.toggle ? "68px" : "56px")};
   height: 100%;
   border-radius: 5px;
   background: rgba(64, 108, 255, 1);
-  left: ${props => (props.toggle ? "calc(100% - 64px)" : "0")};
+  left: ${props => (props.toggle ? "calc(100% - 68px)" : "0")};
   transition: all 0.3s ease-in-out;
 `;
