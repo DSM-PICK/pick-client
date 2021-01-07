@@ -8,4 +8,5 @@ export const Container = styled.div`
   height: ${props => props.height || "auto"};
   border-radius: ${props => props.borderRadius || "0"};
   background: ${props => props.background || "#ffffff"};
+  box-shadow: ${props => props.boxShadow || "none"};
 `;
