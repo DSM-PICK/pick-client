@@ -4,8 +4,6 @@ import * as S from "./styles";
 const Toggle = props => {
   const { toggle, onClick } = props;
 
-  console.log(toggle);
-
   return (
     <S.Container>
       <S.Toggle toggle={toggle} onClick={onClick}>
