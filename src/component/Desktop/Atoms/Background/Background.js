@@ -1,8 +1,10 @@
 import React from "react";
 import * as S from "./styles";
 
-const Background = () => {
-  return <S.Container></S.Container>;
+const Background = props => {
+  const { css } = props;
+
+  return <S.Container {...css}>{props.children}</S.Container>;
 };
 
 export default Background;
