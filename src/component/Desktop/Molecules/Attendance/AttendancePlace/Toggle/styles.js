@@ -25,6 +25,7 @@ export const ToggleText = styled.div`
   color: ${props => (props.state === props.toggle ? "#909090" : "#ffffff")};
   font-size: 12px;
   font-weight: 400;
+  user-select: none;
   transition: all 0.3s ease-in-out;
 `;
 
