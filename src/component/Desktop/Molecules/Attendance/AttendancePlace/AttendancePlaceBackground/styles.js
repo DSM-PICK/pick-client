@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-rows: 50px 1fr 40px;
-  width: 100%;
-  height: 100%;
+  gap: 20px;
+  grid-template-rows: 40px 1fr 40px;
+  width: calc(100% - 40px);
+  height: calc(100% - 24px);
   padding: 12px 20px;
 `;
 
@@ -15,6 +16,35 @@ export const BackgroundHeader = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+export const TextWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+`;
+
+export const HeaderText = styled.p`
+  display: flex;
+  align-items: center;
+  height: 20px;
+  font-size: 16px;
+`;
+
+export const ButtonWrap = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const HeaderButtonCSS = {
+  width: "100%",
+  height: "100%",
+  color: "#ffffff",
+  borderRadius: "12px",
+  background: "#406CFF"
+};
 
 export const BackgroundButtonWrap = styled.div`
   width: 100%;
