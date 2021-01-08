@@ -22,7 +22,7 @@ export const Toggle = styled.div`
 export const ToggleText = styled.div`
   position: relative;
   z-index: 3;
-  color: ${props => (props.state === props.toggle ? "#909090" : "#ffffff")};
+  color: ${props => (props.toggle ? "#ffffff" : "#909090")};
   font-size: 12px;
   font-weight: 400;
   user-select: none;
@@ -33,10 +33,10 @@ export const ToggleText = styled.div`
 export const ToggleItem = styled.div`
   position: absolute;
   z-index: 2;
-  width: ${props => (props.toggle ? "68px" : "56px")};
+  width: ${props => (props.toggle ? "56px" : "68px")};
   height: 100%;
   border-radius: 5px;
   background: rgba(64, 108, 255, 1);
-  left: ${props => (props.toggle ? "calc(100% - 68px)" : "0")};
+  left: ${props => (props.toggle ? "0" : "calc(100% - 68px)")};
   transition: all 0.3s ease-in-out;
 `;
