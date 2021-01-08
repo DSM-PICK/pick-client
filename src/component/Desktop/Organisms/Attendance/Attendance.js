@@ -1,6 +1,6 @@
 import React from "react";
+import DesktopAttendancePlaceContainer from "../../../../container/Desktop/Main/Attendance/DesktopAttendancePlaceContainer";
 import AttendanceCurrent from "../../Molecules/Attendance/AttendanceCurrent/AttendanceCurrent";
-import AttendancePlace from "../../Molecules/Attendance/AttendancePlace/AttendancePlace";
 import AttendanceStdList from "../../Molecules/Attendance/AttendanceStdList/AttendanceStdList";
 import * as S from "./styles";
 
@@ -8,7 +8,7 @@ const Attendance = () => {
   return (
     <S.Container>
       <S.LeftGridWrap>
-        <AttendancePlace />
+        <DesktopAttendancePlaceContainer />
         <AttendanceCurrent />
       </S.LeftGridWrap>
       <S.RightWrap>
