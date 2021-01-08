@@ -1,14 +1,14 @@
 import React from "react";
 import * as S from "./styles";
 import Button from "../../../../Atoms/Button/Button";
-import SelectWrap from "./SelectWrap/SelectWrap";
 import BackgroundHeader from "./BackgroundHeader/BackgroundHeader";
+import DesktopSelectWrapContainer from "../../../../../../container/Desktop/Main/Attendance/DesktopSelectWrapContainer";
 
 const AttendancePlaceBackground = () => {
   return (
     <S.Container>
       <BackgroundHeader />
-      <SelectWrap />
+      <DesktopSelectWrapContainer />
       <S.BackgroundButtonWrap>
         <Button
           text={"조회하기"}
