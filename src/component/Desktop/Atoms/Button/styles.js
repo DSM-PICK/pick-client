@@ -19,5 +19,12 @@ export const Container = styled.button`
 
   &:hover {
     cursor: pointer;
+    background: ${props => props.hoverBackground || props.background};
   }
+
+  &:active {
+    background: ${props => props.activeBackground || props.background};
+  }
+
+  transition: background 0.3s ease-in-out;
 `;
