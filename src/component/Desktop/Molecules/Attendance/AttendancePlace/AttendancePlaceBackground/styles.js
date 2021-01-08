@@ -44,7 +44,10 @@ export const HeaderButtonCSS = {
   height: "100%",
   color: "#ffffff",
   borderRadius: "12px",
-  background: "#406CFF"
+  background: "#406CFF",
+
+  hoverBackground: "#2D54D5",
+  activeBackground: "#2849b5"
 };
 
 export const BackgroundButtonWrap = styled.div`
@@ -56,5 +59,8 @@ export const ButtonCSS = {
   height: "100%",
   color: "#ffffff",
   borderRadius: "12px",
-  background: "#406CFF"
+  background: "#406CFF",
+
+  hoverBackground: "#2D54D5",
+  activeBackground: "#2849b5"
 };
