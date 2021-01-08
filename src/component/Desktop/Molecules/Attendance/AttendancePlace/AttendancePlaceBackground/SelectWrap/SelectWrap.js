@@ -2,26 +2,29 @@ import React from "react";
 import * as S from "./styles";
 
 const SelectWrap = () => {
+  const SelectArr = [
+    {
+      header: "학년",
+      bodyItem: ["1학년", "2학년", "3학년", "기타"]
+    },
+    {
+      header: "학년",
+      bodyItem: ["1학년", "2학년", "3학년", "기타"]
+    }
+  ];
+
   return (
     <S.Container>
-      <S.Select>
-        <S.SelectHeader>학년</S.SelectHeader>
-        <S.SelectBody>
-          <S.SelectItem>1학년</S.SelectItem>
-          <S.SelectItem>2학년</S.SelectItem>
-          <S.SelectItem>3학년</S.SelectItem>
-          <S.SelectItem>기타</S.SelectItem>
-        </S.SelectBody>
-      </S.Select>
-      <S.Select>
-        <S.SelectHeader>반</S.SelectHeader>
-        <S.SelectBody>
-          <S.SelectItem>1반</S.SelectItem>
-          <S.SelectItem>2반</S.SelectItem>
-          <S.SelectItem>3반</S.SelectItem>
-          <S.SelectItem>4반</S.SelectItem>
-        </S.SelectBody>
-      </S.Select>
+      {SelectArr.map(data => (
+        <S.Select key={data.header}>
+          <S.SelectHeader>{data.header}</S.SelectHeader>
+          <S.SelectBody>
+            {data.bodyItem.map(item => (
+              <S.SelectItem key={item}>{item}</S.SelectItem>
+            ))}
+          </S.SelectBody>
+        </S.Select>
+      ))}
     </S.Container>
   );
 };
