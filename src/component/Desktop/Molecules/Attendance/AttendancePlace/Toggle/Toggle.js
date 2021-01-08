@@ -2,18 +2,25 @@ import React from "react";
 import * as S from "./styles";
 
 const Toggle = props => {
-  const { toggle, onClick } = props;
+  const { selectSchedule, onClick } = props;
+  const selectScheduleArr = ["교실자습", "전공동아리"];
+  const schedule =
+    selectSchedule === selectScheduleArr[0]
+      ? selectScheduleArr[1]
+      : selectScheduleArr[0];
 
   return (
     <S.Container>
-      <S.Toggle toggle={toggle} onClick={onClick}>
-        <S.ToggleItem toggle={toggle} />
-        <S.ToggleText toggle={toggle} state={true}>
-          교실자습
-        </S.ToggleText>
-        <S.ToggleText toggle={toggle} state={false}>
-          전공동아리
-        </S.ToggleText>
+      <S.Toggle onClick={() => onClick(schedule)}>
+        <S.ToggleItem toggle={selectSchedule === selectScheduleArr[0]} />
+        {selectScheduleArr.map(scheduleItem => (
+          <S.ToggleText
+            key={scheduleItem}
+            toggle={selectSchedule === scheduleItem}
+          >
+            {scheduleItem}
+          </S.ToggleText>
+        ))}
       </S.Toggle>
     </S.Container>
   );
