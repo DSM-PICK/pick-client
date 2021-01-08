@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: grid;
   column-gap: 24px;
   grid-template-columns: 6fr 11fr;
-  padding: 30px 0 60px 0;
+  padding: 30px 0;
 `;
 
 export const LeftGridWrap = styled.div`
