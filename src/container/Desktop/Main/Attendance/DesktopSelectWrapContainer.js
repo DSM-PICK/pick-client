@@ -10,14 +10,23 @@ const DesktopSelectWrapContainer = () => {
   const selectArrIndex = useSelector(
     state => state.dAttendance.currentAttendanceIndexArr
   );
+  const selectSchedule = useSelector(state => state.toggle.selectSchedule);
 
   const { setCurrentAttendanceIndexArr } = DAttendanceActionCreater;
 
-  const selectArr = [
-    {
+  const staticSelectArr = {
+    class: {
       header: "학년",
       bodyItem: ["1학년", "2학년", "3학년", "기타"]
     },
+    club: {
+      header: "층",
+      bodyItem: ["4층", "3층", "2층", "기타"]
+    }
+  };
+
+  const selectArr = [
+    staticSelectArr[selectSchedule === "교실자습" ? "class" : "club"],
     {
       header: "반",
       bodyItem: ["1반", "2반", "3반", "4반"]
@@ -34,9 +43,15 @@ const DesktopSelectWrapContainer = () => {
   );
   const getUpdatedArr = useCallback(
     (row, col) => {
-      return selectArrIndex.map((current, index) =>
-        index === row ? col : current
-      );
+      return selectArrIndex.map((current, index) => {
+        // if (index === 1) {
+        //   return index === row
+        //     ? col
+        //     : Math.min(current, selectArr[index].bodyItem.length - 1);
+        // } else {
+        return index === row ? col : current;
+        // }
+      });
     },
     [selectArrIndex]
   );
