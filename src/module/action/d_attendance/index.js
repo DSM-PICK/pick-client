@@ -25,6 +25,6 @@ export const DAttendanceAction = {
 
 export const DAttendanceActionCreater = {
   setSelectAttendanceArr,
-  getAutoCompleteTextSaga,
+  getSelectAttendanceArrSaga,
   setCurrentAttendanceIndexArr
 };
