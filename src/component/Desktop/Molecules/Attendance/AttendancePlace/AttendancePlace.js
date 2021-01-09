@@ -4,6 +4,7 @@ import Label from "../../../Atoms/Label/Label";
 import Background from "../../../Atoms/Background/Background";
 import Toggle from "./Toggle/Toggle";
 import AttendancePlaceBackground from "./AttendancePlaceBackground/AttendancePlaceBackground";
+import DAttendancePlaceBackgroundContainer from "../../../../../container/Desktop/Main/Attendance/DAttendancePlaceBackgroundContainer.js";
 
 const AttendancePlace = props => {
   const { selectSchedule } = props;
@@ -16,7 +17,7 @@ const AttendancePlace = props => {
         <Toggle selectSchedule={selectSchedule} onClick={setSelectSchedule} />
       </S.LableHeader>
       <Background css={S.BackgroundCSS}>
-        <AttendancePlaceBackground />
+        <DAttendancePlaceBackgroundContainer />
       </Background>
     </S.Container>
   );
