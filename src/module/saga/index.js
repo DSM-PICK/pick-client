@@ -9,6 +9,7 @@ import clubSaga from "./club";
 import mainTextSaga from "./main_text";
 import noticeSaga from "./notice";
 import accountSaga from "./account";
+import dAttendanceSaga from "./d_attendance";
 
 function* rootSaga() {
   yield all([
@@ -22,7 +23,8 @@ function* rootSaga() {
     noticeSaga(),
     teacherSaga(),
     preReportSaga(),
-    accountSaga()
+    accountSaga(),
+    dAttendanceSaga()
   ]);
 }
 
