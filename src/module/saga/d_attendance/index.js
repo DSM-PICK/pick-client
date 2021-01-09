@@ -1,15 +1,23 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import {
   DAttendanceAction,
   DAttendanceActionCreater
 } from "../../action/d_attendance";
+import { ATTENDANCE } from "../../../lib/requestUrl";
+import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 
-function* getSelectAttendanceArr() {
-  const { setSelectAttendanceArr } = DAttendanceActionCreater;
+function* getSelectAttendanceArr(action) {
+  try {
+    const { schedule, floor } = action.payload;
+    const { setSelectAttendanceArr } = DAttendanceActionCreater;
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(schedule, floor);
 
-  const STATIC_DATA = [];
+    const floorData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-  yield put(setSelectAttendanceArr());
+    const locationsArr = floorData.data.locations;
+
+    yield put(setSelectAttendanceArr(locationsArr));
+  } catch (error) {}
 }
 
 function* dAttendanceSaga() {
