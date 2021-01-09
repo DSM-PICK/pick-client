@@ -20,9 +20,26 @@ function* getSelectAttendanceArr(action) {
   } catch (error) {}
 }
 
+function* getAttendanceStdData(action) {
+  try {
+    const { schedule, floor, priority } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
+      schedule,
+      floor,
+      priority
+    );
+  } catch (error) {}
+}
+
 function* dAttendanceSaga() {
-  const { GET_SELECT_ATTENDANCE_ARR_SAGA } = DAttendanceAction;
+  const {
+    GET_ATTENDANCE_STD_DATA_SAGA,
+    GET_SELECT_ATTENDANCE_ARR_SAGA
+  } = DAttendanceAction;
+
   yield takeEvery(GET_SELECT_ATTENDANCE_ARR_SAGA, getSelectAttendanceArr);
+  yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdData);
 }
 
 export default dAttendanceSaga;
