@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SelectWrap from "../../../../component/Desktop/Molecules/Attendance/AttendancePlace/AttendancePlaceBackground/SelectWrap/SelectWrap";
 import { getFloor } from "../../../../lib/attendanceApi";
 import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
+import { staticSelectArr } from "./StaticData";
 
 const DesktopSelectWrapContainer = () => {
   const dAttendance = useSelector(state => state.dAttendance);
@@ -17,16 +18,6 @@ const DesktopSelectWrapContainer = () => {
     setCurrentAttendanceIndexArr
   } = DAttendanceActionCreater;
 
-  const staticSelectArr = {
-    selfStudy: {
-      header: "학년",
-      bodyItem: ["1학년", "2학년", "3학년", "기타"]
-    },
-    club: {
-      header: "층",
-      bodyItem: ["4층", "3층", "2층", "기타"]
-    }
-  };
   const selectSelfStudyOrClub =
     staticSelectArr[selectSchedule === "교실자습" ? "selfStudy" : "club"];
   const selectArr = [
