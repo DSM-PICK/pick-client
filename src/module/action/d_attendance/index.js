@@ -9,6 +9,18 @@ const getSelectAttendanceArrSaga = payload => ({
   type: GET_SELECT_ATTENDANCE_ARR_SAGA,
   payload
 });
+const SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA =
+  "d_attendance/SUC_GET_SELECT_ATTENDANCE_ARR_SAGA";
+const successGetSelectAttendanceArrSaga = payload => ({
+  type: SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
+  payload
+});
+const FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA =
+  "d_attendance/GET_SELECT_ATTENDANCE_ARR_SAGA";
+const failureGetSelectAttendanceArrSaga = payload => ({
+  type: FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
+  payload
+});
 
 const SET_CURRENT_ATTENDANCE_INDEX_ARR =
   "d_attendance/SET_CURRENT_ATTENDANCE_INDEX_ARR";
@@ -28,19 +40,39 @@ const getAttendanceStdDataSaga = payload => ({
   type: GET_ATTENDANCE_STD_DATA_SAGA,
   payload
 });
+const SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA =
+  "d_attendance/GET_ATTENDANCE_STD_DATA_SAGA";
+const successGetAttendanceStdDataSaga = payload => ({
+  type: SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
+  payload
+});
+const FAILURE_GET_ATTENDANCE_STD_DATA_SAGA =
+  "d_attendance/GET_ATTENDANCE_STD_DATA_SAGA";
+const failureGetAttendanceStdDataSaga = payload => ({
+  type: FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
+  payload
+});
 
 export const DAttendanceAction = {
   SET_SELECT_ATTENDANCE_ARR,
   GET_SELECT_ATTENDANCE_ARR_SAGA,
+  SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
+  FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
   SET_CURRENT_ATTENDANCE_INDEX_ARR,
   SET_ATTENDANCE_STD_DATA,
-  GET_ATTENDANCE_STD_DATA_SAGA
+  GET_ATTENDANCE_STD_DATA_SAGA,
+  SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
+  FAILURE_GET_ATTENDANCE_STD_DATA_SAGA
 };
 
 export const DAttendanceActionCreater = {
   setSelectAttendanceArr,
   getSelectAttendanceArrSaga,
+  successGetSelectAttendanceArrSaga,
+  failureGetSelectAttendanceArrSaga,
   setCurrentAttendanceIndexArr,
   setAttendanceStdData,
-  getAttendanceStdDataSaga
+  getAttendanceStdDataSaga,
+  successGetAttendanceStdDataSaga,
+  failureGetAttendanceStdDataSaga
 };
