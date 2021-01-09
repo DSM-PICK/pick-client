@@ -59,15 +59,6 @@ function* dAttendanceSaga() {
     FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA
   } = DAttendanceAction;
 
-  yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdData);
-  // yield takeEvery(
-  //   SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
-  //   successGetAttendanceStdData
-  // );
-  // yield takeEvery(
-  //   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
-  //   failureGetAttendanceStdData
-  // );
   yield takeEvery(GET_SELECT_ATTENDANCE_ARR_SAGA, getSelectAttendanceArr);
   yield takeEvery(
     SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
@@ -76,6 +67,16 @@ function* dAttendanceSaga() {
   // yield takeEvery(
   //   FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
   //   failureGetSelectAttendanceArr
+  // );
+
+  yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdData);
+  // yield takeEvery(
+  //   SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
+  //   successGetAttendanceStdData
+  // );
+  // yield takeEvery(
+  //   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
+  //   failureGetAttendanceStdData
   // );
 }
 
