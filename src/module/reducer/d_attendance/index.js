@@ -1,7 +1,6 @@
 import { DAttendanceAction } from "../../action/d_attendance";
 
 const initialState = {
-  selectPriorityArr: [],
   selectAttendanceArr: [],
   currentAttendanceIndexArr: [0, 0]
 };
@@ -9,7 +8,6 @@ const initialState = {
 const DAttendanceReducer = (state = initialState, action) => {
   const {
     SET_SELECT_ATTENDANCE_ARR,
-    SET_SELECT_PRIORITY_ARR,
     SET_CURRENT_ATTENDANCE_INDEX_ARR
   } = DAttendanceAction;
 
@@ -18,12 +16,6 @@ const DAttendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         selectAttendanceArr: action.payload
-      };
-    }
-    case SET_SELECT_PRIORITY_ARR: {
-      return {
-        ...state,
-        selectPriorityArr: action.payload
       };
     }
     case SET_CURRENT_ATTENDANCE_INDEX_ARR: {
