@@ -1,7 +1,7 @@
 import { DAttendanceAction } from "../../action/d_attendance";
 
 const initialState = {
-  currentAttendanceIndexArr: []
+  currentAttendanceIndexArr: [0, 0]
 };
 
 const DAttendanceReducer = (state = initialState, action) => {
