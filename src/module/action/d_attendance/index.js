@@ -17,14 +17,31 @@ const setCurrentAttendanceIndexArr = payload => ({
   payload
 });
 
+const SET_ATTENDANCE_STD_DATA = "d_attendance/SET_ATTENDANCE_STD_DATA";
+const GET_ATTENDANCE_STD_DATA_SAGA =
+  "d_attendance/GET_ATTENDANCE_STD_DATA_SAGA";
+
+const setAttendanceStdData = payload => ({
+  type: SET_ATTENDANCE_STD_DATA,
+  payload
+});
+const setAttendanceStdDataSaga = payload => ({
+  type: SET_ATTENDANCE_STD_DATA_SAGA,
+  payload
+});
+
 export const DAttendanceAction = {
   SET_SELECT_ATTENDANCE_ARR,
   GET_SELECT_ATTENDANCE_ARR_SAGA,
-  SET_CURRENT_ATTENDANCE_INDEX_ARR
+  SET_CURRENT_ATTENDANCE_INDEX_ARR,
+  SET_ATTENDANCE_STD_DATA,
+  GET_ATTENDANCE_STD_DATA_SAGA
 };
 
 export const DAttendanceActionCreater = {
   setSelectAttendanceArr,
   getSelectAttendanceArrSaga,
-  setCurrentAttendanceIndexArr
+  setCurrentAttendanceIndexArr,
+  setAttendanceStdData,
+  setAttendanceStdDataSaga
 };
