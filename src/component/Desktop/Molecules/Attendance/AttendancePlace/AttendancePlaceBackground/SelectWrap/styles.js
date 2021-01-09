@@ -36,6 +36,7 @@ export const SelectItem = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 24px;
   height: 100%;
   color: ${props => (props.select ? "#406CFF" : "#909090")};
   font-size: 16px;
