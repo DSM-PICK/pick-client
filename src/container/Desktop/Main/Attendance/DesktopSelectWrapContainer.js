@@ -1,11 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SelectWrap from "../../../../component/Desktop/Molecules/Attendance/AttendancePlace/AttendancePlaceBackground/SelectWrap/SelectWrap";
 import { getFloor } from "../../../../lib/attendanceApi";
-import {
-  DAttendanceAction,
-  DAttendanceActionCreater
-} from "../../../../module/action/d_attendance";
+import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
 
 const DesktopSelectWrapContainer = () => {
   const dAttendance = useSelector(state => state.dAttendance);
