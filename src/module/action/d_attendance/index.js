@@ -5,6 +5,10 @@ const setSelectAttendanceArr = payload => ({
 });
 const GET_SELECT_ATTENDANCE_ARR_SAGA =
   "d_attendance/GET_SELECT_ATTENDANCE_ARR_SAGA";
+const getSelectAttendanceArrSaga = payload => ({
+  type: GET_SELECT_ATTENDANCE_ARR_SAGA,
+  payload
+});
 
 const SET_CURRENT_ATTENDANCE_INDEX_ARR =
   "d_attendance/SET_CURRENT_ATTENDANCE_INDEX_ARR";
@@ -21,5 +25,6 @@ export const DAttendanceAction = {
 
 export const DAttendanceActionCreater = {
   setSelectAttendanceArr,
+  getAutoCompleteTextSaga,
   setCurrentAttendanceIndexArr
 };
