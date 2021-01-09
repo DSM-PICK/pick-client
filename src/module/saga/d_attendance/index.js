@@ -29,6 +29,13 @@ function* getAttendanceStdData(action) {
       floor,
       priority
     );
+
+    const attendanceData = yield call(
+      requestGetApiWithAccessToken,
+      REQUEST_URL
+    );
+
+    console.log(attendanceData);
   } catch (error) {}
 }
 
