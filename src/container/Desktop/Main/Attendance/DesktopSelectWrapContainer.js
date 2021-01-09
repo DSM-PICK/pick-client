@@ -55,21 +55,15 @@ const DesktopSelectWrapContainer = () => {
   );
   const getUpdatedArr = useCallback(
     (row, col) => {
+      if (row === 0) {
+        return [col, 0];
+      }
       return selectArrIndex.map((current, index) => {
-        // if (index === 1) {
-        //   return index === row
-        //     ? col
-        //     : Math.min(current, selectArr[index].bodyItem.length - 1);
-        // } else {
         return index === row ? col : current;
-        // }
       });
     },
     [selectArrIndex]
   );
-
-  console.log(getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]]));
-  console.log(selectSchedule === "교실자습" ? "self-study" : "club");
 
   useEffect(() => {
     getSelectAttendanceArr({
