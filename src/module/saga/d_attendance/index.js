@@ -14,9 +14,9 @@ function* getSelectAttendanceArr(action) {
 
     const floorData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    const locationsArr = floorData.data.locations;
+    const locationArr = floorData.data.locations;
 
-    yield put(setSelectAttendanceArr(locationsArr));
+    yield put(setSelectAttendanceArr(locationArr));
   } catch (error) {}
 }
 
