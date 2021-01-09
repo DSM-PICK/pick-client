@@ -1,7 +1,18 @@
 import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SelectWrap from "../../../../component/Desktop/Molecules/Attendance/AttendancePlace/AttendancePlaceBackground/SelectWrap/SelectWrap";
+import {
+  DAttendanceAction,
+  DAttendanceActionCreater
+} from "../../../../module/action/d_attendance";
 
 const DesktopSelectWrapContainer = () => {
+  const selectArrIndex = useSelector(
+    state => state.dAttendance.currentAttendanceIndexArr
+  );
+
+  const { setCurrentAttendanceIndexArr } = DAttendanceActionCreater;
+
   const selectArr = [
     {
       header: "학년",
@@ -13,23 +24,27 @@ const DesktopSelectWrapContainer = () => {
     }
   ];
 
-  const [currentArr, setCurrentArr] = useState(
-    Array.from({ length: selectArr.length }, () => 0)
-  );
+  const dispatch = useDispatch();
 
   const setCurrentArrByIndex = useCallback(
     (row, col) => {
-      setCurrentArr(
-        currentArr.map((current, index) => (index === row ? col : current))
+      dispatch(setCurrentAttendanceIndexArr(getUpdatedArr(row, col)));
+    },
+    [dispatch, selectArrIndex]
+  );
+  const getUpdatedArr = useCallback(
+    (row, col) => {
+      return selectArrIndex.map((current, index) =>
+        index === row ? col : current
       );
     },
-    [currentArr]
+    [selectArrIndex]
   );
 
   return (
     <SelectWrap
       selectArr={selectArr}
-      currentArr={currentArr}
+      currentArr={selectArrIndex}
       onClick={setCurrentArrByIndex}
     />
   );
