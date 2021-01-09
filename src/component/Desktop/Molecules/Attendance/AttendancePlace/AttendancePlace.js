@@ -3,7 +3,6 @@ import * as S from "./styles";
 import Label from "../../../Atoms/Label/Label";
 import Background from "../../../Atoms/Background/Background";
 import Toggle from "./Toggle/Toggle";
-import AttendancePlaceBackground from "./AttendancePlaceBackground/AttendancePlaceBackground";
 import DAttendancePlaceBackgroundContainer from "../../../../../container/Desktop/Main/Attendance/DAttendancePlaceBackgroundContainer.js";
 
 const AttendancePlace = props => {
