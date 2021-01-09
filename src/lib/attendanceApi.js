@@ -112,3 +112,26 @@ export const checkPreReportData = (
   }
   return true;
 };
+
+export const getFloor = floorName => {
+  switch (floorName) {
+    case "1학년":
+    case "4층": {
+      return 4;
+    }
+    case "2학년":
+    case "3층": {
+      return 3;
+    }
+    case "3학년":
+    case "2층": {
+      return 2;
+    }
+    case "기타": {
+      return 1;
+    }
+    default: {
+      return 0;
+    }
+  }
+};
