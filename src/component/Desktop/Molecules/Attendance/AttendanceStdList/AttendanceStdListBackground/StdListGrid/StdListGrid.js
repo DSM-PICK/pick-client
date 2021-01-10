@@ -2,13 +2,13 @@ import React from "react";
 import * as S from "./styles";
 
 const StdListGrid = props => {
-  const { name, attendanceList, memo } = props;
+  const { name, attendanceList, memo, css } = props;
 
   return (
     <S.Container>
-      <S.StdName>{name}</S.StdName>
-      <S.AttendanceList>{attendanceList}</S.AttendanceList>
-      <S.StdMemo>{memo}</S.StdMemo>
+      <S.StdName {...css}>{name}</S.StdName>
+      <S.AttendanceList {...css}>{attendanceList}</S.AttendanceList>
+      <S.StdMemo {...css}>{memo}</S.StdMemo>
     </S.Container>
   );
 };

@@ -13,7 +13,7 @@ export const StdName = styled.p`
   justify-content: center;
   color: #000000;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: ${props => props.fontWeight || "400"};
 `;
 
 export const AttendanceList = styled.div`
@@ -28,5 +28,5 @@ export const StdMemo = styled.p`
   justify-content: center;
   color: #000000;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: ${props => props.fontWeight || "400"};
 `;
