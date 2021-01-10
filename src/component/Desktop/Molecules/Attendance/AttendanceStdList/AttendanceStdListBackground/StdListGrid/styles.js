@@ -6,3 +6,27 @@ export const Container = styled.div`
   width: 100%;
   height: 24px;
 `;
+
+export const StdName = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+export const AttendanceList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StdMemo = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+`;
