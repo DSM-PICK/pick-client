@@ -15,6 +15,7 @@ import {
   GET_SCHEDULE_SAGA,
   getSchedule
 } from "../../action/calander";
+import windowcalander from "window-calander";
 
 function* selectFirstDaySaga({ payload }) {
   const { teachers, month, date } = payload;
@@ -70,29 +71,37 @@ function* resolveChangeTeacherSaga() {
 function* getScheduleSaga() {
   const { year, month } = yield select(store => store.calander);
 
-  const data = getDateObj(year, month);
+  const data1 = windowcalander(year, month + 1);
+  console.log(data1);
+  const data = data1.map(dataArr =>
+    dataArr.filter((_, i) => !(i === 0 || i === 6))
+  );
   const oneArray = data.reduce((state, dateArr) => state.concat(dateArr), []);
 
-  const promiseArray = oneArray.map(async ({ month, date, isActive }) => {
-    try {
-      const data = await requestGetApi(
-        `/mars/activity/dates/${year}-${month.fillZero(2)}-${date.fillZero(2)}`
-      );
-      return {
-        ...data.data,
-        isActive,
-        date,
-        month
-      };
-    } catch (err) {
-      return {
-        error: true,
-        isActive,
-        date,
-        month
-      };
+  const promiseArray = oneArray.map(
+    async ({ month, date, isThisMonth: isActive, year }) => {
+      try {
+        const data = await requestGetApi(
+          `/mars/activity/dates/${year}-${month.fillZero(2)}-${date.fillZero(
+            2
+          )}`
+        );
+        return {
+          ...data.data,
+          isActive,
+          date,
+          month
+        };
+      } catch (err) {
+        return {
+          error: true,
+          isActive,
+          date,
+          month
+        };
+      }
     }
-  });
+  );
 
   const response = yield Promise.all(promiseArray);
   const splitArr = [];

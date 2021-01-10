@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const CalanderListContainer = () => {
   const date = useSelector(state => state.calander.calanderArr);
-  console.log(date);
   return <CalanderList list={date} />;
 };
 

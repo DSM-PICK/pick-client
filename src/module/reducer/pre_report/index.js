@@ -12,12 +12,17 @@ import {
   SET_PRE_REPORT_CALC_YEAR,
   SET_PRE_REPORT_CALC_MONTH,
   SET_PRE_REPORT_CALC_DAY,
-  SET_PRE_REPORT_IS_CLICK_PRE_STATE
+  SET_PRE_REPORT_IS_CLICK_PRE_STATE,
+  SET_NAMES,
+  DELETE_NAMES,
+  SET_REMARK
 } from "../../action/pre_report";
 
 const initialState = {
   text: "",
   autoComplete: [],
+  names: [],
+  remark: "",
 
   selectedPreReportId: "",
   preReportList: [],
@@ -56,6 +61,24 @@ const preReportReducer = (state = initialState, action) => {
       return {
         ...state,
         autoComplete: action.payload
+      };
+    }
+    case SET_NAMES: {
+      return {
+        ...state,
+        names: action.payload
+      };
+    }
+    case DELETE_NAMES: {
+      return {
+        ...state,
+        names: state.names.filter(name => name !== action.payload)
+      };
+    }
+    case SET_REMARK: {
+      return {
+        ...state,
+        remark: action.payload
       };
     }
     case SET_SELECTED_PRE_REPORT_ID: {
@@ -111,6 +134,8 @@ const preReportReducer = (state = initialState, action) => {
         ...state,
         text: "",
         autoComplete: [],
+        names: [],
+        remark: "",
         state: "외출",
         nextDate: {
           year: "",

@@ -28,9 +28,11 @@ const PreReportShow = () => {
   return (
     <S.Container>
       <S.ShowHeader>
-        <S.ShowHeaderStd>학생</S.ShowHeaderStd>
-        <S.ShowHeaderKind>종류</S.ShowHeaderKind>
-        <S.ShowHeaderDate>기간</S.ShowHeaderDate>
+        <S.ShowHeaderItem>학번/학생</S.ShowHeaderItem>
+        <S.ShowHeaderItem>출결사항</S.ShowHeaderItem>
+        <S.ShowHeaderItem>날짜</S.ShowHeaderItem>
+        <S.ShowHeaderItem>확인교사</S.ShowHeaderItem>
+        <S.ShowHeaderItem>비고</S.ShowHeaderItem>
       </S.ShowHeader>
       <S.ShowBody>
         {!!preReportList.length ? (
@@ -39,11 +41,11 @@ const PreReportShow = () => {
               key={preReportData.id}
               onClick={() => onShowBodyBoxClick(preReportData.id)}
             >
-              <S.ShowBodyStd>
+              <S.ShowBodyBoxItem>
                 {`${preReportData.stdnum} ${preReportData.name}`}
-              </S.ShowBodyStd>
-              <S.ShowBodyKind>{preReportData.state}</S.ShowBodyKind>
-              <S.ShowBodyDate>
+              </S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>{preReportData.state}</S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>
                 {getPreReportText(
                   preReportData.start_date,
                   preReportData.start_period,
@@ -52,7 +54,9 @@ const PreReportShow = () => {
                 ).map(text => (
                   <S.ShowBodyTextItem key={text}>{text}</S.ShowBodyTextItem>
                 ))}
-              </S.ShowBodyDate>
+              </S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>{preReportData.teacher}</S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>{preReportData.memo}</S.ShowBodyBoxItem>
             </S.ShowBodyBox>
           ))
         ) : (

@@ -43,6 +43,7 @@ function* getPreReportList() {
 function* createPreReportSaga(payload) {
   try {
     const {
+      remark,
       state,
       stdnum,
       start_date,
@@ -66,6 +67,7 @@ function* createPreReportSaga(payload) {
       methodType.POST,
       REQUEST_URL,
       {
+        memo: remark || "",
         state,
         stdnum,
         start_date,
@@ -75,8 +77,8 @@ function* createPreReportSaga(payload) {
       }
     );
 
-    yield put({ type: GET_PRE_REPORT_LIST_SAGA });
     yield put({ type: INIT_PRE_REPORT_DATA });
+    yield put({ type: GET_PRE_REPORT_LIST_SAGA });
   } catch (error) {
     // yield put(FAILURE_CREATE_PRE_REPORT_SAGA());
     switch (error) {

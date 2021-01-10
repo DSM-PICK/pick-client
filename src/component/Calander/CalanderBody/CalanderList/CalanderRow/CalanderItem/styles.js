@@ -7,10 +7,18 @@ export const Container = styled.div`
   padding: 17px 10px;
   color: ${props => (props.isActive ? "#20223E" : "#C4C4C4")};
   border: 1px solid rgba(112, 112, 112, 0.05);
+  ${props =>
+    props.isToday &&
+    css`
+      background-color: #ecf0ff;
+    `}
 `;
 
 export const CircleP = styled.div`
+  transform: translate(-50%, -50%);
   position: absolute;
+  top: 50%;
+  left: 50%;
 `;
 
 export const ActiveCircle = styled.div`
@@ -22,12 +30,15 @@ export const ActiveCircle = styled.div`
   height: 40px;
   background-color: #2764a7;
   transform: translate(-50%, -50%);
+
+  & + div {
+    color: white;
+  }
 `;
 
 export const Header = styled.div`
   width: 20px;
   position: relative;
-
   text-align: center;
   height: 20px;
   font-weight: bold;
