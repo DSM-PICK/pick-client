@@ -7,10 +7,9 @@ const AttendanceList = props => {
 
   return (
     <S.Container {...css}>
-      {attendanceList.map(data => {
-        console.log(data);
-        return <ItemBtn key={data} text={data} />;
-      })}
+      {attendanceList.map(data => (
+        <ItemBtn key={data} text={data} />
+      ))}
     </S.Container>
   );
 };
