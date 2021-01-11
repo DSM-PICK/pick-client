@@ -1,14 +1,14 @@
 import React from "react";
-import AttendanceList from "./AttendanceList/AttendanceList";
+import DesktopAttendanceListContainer from "../../../../../../../container/Desktop/Main/Attendance/DesktopAttendanceListContainer";
 import * as S from "./styles";
 
 const StdListGrid = props => {
-  const { name, stdNum, stateList, memo, css } = props;
+  const { name, stdNum, memo, css } = props;
 
   return (
     <S.Container>
       <S.StdName {...css}>{`${stdNum} ${name}`}</S.StdName>
-      <AttendanceList {...css} stateList={stateList} />
+      <DesktopAttendanceListContainer {...props} />
       <S.StdMemo {...css}>{memo}</S.StdMemo>
     </S.Container>
   );

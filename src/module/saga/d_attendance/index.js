@@ -81,8 +81,6 @@ function* patchAttendanceStdData(action) {
         state
       }
     );
-
-    console.log(res);
   } catch (error) {}
 }
 

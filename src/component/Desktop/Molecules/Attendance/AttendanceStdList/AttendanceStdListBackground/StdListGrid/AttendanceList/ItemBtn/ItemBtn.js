@@ -1,12 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import StateItem from "./StateItem/StateItem";
 
 const ItemBtn = props => {
-  const { text: propText } = props;
+  const { propText, period } = props;
+  const { onStateChange } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState(propText);
+
   const staticStates = [
     {
       value: "출석"
@@ -28,10 +30,13 @@ const ItemBtn = props => {
     }
   ];
 
-  const onClickItem = useCallback(value => {
-    setText(value);
-    // onStateChange(period, value);
-  }, []);
+  const onClickItem = useCallback(
+    value => {
+      setText(value);
+      onStateChange(period, value);
+    },
+    [period]
+  );
 
   const onClick = useCallback(() => {
     if (text !== "취업") {

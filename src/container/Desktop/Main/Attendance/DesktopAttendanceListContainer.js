@@ -9,7 +9,6 @@ const DesktopAttendanceListContainer = props => {
     Object.values(stateList).filter(state => state)
   );
 
-  const cascadeStates = ["귀가"];
   const startPeriod = 11 - statesArr.length;
   const periodArr = [10, 9, 8, 7].slice(0, statesArr.length).reverse();
 
@@ -23,12 +22,24 @@ const DesktopAttendanceListContainer = props => {
     },
     [dispatch, stdNum]
   );
-  const onStateChange = (period, value) => {
-    if (~cascadeStates.findIndex(state => state === value)) {
-    } else {
-      patchAttendanceStdData(period, value);
-    }
-  };
+  const onStateChange = useCallback((period, value) => {
+    patchAttendanceStdData(period, value);
+    viewChange(period, value);
+  }, []);
+
+  const viewChange = useCallback(
+    (period, value) => {
+      setStatesArr(
+        statesArr.map((state, index) => {
+          if (index === period - startPeriod) {
+            return value;
+          }
+          return state;
+        })
+      );
+    },
+    [statesArr]
+  );
 
   return (
     <AttendanceList
