@@ -8,7 +8,7 @@ const AttendanceList = props => {
   const stateListWithoutFalsy = Object.values(stateList).filter(data => data);
 
   return (
-    <S.Container {...css}>
+    <S.Container {...css} length={stateListWithoutFalsy.length}>
       {stateListWithoutFalsy.map((data, index) => (
         <ItemBtn key={index} text={data} />
       ))}
