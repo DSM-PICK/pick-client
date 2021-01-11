@@ -10,13 +10,13 @@ const getSelectAttendanceArrSaga = payload => ({
   payload
 });
 const SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA =
-  "d_attendance/SUC_GET_SELECT_ATTENDANCE_ARR_SAGA";
+  "d_attendance/SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA";
 const successGetSelectAttendanceArrSaga = payload => ({
   type: SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
   payload
 });
 const FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA =
-  "d_attendance/GET_SELECT_ATTENDANCE_ARR_SAGA";
+  "d_attendance/FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA";
 const failureGetSelectAttendanceArrSaga = payload => ({
   type: FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
   payload
@@ -41,13 +41,13 @@ const getAttendanceStdDataSaga = payload => ({
   payload
 });
 const SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA =
-  "d_attendance/GET_ATTENDANCE_STD_DATA_SAGA";
+  "d_attendance/SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA";
 const successGetAttendanceStdDataSaga = payload => ({
   type: SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
   payload
 });
 const FAILURE_GET_ATTENDANCE_STD_DATA_SAGA =
-  "d_attendance/GET_ATTENDANCE_STD_DATA_SAGA";
+  "d_attendance/FAILURE_GET_ATTENDANCE_STD_DATA_SAGA";
 const failureGetAttendanceStdDataSaga = payload => ({
   type: FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
   payload
