@@ -3,9 +3,10 @@ import * as S from "./styles";
 import StateItem from "./StateItem/StateItem";
 
 const ItemBtn = props => {
-  const { text } = props;
+  const { text: propText } = props;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [text, setText] = useState(propText);
   const staticStates = [
     {
       value: "출석"
@@ -27,22 +28,32 @@ const ItemBtn = props => {
     }
   ];
 
+  const onClickItem = useCallback(value => {
+    setText(value);
+    // onStateChange(period, value);
+  }, []);
+
   const onClick = useCallback(() => {
     if (text !== "취업") {
       setIsOpen(!isOpen);
     }
-    console.log("cl");
   }, [isOpen]);
 
   return (
     <S.Container text={text} isOpen={isOpen} onClick={onClick}>
-      {!isOpen && text !== "출석" && text}
+      {text !== "출석" && text}
       <S.Wrap>
-        <StateItem current={text} value={text} />
+        <S.Item current={text} value={text} />
         {staticStates.map(
           state =>
             state.value !== text && (
-              <StateItem key={state.value} current={text} value={state.value} />
+              <StateItem
+                key={state.value}
+                isOpen={isOpen}
+                current={text}
+                value={state.value}
+                onClickItem={onClickItem}
+              />
             )
         )}
       </S.Wrap>

@@ -16,6 +16,7 @@ export const Container = styled.button`
         return css`
           border: 1px solid #406cff;
           color: #406cff;
+          background: #ffffff;
         `;
       case "귀가":
         return css`
@@ -33,6 +34,7 @@ export const Container = styled.button`
         return css`
           color: #909090;
           border: 1px solid #c4c4c4;
+          background: #ffffff;
         `;
       default:
         return css`
@@ -74,7 +76,21 @@ export const Wrap = styled.div`
   left: -1.25px;
   z-index: 3;
   width: 100%;
-  border: 1px solid #909090;
+  border: 1px solid #c4c4c4;
   border-radius: 8px;
   background: #ffffff;
+`;
+
+export const Item = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: ${props => (props.current === props.value ? 0 : 1)};
+  height: 24px;
+
+  &:hover {
+    font-weight: ${props => (props.isOpen ? "bold" : "400")};
+  }
+
+  transition: all 0.1s ease-in-out;
 `;
