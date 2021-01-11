@@ -3,12 +3,14 @@ import ItemBtn from "./ItemBtn/ItemBtn";
 import * as S from "./styles";
 
 const AttendanceList = props => {
-  const { attendanceList, css } = props;
+  const { stateList, css } = props;
+
+  const stateListWithoutFalsy = Object.values(stateList).filter(data => data);
 
   return (
     <S.Container {...css}>
-      {attendanceList.map(data => (
-        <ItemBtn key={data} text={data} />
+      {stateListWithoutFalsy.map((data, index) => (
+        <ItemBtn key={index} text={data} />
       ))}
     </S.Container>
   );

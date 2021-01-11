@@ -3,12 +3,12 @@ import AttendanceList from "./AttendanceList/AttendanceList";
 import * as S from "./styles";
 
 const StdListGrid = props => {
-  const { name, attendanceList, memo, css } = props;
+  const { name, stateList, memo, css } = props;
 
   return (
     <S.Container>
       <S.StdName {...css}>{name}</S.StdName>
-      <AttendanceList {...css} attendanceList={attendanceList} />
+      <AttendanceList {...css} stateList={stateList} />
       <S.StdMemo {...css}>{memo}</S.StdMemo>
     </S.Container>
   );
