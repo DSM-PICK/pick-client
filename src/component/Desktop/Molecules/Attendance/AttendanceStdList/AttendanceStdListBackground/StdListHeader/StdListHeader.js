@@ -15,7 +15,9 @@ const StdListHeader = () => {
   }
 
   const name = "학생";
-  const attendanceList = ["8교시", "9교시", "10교시"];
+  const attendanceList = ["10교시", "9교시", "8교시", "7교시"]
+    .slice(0, length)
+    .reverse();
   const memo = "비고";
 
   return (
