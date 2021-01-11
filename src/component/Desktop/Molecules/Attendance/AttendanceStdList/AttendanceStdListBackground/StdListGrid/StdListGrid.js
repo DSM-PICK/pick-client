@@ -1,4 +1,5 @@
 import React from "react";
+import AttendanceList from "./AttendanceList/AttendanceList";
 import * as S from "./styles";
 
 const StdListGrid = props => {
@@ -7,7 +8,7 @@ const StdListGrid = props => {
   return (
     <S.Container>
       <S.StdName {...css}>{name}</S.StdName>
-      <S.AttendanceList {...css}>{attendanceList}</S.AttendanceList>
+      <AttendanceList {...css} attendanceList={attendanceList} />
       <S.StdMemo {...css}>{memo}</S.StdMemo>
     </S.Container>
   );

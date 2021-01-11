@@ -16,12 +16,6 @@ export const StdName = styled.p`
   font-weight: ${props => props.fontWeight || "400"};
 `;
 
-export const AttendanceList = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const StdMemo = styled.p`
   display: flex;
   align-items: center;
