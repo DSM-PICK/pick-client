@@ -5,7 +5,7 @@ export const Container = styled.button`
   font-size: ${props => props.fontSize || "16px"};
   font-weight: ${props => props.fontWeight || "400"};
   ${props => {
-    switch (props.state) {
+    switch (props.text) {
       case "이동":
         return css`
           border: 1px solid #406cff;
@@ -29,7 +29,6 @@ export const Container = styled.button`
           border: 1px solid #c4c4c4;
         `;
       default:
-        console.log(props.state);
         return css`
           border: 1px solid #c4c4c4;
           background: #ffffff;
@@ -40,6 +39,10 @@ export const Container = styled.button`
   outline: none;
 
   &:hover {
-    cursor: pointer;
+    ${props =>
+      props.text !== "취업" &&
+      css`
+        cursor: pointer;
+      `}
   }
 `;
