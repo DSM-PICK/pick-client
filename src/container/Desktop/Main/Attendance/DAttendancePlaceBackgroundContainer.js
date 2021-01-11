@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AttendancePlaceBackground from "../../../../component/Desktop/Molecules/Attendance/AttendancePlace/AttendancePlaceBackground/AttendancePlaceBackground";
 import { getFloor } from "../../../../lib/attendanceApi";
@@ -28,6 +28,10 @@ const DAttendancePlaceBackgroundContainer = () => {
   const getAttendanceStdData = useCallback(() => {
     dispatch(getAttendanceStdDataSaga(payload));
   }, [dispatch, payload]);
+
+  useEffect(() => {
+    dispatch(getAttendanceStdDataSaga({ ...payload, priority: 0 }));
+  }, []);
 
   return <AttendancePlaceBackground onClick={getAttendanceStdData} />;
 };
