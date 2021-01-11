@@ -1,5 +1,5 @@
 import React from "react";
-import StdListBody from "./StdListBody/StdListBody";
+import DesktopStdListBodyContainer from "../../../../../../container/Desktop/Main/Attendance/DesktopStdListBodyContainer";
 import StdListHeader from "./StdListHeader/StdListHeader";
 import * as S from "./styles";
 
@@ -7,7 +7,7 @@ const AttendanceStdListBackground = () => {
   return (
     <S.Container>
       <StdListHeader />
-      <StdListBody />
+      <DesktopStdListBodyContainer />
     </S.Container>
   );
 };
