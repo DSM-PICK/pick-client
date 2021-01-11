@@ -8,18 +8,15 @@ const StdListBody = props => {
   return (
     <S.Container>
       {attendanceLists.length
-        ? attendanceLists.map(data => {
-            console.log(data);
-            return (
-              <StdListGrid
-                key={data.name}
-                name={data.name}
-                stateList={data.state}
-                memo={data.memo}
-                css={S.StdListGridCSS}
-              />
-            );
-          })
+        ? attendanceLists.map(data => (
+            <StdListGrid
+              key={data.name}
+              name={data.name}
+              stateList={data.state}
+              memo={data.memo}
+              css={S.StdListGridCSS}
+            />
+          ))
         : ""}
     </S.Container>
   );
