@@ -4,7 +4,11 @@ import {
   DAttendanceActionCreater
 } from "../../action/d_attendance";
 import { ATTENDANCE } from "../../../lib/requestUrl";
-import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
+import {
+  methodType,
+  requestApiWithAccessToken,
+  requestGetApiWithAccessToken
+} from "../../../lib/requestApi";
 
 function* getSelectAttendanceArr(action) {
   try {
@@ -62,6 +66,26 @@ function* successGetAttendanceStdData(action) {
   } catch (error) {}
 }
 
+function* patchAttendanceStdData(action) {
+  try {
+    const { number, period, state } = action.payload;
+    const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PATCH,
+      REQUEST_URL,
+      {
+        number,
+        period,
+        state
+      }
+    );
+
+    console.log(res);
+  } catch (error) {}
+}
+
 function* dAttendanceSaga() {
   const {
     GET_ATTENDANCE_STD_DATA_SAGA,
@@ -69,7 +93,8 @@ function* dAttendanceSaga() {
     FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
     GET_SELECT_ATTENDANCE_ARR_SAGA,
     SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
-    FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA
+    FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
+    PATCH_ATTENDANCE_STD_DATA_SAGA
   } = DAttendanceAction;
 
   yield takeEvery(GET_SELECT_ATTENDANCE_ARR_SAGA, getSelectAttendanceArr);
@@ -91,6 +116,8 @@ function* dAttendanceSaga() {
   //   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
   //   failureGetAttendanceStdData
   // );
+
+  yield takeEvery(PATCH_ATTENDANCE_STD_DATA_SAGA, patchAttendanceStdData);
 }
 
 export default dAttendanceSaga;
