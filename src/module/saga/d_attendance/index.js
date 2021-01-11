@@ -45,7 +45,20 @@ function* getAttendanceStdData(action) {
       REQUEST_URL
     );
 
-    console.log(attendanceData);
+    const { SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
+    yield put({
+      type: SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
+      payload: attendanceData.data
+    });
+  } catch (error) {}
+}
+function* successGetAttendanceStdData(action) {
+  try {
+    const { name, head, attendances } = action.payload;
+
+    const { setAttendanceStdData } = DAttendanceActionCreater;
+
+    yield put(setAttendanceStdData(attendances));
   } catch (error) {}
 }
 
@@ -70,10 +83,10 @@ function* dAttendanceSaga() {
   // );
 
   yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdData);
-  // yield takeEvery(
-  //   SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
-  //   successGetAttendanceStdData
-  // );
+  yield takeEvery(
+    SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
+    successGetAttendanceStdData
+  );
   // yield takeEvery(
   //   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
   //   failureGetAttendanceStdData
