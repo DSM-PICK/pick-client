@@ -53,6 +53,13 @@ const failureGetAttendanceStdDataSaga = payload => ({
   payload
 });
 
+const PATCH_ATTENDANCE_STD_DATA_SAGA =
+  "d_attendance/PATCH_ATTENDANCE_STD_DATA_SAGA";
+const patchAttendanceStdDataSaga = payload => ({
+  type: PATCH_ATTENDANCE_STD_DATA_SAGA,
+  payload
+});
+
 export const DAttendanceAction = {
   SET_SELECT_ATTENDANCE_ARR,
   GET_SELECT_ATTENDANCE_ARR_SAGA,
@@ -74,5 +81,6 @@ export const DAttendanceActionCreater = {
   setAttendanceStdData,
   getAttendanceStdDataSaga,
   successGetAttendanceStdDataSaga,
-  failureGetAttendanceStdDataSaga
+  failureGetAttendanceStdDataSaga,
+  patchAttendanceStdDataSaga
 };
