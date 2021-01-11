@@ -2,10 +2,18 @@ import React from "react";
 import * as S from "./styles";
 
 const StateItem = props => {
-  const { current, value } = props;
+  const { isOpen, current, value } = props;
+  const { onClickItem } = props;
 
   return (
-    <S.Container current={current} value={value}>
+    <S.Container
+      isOpen={isOpen}
+      current={current}
+      value={value}
+      onClick={() => {
+        onClickItem(value);
+      }}
+    >
       {value}
     </S.Container>
   );
