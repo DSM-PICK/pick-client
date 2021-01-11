@@ -10,5 +10,5 @@ export const Container = styled.div`
 `;
 
 export const StdListGridCSS = {
-  fontWeight: "600"
+  fontWeight: "400"
 };
