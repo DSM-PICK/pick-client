@@ -72,7 +72,7 @@ export const Container = styled.button`
 
 export const Wrap = styled.div`
   position: absolute;
-  top: ${props => (props.index > 17 ? "142.75px" : "-1.25px")};
+  top: ${props => (props.index > 17 ? "-109.25px" : "-1.25px")};
   left: -1.25px;
   z-index: 3;
   width: 100%;

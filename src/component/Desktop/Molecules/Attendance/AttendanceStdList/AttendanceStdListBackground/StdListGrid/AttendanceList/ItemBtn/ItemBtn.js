@@ -48,7 +48,7 @@ const ItemBtn = props => {
     <S.Container text={text} isOpen={isOpen} onClick={onClick}>
       {text !== "출석" && text}
       <S.Wrap index={index}>
-        <S.Item current={text} value={text} />
+        {index <= 17 && <S.Item current={text} value={text} />}
         {staticStates.map(
           state =>
             state.value !== text && (
@@ -61,6 +61,7 @@ const ItemBtn = props => {
               />
             )
         )}
+        {index > 17 && <S.Item current={text} value={text} />}
       </S.Wrap>
     </S.Container>
   );
