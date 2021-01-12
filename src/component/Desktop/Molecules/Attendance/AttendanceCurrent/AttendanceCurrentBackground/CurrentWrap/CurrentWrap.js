@@ -4,7 +4,6 @@ import * as S from "./styles";
 const CurrentWrap = props => {
   const { floorData } = props;
   const { title, floorArr } = floorData;
-  console.log(floorData);
 
   return (
     <S.Container>
