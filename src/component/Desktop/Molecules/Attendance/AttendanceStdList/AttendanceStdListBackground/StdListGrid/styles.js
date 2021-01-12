@@ -11,6 +11,7 @@ export const StdName = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 95px;
   color: #000000;
   font-size: 16px;
   font-weight: ${props => props.fontWeight || "400"};
