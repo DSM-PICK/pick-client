@@ -3,18 +3,18 @@ import ItemBtn from "./ItemBtn/ItemBtn";
 import * as S from "./styles";
 
 const AttendanceList = props => {
-  const { css, length, stateList, periodArr } = props;
+  const { css, index, length, stateList, periodArr } = props;
   const { onStateChange } = props;
 
   return (
     <S.Container {...css} length={length}>
-      {stateList.map((state, index) => {
+      {stateList.map((state, idx) => {
         return (
           <ItemBtn
-            key={index}
+            key={idx}
             index={index}
             propText={state}
-            period={periodArr[index]}
+            period={periodArr[idx]}
             onStateChange={onStateChange}
           />
         );

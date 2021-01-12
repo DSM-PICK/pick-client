@@ -78,8 +78,7 @@ export const Wrap = styled.div`
   width: 100%;
   border: 1px solid #c4c4c4;
   border-radius: 8px;
-  /* background: #ffffff; */
-  background: ${props => (props.index > 17 ? "#333333" : console.log(props))};
+  background: #ffffff;
 `;
 
 export const Item = styled.li`
