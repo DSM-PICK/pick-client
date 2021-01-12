@@ -10,18 +10,18 @@ const Header = props => {
 
   return (
     <S.Container>
-      <S.GridItem />
-      <S.ImgWrap>
-        <Img src={LogoPick} css={S.ImgCSS} />
-      </S.ImgWrap>
-      <S.NavLinkWrap>
-        <HeaderNavLinkWrap
-          css={S.NavLinkCSS}
-          activeStyle={S.NavLinkActiveStyle}
-        />
-      </S.NavLinkWrap>
-      <HeaderUserWrap userName={userName} />
-      <S.GridItem />
+      <S.Wrap>
+        <S.ImgWrap>
+          <Img src={LogoPick} css={S.ImgCSS} />
+        </S.ImgWrap>
+        <S.NavLinkWrap>
+          <HeaderNavLinkWrap
+            css={S.NavLinkCSS}
+            activeStyle={S.NavLinkActiveStyle}
+          />
+        </S.NavLinkWrap>
+        <HeaderUserWrap userName={userName} />
+      </S.Wrap>
     </S.Container>
   );
 };
