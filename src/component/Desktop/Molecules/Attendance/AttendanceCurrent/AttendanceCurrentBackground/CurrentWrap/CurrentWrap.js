@@ -11,8 +11,10 @@ const CurrentWrap = props => {
         <S.HeaderTitle>{title}</S.HeaderTitle>
       </S.Header>
       <S.Body>
-        {floorArr.map(data => (
-          <S.BodyItem key={data}>{data}</S.BodyItem>
+        {floorArr.map(obj => (
+          <S.BodyItem key={obj.name} done={obj.done}>
+            {obj.name}
+          </S.BodyItem>
         ))}
       </S.Body>
     </S.Container>

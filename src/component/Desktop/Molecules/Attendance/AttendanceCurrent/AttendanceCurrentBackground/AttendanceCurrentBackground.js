@@ -6,19 +6,34 @@ const AttendanceCurrentBackground = () => {
   const STATIC_DONE_ARR = [
     {
       title: "1학년",
-      floorArr: ["1학년 1반", "1학년 2반", "1학년 3반", "1학년 4반"]
+      floorArr: [
+        { name: "1학년 1반", done: true },
+        { name: "1학년 2반", done: false },
+        { name: "1학년 3반", done: false },
+        { name: "1학년 4반", done: false }
+      ]
     },
     {
       title: "2학년",
-      floorArr: ["2학년 1반", "2학년 2반", "2학년 3반", "2학년 4반"]
+      floorArr: [
+        { name: "2학년 1반", done: true },
+        { name: "2학년 2반", done: false },
+        { name: "2학년 3반", done: false },
+        { name: "2학년 4반", done: false }
+      ]
     },
     {
       title: "3학년",
-      floorArr: ["3학년 1반", "3학년 2반", "3학년 3반", "3학년 4반"]
+      floorArr: [
+        { name: "3학년 1반", done: true },
+        { name: "3학년 2반", done: false },
+        { name: "3학년 3반", done: false },
+        { name: "3학년 4반", done: false }
+      ]
     },
     {
       title: "기타",
-      floorArr: ["창조실"]
+      floorArr: [{ name: "창조실", done: true }]
     }
   ];
 
