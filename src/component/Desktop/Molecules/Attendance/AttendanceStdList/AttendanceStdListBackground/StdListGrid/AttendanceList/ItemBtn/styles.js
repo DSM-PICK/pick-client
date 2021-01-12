@@ -72,13 +72,14 @@ export const Container = styled.button`
 
 export const Wrap = styled.div`
   position: absolute;
-  top: -1.25px;
+  top: ${props => (props.index > 17 ? "142.75px" : "-1.25px")};
   left: -1.25px;
   z-index: 3;
   width: 100%;
   border: 1px solid #c4c4c4;
   border-radius: 8px;
-  background: #ffffff;
+  /* background: #ffffff; */
+  background: ${props => (props.index > 17 ? "#333333" : console.log(props))};
 `;
 
 export const Item = styled.li`
