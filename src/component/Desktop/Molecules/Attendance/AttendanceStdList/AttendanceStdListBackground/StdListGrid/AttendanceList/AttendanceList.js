@@ -12,6 +12,7 @@ const AttendanceList = props => {
         return (
           <ItemBtn
             key={index}
+            index={index}
             propText={state}
             period={periodArr[index]}
             onStateChange={onStateChange}
