@@ -9,9 +9,10 @@ const StdListBody = props => {
   return (
     <S.Container>
       {attendanceLists.length
-        ? attendanceLists.map(data => (
+        ? attendanceLists.map((data, index) => (
             <StdListGrid
               key={data.name}
+              index={index}
               name={data.name}
               stdNum={data.gradeClassNumber}
               stateList={data.state}
