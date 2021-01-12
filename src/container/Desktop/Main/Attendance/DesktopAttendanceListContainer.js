@@ -4,7 +4,7 @@ import AttendanceList from "../../../../component/Desktop/Molecules/Attendance/A
 import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
 
 const DesktopAttendanceListContainer = props => {
-  const { name, stdNum, stateList, memo, css } = props;
+  const { index, name, stdNum, stateList, memo, css } = props;
   const [statesArr, setStatesArr] = useState(
     Object.values(stateList).filter(state => state)
   );
@@ -44,6 +44,7 @@ const DesktopAttendanceListContainer = props => {
   return (
     <AttendanceList
       css={css}
+      index={index}
       length={statesArr.length}
       stateList={statesArr}
       periodArr={periodArr}
