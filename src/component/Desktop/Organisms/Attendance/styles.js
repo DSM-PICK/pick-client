@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const LeftGridWrap = styled.div`
   display: grid;
   row-gap: 34px;
-  grid-template-rows: 7fr 11fr;
+  grid-template-rows: 10fr 11fr;
   width: 100%;
   height: 100%;
 `;
