@@ -9,7 +9,7 @@ const StdListGrid = props => {
     <S.Container>
       <S.StdName {...css}>{`${stdNum} ${name}`}</S.StdName>
       <DesktopAttendanceListContainer {...props} />
-      <S.StdMemo {...css}>{memo}</S.StdMemo>
+      {/* <S.StdMemo {...css}>{memo}</S.StdMemo> */}
     </S.Container>
   );
 };
