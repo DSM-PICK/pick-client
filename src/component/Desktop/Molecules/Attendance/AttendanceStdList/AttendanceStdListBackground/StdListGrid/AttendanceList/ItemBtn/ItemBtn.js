@@ -3,7 +3,7 @@ import * as S from "./styles";
 import StateItem from "./StateItem/StateItem";
 
 const ItemBtn = props => {
-  const { propText, period } = props;
+  const { index, propText, period } = props;
   const { onStateChange } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +47,7 @@ const ItemBtn = props => {
   return (
     <S.Container text={text} isOpen={isOpen} onClick={onClick}>
       {text !== "출석" && text}
-      <S.Wrap>
+      <S.Wrap index={index}>
         <S.Item current={text} value={text} />
         {staticStates.map(
           state =>
