@@ -1,13 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: grid;
+  display: flex;
   align-items: center;
-  gap: 67px;
-  grid-template: 1fr / 1fr 523px 293px 122px 1fr;
+  justify-content: center;
   width: 100%;
   height: 60px;
   background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 1px 1px 0px rgba(144, 144, 144, 0.2);
+`;
+
+export const Wrap = styled.div`
+  display: grid;
+  align-items: center;
+  gap: 67px;
+  grid-template: 1fr / 1fr 293px 122px;
+  width: 1072px;
+  height: 100%;
 `;
 
 export const GridItem = styled.div``;

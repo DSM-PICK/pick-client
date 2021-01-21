@@ -1,11 +1,17 @@
 import React from "react";
-import Header from "../../Organisms/Header/Header";
+import DesktopHeaderContainer from "../../../../container/Desktop/Header/DesktopHeaderContainer";
+import Attendance from "../../Organisms/Attendance/Attendance";
 import * as S from "./styles";
 
 const Main = () => {
   return (
     <S.Container>
-      <Header />
+      <DesktopHeaderContainer />
+      <S.AttendanceWrap>
+        <S.AttendanceGridWrap>
+          <Attendance />
+        </S.AttendanceGridWrap>
+      </S.AttendanceWrap>
     </S.Container>
   );
 };
