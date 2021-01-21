@@ -14,8 +14,8 @@ export const Container = styled.button`
     switch (props.text) {
       case "이동":
         return css`
-          border: 1px solid #406cff;
-          color: #406cff;
+          border: 1px solid #000000;
+          color: #000000;
           background: #ffffff;
         `;
       case "귀가":
