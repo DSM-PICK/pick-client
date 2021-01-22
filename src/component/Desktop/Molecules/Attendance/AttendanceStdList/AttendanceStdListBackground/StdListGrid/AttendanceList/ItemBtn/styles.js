@@ -38,7 +38,6 @@ export const Container = styled.button`
         `;
       default:
         return css`
-          border: 1px solid #c4c4c4;
           background: #ffffff;
         `;
     }
