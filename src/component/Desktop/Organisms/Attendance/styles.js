@@ -19,3 +19,8 @@ export const RightWrap = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+export const ClassInfoWrap = styled.div`
+  width: 180px;
+  height: 180px;
+`
