@@ -1,11 +1,12 @@
 import React from 'react';
+import Background from '../../../Atoms/Background/Background';
 import * as S from "./styles";
 
 const AttendanceClassInfo = () => {
     return (
-        <S.Container>
+        <Background css={S.BackgroundCSS}>
             
-        </S.Container>
+        </Background>
     );
 };
 
