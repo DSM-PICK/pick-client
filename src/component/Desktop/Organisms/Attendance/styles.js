@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   display: grid;
   column-gap: 24px;
   grid-template-columns: 6fr 11fr;
@@ -21,6 +22,9 @@ export const RightWrap = styled.div`
 `;
 
 export const ClassInfoWrap = styled.div`
+  position: absolute;
+  top: 60px;
+  left: calc(100% + 25px);
   width: 180px;
   height: 180px;
 `
