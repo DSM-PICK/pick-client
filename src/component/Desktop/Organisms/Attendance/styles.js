@@ -23,7 +23,7 @@ export const RightWrap = styled.div`
 
 export const ClassInfoWrap = styled.div`
   position: absolute;
-  top: 60px;
+  top: 50px;
   left: calc(100% + 25px);
   width: 180px;
   height: 180px;
