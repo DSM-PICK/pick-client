@@ -2,11 +2,8 @@ import React from "react";
 import Background from "../../../Atoms/Background/Background";
 import * as S from "./styles";
 
-const AttendanceClassInfo = () => {
-  const className = "2학년 2반";
-  const teacherName = "신요셉";
-  const allStdCnt = 20;
-  const attendanceStdCnt = 18;
+const AttendanceClassInfo = props => {
+  const { className, teacherName, allStdCnt, attendanceStdCnt } = props;
 
   return (
     <S.Container>
