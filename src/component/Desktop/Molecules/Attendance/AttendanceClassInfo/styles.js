@@ -10,14 +10,6 @@ export const Container = styled.div`
   }
 `;
 
-export const BackgroundCSS = {
-  width: "100%",
-  height: "calc(100% - 22px)",
-  borderRadius: "12px",
-  background: "#ffffff",
-  boxShadow: "0px 1px 1px 0px rgba(144, 144, 144, 0.2)"
-};
-
 export const ClassInfoContainer = styled.div`
   display: grid;
   align-items: center;
@@ -42,3 +34,11 @@ export const Text = styled.p`
   font-size: 16px;
   font-weight: 400;
 `;
+
+export const BackgroundCSS = {
+  width: "100%",
+  height: "calc(100% - 22px)",
+  borderRadius: "12px",
+  background: "#ffffff",
+  boxShadow: "0px 1px 1px 0px rgba(144, 144, 144, 0.2)"
+};
