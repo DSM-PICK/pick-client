@@ -30,6 +30,18 @@ export const Container = styled.button`
           border: none;
           background: #ff406e;
         `;
+      case "외출":
+        return css`
+          color: #406cff;
+          border: 1px solid #406cff;
+          background: #ffffff;
+        `;
+      case "현체":
+        return css`
+          color: #ff406e;
+          border: 1px solid #ff406e;
+          background: #ffffff;
+        `;
       case "취업":
         return css`
           color: #909090;
