@@ -29,11 +29,18 @@ const DAttendancePlaceBackgroundContainer = () => {
     dispatch(getAttendanceStdDataSaga(payload));
   }, [dispatch, payload]);
 
+  const teacherName = localStorage.getItem("teacherName");
+
   useEffect(() => {
     dispatch(getAttendanceStdDataSaga({ ...payload, priority: 0 }));
   }, []);
 
-  return <AttendancePlaceBackground onClick={getAttendanceStdData} />;
+  return (
+    <AttendancePlaceBackground
+      onClick={getAttendanceStdData}
+      teacherName={teacherName}
+    />
+  );
 };
 
 export default DAttendancePlaceBackgroundContainer;

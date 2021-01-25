@@ -2,14 +2,14 @@ import React from "react";
 import * as S from "./styles";
 import Button from "../../../../../Atoms/Button/Button";
 
-const BackgroundHeader = () => {
-  const userName = "최아린";
+const BackgroundHeader = props => {
+  const { teacherName } = props;
   const subText = "2-2 담임이십니다";
 
   return (
     <S.Container>
       <S.TextWrap>
-        <S.HeaderText>{`${userName} 선생님은`}</S.HeaderText>
+        <S.HeaderText>{`${teacherName} 선생님은`}</S.HeaderText>
         <S.HeaderText>{`${subText}`}</S.HeaderText>
       </S.TextWrap>
       <S.ButtonWrap>
