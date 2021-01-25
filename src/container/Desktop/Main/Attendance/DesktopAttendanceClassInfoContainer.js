@@ -6,7 +6,7 @@ const DesktopAttendanceClassInfoContainer = () => {
   const attendanceData = useSelector(state => state.dAttendance.attendanceData);
 
   const className = "2학년 2반";
-  const teacherName = "신요셉";
+  const teacherName = localStorage.getItem("teacherName");
   const allStdCnt = attendanceData.length;
   const attendanceStdCnt =
     attendanceData.length > 0 &&
