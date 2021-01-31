@@ -4,7 +4,7 @@ import AttendanceClassInfo from "../../../../component/Desktop/Molecules/Attenda
 
 const DesktopAttendanceClassInfoContainer = () => {
   const attendanceData = useSelector(state => state.dAttendance.attendanceData);
-  const dAttendance = useSelector(state => state.dAttendance);
+  const dAttendanceData = useSelector(state => state.dAttendance);
 
   const className = "2학년 4반";
   const teacherName = localStorage.getItem("teacherName");
