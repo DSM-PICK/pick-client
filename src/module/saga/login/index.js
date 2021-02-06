@@ -27,7 +27,7 @@ function* requestLogin(action) {
     put({ type: GET_MAIN_TEXT_REMAINING_DATE_SAGA });
 
     if (device === "desktop") {
-      window.location.href = "/ ";
+      window.location.href = "/";
     } else {
       window.location.href = "/t/main ";
     }
