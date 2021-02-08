@@ -49,6 +49,9 @@ function* getAttendanceStdData(action) {
       REQUEST_URL
     );
 
+    console.log("attendanceData");
+    console.log(attendanceData);
+
     const { SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
     yield put({
       type: SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
@@ -60,9 +63,18 @@ function* successGetAttendanceStdData(action) {
   try {
     const { name, head, attendances } = action.payload;
 
-    const { setAttendanceStdData } = DAttendanceActionCreater;
+    const { setClassInfo, setAttendanceStdData } = DAttendanceActionCreater;
 
+    const stdCount = attendances.length;
+    const stdCountWithoutEmployment = attendances.filter(
+      stdInfo => stdInfo.state.eight !== "취업"
+    ).length;
+    console.log("{ name, head, stdCount, stdCountWithoutEmployment }");
+    console.log({ name, head, stdCount, stdCountWithoutEmployment });
     yield put(setAttendanceStdData(attendances));
+    yield put(
+      setClassInfo({ name, head, stdCount, stdCountWithoutEmployment })
+    );
   } catch (error) {}
 }
 
