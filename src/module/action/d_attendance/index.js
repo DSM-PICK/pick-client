@@ -1,3 +1,9 @@
+const SET_CLASS_INFO = "d_attendance/SET_CLASS_INFO";
+const setClassInfo = payload => ({
+  type: SET_CLASS_INFO,
+  payload
+});
+
 const SET_SELECT_ATTENDANCE_ARR = "d_attendance/SET_SELECT_ATTENDANCE_ARR";
 const setSelectAttendanceArr = payload => ({
   type: SET_SELECT_ATTENDANCE_ARR,
@@ -61,6 +67,7 @@ const patchAttendanceStdDataSaga = payload => ({
 });
 
 export const DAttendanceAction = {
+  SET_CLASS_INFO,
   SET_SELECT_ATTENDANCE_ARR,
   GET_SELECT_ATTENDANCE_ARR_SAGA,
   SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
@@ -74,6 +81,7 @@ export const DAttendanceAction = {
 };
 
 export const DAttendanceActionCreater = {
+  setClassInfo,
   setSelectAttendanceArr,
   getSelectAttendanceArrSaga,
   successGetSelectAttendanceArrSaga,
