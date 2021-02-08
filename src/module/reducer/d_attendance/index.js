@@ -1,6 +1,12 @@
 import { DAttendanceAction } from "../../action/d_attendance";
 
 const initialState = {
+  classInfo: {
+    name: "",
+    head: "",
+    stdCount: 0,
+    stdCountWithoutEmployment: 0
+  },
   selectAttendanceArr: [],
   currentAttendanceIndexArr: [0, 0],
   attendanceData: []
@@ -8,12 +14,30 @@ const initialState = {
 
 const DAttendanceReducer = (state = initialState, action) => {
   const {
+    SET_CLASS_INFO,
     SET_SELECT_ATTENDANCE_ARR,
     SET_CURRENT_ATTENDANCE_INDEX_ARR,
     SET_ATTENDANCE_STD_DATA
   } = DAttendanceAction;
 
   switch (action.type) {
+    case SET_CLASS_INFO: {
+      const {
+        name,
+        head,
+        stdCount,
+        stdCountWithoutEmployment
+      } = action.payload;
+      return {
+        ...state,
+        classInfo: {
+          name: name,
+          head: head,
+          stdCount: stdCount,
+          stdCountWithoutEmployment: stdCountWithoutEmployment
+        }
+      };
+    }
     case SET_SELECT_ATTENDANCE_ARR: {
       return {
         ...state,
