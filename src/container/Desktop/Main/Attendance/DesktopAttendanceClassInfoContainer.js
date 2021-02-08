@@ -3,24 +3,16 @@ import { useSelector } from "react-redux";
 import AttendanceClassInfo from "../../../../component/Desktop/Molecules/Attendance/AttendanceClassInfo/AttendanceClassInfo";
 
 const DesktopAttendanceClassInfoContainer = () => {
-  const attendanceData = useSelector(state => state.dAttendance.attendanceData);
-  const dAttendanceData = useSelector(state => state.dAttendance);
+  const classInfo = useSelector(state => state.dAttendance.classInfo);
 
-  const className = "2학년 4반";
-  const teacherName = localStorage.getItem("teacherName");
-  const allStdCnt = attendanceData.length;
-  const attendanceStdCnt =
-    attendanceData.length > 0 &&
-    attendanceData.filter(data => data.state.eight !== "취업").length;
-
-  console.log({ attendanceData });
+  const { className, head, stdCount, stdCountWithoutEmployment } = classInfo;
 
   return (
     <AttendanceClassInfo
       className={className}
-      teacherName={teacherName}
-      allStdCnt={allStdCnt}
-      attendanceStdCnt={attendanceStdCnt}
+      head={head}
+      stdCount={stdCount}
+      stdCountWithoutEmployment={stdCountWithoutEmployment}
     />
   );
 };
