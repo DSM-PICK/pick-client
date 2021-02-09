@@ -5,7 +5,12 @@ import AttendanceClassInfo from "../../../../component/Desktop/Molecules/Attenda
 const DesktopAttendanceClassInfoContainer = () => {
   const classInfo = useSelector(state => state.dAttendance.classInfo);
 
-  const { className, head, stdCount, stdCountWithoutEmployment } = classInfo;
+  const {
+    name: className,
+    head,
+    stdCount,
+    stdCountWithoutEmployment
+  } = classInfo;
 
   return (
     <AttendanceClassInfo
