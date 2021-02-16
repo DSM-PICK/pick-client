@@ -25,7 +25,7 @@ export const AuthHeader = styled.div`
   }
 `;
 
-export const AuthBody = styled.div`
+export const AuthBody = styled.form`
   padding: 0 2rem;
   padding-bottom: 3rem;
 `;
@@ -86,6 +86,10 @@ export const HelpMessage = styled.p`
 
 export const ErrWrap = styled.div`
   height: 2rem;
+`;
+
+export const HideBtn = styled.button`
+  display: none;
 `;
 
 const errSlide = keyframes`

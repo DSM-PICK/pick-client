@@ -5,6 +5,8 @@ import * as S from "./style";
 import { useHistory } from "react-router-dom";
 
 const errMsgMap = {
+  ALREADY_EXIST_ACCOUNT: "이미 존재하는 계정입니다",
+  INVALID_REQUEST_BODY: "아이디, 비밀번호의 길이와 구성을 다양하게 해주세요",
   400: "아이디 또는 비밀번호가 일치하지 않습니다"
 };
 
@@ -32,58 +34,70 @@ const DLoginPage = () => {
     setRegisterData(prev => ({ ...prev, [name]: value }));
   }, []);
 
-  const loginHandler = useCallback(async () => {
-    setErrMsg("");
-    if (!isLoginMode) {
-      setIsLoginMode(true);
-      return;
-    }
-    if (!loginData.id) {
-      setErrMsg("아이디를 입력해주세요.");
-      return;
-    }
-    if (!loginData.pw) {
-      setErrMsg("비밀번호를 입력해주세요.");
-      return;
-    }
-    try {
-      const res = await authApi.reqLogin(loginData);
+  const loginHandler = useCallback(
+    async e => {
+      setErrMsg("");
+      if (!isLoginMode) {
+        setIsLoginMode(true);
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      if (!loginData.id) {
+        setErrMsg("아이디를 입력해주세요.");
+        return;
+      }
+      if (!loginData.pw) {
+        setErrMsg("비밀번호를 입력해주세요.");
+        return;
+      }
+      try {
+        const res = await authApi.reqLogin(loginData);
 
-      const { accessToken, refreshToken, teacherName } = res.data;
-      window.localStorage.setItem("accessToken", accessToken);
-      window.localStorage.setItem("refreshToken", refreshToken);
-      window.localStorage.setItem("teacherName", teacherName);
+        const { accessToken, refreshToken, teacherName } = res.data;
+        window.localStorage.setItem("accessToken", accessToken);
+        window.localStorage.setItem("refreshToken", refreshToken);
+        window.localStorage.setItem("teacherName", teacherName);
 
-      history.push("/");
-    } catch (errStatus) {
-      setErrMsg(errMsgMap[errStatus]);
-    }
-  }, [isLoginMode, loginData]);
-  const registerHandler = useCallback(async () => {
-    setErrMsg("");
-    if (isLoginMode) {
-      setIsLoginMode(false);
-      return;
-    }
-    if (!registerData.name) {
-      setErrMsg("이름을 입력해주세요.");
-      return;
-    }
-    if (!registerData.id) {
-      setErrMsg("아이디를 입력해주세요.");
-      return;
-    }
-    if (!registerData.password) {
-      setErrMsg("비밀번호를 입력해주세요.");
-      return;
-    }
+        history.push("/");
+      } catch (errStatus) {
+        setErrMsg(errMsgMap[errStatus]);
+      }
+    },
+    [isLoginMode, loginData]
+  );
+  const registerHandler = useCallback(
+    async e => {
+      setErrMsg("");
+      if (isLoginMode) {
+        setIsLoginMode(false);
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      if (!registerData.name) {
+        setErrMsg("이름을 입력해주세요.");
+        return;
+      }
+      if (!registerData.id) {
+        setErrMsg("아이디를 입력해주세요.");
+        return;
+      }
+      if (!registerData.password) {
+        setErrMsg("비밀번호를 입력해주세요.");
+        return;
+      }
 
-    try {
-      const res = await authApi.reqRegister(registerData);
-    } catch (errStatus) {
-      setErrMsg("글자수를 늘려주세요");
-    }
-  }, [isLoginMode, registerData]);
+      try {
+        const res = await authApi.reqRegister(registerData);
+        history.push("/");
+      } catch (errResponse) {
+        const code = errResponse.data.code;
+        setErrMsg(errMsgMap[code] || "예상치 못한 오류입니다");
+      }
+    },
+    [isLoginMode, registerData]
+  );
   return (
     <S.Container>
       <S.AuthWrap>
@@ -91,7 +105,7 @@ const DLoginPage = () => {
           <img src={LogoPickSvg} />
           <p>야간 자율학습 출석 관리 시스템</p>
         </S.AuthHeader>
-        <S.AuthBody>
+        <S.AuthBody onSubmit={isLoginMode ? loginHandler : registerHandler}>
           <S.FormWrap>
             {isLoginMode ? (
               <>
@@ -146,8 +160,13 @@ const DLoginPage = () => {
             {errMsg.length ? <S.ErrorMsg>{errMsg}</S.ErrorMsg> : ""}
           </S.ErrWrap>
           <S.ButtonWrap>
-            <S.AuthButton onClick={loginHandler}>로그인</S.AuthButton>
-            <S.AuthButton onClick={registerHandler}>회원가입</S.AuthButton>
+            <S.AuthButton type="button" onClick={loginHandler}>
+              로그인
+            </S.AuthButton>
+            <S.AuthButton type="button" onClick={registerHandler}>
+              회원가입
+            </S.AuthButton>
+            <S.HideBtn type="submit"></S.HideBtn>
           </S.ButtonWrap>
         </S.AuthBody>
       </S.AuthWrap>
