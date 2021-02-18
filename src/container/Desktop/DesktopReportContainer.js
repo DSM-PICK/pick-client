@@ -5,8 +5,7 @@ import { useDesktopReportState } from "../../lib/hooks/desktop/report";
 const DesktopReportContainer = () => {
   const { state, setState } = useDesktopReportState();
   useEffect(() => {
-    const { year, month, date } = state.selectedDate;
-    setState.getAttendanceChangeList(`${year}-${month}-${date}`);
+    setState.getAttendanceChangeList();
   }, [state.selectedDate]);
   return <DesktopReport state={state} setState={setState} />;
 };
