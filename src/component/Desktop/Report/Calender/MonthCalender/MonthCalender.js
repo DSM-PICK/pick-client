@@ -9,13 +9,16 @@ const MonthCalender = ({
   endDate,
   month,
   year,
-  selectedDate,
-  setSelectedDate
+  attendanceChangeStartDate,
+  attendanceChangeEndDate,
+  setAttendanceChangeStartDate,
+  setAttendanceChangeEndDate,
+  selectedStudent
 }) => {
   const today = new Date();
   const todayMonth = today.getMonth() + 1;
   const todayYear = today.getFullYear();
-  const getDay = (year, month) => {
+  const getFirstDayOfMonth = (year, month) => {
     return new Date(`${year}-${month}-01`).getDay();
   };
   const getDate = dateCode => {
@@ -27,78 +30,78 @@ const MonthCalender = ({
       return 1;
     }
   };
-  const renderMonth = (year, month, selectedDate, setSelectedDate) => {
-    let startDay = getDay(year, month);
-    let startDate = getDate(startDay);
+  const renderMonth = (year, month) => {
+    let firstDayOfMonth = getFirstDayOfMonth(year, month);
+    let startDate = getDate(firstDayOfMonth);
     let renderArray = [
-      renderWeek(
-        year,
-        month,
-        today,
-        selectedDate,
-        setSelectedDate,
-        startDate,
-        endDate,
-        startDay
-      )
+      renderWeek(year, month, startDate, endDate, firstDayOfMonth)
     ];
-    startDate = startDate + 7 - dayOfWeekEnum[startDay];
+    startDate = startDate + 7 - dayOfWeekEnum[firstDayOfMonth];
     for (let i = startDate; i <= endDate; i = i + 7) {
-      renderArray = [
-        ...renderArray,
-        renderWeek(
-          year,
-          month,
-          today,
-          selectedDate,
-          setSelectedDate,
-          i,
-          endDate
-        )
-      ];
+      renderArray = [...renderArray, renderWeek(year, month, i, endDate)];
     }
     return renderArray;
   };
   const fillUpBlankDay = arrayLength => {
     let buffer = [];
-    for (let i = 0; i < week - arrayLength; i++) {
-      buffer = [...buffer, <S.CalenderBlankDay />];
+    for (let i = 0; i < arrayLength; i++) {
+      buffer = [
+        ...buffer,
+        <S.CalenderBlankDay key={`dummy-${Math.random()}`} />
+      ];
     }
     return buffer;
   };
-  const renderWeek = (
-    year,
-    month,
-    today,
-    selectedDate,
-    setSelectedDate,
-    startDate,
-    endDate,
-    startDayOfWeek = 1
-  ) => {
-    let renderArray = [...fillUpBlankDay(5 - dayOfWeekEnum[startDayOfWeek])];
-    for (
-      let i = startDate;
-      i < startDate - dayOfWeekEnum[startDayOfWeek] + week && i <= endDate;
-      i++
-    ) {
+  const renderWeek = (year, month, startDate, endDate, startDayOfWeek = 1) => {
+    const startBlankDayCount = dayOfWeekEnum[startDayOfWeek];
+    const weekEndDate = startDate - startBlankDayCount + week;
+    let renderArray = [...fillUpBlankDay(startBlankDayCount)];
+    for (let i = startDate; i < weekEndDate && i <= endDate; i++) {
       renderArray = [
         ...renderArray,
         <MonthCalenderDate
-          key={`${year}-${month}-${i}`}
+          key={`day-${year}-${month}-${i}`}
           year={year}
           date={i}
           month={month}
-          today={today}
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
+          startDate={attendanceChangeStartDate}
+          endDate={attendanceChangeEndDate}
+          selectedStudent={selectedStudent}
+          setAttendanceChangeDate={setAttendanceChangeDate}
+          id={selectedStudent}
         />
       ];
     }
-    const blankDays = fillUpBlankDay(renderArray.length);
-    renderArray = [...renderArray, ...blankDays];
-
-    return <S.CalenderDayWrapper>{renderArray}</S.CalenderDayWrapper>;
+    const endBlankDayCount = 5 - fillUpBlankDay(renderArray.length);
+    renderArray = [...renderArray, ...fillUpBlankDay(endBlankDayCount)];
+    return (
+      <S.CalenderDayWrapper key={`week-${year}-${month}-${startDate}`}>
+        {renderArray}
+      </S.CalenderDayWrapper>
+    );
+  };
+  const setAttendanceChangeDate = (id, date) => {
+    if (
+      attendanceChangeStartDate.year === date.year &&
+      attendanceChangeStartDate.month === date.month &&
+      attendanceChangeStartDate.date === date.date
+    ) {
+      setAttendanceChangeEndDate({ date, id });
+    } else if (
+      attendanceChangeEndDate.year > date.year ||
+      attendanceChangeEndDate.month > date.month ||
+      attendanceChangeEndDate.date > date.date
+    ) {
+      setAttendanceChangeStartDate({ date, id });
+    } else if (
+      attendanceChangeEndDate.year === date.year &&
+      attendanceChangeEndDate.month === date.month &&
+      attendanceChangeEndDate.date === date.date
+    ) {
+      setAttendanceChangeStartDate({ date, id });
+    } else {
+      setAttendanceChangeEndDate({ date, id });
+    }
   };
   return (
     <S.Calender>
@@ -107,7 +110,7 @@ const MonthCalender = ({
       >
         {year}년 {month}월
       </S.CalenderMonth>
-      {renderMonth(year, month, selectedDate, setSelectedDate)}
+      {renderMonth(year, month)}
     </S.Calender>
   );
 };
