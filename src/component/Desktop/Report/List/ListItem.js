@@ -1,7 +1,23 @@
 import React from "react";
 import * as S from "../styles";
 
-const ListItem = ({ date, student, type, teacher, description }) => {
+const ListItem = ({
+  date,
+  item,
+  student,
+  type,
+  teacher,
+  description,
+  deleteAttendanceChangeStudent,
+  setFixAttendanceChangeStudent,
+  id
+}) => {
+  const deleteButtonClickHandler = event => {
+    deleteAttendanceChangeStudent(id);
+  };
+  const fixButtonClickHandler = event => {
+    setFixAttendanceChangeStudent(item);
+  };
   return (
     <S.FormListItem className="content">
       <div className="date">{date}</div>
@@ -15,8 +31,13 @@ const ListItem = ({ date, student, type, teacher, description }) => {
         <div />
         <input type="checkbox" />
         <S.FormListItemMenu>
-          <div>수정</div>
-          <div className="listItemDeleteButton">삭제</div>
+          <div onClick={fixButtonClickHandler}>수정</div>
+          <div
+            className="listItemDeleteButton"
+            onClick={deleteButtonClickHandler}
+          >
+            삭제
+          </div>
         </S.FormListItemMenu>
       </label>
     </S.FormListItem>
