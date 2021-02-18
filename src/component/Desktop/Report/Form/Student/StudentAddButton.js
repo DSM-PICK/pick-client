@@ -1,9 +1,9 @@
 import React from "react";
 import * as S from "../../styles";
 
-const StudentAddButton = () => {
+const StudentAddButton = ({ buttonClickHandler }) => {
   return (
-    <S.FormStudentAddItemButton>
+    <S.FormStudentAddItemButton onClick={buttonClickHandler}>
       <div />
     </S.FormStudentAddItemButton>
   );
