@@ -4,38 +4,29 @@ import Date from "./Date";
 import Student from "./Student";
 import Type from "./Type";
 import Description from "./Description";
+import { useDesktopReportState } from "../../../../lib/hooks/desktop/report";
 
-const Form = ({
-  attendanceChangeStudentList,
-  attendanceChangeType,
-  description,
-  setAttendanceChangeStudent,
-  setAttendanceChangeType,
-  setDescription,
-  setSelectedStudent,
-  selectedStudent,
-  selectedDate,
-  deleteAttendanceChangeStudent
-}) => {
+const Form = () => {
+  const { state, setState } = useDesktopReportState();
+  const { addAttendanceChangeList } = setState;
+  const { attendanceChangeStudentList } = state;
+  const submitButtonClickHandler = attendanceChangeStudentList => () => {
+    addAttendanceChangeList(attendanceChangeStudentList);
+  };
   return (
     <S.FormWrapper>
       <S.FormTitle>출석 변동사항 신고</S.FormTitle>
       <S.Form>
-        <Student
-          setSelectedStudent={setSelectedStudent}
-          selectedStudent={selectedStudent}
-          setAttendanceChangeStudent={setAttendanceChangeStudent}
-          attendanceChangeStudentList={attendanceChangeStudentList}
-          deleteAttendanceChangeStudent={deleteAttendanceChangeStudent}
-        />
-        <Date date={selectedDate} />
-        <Type setType={setAttendanceChangeType} type={attendanceChangeType} />
-        <Description
-          description={description}
-          setDescription={setDescription}
-        />
+        <Student />
+        <Date />
+        <Type />
+        <Description />
         <S.FormColumn>
-          <S.FormAddButton>추가하기</S.FormAddButton>
+          <S.FormAddButton
+            onClick={submitButtonClickHandler(attendanceChangeStudentList)}
+          >
+            추가하기
+          </S.FormAddButton>
         </S.FormColumn>
       </S.Form>
     </S.FormWrapper>
