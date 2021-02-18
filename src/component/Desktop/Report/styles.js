@@ -71,24 +71,22 @@ export const CalenderDay = styled.div`
   border-radius: 5px;
   margin: ${pxToRem(9)}rem ${pxToRem(16 * widthScale)}rem;
   cursor: pointer;
-  ${props =>
-    props.isToday
+  ${({ isToday, isClicked }) =>
+    isToday
       ? css`
           background-color: #406cff;
           color: white;
+        `
+      : isClicked
+      ? css`
+          background-color: rgba(64, 108, 255, 0.2);
+          color: #406cff;
         `
       : css`
           background-color: white;
           color: black;
         `}
-  ${props =>
-    props.isClicked
-      ? css`
-          background-color: rgba(64, 108, 255, 0.2);
-          color: #406cff;
-        `
-      : ""}
-      > p {
+  > p {
     transform: translate(0px, 1px);
   }
 `;
@@ -228,6 +226,54 @@ export const FormStudentItem = styled.div`
   }
 `;
 
+export const FormStudentAddInput = styled.div`
+  width: ${pxToRem(50)}rem;
+  height: ${pxToRem(46)}rem;
+  border-radius: 6px;
+  margin: 0px ${pxToRem(3)}rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: 1px solid #707070;
+  background-color: white;
+  position: relative;
+  > textarea {
+    color: #707070;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  > div {
+    top: ${pxToRem(50)}rem;
+    left: 0px;
+    position: absolute;
+    width: 95px;
+    height: 120px;
+    overflow-y: scroll;
+    border: 1px solid #707070;
+    background-color: white;
+    > div {
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2px 0px;
+    }
+    > div:hover {
+      background-color: #eeeeee;
+    }
+  }
+`;
+
 export const FormStudentAddItemButton = styled(FormStudentItem)`
   > div {
     display: flex;
@@ -320,7 +366,12 @@ export const FormListTitle = styled(FormTitle)`
 `;
 
 export const FormListContent = styled.ul`
+  height: 100%;
   list-style: none;
+  > .wrapper {
+    overflow-y: scroll;
+    height: 97%;
+  }
 `;
 
 export const FormListItem = styled.li`
@@ -339,10 +390,10 @@ export const FormListItem = styled.li`
     display: flex;
   }
   > .date {
-    width: 30%;
+    width: 40%;
   }
   > .student {
-    width: 30%;
+    width: 20%;
   }
   > .type {
     width: 5%;
@@ -392,7 +443,8 @@ export const FormListItemMenu = styled.div`
   border-radius: 4px !important;
   display: none;
   top: 10px;
-  left: 13px;
+  left: -50px;
+  z-index: 100;
   position: absolute !important;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
   background-color: white !important;
@@ -409,4 +461,29 @@ export const FormListItemMenu = styled.div`
   > div.listItemDeleteButton {
     color: #ff406e;
   }
+`;
+
+export const FormDatePeriodInput = styled.input`
+  width: 16px;
+  height: 16px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+`;
+
+export const FomrDatePeriodInputWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
