@@ -1,33 +1,53 @@
-import React from "react";
+import React, { useMemo } from "react";
 import * as S from "../../styles";
 
 const MonthCalender = ({
-  today,
   date,
   month,
   year,
-  selectedDate,
-  setSelectedDate
+  startDate,
+  endDate,
+  selectedStudent,
+  setAttendanceChangeDate
 }) => {
+  const { today, startDateObj, endDateObj } = useMemo(() => {
+    const todayDateObj = new Date();
+    const today = {
+      year: todayDateObj.getFullYear(),
+      month: todayDateObj.getMonth() + 1,
+      date: todayDateObj.getDate()
+    };
+    const startDateObj = new Date(
+      `${startDate.year}-${startDate.month}-${startDate.date}`
+    );
+    const endDateObj = new Date(
+      `${endDate.year}-${endDate.month}-${endDate.date}`
+    );
+    return {
+      today,
+      startDateObj,
+      endDateObj
+    };
+  });
   const buttonClickHandler = () => {
-    setSelectedDate({
+    setAttendanceChangeDate(selectedStudent, {
       year,
       month,
       date
     });
   };
+  const isIncludeInAttendanceChangeDate = (startDateObj, endDateObj, date) => {
+    const nowDateObj = new Date(`${date.year}-${date.month}-${date.date}`);
+    return startDateObj <= nowDateObj && endDateObj >= nowDateObj;
+  };
   return (
     <S.CalenderDay
-      isToday={
-        today.getFullYear() === year &&
-        today.getMonth() + 1 === month &&
-        today.getDate() === date
-      }
-      isClicked={
-        selectedDate.year === year &&
-        selectedDate.month === month &&
-        selectedDate.date === date
-      }
+      isToday={today.year == year && today.month == month && today.date == date}
+      isClicked={isIncludeInAttendanceChangeDate(startDateObj, endDateObj, {
+        year,
+        month,
+        date
+      })}
       onClick={buttonClickHandler}
     >
       <p>{date}</p>
