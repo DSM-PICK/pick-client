@@ -2,30 +2,25 @@ import {
   SET_ATTENDANCE_CHANGE_STUDENT,
   SET_ATTENDANCE_CHANGE_TYPE,
   SET_DESCRIPTION,
-  SET_SELECTED_DATE,
   DELETE_ATTENDANCE_CHANGE_STUDENT,
-  SET_SELECTED_STUDENT
+  SET_SELECTED_STUDENT,
+  SET_END_DATE,
+  SET_START_DATE,
+  SET_END_PERIOD,
+  SET_START_PERIOD,
+  SET_ATTENDANCE_CHANGE_LIST,
+  SIMILER_STUDENT,
+  SET_NEW_ATTENDANCE_CHANGE_STUDENT,
+  SET_FIX_ATTENDANCE_CHANGE_STUDENT_STUDENT
 } from "../../../action/deskop/report";
 
 const today = new Date();
 
 const initialState = {
-  attendanceChangeStudentList: [
-    {
-      type: "move",
-      description: "엔트리로 이동",
-      name: "오준상",
-      number: "2212",
-      id: 1
-    }
-  ],
+  attendanceChangeStudentList: [],
   attendanceChangeList: [],
-  selectedDate: {
-    year: today.getFullYear(),
-    month: today.getMonth() + 1,
-    date: today.getDate()
-  },
-  selectedStudent: -1
+  selectedStudent: -1,
+  similerStudents: []
 };
 
 const desktopReportReducer = (state = initialState, action) => {
@@ -66,10 +61,64 @@ const desktopReportReducer = (state = initialState, action) => {
         attendanceChangeStudentList: newState
       };
     }
-    case SET_SELECTED_DATE: {
+    case SET_END_DATE: {
+      const newState = state.attendanceChangeStudentList.map(student => {
+        if (student.id === action.payload.id) {
+          return {
+            ...student,
+            endDate: action.payload.date
+          };
+        }
+        return student;
+      });
       return {
         ...state,
-        selectedDate: action.payload
+        attendanceChangeStudentList: newState
+      };
+    }
+    case SET_START_DATE: {
+      const newState = state.attendanceChangeStudentList.map(student => {
+        if (student.id === action.payload.id) {
+          return {
+            ...student,
+            startDate: action.payload.date
+          };
+        }
+        return student;
+      });
+      return {
+        ...state,
+        attendanceChangeStudentList: newState
+      };
+    }
+    case SET_END_PERIOD: {
+      const newState = state.attendanceChangeStudentList.map(student => {
+        if (student.id === action.payload.id) {
+          return {
+            ...student,
+            endPeriod: action.payload.period
+          };
+        }
+        return student;
+      });
+      return {
+        ...state,
+        attendanceChangeStudentList: newState
+      };
+    }
+    case SET_START_PERIOD: {
+      const newState = state.attendanceChangeStudentList.map(student => {
+        if (student.id === action.payload.id) {
+          return {
+            ...student,
+            startPeriod: action.payload.period
+          };
+        }
+        return student;
+      });
+      return {
+        ...state,
+        attendanceChangeStudentList: newState
       };
     }
     case SET_SELECTED_STUDENT: {
@@ -85,6 +134,60 @@ const desktopReportReducer = (state = initialState, action) => {
       return {
         ...state,
         attendanceChangeStudentList: newState
+      };
+    }
+    case SET_ATTENDANCE_CHANGE_LIST: {
+      return {
+        ...state,
+        attendanceChangeList: action.payload
+      };
+    }
+    case SIMILER_STUDENT: {
+      return {
+        ...state,
+        similerStudents: action.payload
+      };
+    }
+    case SET_NEW_ATTENDANCE_CHANGE_STUDENT: {
+      const nowYear = new Date().getFullYear();
+      const nowMonth = new Date().getMonth() + 1;
+      const nowDate = new Date().getDate();
+      const id = Math.random();
+      return {
+        ...state,
+        selectedStudent: id,
+        attendanceChangeStudentList: [
+          ...state.attendanceChangeStudentList,
+          {
+            type: "move",
+            description: "",
+            name: action.payload.name,
+            number: action.payload.number,
+            id,
+            endDate: {
+              year: nowYear,
+              month: nowMonth,
+              date: nowDate
+            },
+            startDate: {
+              year: nowYear,
+              month: nowMonth,
+              date: nowDate
+            },
+            endPeriod: "",
+            startPeriod: "",
+            isFix: false
+          }
+        ]
+      };
+    }
+    case SET_FIX_ATTENDANCE_CHANGE_STUDENT_STUDENT: {
+      return {
+        ...state,
+        attendanceChangeStudentList: [
+          ...state.attendanceChangeStudentList,
+          { ...action.payload, isFix: true }
+        ]
       };
     }
     default: {
