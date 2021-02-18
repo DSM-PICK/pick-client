@@ -1,49 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./styles";
 import Calender from "./Calender";
 import Form from "./Form";
 import List from "./List";
 
 const DesktopReport = ({ state, setState }) => {
+  const { attendanceChangeList } = state;
   const {
-    attendanceChangeStudentList,
-    attendanceChangeType,
-    description,
-    selectedDate,
-    attendanceChangeList,
-    selectedStudent
-  } = state;
-  const {
-    setSelectedDate,
-    setAttendanceChangeStudent,
-    setAttendanceChangeType,
-    setDescription,
-    getAttendanceChangeList,
-    setSelectedStudent,
-    deleteAttendanceChangeStudent
+    deleteAttendanceChangeStudent,
+    setFixAttendanceChangeStudent
   } = setState;
   return (
     <S.DesktopReport>
       <div>
-        <Calender
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-        />
+        <Calender />
       </div>
       <div>
-        <Form
-          attendanceChangeStudentList={attendanceChangeStudentList}
-          attendanceChangeType={attendanceChangeType}
-          description={description}
-          setAttendanceChangeStudent={setAttendanceChangeStudent}
-          setAttendanceChangeType={setAttendanceChangeType}
-          setDescription={setDescription}
-          setSelectedStudent={setSelectedStudent}
-          selectedStudent={selectedStudent}
-          selectedDate={selectedDate}
+        <Form />
+        <List
+          attendanceChangeList={attendanceChangeList}
           deleteAttendanceChangeStudent={deleteAttendanceChangeStudent}
+          setFixAttendanceChangeStudent={setFixAttendanceChangeStudent}
         />
-        <List attendanceChangeList={attendanceChangeList} />
       </div>
     </S.DesktopReport>
   );
