@@ -8,26 +8,26 @@ const FormTypeButton = ({ type, setType }) => {
   return (
     <S.FormTypeButtonWrapper>
       <S.FormTypeButton
-        isActive={type === "move"}
-        onClick={getButtonClickHandler("move")}
+        isActive={type === "이동"}
+        onClick={getButtonClickHandler("이동")}
       >
         이동
       </S.FormTypeButton>
       <S.FormTypeButton
-        isActive={type === "out"}
-        onClick={getButtonClickHandler("out")}
+        isActive={type === "외출"}
+        onClick={getButtonClickHandler("외출")}
       >
         외출
       </S.FormTypeButton>
       <S.FormTypeButton
-        isActive={type === "home"}
-        onClick={getButtonClickHandler("home")}
+        isActive={type === "귀가"}
+        onClick={getButtonClickHandler("귀가")}
       >
         귀가
       </S.FormTypeButton>
       <S.FormTypeButton
-        isActive={type === "experience"}
-        onClick={getButtonClickHandler("experience")}
+        isActive={type === "현체"}
+        onClick={getButtonClickHandler("현체")}
       >
         현체
       </S.FormTypeButton>
