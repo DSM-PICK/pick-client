@@ -4,10 +4,14 @@ import DayOfWeeks from "./DayOfWeeks";
 import Today from "./Today";
 import MonthCalender from "./MonthCalender/MonthCalender";
 import { getMonthLastDay } from "./calenderConstance";
+import { useDesktopReportState } from "../../../../lib/hooks/desktop/report";
 
-const Calender = ({ selectedDate, setSelectedDate }) => {
+const Calender = () => {
   const CalenderWrapperRef = useRef();
   const [renderedMonth, setMonth] = useState([]);
+  const { state, setState } = useDesktopReportState();
+  const { startDate, endDate, selectedStudent } = state;
+  const { setStartDate, setEndDate } = setState;
   const getInitMonth = () => {
     const year = new Date().getFullYear();
     const month = new Date().getMonth() + 1;
@@ -25,24 +29,28 @@ const Calender = ({ selectedDate, setSelectedDate }) => {
   const initMonth = () => {
     setMonth(getInitMonth());
   };
+  const isLastMonthOfYear = month => month === 12;
+  const isFirstMonthOfYear = month => month === 1;
   const getNextMonth = (nowYear, nowMonth) => {
-    if (nowMonth === 12) {
+    if (isLastMonthOfYear(nowMonth)) {
       return { year: nowYear + 1, month: 1 };
     } else {
       return { year: nowYear, month: nowMonth + 1 };
     }
   };
   const getCurrentMonth = (nowYear, nowMonth) => {
-    if (nowMonth === 1) {
+    if (isFirstMonthOfYear(nowMonth)) {
       return { year: nowYear - 1, month: 12 };
     } else {
       return { year: nowYear, month: nowMonth - 1 };
     }
   };
-  const scrollHandler = event => {
-    const scrollTop = CalenderWrapperRef.current.scrollTop;
-    const clientHeight = CalenderWrapperRef.current.clientHeight;
-    const scrollHeight = CalenderWrapperRef.current.scrollHeight;
+  const scrollHandler = () => {
+    const {
+      scrollTop,
+      clientHeight,
+      scrollHeight
+    } = CalenderWrapperRef.current;
     if (scrollTop + clientHeight >= scrollHeight) {
       const lastMonth = renderedMonth[renderedMonth.length - 1];
       setMonth([
@@ -55,7 +63,9 @@ const Calender = ({ selectedDate, setSelectedDate }) => {
         getCurrentMonth(firstMonth.year, firstMonth.month),
         ...renderedMonth
       ]);
-      CalenderWrapperRef.current.scrollTo(0, 194);
+      setTimeout(() => {
+        CalenderWrapperRef.current.scrollTo(0, 194);
+      });
     }
   };
   useEffect(() => {
@@ -72,8 +82,11 @@ const Calender = ({ selectedDate, setSelectedDate }) => {
             year={year}
             month={month}
             endDate={getMonthLastDay(year, month)}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
+            attendanceChangeStartDate={startDate}
+            attendanceChangeEndDate={endDate}
+            setAttendanceChangeStartDate={setStartDate}
+            setAttendanceChangeEndDate={setEndDate}
+            selectedStudent={selectedStudent}
           />
         ))}
       </S.CalenderWrapper>
