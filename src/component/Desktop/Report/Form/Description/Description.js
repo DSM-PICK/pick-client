@@ -1,11 +1,14 @@
 import React from "react";
+import { useDesktopReportState } from "../../../../../lib/hooks/desktop/report";
 import * as S from "../../styles";
 
-const Description = ({ description, setDescription }) => {
+const Description = () => {
+  const { state, setState } = useDesktopReportState();
+  const { description } = state;
+  const { setDescription } = setState;
   const descriptionChangeHandler = event => {
     setDescription(event.target.value);
   };
-  console.log(description);
   return (
     <S.FormColumn>
       <S.FormText>비고</S.FormText>
