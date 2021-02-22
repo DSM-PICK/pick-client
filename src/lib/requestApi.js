@@ -60,6 +60,7 @@ export const requestApi = async (method, url, body, headers) => {
 
     return res;
   } catch (err) {
+    console.log(err);
     if (!err.response) {
       alert("네트워크 상태를 확인해 주세요");
       throw null;
@@ -68,7 +69,7 @@ export const requestApi = async (method, url, body, headers) => {
   }
 };
 
-export const requesetRefresh = async () => {
+export const requesetRefresh = async callback => {
   try {
     const refreshToken = window.localStorage.getItem(REFRESH_TOKEN);
     const res = await requestGetApi(`/saturn/auth/access-token`, {
@@ -77,10 +78,13 @@ export const requesetRefresh = async () => {
     window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
     window.location.href = window.location.href;
   } catch (err) {
-    if (err === 403 || err.response.status === 403) {
+    if (err === 403) {
       alert("인증이 만료되어 재인증이 필요합니다.");
       window.localStorage.clear();
       window.location.href = "/t/";
+      if (callback) {
+        callback();
+      }
     }
   }
 };
