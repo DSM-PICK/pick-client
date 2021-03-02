@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../../component/Desktop/Organisms/Header/Header";
 
 const DesktopHeaderContainer = () => {
-  const userName = "최아린";
+  const userName = localStorage.getItem("teacherName");
 
   return <Header userName={userName} />;
 };
