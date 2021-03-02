@@ -34,9 +34,11 @@ export const MoveMonth = styled.button`
   align-items: center;
 `;
 
-export const ShowDay = styled.div`
+export const ShowDay = styled.button`
   border-radius: 6px;
+  border: none;
   width: 7rem;
+  padding: 0;
   margin: 0 0.5rem;
   text-align: center;
   font-weight: bold;
@@ -56,8 +58,8 @@ export const Triangle = styled.div`
 `;
 
 export const Body = styled.div`
-  overflow-x: hidden;
   border-radius: 15px;
+  overflow-x: hidden;
   background-color: white;
   margin-top: 0.5rem;
 `;
@@ -71,7 +73,7 @@ export const DScheduleHeader = styled.div`
 
 export const DScheduleItem = styled.div`
   flex: 1 1 20%;
-  padding: 0 0.3rem;
+  padding: 0 0.6rem;
   box-sizing: border-box;
   font-weight: bolder;
 `;
@@ -80,4 +82,64 @@ export const DScheduleBody = styled.div`
   display: flex;
   flex-wrap: wrap;
   box-shadow: 0px 1px 1px rgb(144 144 144 / 20%);
+`;
+
+export const DScheduleMiniCalander = styled.div`
+  position: absolute;
+  right: calc(100% + 15px);
+  background-color: white;
+  box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
+  border-radius: 12px;
+  width: 180px;
+  padding: 0.5rem;
+`;
+
+export const BodyContainer = styled.div`
+  position: relative;
+`;
+
+export const MiniScheduleHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const MiniScheduleBody = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const TeacherName = styled.div`
+  margin: 0.5rem 0;
+`;
+
+export const MiniFooter = styled.div`
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+export const Schedule = styled.div`
+  margin-bottom: 0.7rem;
+`;
+
+export const SvgWrap = styled.div`
+  display: flex;
+  align-items: center;
+  svg + svg {
+    margin-left: 20px;
+  }
+`;
+
+export const MiniDateWrap = styled.div`
+  margin-left: 10px;
+  padding: 0.7rem 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+`;
+
+export const MiniHeader = styled.div`
+  flex: 1 1 18%;
+  margin: 0.7rem 0;
+  text-align: center;
 `;
