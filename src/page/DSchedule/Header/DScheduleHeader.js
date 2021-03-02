@@ -1,30 +1,31 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getSchedule } from "../../../module/action/schedule";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as S from "../style";
 
 const DScheduleHeader = () => {
   const dispatch = useDispatch();
+  const { year, month } = useSelector(store => store.schedule.date);
   const dateObj = useRef();
-  const [year, setYear] = useState(0);
-  const [month, setMonth] = useState(0);
 
   useEffect(() => {
     dateObj.current = new Date();
     const year = dateObj.current.getFullYear();
     const month = dateObj.current.getMonth() + 1;
 
-    setYear(year);
-    setMonth(month);
+    dispatch(getSchedule({ year, month }));
   }, []);
 
-  useEffect(() => {
-    if (year === 0 || month === 0) return;
+  const gotoThisMonth = useCallback(() => {
+    const dateObj = new Date();
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
 
     dispatch(getSchedule({ year, month }));
-  }, [year, month]);
+  }, []);
 
   const nextMonth = useCallback(() => {
+    console.log("NextMonth");
     const nowMonth = dateObj.current.getMonth();
     dateObj.current.setMonth(nowMonth + 1);
 
@@ -32,10 +33,9 @@ const DScheduleHeader = () => {
     const month = dateObj.current.getMonth() + 1;
 
     dispatch(getSchedule({ year, month }));
-    setYear(year);
-    setMonth(month);
   }, []);
   const prevMonth = useCallback(() => {
+    console.log("PrevMonth");
     const nowMonth = dateObj.current.getMonth();
     dateObj.current.setMonth(nowMonth - 1);
 
@@ -43,8 +43,6 @@ const DScheduleHeader = () => {
     const month = dateObj.current.getMonth() + 1;
 
     dispatch(getSchedule({ year, month }));
-    setYear(year);
-    setMonth(month);
   }, []);
 
   return (
@@ -53,7 +51,7 @@ const DScheduleHeader = () => {
         <S.MoveMonth onClick={prevMonth}>
           <S.Triangle />
         </S.MoveMonth>
-        <S.ShowDay>오늘</S.ShowDay>
+        <S.ShowDay onClick={gotoThisMonth}>오늘로 돌아가기</S.ShowDay>
         <S.MoveMonth onClick={nextMonth}>
           <S.Triangle x={180} />
         </S.MoveMonth>
