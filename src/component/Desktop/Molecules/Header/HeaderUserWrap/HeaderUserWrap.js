@@ -10,6 +10,12 @@ const HeaderUserWrap = props => {
     <S.Container>
       <S.UserName>{`${userName} 선생님`}</S.UserName>
       <Img src={DropDownArrow} css={S.ImgCSS} />
+      <S.UserWrapModal>
+        <S.ModalNavLink to="/mypage">마이페이지</S.ModalNavLink>
+        <S.ModalNavLink to="/login" color="#FF406E">
+          로그아웃
+        </S.ModalNavLink>
+      </S.UserWrapModal>
     </S.Container>
   );
 };
