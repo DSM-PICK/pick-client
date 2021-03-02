@@ -1,5 +1,9 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getScheduleSuccess, GET_SCHEDULE } from "../../action/schedule";
+import {
+  getScheduleSuccess,
+  GET_SCHEDULE,
+  setDate
+} from "../../action/schedule";
 import WindowCalander from "window-calander";
 import * as scheduleApi from "../../../lib/api/schedule";
 
@@ -25,6 +29,7 @@ function* getScheduleSaga(action) {
   });
 
   const datas = yield call(Promise.all.bind(Promise), promiseArr);
+  yield put(setDate({ year, month }));
   yield put(getScheduleSuccess(datas));
 }
 
