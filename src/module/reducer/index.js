@@ -11,6 +11,7 @@ import attendance from "./attendance";
 import notice from "./notice";
 import modalWrap from "./modal_wrap";
 import account from "./account";
+import schedule from "./schedule";
 
 const rootReducer = combineReducers({
   account,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   modalWrap,
   notice,
   preReport,
-  teacher
+  teacher,
+  schedule
 });
 
 export default rootReducer;
