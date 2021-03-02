@@ -54,3 +54,30 @@ export const Triangle = styled.div`
   border-bottom: 7px solid transparent;
   transform: rotate(${props => props.x || 0}deg);
 `;
+
+export const Body = styled.div`
+  overflow-x: hidden;
+  border-radius: 15px;
+  background-color: white;
+  margin-top: 0.5rem;
+`;
+
+export const DScheduleHeader = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.3rem 0;
+  box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
+`;
+
+export const DScheduleItem = styled.div`
+  flex: 1 1 20%;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
+  font-weight: bolder;
+`;
+
+export const DScheduleBody = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px 1px 1px rgb(144 144 144 / 20%);
+`;
