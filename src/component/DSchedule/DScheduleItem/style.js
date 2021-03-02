@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
-  padding: 0.5rem 0.3rem;
+  padding: 0.5rem 0.6rem;
   flex: 1 1 18%;
 
   border-right: 1px solid rgba(144, 144, 144, 0.3);
@@ -14,11 +14,41 @@ export const Container = styled.div`
   &:nth-child(n + 26) {
     border-bottom: none;
   }
+
+  ${props =>
+    !props.isActive &&
+    css`
+      opacity: 0.6;
+    `}
 `;
 
 export const Date = styled.div`
   font-weight: bolder;
   font-size: 1rem;
+  z-index: 1;
+
+  ${props =>
+    props.isActive &&
+    css`
+      position: relative;
+      color: white;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        width: 23px;
+        z-index: -1;
+        height: 23px;
+        background-color: rgba(64, 108, 255, 1);
+        border-radius: 5px;
+      }
+      & + * {
+        color: rgba(64, 108, 255, 1);
+      }
+    `}
 `;
 
 export const Schedule = styled.div`
@@ -32,7 +62,7 @@ export const ShowSchedule = styled.div`
 `;
 
 export const TeacehrWrap = styled.div`
-  height: 8rem;
+  height: 6.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

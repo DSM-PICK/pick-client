@@ -2,7 +2,10 @@ import React from "react";
 import * as S from "./style";
 
 const scheduleMap = {
-  "non-schedule": "일정 없음"
+  "non-schedule": "일정 없음",
+  club: "동아리",
+  "self-study": "자습",
+  "after-school": "방과후"
 };
 
 const DScheduleItem = ({
@@ -14,18 +17,19 @@ const DScheduleItem = ({
   isThisMonth,
   month,
   schedule,
-  year
+  year,
+  isToday
 }) => {
   return (
-    <S.Container>
+    <S.Container isActive={isThisMonth}>
       <S.ShowSchedule>
-        <S.Date>{date}</S.Date>
-        <S.Schedule>{scheduleMap[schedule] || "오류"}</S.Schedule>
+        <S.Date isActive={isToday}>{date}</S.Date>
+        <S.Schedule>{scheduleMap[schedule] || "일정 오류"}</S.Schedule>
       </S.ShowSchedule>
       <S.TeacehrWrap>
-        <S.TeacerName>{floor2 || "선생님"}</S.TeacerName>
+        <S.TeacerName>{floor4 || "선생님"}</S.TeacerName>
         <S.TeacerName>{floor3 || "정보가"}</S.TeacerName>
-        <S.TeacerName>{floor4 || "없어요"}</S.TeacerName>
+        <S.TeacerName>{floor2 || "없어요"}</S.TeacerName>
       </S.TeacehrWrap>
     </S.Container>
   );
