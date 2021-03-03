@@ -25,7 +25,7 @@ function* rootSaga() {
     teacherSaga(),
     preReportSaga(),
     accountSaga(),
-    desktopReportSaga()
+    desktopReportSaga(),
     scheduleSaga()
   ]);
 }
