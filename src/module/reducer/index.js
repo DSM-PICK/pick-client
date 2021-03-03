@@ -25,6 +25,7 @@ const rootReducer = combineReducers({
   modalWrap,
   notice,
   preReport,
+  desktopReport,
   teacher,
   schedule
 });
