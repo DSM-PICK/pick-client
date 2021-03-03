@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DScheduleItem from "../../../component/DSchedule/DScheduleItem/DScheduleItem";
 import DScheduleMiniCalanderItem from "../../../component/DSchedule/DScheduleMiniCalanderItem/DScheduleMiniCalanderItem";
+import { getSchedule } from "../../../module/action/schedule";
 import * as S from "../style";
 
 const DScheduleBody = () => {
@@ -9,12 +10,18 @@ const DScheduleBody = () => {
     calander,
     date: { year, month }
   } = useSelector(store => store.schedule);
-
+  const dispatch = useDispatch();
   const [selectDate, setSelectDate] = useState({ year: 0, month: 0, date: 0 });
-  const dateObj = new Date();
-  const nowYear = dateObj.getFullYear();
-  const nowMonth = dateObj.getMonth() + 1;
-  const nowDate = dateObj.getDate();
+  const dateObj = useRef(new Date());
+
+  useEffect(() => {
+    dateObj.current = new Date(year, month - 1);
+  }, [year, month]);
+
+  const nowDateObj = new Date();
+  const nowYear = nowDateObj.getFullYear();
+  const nowMonth = nowDateObj.getMonth() + 1;
+  const nowDate = nowDateObj.getDate();
 
   const clickHandler = useCallback(date => {
     setSelectDate(date);
@@ -27,6 +34,25 @@ const DScheduleBody = () => {
       date === selectDate.date
   );
 
+  const nextMonth = useCallback(() => {
+    const nowMonth = dateObj.current.getMonth();
+    dateObj.current.setMonth(nowMonth + 1);
+
+    const year = dateObj.current.getFullYear();
+    const month = dateObj.current.getMonth() + 1;
+
+    dispatch(getSchedule({ year, month }));
+  }, []);
+  const prevMonth = useCallback(() => {
+    const nowMonth = dateObj.current.getMonth();
+    dateObj.current.setMonth(nowMonth - 1);
+
+    const year = dateObj.current.getFullYear();
+    const month = dateObj.current.getMonth() + 1;
+
+    dispatch(getSchedule({ year, month }));
+  }, []);
+
   return (
     <S.BodyContainer>
       <S.DScheduleMiniCalander>
@@ -36,6 +62,7 @@ const DScheduleBody = () => {
           </S.MiniDateWrap>
           <S.SvgWrap>
             <svg
+              onClick={prevMonth}
               width="7"
               height="12"
               viewBox="0 0 7 12"
@@ -48,6 +75,7 @@ const DScheduleBody = () => {
               />
             </svg>
             <svg
+              onClick={nextMonth}
               width="7"
               height="12"
               viewBox="0 0 7 12"
@@ -70,6 +98,7 @@ const DScheduleBody = () => {
           {calander.map(data => (
             <DScheduleMiniCalanderItem
               {...data}
+              key={`${data.year}-${data.month}-${data.date}`}
               onClick={clickHandler}
               isSelect={
                 data.year === selectDate.year &&
@@ -108,6 +137,7 @@ const DScheduleBody = () => {
         <S.DScheduleBody>
           {calander.map(data => (
             <DScheduleItem
+              key={`${data.year}-${data.month}-${data.date}`}
               isToday={
                 data.year === nowYear &&
                 data.month === nowMonth &&
