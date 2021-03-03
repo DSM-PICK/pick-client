@@ -67,6 +67,21 @@ export const requestApi = async (method, url, body, headers) => {
     throw err.response.status;
   }
 };
+export const requestApiErr = async (method, url, body, headers) => {
+  try {
+    const res = await axios[method](BASE_URL + url, body, {
+      headers
+    });
+
+    return res;
+  } catch (err) {
+    if (!err.response) {
+      alert("네트워크 상태를 확인해 주세요");
+      throw null;
+    }
+    throw err.response;
+  }
+};
 
 export const requesetRefresh = async () => {
   try {
