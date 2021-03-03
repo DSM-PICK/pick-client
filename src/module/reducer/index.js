@@ -12,6 +12,7 @@ import notice from "./notice";
 import modalWrap from "./modal_wrap";
 import account from "./account";
 import desktopReport from "./desktop/report";
+import schedule from "./schedule";
 
 const rootReducer = combineReducers({
   account,
@@ -26,6 +27,8 @@ const rootReducer = combineReducers({
   notice,
   preReport,
   desktopReport
+  teacher,
+  schedule
 });
 
 export default rootReducer;

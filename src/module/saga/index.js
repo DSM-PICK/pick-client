@@ -10,6 +10,7 @@ import mainTextSaga from "./main_text";
 import noticeSaga from "./notice";
 import accountSaga from "./account";
 import { desktopReportSaga } from "./desktop";
+import scheduleSaga from "./schedule";
 
 function* rootSaga() {
   yield all([
@@ -25,6 +26,7 @@ function* rootSaga() {
     preReportSaga(),
     accountSaga(),
     desktopReportSaga()
+    scheduleSaga()
   ]);
 }
 
