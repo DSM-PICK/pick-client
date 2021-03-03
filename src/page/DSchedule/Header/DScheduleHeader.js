@@ -16,6 +16,10 @@ const DScheduleHeader = () => {
     dispatch(getSchedule({ year, month }));
   }, []);
 
+  useEffect(() => {
+    dateObj.current = new Date(year, month - 1);
+  }, [year, month]);
+
   const gotoThisMonth = useCallback(() => {
     const dateObj = new Date();
     const year = dateObj.getFullYear();
@@ -25,7 +29,6 @@ const DScheduleHeader = () => {
   }, []);
 
   const nextMonth = useCallback(() => {
-    console.log("NextMonth");
     const nowMonth = dateObj.current.getMonth();
     dateObj.current.setMonth(nowMonth + 1);
 
@@ -35,7 +38,6 @@ const DScheduleHeader = () => {
     dispatch(getSchedule({ year, month }));
   }, []);
   const prevMonth = useCallback(() => {
-    console.log("PrevMonth");
     const nowMonth = dateObj.current.getMonth();
     dateObj.current.setMonth(nowMonth - 1);
 
