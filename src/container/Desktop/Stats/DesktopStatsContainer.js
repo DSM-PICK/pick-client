@@ -1,8 +1,8 @@
 import React from "react";
-import Stats from "../../../component/Desktop/Templates/Stats/Stats";
+import StatsPage from "../../../component/Desktop/Templates/StatsPage/StatsPage";
 
 const DesktopStatsContainer = () => {
-  return <Stats />;
+  return <StatsPage />;
 };
 
 export default DesktopStatsContainer;
