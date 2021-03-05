@@ -46,3 +46,24 @@ export const FloorTextButton = styled.button`
     cursor: pointer;
   }
 `;
+
+export const ClassWrapOfClickedFloor = styled.div`
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 24px);
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+`;
+
+export const ClassItemOfClickedFloor = styled.div`
+  min-height: 24px;
+  color: ${props => (props.isClicked ? "#406CFF" : "#000000")};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+
+  &:hover {
+    color: #406cff;
+    cursor: pointer;
+  }
+`;

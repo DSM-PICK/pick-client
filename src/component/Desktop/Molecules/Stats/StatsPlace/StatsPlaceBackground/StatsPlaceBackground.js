@@ -3,8 +3,8 @@ import Button from "../../../../Atoms/Button/Button";
 import * as S from "./style";
 
 const StatsPlaceBackground = props => {
-  const { textButtonData } = props;
-  const { onTextButtonClick } = props;
+  const { textButtonData, classItemData } = props;
+  const { onTextButtonClick, onClassItemClick } = props;
 
   return (
     <S.Container>
@@ -19,7 +19,6 @@ const StatsPlaceBackground = props => {
         {textButtonData.map((data, index) => (
           <S.FloorTextButton
             key={data.text}
-            name={data.text}
             isClicked={data.isClicked}
             onClick={() => onTextButtonClick(index)}
           >
@@ -27,6 +26,17 @@ const StatsPlaceBackground = props => {
           </S.FloorTextButton>
         ))}
       </S.FloorWrap>
+      <S.ClassWrapOfClickedFloor>
+        {classItemData.map((data, index) => (
+          <S.ClassItemOfClickedFloor
+            key={data.text}
+            isClicked={data.isClicked}
+            onClick={() => onClassItemClick(index)}
+          >
+            {data.text}
+          </S.ClassItemOfClickedFloor>
+        ))}
+      </S.ClassWrapOfClickedFloor>
     </S.Container>
   );
 };
