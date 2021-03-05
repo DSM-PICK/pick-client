@@ -13,6 +13,7 @@ import modalWrap from "./modal_wrap";
 import account from "./account";
 import toggle from "./toggle";
 import dAttendance from "./d_attendance";
+import dStats from "./d_stats";
 
 const rootReducer = combineReducers({
   account,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   club,
   date,
   dAttendance,
+  dStats,
   mainText,
   modal,
   modalWrap,
