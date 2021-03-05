@@ -1,7 +1,11 @@
 import { DStatsAction } from "../../action/d_stats";
 
 const initialState = {
-  stats: {}
+  stats: {
+    first: {},
+    second: {},
+    third: {}
+  }
 };
 
 const dStatsReducer = (state = initialState, action) => {
@@ -9,7 +13,15 @@ const dStatsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_STATS: {
-      return { ...state, stats: action.payload };
+      const grade_arr = ["first", "second", "third"];
+
+      return {
+        ...state,
+        stats: {
+          ...state.stats,
+          [grade_arr[action.payload.grade - 1]]: action.payload.data
+        }
+      };
     }
     default: {
       return state;
