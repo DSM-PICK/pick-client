@@ -10,6 +10,7 @@ import mainTextSaga from "./main_text";
 import noticeSaga from "./notice";
 import accountSaga from "./account";
 import dAttendanceSaga from "./d_attendance";
+import dStatsSaga from "./d_stats";
 
 function* rootSaga() {
   yield all([
@@ -24,7 +25,8 @@ function* rootSaga() {
     teacherSaga(),
     preReportSaga(),
     accountSaga(),
-    dAttendanceSaga()
+    dAttendanceSaga(),
+    dStatsSaga()
   ]);
 }
 
