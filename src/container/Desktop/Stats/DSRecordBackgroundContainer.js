@@ -1,33 +1,31 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import StatsRecordBackground from "../../../component/Desktop/Molecules/Stats/StatsRecord/StatsRecordBackground/StatsRecordBackground";
+import { DStatsActionCreater } from "../../../module/action/d_stats";
 
 const DSRecordBackgroundContainer = () => {
-  const firstData = {
-    fieldExperience: 1,
-    homeComing: 2,
-    move: 3,
-    outing: 4,
-    truancy: 5
-  };
-  const secondData = {
-    fieldExperience: 2,
-    homeComing: 2,
-    move: 2,
-    outing: 2,
-    truancy: 2
-  };
-  const thirdData = {
-    fieldExperience: 3,
-    homeComing: 3,
-    move: 3,
-    outing: 3,
-    truancy: 3
-  };
+  const { stats } = useSelector(state => state.dStats);
+
+  const { getStatsSaga } = DStatsActionCreater;
+  const dispatch = useDispatch();
+
+  const getStats = useCallback(
+    grade => {
+      dispatch(getStatsSaga(grade));
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    getStats(1);
+    getStats(2);
+    getStats(3);
+  }, []);
 
   const recordDataArr = [
-    { title: "1학년", ...firstData },
-    { title: "2학년", ...secondData },
-    { title: "3학년", ...thirdData }
+    { title: "1학년", ...stats.first },
+    { title: "2학년", ...stats.second },
+    { title: "3학년", ...stats.third }
   ];
 
   return <StatsRecordBackground recordDataArr={recordDataArr} />;
