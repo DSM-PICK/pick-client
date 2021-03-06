@@ -10,12 +10,28 @@ const getStatsSaga = payload => ({
   payload
 });
 
+const SET_SCLICKED_FLOOR = "d_stats/SET_SCLICKED_FLOOR";
+const setSClickedFloor = payload => ({
+  type: SET_SCLICKED_FLOOR,
+  payload
+});
+
+const SET_SCLICKED_PRIORITY = "d_stats/SET_SCLICKED_PRIORITY";
+const setSClickedPriority = payload => ({
+  type: SET_SCLICKED_PRIORITY,
+  payload
+});
+
 export const DStatsAction = {
   SET_STATS,
-  GET_STATS_SAGA
+  GET_STATS_SAGA,
+  SET_SCLICKED_FLOOR,
+  SET_SCLICKED_PRIORITY
 };
 
 export const DStatsActionCreater = {
   setStats,
-  getStatsSaga
+  getStatsSaga,
+  setSClickedFloor,
+  setSClickedPriority
 };
