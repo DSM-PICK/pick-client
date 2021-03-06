@@ -17,7 +17,11 @@ export const LeftGridWrap = styled.div`
 `;
 
 export const LeftAdditionalGridWrap = styled.div`
-  display: flex;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100%;
 `;
 
 export const RightWrap = styled.div`
