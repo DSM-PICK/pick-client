@@ -6,8 +6,13 @@ const initialState = {
     second: {},
     third: {}
   },
-  clickedFloor: "",
-  clickedPriority: ""
+  clickedFloor: [
+    { text: "4층", isClicked: true },
+    { text: "3층" },
+    { text: "2층" },
+    { text: "기타" }
+  ],
+  clickedPriority: []
 };
 
 const dStatsReducer = (state = initialState, action) => {
@@ -15,13 +20,14 @@ const dStatsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_STATS: {
+      const { grade, data } = action.payload;
       const grade_arr = ["first", "second", "third"];
 
       return {
         ...state,
         stats: {
           ...state.stats,
-          [grade_arr[action.payload.grade - 1]]: action.payload.data
+          [grade_arr[grade - 1]]: data
         }
       };
     }
