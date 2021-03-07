@@ -1,48 +1,85 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import StatsPlaceBackground from "../../../component/Desktop/Molecules/Stats/StatsPlace/StatsPlaceBackground/StatsPlaceBackground";
+import { DStatsActionCreater } from "../../../module/action/d_stats";
 
 const DSPlaceBackgrondContainer = () => {
-  const [textButtonData, setTextButtonData] = useState([
-    { text: "4층", isClicked: true },
-    { text: "3층" },
-    { text: "2층" },
-    { text: "기타" }
-  ]);
-  const [classItemData, setclassItemData] = useState([
-    { text: "교실 2-1", isClicked: true },
-    { text: "세미나실 2-1" },
-    { text: "소프트웨어 개발 1실" },
-    { text: "소프트웨어 개발 2실" },
-    { text: "소프트웨어 개발 3실" },
-    { text: "교실 2-2" },
-    { text: "교실 2-3" },
-    { text: "교실 2-4" }
-  ]);
+  const {
+    clickedFloor: textButtonData,
+    clickedPriority: classItemData
+  } = useSelector(state => state.dStats);
+  const floorText2apiFloorText = {
+    "4층": 4,
+    "3층": 3,
+    "2층": 2,
+    기타: 1
+  };
+  const [clickedFloorText] = textButtonData
+    .map(data => data.isClicked && floorText2apiFloorText[data.text])
+    .filter(data => data);
 
+  const dispatch = useDispatch();
+  const {
+    setSClickedFloor,
+    setSClickedPriority,
+    getSClickedPrioritySaga
+  } = DStatsActionCreater;
+
+  const setSClickedFloorDispatch = useCallback(
+    floorObj => {
+      dispatch(setSClickedFloor({ clickedFloor: floorObj }));
+    },
+    [dispatch]
+  );
+  const setSClickedPriorityDispatch = useCallback(
+    priorityObj => {
+      dispatch(setSClickedPriority({ clickedPriority: priorityObj }));
+    },
+    [dispatch]
+  );
+  const getSClickedPriorityDispatch = useCallback(
+    (schedule, floor) => {
+      const TEMP_SCHEDULE = "self-study";
+      dispatch(
+        getSClickedPrioritySaga({ schedule: TEMP_SCHEDULE, floor: floor })
+      );
+    },
+    [dispatch]
+  );
+
+  const changeisClickedByClick = useCallback((dataIndex, objArr, func) => {
+    func(
+      objArr.map((data, mapIndex) =>
+        mapIndex !== dataIndex
+          ? { ...data, isClicked: false }
+          : { ...data, isClicked: true }
+      )
+    );
+  }, []);
   const onTextButtonClick = useCallback(
     dataIndex => {
-      setTextButtonData(
-        textButtonData.map((data, mapIndex) =>
-          mapIndex !== dataIndex
-            ? { ...data, isClicked: false }
-            : { ...data, isClicked: true }
-        )
+      changeisClickedByClick(
+        dataIndex,
+        textButtonData,
+        setSClickedFloorDispatch
       );
     },
     [textButtonData]
   );
   const onClassItemClick = useCallback(
     dataIndex => {
-      setclassItemData(
-        classItemData.map((data, mapIndex) =>
-          mapIndex !== dataIndex
-            ? { ...data, isClicked: false }
-            : { ...data, isClicked: true }
-        )
+      changeisClickedByClick(
+        dataIndex,
+        classItemData,
+        setSClickedPriorityDispatch
       );
     },
     [classItemData]
   );
+
+  useEffect(() => {
+    getSClickedPriorityDispatch("self-study", clickedFloorText);
+  }, [clickedFloorText]);
 
   return (
     <StatsPlaceBackground
