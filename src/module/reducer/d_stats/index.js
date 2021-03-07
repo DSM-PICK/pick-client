@@ -12,11 +12,17 @@ const initialState = {
     { text: "2층" },
     { text: "기타" }
   ],
-  clickedPriority: []
+  clickedPriority: [],
+  statsAttendance: []
 };
 
 const dStatsReducer = (state = initialState, action) => {
-  const { SET_STATS, SET_SCLICKED_FLOOR, SET_SCLICKED_PRIORITY } = DStatsAction;
+  const {
+    SET_STATS,
+    SET_SCLICKED_FLOOR,
+    SET_SCLICKED_PRIORITY,
+    SET_SATTENDANCE_DATA
+  } = DStatsAction;
 
   switch (action.type) {
     case SET_STATS: {
@@ -41,6 +47,12 @@ const dStatsReducer = (state = initialState, action) => {
       return {
         ...state,
         clickedPriority: action.payload.clickedPriority
+      };
+    }
+    case SET_SATTENDANCE_DATA: {
+      return {
+        ...state,
+        statsAttendance: action.payload.statsAttendance
       };
     }
     default: {
