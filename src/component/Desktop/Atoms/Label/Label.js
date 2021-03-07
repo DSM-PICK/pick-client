@@ -1,12 +1,10 @@
 import React from "react";
 import * as S from "./styles";
 
-const Label = ({ style, name, value }) => {
-  return (
-    <S.Container {...style} name={name}>
-      {value}
-    </S.Container>
-  );
+const Label = props => {
+  const { css, text } = props;
+
+  return <S.Container {...css}>{text}</S.Container>;
 };
 
 export default Label;

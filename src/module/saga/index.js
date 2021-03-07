@@ -11,6 +11,7 @@ import noticeSaga from "./notice";
 import accountSaga from "./account";
 import { desktopReportSaga } from "./desktop";
 import scheduleSaga from "./schedule";
+import dAttendanceSaga from "./d_attendance";
 
 function* rootSaga() {
   yield all([
@@ -27,6 +28,8 @@ function* rootSaga() {
     accountSaga(),
     desktopReportSaga(),
     scheduleSaga()
+    accountSaga(),
+    dAttendanceSaga()
   ]);
 }
 
