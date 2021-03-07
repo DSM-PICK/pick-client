@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 export const Header = styled.div`
   display: flex;
+  margin-top: 5px;
 `;
 
 export const ControlerWrap = styled.div`
