@@ -28,12 +28,26 @@ const getSClickedPrioritySaga = payload => ({
   payload
 });
 
+const SET_SATTENDANCE_DATA = "d_stats/SET_SATTENDANCE_DATA";
+const setSAttendanceData = payload => ({
+  type: SET_SATTENDANCE_DATA,
+  payload
+});
+
+const GET_SATTENDANCE_DATA_SAGA = "d_stats/GET_SATTENDANCE_DATA_SAGA";
+const getSAttendanceDataSaga = payload => ({
+  type: GET_SATTENDANCE_DATA_SAGA,
+  payload
+});
+
 export const DStatsAction = {
   SET_STATS,
   GET_STATS_SAGA,
   SET_SCLICKED_FLOOR,
   SET_SCLICKED_PRIORITY,
-  GET_SCLICKED_PRIORITY_SAGA
+  GET_SCLICKED_PRIORITY_SAGA,
+  SET_SATTENDANCE_DATA,
+  GET_SATTENDANCE_DATA_SAGA
 };
 
 export const DStatsActionCreater = {
@@ -41,5 +55,7 @@ export const DStatsActionCreater = {
   getStatsSaga,
   setSClickedFloor,
   setSClickedPriority,
-  getSClickedPrioritySaga
+  getSClickedPrioritySaga,
+  setSAttendanceData,
+  getSAttendanceDataSaga
 };
