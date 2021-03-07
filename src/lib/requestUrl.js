@@ -7,6 +7,9 @@ export const ATTENDANCE = {
   },
   ATTENDANCE_LIST_URL: (schedule, floor, priority) => {
     return `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
+  },
+  RECORD_BY_GRADE_URL: grade => {
+    return `/saturn/attendance/record/${grade}`;
   }
 };
 

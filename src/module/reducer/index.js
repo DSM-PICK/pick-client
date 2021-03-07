@@ -15,6 +15,7 @@ import toggle from "./toggle";
 import dAttendance from "./d_attendance";
 import desktopReport from "./desktop/report";
 import schedule from "./schedule";
+import dStats from "./d_stats";
 
 const rootReducer = combineReducers({
   account,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   club,
   date,
   dAttendance,
+  dStats,
   mainText,
   modal,
   modalWrap,
