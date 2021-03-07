@@ -35,7 +35,6 @@ export { default as AdminOnIcon } from "./Footer/adminOn.svg";
 export { default as StatsIcon } from "./Footer/stats.svg";
 export { default as StatsOnIcon } from "./Footer/statsOn.svg";
 
-export { default as LogoPick } from "./Logo/LogoPick.png";
 export { default as LogoPickSvg } from "./Logo/LogoPick.svg";
 export { default as WhiteLogoPick } from "./Logo/WhiteLogoPick.svg";
 export { default as LogoForAdmin } from "./Logo/LogoForAdmin.svg";
