@@ -27,15 +27,21 @@ const StatsPlaceBackground = props => {
         ))}
       </S.FloorWrap>
       <S.ClassWrapOfClickedFloor>
-        {classItemData.map((data, index) => (
-          <S.ClassItemOfClickedFloor
-            key={data.text}
-            isClicked={data.isClicked}
-            onClick={() => onClassItemClick(index)}
-          >
-            {data.text}
+        {classItemData.length ? (
+          classItemData.map((data, index) => (
+            <S.ClassItemOfClickedFloor
+              key={data.text}
+              isClicked={data.isClicked}
+              onClick={() => onClassItemClick(index)}
+            >
+              {data.text}
+            </S.ClassItemOfClickedFloor>
+          ))
+        ) : (
+          <S.ClassItemOfClickedFloor isNodata={true}>
+            교실이 없습니다.
           </S.ClassItemOfClickedFloor>
-        ))}
+        )}
       </S.ClassWrapOfClickedFloor>
     </S.Container>
   );

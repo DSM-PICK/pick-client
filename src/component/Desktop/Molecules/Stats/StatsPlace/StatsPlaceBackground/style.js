@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   display: grid;
@@ -62,8 +62,15 @@ export const ClassItemOfClickedFloor = styled.div`
   font-weight: 500;
   line-height: 24px;
 
-  &:hover {
-    color: #406cff;
-    cursor: pointer;
-  }
+  ${props =>
+    props.isNodata
+      ? css`
+          text-align: center;
+        `
+      : css`
+          &:hover {
+            color: #406cff;
+            cursor: pointer;
+          }
+        `}
 `;
