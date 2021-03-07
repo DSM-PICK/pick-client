@@ -28,9 +28,9 @@ function* rootSaga() {
     preReportSaga(),
     accountSaga(),
     desktopReportSaga(),
-    scheduleSaga()
+    scheduleSaga(),
     accountSaga(),
-    dAttendanceSaga()
+    dAttendanceSaga(),
     dAttendanceSaga(),
     dStatsSaga()
   ]);
