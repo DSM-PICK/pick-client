@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
   notice,
   preReport,
   teacher,
-  toggle
+  toggle,
   desktopReport,
   teacher,
   schedule
