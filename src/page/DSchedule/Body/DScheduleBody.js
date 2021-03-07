@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DScheduleItem from "../../../component/DSchedule/DScheduleItem/DScheduleItem";
+import DScheduleItem, {
+  scheduleMap
+} from "../../../component/DSchedule/DScheduleItem/DScheduleItem";
 import DScheduleMiniCalanderItem from "../../../component/DSchedule/DScheduleMiniCalanderItem/DScheduleMiniCalanderItem";
 import { getSchedule } from "../../../module/action/schedule";
 import * as S from "../style";
@@ -116,10 +118,10 @@ const DScheduleBody = () => {
         <S.MiniFooter>
           {selectObj ? (
             <div>
-              <S.Schedule>{selectObj.schedule}</S.Schedule>
-              <S.TeacherName>{selectObj.teacher4 || "선생님"}</S.TeacherName>
-              <S.TeacherName>{selectObj.teacher3 || "정보가"}</S.TeacherName>
-              <S.TeacherName>{selectObj.teacher2 || "없어요"}</S.TeacherName>
+              <S.Schedule>{scheduleMap[selectObj.schedule]}</S.Schedule>
+              <S.TeacherName>{selectObj.floor4 || "선생님"}</S.TeacherName>
+              <S.TeacherName>{selectObj.floor3 || "정보가"}</S.TeacherName>
+              <S.TeacherName>{selectObj.floor2 || "없어요"}</S.TeacherName>
             </div>
           ) : (
             ""
