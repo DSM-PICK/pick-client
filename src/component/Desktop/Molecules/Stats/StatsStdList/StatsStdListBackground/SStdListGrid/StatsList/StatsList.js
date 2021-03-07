@@ -7,7 +7,11 @@ const StatsList = props => {
   return (
     <S.Container {...css} length={length}>
       {stateList.map((state, idx) => {
-        return <S.StateText key={idx}>{state}</S.StateText>;
+        return (
+          <S.StateText key={idx} state={state}>
+            {state}
+          </S.StateText>
+        );
       })}
     </S.Container>
   );

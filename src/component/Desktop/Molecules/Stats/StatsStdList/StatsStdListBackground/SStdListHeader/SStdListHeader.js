@@ -3,13 +3,11 @@ import { useSelector } from "react-redux";
 import * as S from "./styles";
 
 const SStdListHeader = () => {
-  const attendanceLists = useSelector(
-    state => state.dAttendance.attendanceData
-  );
+  const { statsAttendance } = useSelector(state => state.dStats);
 
   let length = 0;
-  if (attendanceLists.length) {
-    length = Object.values(attendanceLists[0].state).filter(data => data)
+  if (statsAttendance.length) {
+    length = Object.values(statsAttendance[0].state).filter(data => data)
       .length;
   }
 

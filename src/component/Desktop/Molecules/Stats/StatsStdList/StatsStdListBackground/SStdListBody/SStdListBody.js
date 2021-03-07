@@ -3,12 +3,12 @@ import SStdListGrid from "../SStdListGrid/SStdListGrid";
 import * as S from "./styles";
 
 const SStdListBody = props => {
-  const { attendanceLists } = props;
+  const { statsAttendance } = props;
 
   return (
     <S.Container>
-      {attendanceLists.length
-        ? attendanceLists.map((data, index) => (
+      {statsAttendance.length
+        ? statsAttendance.map((data, index) => (
             <SStdListGrid
               key={data.name}
               index={index}
@@ -19,7 +19,7 @@ const SStdListBody = props => {
               css={S.StdListGridCSS}
             />
           ))
-        : ""}
+        : "학생 데이터가 없습니다."}
     </S.Container>
   );
 };

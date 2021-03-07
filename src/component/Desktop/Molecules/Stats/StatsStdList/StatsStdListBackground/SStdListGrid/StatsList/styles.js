@@ -9,4 +9,10 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const StateText = styled.p``;
+export const StateText = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => (props.state === "무단" ? "#FF406E" : "#000000")};
+  font-size: 16px;
+`;
