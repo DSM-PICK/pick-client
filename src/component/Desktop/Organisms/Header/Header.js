@@ -1,5 +1,5 @@
 import React from "react";
-import { LogoPick } from "../../../../asset";
+import { HeaderPickSvg } from "../../../../asset/Desktop";
 import Img from "../../Atoms/Img/Img";
 import HeaderNavLinkWrap from "../../Molecules/Header/HeaderNavLinkWrap/HeaderNavLinkWrap";
 import HeaderUserWrap from "../../Molecules/Header/HeaderUserWrap/HeaderUserWrap";
@@ -12,7 +12,7 @@ const Header = props => {
     <S.Container>
       <S.Wrap>
         <S.ImgWrap>
-          <Img src={LogoPick} css={S.ImgCSS} />
+          <Img src={HeaderPickSvg} css={S.ImgCSS} />
         </S.ImgWrap>
         <S.NavLinkWrap>
           <HeaderNavLinkWrap
