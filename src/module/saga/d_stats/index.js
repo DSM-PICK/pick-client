@@ -17,27 +17,56 @@ function* getStats(action) {
 }
 
 function* getSClickedPriority(action) {
-  const { schedule, floor } = action.payload;
+  try {
+    const { schedule, floor } = action.payload;
 
-  const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(schedule, floor);
-  const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(schedule, floor);
+    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-  const clickedPriority = res.data.locations.map((locationData, mapIndex) => {
-    const { name, priority } = locationData;
-    return { text: name, priority, isClicked: mapIndex ? false : true };
-  });
+    const clickedPriority = res.data.locations.map((locationData, mapIndex) => {
+      const { name, priority } = locationData;
+      return { text: name, priority, isClicked: mapIndex ? false : true };
+    });
 
-  const { setSClickedPriority } = DStatsActionCreater;
-  yield put(setSClickedPriority({ clickedPriority }));
+    const { setSClickedPriority } = DStatsActionCreater;
+    yield put(setSClickedPriority({ clickedPriority }));
+  } catch (error) {
+    console.log("getSClickedPriority error");
+    console.log(error);
+  }
+}
 
-  console.log(res);
+function* getSAttendanceData(action) {
+  try {
+    const { schedule, floor, priority } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
+      schedule,
+      floor,
+      priority
+    );
+
+    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+    const { attendances } = res.data;
+
+    const { setSAttendanceData } = DStatsActionCreater;
+    yield put(setSAttendanceData({ statsAttendance: attendances }));
+  } catch (error) {
+    console.log("getSAttendanceData error");
+    console.log(error);
+  }
 }
 
 function* dStatsSaga() {
-  const { GET_STATS_SAGA, GET_SCLICKED_PRIORITY_SAGA } = DStatsAction;
+  const {
+    GET_STATS_SAGA,
+    GET_SCLICKED_PRIORITY_SAGA,
+    GET_SATTENDANCE_DATA_SAGA
+  } = DStatsAction;
 
   yield takeEvery(GET_STATS_SAGA, getStats);
   yield takeEvery(GET_SCLICKED_PRIORITY_SAGA, getSClickedPriority);
+  yield takeEvery(GET_SATTENDANCE_DATA_SAGA, getSAttendanceData);
 }
 
 export default dStatsSaga;
