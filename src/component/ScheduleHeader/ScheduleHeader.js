@@ -14,7 +14,7 @@ const ScheduleHeader = () => {
         month: month === 11 ? 0 : month + 1
       })
     );
-  }, [month]);
+  }, [month, year]);
 
   const prevMonth = useCallback(() => {
     disaptch(
@@ -23,7 +23,7 @@ const ScheduleHeader = () => {
         month: month === 0 ? 11 : month - 1
       })
     );
-  }, [month]);
+  }, [month, year]);
 
   return (
     <S.Container>

@@ -14,7 +14,12 @@ export const Container = styled.div`
 export const DelBtn = styled.button`
   width: 14px;
   height: 14px;
-  border: none;
+  border: 1px solid black;
+  padding: 2px;
   outline: none;
-  background: ${props => `url(${props.img})`} 100% / 100%;
+  background: ${props => `url(${props.img})`} 40% 50% / 80% 80% no-repeat;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

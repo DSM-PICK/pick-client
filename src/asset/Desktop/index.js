@@ -1,4 +1,5 @@
 export { default as DropDownArrow } from "./Header/DropDownArrow.svg";
+export { default as HeaderPickSvg } from "./Header/HeaderPickSvg.svg";
 
 export { default as PrevBtn } from "./PreAbsence/PrevBtn.svg";
 export { default as NextBtn } from "./PreAbsence/NextBtn.svg";

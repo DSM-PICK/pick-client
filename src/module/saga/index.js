@@ -9,6 +9,8 @@ import clubSaga from "./club";
 import mainTextSaga from "./main_text";
 import noticeSaga from "./notice";
 import accountSaga from "./account";
+import { desktopReportSaga } from "./desktop";
+import scheduleSaga from "./schedule";
 import dAttendanceSaga from "./d_attendance";
 import dStatsSaga from "./d_stats";
 
@@ -25,6 +27,10 @@ function* rootSaga() {
     teacherSaga(),
     preReportSaga(),
     accountSaga(),
+    desktopReportSaga(),
+    scheduleSaga(),
+    accountSaga(),
+    dAttendanceSaga(),
     dAttendanceSaga(),
     dStatsSaga()
   ]);

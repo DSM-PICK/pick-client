@@ -13,6 +13,8 @@ import modalWrap from "./modal_wrap";
 import account from "./account";
 import toggle from "./toggle";
 import dAttendance from "./d_attendance";
+import desktopReport from "./desktop/report";
+import schedule from "./schedule";
 import dStats from "./d_stats";
 
 const rootReducer = combineReducers({
@@ -30,7 +32,10 @@ const rootReducer = combineReducers({
   notice,
   preReport,
   teacher,
-  toggle
+  toggle,
+  desktopReport,
+  teacher,
+  schedule
 });
 
 export default rootReducer;
