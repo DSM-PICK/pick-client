@@ -10,13 +10,19 @@ const ListItem = ({
   description,
   deleteAttendanceChangeStudent,
   setFixAttendanceChangeStudent,
-  id
+  id,
+  openMenu,
+  isOpenMenu
 }) => {
   const deleteButtonClickHandler = event => {
     deleteAttendanceChangeStudent(id);
   };
   const fixButtonClickHandler = event => {
     setFixAttendanceChangeStudent(item);
+  };
+  const menuButtonClickHandler = event => {
+    if (!isOpenMenu) event.stopPropagation();
+    openMenu(id);
   };
   return (
     <S.FormListItem className="content">
@@ -25,20 +31,23 @@ const ListItem = ({
       <div className="type">{type}</div>
       <div className="teacher">{teacher}</div>
       <div className="description">{description}</div>
-      <label className="menu">
+      <label className="menu" onClick={menuButtonClickHandler}>
         <div />
         <div />
         <div />
-        <input type="checkbox" />
-        <S.FormListItemMenu>
-          <div onClick={fixButtonClickHandler}>수정</div>
-          <div
-            className="listItemDeleteButton"
-            onClick={deleteButtonClickHandler}
-          >
-            삭제
-          </div>
-        </S.FormListItemMenu>
+        {isOpenMenu ? (
+          <S.FormListItemMenu>
+            <div onClick={fixButtonClickHandler}>수정</div>
+            <div
+              className="listItemDeleteButton"
+              onClick={deleteButtonClickHandler}
+            >
+              삭제
+            </div>
+          </S.FormListItemMenu>
+        ) : (
+          ""
+        )}
       </label>
     </S.FormListItem>
   );
