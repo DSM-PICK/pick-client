@@ -16,7 +16,8 @@ const Student = () => {
     deleteAttendanceChangeStudent,
     setSelectedStudent,
     setNewAttendanceChangeStudent,
-    getSimilerStudent
+    getSimilerStudent,
+    setSimilerStudent
   } = setState;
   const [isStudentAdding, setIsStudentAdding] = useState(false);
   const addButtonClickHandler = () => {

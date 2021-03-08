@@ -12,13 +12,17 @@ const StudentAddInput = ({
         onChange={event => inputChangeHandler(event.target.value)}
         placeholder="검색..."
       />
-      <div>
-        {similerStudents.map(similerStudent => (
-          <div onClick={() => studentClickHandler(similerStudent)}>
-            {similerStudent}
-          </div>
-        ))}
-      </div>
+      {similerStudents.length <= 0 ? (
+        ""
+      ) : (
+        <div>
+          {similerStudents.map(similerStudent => (
+            <div onClick={() => studentClickHandler(similerStudent)}>
+              {similerStudent}
+            </div>
+          ))}
+        </div>
+      )}
     </S.FormStudentAddInput>
   );
 };
