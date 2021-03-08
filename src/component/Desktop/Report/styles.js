@@ -4,14 +4,15 @@ const pxToRem = px => {
   return px / 16;
 };
 
-const widthScale =
-  window.innerWidth > 1280 ? window.innerWidth / 1980 : 1280 / 1980;
+const computerScale = 1440 / 1980;
 
 export const DesktopReport = styled.div`
   width: 100%;
-  min-width: ${pxToRem(360 * widthScale) + pxToRem(1280 * widthScale)}rem;
+  min-width: ${pxToRem(360 * computerScale) + pxToRem(1280 * computerScale)}rem;
+  display: flex;
+  justify-content: center;
+  padding: ${pxToRem(60)}rem;
   min-height: 100vh;
-  padding: ${pxToRem(60)}rem ${pxToRem(360 * widthScale)}rem;
   box-sizing: border-box;
   background-color: #f2f2f2;
   display: flex;
@@ -29,25 +30,25 @@ export const DesktopReportContent = styled.div`
 export const DesktopReportContentT = styled(DesktopReportContent)`
   padding: 15px;
   box-sizing: border-box;
+  background-color: white;
 `;
 
 export const DesktopReportCalender = styled(DesktopReportContent)`
-  width: ${pxToRem(300 * widthScale)}rem;
+  width: ${pxToRem(300 * computerScale)}rem;
   height: ${pxToRem(885)}rem;
-  background-color: white;
-  box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
   overflow: hidden;
+  box-shadow: 0px 0px 0px white;
 `;
 
 export const Form = styled(DesktopReportContent)`
-  width: ${pxToRem(900 * widthScale)}rem;
+  width: ${pxToRem(900 * computerScale)}rem;
   height: ${pxToRem(332)}rem;
   padding: ${pxToRem(16)}rem ${pxToRem(26)}rem;
   box-sizing: border-box;
 `;
 
 export const List = styled(DesktopReportContent)`
-  width: ${pxToRem(900 * widthScale)}rem;
+  width: ${pxToRem(900 * computerScale)}rem;
   height: ${pxToRem(500)}rem;
   padding: ${pxToRem(16)}rem 0px;
   box-sizing: border-box;
@@ -66,13 +67,13 @@ export const CalenderDayWrapper = styled.div`
 
 export const CalenderDay = styled.div`
   font-size: ${pxToRem(12)}rem;
-  width: ${pxToRem(18 * widthScale)}rem;
+  width: ${pxToRem(18 * computerScale)}rem;
   height: ${pxToRem(18)}rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  margin: ${pxToRem(9)}rem ${pxToRem(16 * widthScale)}rem;
+  margin: ${pxToRem(9)}rem ${pxToRem(16 * computerScale)}rem;
   cursor: pointer;
   ${({ isToday, isClicked }) =>
     isToday
