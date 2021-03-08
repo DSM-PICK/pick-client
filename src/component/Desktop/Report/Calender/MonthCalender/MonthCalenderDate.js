@@ -40,14 +40,17 @@ const MonthCalender = ({
     const nowDateObj = new Date(`${date.year}-${date.month}-${date.date}`);
     return startDateObj <= nowDateObj && endDateObj >= nowDateObj;
   };
+  const isToday =
+    today.year == year && today.month == month && today.date == date;
   return (
     <S.CalenderDay
-      isToday={today.year == year && today.month == month && today.date == date}
+      isToday={isToday}
       isClicked={isIncludeInAttendanceChangeDate(startDateObj, endDateObj, {
         year,
         month,
         date
       })}
+      id={isToday ? "today" : ""}
       onClick={buttonClickHandler}
     >
       <p>{date}</p>

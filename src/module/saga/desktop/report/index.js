@@ -1,13 +1,13 @@
 import { call, put, takeLatest, debounce, select } from "redux-saga/effects";
 import {
   setAttendanceChangeList,
-  similerStudents,
+  setSimilerStudents,
   setAttendanceChangeStudent,
   getAttendanceChangeList,
   GET_ATTENDANCE_CHANGE_LIST,
   ADD_ATTENDANCE_CHANGE_LIST,
   GET_SIMILER_STUDENT,
-  DELETE_ATTENDANCE_CHANGE_STUDENT
+  DELETE_ATTENDANCE_CHANGE_STUDENT_TO_SERVER
 } from "../../../action/deskop/report";
 import {
   requestApiWithAccessToken,
@@ -139,6 +139,7 @@ function* deleteAttendanceChangeStudent({ payload }) {
     const newState = attendanceChangeList.filter(
       attendanceChangeStudent => attendanceChangeStudent.id !== payload
     );
+    console.log(newState);
     const REQUEST_URL = PRE_REPORT.DELETE_PRE_REPORT_URL(payload);
     yield call(requestDelApiWithAccessToken, REQUEST_URL);
     yield put(setAttendanceChangeList(newState));
@@ -151,10 +152,14 @@ function* deleteAttendanceChangeStudent({ payload }) {
 }
 
 function* getSimilerStudent({ payload }) {
+  if (payload.length <= 0) {
+    yield put(setSimilerStudents([]));
+    return;
+  }
   try {
     const REQUEST_URL = AUTO_COMPLETE.AUTO_COMPLETE_STUDENT_URL(payload);
     const { data } = yield call(requestGetApiWithAccessToken, REQUEST_URL);
-    yield put(similerStudents(data));
+    yield put(setSimilerStudents(data));
   } catch (error) {}
 }
 
@@ -202,7 +207,7 @@ function* desktopReportSaga() {
   yield takeLatest(ADD_ATTENDANCE_CHANGE_LIST, addAttendanceChangeStudentSaga);
   yield debounce(100, GET_SIMILER_STUDENT, getSimilerStudent);
   yield takeLatest(
-    DELETE_ATTENDANCE_CHANGE_STUDENT,
+    DELETE_ATTENDANCE_CHANGE_STUDENT_TO_SERVER,
     deleteAttendanceChangeStudent
   );
 }

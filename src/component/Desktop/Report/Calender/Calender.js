@@ -72,25 +72,31 @@ const Calender = () => {
     initMonth();
   }, []);
   return (
-    <S.DesktopReportCalender>
+    <S.DesktopReportContentT>
       <Today />
       <DayOfWeeks />
-      <S.CalenderWrapper ref={CalenderWrapperRef} onScroll={scrollHandler}>
-        {renderedMonth.map(({ year, month }) => (
-          <MonthCalender
-            key={`${year}-${month}`}
-            year={year}
-            month={month}
-            endDate={getMonthLastDay(year, month)}
-            attendanceChangeStartDate={startDate}
-            attendanceChangeEndDate={endDate}
-            setAttendanceChangeStartDate={setStartDate}
-            setAttendanceChangeEndDate={setEndDate}
-            selectedStudent={selectedStudent}
-          />
-        ))}
-      </S.CalenderWrapper>
-    </S.DesktopReportCalender>
+      <S.DesktopReportCalender>
+        <S.CalenderWrapper
+          ref={CalenderWrapperRef}
+          onScroll={scrollHandler}
+          id="monthWrapper"
+        >
+          {renderedMonth.map(({ year, month }) => (
+            <MonthCalender
+              key={`${year}-${month}`}
+              year={year}
+              month={month}
+              endDate={getMonthLastDay(year, month)}
+              attendanceChangeStartDate={startDate}
+              attendanceChangeEndDate={endDate}
+              setAttendanceChangeStartDate={setStartDate}
+              setAttendanceChangeEndDate={setEndDate}
+              selectedStudent={selectedStudent}
+            />
+          ))}
+        </S.CalenderWrapper>
+      </S.DesktopReportCalender>
+    </S.DesktopReportContentT>
   );
 };
 

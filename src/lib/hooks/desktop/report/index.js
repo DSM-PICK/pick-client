@@ -12,7 +12,9 @@ import {
   setStartPeriod,
   getSimilerStudent,
   setNewAttendanceChangeStudent,
-  setFixAttendanceChangeStudent
+  setFixAttendanceChangeStudent,
+  setSimilerStudents,
+  deleteAttendanceChangeStudentToServer
 } from "../../../../module/action/deskop/report";
 import { getAttendanceChangeProxy } from "./proxy";
 
@@ -76,7 +78,10 @@ export const useDesktopReportState = () => {
     setNewAttendanceChangeStudent: payload =>
       dispatch(setNewAttendanceChangeStudent(payload)),
     setFixAttendanceChangeStudent: payload =>
-      dispatch(setFixAttendanceChangeStudent(payload))
+      dispatch(setFixAttendanceChangeStudent(payload)),
+    setSimilerStudent: payload => dispatch(setSimilerStudents(payload)),
+    deleteAttendanceChangeStudentToServer: payload =>
+      dispatch(deleteAttendanceChangeStudentToServer(payload))
   };
   return {
     state,
