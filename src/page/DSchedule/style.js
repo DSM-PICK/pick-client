@@ -95,6 +95,44 @@ export const DScheduleMiniCalander = styled.div`
   padding: 0.5rem;
 `;
 
+export const HideInput = styled.input`
+  display: none;
+`;
+
+export const ExeclBtn = styled.button`
+  border: 1px solid #888888;
+  border-radius: 8px;
+  color: #888888;
+  width: 80%;
+  margin-top: 15px;
+  font-size: 1.05rem;
+  background-color: transparent;
+  transition: all 125ms;
+  outline: none;
+
+  &:hover {
+    background-color: #888888;
+    color: white;
+  }
+  &:active {
+    background-color: #aaaaaa;
+  }
+`;
+
+export const DScheduleExecl = styled.div`
+  background-color: white;
+  position: absolute;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
+  top: 470px;
+  padding: 1rem 0.5rem;
+
+  right: calc(100% + 15px);
+  box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
+  width: 180px;
+`;
+
 export const BodyContainer = styled.div`
   position: relative;
 `;
