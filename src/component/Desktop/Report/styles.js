@@ -26,13 +26,16 @@ export const DesktopReportContent = styled.div`
   border-radius: 12px;
 `;
 
+export const DesktopReportContentT = styled(DesktopReportContent)`
+  padding: 15px;
+  box-sizing: border-box;
+`;
+
 export const DesktopReportCalender = styled(DesktopReportContent)`
   width: ${pxToRem(300 * widthScale)}rem;
   height: ${pxToRem(885)}rem;
   background-color: white;
   box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
-  padding: 15px;
-  box-sizing: border-box;
   overflow: hidden;
 `;
 
@@ -441,7 +444,6 @@ export const FormListItemMenu = styled.div`
   width: ${pxToRem(50)}rem !important;
   height: ${pxToRem(50)}rem !important;
   border-radius: 4px !important;
-  display: none;
   top: 10px;
   left: -50px;
   z-index: 100;
@@ -486,4 +488,8 @@ export const FomrDatePeriodInputWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const CalenderTWrapper = styled.div`
+  background-color: white;
 `;
