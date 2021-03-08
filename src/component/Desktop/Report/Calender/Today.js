@@ -7,12 +7,18 @@ const Today = () => {
     year: todayDateObj.getFullYear(),
     month: todayDateObj.getMonth() + 1
   };
+  const calenderButtonClickHandler = () => {
+    document.getElementById("todayMonth").scrollIntoView();
+    window.scrollTo(0, 0);
+  };
   return (
     <S.CalenderToday>
       <p>
         {today.year}년 {today.month}월
       </p>
-      <S.CalenderButton>오늘</S.CalenderButton>
+      <S.CalenderButton onClick={calenderButtonClickHandler}>
+        오늘
+      </S.CalenderButton>
     </S.CalenderToday>
   );
 };
