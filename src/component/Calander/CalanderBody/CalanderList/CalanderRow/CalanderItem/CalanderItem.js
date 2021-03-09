@@ -11,7 +11,7 @@ const CalanderItem = ({
   error
 }) => {
   return (
-    <S.Container isActive={isActive} onClick={onClick}>
+    <S.Container isToday={isToday} isActive={isActive} onClick={onClick}>
       <S.Header active={isToday}>
         {isToday && <S.ActiveCircle />}
         <S.CircleP>{date}</S.CircleP>

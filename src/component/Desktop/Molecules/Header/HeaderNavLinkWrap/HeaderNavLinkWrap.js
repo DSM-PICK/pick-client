@@ -28,6 +28,7 @@ const HeaderNavLinkWrap = props => {
     <S.Container>
       {HeaderNavLinkList.map(dataObj => (
         <NavLink
+          exact={true}
           key={dataObj.text}
           {...dataObj}
           css={css}

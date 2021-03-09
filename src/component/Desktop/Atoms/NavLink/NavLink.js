@@ -2,10 +2,10 @@ import React from "react";
 import * as S from "./styles";
 
 const NavLink = props => {
-  const { text, to, css, activeStyle } = props;
+  const { exact, text, to, css, activeStyle } = props;
 
   return (
-    <S.Container to={to} activeStyle={activeStyle} {...css}>
+    <S.Container exact={exact} to={to} activeStyle={activeStyle} {...css}>
       {text}
     </S.Container>
   );

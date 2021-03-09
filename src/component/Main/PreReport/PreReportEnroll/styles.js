@@ -29,4 +29,8 @@ export const SubmitBtn = styled.button`
   font-size: 18px;
   font-weight: 400;
   outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
