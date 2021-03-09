@@ -18,7 +18,8 @@ import {
   setPreReportIsClickPreState,
   setNames,
   setReason,
-  setPreReportText
+  setPreReportText,
+  setTempReason
 } from "../../../module/action/pre_report";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
@@ -26,11 +27,16 @@ import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
 import PreReportReason from "./PreReportReason/PreReportReason";
 
 const PreReports = () => {
-  const [reasonMemo, setReasonMemo] = useState("");
   const nameText = useSelector(state => state.preReport.text);
   const nameArr = useSelector(state => state.preReport.names);
   const preReportData = useSelector(state => state.preReport);
-  const { reason: memo, state, preDate, nextDate } = preReportData;
+  const {
+    tempReason: reasonMemo,
+    reason: memo,
+    state,
+    preDate,
+    nextDate
+  } = preReportData;
   const dispatch = useDispatch();
 
   const ShowCalendarModal = useCallback(() => {
@@ -81,6 +87,11 @@ const PreReports = () => {
   const setMemo = useCallback(payload => dispatch(setReason(payload)), [
     dispatch
   ]);
+  const setReasonMemo = useCallback(
+    payload => dispatch(setTempReason(payload)),
+    [dispatch]
+  );
+
   const onAddReason = useCallback(() => {
     setMemo(reasonMemo);
 
@@ -101,7 +112,7 @@ const PreReports = () => {
   }, [nameArr, nameText]);
 
   const onSubmit = () => {
-    setReasonMemo("");
+    // setReasonMemo("");
 
     const data = {
       reason: memo,
