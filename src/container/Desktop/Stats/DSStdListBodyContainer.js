@@ -36,7 +36,8 @@ const DSStdListBodyContainer = () => {
     getSAttendanceDataSagaDispatch({
       schedule: "self-study",
       floor: clickedFloorText,
-      priority: clickedPriority
+      priority: clickedPriority,
+      date: "2021-03-08"
     });
   }, [clickedFloorText, clickedPriority, clickedPriorityArr]);
 
