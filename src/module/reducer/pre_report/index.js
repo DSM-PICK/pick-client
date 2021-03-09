@@ -15,7 +15,8 @@ import {
   SET_PRE_REPORT_IS_CLICK_PRE_STATE,
   SET_NAMES,
   DELETE_NAMES,
-  SET_REASON
+  SET_REASON,
+  SET_TEMP_REASON
 } from "../../action/pre_report";
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
   autoComplete: [],
   names: [],
   reason: "",
+  tempReason: "",
 
   selectedPreReportId: "",
   preReportList: [],
@@ -81,6 +83,12 @@ const preReportReducer = (state = initialState, action) => {
         reason: action.payload
       };
     }
+    case SET_TEMP_REASON: {
+      return {
+        ...state,
+        tempReason: action.payload
+      };
+    }
     case SET_SELECTED_PRE_REPORT_ID: {
       return {
         ...state,
@@ -136,6 +144,7 @@ const preReportReducer = (state = initialState, action) => {
         autoComplete: [],
         names: [],
         reason: "",
+        tempReason: "",
         state: "외출",
         nextDate: {
           year: "",
