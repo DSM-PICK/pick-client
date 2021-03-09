@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import * as S from "../style";
 
 const DScheduleCalander = () => {
-  const calander = useSelector(store => store.schedule.calander);
+  const calander = useSelector(store => store.schedule.calander.calander);
   const nowDateObj = new Date();
   const nowYear = nowDateObj.getFullYear();
   const nowMonth = nowDateObj.getMonth() + 1;

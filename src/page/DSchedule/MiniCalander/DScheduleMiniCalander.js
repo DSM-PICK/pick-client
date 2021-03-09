@@ -3,22 +3,25 @@ import * as S from "../style";
 import { useSelector, useDispatch } from "react-redux";
 import DScheduleMiniCalanderItem from "../../../component/DSchedule/DScheduleMiniCalanderItem/DScheduleMiniCalanderItem";
 import { scheduleMap } from "../../../component/DSchedule/DScheduleItem/DScheduleItem";
-import { getSchedule } from "../../../module/action/schedule";
+import { getScheduleMiniCalander } from "../../../module/action/schedule";
 
 const DScheduleMiniCalander = () => {
-  const {
-    calander,
-    date: { year, month }
-  } = useSelector(store => store.schedule);
-
-  const dispatch = useDispatch();
-  const [selectDate, setSelectDate] = useState({ year: 0, month: 0, date: 0 });
-  const dateObj = useRef(new Date());
-
   const nowDateObj = new Date();
   const nowYear = nowDateObj.getFullYear();
   const nowMonth = nowDateObj.getMonth() + 1;
   const nowDate = nowDateObj.getDate();
+  const {
+    calander,
+    date: { year, month }
+  } = useSelector(store => store.schedule.mini);
+
+  const dispatch = useDispatch();
+  const [selectDate, setSelectDate] = useState({
+    year: nowYear,
+    month: nowMonth,
+    date: nowDate
+  });
+  const dateObj = useRef(new Date());
 
   useEffect(() => {
     dateObj.current = new Date(year, month - 1);
@@ -31,7 +34,7 @@ const DScheduleMiniCalander = () => {
     const year = dateObj.current.getFullYear();
     const month = dateObj.current.getMonth() + 1;
 
-    dispatch(getSchedule({ year, month }));
+    dispatch(getScheduleMiniCalander({ year, month }));
   }, []);
 
   const nextMonth = useCallback(() => {
@@ -41,7 +44,7 @@ const DScheduleMiniCalander = () => {
     const year = dateObj.current.getFullYear();
     const month = dateObj.current.getMonth() + 1;
 
-    dispatch(getSchedule({ year, month }));
+    dispatch(getScheduleMiniCalander({ year, month }));
   }, []);
 
   const selectObj = calander.find(
