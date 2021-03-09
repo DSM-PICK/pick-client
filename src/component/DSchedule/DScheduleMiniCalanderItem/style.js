@@ -4,6 +4,7 @@ export const Container = styled.div`
   flex: 1 1 18%;
   text-align: center;
   margin: 0.7rem 0;
+  cursor: pointer;
 
   ${props =>
     props.isActive &&
