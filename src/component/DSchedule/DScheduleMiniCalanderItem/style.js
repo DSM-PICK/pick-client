@@ -17,7 +17,7 @@ export const Container = styled.div`
     css`
       position: relative;
       z-index: 0;
-      color: #406cff;
+      color: #406cff !important;
 
       &::before {
         content: "";
