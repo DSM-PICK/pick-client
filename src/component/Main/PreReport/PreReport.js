@@ -6,7 +6,11 @@ import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
-import { checkPreReportName, makeDate2Digit } from "../../../lib/attendanceApi";
+import {
+  checkPreReportData,
+  checkPreReportName,
+  makeDate2Digit
+} from "../../../lib/attendanceApi";
 import {
   createPreReportSaga,
   setPreReportNextDate,
@@ -95,7 +99,7 @@ const PreReports = () => {
   const onAddReason = useCallback(() => {
     setMemo(reasonMemo);
 
-    alert("저장되었습니다.");
+    alert(`사유 "${reasonMemo}" 저장되었습니다.`);
   }, [reasonMemo]);
 
   const onChangeReason = useCallback(e => {
@@ -111,9 +115,7 @@ const PreReports = () => {
     }
   }, [nameArr, nameText]);
 
-  const onSubmit = () => {
-    // setReasonMemo("");
-
+  const onSubmit = useCallback(() => {
     const data = {
       reason: memo,
       state: String(state),
@@ -127,10 +129,19 @@ const PreReports = () => {
       end_period: String(nextDate.period)
     };
 
+    if (!nameArr.length) {
+      alert("학생을 추가해주세요.");
+      return;
+    }
+
+    for (let name of nameArr) {
+      checkPreReportData({ ...data, stdnum: Number(name.slice(0, 4)) });
+    }
+
     for (let name of nameArr) {
       createPreReport({ ...data, stdnum: Number(name.slice(0, 4)) });
     }
-  };
+  }, [memo, state, preDate, nextDate, nameArr]);
 
   const preClassInput = useRef("");
   const nextClassInput = useRef("");
