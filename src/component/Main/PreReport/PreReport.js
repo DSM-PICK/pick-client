@@ -235,7 +235,7 @@ const PreReports = () => {
           </S.FuncNameWrap>
         </S.FuncKindName>
         <S.FuncKindName>
-          <S.FuncTitle>비고</S.FuncTitle>
+          <S.FuncTitle>사유</S.FuncTitle>
           <S.FuncNameWrap>
             <PreReportReason
               reason={reasonMemo}
