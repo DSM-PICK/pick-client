@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SStdListBody from "../../../component/Desktop/Molecules/Stats/StatsStdList/StatsStdListBackground/SStdListBody/SStdListBody";
+import { makeDate2Digit } from "../../../lib/attendanceApi";
 import { DStatsActionCreater } from "../../../module/action/d_stats";
 
 const DSStdListBodyContainer = () => {
@@ -9,7 +10,10 @@ const DSStdListBodyContainer = () => {
     clickedPriority: clickedPriorityArr,
     statsAttendance
   } = useSelector(state => state.dStats);
-
+  const { year, month, day } = useSelector(state => state.schedule.selected);
+  const selectedDateStr = `${year}-${makeDate2Digit(month)}-${makeDate2Digit(
+    day
+  )}`;
   const dispatch = useDispatch();
   const { getSAttendanceDataSaga } = DStatsActionCreater;
   const getSAttendanceDataSagaDispatch = useCallback(
@@ -37,9 +41,9 @@ const DSStdListBodyContainer = () => {
       schedule: "self-study",
       floor: clickedFloorText,
       priority: clickedPriority,
-      date: "2021-03-08"
+      date: selectedDateStr
     });
-  }, [clickedFloorText, clickedPriority, clickedPriorityArr]);
+  }, [clickedFloorText, clickedPriority, clickedPriorityArr, selectedDateStr]);
 
   return <SStdListBody statsAttendance={statsAttendance} />;
 };
