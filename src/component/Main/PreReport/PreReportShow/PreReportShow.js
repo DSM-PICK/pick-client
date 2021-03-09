@@ -56,7 +56,7 @@ const PreReportShow = () => {
                 ))}
               </S.ShowBodyBoxItem>
               <S.ShowBodyBoxItem>{preReportData.teacher}</S.ShowBodyBoxItem>
-              <S.ShowBodyBoxItem>{preReportData.memo}</S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>{preReportData.reason}</S.ShowBodyBoxItem>
             </S.ShowBodyBox>
           ))
         ) : (

@@ -3,7 +3,7 @@ export const SET_PRE_REPORT_AUTO_COMPLETE_TEXT =
   "pre_report/SET_PRE_REPORT_AUTO_COMPLETE_TEXT";
 export const SET_NAMES = "pre_report/SET_NAMES";
 export const DELETE_NAMES = "pre_report/DELETE_NAMES";
-export const SET_REMARK = "pre_report/SET_REMARK";
+export const SET_REASON = "pre_report/SET_REASON";
 
 export const SET_SELECTED_PRE_REPORT_ID =
   "pre_report/SET_SELECTED_PRE_REPORT_ID";
@@ -48,8 +48,8 @@ export const deleteNames = payload => ({
   type: DELETE_NAMES,
   payload
 });
-export const setRemark = payload => ({
-  type: SET_REMARK,
+export const setReason = payload => ({
+  type: SET_REASON,
   payload
 });
 

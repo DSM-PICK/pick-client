@@ -17,6 +17,7 @@ const StdListBody = props => {
               stdNum={data.gradeClassNumber}
               stateList={data.state}
               memo={data.memo}
+              reason={data.reason}
               css={S.StdListGridCSS}
             />
           ))
