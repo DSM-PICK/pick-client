@@ -38,12 +38,13 @@ function* getSClickedPriority(action) {
 
 function* getSAttendanceData(action) {
   try {
-    const { schedule, floor, priority } = action.payload;
+    const { schedule, floor, priority, date } = action.payload;
 
     const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
       schedule,
       floor,
-      priority
+      priority,
+      date
     );
 
     const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
