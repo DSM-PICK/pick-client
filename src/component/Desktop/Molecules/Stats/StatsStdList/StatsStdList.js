@@ -8,7 +8,7 @@ const StatsStdList = () => {
   return (
     <S.Container>
       <S.LableHeader>
-        <Label text={"날짜 선택"} css={S.LabelCSS} />
+        <Label text={"학생 목록"} css={S.LabelCSS} />
       </S.LableHeader>
       <Background css={S.BackgroundCSS}>
         <StatsStdListBackground />
