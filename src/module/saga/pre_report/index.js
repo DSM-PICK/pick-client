@@ -67,7 +67,7 @@ function* createPreReportSaga(payload) {
       methodType.POST,
       REQUEST_URL,
       {
-        memo: reason || "",
+        reason: reason || "",
         state,
         stdnum,
         start_date,
