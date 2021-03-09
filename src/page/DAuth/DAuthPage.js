@@ -54,10 +54,19 @@ const DLoginPage = () => {
       try {
         const res = await authApi.reqLogin(loginData);
 
-        const { accessToken, refreshToken, teacherName } = res.data;
+        const {
+          accessToken,
+          refreshToken,
+          teacherName,
+          managedClassroom,
+          managedClub
+        } = res.data;
+
         window.localStorage.setItem("accessToken", accessToken);
         window.localStorage.setItem("refreshToken", refreshToken);
         window.localStorage.setItem("teacherName", teacherName);
+        window.localStorage.setItem("managedClassroom", managedClassroom);
+        window.localStorage.setItem("managedClub", managedClub);
 
         history.push("/");
       } catch (errStatus) {
