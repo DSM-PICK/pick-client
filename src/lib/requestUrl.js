@@ -7,7 +7,7 @@ export const ATTENDANCE = {
   },
   ATTENDANCE_LIST_URL: (schedule, floor, priority, date) => {
     return !!date
-      ? `/saturn/attendance/student-state/${schedule}/${floor}/${priority}?date:${date}`
+      ? `/saturn/attendance/student-state/${schedule}/${floor}/${priority}?date=${date}`
       : `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
   },
   RECORD_BY_GRADE_URL: grade => {
