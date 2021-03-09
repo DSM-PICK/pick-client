@@ -15,14 +15,14 @@ import {
   SET_PRE_REPORT_IS_CLICK_PRE_STATE,
   SET_NAMES,
   DELETE_NAMES,
-  SET_REMARK
+  SET_REASON
 } from "../../action/pre_report";
 
 const initialState = {
   text: "",
   autoComplete: [],
   names: [],
-  remark: "",
+  reason: "",
 
   selectedPreReportId: "",
   preReportList: [],
@@ -75,10 +75,10 @@ const preReportReducer = (state = initialState, action) => {
         names: state.names.filter(name => name !== action.payload)
       };
     }
-    case SET_REMARK: {
+    case SET_REASON: {
       return {
         ...state,
-        remark: action.payload
+        reason: action.payload
       };
     }
     case SET_SELECTED_PRE_REPORT_ID: {
@@ -135,7 +135,7 @@ const preReportReducer = (state = initialState, action) => {
         text: "",
         autoComplete: [],
         names: [],
-        remark: "",
+        reason: "",
         state: "외출",
         nextDate: {
           year: "",
