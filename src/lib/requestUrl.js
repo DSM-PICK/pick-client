@@ -7,6 +7,9 @@ export const ATTENDANCE = {
   },
   ATTENDANCE_LIST_URL: (schedule, floor, priority) => {
     return `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
+  },
+  RECORD_BY_GRADE_URL: grade => {
+    return `/saturn/attendance/record/${grade}`;
   }
 };
 
@@ -23,8 +26,14 @@ export const PRE_REPORT = {
   CREATE_PRE_REPORT_URL: () => {
     return `/mars/pre-absence`;
   },
+  PUT_PRE_REPORT_URL: id => {
+    return `/mars/pre-absence/${id}`;
+  },
   DELETE_PRE_REPORT_URL: id => {
     return `/mars/pre-absence/${id}`;
+  },
+  GET_ALL_PRE_REPORT_URL: () => {
+    return "/mars/pre-absence";
   }
 };
 

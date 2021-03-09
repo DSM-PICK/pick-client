@@ -17,20 +17,20 @@ import {
   setPreReportCalcMonth,
   setPreReportIsClickPreState,
   setNames,
-  setRemark,
+  setReason,
   setPreReportText
 } from "../../../module/action/pre_report";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
 import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
-import PreReportRemark from "./PreReportRemark/PreReportRemark";
+import PreReportReason from "./PreReportReason/PreReportReason";
 
 const PreReports = () => {
-  const [remarkMemo, setRemarkMemo] = useState("");
+  const [reasonMemo, setReasonMemo] = useState("");
   const nameText = useSelector(state => state.preReport.text);
   const nameArr = useSelector(state => state.preReport.names);
   const preReportData = useSelector(state => state.preReport);
-  const { remark: memo, state, preDate, nextDate } = preReportData;
+  const { reason: memo, state, preDate, nextDate } = preReportData;
   const dispatch = useDispatch();
 
   const ShowCalendarModal = useCallback(() => {
@@ -78,17 +78,17 @@ const PreReports = () => {
     payload => dispatch(setPreReportText(payload)),
     [dispatch]
   );
-  const setMemo = useCallback(payload => dispatch(setRemark(payload)), [
+  const setMemo = useCallback(payload => dispatch(setReason(payload)), [
     dispatch
   ]);
-  const onAddRemark = useCallback(() => {
-    setMemo(remarkMemo);
+  const onAddReason = useCallback(() => {
+    setMemo(reasonMemo);
 
     alert("저장되었습니다.");
-  }, [remarkMemo]);
+  }, [reasonMemo]);
 
-  const onChangeRemark = useCallback(e => {
-    setRemarkMemo(e.target.value);
+  const onChangeReason = useCallback(e => {
+    setReasonMemo(e.target.value);
   }, []);
 
   const onEnroll = useCallback(() => {
@@ -101,10 +101,10 @@ const PreReports = () => {
   }, [nameArr, nameText]);
 
   const onSubmit = () => {
-    setRemarkMemo("");
+    setReasonMemo("");
 
     const data = {
-      remark: memo,
+      reason: memo,
       state: String(state),
       start_date: `${preDate.year}-${makeDate2Digit(
         preDate.month
@@ -237,12 +237,12 @@ const PreReports = () => {
         <S.FuncKindName>
           <S.FuncTitle>비고</S.FuncTitle>
           <S.FuncNameWrap>
-            <PreReportRemark
-              remark={remarkMemo}
-              onChangeRemark={onChangeRemark}
+            <PreReportReason
+              reason={reasonMemo}
+              onChangeReason={onChangeReason}
             />
           </S.FuncNameWrap>
-          <S.FuncAdd onClick={onAddRemark}>저장</S.FuncAdd>
+          <S.FuncAdd onClick={onAddReason}>저장</S.FuncAdd>
         </S.FuncKindName>
       </S.Func>
       <PreReportEnroll onSubmit={onSubmit} />

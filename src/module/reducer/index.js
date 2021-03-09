@@ -11,6 +11,11 @@ import attendance from "./attendance";
 import notice from "./notice";
 import modalWrap from "./modal_wrap";
 import account from "./account";
+import toggle from "./toggle";
+import dAttendance from "./d_attendance";
+import desktopReport from "./desktop/report";
+import schedule from "./schedule";
+import dStats from "./d_stats";
 
 const rootReducer = combineReducers({
   account,
@@ -19,12 +24,18 @@ const rootReducer = combineReducers({
   calander,
   club,
   date,
+  dAttendance,
+  dStats,
   mainText,
   modal,
   modalWrap,
   notice,
   preReport,
-  teacher
+  teacher,
+  toggle,
+  desktopReport,
+  teacher,
+  schedule
 });
 
 export default rootReducer;

@@ -43,7 +43,7 @@ function* getPreReportList() {
 function* createPreReportSaga(payload) {
   try {
     const {
-      remark,
+      reason,
       state,
       stdnum,
       start_date,
@@ -67,7 +67,7 @@ function* createPreReportSaga(payload) {
       methodType.POST,
       REQUEST_URL,
       {
-        memo: remark || "",
+        reason: reason || "",
         state,
         stdnum,
         start_date,

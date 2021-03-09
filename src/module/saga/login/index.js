@@ -17,16 +17,17 @@ function* requestLogin(action) {
     });
 
     const {
-      data: { accessToken, refreshToken, teacherName }
+      data: { accessToken, managedClassroom, refreshToken, teacherName }
     } = res;
 
+    window.localStorage.setItem("managedClassroom", managedClassroom);
     window.localStorage.setItem("accessToken", accessToken);
     window.localStorage.setItem("refreshToken", refreshToken);
     window.localStorage.setItem("teacherName", teacherName);
     put({ type: GET_MAIN_TEXT_REMAINING_DATE_SAGA });
 
     if (device === "desktop") {
-      window.location.href = "/t/main ";
+      window.location.href = "/";
     } else {
       window.location.href = "/t/main ";
     }

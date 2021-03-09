@@ -1,17 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.label`
-  display: flex;
-  visibility: ${props => props.visibility};
-  padding: ${props => props.padding};
-  color: ${props => props.color};
-  font-size: ${props => props.fontSize};
-  font-weight: ${props => props.fontWeight};
-
-  ${props =>
-    props.isCenter &&
-    css`
-      align-items: flex-start;
-      justify-content: center;
-    `};
+  width: ${props => props.width || "auto"};
+  height: ${props => props.height || "auto"};
+  color: ${props => props.color || "#000000"};
+  font-size: ${props => props.fontSize || "16px"};
+  font-weight: ${props => props.fontWeight || "400"};
 `;
