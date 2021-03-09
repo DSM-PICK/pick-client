@@ -1,8 +1,5 @@
 import { put, call, takeEvery } from "@redux-saga/core/effects";
-import {
-  requestApiWithAccessToken,
-  requestGetApiWithAccessToken
-} from "../../../lib/requestApi";
+import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 import { ATTENDANCE } from "../../../lib/requestUrl";
 import { DStatsAction, DStatsActionCreater } from "../../action/d_stats";
 
