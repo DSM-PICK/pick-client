@@ -6,6 +6,9 @@ import { DAttendanceActionCreater } from "../../../../module/action/d_attendance
 const DAPBackgroundHeaderContainer = props => {
   const { teacherName } = props;
 
+  const selectAttendanceArr = useSelector(
+    state => state.dAttendance.selectAttendanceArr
+  );
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
 
   const managedClub = JSON.parse(localStorage.getItem("managedClub"));
@@ -19,7 +22,18 @@ const DAPBackgroundHeaderContainer = props => {
   };
 
   const dispatch = useDispatch();
-  const { getAttendanceStdDataSaga } = DAttendanceActionCreater;
+  const {
+    getAttendanceStdDataSaga,
+    setCurrentAttendanceIndexArr,
+    getSelectAttendanceArrSaga
+  } = DAttendanceActionCreater;
+
+  const currentIndexArrFloor = 4 - floor;
+  const currentIndexArrPriority =
+    selectAttendanceArr.length &&
+    selectAttendanceArr.filter(dataObj => dataObj.priority === priority)[0]
+      .priority;
+
   const onClickFastSearchBtn = useCallback(() => {
     dispatch(
       getAttendanceStdDataSaga({
@@ -28,7 +42,26 @@ const DAPBackgroundHeaderContainer = props => {
         schedule: scheduleMap[selectSchedule]
       })
     );
-  }, [dispatch]);
+    dispatch(
+      getSelectAttendanceArrSaga({
+        schedule: scheduleMap[selectSchedule],
+        floor: floor
+      })
+    );
+    dispatch(
+      setCurrentAttendanceIndexArr([
+        currentIndexArrFloor,
+        currentIndexArrPriority
+      ])
+    );
+  }, [
+    dispatch,
+    selectSchedule,
+    floor,
+    priority,
+    currentIndexArrFloor,
+    currentIndexArrPriority
+  ]);
 
   return (
     <BackgroundHeader
