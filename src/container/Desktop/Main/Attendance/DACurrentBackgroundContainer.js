@@ -5,8 +5,6 @@ import AttendanceCurrentBackground from "../../../../component/Desktop/Molecules
 const DACurrentBackgroundContainer = () => {
   const data = useSelector(state => state.dAttendance);
 
-  console.log(data);
-
   return <AttendanceCurrentBackground />;
 };
 
