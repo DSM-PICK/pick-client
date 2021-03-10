@@ -7,9 +7,9 @@ const initialState = {
     third: {}
   },
   clickedFloor: [
-    { text: "4층", isClicked: true },
+    { text: "2층", isClicked: true },
     { text: "3층" },
-    { text: "2층" },
+    { text: "4층" },
     { text: "기타" }
   ],
   clickedPriority: [],
