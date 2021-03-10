@@ -4,6 +4,7 @@ const initialState = {
   classInfo: {
     name: "",
     head: "",
+    managerTeacher: "",
     stdCount: 0,
     stdCountWithoutEmployment: 0
   },
@@ -23,6 +24,7 @@ const DAttendanceReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CLASS_INFO: {
       const {
+        managerTeacher,
         name,
         head,
         stdCount,
@@ -31,6 +33,7 @@ const DAttendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         classInfo: {
+          managerTeacher: managerTeacher,
           name: name,
           head: head,
           stdCount: stdCount,
