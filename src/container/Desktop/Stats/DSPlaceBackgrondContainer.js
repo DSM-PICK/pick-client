@@ -9,9 +9,9 @@ const DSPlaceBackgrondContainer = () => {
     clickedPriority: classItemData
   } = useSelector(state => state.dStats);
   const floorText2apiFloorText = {
-    "4층": 4,
-    "3층": 3,
     "2층": 2,
+    "3층": 3,
+    "4층": 4,
     기타: 1
   };
   const [clickedFloorText] = textButtonData
