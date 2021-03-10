@@ -65,8 +65,11 @@ const DLoginPage = () => {
         window.localStorage.setItem("accessToken", accessToken);
         window.localStorage.setItem("refreshToken", refreshToken);
         window.localStorage.setItem("teacherName", teacherName);
-        window.localStorage.setItem("managedClassroom", managedClassroom);
-        window.localStorage.setItem("managedClub", managedClub);
+        window.localStorage.setItem(
+          "managedClassroom",
+          JSON.stringify(managedClassroom)
+        );
+        window.localStorage.setItem("managedClub", JSON.stringify(managedClub));
 
         history.push("/");
       } catch (errStatus) {
