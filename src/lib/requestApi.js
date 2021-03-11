@@ -104,6 +104,26 @@ export const requesetRefresh = async callback => {
   }
 };
 
+export const requesetRefreshForDesktop = async callback => {
+  try {
+    const refreshToken = window.localStorage.getItem(REFRESH_TOKEN);
+    const res = await requestGetApi(`/saturn/auth/access-token`, {
+      [ACCESS_TOKEN_NAME]: refreshToken
+    });
+    window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
+    window.location.href = window.location.href;
+  } catch (err) {
+    if (err === 401) {
+      alert("인증이 만료되어 재인증이 필요합니다.");
+      window.localStorage.clear();
+      window.location.href = "/";
+    }
+    if (callback) {
+      callback();
+    }
+  }
+};
+
 export const requesetAdminRefresh = async () => {
   try {
     const refreshToken = window.localStorage.getItem(
