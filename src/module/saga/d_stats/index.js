@@ -55,16 +55,33 @@ function* getSAttendanceData(action) {
   }
 }
 
+function* getActivityByDate(action) {
+  try {
+    const { date } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.ACTIVITY_BY_DATE_URL(date);
+    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+
+    const { setActivityByDate } = DStatsActionCreater;
+    yield put(setActivityByDate({ ...res.data }));
+  } catch (error) {
+    console.log("getActivityByDate error");
+    console.log(error);
+  }
+}
+
 function* dStatsSaga() {
   const {
     GET_STATS_SAGA,
     GET_SCLICKED_PRIORITY_SAGA,
-    GET_SATTENDANCE_DATA_SAGA
+    GET_SATTENDANCE_DATA_SAGA,
+    GET_ACTIVITY_BY_DATE_SAGA
   } = DStatsAction;
 
   yield takeEvery(GET_STATS_SAGA, getStats);
   yield takeEvery(GET_SCLICKED_PRIORITY_SAGA, getSClickedPriority);
   yield takeEvery(GET_SATTENDANCE_DATA_SAGA, getSAttendanceData);
+  yield takeEvery(GET_ACTIVITY_BY_DATE_SAGA, getActivityByDate);
 }
 
 export default dStatsSaga;
