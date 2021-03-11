@@ -8,7 +8,8 @@ const DSStdListBodyContainer = () => {
   const {
     clickedFloor: clickedFloorArr,
     clickedPriority: clickedPriorityArr,
-    statsAttendance
+    statsAttendance,
+    clickedPriorityArrPriority
   } = useSelector(state => state.dStats);
   const { year, month, day } = useSelector(state => state.schedule.selected);
   const selectedDateStr = `${year}-${makeDate2Digit(month)}-${makeDate2Digit(
@@ -32,18 +33,20 @@ const DSStdListBodyContainer = () => {
   const [clickedFloorText] = clickedFloorArr
     .map(data => data.isClicked && floorText2apiFloorText[data.text])
     .filter(data => data);
-  const [clickedPriority] = clickedPriorityArr
-    .map(data => data.isClicked && data.priority)
-    .filter(data => data !== false);
 
   useEffect(() => {
     getSAttendanceDataSagaDispatch({
       schedule: "self-study",
       floor: clickedFloorText,
-      priority: clickedPriority,
+      priority: clickedPriorityArrPriority,
       date: selectedDateStr
     });
-  }, [clickedFloorText, clickedPriority, clickedPriorityArr, selectedDateStr]);
+  }, [
+    clickedFloorText,
+    clickedPriorityArrPriority,
+    clickedPriorityArr,
+    selectedDateStr
+  ]);
 
   return <SStdListBody statsAttendance={statsAttendance} />;
 };
