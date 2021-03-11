@@ -182,8 +182,8 @@ export const FormStudentWrapper = styled.div`
 export const FormStudentItem = styled.div`
   position: relative;
   > div {
-    width: ${pxToRem(50)}rem;
-    height: ${pxToRem(46)}rem;
+    width: ${pxToRem(84)}rem;
+    height: ${pxToRem(24)}rem;
     border-radius: 6px;
     margin: 0px ${pxToRem(3)}rem;
     display: flex;
@@ -199,8 +199,7 @@ export const FormStudentItem = styled.div`
             background-color: #406cff;
           `
         : css`
-            border: 1px solid #707070;
-            color: #707070;
+            color: black;
             background-color: white;
           `}
   }
@@ -231,8 +230,8 @@ export const FormStudentItem = styled.div`
 `;
 
 export const FormStudentAddInput = styled.div`
-  width: ${pxToRem(50)}rem;
-  height: ${pxToRem(46)}rem;
+  width: ${pxToRem(84)}rem;
+  height: ${pxToRem(24)}rem;
   border-radius: 6px;
   margin: 0px ${pxToRem(3)}rem;
   display: flex;
@@ -257,11 +256,11 @@ export const FormStudentAddInput = styled.div`
     text-align: center;
   }
   > div {
-    top: ${pxToRem(50)}rem;
+    top: ${pxToRem(25)}rem;
     left: 0px;
     position: absolute;
-    width: 95px;
-    height: 120px;
+    width: ${pxToRem(84)}rem;
+    max-height: 120px;
     overflow-y: scroll;
     border: 1px solid #707070;
     background-color: white;
@@ -283,6 +282,7 @@ export const FormStudentAddItemButton = styled(FormStudentItem)`
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #707070;
     &::before {
       content: "";
       display: block;
