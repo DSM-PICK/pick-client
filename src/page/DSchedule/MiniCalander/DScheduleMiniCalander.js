@@ -7,7 +7,8 @@ import {
   getScheduleMiniCalander,
   setSelectedDate
 } from "../../../module/action/schedule";
-
+import { DStatsActionCreater } from "../../../module/action/d_stats";
+import { makeDate2Digit } from "../../../lib/attendanceApi";
 const DScheduleMiniCalander = () => {
   const nowDateObj = new Date();
   const nowYear = nowDateObj.getFullYear();
@@ -32,11 +33,25 @@ const DScheduleMiniCalander = () => {
     },
     [dispatch]
   );
+  const { getActivityByDateSaga } = DStatsActionCreater;
+  const getActivityByDate = useCallback(
+    dateObj => {
+      dispatch(
+        getActivityByDateSaga({
+          date: `${dateObj.year}-${makeDate2Digit(
+            dateObj.month
+          )}-${makeDate2Digit(dateObj.date)}`
+        })
+      );
+    },
+    [dispatch]
+  );
 
   const dateObj = useRef(new Date());
 
   useEffect(() => {
     dateObj.current = new Date(year, month - 1);
+    getActivityByDate({ year: nowYear, month: nowMonth, date: nowDate });
   }, [year, month]);
 
   const prevMonth = useCallback(() => {
@@ -68,6 +83,7 @@ const DScheduleMiniCalander = () => {
 
   const clickHandler = useCallback(date => {
     setSelectedDateObj(date);
+    getActivityByDate(date);
   }, []);
   return (
     <S.DScheduleMiniCalander>
