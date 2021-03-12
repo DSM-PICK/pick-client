@@ -18,8 +18,6 @@ import { PRE_REPORT, AUTO_COMPLETE } from "../../../../lib/requestUrl";
 import { makeDate2Digit } from "../../../../lib/attendanceApi";
 import {
   deleteAttendanceChangeListErrorHandler,
-  addAttendanceChangeStudentErrorHandler,
-  putAttendanceChangeStudentErrorHandler,
   getAllAttendanceChangeListErrorHandler
 } from "../../../../error/desktop/report";
 
@@ -79,11 +77,8 @@ const attendanceChangeListStateToDTO = state => {
       endDate,
       startDate,
       endPeriod,
-      startPeriod,
-      isFix,
-      id
+      startPeriod
     }) => ({
-      id,
       stdnum: parseInt(number),
       name,
       start_date: `${startDate.year}-${makeDate2Digit(
@@ -95,8 +90,8 @@ const attendanceChangeListStateToDTO = state => {
       )}-${makeDate2Digit(endDate.date)}`,
       end_period: endPeriod,
       state: type,
-      memo: description,
-      isFix
+      memo: type === "이동" ? description : null,
+      reason: type !== "이동" ? description : null
     })
   );
 };
@@ -139,7 +134,6 @@ function* deleteAttendanceChangeStudent({ payload }) {
     const newState = attendanceChangeList.filter(
       attendanceChangeStudent => attendanceChangeStudent.id !== payload
     );
-    console.log(newState);
     const REQUEST_URL = PRE_REPORT.DELETE_PRE_REPORT_URL(payload);
     yield call(requestDelApiWithAccessToken, REQUEST_URL);
     yield put(setAttendanceChangeList(newState));

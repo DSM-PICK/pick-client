@@ -15,7 +15,7 @@ const Form = () => {
   };
   return (
     <S.FormWrapper>
-      <S.FormTitle>출석 변동사항 신고</S.FormTitle>
+      <S.FormTitle>출결 변동사항 신고</S.FormTitle>
       <S.Form>
         <Student />
         <Date />
