@@ -16,6 +16,23 @@ export const SectionSpan = styled.span`
   justify-content: center;
 `;
 
+export const SectionCheckbox = styled.input`
+  display: none;
+
+  & + label {
+    display: flex;
+    width: 26px;
+    height: 26px;
+    border: 1px solid #707070;
+    cursor: pointer;
+  }
+
+  &:checked + label {
+    background: #267dff;
+  }
+`;
+export const SectionCheckboxLabel = styled.label``;
+
 export const SectionSeq = styled(SectionSpan)`
   font-size: 16px;
   color: #707070;
