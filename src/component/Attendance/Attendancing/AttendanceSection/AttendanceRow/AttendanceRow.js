@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { postAttendanceStdDataSaga } from "../../../../../module/action/attendance";
 
 const AttendanceRow = props => {
-  const { index } = props;
+  const { index, checkArr, handleCheckArr } = props;
   const { name, state: states, gradeClassNumber } = props.attendance;
 
   const [statesArr, setStatesArr] = useState(
@@ -62,8 +62,18 @@ const AttendanceRow = props => {
   );
 
   return (
-    <S.Containter>
-      <S.SectionSeq>{index + 1}</S.SectionSeq>
+    <S.Containter check={checkArr[index]}>
+      <S.SectionCheckboxWrap>
+        <S.SectionCheckbox
+          type="checkbox"
+          id={`${gradeClassNumber}-${index}`}
+          checked={checkArr[index]}
+          onClick={() => handleCheckArr(index)}
+        />
+        <S.SectionCheckboxLabel
+          htmlFor={`${gradeClassNumber}-${index}`}
+        ></S.SectionCheckboxLabel>
+      </S.SectionCheckboxWrap>
       <S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
       <S.SectionName>{name}</S.SectionName>
       <S.SectionClassWrap>
