@@ -58,7 +58,7 @@ function* getAttendanceStdData(action) {
 }
 function* successGetAttendanceStdData(action) {
   try {
-    const { name, head, attendances } = action.payload;
+    const { name, head, attendances, managerTeacher } = action.payload;
 
     const { setClassInfo, setAttendanceStdData } = DAttendanceActionCreater;
 
@@ -69,7 +69,13 @@ function* successGetAttendanceStdData(action) {
 
     yield put(setAttendanceStdData(attendances));
     yield put(
-      setClassInfo({ name, head, stdCount, stdCountWithoutEmployment })
+      setClassInfo({
+        name,
+        head,
+        stdCount,
+        stdCountWithoutEmployment,
+        managerTeacher
+      })
     );
   } catch (error) {}
 }

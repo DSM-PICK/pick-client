@@ -317,7 +317,8 @@ export const Logout = state => {
     }
   } catch (err) {
   } finally {
-    window.location.href = state === "admin" ? "/admin/login" : "/t";
+    window.location.href =
+      state === "admin" ? "/admin/login" : state === "desktop" ? "/auth" : "/t";
   }
 };
 

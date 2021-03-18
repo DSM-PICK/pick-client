@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import StatsPlaceBackground from "../../../component/Desktop/Molecules/Stats/StatsPlace/StatsPlaceBackground/StatsPlaceBackground";
 import { DStatsActionCreater } from "../../../module/action/d_stats";
@@ -6,23 +6,40 @@ import { DStatsActionCreater } from "../../../module/action/d_stats";
 const DSPlaceBackgrondContainer = () => {
   const {
     clickedFloor: textButtonData,
-    clickedPriority: classItemData
+    clickedPriority: classItemData,
+    clickedPriorityArrPriority
   } = useSelector(state => state.dStats);
   const floorText2apiFloorText = {
-    "4층": 4,
-    "3층": 3,
     "2층": 2,
+    "3층": 3,
+    "4층": 4,
     기타: 1
   };
   const [clickedFloorText] = textButtonData
     .map(data => data.isClicked && floorText2apiFloorText[data.text])
     .filter(data => data);
 
+  const { schedule } = useSelector(state => state.dStats.activityByDate);
+  const managedClub = JSON.parse(localStorage.getItem("managedClub"));
+  const managedClassroom = JSON.parse(localStorage.getItem("managedClassroom"));
+  const managedInfo = schedule === "club" ? managedClub : managedClassroom;
+  const { floor, priority } = managedInfo;
+  const floorMap = {
+    2: 0,
+    3: 1,
+    4: 2,
+    1: 3
+  };
+  const currentIndexArrPriority =
+    classItemData.length &&
+    classItemData.filter(dataObj => dataObj.priority === priority)[0].priority;
+
   const dispatch = useDispatch();
   const {
     setSClickedFloor,
     setSClickedPriority,
-    getSClickedPrioritySaga
+    getSClickedPrioritySaga,
+    setSClickedPriorityArrPriority
   } = DStatsActionCreater;
 
   const setSClickedFloorDispatch = useCallback(
@@ -38,10 +55,13 @@ const DSPlaceBackgrondContainer = () => {
     [dispatch]
   );
   const getSClickedPriorityDispatch = useCallback(
-    (schedule, floor) => {
-      const TEMP_SCHEDULE = "self-study";
+    (schedule, floor, setting) => {
       dispatch(
-        getSClickedPrioritySaga({ schedule: TEMP_SCHEDULE, floor: floor })
+        getSClickedPrioritySaga({
+          schedule: schedule,
+          floor: floor,
+          setting: setting
+        })
       );
     },
     [dispatch]
@@ -56,6 +76,27 @@ const DSPlaceBackgrondContainer = () => {
       )
     );
   }, []);
+  const onClickFastSearchBtn = useCallback(() => {
+    changeisClickedByClick(
+      floorMap[floor],
+      textButtonData,
+      setSClickedFloorDispatch
+    );
+    changeisClickedByClick(
+      currentIndexArrPriority,
+      classItemData,
+      setSClickedPriorityDispatch
+    );
+    onCPriorityArrPriority(currentIndexArrPriority);
+  }, [textButtonData, classItemData]);
+  const onCPriorityArrPriority = useCallback(
+    priority => {
+      dispatch(
+        setSClickedPriorityArrPriority({ clickedPriorityArrPriority: priority })
+      );
+    },
+    [dispatch]
+  );
   const onTextButtonClick = useCallback(
     dataIndex => {
       changeisClickedByClick(
@@ -73,18 +114,21 @@ const DSPlaceBackgrondContainer = () => {
         classItemData,
         setSClickedPriorityDispatch
       );
+      onCPriorityArrPriority(dataIndex);
     },
     [classItemData]
   );
 
   useEffect(() => {
-    getSClickedPriorityDispatch("self-study", clickedFloorText);
-  }, [clickedFloorText]);
+    getSClickedPriorityDispatch(schedule, clickedFloorText);
+  }, [schedule, clickedFloorText]);
 
   return (
     <StatsPlaceBackground
       textButtonData={textButtonData}
       classItemData={classItemData}
+      clickedPriorityArrPriority={clickedPriorityArrPriority}
+      onClickFastSearchBtn={onClickFastSearchBtn}
       onTextButtonClick={onTextButtonClick}
       onClassItemClick={onClassItemClick}
     />

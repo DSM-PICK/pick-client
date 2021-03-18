@@ -5,11 +5,16 @@ export const ATTENDANCE = {
   CHANGE_ATTENDANCE_STATE_URL: () => {
     return `/saturn/attendance/student-state`;
   },
-  ATTENDANCE_LIST_URL: (schedule, floor, priority) => {
-    return `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
+  ATTENDANCE_LIST_URL: (schedule, floor, priority, date) => {
+    return !!date
+      ? `/saturn/attendance/student-state/${schedule}/${floor}/${priority}?date=${date}`
+      : `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
   },
   RECORD_BY_GRADE_URL: grade => {
     return `/saturn/attendance/record/${grade}`;
+  },
+  ACTIVITY_BY_DATE_URL: date => {
+    return `/saturn/attendance/activity/${date}`;
   }
 };
 

@@ -2,7 +2,8 @@ import {
   GET_SCHEDULE_MINI_CALANDER_SUCCESS,
   GET_SCHEDULE_SUCCESS,
   SET_DATE,
-  SET_DATE_MINI_CALANDER
+  SET_DATE_MINI_CALANDER,
+  SET_SELECTED_DATE
 } from "../../action/schedule";
 
 const initialState = {
@@ -19,6 +20,11 @@ const initialState = {
       year: 0,
       month: 0
     }
+  },
+  selected: {
+    year: 0,
+    month: 0,
+    date: 0
   }
 };
 
@@ -40,6 +46,12 @@ const scheduleReducer = (state = initialState, action) => {
           ...state.calander,
           date: action.payload
         }
+      };
+    }
+    case SET_SELECTED_DATE: {
+      return {
+        ...state,
+        selected: action.payload
       };
     }
     case SET_DATE_MINI_CALANDER: {

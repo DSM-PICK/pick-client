@@ -1,31 +1,21 @@
-import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import StatsList from "../../../component/Desktop/Molecules/Stats/StatsStdList/StatsStdListBackground/SStdListGrid/StatsList/StatsList";
-import { DAttendanceActionCreater } from "../../../module/action/d_attendance";
 
 const DSAttendanceListContainer = props => {
-  const { index, name, stdNum, stateList, memo, css } = props;
+  const { index, stateList, memo: memoList, css } = props;
   const [statesArr, setStatesArr] = useState(
     Object.values(stateList).filter(state => state)
   );
+  const [memoArr, setMemoArr] = useState(
+    Object.values(memoList).filter(memo => memo)
+  );
 
-  const startPeriod = 11 - statesArr.length;
   const periodArr = [10, 9, 8, 7].slice(0, statesArr.length).reverse();
 
-  const { patchAttendanceStdDataSaga } = DAttendanceActionCreater;
-  const dispatch = useDispatch();
-  const patchAttendanceStdData = useCallback(
-    (period, value) => {
-      dispatch(
-        patchAttendanceStdDataSaga({ number: stdNum, period, state: value })
-      );
-    },
-    [dispatch, stdNum]
-  );
-  const onStateChange = useCallback((period, value) => {
-    patchAttendanceStdData(period, value);
-    viewChange(period, value);
-  }, []);
+  useEffect(() => {
+    setStatesArr(Object.values(stateList).filter(state => state));
+    setMemoArr(Object.values(memoList).filter(memo => memo));
+  }, [stateList, memoList]);
 
   return (
     <StatsList
@@ -33,8 +23,8 @@ const DSAttendanceListContainer = props => {
       index={index}
       length={statesArr.length}
       stateList={statesArr}
+      memoList={memoArr}
       periodArr={periodArr}
-      onStateChange={onStateChange}
     />
   );
 };

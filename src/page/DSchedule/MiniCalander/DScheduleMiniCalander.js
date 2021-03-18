@@ -3,8 +3,12 @@ import * as S from "../style";
 import { useSelector, useDispatch } from "react-redux";
 import DScheduleMiniCalanderItem from "../../../component/DSchedule/DScheduleMiniCalanderItem/DScheduleMiniCalanderItem";
 import { scheduleMap } from "../../../component/DSchedule/DScheduleItem/DScheduleItem";
-import { getScheduleMiniCalander } from "../../../module/action/schedule";
-
+import {
+  getScheduleMiniCalander,
+  setSelectedDate
+} from "../../../module/action/schedule";
+import { DStatsActionCreater } from "../../../module/action/d_stats";
+import { makeDate2Digit } from "../../../lib/attendanceApi";
 const DScheduleMiniCalander = () => {
   const nowDateObj = new Date();
   const nowYear = nowDateObj.getFullYear();
@@ -14,17 +18,40 @@ const DScheduleMiniCalander = () => {
     calander,
     date: { year, month }
   } = useSelector(store => store.schedule.mini);
+  const { selected } = useSelector(store => store.schedule);
 
   const dispatch = useDispatch();
-  const [selectDate, setSelectDate] = useState({
-    year: nowYear,
-    month: nowMonth,
-    date: nowDate
-  });
+  const setSelectedDateObj = useCallback(
+    dateObj => {
+      dispatch(
+        setSelectedDate({
+          year: dateObj.year,
+          month: dateObj.month,
+          day: dateObj.date
+        })
+      );
+    },
+    [dispatch]
+  );
+  const { getActivityByDateSaga } = DStatsActionCreater;
+  const getActivityByDate = useCallback(
+    dateObj => {
+      dispatch(
+        getActivityByDateSaga({
+          date: `${dateObj.year}-${makeDate2Digit(
+            dateObj.month
+          )}-${makeDate2Digit(dateObj.date)}`
+        })
+      );
+    },
+    [dispatch]
+  );
+
   const dateObj = useRef(new Date());
 
   useEffect(() => {
     dateObj.current = new Date(year, month - 1);
+    getActivityByDate({ year: nowYear, month: nowMonth, date: nowDate });
   }, [year, month]);
 
   const prevMonth = useCallback(() => {
@@ -49,13 +76,14 @@ const DScheduleMiniCalander = () => {
 
   const selectObj = calander.find(
     ({ year, month, date }) =>
-      year === selectDate.year &&
-      month === selectDate.month &&
-      date === selectDate.date
+      year === selected.year &&
+      month === selected.month &&
+      date === selected.day
   );
 
   const clickHandler = useCallback(date => {
-    setSelectDate(date);
+    setSelectedDateObj(date);
+    getActivityByDate(date);
   }, []);
   return (
     <S.DScheduleMiniCalander>
@@ -104,9 +132,9 @@ const DScheduleMiniCalander = () => {
             key={`${data.year}-${data.month}-${data.date}`}
             onClick={clickHandler}
             isSelect={
-              data.year === selectDate.year &&
-              data.month === selectDate.month &&
-              data.date === selectDate.date
+              data.year === selected.year &&
+              data.month === selected.month &&
+              data.date === selected.day
             }
             isToday={
               data.year === nowYear &&

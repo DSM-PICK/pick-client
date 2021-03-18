@@ -6,7 +6,7 @@ export const Container = styled(Link)`
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  width: 25%;
+  width: 50%;
   height: 100%;
   padding: 5px 0;
   box-sizing: border-box;
