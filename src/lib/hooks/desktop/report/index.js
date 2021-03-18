@@ -30,29 +30,29 @@ export const useDesktopReportState = () => {
     attendanceChangeType: getAttendanceChangeProxy(
       attendanceChangeStudentList,
       "type"
-    )[selectedStudent],
+    )[selectedStudent[0]],
     description: getAttendanceChangeProxy(
       attendanceChangeStudentList,
       "description"
-    )[selectedStudent],
+    )[selectedStudent[0]],
     attendanceChangeStudentList,
     selectedStudent,
     attendanceChangeList,
     startDate: getAttendanceChangeProxy(
       attendanceChangeStudentList,
       "startDate"
-    )[selectedStudent],
+    )[selectedStudent[0]],
     endDate: getAttendanceChangeProxy(attendanceChangeStudentList, "endDate")[
-      selectedStudent
+      selectedStudent[0]
     ],
     startPeriod: getAttendanceChangeProxy(
       attendanceChangeStudentList,
       "startPeriod"
-    )[selectedStudent],
+    )[selectedStudent[0]],
     endPeriod: getAttendanceChangeProxy(
       attendanceChangeStudentList,
       "endPeriod"
-    )[selectedStudent],
+    )[selectedStudent[0]],
     similerStudents
   };
   const setState = {
