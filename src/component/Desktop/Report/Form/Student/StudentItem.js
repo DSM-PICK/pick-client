@@ -6,30 +6,45 @@ const StudentItem = ({
   name,
   setSelectedStudent,
   selectedStudent,
+  selectedIndex,
   id,
-  deleteAttendanceChangeStudent
+  deleteAttendanceChangeStudent,
+  pressShift,
+  addSelectedStudentIndexToIndex
 }) => {
   const itemClickHandler = id => {
-    return () => setSelectedStudent(id);
+    return () => {
+      if (pressShift) {
+        addSelectedStudentIndexToIndex();
+      } else {
+        setSelectedStudent([id]);
+      }
+    };
   };
   const deleteButtonClickHandler = id => {
     return () => deleteAttendanceChangeStudent(id);
   };
+  const isSelectedStudent = (selectedStudent, id) => {
+    for (let i of selectedStudent) {
+      if (i === id) {
+        return true;
+      }
+    }
+    return false;
+  };
   return (
-    <>
-      <S.FormStudentItem
-        isActive={selectedStudent === id}
-        onClick={itemClickHandler(id)}
-      >
-        <div>
-          <p>{number}</p>
-          <p>{name}</p>
-        </div>
-        <p className="delete" onClick={deleteButtonClickHandler(id)}>
-          삭제
-        </p>
-      </S.FormStudentItem>
-    </>
+    <S.FormStudentItem
+      isActive={isSelectedStudent(selectedStudent, id)}
+      onClick={itemClickHandler(id)}
+    >
+      <div>
+        <p>{number}</p>
+        <p>{name}</p>
+      </div>
+      <p className="delete" onClick={deleteButtonClickHandler(id)}>
+        삭제
+      </p>
+    </S.FormStudentItem>
   );
 };
 

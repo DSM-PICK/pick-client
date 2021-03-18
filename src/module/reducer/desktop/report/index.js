@@ -14,12 +14,10 @@ import {
   SET_FIX_ATTENDANCE_CHANGE_STUDENT_STUDENT
 } from "../../../action/deskop/report";
 
-const today = new Date();
-
 const initialState = {
   attendanceChangeStudentList: [],
   attendanceChangeList: [],
-  selectedStudent: -1,
+  selectedStudent: [],
   similerStudents: []
 };
 
@@ -33,11 +31,13 @@ const desktopReportReducer = (state = initialState, action) => {
     }
     case SET_ATTENDANCE_CHANGE_TYPE: {
       const newState = state.attendanceChangeStudentList.map(student => {
-        if (student.id === action.payload.id) {
-          return {
-            ...student,
-            type: action.payload.data
-          };
+        for (let i of action.payload.id) {
+          if (student.id === i) {
+            return {
+              ...student,
+              type: action.payload.data
+            };
+          }
         }
         return student;
       });
@@ -48,11 +48,13 @@ const desktopReportReducer = (state = initialState, action) => {
     }
     case SET_DESCRIPTION: {
       const newState = state.attendanceChangeStudentList.map(student => {
-        if (student.id === action.payload.id) {
-          return {
-            ...student,
-            description: action.payload.data
-          };
+        for (let i of action.payload.id) {
+          if (student.id === i) {
+            return {
+              ...student,
+              description: action.payload.data
+            };
+          }
         }
         return student;
       });
@@ -63,11 +65,13 @@ const desktopReportReducer = (state = initialState, action) => {
     }
     case SET_END_DATE: {
       const newState = state.attendanceChangeStudentList.map(student => {
-        if (student.id === action.payload.id) {
-          return {
-            ...student,
-            endDate: action.payload.date
-          };
+        for (let i of action.payload.id) {
+          if (student.id === i) {
+            return {
+              ...student,
+              endDate: action.payload.date
+            };
+          }
         }
         return student;
       });
@@ -78,11 +82,14 @@ const desktopReportReducer = (state = initialState, action) => {
     }
     case SET_START_DATE: {
       const newState = state.attendanceChangeStudentList.map(student => {
-        if (student.id === action.payload.id) {
-          return {
-            ...student,
-            startDate: action.payload.date
-          };
+        for (let i of action.payload.id) {
+          if (student.id === i) {
+            console.log(i);
+            return {
+              ...student,
+              startDate: action.payload.date
+            };
+          }
         }
         return student;
       });
@@ -93,11 +100,13 @@ const desktopReportReducer = (state = initialState, action) => {
     }
     case SET_END_PERIOD: {
       const newState = state.attendanceChangeStudentList.map(student => {
-        if (student.id === action.payload.id) {
-          return {
-            ...student,
-            endPeriod: action.payload.period
-          };
+        for (let i of action.payload.id) {
+          if (student.id === i) {
+            return {
+              ...student,
+              endPeriod: action.payload.period
+            };
+          }
         }
         return student;
       });
@@ -107,12 +116,15 @@ const desktopReportReducer = (state = initialState, action) => {
       };
     }
     case SET_START_PERIOD: {
+      console.log(action.payload.id);
       const newState = state.attendanceChangeStudentList.map(student => {
-        if (student.id === action.payload.id) {
-          return {
-            ...student,
-            startPeriod: action.payload.period
-          };
+        for (let i of action.payload.id) {
+          if (student.id === i) {
+            return {
+              ...student,
+              startPeriod: action.payload.period
+            };
+          }
         }
         return student;
       });
@@ -155,7 +167,7 @@ const desktopReportReducer = (state = initialState, action) => {
       const id = Math.random();
       return {
         ...state,
-        selectedStudent: id,
+        selectedStudent: [id],
         attendanceChangeStudentList: [
           ...state.attendanceChangeStudentList,
           {

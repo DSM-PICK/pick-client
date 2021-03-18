@@ -68,7 +68,6 @@ const MonthCalender = ({
           endDate={attendanceChangeEndDate}
           selectedStudent={selectedStudent}
           setAttendanceChangeDate={setAttendanceChangeDate}
-          id={selectedStudent}
         />
       ];
     }
