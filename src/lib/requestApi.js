@@ -60,7 +60,6 @@ export const requestApi = async (method, url, body, headers) => {
 
     return res;
   } catch (err) {
-    console.log(err);
     if (!err.response) {
       alert("네트워크 상태를 확인해 주세요");
       throw null;
@@ -242,9 +241,6 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
 
     return res;
   } catch (errStatus) {
-    switch (errStatus) {
-      case 403:
-    }
     throw errStatus;
   }
 };
