@@ -181,6 +181,12 @@ export const FormStudentWrapper = styled.div`
 
 export const FormStudentItem = styled.div`
   position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   > div {
     width: ${pxToRem(84)}rem;
     height: ${pxToRem(24)}rem;
