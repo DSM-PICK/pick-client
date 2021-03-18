@@ -9,10 +9,24 @@ const AttendanceSection = props => {
   try {
     const { location, name: clubName } = props.locations;
 
+    const { currentClassInfo } = useSelector(state => state.attendance);
     const information = useSelector(state => state.attendance);
     const { clubHead, attendanceData } = information;
-    const [checkArr, setCheckArr] = useState([]);
+    const [stdStateArr, setStdStateArr] = useState(
+      !!Object.values(information.attendanceData).length
+        ? information.attendanceData.map(data =>
+            Object.values(data.state).filter(state => !!state)
+          )
+        : []
+    );
+    const [checkArr, setCheckArr] = useState(
+      Array.from(
+        { length: attendanceData ? attendanceData.length : 0 },
+        () => false
+      )
+    );
     const [checkAllState, setCheckAllState] = useState(false);
+    const [first, setFirst] = useState(true);
 
     const isSevenNull =
       attendanceData.length && attendanceData[0].state.seven === null;
@@ -41,19 +55,29 @@ const AttendanceSection = props => {
     );
 
     useEffect(() => {
+      if (attendanceData.length && first) {
+        setCheckArr(
+          Array.from(
+            { length: attendanceData ? attendanceData.length : 0 },
+            () => false
+          )
+        );
+        setFirst(false);
+      }
+    }, [first, attendanceData]);
+    useEffect(() => {
+      if (!!Object.values(attendanceData).length)
+        setStdStateArr(
+          attendanceData.map(data =>
+            Object.values(data.state).filter(state => !!state)
+          )
+        );
+    }, [attendanceData]);
+    useEffect(() => {
       setCheckAllState(
         checkArr.every(check => check === checkArr[0]) ? checkArr[0] : false
       );
     }, [checkArr]);
-
-    useEffect(() => {
-      setCheckArr(
-        Array.from(
-          { length: attendanceData ? attendanceData.length : 0 },
-          () => false
-        )
-      );
-    }, [attendanceData]);
 
     return (
       <S.Container>
@@ -83,14 +107,18 @@ const AttendanceSection = props => {
           checkAllState={checkAllState}
         />
         <S.Attendance>
-          {attendanceData.length &&
+          {stdStateArr.length &&
             attendanceData.map((attendance, index) => (
               <AttendanceRow
                 key={attendance.gradeClassNumber}
                 index={index}
                 attendance={attendance}
+                stdState={stdStateArr[index]}
+                stdStateArr={stdStateArr}
+                setStdStateArr={setStdStateArr}
                 checkArr={checkArr}
                 handleCheckArr={handleCheckArr}
+                attendanceData={attendanceData}
               />
             ))}
         </S.Attendance>
