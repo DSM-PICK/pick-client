@@ -32,19 +32,19 @@ export const SectionCheckbox = styled.input`
   & + label {
     display: flex;
     position: relative;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
 
     &::after {
       content: " ";
-      top: -5px;
-      left: -5px;
+      top: -4px;
+      left: -4px;
       position: absolute;
-      width: 26px;
-      height: 26px;
+      width: 22px;
+      height: 22px;
       border: 1px solid #707070;
       border-radius: 4px;
     }
