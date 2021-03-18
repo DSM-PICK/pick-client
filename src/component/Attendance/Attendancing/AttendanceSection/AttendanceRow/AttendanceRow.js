@@ -1,65 +1,112 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import AttendanceCell from "./AttendanceCell/AttendanceCell";
-import { useDispatch } from "react-redux";
-import { postAttendanceStdDataSaga } from "../../../../../module/action/attendance";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  postAttendanceStdDataSaga,
+  putAttendanceStdDataSaga
+} from "../../../../../module/action/attendance";
 
 const AttendanceRow = props => {
-  const { index, checkArr, handleCheckArr } = props;
-  const { name, state: states, gradeClassNumber } = props.attendance;
+  const { currentClassInfo } = useSelector(state => state.attendance);
+  const { stdState, index, checkArr, handleCheckArr, attendanceData } = props;
+  const { name, gradeClassNumber } = props.attendance;
 
-  const [statesArr, setStatesArr] = useState(
-    Object.values(states).filter(state => !!state)
-  );
+  const [statesArr, setStatesArr] = useState(stdState);
+
   const cascadeState = ["귀가"];
-  const periodArr = statesArr.length === 3 ? [8, 9, 10] : [7, 8, 9, 10];
-  const todayPeriod = statesArr.length === 3 ? 8 : 7;
+  const periodArr = stdState.length === 3 ? [8, 9, 10] : [7, 8, 9, 10];
+  const todayPeriod = stdState.length === 3 ? 8 : 7;
 
   const dispatch = useDispatch();
+  const postAttStdDataAndViewChange = useCallback((number, period, state) => {
+    postAttendanceStdData(number, period, state);
+  }, []);
+  const putAttendanceStdData = useCallback(
+    (numbers, periods, state) => {
+      dispatch(
+        putAttendanceStdDataSaga({
+          state,
+          numbers,
+          periods,
+          floor: currentClassInfo.floor,
+          priority: currentClassInfo.priority
+        })
+      );
+    },
+    [dispatch, currentClassInfo]
+  );
   const postAttendanceStdData = useCallback(
-    (period, value) => {
+    (number, period, state) => {
       dispatch(
         postAttendanceStdDataSaga({
-          number: gradeClassNumber,
+          number,
           period,
-          state: value
+          state,
+          floor: currentClassInfo.floor,
+          priority: currentClassInfo.priority
         })
       );
     },
-    [dispatch, gradeClassNumber]
+    [dispatch, currentClassInfo]
   );
-  const onStateChange = (period, value) => {
-    if (~cascadeState.findIndex(state => state === value)) {
-      cascadeViewChange(period, value);
-    } else {
-      viewChange(period, value);
-      postAttendanceStdData(period, value);
-    }
-  };
-  const cascadeViewChange = (period, value) => {
-    let tempArr = [];
-    for (let i = 0; i < period - todayPeriod; i++) {
-      tempArr.push(statesArr[i]);
-    }
-    for (let p = period; p <= 10; p++) {
-      postAttendanceStdData(p, value);
-      tempArr.push(value);
-    }
-    setStatesArr(tempArr);
-  };
-  const viewChange = useCallback(
+  const onStateChange = useCallback(
     (period, value) => {
-      setStatesArr(
-        statesArr.map((state, index) => {
-          if (index === period - todayPeriod) {
-            return value;
-          }
-          return state;
-        })
-      );
+      if (checkArr[index]) {
+        const allCheckedStudentArr = getAllCheckedStudentArr();
+
+        if (~cascadeState.findIndex(state => state === value)) {
+          const allCheckedStudentNumber = allCheckedStudentArr.map(
+            stdData => stdData.gradeClassNumber
+          );
+          cascadeViewChange(allCheckedStudentNumber, period, value);
+        } else {
+          const numberArr = allCheckedStudentArr.map(stdData => {
+            return stdData.gradeClassNumber;
+          });
+          putAttendanceStdData(numberArr, period, value);
+        }
+      } else {
+        if (~cascadeState.findIndex(state => state === value)) {
+          cascadeViewChange(gradeClassNumber, period, value);
+        } else {
+          postAttStdDataAndViewChange(gradeClassNumber, period, value);
+        }
+      }
     },
-    [statesArr]
+    [cascadeState]
   );
+  const getAllCheckedStudentArr = useCallback(() => {
+    const checkedIndexArr = checkArr
+      .map((check, mapIndex) => (check === true ? mapIndex : false))
+      .filter(data => data !== false);
+    const checkedStudentArr = attendanceData.filter(
+      (_, filterIndex) => ~checkedIndexArr.findIndex(idx => idx === filterIndex)
+    );
+
+    return checkedStudentArr;
+  }, [checkArr, attendanceData]);
+  const cascadeViewChange = useCallback(
+    (allCheckedStudentNumber, period, value) => {
+      let tempArr = [];
+      let periodArr = [];
+
+      for (let i = 0; i < period - todayPeriod; i++) {
+        tempArr.push(stdState[i]);
+      }
+      for (let p = period; p <= 10; p++) {
+        periodArr.push(p);
+        tempArr.push(value);
+      }
+      putAttendanceStdData(allCheckedStudentNumber, periodArr, value);
+      setStatesArr(tempArr);
+    },
+    [stdState]
+  );
+
+  useEffect(() => {
+    setStatesArr(stdState);
+  }, [stdState]);
 
   return (
     <S.Containter check={checkArr[index]}>
