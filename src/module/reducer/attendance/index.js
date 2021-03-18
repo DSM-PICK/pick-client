@@ -12,7 +12,8 @@ import {
   SET_DAY_OF_WEEK,
   SET_HEAD,
   SET_CLUB_NAME,
-  SET_SCHEDULE
+  SET_SCHEDULE,
+  SET_CURRENT_CLASS_INFO
 } from "../../action/attendance";
 
 const initialState = {
@@ -28,6 +29,11 @@ const initialState = {
     secondTeacherName: "",
     thirdTeacherName: "",
     forthTeacherName: ""
+  },
+
+  currentClassInfo: {
+    floor: "",
+    priority: ""
   },
 
   date: "",
@@ -148,6 +154,12 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         attendanceData: action.payload
+      };
+    }
+    case SET_CURRENT_CLASS_INFO: {
+      return {
+        ...state,
+        currentClassInfo: action.payload
       };
     }
     default: {
