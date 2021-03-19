@@ -14,4 +14,4 @@ const StdListGrid = props => {
   );
 };
 
-export default StdListGrid;
+export default React.memo(StdListGrid);

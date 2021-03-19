@@ -17,4 +17,4 @@ const AttendanceStdList = () => {
   );
 };
 
-export default AttendanceStdList;
+export default React.memo(AttendanceStdList);

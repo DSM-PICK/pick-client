@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import StdListGrid from "../StdListGrid/StdListGrid";
 import * as S from "./styles";
 
@@ -26,4 +25,4 @@ const StdListBody = props => {
   );
 };
 
-export default StdListBody;
+export default React.memo(StdListBody);

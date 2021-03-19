@@ -5,4 +5,4 @@ const DesktopMainContainer = () => {
   return <Main />;
 };
 
-export default DesktopMainContainer;
+export default React.memo(DesktopMainContainer);

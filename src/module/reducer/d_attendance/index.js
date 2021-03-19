@@ -10,7 +10,8 @@ const initialState = {
   },
   selectAttendanceArr: [],
   currentAttendanceIndexArr: [0, 0],
-  attendanceData: []
+  attendanceData: [],
+  selectArr: []
 };
 
 const DAttendanceReducer = (state = initialState, action) => {
@@ -18,7 +19,8 @@ const DAttendanceReducer = (state = initialState, action) => {
     SET_CLASS_INFO,
     SET_SELECT_ATTENDANCE_ARR,
     SET_CURRENT_ATTENDANCE_INDEX_ARR,
-    SET_ATTENDANCE_STD_DATA
+    SET_ATTENDANCE_STD_DATA,
+    SET_SELECT_ARR
   } = DAttendanceAction;
 
   switch (action.type) {
@@ -57,6 +59,12 @@ const DAttendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         attendanceData: action.payload
+      };
+    }
+    case SET_SELECT_ARR: {
+      return {
+        ...state,
+        selectArr: action.payload
       };
     }
     default: {
