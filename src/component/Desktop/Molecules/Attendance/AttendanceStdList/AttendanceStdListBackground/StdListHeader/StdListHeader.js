@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import StdListGrid from "../StdListGrid/StdListGrid";
 import * as S from "./styles";
 
 const StdListHeader = () => {
@@ -23,6 +22,17 @@ const StdListHeader = () => {
   return (
     <S.Container>
       <S.ListHeader>
+        <S.SectionCheckboxWrap>
+          <S.SectionCheckbox
+            type="checkbox"
+            id={`StdListHeaderCheckBox`}
+            // checked={selectArr[index]}
+            onClick={() => console.log(selectArr[index])}
+          />
+          <S.SectionCheckboxLabel
+            htmlFor={`StdListHeaderCheckBox`}
+          ></S.SectionCheckboxLabel>
+        </S.SectionCheckboxWrap>
         <S.HeaderItem>{name}</S.HeaderItem>
         <S.HeaderList length={length}>
           {attendanceList.map(text => (

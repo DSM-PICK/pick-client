@@ -17,6 +17,8 @@ export const SET_HEAD = "attendance/SET_HEAD";
 
 export const SET_CURRENT_CLASS_INFO = "attendance/SET_CURRENT_CLASS_INFO";
 
+export const SET_IS_LOADING = "attendance/SET_IS_LOADING";
+
 export const GET_FLOOR_DATA_SAGA = "attendance/GET_FLOOR_DATA_SAGA";
 
 export const SET_ATTENDANCE_STD_DATA = "attendance/SET_ATTENDANCE_STD_DATA";
@@ -100,6 +102,11 @@ export const setHead = payload => ({
 
 export const setCurrentClassInfo = payload => ({
   type: SET_CURRENT_CLASS_INFO,
+  payload
+});
+
+export const setIsLoading = payload => ({
+  type: SET_IS_LOADING,
   payload
 });
 

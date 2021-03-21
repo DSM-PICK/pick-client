@@ -107,7 +107,8 @@ const AttendanceSection = props => {
           checkAllState={checkAllState}
         />
         <S.Attendance>
-          {stdStateArr.length &&
+          {attendanceData.length === stdStateArr.length &&
+            stdStateArr.length &&
             attendanceData.map((attendance, index) => (
               <AttendanceRow
                 key={attendance.gradeClassNumber}
