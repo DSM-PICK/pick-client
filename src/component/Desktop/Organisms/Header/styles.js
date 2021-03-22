@@ -14,9 +14,9 @@ export const Container = styled.div`
 export const Wrap = styled.div`
   display: grid;
   align-items: center;
-  gap: 67px;
-  grid-template: 1fr / 1fr 293px 122px;
-  width: 1072px;
+  gap: 40px;
+  grid-template: 1fr / 1fr 400px 130px;
+  width: 1150px;
   height: 100%;
 `;
 
