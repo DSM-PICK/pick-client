@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ItemBtn from "./ItemBtn/ItemBtn";
 import * as S from "./styles";
 
@@ -23,4 +23,4 @@ const AttendanceList = props => {
   );
 };
 
-export default AttendanceList;
+export default React.memo(AttendanceList);
