@@ -15,6 +15,6 @@ export const AttendanceWrap = styled.div`
 
 export const AttendanceGridWrap = styled.div`
   display: grid;
-  width: 1072px;
+  width: 1200px;
   height: 100%;
 `;
