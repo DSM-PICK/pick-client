@@ -24,4 +24,4 @@ const DesktopAttendanceClassInfoContainer = () => {
   );
 };
 
-export default DesktopAttendanceClassInfoContainer;
+export default React.memo(DesktopAttendanceClassInfoContainer);
