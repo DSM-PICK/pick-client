@@ -16,14 +16,8 @@ const DAPBackgroundHeaderContainer = props => {
   const managedInfo =
     selectSchedule === "교실자습" ? managedClassroom : managedClub;
 
-  console.log(withoutGrantedClass, managedInfo);
-  console.log(!withoutGrantedClass, !managedInfo);
-
-  if (!withoutGrantedClass && !managedInfo) {
+  if ((!managedInfo || !managedInfo.length) && !withoutGrantedClass) {
     setWithoutGrantedClass(true);
-  }
-  if (withoutGrantedClass && !!managedInfo) {
-    setWithoutGrantedClass(false);
   }
 
   const getManagedInfo = useCallback(manage => {
