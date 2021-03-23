@@ -30,4 +30,4 @@ const SelectWrap = props => {
   );
 };
 
-export default SelectWrap;
+export default React.memo(SelectWrap);
