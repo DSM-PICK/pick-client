@@ -5,6 +5,7 @@ export const Container = styled.div`
   grid-template-columns: 1fr 1fr 4fr 1fr;
   width: 100%;
   height: 24px;
+  background: ${props => (props.select ? "#F4F4F4" : "#ffffff")};
 `;
 
 export const SectionCheckboxWrap = styled.div`
