@@ -41,6 +41,43 @@ const setSelectArr = payload => ({
   payload
 });
 
+const SET_SELECT_ALL = "d_attendance/SET_SELECT_ALL";
+const setSelectAll = payload => ({
+  type: SET_SELECT_ALL,
+  payload
+});
+
+const SET_MANAGED_INFO = "d_attendance/SET_MANAGED_INFO";
+const setManagedInfo = payload => ({
+  type: SET_MANAGED_INFO,
+  payload
+});
+
+const SET_MANAGED_CLASS_FLOOR_DATA =
+  "d_attendance/SET_MANAGED_CLASS_FLOOR_DATA";
+const setManagedClassFloorData = payload => ({
+  type: SET_MANAGED_CLASS_FLOOR_DATA,
+  payload
+});
+const SET_MANAGED_CLUB_FLOOR_DATA = "d_attendance/SET_MANAGED_CLUB_FLOOR_DATA";
+const setManagedClubFloorData = payload => ({
+  type: SET_MANAGED_CLUB_FLOOR_DATA,
+  payload
+});
+
+const SET_IS_FAST_CLICK = "d_attendance/SET_IS_FAST_CLICK";
+const setIsFastClick = payload => ({
+  type: SET_IS_FAST_CLICK,
+  payload
+});
+
+const SET_FIRST_SCHEDULE_ATTENDANCE_ARR =
+  "d_attendance/SET_FIRST_SCHEDULE_ATTENDANCE_ARR";
+const setFirstScheduleAttendanceArr = payload => ({
+  type: SET_FIRST_SCHEDULE_ATTENDANCE_ARR,
+  payload
+});
+
 const SET_ATTENDANCE_STD_DATA = "d_attendance/SET_ATTENDANCE_STD_DATA";
 const setAttendanceStdData = payload => ({
   type: SET_ATTENDANCE_STD_DATA,
@@ -72,6 +109,33 @@ const patchAttendanceStdDataSaga = payload => ({
   payload
 });
 
+const GET_MANAGED_ATTENDANCE_ARR_SAGA =
+  "d_attendance/GET_MANAGED_ATTENDANCE_ARR_SAGA";
+const getManagedAttendanceArrSaga = payload => ({
+  type: GET_MANAGED_ATTENDANCE_ARR_SAGA,
+  payload
+});
+const GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA =
+  "d_attendance/GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA";
+const getManagedClubAttendanceArrSaga = payload => ({
+  type: GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
+  payload
+});
+
+const PUT_ATTENDANCE_STD_DATA_SAGA =
+  "d_attendance/PUT_ATTENDANCE_STD_DATA_SAGA";
+const putAttendanceStdDataSaga = payload => ({
+  type: PUT_ATTENDANCE_STD_DATA_SAGA,
+  payload
+});
+
+const SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA =
+  "d_attendance/SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA";
+const setFirstScheduleAttendanceArrSaga = payload => ({
+  type: SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
+  payload
+});
+
 export const DAttendanceAction = {
   SET_CLASS_INFO,
   SET_SELECT_ATTENDANCE_ARR,
@@ -80,11 +144,21 @@ export const DAttendanceAction = {
   FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
   SET_CURRENT_ATTENDANCE_INDEX_ARR,
   SET_SELECT_ARR,
+  SET_SELECT_ALL,
+  SET_MANAGED_INFO,
+  SET_MANAGED_CLASS_FLOOR_DATA,
+  SET_MANAGED_CLUB_FLOOR_DATA,
+  SET_IS_FAST_CLICK,
+  SET_FIRST_SCHEDULE_ATTENDANCE_ARR,
   SET_ATTENDANCE_STD_DATA,
   GET_ATTENDANCE_STD_DATA_SAGA,
   SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
-  PATCH_ATTENDANCE_STD_DATA_SAGA
+  PATCH_ATTENDANCE_STD_DATA_SAGA,
+  GET_MANAGED_ATTENDANCE_ARR_SAGA,
+  GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
+  PUT_ATTENDANCE_STD_DATA_SAGA,
+  SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA
 };
 
 export const DAttendanceActionCreater = {
@@ -95,9 +169,19 @@ export const DAttendanceActionCreater = {
   failureGetSelectAttendanceArrSaga,
   setCurrentAttendanceIndexArr,
   setSelectArr,
+  setSelectAll,
+  setManagedInfo,
+  setManagedClassFloorData,
+  setManagedClubFloorData,
+  setIsFastClick,
+  setFirstScheduleAttendanceArr,
   setAttendanceStdData,
   getAttendanceStdDataSaga,
   successGetAttendanceStdDataSaga,
   failureGetAttendanceStdDataSaga,
-  patchAttendanceStdDataSaga
+  patchAttendanceStdDataSaga,
+  getManagedAttendanceArrSaga,
+  getManagedClubAttendanceArrSaga,
+  putAttendanceStdDataSaga,
+  setFirstScheduleAttendanceArrSaga
 };
