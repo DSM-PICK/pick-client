@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./styles";
 import Label from "../../../Atoms/Label/Label";
 import Background from "../../../Atoms/Background/Background";
@@ -22,4 +22,4 @@ const AttendancePlace = props => {
   );
 };
 
-export default AttendancePlace;
+export default React.memo(AttendancePlace);
