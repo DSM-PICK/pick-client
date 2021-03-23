@@ -5,20 +5,30 @@ import { DAttendanceActionCreater } from "../../../../module/action/d_attendance
 
 const DAPBackgroundHeaderContainer = props => {
   const { teacherName } = props;
-  const [withoutGrantedClass, setWithoutGrantedClass] = useState(true);
   const selectAttendanceArr = useSelector(
     state => state.dAttendance.selectAttendanceArr
   );
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
+  const strManagedInfo = useSelector(state => state.dAttendance.managedInfo);
+  const managedClassFloorData = useSelector(
+    state => state.dAttendance.managedClassFloorData
+  );
+  const managedClubFloorData = useSelector(
+    state => state.dAttendance.managedClubFloorData
+  );
 
-  const managedClub = JSON.parse(localStorage.getItem("managedClub"));
-  const managedClassroom = JSON.parse(localStorage.getItem("managedClassroom"));
-  const managedInfo =
-    selectSchedule === "교실자습" ? managedClassroom : managedClub;
+  const [currentIndexArrPriority, setCurrentIndexArrPriority] = useState("");
 
-  if ((!managedInfo || !managedInfo.length) && !withoutGrantedClass) {
-    setWithoutGrantedClass(true);
-  }
+  const isScheduleClass = selectSchedule === "교실자습" ? true : false;
+  const [isClubUngranted, isClassUngranted] = Object.values(strManagedInfo).map(
+    info => info.isUngranted
+  );
+  const nowUngranted = isScheduleClass ? isClassUngranted : isClubUngranted;
+  const grantedClass = nowUngranted
+    ? null
+    : isScheduleClass
+    ? strManagedInfo.class.data
+    : strManagedInfo.club.data[0];
 
   const getManagedInfo = useCallback(manage => {
     return {
@@ -28,9 +38,9 @@ const DAPBackgroundHeaderContainer = props => {
     };
   }, []);
 
-  const { name: locationName, floor, priority } = withoutGrantedClass
+  const { name: locationName, floor, priority } = nowUngranted
     ? { name: "", floor: "", priority: "" }
-    : getManagedInfo(managedInfo);
+    : getManagedInfo(grantedClass);
 
   const scheduleMap = {
     교실자습: "self-study",
@@ -39,29 +49,39 @@ const DAPBackgroundHeaderContainer = props => {
 
   const dispatch = useDispatch();
   const {
+    setIsFastClick,
     getAttendanceStdDataSaga,
     setCurrentAttendanceIndexArr,
     getSelectAttendanceArrSaga
   } = DAttendanceActionCreater;
 
   const currentIndexArrFloor = 4 - floor;
-  const currentIndexArrPriority =
-    selectAttendanceArr.length &&
-    selectAttendanceArr.filter(dataObj => dataObj.priority === priority)[0]
-      ?.priority;
+
+  useEffect(() => {
+    setCurrentIndexArrPriority(
+      selectSchedule === "교실자습"
+        ? managedClassFloorData
+            .map((data, index) => (data.priority === priority ? index : false))
+            .filter(_ => _ !== false)[0]
+        : managedClubFloorData
+            .map((data, index) => (data.priority === priority ? index : false))
+            .filter(_ => _ !== false)[0]
+    );
+  }, [managedClassFloorData, managedClubFloorData, selectSchedule, priority]);
 
   const onClickFastSearchBtn = useCallback(() => {
+    dispatch(setIsFastClick(true));
+    dispatch(
+      getSelectAttendanceArrSaga({
+        schedule: scheduleMap[selectSchedule],
+        floor: floor
+      })
+    );
     dispatch(
       getAttendanceStdDataSaga({
         floor,
         priority,
         schedule: scheduleMap[selectSchedule]
-      })
-    );
-    dispatch(
-      getSelectAttendanceArrSaga({
-        schedule: scheduleMap[selectSchedule],
-        floor: floor
       })
     );
     dispatch(
@@ -72,6 +92,7 @@ const DAPBackgroundHeaderContainer = props => {
     );
   }, [
     dispatch,
+    selectAttendanceArr,
     selectSchedule,
     floor,
     priority,
@@ -83,7 +104,7 @@ const DAPBackgroundHeaderContainer = props => {
       locationName={locationName}
       teacherName={teacherName}
       onClickFastSearchBtn={onClickFastSearchBtn}
-      withoutGrantedClass={withoutGrantedClass}
+      nowUngranted={nowUngranted}
     />
   );
 };
