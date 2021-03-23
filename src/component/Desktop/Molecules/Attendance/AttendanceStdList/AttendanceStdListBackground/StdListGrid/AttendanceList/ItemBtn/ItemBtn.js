@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import StateItem from "./StateItem/StateItem";
+import { useSelector } from "react-redux";
 
 const ItemBtn = props => {
   const { index, propText, period } = props;
   const { onStateChange } = props;
 
+  const selectArr = useSelector(state => state.dAttendance.selectArr);
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState(propText);
 
@@ -33,9 +35,9 @@ const ItemBtn = props => {
   const onClickItem = useCallback(
     value => {
       setText(value);
-      onStateChange(period, value);
+      onStateChange(period, value, selectArr);
     },
-    [period]
+    [period, selectArr]
   );
 
   const onClick = useCallback(() => {
