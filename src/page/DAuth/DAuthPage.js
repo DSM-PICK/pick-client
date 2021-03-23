@@ -3,6 +3,9 @@ import * as authApi from "../../lib/api/auth";
 import { LogoPickSvg } from "../../asset";
 import * as S from "./style";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { DAttendanceActionCreater } from "../../module/action/d_attendance";
+import { getManagedInfo } from "../../lib/attendanceApi";
 
 const errMsgMap = {
   ALREADY_EXIST_ACCOUNT: "이미 존재하는 계정입니다",
@@ -11,6 +14,7 @@ const errMsgMap = {
 };
 
 const DLoginPage = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [errMsg, setErrMsg] = useState("");
@@ -23,6 +27,14 @@ const DLoginPage = () => {
     password: "",
     name: ""
   });
+
+  const { setManagedInfo } = DAttendanceActionCreater;
+  const dispatchManagedInfo = useCallback(
+    (managedClassroom, managedClub) => {
+      dispatch(setManagedInfo(getManagedInfo(managedClassroom, managedClub)));
+    },
+    [dispatch]
+  );
 
   const loginInputHandler = useCallback(e => {
     const { name, value } = e.target;
@@ -71,7 +83,9 @@ const DLoginPage = () => {
         );
         window.localStorage.setItem("managedClub", JSON.stringify(managedClub));
 
-        history.push("/");
+        dispatchManagedInfo(managedClassroom, managedClub);
+
+        history.push("/temp");
       } catch (errStatus) {
         setErrMsg(errMsgMap[errStatus]);
       }
