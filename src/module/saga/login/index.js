@@ -20,7 +20,6 @@ function* requestLogin(action) {
       data: { accessToken, managedClassroom, refreshToken, teacherName }
     } = res;
 
-    window.localStorage.setItem("managedClassroom", managedClassroom);
     window.localStorage.setItem("accessToken", accessToken);
     window.localStorage.setItem("refreshToken", refreshToken);
     window.localStorage.setItem("teacherName", teacherName);
