@@ -130,3 +130,21 @@ export const getFloor = floorName => {
     }
   }
 };
+
+export const getManagedInfo = (managedClassroom, managedClub) => {
+  const isClubUngranted = managedClub.length === 0;
+  const isClassUngranted = managedClassroom === null;
+
+  return {
+    club: {
+      isUngranted: isClubUngranted,
+      data: isClubUngranted ? [] : managedClub,
+      floorData: []
+    },
+    class: {
+      isUngranted: isClassUngranted,
+      data: isClassUngranted ? null : managedClassroom,
+      floorData: isClassUngranted ? null : []
+    }
+  };
+};
