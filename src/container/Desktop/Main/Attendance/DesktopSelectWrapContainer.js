@@ -6,14 +6,16 @@ import { DAttendanceActionCreater } from "../../../../module/action/d_attendance
 import { staticSelectArr } from "./StaticData";
 
 const DesktopSelectWrapContainer = () => {
-  const dAttendance = useSelector(state => state.dAttendance);
-  const {
-    selectAttendanceArr: selectAttendance,
-    currentAttendanceIndexArr: selectArrIndex
-  } = dAttendance;
+  const { selectAttendanceArr: selectAttendance } = useSelector(
+    state => state.dAttendance
+  );
+  const { currentAttendanceIndexArr: selectArrIndex } = useSelector(
+    state => state.dAttendance
+  );
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
 
   const {
+    getAttendanceStdDataSaga,
     getSelectAttendanceArrSaga,
     setCurrentAttendanceIndexArr
   } = DAttendanceActionCreater;
@@ -23,8 +25,8 @@ const DesktopSelectWrapContainer = () => {
   const selectArr = [
     selectSelfStudyOrClub,
     {
-      header: selectSchedule === "교실자습" ? "반" : "실",
-      bodyItem: selectAttendance.map(data => data.location)
+      header: selectSchedule === "교실자습" ? "반" : "동아리명",
+      bodyItem: selectAttendance.map(data => data.name)
     }
   ];
 
@@ -35,11 +37,42 @@ const DesktopSelectWrapContainer = () => {
     },
     [dispatch]
   );
+  const getSelectAttendanceArrPayload = useCallback(() => {
+    return {
+      schedule: getSelectSchedule() === "교실자습" ? "self-study" : "club",
+      floor: getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]])
+    };
+  }, [selectSelfStudyOrClub, selectArrIndex]);
   const setCurrentArrByIndex = useCallback(
     (row, col) => {
+      dispatchGetAttendanceStdData(
+        getSelectSchedule(),
+        row,
+        ...getUpdatedArr(row, col)
+      );
       dispatch(setCurrentAttendanceIndexArr(getUpdatedArr(row, col)));
     },
-    [dispatch, selectArrIndex]
+    [dispatch, selectAttendance]
+  );
+  const dispatchGetAttendanceStdData = useCallback(
+    (textSchedule, rowIndex, row, col) => {
+      const schedule = textSchedule === "교실자습" ? "self-study" : "club";
+
+      dispatch(
+        getAttendanceStdDataSaga({
+          schedule,
+          floor: 4 - row,
+          priority: selectAttendance.filter(
+            (_, filterIndex) => filterIndex === col
+          )[0].priority
+        })
+      );
+
+      if (!rowIndex) {
+        dispatch(getSelectAttendanceArrSaga({ schedule, floor: 4 - row }));
+      }
+    },
+    [dispatch, selectAttendance]
   );
   const getUpdatedArr = useCallback(
     (row, col) => {
@@ -53,12 +86,11 @@ const DesktopSelectWrapContainer = () => {
     [selectArrIndex]
   );
 
+  const getSelectSchedule = useCallback(() => selectSchedule, [selectSchedule]);
+
   useEffect(() => {
-    getSelectAttendanceArr({
-      schedule: selectSchedule === "교실자습" ? "self-study" : "club",
-      floor: getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]])
-    });
-  }, [selectSchedule, selectArrIndex]);
+    getSelectAttendanceArr(getSelectAttendanceArrPayload());
+  }, []);
 
   return (
     <SelectWrap
@@ -69,4 +101,4 @@ const DesktopSelectWrapContainer = () => {
   );
 };
 
-export default DesktopSelectWrapContainer;
+export default React.memo(DesktopSelectWrapContainer);
