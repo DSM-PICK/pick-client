@@ -9,10 +9,6 @@ const DesktopStdListBodyContainer = () => {
     state => state.dAttendance.attendanceData,
     shallowEqual
   );
-  const selectArr = useSelector(
-    state => state.dAttendance.selectArr,
-    shallowEqual
-  );
 
   const { setSelectArr } = DAttendanceActionCreater;
   useEffect(() => {
