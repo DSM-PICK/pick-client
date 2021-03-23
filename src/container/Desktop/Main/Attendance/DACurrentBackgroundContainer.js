@@ -8,4 +8,4 @@ const DACurrentBackgroundContainer = () => {
   return <AttendanceCurrentBackground />;
 };
 
-export default DACurrentBackgroundContainer;
+export default React.memo(DACurrentBackgroundContainer);
