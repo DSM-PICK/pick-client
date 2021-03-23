@@ -17,4 +17,4 @@ const AttendanceCurrent = () => {
   );
 };
 
-export default AttendanceCurrent;
+export default React.memo(AttendanceCurrent);
