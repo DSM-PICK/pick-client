@@ -13,7 +13,7 @@ import {
 function* getSelectAttendanceArr(action) {
   console.log("getSelectAttendanceArr");
   try {
-    const { schedule, floor } = action.payload;
+    const { schedule, floor, isCascade } = action.payload;
     const { SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA } = DAttendanceAction;
     const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(schedule, floor);
 
@@ -21,18 +21,27 @@ function* getSelectAttendanceArr(action) {
 
     yield put({
       type: SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
-      payload: floorData
+      payload: { floorData, schedule, floor, isCascade }
     });
   } catch (error) {}
 }
 
 function* successGetSelectAttendanceArr(action) {
-  const floorData = action.payload;
+  const { floorData, schedule, floor, isCascade } = action.payload;
   const locationArr = floorData.data.locations;
 
   const { setSelectAttendanceArr } = DAttendanceActionCreater;
 
+  const { GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
+
   yield put(setSelectAttendanceArr(locationArr));
+
+  if (isCascade) {
+    yield put({
+      type: GET_ATTENDANCE_STD_DATA_SAGA,
+      payload: { schedule, floor, priority: locationArr[0].priority }
+    });
+  }
 }
 
 function* getAttendanceStdData(action) {
@@ -100,6 +109,34 @@ function* patchAttendanceStdData(action) {
   } catch (error) {}
 }
 
+function* patchAndGetStdData(action) {
+  try {
+    const { number, period, state, currentClassPriority } = action.payload;
+    const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PATCH,
+      REQUEST_URL,
+      {
+        number,
+        period,
+        state
+      }
+    );
+
+    const { GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
+    const { schedule, floor, priority } = currentClassPriority;
+
+    yield put({
+      type: GET_ATTENDANCE_STD_DATA_SAGA,
+      payload: { schedule, floor, priority }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* getManagedAttendanceArr(action) {
   try {
     const { floor, schedule } = action.payload;
@@ -148,7 +185,7 @@ function* getManagedClubAttendanceArr(action) {
 
 function* putAttendanceStdData(action) {
   try {
-    const { numbers, periods, state } = action.payload;
+    const { numbers, periods, state, currentClassPriority } = action.payload;
     const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
 
     const res = yield call(
@@ -162,7 +199,13 @@ function* putAttendanceStdData(action) {
       }
     );
 
-    console.log(res);
+    const { GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
+    const { schedule, floor, priority } = currentClassPriority;
+
+    yield put({
+      type: GET_ATTENDANCE_STD_DATA_SAGA,
+      payload: { schedule, floor, priority }
+    });
   } catch (err) {
     console.log(err);
   }
@@ -204,6 +247,7 @@ function* dAttendanceSaga() {
     SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
     FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
     PATCH_ATTENDANCE_STD_DATA_SAGA,
+    PATCH_AND_GET_STD_DATA_SAGA,
     GET_MANAGED_ATTENDANCE_ARR_SAGA,
     GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
     PUT_ATTENDANCE_STD_DATA_SAGA,
@@ -231,7 +275,7 @@ function* dAttendanceSaga() {
   // );
 
   yield takeLatest(PATCH_ATTENDANCE_STD_DATA_SAGA, patchAttendanceStdData);
-
+  yield takeLatest(PATCH_AND_GET_STD_DATA_SAGA, patchAndGetStdData);
   yield takeLatest(GET_MANAGED_ATTENDANCE_ARR_SAGA, getManagedAttendanceArr);
   yield takeLatest(
     GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
