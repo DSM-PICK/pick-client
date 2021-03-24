@@ -1,27 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AttendanceList from "../../../../component/Desktop/Molecules/Attendance/AttendanceStdList/AttendanceStdListBackground/StdListGrid/AttendanceList/AttendanceList";
 import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
 
 const DesktopAttendanceListContainer = props => {
   const { index, stdNum, stateList, css } = props;
-  const [statesArr, setStatesArr] = useState(
-    Object.values(stateList).filter(state => state)
-  );
   const attendanceData = useSelector(state => state.dAttendance.attendanceData);
+  const { currentClassPriority } = useSelector(state => state.dAttendance);
 
   const cascadeState = ["귀가"];
-  const startPeriod = 11 - statesArr.length;
-  const periodArr = [10, 9, 8, 7].slice(0, statesArr.length).reverse();
+  const periodArr = [10, 9, 8, 7]
+    .slice(0, Object.values(stateList).filter(state => state).length)
+    .reverse();
 
-  const {
-    putAttendanceStdDataSaga,
-    patchAttendanceStdDataSaga
-  } = DAttendanceActionCreater;
+  const { putAttendanceStdDataSaga } = DAttendanceActionCreater;
   const dispatch = useDispatch();
 
   const putAttendanceStdData = useCallback(
-    (numbers, periods, value) => {
+    (numbers, periods, value, currentClassPriority) => {
       const cascadePeriod = ~cascadeState.findIndex(state => state === value)
         ? getCascadePeriod(periods)
         : periods;
@@ -29,7 +25,8 @@ const DesktopAttendanceListContainer = props => {
         putAttendanceStdDataSaga({
           numbers,
           periods: cascadePeriod,
-          state: value
+          state: value,
+          currentClassPriority
         })
       );
     },
@@ -41,14 +38,6 @@ const DesktopAttendanceListContainer = props => {
       .filter(p => p >= periods)
       .reverse();
   }, []);
-  const patchAttendanceStdData = useCallback(
-    (period, value) => {
-      dispatch(
-        patchAttendanceStdDataSaga({ number: stdNum, period, state: value })
-      );
-    },
-    [dispatch, stdNum]
-  );
   const onStateChange = useCallback(
     (period, value, selectArr) => {
       if (selectArr[index]) {
@@ -62,37 +51,25 @@ const DesktopAttendanceListContainer = props => {
           )
           .map(std => std.gradeClassNumber);
 
-        putAttendanceStdData(selectedNumbers, period, value);
+        putAttendanceStdData(
+          selectedNumbers,
+          period,
+          value,
+          currentClassPriority
+        );
       } else {
-        patchAttendanceStdData(period, value);
-        viewChange(period, value);
+        putAttendanceStdData(stdNum, period, value, currentClassPriority);
       }
     },
-    [index, attendanceData]
-  );
-
-  const viewChange = useCallback(
-    (period, value) => {
-      setStatesArr(
-        statesArr.map((state, index) => {
-          if (index === period - startPeriod) {
-            return value;
-          }
-          return state;
-        })
-      );
-    },
-    [statesArr]
+    [index, stdNum, attendanceData, currentClassPriority]
   );
 
   return (
     <AttendanceList
       css={css}
       index={index}
-      length={statesArr.length}
-      stateList={statesArr}
-      periodArr={periodArr}
       onStateChange={onStateChange}
+      stList={stateList}
     />
   );
 };
