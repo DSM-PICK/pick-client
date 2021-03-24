@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import * as S from "./styles";
 import StateItem from "./StateItem/StateItem";
 import { useSelector } from "react-redux";
@@ -47,23 +47,23 @@ const ItemBtn = props => {
   }, [isOpen]);
 
   return (
-    <S.Container text={text} isOpen={isOpen} onClick={onClick}>
-      {text !== "출석" && text}
+    <S.Container text={propText} isOpen={isOpen} onClick={onClick}>
+      {propText !== "출석" && propText}
       <S.Wrap index={index}>
-        {index <= 17 && <S.Item current={text} value={text} />}
+        {index <= 17 && <S.Item current={propText} value={propText} />}
         {staticStates.map(
           state =>
-            state.value !== text && (
+            state.value !== propText && (
               <StateItem
                 key={state.value}
                 isOpen={isOpen}
-                current={text}
+                current={propText}
                 value={state.value}
                 onClickItem={onClickItem}
               />
             )
         )}
-        {index > 17 && <S.Item current={text} value={text} />}
+        {index > 17 && <S.Item current={propText} value={propText} />}
       </S.Wrap>
     </S.Container>
   );
