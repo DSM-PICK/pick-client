@@ -52,7 +52,8 @@ const DAPBackgroundHeaderContainer = props => {
     setIsFastClick,
     getAttendanceStdDataSaga,
     setCurrentAttendanceIndexArr,
-    getSelectAttendanceArrSaga
+    getSelectAttendanceArrSaga,
+    setCurrentClassPriority
   } = DAttendanceActionCreater;
 
   const currentIndexArrFloor = 4 - floor;
@@ -71,6 +72,13 @@ const DAPBackgroundHeaderContainer = props => {
 
   const onClickFastSearchBtn = useCallback(() => {
     dispatch(setIsFastClick(true));
+    dispatch(
+      setCurrentClassPriority({
+        floor,
+        priority,
+        schedule: scheduleMap[selectSchedule]
+      })
+    );
     dispatch(
       getSelectAttendanceArrSaga({
         schedule: scheduleMap[selectSchedule],
