@@ -78,6 +78,12 @@ const setFirstScheduleAttendanceArr = payload => ({
   payload
 });
 
+const SET_CURRENT_CLASS_PRIORITY = "d_attendance/SET_CURRENT_CLASS_PRIORITY";
+const setCurrentClassPriority = payload => ({
+  type: SET_CURRENT_CLASS_PRIORITY,
+  payload
+});
+
 const SET_ATTENDANCE_STD_DATA = "d_attendance/SET_ATTENDANCE_STD_DATA";
 const setAttendanceStdData = payload => ({
   type: SET_ATTENDANCE_STD_DATA,
@@ -106,6 +112,11 @@ const PATCH_ATTENDANCE_STD_DATA_SAGA =
   "d_attendance/PATCH_ATTENDANCE_STD_DATA_SAGA";
 const patchAttendanceStdDataSaga = payload => ({
   type: PATCH_ATTENDANCE_STD_DATA_SAGA,
+  payload
+});
+const PATCH_AND_GET_STD_DATA_SAGA = "d_attendance/PATCH_AND_GET_STD_DATA_SAGA";
+const patchAndGetStdDataSaga = payload => ({
+  type: PATCH_AND_GET_STD_DATA_SAGA,
   payload
 });
 
@@ -150,11 +161,13 @@ export const DAttendanceAction = {
   SET_MANAGED_CLUB_FLOOR_DATA,
   SET_IS_FAST_CLICK,
   SET_FIRST_SCHEDULE_ATTENDANCE_ARR,
+  SET_CURRENT_CLASS_PRIORITY,
   SET_ATTENDANCE_STD_DATA,
   GET_ATTENDANCE_STD_DATA_SAGA,
   SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
   FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
   PATCH_ATTENDANCE_STD_DATA_SAGA,
+  PATCH_AND_GET_STD_DATA_SAGA,
   GET_MANAGED_ATTENDANCE_ARR_SAGA,
   GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
   PUT_ATTENDANCE_STD_DATA_SAGA,
@@ -175,11 +188,13 @@ export const DAttendanceActionCreater = {
   setManagedClubFloorData,
   setIsFastClick,
   setFirstScheduleAttendanceArr,
+  setCurrentClassPriority,
   setAttendanceStdData,
   getAttendanceStdDataSaga,
   successGetAttendanceStdDataSaga,
   failureGetAttendanceStdDataSaga,
   patchAttendanceStdDataSaga,
+  patchAndGetStdDataSaga,
   getManagedAttendanceArrSaga,
   getManagedClubAttendanceArrSaga,
   putAttendanceStdDataSaga,
