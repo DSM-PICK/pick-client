@@ -13,6 +13,7 @@ const DesktopAttendancePlaceContainer = () => {
     state => state.dAttendance.firstScheduleAttendanceArr
   );
 
+  const [isSelfStudy, setIsSelfStudy] = useState(true);
   const [isFirst, setIsFirst] = useState(true);
   const [firstScheduleAttArr, setFirstScheduleAttArr] = useState(
     firstScheduleAttendanceArr
@@ -26,9 +27,11 @@ const DesktopAttendancePlaceContainer = () => {
   const {
     getSelectAttendanceArrSaga,
     getAttendanceStdDataSaga,
-    setCurrentAttendanceIndexArr
+    setCurrentAttendanceIndexArr,
+    setCurrentClassPriority
   } = DAttendanceActionCreater;
 
+  const getIsFirst = useCallback(() => isFirst, [isFirst]);
   const setFirst = useCallback(async () => {
     const REQUEST_URL_CLUB = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("CLUB", 4);
     const REQUEST_URL_CLASS = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
@@ -42,12 +45,32 @@ const DesktopAttendancePlaceContainer = () => {
       class: res_class.data.locations
     });
   }, []);
-
-  const getIsFirst = useCallback(() => isFirst, [isFirst]);
   const getFirstScheduleAttendanceArr = useCallback(
     () => firstScheduleAttendanceArr,
     [firstScheduleAttendanceArr]
   );
+  const dispatchSetCurrentClassPriority = useCallback(
+    isSelfStudySchedule => {
+      if (firstScheduleAttArr.club.length) {
+        const selectScheduleData =
+          firstScheduleAttArr[isSelfStudySchedule ? "class" : "club"];
+        const selectSchedule = isSelfStudySchedule ? "self-study" : "club";
+
+        dispatch(
+          setCurrentClassPriority({
+            schedule: selectSchedule,
+            floor: 4,
+            priority: selectScheduleData[0].priority
+          })
+        );
+      }
+    },
+    [isSelfStudy, dispatch]
+  );
+
+  useEffect(() => {
+    dispatchSetCurrentClassPriority(isSelfStudy);
+  }, [isSelfStudy]);
 
   const dispatchGetSelectAttendanceArr = useCallback(
     schedule => {
@@ -62,6 +85,7 @@ const DesktopAttendancePlaceContainer = () => {
   );
   const setSelectSchedule = useCallback(
     schedule => {
+      setIsSelfStudy(state => !state);
       dispatch(ToggleActionCreater.setSelectSchedule(schedule));
       dispatchGetSelectAttendanceArr(schedule);
       setCurrentArrByIndex([0, 0]);
