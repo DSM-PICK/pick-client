@@ -17,7 +17,8 @@ const DesktopSelectWrapContainer = () => {
   const {
     getAttendanceStdDataSaga,
     getSelectAttendanceArrSaga,
-    setCurrentAttendanceIndexArr
+    setCurrentAttendanceIndexArr,
+    setCurrentClassPriority
   } = DAttendanceActionCreater;
 
   const selectSelfStudyOrClub =
@@ -31,6 +32,12 @@ const DesktopSelectWrapContainer = () => {
   ];
 
   const dispatch = useDispatch();
+  const dispatchSetCurrentClassPriority = useCallback(
+    priority => {
+      dispatch(setCurrentClassPriority(priority));
+    },
+    [dispatch]
+  );
   const getSelectAttendanceArr = useCallback(
     payload => {
       dispatch(getSelectAttendanceArrSaga(payload));
@@ -57,19 +64,28 @@ const DesktopSelectWrapContainer = () => {
   const dispatchGetAttendanceStdData = useCallback(
     (textSchedule, rowIndex, row, col) => {
       const schedule = textSchedule === "교실자습" ? "self-study" : "club";
+      const priority = selectAttendance.filter(
+        (_, filterIndex) => filterIndex === col
+      )[0].priority;
 
-      dispatch(
-        getAttendanceStdDataSaga({
-          schedule,
-          floor: 4 - row,
-          priority: selectAttendance.filter(
-            (_, filterIndex) => filterIndex === col
-          )[0].priority
-        })
-      );
+      dispatchSetCurrentClassPriority({ schedule, floor: 4 - row, priority });
 
       if (!rowIndex) {
-        dispatch(getSelectAttendanceArrSaga({ schedule, floor: 4 - row }));
+        dispatch(
+          getSelectAttendanceArrSaga({
+            schedule,
+            floor: 4 - row,
+            isCascade: true
+          })
+        );
+      } else {
+        dispatch(
+          getAttendanceStdDataSaga({
+            schedule,
+            floor: 4 - row,
+            priority
+          })
+        );
       }
     },
     [dispatch, selectAttendance]
@@ -89,6 +105,8 @@ const DesktopSelectWrapContainer = () => {
   const getSelectSchedule = useCallback(() => selectSchedule, [selectSchedule]);
 
   useEffect(() => {
+    const { schedule, floor } = getSelectAttendanceArrPayload();
+    dispatchSetCurrentClassPriority({ schedule, floor, priority: 0 });
     getSelectAttendanceArr(getSelectAttendanceArrPayload());
   }, []);
 
