@@ -238,6 +238,27 @@ function* setFirstScheduleAttendanceArr() {
   }
 }
 
+function* setAttendanceMemo(action) {
+  try {
+    const { memo, numbers, periods } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.SET_ATTENCANE_MEMO();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PUT,
+      REQUEST_URL,
+      {
+        memo,
+        numbers: Array.isArray(numbers) ? numbers : [numbers],
+        periods: Array.isArray(periods) ? periods : [periods]
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* dAttendanceSaga() {
   const {
     GET_ATTENDANCE_STD_DATA_SAGA,
@@ -251,7 +272,8 @@ function* dAttendanceSaga() {
     GET_MANAGED_ATTENDANCE_ARR_SAGA,
     GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
     PUT_ATTENDANCE_STD_DATA_SAGA,
-    SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA
+    SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
+    SET_ATTENDANCE_MEMO_SAGA
   } = DAttendanceAction;
 
   yield takeLatest(GET_SELECT_ATTENDANCE_ARR_SAGA, getSelectAttendanceArr);
@@ -286,6 +308,7 @@ function* dAttendanceSaga() {
     SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
     setFirstScheduleAttendanceArr
   );
+  yield takeLatest(SET_ATTENDANCE_MEMO_SAGA, setAttendanceMemo);
 }
 
 export default dAttendanceSaga;
