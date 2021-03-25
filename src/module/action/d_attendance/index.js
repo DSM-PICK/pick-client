@@ -84,6 +84,12 @@ const setCurrentClassPriority = payload => ({
   payload
 });
 
+const SET_MEMO_FLOOR_DATA = "d_attendance/SET_MEMO_FLOOR_DATA";
+const setMemoFloorData = payload => ({
+  type: SET_MEMO_FLOOR_DATA,
+  payload
+});
+
 const SET_ATTENDANCE_STD_DATA = "d_attendance/SET_ATTENDANCE_STD_DATA";
 const setAttendanceStdData = payload => ({
   type: SET_ATTENDANCE_STD_DATA,
@@ -153,6 +159,12 @@ const setAttendanceMemoSaga = payload => ({
   payload
 });
 
+const GET_MEMO_FLOOR_DATA_SAGA = "d_attendance/GET_MEMO_FLOOR_DATA_SAGA";
+const getMemoFloorDataSaga = payload => ({
+  type: GET_MEMO_FLOOR_DATA_SAGA,
+  payload
+});
+
 export const DAttendanceAction = {
   SET_CLASS_INFO,
   SET_SELECT_ATTENDANCE_ARR,
@@ -178,7 +190,8 @@ export const DAttendanceAction = {
   GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
   PUT_ATTENDANCE_STD_DATA_SAGA,
   SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
-  SET_ATTENDANCE_MEMO_SAGA
+  SET_ATTENDANCE_MEMO_SAGA,
+  GET_MEMO_FLOOR_DATA_SAGA
 };
 
 export const DAttendanceActionCreater = {
@@ -206,5 +219,6 @@ export const DAttendanceActionCreater = {
   getManagedClubAttendanceArrSaga,
   putAttendanceStdDataSaga,
   setFirstScheduleAttendanceArrSaga,
-  setAttendanceMemoSaga
+  setAttendanceMemoSaga,
+  getMemoFloorDataSaga
 };
