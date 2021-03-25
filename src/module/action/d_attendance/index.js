@@ -159,6 +159,12 @@ const setAttendanceMemoSaga = payload => ({
   payload
 });
 
+const GET_STUDENT_BY_STATE_SAGA = "d_attendance/GET_STUDENT_BY_STATE_SAGA";
+const getStudentByStateSaga = payload => ({
+  type: GET_STUDENT_BY_STATE_SAGA,
+  payload
+});
+
 const GET_MEMO_FLOOR_DATA_SAGA = "d_attendance/GET_MEMO_FLOOR_DATA_SAGA";
 const getMemoFloorDataSaga = payload => ({
   type: GET_MEMO_FLOOR_DATA_SAGA,
@@ -192,6 +198,8 @@ export const DAttendanceAction = {
   PUT_ATTENDANCE_STD_DATA_SAGA,
   SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
   SET_ATTENDANCE_MEMO_SAGA,
+  GET_STUDENT_BY_STATE_SAGA
+  SET_ATTENDANCE_MEMO_SAGA,
   GET_MEMO_FLOOR_DATA_SAGA
 };
 
@@ -221,6 +229,8 @@ export const DAttendanceActionCreater = {
   getManagedClubAttendanceArrSaga,
   putAttendanceStdDataSaga,
   setFirstScheduleAttendanceArrSaga,
+  setAttendanceMemoSaga,
+  getStudentByStateSaga
   setAttendanceMemoSaga,
   getMemoFloorDataSaga
 };

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -22,7 +23,7 @@ export const Wrap = styled.div`
 
 export const GridItem = styled.div``;
 
-export const ImgWrap = styled.div`
+export const ImgWrap = styled(NavLink)`
   display: flex;
   align-items: center;
 `;
