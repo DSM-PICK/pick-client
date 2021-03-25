@@ -19,8 +19,15 @@ export const ATTENDANCE = {
   SET_ATTENCANE_MEMO: () => {
     return `/saturn/attendance/student-memo`;
   },
-  SEARCH_STUDENT_BY_STATE: () => {
-    return `/saturn/attendance/student`;
+  SEARCH_STUDENT_BY_STATE: (schedule, state) => {
+    const scheduleMap = {
+      교실자습: "self-study",
+      전공동아리: "club"
+    };
+    const stateMap = {
+      외출: "outing"
+    };
+    return `/saturn/attendance/student?schedule=${scheduleMap[schedule]}&state=${stateMap[state]}`;
   }
 };
 
