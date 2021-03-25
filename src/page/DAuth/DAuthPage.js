@@ -85,7 +85,7 @@ const DLoginPage = () => {
 
         dispatchManagedInfo(managedClassroom, managedClub);
 
-        history.push("/temp");
+        history.push("/");
       } catch (errStatus) {
         setErrMsg(errMsgMap[errStatus]);
       }

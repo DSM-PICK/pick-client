@@ -26,4 +26,4 @@ const Toggle = props => {
   );
 };
 
-export default Toggle;
+export default React.memo(Toggle);

@@ -6,7 +6,6 @@ const AttendanceClassInfo = props => {
   const {
     managerTeacher,
     className,
-    head,
     stdCount,
     stdCountWithoutEmployment
   } = props;
@@ -35,4 +34,4 @@ const AttendanceClassInfo = props => {
   );
 };
 
-export default AttendanceClassInfo;
+export default React.memo(AttendanceClassInfo);

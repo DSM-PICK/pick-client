@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Main from "../../../component/Desktop/Templates/Main/Main";
-import { checkIsLogin } from "../../../lib/requestApi";
+import { getManagedInfo } from "../../../lib/attendanceApi";
+import {
+  checkIsLogin,
+  requestGetApiWithAccessToken
+} from "../../../lib/requestApi";
+import { ATTENDANCE } from "../../../lib/requestUrl";
+import { DAttendanceActionCreater } from "../../../module/action/d_attendance";
 
 const DesktopMainContainer = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [login, setLogin] = useState(false);
   checkIsLogin().then(isLogin => {
     if (!isLogin) {
@@ -13,6 +21,45 @@ const DesktopMainContainer = () => {
     }
     setLogin(true);
   }, []);
+
+  const {
+    setManagedInfo,
+    setFirstScheduleAttendanceArr,
+    setFirstScheduleAttendanceArrSaga,
+    getMemoFloorDataSaga
+  } = DAttendanceActionCreater;
+  const managedClassroom = JSON.parse(localStorage.getItem("managedClassroom"));
+  const managedClub = JSON.parse(localStorage.getItem("managedClub"));
+
+  const dispatchSetFirstScheduleAttendanceArrSaga = useCallback(() => {
+    dispatch(setFirstScheduleAttendanceArrSaga());
+  }, [dispatch]);
+
+  const setFirst = useCallback(async () => {
+    const REQUEST_URL_CLUB = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("CLUB", 4);
+    const REQUEST_URL_CLASS = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      "SELF_STUDY",
+      4
+    );
+    const res_club = await requestGetApiWithAccessToken(REQUEST_URL_CLUB);
+    const res_class = await requestGetApiWithAccessToken(REQUEST_URL_CLASS);
+
+    setFirstScheduleAttendanceArr({
+      club: res_club.data.locations,
+      class: res_class.data.locations
+    });
+  }, []);
+
+  const dispatchGetMemoFloorData = useCallback(() => {
+    dispatch(getMemoFloorDataSaga());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setFirst();
+    dispatchSetFirstScheduleAttendanceArrSaga();
+    dispatchGetMemoFloorData();
+    dispatch(setManagedInfo(getManagedInfo(managedClassroom, managedClub)));
+  }, [dispatch]);
 
   if (!login) {
     return <div></div>;

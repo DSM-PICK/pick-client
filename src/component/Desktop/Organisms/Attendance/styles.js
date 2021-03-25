@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: relative;
   display: grid;
-  column-gap: 24px;
-  grid-template-columns: 6fr 11fr;
+  column-gap: 10px;
+  grid-template-columns: 1fr 2fr;
   padding: 30px 0;
 `;
 
@@ -27,4 +27,4 @@ export const ClassInfoWrap = styled.div`
   left: calc(100% + 25px);
   width: 180px;
   height: 180px;
-`
+`;

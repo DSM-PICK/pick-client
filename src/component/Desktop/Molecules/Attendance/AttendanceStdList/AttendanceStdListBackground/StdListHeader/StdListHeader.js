@@ -1,11 +1,28 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { DAttendanceActionCreater } from "../../../../../../../module/action/d_attendance";
 import * as S from "./styles";
 
 const StdListHeader = () => {
+  const dispatch = useDispatch();
   const attendanceLists = useSelector(
     state => state.dAttendance.attendanceData
   );
+  const selectAll = useSelector(state => state.dAttendance.selectAll);
+  const selectArr = useSelector(
+    state => state.dAttendance.selectArr,
+    shallowEqual
+  );
+
+  const { setSelectArr, setSelectAll } = DAttendanceActionCreater;
+
+  const onAllCheckBoxClick = useCallback(() => {
+    dispatch(setSelectAll(!selectAll));
+
+    !selectAll
+      ? dispatch(setSelectArr(selectArr.map(_ => true)))
+      : dispatch(setSelectArr(selectArr.map(_ => false)));
+  }, [dispatch, selectArr, selectAll]);
 
   let length = 0;
   if (attendanceLists.length) {
@@ -26,8 +43,8 @@ const StdListHeader = () => {
           <S.SectionCheckbox
             type="checkbox"
             id={`StdListHeaderCheckBox`}
-            // checked={selectArr[index]}
-            onClick={() => console.log(selectArr[index])}
+            checked={selectAll}
+            onClick={onAllCheckBoxClick}
           />
           <S.SectionCheckboxLabel
             htmlFor={`StdListHeaderCheckBox`}
@@ -45,4 +62,4 @@ const StdListHeader = () => {
   );
 };
 
-export default StdListHeader;
+export default React.memo(StdListHeader);

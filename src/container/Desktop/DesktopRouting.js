@@ -4,15 +4,13 @@ import NotFoundContainer from "../NotFound/NotFoundContainer";
 import DesktopReportContainer from "./DesktopReportContainer";
 import { DScheduleContainer } from "../../container";
 import { DAuthPage } from "../../page";
-import DesktopMainContainer from "./Main/DesktopMainContainer";
 import DesktopStatsContainer from "./Stats/DesktopStatsContainer";
-import TDesktopMainContainer from "./Temp/DesktopMainContainer";
+import DesktopMainContainer from "./Main/DesktopMainContainer";
 
 const DesktopRouting = () => {
   return (
     <Switch>
       <Route path="/" exact component={DesktopMainContainer} />
-      <Route path="/temp" exact component={TDesktopMainContainer} />
       <Route path="/auth" exact component={DAuthPage} />
       <Route path="/report" component={DesktopReportContainer} />
       <Route path="/schedule" exact component={DScheduleContainer} />
