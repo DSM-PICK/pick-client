@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import * as S from "./style";
 
 const MemoItem = props => {
-  const { checkArr } = props;
   const { onWriteMemo, writeMemoByInput } = props;
 
   const memoFloorData = useSelector(state => state.dAttendance.memoFloorData);
@@ -23,26 +22,22 @@ const MemoItem = props => {
       setSelectIndex(idx);
     }
   }, []);
-  const onClickClass = useCallback((className, checkArr) => {
-    onWriteMemo(className, checkArr);
+  const onClickClass = useCallback(className => {
+    onWriteMemo(className);
   }, []);
 
   return (
     <S.Container>
       <S.FloorWrap>
         {floorData.map((data, mapIndex) => (
-          <S.FloorItem
-            key={data}
-            isSelect={selectIndex === mapIndex}
-            onClick={() => onClickFloor(mapIndex)}
-          >
+          <S.FloorItem key={data} onClick={() => onClickFloor(mapIndex)}>
             {data}
           </S.FloorItem>
         ))}
       </S.FloorWrap>
       <S.ClassWrap>
         {classData[selectIndex].map(data => (
-          <S.ClassItem key={data} onClick={() => onClickClass(data, checkArr)}>
+          <S.ClassItem key={data} onClick={() => onClickClass(data)}>
             {data}
           </S.ClassItem>
         ))}

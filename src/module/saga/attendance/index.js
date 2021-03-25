@@ -30,6 +30,7 @@ import {
   setCurrentClassInfo,
   putAttendanceStdDataSaga,
   PUT_ATTENDANCE_STD_DATA_SAGA,
+  PUT_ATTENDANCE_MEMO_SAGA,
   setIsLoading
 } from "../../action/attendance";
 
@@ -182,7 +183,29 @@ function* putAttendanceStdData(payload) {
   }
 }
 
+function* putAttendanceMemo(action) {
+  try {
+    const { memo, numbers, periods } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.SET_ATTENCANE_MEMO();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PUT,
+      REQUEST_URL,
+      {
+        memo,
+        periods: Array.isArray(periods) ? periods : [periods],
+        numbers: Array.isArray(numbers) ? numbers : [numbers]
+      }
+    );
+
+    console.log(res);
+  } catch (error) {}
+}
+
 function* attendanceSaga() {
+  yield takeEvery(PUT_ATTENDANCE_MEMO_SAGA, putAttendanceMemo);
   yield takeEvery(GET_FLOOR_DATA_SAGA, getFloorData);
   yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdDataSaga);
   yield takeEvery(POST_ATTENDANCE_STD_DATA_SAGA, patchAttendanceStdData);

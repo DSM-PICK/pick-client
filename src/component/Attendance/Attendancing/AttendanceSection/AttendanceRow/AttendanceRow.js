@@ -9,7 +9,14 @@ import {
 
 const AttendanceRow = props => {
   const { currentClassInfo } = useSelector(state => state.attendance);
-  const { stdState, index, checkArr, handleCheckArr, attendanceData } = props;
+  const {
+    stdState,
+    index,
+    checkArr,
+    handleCheckArr,
+    attendanceData,
+    memo
+  } = props;
   const { name, gradeClassNumber } = props.attendance;
 
   const [statesArr, setStatesArr] = useState(stdState);
@@ -17,6 +24,7 @@ const AttendanceRow = props => {
   const cascadeState = ["귀가"];
   const periodArr = stdState.length === 3 ? [8, 9, 10] : [7, 8, 9, 10];
   const todayPeriod = stdState.length === 3 ? 8 : 7;
+  const memoArr = Object.values(memo).slice(4 - stdState.length);
 
   const dispatch = useDispatch();
   const postAttStdDataAndViewChange = useCallback((number, period, state) => {
@@ -51,9 +59,10 @@ const AttendanceRow = props => {
     [dispatch, currentClassInfo]
   );
   const onStateChange = useCallback(
-    (period, value) => {
-      if (checkArr[index]) {
-        const allCheckedStudentArr = getAllCheckedStudentArr();
+    (period, value, arr) => {
+      if (arr[index]) {
+        console.log(arr[index]);
+        const allCheckedStudentArr = getAllCheckedStudentArr(arr);
 
         if (~cascadeState.findIndex(state => state === value)) {
           const allCheckedStudentNumber = allCheckedStudentArr.map(
@@ -76,16 +85,21 @@ const AttendanceRow = props => {
     },
     [cascadeState]
   );
-  const getAllCheckedStudentArr = useCallback(() => {
-    const checkedIndexArr = checkArr
-      .map((check, mapIndex) => (check === true ? mapIndex : false))
-      .filter(data => data !== false);
-    const checkedStudentArr = attendanceData.filter(
-      (_, filterIndex) => ~checkedIndexArr.findIndex(idx => idx === filterIndex)
-    );
+  const getAllCheckedStudentArr = useCallback(
+    arr => {
+      const checkedIndexArr = arr
+        .map((check, mapIndex) => (check === true ? mapIndex : false))
+        .filter(data => data !== false);
+      const checkedStudentArr = attendanceData.filter(
+        (_, filterIndex) =>
+          ~checkedIndexArr.findIndex(idx => idx === filterIndex)
+      );
 
-    return checkedStudentArr;
-  }, [checkArr, attendanceData]);
+      return checkedStudentArr;
+    },
+    [checkArr, attendanceData]
+  );
+
   const cascadeViewChange = useCallback(
     (allCheckedStudentNumber, period, value) => {
       let tempArr = [];
@@ -131,6 +145,8 @@ const AttendanceRow = props => {
               period={periodArr[idx]}
               periodState={state}
               onStateChange={onStateChange}
+              checkArr={checkArr}
+              memo={memoArr[idx]}
             />
           </S.SectionClass>
         ))}

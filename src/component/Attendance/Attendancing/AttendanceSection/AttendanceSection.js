@@ -114,6 +114,7 @@ const AttendanceSection = props => {
                 key={attendance.gradeClassNumber}
                 index={index}
                 attendance={attendance}
+                memo={attendance.memo}
                 stdState={stdStateArr[index]}
                 stdStateArr={stdStateArr}
                 setStdStateArr={setStdStateArr}

@@ -15,7 +15,6 @@ export const FloorWrap = styled.div`
 export const FloorItem = styled.div`
   color: #000000;
   font-size: 16px;
-  font-weight: ${props => (props.isSelect ? "bold" : 500)};
 
   :hover {
     font-weight: bold;
