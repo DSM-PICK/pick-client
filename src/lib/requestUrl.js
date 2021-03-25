@@ -18,6 +18,9 @@ export const ATTENDANCE = {
   },
   SET_ATTENCANE_MEMO: () => {
     return `/saturn/attendance/student-memo`;
+  },
+  MEMO_FLOOR_DATA: floor => {
+    return `/saturn/attendance/memo/${floor}`;
   }
 };
 
