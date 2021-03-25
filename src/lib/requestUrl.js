@@ -15,6 +15,9 @@ export const ATTENDANCE = {
   },
   ACTIVITY_BY_DATE_URL: date => {
     return `/saturn/attendance/activity/${date}`;
+  },
+  SET_ATTENCANE_MEMO: () => {
+    return `/saturn/attendance/student-memo`;
   }
 };
 
