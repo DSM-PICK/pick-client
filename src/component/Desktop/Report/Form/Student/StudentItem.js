@@ -37,6 +37,7 @@ const StudentItem = ({
       isActive={isSelectedStudent(selectedStudent, id)}
       onClick={itemClickHandler(id)}
     >
+      <div class="selected" />
       <div>
         <p>{number}</p>
         <p>{name}</p>
