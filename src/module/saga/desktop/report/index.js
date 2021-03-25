@@ -1,13 +1,13 @@
 import { call, put, takeLatest, debounce, select } from "redux-saga/effects";
 import {
   setAttendanceChangeList,
-  similerStudents,
+  setSimilerStudents,
   setAttendanceChangeStudent,
   getAttendanceChangeList,
   GET_ATTENDANCE_CHANGE_LIST,
   ADD_ATTENDANCE_CHANGE_LIST,
   GET_SIMILER_STUDENT,
-  DELETE_ATTENDANCE_CHANGE_STUDENT
+  DELETE_ATTENDANCE_CHANGE_STUDENT_TO_SERVER
 } from "../../../action/deskop/report";
 import {
   requestApiWithAccessToken,
@@ -18,8 +18,6 @@ import { PRE_REPORT, AUTO_COMPLETE } from "../../../../lib/requestUrl";
 import { makeDate2Digit } from "../../../../lib/attendanceApi";
 import {
   deleteAttendanceChangeListErrorHandler,
-  addAttendanceChangeStudentErrorHandler,
-  putAttendanceChangeStudentErrorHandler,
   getAllAttendanceChangeListErrorHandler
 } from "../../../../error/desktop/report";
 
@@ -79,11 +77,8 @@ const attendanceChangeListStateToDTO = state => {
       endDate,
       startDate,
       endPeriod,
-      startPeriod,
-      isFix,
-      id
+      startPeriod
     }) => ({
-      id,
       stdnum: parseInt(number),
       name,
       start_date: `${startDate.year}-${makeDate2Digit(
@@ -95,8 +90,8 @@ const attendanceChangeListStateToDTO = state => {
       )}-${makeDate2Digit(endDate.date)}`,
       end_period: endPeriod,
       state: type,
-      memo: description,
-      isFix
+      memo: type === "이동" ? description : null,
+      reason: type !== "이동" ? description : null
     })
   );
 };
@@ -151,10 +146,14 @@ function* deleteAttendanceChangeStudent({ payload }) {
 }
 
 function* getSimilerStudent({ payload }) {
+  if (payload.length <= 0) {
+    yield put(setSimilerStudents([]));
+    return;
+  }
   try {
     const REQUEST_URL = AUTO_COMPLETE.AUTO_COMPLETE_STUDENT_URL(payload);
     const { data } = yield call(requestGetApiWithAccessToken, REQUEST_URL);
-    yield put(similerStudents(data));
+    yield put(setSimilerStudents(data));
   } catch (error) {}
 }
 
@@ -202,7 +201,7 @@ function* desktopReportSaga() {
   yield takeLatest(ADD_ATTENDANCE_CHANGE_LIST, addAttendanceChangeStudentSaga);
   yield debounce(100, GET_SIMILER_STUDENT, getSimilerStudent);
   yield takeLatest(
-    DELETE_ATTENDANCE_CHANGE_STUDENT,
+    DELETE_ATTENDANCE_CHANGE_STUDENT_TO_SERVER,
     deleteAttendanceChangeStudent
   );
 }

@@ -68,11 +68,10 @@ const MonthCalender = ({
           endDate={attendanceChangeEndDate}
           selectedStudent={selectedStudent}
           setAttendanceChangeDate={setAttendanceChangeDate}
-          id={selectedStudent}
         />
       ];
     }
-    const endBlankDayCount = 5 - fillUpBlankDay(renderArray.length);
+    const endBlankDayCount = 5 - fillUpBlankDay(renderArray.length).length;
     renderArray = [...renderArray, ...fillUpBlankDay(endBlankDayCount)];
     return (
       <S.CalenderDayWrapper key={`week-${year}-${month}-${startDate}`}>
@@ -103,10 +102,12 @@ const MonthCalender = ({
       setAttendanceChangeEndDate({ date, id });
     }
   };
+  const isTodayMonth = todayYear === year && todayMonth === month;
   return (
     <S.Calender>
       <S.CalenderMonth
-        isTodayMonth={todayYear === year && todayMonth === month}
+        isTodayMonth={isTodayMonth}
+        id={isTodayMonth ? "todayMonth" : ""}
       >
         {year}년 {month}월
       </S.CalenderMonth>

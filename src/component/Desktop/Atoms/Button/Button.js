@@ -1,20 +1,15 @@
 import React from "react";
 import * as S from "./styles";
 
-const Button = ({ style, name, type, value, onClick }) => {
-  console.log("button");
+const Button = props => {
+  const { buttonDisabled, text, css } = props;
+  const { onClick } = props;
 
   return (
-    <S.Button
-      {...style}
-      name={name}
-      type={type}
-      autoComplete={"off"}
-      onClick={e => onClick(e)}
-    >
-      {value}
-    </S.Button>
+    <S.Container {...css} buttonDisabled={buttonDisabled} onClick={onClick}>
+      {text}
+    </S.Container>
   );
 };
 
-export default Button;
+export default React.memo(Button);

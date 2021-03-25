@@ -43,7 +43,7 @@ function* getPreReportList() {
 function* createPreReportSaga(payload) {
   try {
     const {
-      remark,
+      reason,
       state,
       stdnum,
       start_date,
@@ -53,21 +53,21 @@ function* createPreReportSaga(payload) {
     } = payload.payload;
     const REQUEST_URL = PRE_REPORT.CREATE_PRE_REPORT_URL();
 
-    const isDataRight = checkPreReportData(
+    const isDataRight = checkPreReportData({
       state,
       stdnum,
       start_date,
       start_period,
       end_date,
       end_period
-    );
+    });
 
     const res = yield call(
       requestApiWithAccessToken,
       methodType.POST,
       REQUEST_URL,
       {
-        memo: remark || "",
+        reason: reason || "",
         state,
         stdnum,
         start_date,

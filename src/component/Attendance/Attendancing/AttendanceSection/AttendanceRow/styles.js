@@ -5,6 +5,8 @@ export const Containter = styled.div`
   width: 100%;
   height: 50px;
   border-bottom: 1px solid #c4c4c4;
+
+  background: ${props => (props.check ? "#F4F4F4" : "#FFFFFF")};
 `;
 
 export const SectionSpan = styled.span`
@@ -15,6 +17,44 @@ export const SectionSpan = styled.span`
   align-items: center;
   justify-content: center;
 `;
+
+export const SectionCheckboxWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-width: 44px;
+`;
+
+export const SectionCheckbox = styled.input`
+  display: none;
+
+  & + label {
+    display: flex;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &::after {
+      content: " ";
+      top: -4px;
+      left: -4px;
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border: 1px solid #707070;
+      border-radius: 4px;
+    }
+  }
+
+  &:checked + label {
+    background: #267dff;
+  }
+`;
+export const SectionCheckboxLabel = styled.label``;
 
 export const SectionSeq = styled(SectionSpan)`
   font-size: 16px;

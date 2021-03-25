@@ -60,7 +60,6 @@ export const requestApi = async (method, url, body, headers) => {
 
     return res;
   } catch (err) {
-    console.log(err);
     if (!err.response) {
       alert("네트워크 상태를 확인해 주세요");
       throw null;
@@ -104,6 +103,26 @@ export const requesetRefresh = async callback => {
   }
 };
 
+export const requesetRefreshForDesktop = async callback => {
+  try {
+    const refreshToken = window.localStorage.getItem(REFRESH_TOKEN);
+    const res = await requestGetApi(`/saturn/auth/access-token`, {
+      [ACCESS_TOKEN_NAME]: refreshToken
+    });
+    window.localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
+    window.location.href = window.location.href;
+  } catch (err) {
+    if (err === 401) {
+      alert("인증이 만료되어 재인증이 필요합니다.");
+      window.localStorage.clear();
+      window.location.href = "/auth";
+    }
+    if (callback) {
+      callback();
+    }
+  }
+};
+
 export const requesetAdminRefresh = async () => {
   try {
     const refreshToken = window.localStorage.getItem(
@@ -121,7 +140,6 @@ export const requesetAdminRefresh = async () => {
       loginConstant.ADMIN_ACCESS_TOKEN,
       res.data.access_token
     );
-    console.log(res.data.access_token);
   } catch (errStatus) {
     window.localStorage.clear();
     window.location.href = "/admin/login";
@@ -222,9 +240,6 @@ export const requestApiWithAccessToken = async (method, url, body, headers) => {
 
     return res;
   } catch (errStatus) {
-    switch (errStatus) {
-      case 403:
-    }
     throw errStatus;
   }
 };
@@ -297,7 +312,8 @@ export const Logout = state => {
     }
   } catch (err) {
   } finally {
-    window.location.href = state === "admin" ? "/admin/login" : "/t";
+    window.location.href =
+      state === "admin" ? "/admin/login" : state === "desktop" ? "/auth" : "/t";
   }
 };
 

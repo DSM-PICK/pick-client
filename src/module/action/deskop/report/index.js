@@ -22,6 +22,8 @@ export const SET_NEW_ATTENDANCE_CHANGE_STUDENT =
   "DESKTOP_REPORT/SET_NEW_ATTENDANCE_CHANGE_STUDENT";
 export const SET_FIX_ATTENDANCE_CHANGE_STUDENT_STUDENT =
   "DESKTOP_REPORT/SET_FIX_ATTENDANCE_CHANGE_STUDENT_STUDENT";
+export const DELETE_ATTENDANCE_CHANGE_STUDENT_TO_SERVER =
+  "DESKTOP_REPORT/DELETE_ATTENDANCE_CHANGE_STUDENT_TO_SERVER";
 
 export const setAttendanceChangeStudent = payload => ({
   type: SET_ATTENDANCE_CHANGE_STUDENT,
@@ -88,7 +90,7 @@ export const getSimilerStudent = payload => ({
   payload
 });
 
-export const similerStudents = payload => ({
+export const setSimilerStudents = payload => ({
   type: SIMILER_STUDENT,
   payload
 });
@@ -100,5 +102,10 @@ export const setNewAttendanceChangeStudent = payload => ({
 
 export const setFixAttendanceChangeStudent = payload => ({
   type: SET_FIX_ATTENDANCE_CHANGE_STUDENT_STUDENT,
+  payload
+});
+
+export const deleteAttendanceChangeStudentToServer = payload => ({
+  type: DELETE_ATTENDANCE_CHANGE_STUDENT_TO_SERVER,
   payload
 });

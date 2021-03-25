@@ -6,7 +6,11 @@ import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
 import getDateObj from "../../../lib/calander";
-import { checkPreReportName, makeDate2Digit } from "../../../lib/attendanceApi";
+import {
+  checkPreReportData,
+  checkPreReportName,
+  makeDate2Digit
+} from "../../../lib/attendanceApi";
 import {
   createPreReportSaga,
   setPreReportNextDate,
@@ -17,20 +21,26 @@ import {
   setPreReportCalcMonth,
   setPreReportIsClickPreState,
   setNames,
-  setRemark,
-  setPreReportText
+  setReason,
+  setPreReportText,
+  setTempReason
 } from "../../../module/action/pre_report";
 import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
 import { dropModal, showModal } from "../../../module/action/modal_wrap";
 import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
-import PreReportRemark from "./PreReportRemark/PreReportRemark";
+import PreReportReason from "./PreReportReason/PreReportReason";
 
 const PreReports = () => {
-  const [remarkMemo, setRemarkMemo] = useState("");
   const nameText = useSelector(state => state.preReport.text);
   const nameArr = useSelector(state => state.preReport.names);
   const preReportData = useSelector(state => state.preReport);
-  const { remark: memo, state, preDate, nextDate } = preReportData;
+  const {
+    tempReason: reasonMemo,
+    reason: memo,
+    state,
+    preDate,
+    nextDate
+  } = preReportData;
   const dispatch = useDispatch();
 
   const ShowCalendarModal = useCallback(() => {
@@ -78,17 +88,22 @@ const PreReports = () => {
     payload => dispatch(setPreReportText(payload)),
     [dispatch]
   );
-  const setMemo = useCallback(payload => dispatch(setRemark(payload)), [
+  const setMemo = useCallback(payload => dispatch(setReason(payload)), [
     dispatch
   ]);
-  const onAddRemark = useCallback(() => {
-    setMemo(remarkMemo);
+  const setReasonMemo = useCallback(
+    payload => dispatch(setTempReason(payload)),
+    [dispatch]
+  );
 
-    alert("저장되었습니다.");
-  }, [remarkMemo]);
+  const onAddReason = useCallback(() => {
+    setMemo(reasonMemo);
 
-  const onChangeRemark = useCallback(e => {
-    setRemarkMemo(e.target.value);
+    alert(`사유 "${reasonMemo}" 저장되었습니다.`);
+  }, [reasonMemo]);
+
+  const onChangeReason = useCallback(e => {
+    setReasonMemo(e.target.value);
   }, []);
 
   const onEnroll = useCallback(() => {
@@ -100,11 +115,9 @@ const PreReports = () => {
     }
   }, [nameArr, nameText]);
 
-  const onSubmit = () => {
-    setRemarkMemo("");
-
+  const onSubmit = useCallback(() => {
     const data = {
-      remark: memo,
+      reason: memo,
       state: String(state),
       start_date: `${preDate.year}-${makeDate2Digit(
         preDate.month
@@ -116,10 +129,19 @@ const PreReports = () => {
       end_period: String(nextDate.period)
     };
 
+    if (!nameArr.length) {
+      alert("학생을 추가해주세요.");
+      return;
+    }
+
+    for (let name of nameArr) {
+      checkPreReportData({ ...data, stdnum: Number(name.slice(0, 4)) });
+    }
+
     for (let name of nameArr) {
       createPreReport({ ...data, stdnum: Number(name.slice(0, 4)) });
     }
-  };
+  }, [memo, state, preDate, nextDate, nameArr]);
 
   const preClassInput = useRef("");
   const nextClassInput = useRef("");
@@ -235,14 +257,14 @@ const PreReports = () => {
           </S.FuncNameWrap>
         </S.FuncKindName>
         <S.FuncKindName>
-          <S.FuncTitle>비고</S.FuncTitle>
+          <S.FuncTitle>사유</S.FuncTitle>
           <S.FuncNameWrap>
-            <PreReportRemark
-              remark={remarkMemo}
-              onChangeRemark={onChangeRemark}
+            <PreReportReason
+              reason={reasonMemo}
+              onChangeReason={onChangeReason}
             />
           </S.FuncNameWrap>
-          <S.FuncAdd onClick={onAddRemark}>저장</S.FuncAdd>
+          <S.FuncAdd onClick={onAddReason}>저장</S.FuncAdd>
         </S.FuncKindName>
       </S.Func>
       <PreReportEnroll onSubmit={onSubmit} />

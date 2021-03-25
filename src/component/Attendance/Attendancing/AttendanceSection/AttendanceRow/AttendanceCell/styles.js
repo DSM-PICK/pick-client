@@ -108,6 +108,34 @@ export const ValueButton = styled.button`
       : ""}
 `;
 
+export const WriteMemoWrap = styled.input`
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  outline: none;
+  color: #ffffff;
+  border: none;
+  background: #406cff;
+  font-size: 16px;
+  text-align: center;
+  box-sizing: border-box;
+
+  display: ${props => (props.isWriteMemo ? "inline-block" : "none")};
+`;
+
+export const MemoWrap = styled.div`
+  position: absolute;
+  top: ${props => (props.index > 17 ? "-109.25px" : "29.75px")};
+  left: -0.25px;
+  display: ${props => (props.showMemoSelect ? "inline-block" : "none")};
+  z-index: 4;
+  width: 250px;
+  height: 224px;
+  border: 1px solid #707070;
+  border-radius: 16px;
+  background: #ffffff;
+`;
+
 export const Wrap = styled.ul`
   position: absolute;
 `;

@@ -32,7 +32,7 @@ const PreReportShow = () => {
         <S.ShowHeaderItem>출결사항</S.ShowHeaderItem>
         <S.ShowHeaderItem>날짜</S.ShowHeaderItem>
         <S.ShowHeaderItem>확인교사</S.ShowHeaderItem>
-        <S.ShowHeaderItem>비고</S.ShowHeaderItem>
+        <S.ShowHeaderItem>사유</S.ShowHeaderItem>
       </S.ShowHeader>
       <S.ShowBody>
         {!!preReportList.length ? (
@@ -56,7 +56,7 @@ const PreReportShow = () => {
                 ))}
               </S.ShowBodyBoxItem>
               <S.ShowBodyBoxItem>{preReportData.teacher}</S.ShowBodyBoxItem>
-              <S.ShowBodyBoxItem>{preReportData.memo}</S.ShowBodyBoxItem>
+              <S.ShowBodyBoxItem>{preReportData.reason}</S.ShowBodyBoxItem>
             </S.ShowBodyBox>
           ))
         ) : (

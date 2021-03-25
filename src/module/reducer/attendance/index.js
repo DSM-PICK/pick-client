@@ -12,7 +12,9 @@ import {
   SET_DAY_OF_WEEK,
   SET_HEAD,
   SET_CLUB_NAME,
-  SET_SCHEDULE
+  SET_SCHEDULE,
+  SET_CURRENT_CLASS_INFO,
+  SET_IS_LOADING
 } from "../../action/attendance";
 
 const initialState = {
@@ -30,6 +32,11 @@ const initialState = {
     forthTeacherName: ""
   },
 
+  currentClassInfo: {
+    floor: "",
+    priority: ""
+  },
+
   date: "",
   dayOfWeek: "",
 
@@ -37,6 +44,7 @@ const initialState = {
   clubName: "",
   clubHead: "",
 
+  isLoading: false,
   attendanceData: {}
 };
 
@@ -148,6 +156,18 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         attendanceData: action.payload
+      };
+    }
+    case SET_CURRENT_CLASS_INFO: {
+      return {
+        ...state,
+        currentClassInfo: action.payload
+      };
+    }
+    case SET_IS_LOADING: {
+      return {
+        ...state,
+        isLoading: action.payload
       };
     }
     default: {

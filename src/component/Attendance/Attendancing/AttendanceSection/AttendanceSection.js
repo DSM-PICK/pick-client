@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import AttendanceRowTop from "./AttendanceRowTop/AttendanceRowTop";
 import AttendanceRow from "./AttendanceRow/AttendanceRow";
@@ -9,34 +9,24 @@ const AttendanceSection = props => {
   try {
     const { location, name: clubName } = props.locations;
 
+    const { currentClassInfo } = useSelector(state => state.attendance);
     const information = useSelector(state => state.attendance);
     const { clubHead, attendanceData } = information;
-
-    !!Object.keys(attendanceData).length &&
-      (console.log(
-        attendanceData
-          .map(data => data.state)
-          .map(data => data.seven)
-          .filter(text => text === "출석").length
-      ),
-      console.log(
-        attendanceData
-          .map(data => data.state)
-          .map(data => data.eight)
-          .filter(text => text === "출석").length
-      ),
-      console.log(
-        attendanceData
-          .map(data => data.state)
-          .map(data => data.nine)
-          .filter(text => text === "출석").length
-      ),
-      console.log(
-        attendanceData
-          .map(data => data.state)
-          .map(data => data.ten)
-          .filter(text => text === "출석").length
-      ));
+    const [stdStateArr, setStdStateArr] = useState(
+      !!Object.values(information.attendanceData).length
+        ? information.attendanceData.map(data =>
+            Object.values(data.state).filter(state => !!state)
+          )
+        : []
+    );
+    const [checkArr, setCheckArr] = useState(
+      Array.from(
+        { length: attendanceData ? attendanceData.length : 0 },
+        () => false
+      )
+    );
+    const [checkAllState, setCheckAllState] = useState(false);
+    const [first, setFirst] = useState(true);
 
     const isSevenNull =
       attendanceData.length && attendanceData[0].state.seven === null;
@@ -44,12 +34,50 @@ const AttendanceSection = props => {
       attendanceData.length && attendanceData.map(data => data.state);
     const employmentCount =
       stateData && stateData.filter(state => state.eight === "취업").length;
-    const attendanceCountArr = stateData && [
-      stateData.filter(state => state.seven === "출석").length,
-      stateData.filter(state => state.eight === "출석").length,
-      stateData.filter(state => state.nine === "출석").length,
-      stateData.filter(state => state.ten === "출석").length
-    ];
+
+    const checkArrAll = useCallback(() => {
+      setCheckArr(
+        Array.from(
+          { length: attendanceData ? attendanceData.length : 0 },
+          () => !checkAllState
+        )
+      );
+    }, [checkAllState, attendanceData]);
+    const handleCheckArr = useCallback(
+      index => {
+        setCheckArr(
+          checkArr.map((check, mapIndex) =>
+            mapIndex === index ? !check : check
+          )
+        );
+      },
+      [checkArr]
+    );
+
+    useEffect(() => {
+      if (attendanceData.length && first) {
+        setCheckArr(
+          Array.from(
+            { length: attendanceData ? attendanceData.length : 0 },
+            () => false
+          )
+        );
+        setFirst(false);
+      }
+    }, [first, attendanceData]);
+    useEffect(() => {
+      if (!!Object.values(attendanceData).length)
+        setStdStateArr(
+          attendanceData.map(data =>
+            Object.values(data.state).filter(state => !!state)
+          )
+        );
+    }, [attendanceData]);
+    useEffect(() => {
+      setCheckAllState(
+        checkArr.every(check => check === checkArr[0]) ? checkArr[0] : false
+      );
+    }, [checkArr]);
 
     return (
       <S.Container>
@@ -73,14 +101,26 @@ const AttendanceSection = props => {
             <S.Location location="창조실">{`창조실`}</S.Location>
           </S.Article>
         )}
-        <AttendanceRowTop isSevenNull={isSevenNull} />
+        <AttendanceRowTop
+          isSevenNull={isSevenNull}
+          checkArrAll={checkArrAll}
+          checkAllState={checkAllState}
+        />
         <S.Attendance>
-          {attendanceData.length &&
+          {attendanceData.length === stdStateArr.length &&
+            stdStateArr.length &&
             attendanceData.map((attendance, index) => (
               <AttendanceRow
                 key={attendance.gradeClassNumber}
                 index={index}
                 attendance={attendance}
+                memo={attendance.memo}
+                stdState={stdStateArr[index]}
+                stdStateArr={stdStateArr}
+                setStdStateArr={setStdStateArr}
+                checkArr={checkArr}
+                handleCheckArr={handleCheckArr}
+                attendanceData={attendanceData}
               />
             ))}
         </S.Attendance>

@@ -4,14 +4,15 @@ const pxToRem = px => {
   return px / 16;
 };
 
-const widthScale =
-  window.innerWidth > 1280 ? window.innerWidth / 1980 : 1280 / 1980;
+const computerScale = 1440 / 1980;
 
 export const DesktopReport = styled.div`
   width: 100%;
-  min-width: ${pxToRem(360 * widthScale) + pxToRem(1280 * widthScale)}rem;
+  min-width: ${pxToRem(360 * computerScale) + pxToRem(1280 * computerScale)}rem;
+  display: flex;
+  justify-content: center;
+  padding: ${pxToRem(60)}rem;
   min-height: 100vh;
-  padding: ${pxToRem(60)}rem ${pxToRem(360 * widthScale)}rem;
   box-sizing: border-box;
   background-color: #f2f2f2;
   display: flex;
@@ -26,25 +27,28 @@ export const DesktopReportContent = styled.div`
   border-radius: 12px;
 `;
 
-export const DesktopReportCalender = styled(DesktopReportContent)`
-  width: ${pxToRem(300 * widthScale)}rem;
-  height: ${pxToRem(885)}rem;
-  background-color: white;
-  box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
+export const DesktopReportContentT = styled(DesktopReportContent)`
   padding: 15px;
   box-sizing: border-box;
+  background-color: white;
+`;
+
+export const DesktopReportCalender = styled(DesktopReportContent)`
+  width: ${pxToRem(300 * computerScale)}rem;
+  height: ${pxToRem(885)}rem;
   overflow: hidden;
+  box-shadow: 0px 0px 0px white;
 `;
 
 export const Form = styled(DesktopReportContent)`
-  width: ${pxToRem(900 * widthScale)}rem;
+  width: ${pxToRem(900 * computerScale)}rem;
   height: ${pxToRem(332)}rem;
   padding: ${pxToRem(16)}rem ${pxToRem(26)}rem;
   box-sizing: border-box;
 `;
 
 export const List = styled(DesktopReportContent)`
-  width: ${pxToRem(900 * widthScale)}rem;
+  width: ${pxToRem(900 * computerScale)}rem;
   height: ${pxToRem(500)}rem;
   padding: ${pxToRem(16)}rem 0px;
   box-sizing: border-box;
@@ -63,13 +67,13 @@ export const CalenderDayWrapper = styled.div`
 
 export const CalenderDay = styled.div`
   font-size: ${pxToRem(12)}rem;
-  width: ${pxToRem(18 * widthScale)}rem;
+  width: ${pxToRem(18 * computerScale)}rem;
   height: ${pxToRem(18)}rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  margin: ${pxToRem(9)}rem ${pxToRem(16 * widthScale)}rem;
+  margin: ${pxToRem(9)}rem ${pxToRem(16 * computerScale)}rem;
   cursor: pointer;
   ${({ isToday, isClicked }) =>
     isToday
@@ -177,9 +181,15 @@ export const FormStudentWrapper = styled.div`
 
 export const FormStudentItem = styled.div`
   position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   > div {
-    width: ${pxToRem(50)}rem;
-    height: ${pxToRem(46)}rem;
+    width: ${pxToRem(84)}rem;
+    height: ${pxToRem(24)}rem;
     border-radius: 6px;
     margin: 0px ${pxToRem(3)}rem;
     display: flex;
@@ -195,8 +205,7 @@ export const FormStudentItem = styled.div`
             background-color: #406cff;
           `
         : css`
-            border: 1px solid #707070;
-            color: #707070;
+            color: black;
             background-color: white;
           `}
   }
@@ -227,8 +236,8 @@ export const FormStudentItem = styled.div`
 `;
 
 export const FormStudentAddInput = styled.div`
-  width: ${pxToRem(50)}rem;
-  height: ${pxToRem(46)}rem;
+  width: ${pxToRem(84)}rem;
+  height: ${pxToRem(24)}rem;
   border-radius: 6px;
   margin: 0px ${pxToRem(3)}rem;
   display: flex;
@@ -253,11 +262,11 @@ export const FormStudentAddInput = styled.div`
     text-align: center;
   }
   > div {
-    top: ${pxToRem(50)}rem;
+    top: ${pxToRem(25)}rem;
     left: 0px;
     position: absolute;
-    width: 95px;
-    height: 120px;
+    width: ${pxToRem(84)}rem;
+    max-height: 120px;
     overflow-y: scroll;
     border: 1px solid #707070;
     background-color: white;
@@ -279,6 +288,7 @@ export const FormStudentAddItemButton = styled(FormStudentItem)`
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #707070;
     &::before {
       content: "";
       display: block;
@@ -441,7 +451,6 @@ export const FormListItemMenu = styled.div`
   width: ${pxToRem(50)}rem !important;
   height: ${pxToRem(50)}rem !important;
   border-radius: 4px !important;
-  display: none;
   top: 10px;
   left: -50px;
   z-index: 100;
@@ -486,4 +495,8 @@ export const FomrDatePeriodInputWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const CalenderTWrapper = styled.div`
+  background-color: white;
 `;
