@@ -12,7 +12,7 @@ const Header = props => {
   return (
     <S.Container>
       <S.Wrap>
-        <S.ImgWrap>
+        <S.ImgWrap to="/">
           <Img src={HeaderPickSvg} css={S.ImgCSS} />
         </S.ImgWrap>
         <S.NavLinkWrap>
