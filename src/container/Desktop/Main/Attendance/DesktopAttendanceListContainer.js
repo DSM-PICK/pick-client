@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AttendanceList from "../../../../component/Desktop/Molecules/Attendance/AttendanceStdList/AttendanceStdListBackground/StdListGrid/AttendanceList/AttendanceList";
 import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
 
 const DesktopAttendanceListContainer = props => {
-  const { index, stdNum, stateList, css } = props;
+  const { index, stdNum, stateList, memo, css } = props;
+  const dispatch = useDispatch();
   const attendanceData = useSelector(state => state.dAttendance.attendanceData);
   const { currentClassPriority } = useSelector(state => state.dAttendance);
 
@@ -14,7 +15,6 @@ const DesktopAttendanceListContainer = props => {
     .reverse();
 
   const { putAttendanceStdDataSaga } = DAttendanceActionCreater;
-  const dispatch = useDispatch();
 
   const putAttendanceStdData = useCallback(
     (numbers, periods, value, currentClassPriority) => {
@@ -69,6 +69,7 @@ const DesktopAttendanceListContainer = props => {
       css={css}
       index={index}
       onStateChange={onStateChange}
+      memo={memo}
       stList={stateList}
     />
   );
