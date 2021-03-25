@@ -141,7 +141,6 @@ export const requesetAdminRefresh = async () => {
       loginConstant.ADMIN_ACCESS_TOKEN,
       res.data.access_token
     );
-    console.log(res.data.access_token);
   } catch (errStatus) {
     window.localStorage.clear();
     window.location.href = "/admin/login";
