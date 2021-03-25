@@ -259,6 +259,23 @@ function* setAttendanceMemo(action) {
   }
 }
 
+function* getMemoFloorData(action) {
+  try {
+    const floor = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.MEMO_FLOOR_DATA(floor);
+
+    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+
+    const { SET_MEMO_FLOOR_DATA } = DAttendanceAction;
+
+    // yield put({ type: SET_MEMO_FLOOR_DATA, payload: res.data.})
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* dAttendanceSaga() {
   const {
     GET_ATTENDANCE_STD_DATA_SAGA,
@@ -273,7 +290,8 @@ function* dAttendanceSaga() {
     GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
     PUT_ATTENDANCE_STD_DATA_SAGA,
     SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
-    SET_ATTENDANCE_MEMO_SAGA
+    SET_ATTENDANCE_MEMO_SAGA,
+    GET_MEMO_FLOOR_DATA_SAGA
   } = DAttendanceAction;
 
   yield takeLatest(GET_SELECT_ATTENDANCE_ARR_SAGA, getSelectAttendanceArr);
@@ -309,6 +327,7 @@ function* dAttendanceSaga() {
     setFirstScheduleAttendanceArr
   );
   yield takeLatest(SET_ATTENDANCE_MEMO_SAGA, setAttendanceMemo);
+  yield takeLatest(GET_MEMO_FLOOR_DATA_SAGA, getMemoFloorData);
 }
 
 export default dAttendanceSaga;
