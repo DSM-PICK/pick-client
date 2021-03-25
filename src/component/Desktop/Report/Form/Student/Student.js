@@ -97,7 +97,7 @@ const Student = () => {
     <S.FormStudent>
       <S.FormText>결석자</S.FormText>
       <S.FormStudentWrapper>
-        {renderStudentItem(attendanceChangeStudentList)}
+        <StudentAddButton buttonClickHandler={addButtonClickHandler} />
         {isStudentAdding ? (
           <StudentAddInput
             inputChangeHandler={inputChangeHandler}
@@ -105,8 +105,9 @@ const Student = () => {
             studentClickHandler={studentClickHandler}
           />
         ) : (
-          <StudentAddButton buttonClickHandler={addButtonClickHandler} />
+          ""
         )}
+        {renderStudentItem(attendanceChangeStudentList)}
       </S.FormStudentWrapper>
     </S.FormStudent>
   );
