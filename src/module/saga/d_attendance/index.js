@@ -263,13 +263,14 @@ function* getStudentByState(action) {
   try {
     const { schedule, studentState } = action.payload;
 
-    const REQUEST_URL = ATTENDANCE.SEARCH_STUDENT_BY_STATE();
-
-    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL, {
+    const REQUEST_URL = ATTENDANCE.SEARCH_STUDENT_BY_STATE(
       schedule,
       studentState
-    });
+    );
 
+    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+
+    console.log(`res`);
     console.log(res);
   } catch (error) {
     console.log(error);
