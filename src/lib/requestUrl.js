@@ -18,6 +18,9 @@ export const ATTENDANCE = {
   },
   SET_ATTENCANE_MEMO: () => {
     return `/saturn/attendance/student-memo`;
+  },
+  SEARCH_STUDENT_BY_STATE: () => {
+    return `/saturn/attendance/student`;
   }
 };
 
