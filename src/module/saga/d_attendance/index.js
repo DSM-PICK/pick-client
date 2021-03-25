@@ -263,13 +263,25 @@ function* getMemoFloorData(action) {
   try {
     const floor = action.payload;
 
-    const REQUEST_URL = ATTENDANCE.MEMO_FLOOR_DATA(floor);
+    const REQUEST_URL = ATTENDANCE.MEMO_FLOOR_DATA(4);
 
     const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+    const {
+      fourFloorMemoKind,
+      threeFloorMemoKind,
+      twoFloorMemoKind
+    } = res.data;
 
-    const { SET_MEMO_FLOOR_DATA } = DAttendanceAction;
+    const { setMemoFloorData } = DAttendanceActionCreater;
 
-    // yield put({ type: SET_MEMO_FLOOR_DATA, payload: res.data.})
+    yield put(
+      setMemoFloorData([
+        { floor: "4층", floorData: fourFloorMemoKind },
+        { floor: "3층", floorData: threeFloorMemoKind },
+        { floor: "2층", floorData: twoFloorMemoKind },
+        { floor: "입력", floorData: [] }
+      ])
+    );
     console.log(res);
   } catch (error) {
     console.log(error);
