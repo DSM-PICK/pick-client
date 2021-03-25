@@ -23,7 +23,7 @@ const ItemBtn = props => {
   const [isMemoStateClick, setIsMemoStateClick] = useState(false);
   const [isWriteMemo, setIsWriteMemo] = useState(false);
   const [isClick, setIsClick] = useState(false);
-  const [newMemo, setNewMemo] = useState(memo === null ? "" : memo);
+  const [newMemo, setNewMemo] = useState("");
 
   const textData = useMemo(() => (isMemoStateClick ? text : propText), [
     text,
@@ -151,7 +151,12 @@ const ItemBtn = props => {
   }, [isWriteMemo]);
 
   return (
-    <S.Container text={textData} isOpen={isOpen} onClick={onClick}>
+    <S.Container
+      text={textData}
+      isOpen={isOpen}
+      onClick={onClick}
+      className={`write-memo-${index}`}
+    >
       <S.Wrap index={index}>
         {index <= 17 && <S.Item current={textData} value={textData} />}
         {staticStates.map(

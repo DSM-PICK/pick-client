@@ -88,11 +88,11 @@ export const Container = styled.button`
 export const WriteMemoWrap = styled.input`
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0);
   border-radius: 8px;
-  border: none;
   outline: none;
   color: #ffffff;
+  border: none;
+  background: #406cff;
   font-size: 16px;
   text-align: center;
   box-sizing: border-box;
