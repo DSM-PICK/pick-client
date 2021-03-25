@@ -259,6 +259,23 @@ function* setAttendanceMemo(action) {
   }
 }
 
+function* getStudentByState(action) {
+  try {
+    const { schedule, studentState } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.SEARCH_STUDENT_BY_STATE();
+
+    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL, {
+      schedule,
+      studentState
+    });
+
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* dAttendanceSaga() {
   const {
     GET_ATTENDANCE_STD_DATA_SAGA,
@@ -273,7 +290,8 @@ function* dAttendanceSaga() {
     GET_MANAGED_CLUB_ATTENDANCE_ARR_SAGA,
     PUT_ATTENDANCE_STD_DATA_SAGA,
     SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
-    SET_ATTENDANCE_MEMO_SAGA
+    SET_ATTENDANCE_MEMO_SAGA,
+    GET_STUDENT_BY_STATE_SAGA
   } = DAttendanceAction;
 
   yield takeLatest(GET_SELECT_ATTENDANCE_ARR_SAGA, getSelectAttendanceArr);
@@ -309,6 +327,7 @@ function* dAttendanceSaga() {
     setFirstScheduleAttendanceArr
   );
   yield takeLatest(SET_ATTENDANCE_MEMO_SAGA, setAttendanceMemo);
+  yield takeLatest(GET_STUDENT_BY_STATE_SAGA, getStudentByState);
 }
 
 export default dAttendanceSaga;
