@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DesktopAttendanceListContainer from "../../../../../../../container/Desktop/Main/Attendance/DesktopAttendanceListContainer";
 import { DAttendanceActionCreater } from "../../../../../../../module/action/d_attendance";
 import * as S from "./styles";
