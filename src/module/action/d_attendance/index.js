@@ -198,7 +198,7 @@ export const DAttendanceAction = {
   PUT_ATTENDANCE_STD_DATA_SAGA,
   SET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
   SET_ATTENDANCE_MEMO_SAGA,
-  GET_STUDENT_BY_STATE_SAGA
+  GET_STUDENT_BY_STATE_SAGA,
   SET_ATTENDANCE_MEMO_SAGA,
   GET_MEMO_FLOOR_DATA_SAGA
 };
@@ -230,7 +230,7 @@ export const DAttendanceActionCreater = {
   putAttendanceStdDataSaga,
   setFirstScheduleAttendanceArrSaga,
   setAttendanceMemoSaga,
-  getStudentByStateSaga
+  getStudentByStateSaga,
   setAttendanceMemoSaga,
   getMemoFloorDataSaga
 };
