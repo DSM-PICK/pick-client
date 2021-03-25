@@ -1,12 +1,29 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import StdListBody from "../../../../component/Desktop/Molecules/Attendance/AttendanceStdList/AttendanceStdListBackground/StdListBody/StdListBody";
+import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
+
 const DesktopStdListBodyContainer = () => {
+  const dispatch = useDispatch();
   const attendanceLists = useSelector(
-    state => state.dAttendance.attendanceData
+    state => state.dAttendance.attendanceData,
+    shallowEqual
   );
+  const selectArr = useSelector(
+    state => state.dAttendance.selectArr,
+    shallowEqual
+  );
+
+  const { setSelectArr } = DAttendanceActionCreater;
+  useEffect(() => {
+    const newSelectArr = Array.from(
+      { length: attendanceLists ? attendanceLists.length : 0 },
+      () => false
+    );
+    dispatch(setSelectArr(newSelectArr));
+  }, [attendanceLists]);
 
   return <StdListBody attendanceLists={attendanceLists} />;
 };
 
-export default DesktopStdListBodyContainer;
+export default React.memo(DesktopStdListBodyContainer);

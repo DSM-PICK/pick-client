@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackgroundHeader from "../../../../component/Desktop/Molecules/Attendance/AttendancePlace/AttendancePlaceBackground/BackgroundHeader/BackgroundHeader";
 import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
 
 const DAPBackgroundHeaderContainer = props => {
   const { teacherName } = props;
-
+  const [withoutGrantedClass, setWithoutGrantedClass] = useState(true);
   const selectAttendanceArr = useSelector(
     state => state.dAttendance.selectAttendanceArr
   );
@@ -15,7 +15,23 @@ const DAPBackgroundHeaderContainer = props => {
   const managedClassroom = JSON.parse(localStorage.getItem("managedClassroom"));
   const managedInfo =
     selectSchedule === "교실자습" ? managedClassroom : managedClub;
-  const { name: locationName, floor, priority } = managedInfo;
+
+  if ((!managedInfo || !managedInfo.length) && !withoutGrantedClass) {
+    setWithoutGrantedClass(true);
+  }
+
+  const getManagedInfo = useCallback(manage => {
+    return {
+      name: manage.name,
+      floor: manage.floor,
+      priority: manage.priority
+    };
+  }, []);
+
+  const { name: locationName, floor, priority } = withoutGrantedClass
+    ? { name: "", floor: "", priority: "" }
+    : getManagedInfo(managedInfo);
+
   const scheduleMap = {
     교실자습: "self-study",
     전공동아리: "club"
@@ -32,7 +48,7 @@ const DAPBackgroundHeaderContainer = props => {
   const currentIndexArrPriority =
     selectAttendanceArr.length &&
     selectAttendanceArr.filter(dataObj => dataObj.priority === priority)[0]
-      .priority;
+      ?.priority;
 
   const onClickFastSearchBtn = useCallback(() => {
     dispatch(
@@ -62,14 +78,14 @@ const DAPBackgroundHeaderContainer = props => {
     currentIndexArrFloor,
     currentIndexArrPriority
   ]);
-
   return (
     <BackgroundHeader
       locationName={locationName}
       teacherName={teacherName}
       onClickFastSearchBtn={onClickFastSearchBtn}
+      withoutGrantedClass={withoutGrantedClass}
     />
   );
 };
 
-export default DAPBackgroundHeaderContainer;
+export default React.memo(DAPBackgroundHeaderContainer);

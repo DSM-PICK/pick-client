@@ -29,7 +29,8 @@ import {
   setSchedule,
   setCurrentClassInfo,
   putAttendanceStdDataSaga,
-  PUT_ATTENDANCE_STD_DATA_SAGA
+  PUT_ATTENDANCE_STD_DATA_SAGA,
+  setIsLoading
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
@@ -98,6 +99,7 @@ function* getFloorData(payload) {
 
 function* getAttendanceStdDataSaga(payload) {
   try {
+    yield put(setIsLoading(true));
     const { floor, priority } = payload.payload;
     const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
       getLocationState(),
@@ -117,6 +119,7 @@ function* getAttendanceStdDataSaga(payload) {
 
     yield put(setHead(clubHead));
     yield put(setAttendanceStdData(atdData));
+    yield put(setIsLoading(false));
   } catch (error) {
     // yield put(FAILURE_GET_ATTENDANCE_STD_DATA_SAGA(error.response));
 

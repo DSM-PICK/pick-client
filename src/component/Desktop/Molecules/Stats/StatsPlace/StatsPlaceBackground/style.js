@@ -53,6 +53,8 @@ export const ClassWrapOfClickedFloor = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+  padding: 0 6px;
+  box-sizing: border-box;
 `;
 
 export const ClassItemOfClickedFloor = styled.div`

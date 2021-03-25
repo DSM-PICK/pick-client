@@ -115,7 +115,7 @@ export const requesetRefreshForDesktop = async callback => {
     if (err === 401) {
       alert("인증이 만료되어 재인증이 필요합니다.");
       window.localStorage.clear();
-      window.location.href = "/";
+      window.location.href = "/auth";
     }
     if (callback) {
       callback();

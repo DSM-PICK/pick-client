@@ -7,4 +7,4 @@ const Label = props => {
   return <S.Container {...css}>{text}</S.Container>;
 };
 
-export default Label;
+export default React.memo(Label);

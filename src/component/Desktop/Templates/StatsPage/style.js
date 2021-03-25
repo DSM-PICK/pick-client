@@ -15,6 +15,6 @@ export const StatsWrap = styled.div`
 
 export const StatsGridWrap = styled.div`
   display: grid;
-  width: 1072px;
+  width: 1200px;
   height: 100%;
 `;

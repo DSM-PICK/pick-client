@@ -11,4 +11,4 @@ const DesktopHeaderContainer = () => {
   return <Header userName={userName} onLogout={onLogout} />;
 };
 
-export default DesktopHeaderContainer;
+export default React.memo(DesktopHeaderContainer);

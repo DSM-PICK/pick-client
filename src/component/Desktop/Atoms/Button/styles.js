@@ -13,17 +13,24 @@ export const Container = styled.button`
   border: ${props => props.border || "none"};
   border-radius: ${props => props.borderRadius || "0"};
   padding: ${props => props.padding || "0"};
-  background: ${props => props.background || "#ffffff"};
+  background: ${props =>
+    props.buttonDisabled ? "gray" : props.background || "#ffffff"};
 
   outline: none;
 
   &:hover {
-    cursor: pointer;
-    background: ${props => props.hoverBackground || props.background};
+    cursor: ${props => (props.buttonDisabled ? "" : "pointer")};
+    background: ${props =>
+      props.buttonDisabled
+        ? "gray"
+        : props.hoverBackground || props.background};
   }
 
   &:active {
-    background: ${props => props.activeBackground || props.background};
+    background: ${props =>
+      props.buttonDisabled
+        ? "gray"
+        : props.activeBackground || props.background};
   }
 
   transition: background 0.3s ease-in-out;

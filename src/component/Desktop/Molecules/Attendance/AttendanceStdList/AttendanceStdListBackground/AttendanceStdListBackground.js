@@ -12,4 +12,4 @@ const AttendanceStdListBackground = () => {
   );
 };
 
-export default AttendanceStdListBackground;
+export default React.memo(AttendanceStdListBackground);

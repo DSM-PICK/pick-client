@@ -14,7 +14,9 @@ const AttendanceBody = props => {
         <AttendanceAnchor
           key={anchorItems.link}
           text={anchorItems.text}
-          imgLink={anchorItems.imgLink === "" ? anchorItems.imgLink : pngArr[index]}
+          imgLink={
+            anchorItems.imgLink === "" ? anchorItems.imgLink : pngArr[index]
+          }
           link={anchorItems.link}
         />
       ))}

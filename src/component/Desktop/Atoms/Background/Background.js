@@ -7,4 +7,4 @@ const Background = props => {
   return <S.Container {...css}>{props.children}</S.Container>;
 };
 
-export default Background;
+export default React.memo(Background);

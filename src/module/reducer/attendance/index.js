@@ -13,7 +13,8 @@ import {
   SET_HEAD,
   SET_CLUB_NAME,
   SET_SCHEDULE,
-  SET_CURRENT_CLASS_INFO
+  SET_CURRENT_CLASS_INFO,
+  SET_IS_LOADING
 } from "../../action/attendance";
 
 const initialState = {
@@ -43,6 +44,7 @@ const initialState = {
   clubName: "",
   clubHead: "",
 
+  isLoading: false,
   attendanceData: {}
 };
 
@@ -160,6 +162,12 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         currentClassInfo: action.payload
+      };
+    }
+    case SET_IS_LOADING: {
+      return {
+        ...state,
+        isLoading: action.payload
       };
     }
     default: {

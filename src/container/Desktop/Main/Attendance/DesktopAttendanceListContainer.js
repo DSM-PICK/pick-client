@@ -53,4 +53,4 @@ const DesktopAttendanceListContainer = props => {
   );
 };
 
-export default DesktopAttendanceListContainer;
+export default React.memo(DesktopAttendanceListContainer);
