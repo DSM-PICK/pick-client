@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./styles";
 
 const AttendanceRowTop = props => {
-  const { isSevenNull, checkAllState, checkArrAll } = props;
+  const { isSevenNull, checkAll, checkArrAll } = props;
 
   return (
     <S.Containter>
@@ -10,7 +10,7 @@ const AttendanceRowTop = props => {
         <S.SectionCheckbox
           type="checkbox"
           id={"attendance-checkbox"}
-          checked={checkAllState}
+          checked={checkAll}
           onClick={checkArrAll}
         />
         <S.SectionCheckboxLabel

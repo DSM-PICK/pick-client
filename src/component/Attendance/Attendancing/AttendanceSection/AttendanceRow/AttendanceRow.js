@@ -4,32 +4,22 @@ import AttendanceCell from "./AttendanceCell/AttendanceCell";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postAttendanceStdDataSaga,
-  putAttendanceStdDataSaga
+  putAttendanceStdDataSaga,
+  modifyAttendancesDataSaga
 } from "../../../../../module/action/attendance";
 
 const AttendanceRow = props => {
-  const { currentClassInfo } = useSelector(state => state.attendance);
-  const {
-    stdState,
-    index,
-    checkArr,
-    handleCheckArr,
-    attendanceData,
-    memo
-  } = props;
-  const { name, gradeClassNumber } = props.attendance;
+  const { stdState, index, checkArr, sArr, dataSArr } = props;
+  const { handleCheckArr, attendanceData, setAllStudentStateArray } = props;
+  const { name, gradeClassNumber, memo } = props.attendance;
 
-  const [statesArr, setStatesArr] = useState(stdState);
+  const dispatch = useDispatch();
+  const { currentClassInfo } = useSelector(state => state.attendance);
 
   const cascadeState = ["귀가"];
   const periodArr = stdState.length === 3 ? [8, 9, 10] : [7, 8, 9, 10];
   const todayPeriod = stdState.length === 3 ? 8 : 7;
-  const memoArr = Object.values(memo).slice(4 - stdState.length);
 
-  const dispatch = useDispatch();
-  const postAttStdDataAndViewChange = useCallback((number, period, state) => {
-    postAttendanceStdData(number, period, state);
-  }, []);
   const putAttendanceStdData = useCallback(
     (numbers, periods, state) => {
       dispatch(
@@ -48,9 +38,9 @@ const AttendanceRow = props => {
     (number, period, state) => {
       dispatch(
         postAttendanceStdDataSaga({
+          state,
           number,
           period,
-          state,
           floor: currentClassInfo.floor,
           priority: currentClassInfo.priority
         })
@@ -58,33 +48,118 @@ const AttendanceRow = props => {
     },
     [dispatch, currentClassInfo]
   );
-  const onStateChange = useCallback(
-    (period, value, arr) => {
-      if (arr[index]) {
-        console.log(arr[index]);
-        const allCheckedStudentArr = getAllCheckedStudentArr(arr);
 
-        if (~cascadeState.findIndex(state => state === value)) {
-          const allCheckedStudentNumber = allCheckedStudentArr.map(
-            stdData => stdData.gradeClassNumber
-          );
-          cascadeViewChange(allCheckedStudentNumber, period, value);
-        } else {
-          const numberArr = allCheckedStudentArr.map(stdData => {
-            return stdData.gradeClassNumber;
-          });
-          putAttendanceStdData(numberArr, period, value);
-        }
+  const onStateChange = (period, value, arr) => {
+    if (arr[index]) {
+      const allCheckedStudentArr = getAllCheckedStudentArr(arr);
+      const gradeClassNumberArray = allCheckedStudentArr.map(
+        stdData => stdData.gradeClassNumber
+      );
+      const gradeClassNumberIndexArray = attendanceData
+        .map((data, idx) =>
+          ~gradeClassNumberArray.findIndex(num => num === data.gradeClassNumber)
+            ? idx
+            : null
+        )
+        .filter(data => data !== null);
+
+      if (~cascadeState.findIndex(state => state === value)) {
+        cascadeViewChange(
+          period,
+          value,
+          gradeClassNumberArray,
+          gradeClassNumberIndexArray
+        );
       } else {
-        if (~cascadeState.findIndex(state => state === value)) {
-          cascadeViewChange(gradeClassNumber, period, value);
-        } else {
-          postAttStdDataAndViewChange(gradeClassNumber, period, value);
-        }
+        setAllStudentStateArray(prevState =>
+          prevState.map((datas, idx) =>
+            ~gradeClassNumberIndexArray.findIndex(data => data === idx)
+              ? datas.map((prevArr, idx) =>
+                  idx === period - todayPeriod
+                    ? { memo: prevArr.memo, state: value }
+                    : prevArr
+                )
+              : datas
+          )
+        );
+
+        putAttendanceStdData(gradeClassNumberArray, period, value);
       }
-    },
-    [cascadeState]
-  );
+    } else {
+      const gradeClassNumberArray = Array.isArray(gradeClassNumber)
+        ? gradeClassNumber
+        : [gradeClassNumber];
+      const gradeClassNumberIndexArray = attendanceData
+        .map((data, idx) =>
+          ~gradeClassNumberArray.findIndex(num => num === data.gradeClassNumber)
+            ? idx
+            : null
+        )
+        .filter(data => data !== null);
+      if (~cascadeState.findIndex(state => state === value)) {
+        cascadeViewChange(
+          period,
+          value,
+          gradeClassNumberArray,
+          gradeClassNumberIndexArray
+        );
+      } else {
+        setAllStudentStateArray(prevState =>
+          prevState.map((datas, idx) =>
+            ~gradeClassNumberIndexArray.findIndex(data => data === idx)
+              ? datas.map((prevArr, idx) =>
+                  idx === period - todayPeriod
+                    ? { memo: prevArr.memo, state: value }
+                    : prevArr
+                )
+              : datas
+          )
+        );
+        postAttendanceStdData(gradeClassNumber, period, value);
+      }
+    }
+  };
+  const onWriteMemo = (className, period) => {
+    let selectedNumbers = attendanceData[index].gradeClassNumber;
+    let selectedIndex = [index];
+
+    if (checkArr[index]) {
+      selectedIndex = checkArr
+        .map((data, index) => (data ? index : false))
+        .filter(data => data !== false);
+      selectedNumbers = attendanceData
+        .filter(
+          (_, filterIndex) =>
+            ~checkArr
+              .map((data, mapIndex) => (data ? mapIndex : null))
+              .filter(_ => _ !== null)
+              .findIndex(fIndex => fIndex === filterIndex)
+        )
+        .map(std => std.gradeClassNumber);
+    }
+
+    setAllStudentStateArray(prevState =>
+      prevState.map((datas, idx) =>
+        ~selectedIndex.findIndex(data => data === idx)
+          ? datas.map((prevArr, idx) =>
+              idx === period - todayPeriod
+                ? { memo: className, state: "이동" }
+                : prevArr
+            )
+          : datas
+      )
+    );
+
+    dispatch(
+      modifyAttendancesDataSaga({
+        numbers: selectedNumbers,
+        periods: period,
+        state: "이동",
+        memo: className
+      })
+    );
+  };
+
   const getAllCheckedStudentArr = useCallback(
     arr => {
       const checkedIndexArr = arr
@@ -101,7 +176,7 @@ const AttendanceRow = props => {
   );
 
   const cascadeViewChange = useCallback(
-    (allCheckedStudentNumber, period, value) => {
+    (period, value, allCheckedStudentNumber, gradeClassNumberIndexArray) => {
       let tempArr = [];
       let periodArr = [];
 
@@ -112,15 +187,21 @@ const AttendanceRow = props => {
         periodArr.push(p);
         tempArr.push(value);
       }
-      putAttendanceStdData(allCheckedStudentNumber, periodArr, value);
-      setStatesArr(tempArr);
-    },
-    [stdState]
-  );
 
-  useEffect(() => {
-    setStatesArr(stdState);
-  }, [stdState]);
+      putAttendanceStdData(allCheckedStudentNumber, periodArr, value);
+      setAllStudentStateArray(prev =>
+        prev.map((datas, idx) =>
+          ~gradeClassNumberIndexArray.findIndex(data => data === idx)
+            ? datas.map((mapData, mapIdx) => ({
+                state: tempArr[mapIdx],
+                memo: mapData.memo
+              }))
+            : datas
+        )
+      );
+    },
+    [sArr, stdState]
+  );
 
   return (
     <S.Containter check={checkArr[index]}>
@@ -138,15 +219,17 @@ const AttendanceRow = props => {
       <S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
       <S.SectionName>{name}</S.SectionName>
       <S.SectionClassWrap>
-        {statesArr.map((state, idx) => (
-          <S.SectionClass key={state + idx}>
+        {dataSArr.map((arr, idx) => (
+          <S.SectionClass key={arr.state + idx}>
             <AttendanceCell
               index={index}
               period={periodArr[idx]}
-              periodState={state}
-              onStateChange={onStateChange}
+              periodState={arr.state}
               checkArr={checkArr}
-              memo={memoArr[idx]}
+              memo={arr.memo}
+              cellIdx={idx}
+              onWriteMemo={onWriteMemo}
+              onStateChange={onStateChange}
             />
           </S.SectionClass>
         ))}

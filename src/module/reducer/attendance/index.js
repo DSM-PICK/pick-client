@@ -14,7 +14,9 @@ import {
   SET_CLUB_NAME,
   SET_SCHEDULE,
   SET_CURRENT_CLASS_INFO,
-  SET_IS_LOADING
+  SET_IS_LOADING,
+  SET_CHECK_ARR,
+  SET_CHECK_ALL
 } from "../../action/attendance";
 
 const initialState = {
@@ -45,7 +47,10 @@ const initialState = {
   clubHead: "",
 
   isLoading: false,
-  attendanceData: {}
+  attendanceData: {},
+
+  checkArr: [],
+  chekAll: false
 };
 
 const attendanceReducer = (state = initialState, action) => {
@@ -168,6 +173,18 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload
+      };
+    }
+    case SET_CHECK_ARR: {
+      return {
+        ...state,
+        checkArr: action.payload
+      };
+    }
+    case SET_CHECK_ALL: {
+      return {
+        ...state,
+        checkAll: action.payload
       };
     }
     default: {
