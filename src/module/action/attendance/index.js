@@ -19,6 +19,9 @@ export const SET_CURRENT_CLASS_INFO = "attendance/SET_CURRENT_CLASS_INFO";
 
 export const SET_IS_LOADING = "attendance/SET_IS_LOADING";
 
+export const SET_CHECK_ARR = "attendance/SET_CHECK_ARR";
+export const SET_CHECK_ALL = "attendance/SET_CHECK_ALL";
+
 export const GET_FLOOR_DATA_SAGA = "attendance/GET_FLOOR_DATA_SAGA";
 
 export const SET_ATTENDANCE_STD_DATA = "attendance/SET_ATTENDANCE_STD_DATA";
@@ -36,6 +39,9 @@ export const PUT_ATTENDANCE_STD_DATA_SAGA =
   "attendance/PUT_ATTENDANCE_STD_DATA_SAGA";
 
 export const PUT_ATTENDANCE_MEMO_SAGA = "attendance/PUT_ATTENDANCE_MEMO_SAGA";
+
+export const MODIFY_ATTENDANCES_DATA_SAGA =
+  "attendance/MODIFY_ATTENDANCES_DATA_SAGA";
 
 export const setSecondFloorData = payload => ({
   type: SET_SECOND_FLOOR_DATA,
@@ -112,6 +118,15 @@ export const setIsLoading = payload => ({
   payload
 });
 
+export const setCheckArr = payload => ({
+  type: SET_CHECK_ARR,
+  payload
+});
+export const setCheckAll = payload => ({
+  type: SET_CHECK_ALL,
+  payload
+});
+
 export const getFloorDataSaga = payload => ({
   type: GET_FLOOR_DATA_SAGA,
   payload
@@ -149,5 +164,10 @@ export const putAttendanceStdDataSaga = payload => ({
 
 export const putAttendanceMemoSaga = payload => ({
   type: PUT_ATTENDANCE_MEMO_SAGA,
+  payload
+});
+
+export const modifyAttendancesDataSaga = payload => ({
+  type: MODIFY_ATTENDANCES_DATA_SAGA,
   payload
 });
