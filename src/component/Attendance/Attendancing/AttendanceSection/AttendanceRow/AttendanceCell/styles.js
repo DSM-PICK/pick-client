@@ -8,10 +8,12 @@ export const Container = styled.div`
 
 export const ValueButton = styled.button`
   width: 100%;
-  min-height: 28px;
+  height: 28px;
   font-size: ${props => (props.text.length > 5 ? "16px" : "20px")};
   background: ${props =>
-    props.text === "출석"
+    props.isWriteMemo
+      ? "#2764A7"
+      : props.text === "출석"
       ? "#ffffff"
       : props.text === "취업"
       ? "#bbbbbb"
@@ -115,8 +117,8 @@ export const WriteMemoWrap = styled.input`
   outline: none;
   color: #ffffff;
   border: none;
-  background: #406cff;
-  font-size: 16px;
+  background: rgba(0, 0, 0, 0);
+  font-size: 20px;
   text-align: center;
   box-sizing: border-box;
 
@@ -125,8 +127,8 @@ export const WriteMemoWrap = styled.input`
 
 export const MemoWrap = styled.div`
   position: absolute;
-  top: ${props => (props.index > 17 ? "-109.25px" : "29.75px")};
-  left: -0.25px;
+  top: ${props => (props.index > 17 ? "-227.25px" : "29.75px")};
+  left: ${props => (props.cellIdx > 1 ? "-153.25px" : "-0.25px")};
   display: ${props => (props.showMemoSelect ? "inline-block" : "none")};
   z-index: 4;
   width: 250px;

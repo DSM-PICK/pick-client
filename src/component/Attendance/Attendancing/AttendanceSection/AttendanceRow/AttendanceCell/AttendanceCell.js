@@ -1,25 +1,21 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./styles";
 import AttendanceItem from "./AttendanceItem/AttendanceItem";
-import MemoItem from "../../../../../Desktop/Molecules/Attendance/AttendanceStdList/AttendanceStdListBackground/StdListGrid/AttendanceList/ItemBtn/MemoItem/MemoItem";
-import { putAttendanceMemoSaga } from "../../../../../../module/action/attendance";
-import { useDispatch, useSelector } from "react-redux";
+import MemoItem from "./MemoItem/MemoItem";
 
 const AttendanceCell = props => {
-  const { index, period, periodState, checkArr, memo } = props;
-  const { onStateChange } = props;
-
-  const dispatch = useDispatch();
-  const attendanceData = useSelector(state => state.attendance.attendanceData);
+  const { index, period, periodState, checkArr, memo, cellIdx } = props;
+  const { onStateChange, onWriteMemo } = props;
 
   const [state, setState] = useState(false);
-  const [text, setText] = useState(periodState);
+  const [text, setText] = useState(periodState || "");
   const [showMemoSelect, setShowMemoSelect] = useState(false);
   const [isWriteMemo, setIsWriteMemo] = useState(false);
   const [newMemo, setNewMemo] = useState("");
   const [isClick, setIsClick] = useState(false);
 
   const inputRef = useRef();
+  const inputSelectButtonRef = useRef();
 
   const memoState = ["이동"];
   const states = [
@@ -43,67 +39,41 @@ const AttendanceCell = props => {
     }
   ];
 
-  const onClickItem = useCallback(
-    (value, checkArray) => {
-      if (~memoState.findIndex(state => state === value)) {
-        setShowMemoSelect(true);
-        setText("취소");
-      } else if (text === "취소") {
-        setShowMemoSelect(false);
+  const onClickItem = (value, checkArray) => {
+    if (~memoState.findIndex(state => state === value)) {
+      setShowMemoSelect(true);
+      setText("취소");
+    } else if (text === "취소") {
+      setShowMemoSelect(false);
+    } else {
+      setText(value);
+      onStateChange(period, value, checkArray);
+    }
+  };
+  const changeMemoText = useCallback(
+    e => {
+      if (e.target.value.length > 6) {
+        alert("메모의 길이는 6을 초과할 수 없습니다.");
       } else {
-        setText(value);
-        onStateChange(period, value, checkArray);
+        setNewMemo(e.target.value);
       }
     },
-    [period, text]
+    [newMemo]
   );
-  const onWriteMemo = useCallback(
-    (className, checkArray) => {
-      let selectedNumbers = attendanceData[index].gradeClassNumber;
-
-      if (checkArray[index]) {
-        selectedNumbers = attendanceData
-          .filter(
-            (_, filterIndex) =>
-              ~checkArray
-                .map((data, mapIndex) => (data ? mapIndex : null))
-                .filter(_ => _ !== null)
-                .findIndex(fIndex => fIndex === filterIndex)
-          )
-          .map(std => std.gradeClassNumber);
-      }
-
-      dispatch(
-        putAttendanceMemoSaga({
-          numbers: selectedNumbers,
-          periods: period,
-          memo: className
-        })
-      );
-
-      onStateChange(period, "이동", checkArray);
-    },
-    [checkArr, attendanceData, dispatch]
-  );
-
-  const changeMemoText = useCallback(e => {
-    setNewMemo(e.target.value);
-  }, []);
   const onKeyPress = useCallback(e => {
     if (e.key === "Enter") {
       setIsWriteMemo(false);
       setIsClick(true);
     }
   }, []);
-
   const writeMemoByInput = useCallback(() => {
     setIsWriteMemo(true);
     setTimeout(() => {
       inputRef.current.focus();
     }, [100]);
   }, [inputRef]);
-  const onClickButton = useCallback(text => {
-    if (text === "취소") {
+  const onClickButton = useCallback(txt => {
+    if (txt === "취소") {
       setShowMemoSelect(false);
     }
   }, []);
@@ -115,18 +85,53 @@ const AttendanceCell = props => {
     } else {
       setState(!state);
     }
-  }, [state, text]);
+  }, [periodState, state, text]);
+
+  const handleClick = useCallback(
+    e => {
+      if (
+        !e.target.closest(`.input-select-button-wrap-${index}`) &&
+        !e.target.closest(`.write-memo-${index}`)
+      ) {
+        setIsWriteMemo(false);
+        if (text === "취소") {
+          setText(periodState);
+          setShowMemoSelect(false);
+        }
+      }
+
+      if (
+        !e.target.closest(`.input-select-button-wrap-${index}`) &&
+        e.target.closest(`.input-select-button-${index}`)
+      ) {
+        setIsWriteMemo(true);
+      }
+    },
+    [periodState, newMemo, text]
+  );
+  const stopBubling = e => {
+    e.stopPropagation();
+  };
   useEffect(() => {
     if (isClick) {
-      onWriteMemo(newMemo, checkArr);
+      onWriteMemo(newMemo, period);
     }
-  }, [newMemo, isClick, checkArr]);
+  }, [periodState, text, newMemo, isClick]);
+  useEffect(() => {
+    if (isWriteMemo || showMemoSelect) {
+      document.addEventListener("click", handleClick);
+      return () => {
+        document.removeEventListener("click", handleClick);
+      };
+    }
+  }, [isWriteMemo, showMemoSelect]);
 
   return (
     <S.Container onClick={() => onClickCell()}>
       <S.ValueButton
         index={index}
         state={state}
+        isWriteMemo={isWriteMemo}
         text={text}
         onClick={() => onClickButton(text)}
       >
@@ -154,11 +159,20 @@ const AttendanceCell = props => {
           isWriteMemo={isWriteMemo}
         />
         {text === "이동" && memo ? memo : text !== "출석" && text}
-        <S.MemoWrap showMemoSelect={showMemoSelect}>
+        <S.MemoWrap
+          index={index}
+          showMemoSelect={showMemoSelect}
+          onClick={stopBubling}
+          cellIdx={cellIdx}
+        >
           <MemoItem
+            index={index}
+            period={period}
+            checkArr={checkArr}
+            inputSelectButtonRef={inputSelectButtonRef}
             onWriteMemo={onWriteMemo}
             writeMemoByInput={writeMemoByInput}
-            checkArr={checkArr}
+            setShowMemoSelect={setShowMemoSelect}
           />
         </S.MemoWrap>
       </S.ValueButton>
@@ -166,4 +180,4 @@ const AttendanceCell = props => {
   );
 };
 
-export default AttendanceCell;
+export default React.memo(AttendanceCell);

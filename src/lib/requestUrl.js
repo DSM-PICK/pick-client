@@ -31,6 +31,9 @@ export const ATTENDANCE = {
   },
   MEMO_FLOOR_DATA: floor => {
     return `/saturn/attendance/memo/${floor}`;
+  },
+  MODIFY_STUDENTS_DATA: () => {
+    return `/saturn/attendance/student`;
   }
 };
 

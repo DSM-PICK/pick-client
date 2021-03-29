@@ -31,7 +31,8 @@ import {
   putAttendanceStdDataSaga,
   PUT_ATTENDANCE_STD_DATA_SAGA,
   PUT_ATTENDANCE_MEMO_SAGA,
-  setIsLoading
+  setIsLoading,
+  MODIFY_ATTENDANCES_DATA_SAGA
 } from "../../action/attendance";
 
 function* getFloorData(payload) {
@@ -100,7 +101,6 @@ function* getFloorData(payload) {
 
 function* getAttendanceStdDataSaga(payload) {
   try {
-    yield put(setIsLoading(true));
     const { floor, priority } = payload.payload;
     const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
       getLocationState(),
@@ -115,12 +115,13 @@ function* getAttendanceStdDataSaga(payload) {
       REQUEST_URL
     );
 
+    console.log(attendanceData);
+
     const atdData = attendanceData.data.attendances;
     const clubHead = attendanceData.data.head;
 
     yield put(setHead(clubHead));
     yield put(setAttendanceStdData(atdData));
-    yield put(setIsLoading(false));
   } catch (error) {
     // yield put(FAILURE_GET_ATTENDANCE_STD_DATA_SAGA(error.response));
 
@@ -149,10 +150,12 @@ function* patchAttendanceStdData(payload) {
       }
     );
 
-    yield put({
-      type: GET_ATTENDANCE_STD_DATA_SAGA,
-      payload: { floor, priority }
-    });
+    // console.log(123);
+
+    // yield put({
+    //   type: GET_ATTENDANCE_STD_DATA_SAGA,
+    //   payload: { floor, priority }
+    // });
   } catch (error) {
     console.log(error);
     // yield put(FAILURE_POST_ATTsENDANCE_STD_DATA_SAGA(error.response));
@@ -169,15 +172,16 @@ function* putAttendanceStdData(payload) {
       methodType.PUT,
       REQUEST_URL,
       {
-        numbers,
+        numbers: Array.isArray(numbers) ? numbers : [numbers],
         periods: Array.isArray(periods) ? periods : [periods],
         state
       }
     );
-    yield put({
-      type: GET_ATTENDANCE_STD_DATA_SAGA,
-      payload: { floor, priority }
-    });
+
+    // yield put({
+    //   type: GET_ATTENDANCE_STD_DATA_SAGA,
+    //   payload: { floor, priority }
+    // });
   } catch (error) {
     console.log(error);
   }
@@ -199,6 +203,26 @@ function* putAttendanceMemo(action) {
         numbers: Array.isArray(numbers) ? numbers : [numbers]
       }
     );
+  } catch (error) {}
+}
+
+function* modifyAttendancesData(action) {
+  try {
+    const { state, memo, numbers, periods } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.MODIFY_STUDENTS_DATA();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PUT,
+      REQUEST_URL,
+      {
+        state,
+        memo: memo || "",
+        numbers: Array.isArray(numbers) ? numbers : [numbers],
+        periods: Array.isArray(periods) ? periods : [periods]
+      }
+    );
 
     console.log(res);
   } catch (error) {}
@@ -210,6 +234,7 @@ function* attendanceSaga() {
   yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdDataSaga);
   yield takeEvery(POST_ATTENDANCE_STD_DATA_SAGA, patchAttendanceStdData);
   yield takeEvery(PUT_ATTENDANCE_STD_DATA_SAGA, putAttendanceStdData);
+  yield takeEvery(MODIFY_ATTENDANCES_DATA_SAGA, modifyAttendancesData);
 }
 
 export default attendanceSaga;
