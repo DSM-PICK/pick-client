@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import * as S from "./style";
 
@@ -51,4 +51,4 @@ const MemoItem = props => {
   );
 };
 
-export default MemoItem;
+export default React.memo(MemoItem);
