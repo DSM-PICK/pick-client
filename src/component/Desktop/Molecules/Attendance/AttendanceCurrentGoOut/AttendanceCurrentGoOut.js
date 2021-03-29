@@ -6,12 +6,17 @@ import AttendanceCurrentGoOutRefresh from "./AttendanceCurrentGoOutRefresh/Atten
 import { RefreshBtn } from "../../../../../asset/Desktop/index";
 import * as S from "./style";
 
-const AttendanceCurrentGoOut = () => {
+const AttendanceCurrentGoOut = props => {
+  const { onclickRefresh } = props;
+
   return (
     <S.Container>
       <S.LableHeader>
         <Label text="외출 현황" css={S.LabelCSS} />
-        <AttendanceCurrentGoOutRefresh RefreshBtn={RefreshBtn} />
+        <AttendanceCurrentGoOutRefresh
+          RefreshBtn={RefreshBtn}
+          onclickRefresh={onclickRefresh}
+        />
       </S.LableHeader>
       <Background css={S.BackgroundCSS}>
         <AttendanceCurrentGoOutBackground />
