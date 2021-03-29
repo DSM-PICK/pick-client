@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import * as S from "./style";
 
 const MemoItem = props => {
-  const { onWriteMemo, writeMemoByInput } = props;
+  const { index, period, inputSelectButtonRef, checkArr } = props;
+  const { onWriteMemo, writeMemoByInput, setShowMemoSelect } = props;
 
   const memoFloorData = useSelector(state => state.dAttendance.memoFloorData);
 
@@ -17,23 +18,38 @@ const MemoItem = props => {
 
   const onClickFloor = useCallback(idx => {
     if (idx === 3) {
+      setShowMemoSelect(false);
       writeMemoByInput();
     } else {
       setSelectIndex(idx);
     }
   }, []);
-  const onClickClass = useCallback(className => {
-    onWriteMemo(className);
-  }, []);
+  const onClickClass = useCallback(
+    className => {
+      onWriteMemo(className, period, checkArr);
+    },
+    [period, checkArr]
+  );
 
   return (
     <S.Container>
-      <S.FloorWrap>
-        {floorData.map((data, mapIndex) => (
-          <S.FloorItem key={data} onClick={() => onClickFloor(mapIndex)}>
-            {data}
-          </S.FloorItem>
-        ))}
+      <S.FloorWrap className={`input-select-button-wrap-${index}`}>
+        {floorData.map((data, mapIndex) =>
+          mapIndex === 3 ? (
+            <S.FloorItem
+              key={data}
+              ref={inputSelectButtonRef}
+              className={`input-select-button-${index}`}
+              onClick={() => onClickFloor(mapIndex)}
+            >
+              {data}
+            </S.FloorItem>
+          ) : (
+            <S.FloorItem key={data} onClick={() => onClickFloor(mapIndex)}>
+              {data}
+            </S.FloorItem>
+          )
+        )}
       </S.FloorWrap>
       <S.ClassWrap>
         {classData[selectIndex].map(data => (
