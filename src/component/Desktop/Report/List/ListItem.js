@@ -12,7 +12,8 @@ const ListItem = ({
   setFixAttendanceChangeStudent,
   id,
   openMenu,
-  isOpenMenu
+  isOpenMenu,
+  memo
 }) => {
   const deleteButtonClickHandler = event => {
     deleteAttendanceChangeStudent(id);
@@ -30,7 +31,7 @@ const ListItem = ({
       <div className="student">{student}</div>
       <div className="type">{type}</div>
       <div className="teacher">{teacher}</div>
-      <div className="description">{description}</div>
+      <div className="description">{description ? description : memo}</div>
       <label className="menu" onClick={menuButtonClickHandler}>
         <div />
         <div />

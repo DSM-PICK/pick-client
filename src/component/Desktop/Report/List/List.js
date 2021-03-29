@@ -35,7 +35,8 @@ const List = () => {
         endDate,
         endPeriod,
         startDate,
-        startPeriod
+        startPeriod,
+        memo
       } = item;
       return (
         <ListItem
@@ -43,6 +44,7 @@ const List = () => {
           type={type}
           student={`${number} ${name}`}
           description={description}
+          memo={memo}
           teacher={teacher}
           id={id}
           openMenu={openMenu}
@@ -56,7 +58,7 @@ const List = () => {
             startPeriod,
             endPeriod
           )}
-        ></ListItem>
+        />
       );
     });
   };

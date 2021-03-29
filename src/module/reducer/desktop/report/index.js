@@ -21,6 +21,15 @@ const initialState = {
   similerStudents: []
 };
 
+const isHaveSameStudent = (studentList, number) => {
+  for (let i of studentList) {
+    if (i.number === number) {
+      return true;
+    }
+  }
+  return false;
+};
+
 const desktopReportReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ATTENDANCE_CHANGE_STUDENT: {
@@ -84,7 +93,6 @@ const desktopReportReducer = (state = initialState, action) => {
       const newState = state.attendanceChangeStudentList.map(student => {
         for (let i of action.payload.id) {
           if (student.id === i) {
-            console.log(i);
             return {
               ...student,
               startDate: action.payload.date
@@ -116,7 +124,6 @@ const desktopReportReducer = (state = initialState, action) => {
       };
     }
     case SET_START_PERIOD: {
-      console.log(action.payload.id);
       const newState = state.attendanceChangeStudentList.map(student => {
         for (let i of action.payload.id) {
           if (student.id === i) {
@@ -161,6 +168,13 @@ const desktopReportReducer = (state = initialState, action) => {
       };
     }
     case SET_NEW_ATTENDANCE_CHANGE_STUDENT: {
+      if (
+        isHaveSameStudent(
+          state.attendanceChangeStudentList,
+          action.payload.number
+        )
+      )
+        return state;
       const nowYear = new Date().getFullYear();
       const nowMonth = new Date().getMonth() + 1;
       const nowDate = new Date().getDate();
