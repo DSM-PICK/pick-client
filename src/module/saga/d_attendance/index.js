@@ -262,7 +262,6 @@ function* setAttendanceMemo(action) {
 function* getStudentByState(action) {
   try {
     const { schedule, studentState } = action.payload;
-
     const REQUEST_URL = ATTENDANCE.SEARCH_STUDENT_BY_STATE(
       schedule,
       studentState
@@ -270,8 +269,10 @@ function* getStudentByState(action) {
 
     const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    console.log(`res`);
     console.log(res);
+
+    const { SET_FLOOR_CLASS_DATA } = DAttendanceAction;
+    yield put({ type: SET_FLOOR_CLASS_DATA, payload: res.data });
   } catch (error) {
     console.log(error);
   }
