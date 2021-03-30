@@ -11,11 +11,15 @@ const DACurrentGoOutContainer = () => {
 
   const studentState = "외출";
 
+  const onclickRefresh = () => {
+    dispatch(getStudentByStateSaga({ schedule, studentState }));
+  };
+
   useEffect(() => {
     dispatch(getStudentByStateSaga({ schedule, studentState }));
   }, [schedule]);
 
-  return <AttendanceCurrentGoOut />;
+  return <AttendanceCurrentGoOut onclickRefresh={onclickRefresh} />;
 };
 
 export default DACurrentGoOutContainer;

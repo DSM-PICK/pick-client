@@ -16,6 +16,41 @@ const setSClickedFloor = payload => ({
   payload
 });
 
+const SET_MANAGED_INFO = "d_stats/SET_MANAGED_INFO";
+const setManagedInfo = payload => ({
+  type: SET_MANAGED_INFO,
+  payload
+});
+
+const SET_MANAGED_CLASS_FLOOR_DATA = "d_stats/SET_MANAGED_CLASS_FLOOR_DATA";
+const setManagedClassFloorData = payload => ({
+  type: SET_MANAGED_CLASS_FLOOR_DATA,
+  payload
+});
+const SET_MANAGED_CLUB_FLOOR_DATA = "d_stats/SET_MANAGED_CLUB_FLOOR_DATA";
+const setManagedClubFloorData = payload => ({
+  type: SET_MANAGED_CLUB_FLOOR_DATA,
+  payload
+});
+const GET_MANAGED_FLOOR_DATA_SAGA = "d_stats/GET_MANAGED_FLOOR_DATA_SAGA";
+const getManagedFloorDataSaga = payload => ({
+  type: GET_MANAGED_FLOOR_DATA_SAGA,
+  payload
+});
+
+const SET_FIRST_SCHEDULE_ATTENDANCE_ARR =
+  "d_stats/SET_FIRST_SCHEDULE_ATTENDANCE_ARR";
+const setFirstScheduleAttendanceArr = payload => ({
+  type: SET_FIRST_SCHEDULE_ATTENDANCE_ARR,
+  payload
+});
+const GET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA =
+  "d_stats/GET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA";
+const getFirstScheduleAttendanceArrSaga = payload => ({
+  type: GET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
+  payload
+});
+
 const SET_SCLICKED_PRIORITY = "d_stats/SET_SCLICKED_PRIORITY";
 const setSClickedPriority = payload => ({
   type: SET_SCLICKED_PRIORITY,
@@ -63,6 +98,12 @@ export const DStatsAction = {
   SET_STATS,
   GET_STATS_SAGA,
   SET_SCLICKED_FLOOR,
+  SET_MANAGED_INFO,
+  SET_MANAGED_CLASS_FLOOR_DATA,
+  SET_MANAGED_CLUB_FLOOR_DATA,
+  GET_MANAGED_FLOOR_DATA_SAGA,
+  SET_FIRST_SCHEDULE_ATTENDANCE_ARR,
+  GET_FIRST_SCHEDULE_ATTENDANCE_ARR_SAGA,
   SET_SCLICKED_PRIORITY,
   GET_SCLICKED_PRIORITY_SAGA,
   SET_SCLICKED_PRIORITY_ARR_PRIORITY,
@@ -76,6 +117,12 @@ export const DStatsActionCreater = {
   setStats,
   getStatsSaga,
   setSClickedFloor,
+  setManagedInfo,
+  setManagedClassFloorData,
+  setManagedClubFloorData,
+  getManagedFloorDataSaga,
+  setFirstScheduleAttendanceArr,
+  getFirstScheduleAttendanceArrSaga,
   setSClickedPriority,
   getSClickedPrioritySaga,
   setSClickedPriorityArrPriority,

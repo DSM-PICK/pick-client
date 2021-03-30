@@ -3,8 +3,16 @@ import Button from "../../../../Atoms/Button/Button";
 import * as S from "./style";
 
 const StatsPlaceBackground = props => {
-  const { textButtonData, classItemData, clickedPriorityArrPriority } = props;
+  const {
+    nowUngranted,
+    textButtonData,
+    classItemData,
+    clickedPriorityArrPriority
+  } = props;
   const { onClickFastSearchBtn, onTextButtonClick, onClassItemClick } = props;
+
+  // console.log(`classItemData, clickedPriorityArrPriority`);
+  // console.log(classItemData, clickedPriorityArrPriority);
 
   return (
     <S.Container>
@@ -12,7 +20,8 @@ const StatsPlaceBackground = props => {
         <Button
           text={"빠른 조회하기"}
           css={S.HeaderButtonCSS}
-          onClick={onClickFastSearchBtn}
+          onClick={nowUngranted ? void "" : onClickFastSearchBtn}
+          buttonDisabled={nowUngranted}
         />
       </S.ButtonWrap>
       <S.FloorWrap>

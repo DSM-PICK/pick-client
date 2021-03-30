@@ -1,34 +1,25 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import * as S from "./style";
 
 const AttendanceCurrentGoOutBackground = () => {
-  const floorClassData = [
-    {
-      title: "4층",
-      floorData: ["1101 정우영", "1102 기무라", "1103 다이웅", "1104 안희명"]
-    },
-    {
-      title: "3층",
-      floorData: ["2101 정우영", "2102 기무라", "2103 다이웅", "2104 안희명"]
-    },
-    {
-      title: "2층",
-      floorData: ["3101 정우영", "3102 기무라", "3103 다이웅", "3104 안희명"]
-    },
-    {
-      title: "기타",
-      floorData: []
-    }
-  ];
+  const floorClassData = useSelector(state => state.dAttendance.floorClassData);
+
+  const floorDataArr = Object.values(floorClassData).reverse();
+  const floorTitleStaticData = ["4층", "3층", "2층"];
 
   return (
     <S.Container>
-      {floorClassData.map(data => (
+      {floorDataArr.map((dataArr, mapIdx) => (
         <S.FloorWrap>
-          <S.FloorTitle key={data.title}>{data.title}</S.FloorTitle>
-          <S.FloorDataWrap count={Math.ceil(data.floorData.length / 3)}>
-            {data.floorData.map(text => (
-              <S.FloorDataText key={text}>{text}</S.FloorDataText>
+          <S.FloorTitle key={floorTitleStaticData[mapIdx]}>
+            {floorTitleStaticData[mapIdx]}
+          </S.FloorTitle>
+          <S.FloorDataWrap count={Math.ceil(dataArr.length / 3)}>
+            {dataArr.map(data => (
+              <S.FloorDataText
+                key={data.studentNumber}
+              >{`${data.studentNumber} ${data.studentName}`}</S.FloorDataText>
             ))}
           </S.FloorDataWrap>
         </S.FloorWrap>

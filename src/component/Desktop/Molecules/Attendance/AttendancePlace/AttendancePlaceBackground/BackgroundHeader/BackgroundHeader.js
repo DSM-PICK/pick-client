@@ -25,9 +25,7 @@ const BackgroundHeader = props => {
         <Button
           text={"빠른 조회하기"}
           css={S.HeaderButtonCSS}
-          onClick={() =>
-            nowUngranted ? "" : onClickFastSearchBtn("빠른 조회하기")
-          }
+          onClick={nowUngranted ? void "" : onClickFastSearchBtn}
           buttonDisabled={nowUngranted}
         />
       </S.ButtonWrap>

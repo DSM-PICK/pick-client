@@ -90,6 +90,12 @@ const setMemoFloorData = payload => ({
   payload
 });
 
+const SET_FLOOR_CLASS_DATA = "d_attendance/SET_FLOOR_CLASS_DATA";
+const setFloorClassData = payload => ({
+  type: SET_FLOOR_CLASS_DATA,
+  setFloorClassData
+});
+
 const SET_ATTENDANCE_STD_DATA = "d_attendance/SET_ATTENDANCE_STD_DATA";
 const setAttendanceStdData = payload => ({
   type: SET_ATTENDANCE_STD_DATA,
@@ -187,6 +193,7 @@ export const DAttendanceAction = {
   SET_FIRST_SCHEDULE_ATTENDANCE_ARR,
   SET_CURRENT_CLASS_PRIORITY,
   SET_MEMO_FLOOR_DATA,
+  SET_FLOOR_CLASS_DATA,
   SET_ATTENDANCE_STD_DATA,
   GET_ATTENDANCE_STD_DATA_SAGA,
   SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
@@ -219,6 +226,7 @@ export const DAttendanceActionCreater = {
   setFirstScheduleAttendanceArr,
   setCurrentClassPriority,
   setMemoFloorData,
+  setFloorClassData,
   setAttendanceStdData,
   getAttendanceStdDataSaga,
   successGetAttendanceStdDataSaga,
