@@ -27,4 +27,8 @@ export const ClassInfoWrap = styled.div`
   left: calc(100% + 25px);
   width: 180px;
   height: 180px;
+
+  @media (max-width: 1480px) {
+    display: none;
+  }
 `;

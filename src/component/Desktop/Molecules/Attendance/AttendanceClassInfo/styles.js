@@ -4,10 +4,6 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-
-  @media (max-width: 1480px) {
-    display: none;
-  }
 `;
 
 export const ClassInfoContainer = styled.div`
