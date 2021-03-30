@@ -54,7 +54,7 @@ const DSPlaceBackgrondContainer = () => {
 
   const currentIndexArrPriority =
     classItemData.length &&
-    classItemData.filter(dataObj => dataObj.priority === priority)[0].priority;
+    classItemData.filter(dataObj => dataObj.priority === priority)[0]?.priority;
 
   const dispatch = useDispatch();
   const {
