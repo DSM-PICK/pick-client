@@ -269,8 +269,6 @@ function* getStudentByState(action) {
 
     const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-    console.log(res);
-
     const { SET_FLOOR_CLASS_DATA } = DAttendanceAction;
     yield put({ type: SET_FLOOR_CLASS_DATA, payload: res.data });
   } catch (error) {
@@ -280,8 +278,6 @@ function* getStudentByState(action) {
 
 function* getMemoFloorData(action) {
   try {
-    const floor = action.payload;
-
     const REQUEST_URL = ATTENDANCE.MEMO_FLOOR_DATA(4);
 
     const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
