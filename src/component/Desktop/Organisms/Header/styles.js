@@ -10,6 +10,10 @@ export const Container = styled.div`
   height: 60px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 1px 1px 0px rgba(144, 144, 144, 0.2);
+
+  @media screen and (max-width: 1200px) {
+    width: 1200px;
+  }
 `;
 
 export const Wrap = styled.div`
@@ -17,7 +21,7 @@ export const Wrap = styled.div`
   align-items: center;
   gap: 40px;
   grid-template: 1fr / 1fr 400px 130px;
-  width: 1150px;
+  width: 1200px;
   height: 100%;
 `;
 

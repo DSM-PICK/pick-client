@@ -30,7 +30,13 @@ const initialState = {
   managedClubFloorData: [],
   isFastClick: false,
   currentClassPriority: 0,
-  memoFloorData: []
+  memoFloorData: [],
+
+  floorClassData: {
+    twoFloorStudents: [],
+    threeFloorStudents: [],
+    fourFloorStudents: []
+  }
 };
 
 const DAttendanceReducer = (state = initialState, action) => {
@@ -47,7 +53,8 @@ const DAttendanceReducer = (state = initialState, action) => {
     SET_IS_FAST_CLICK,
     SET_FIRST_SCHEDULE_ATTENDANCE_ARR,
     SET_CURRENT_CLASS_PRIORITY,
-    SET_MEMO_FLOOR_DATA
+    SET_MEMO_FLOOR_DATA,
+    SET_FLOOR_CLASS_DATA
   } = DAttendanceAction;
 
   switch (action.type) {
@@ -140,6 +147,12 @@ const DAttendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         memoFloorData: action.payload
+      };
+    }
+    case SET_FLOOR_CLASS_DATA: {
+      return {
+        ...state,
+        floorClassData: action.payload
       };
     }
     default: {

@@ -15,7 +15,23 @@ const initialState = {
   clickedPriority: [],
   clickedPriorityArrPriority: 0,
   statsAttendance: [],
-  activityByDate: {}
+  activityByDate: {},
+
+  managedInfo: {
+    club: {
+      isUngranted: true,
+      data: [],
+      floorData: []
+    },
+    class: {
+      isUngranted: true,
+      data: {},
+      floorData: []
+    }
+  },
+  firstScheduleAttendanceArr: { class: [], club: [] },
+  managedClassFloorData: [],
+  managedClubFloorData: []
 };
 
 const dStatsReducer = (state = initialState, action) => {
@@ -25,7 +41,10 @@ const dStatsReducer = (state = initialState, action) => {
     SET_SCLICKED_PRIORITY,
     SET_SCLICKED_PRIORITY_ARR_PRIORITY,
     SET_SATTENDANCE_DATA,
-    SET_ACTIVITY_BY_DATE
+    SET_ACTIVITY_BY_DATE,
+    SET_MANAGED_CLASS_FLOOR_DATA,
+    SET_MANAGED_CLUB_FLOOR_DATA,
+    SET_MANAGED_INFO
   } = DStatsAction;
 
   switch (action.type) {
@@ -69,6 +88,24 @@ const dStatsReducer = (state = initialState, action) => {
       return {
         ...state,
         activityByDate: action.payload
+      };
+    }
+    case SET_MANAGED_INFO: {
+      return {
+        ...state,
+        managedInfo: action.payload
+      };
+    }
+    case SET_MANAGED_CLASS_FLOOR_DATA: {
+      return {
+        ...state,
+        managedClassFloorData: action.payload
+      };
+    }
+    case SET_MANAGED_CLUB_FLOOR_DATA: {
+      return {
+        ...state,
+        managedClubFloorData: action.payload
       };
     }
     default: {
