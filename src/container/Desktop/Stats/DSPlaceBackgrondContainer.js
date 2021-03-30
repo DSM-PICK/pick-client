@@ -9,6 +9,32 @@ const DSPlaceBackgrondContainer = () => {
     clickedPriority: classItemData,
     clickedPriorityArrPriority
   } = useSelector(state => state.dStats);
+  const { schedule } = useSelector(state => state.dStats.activityByDate);
+  const strManagedInfo = useSelector(state => state.dStats.managedInfo);
+
+  const isScheduleClass = schedule !== "club" ? true : false;
+  const [isClubUngranted, isClassUngranted] = Object.values(strManagedInfo).map(
+    info => info.isUngranted
+  );
+  const nowUngranted = isScheduleClass ? isClassUngranted : isClubUngranted;
+  const grantedClass = nowUngranted
+    ? null
+    : isScheduleClass
+    ? strManagedInfo.class.data
+    : strManagedInfo.club.data[0];
+
+  const getManagedInfo = manage => {
+    return {
+      name: manage.name,
+      floor: manage.floor,
+      priority: manage.priority
+    };
+  };
+
+  const { name, floor, priority } = nowUngranted
+    ? { name: "", floor: "", priority: "" }
+    : getManagedInfo(grantedClass);
+
   const floorText2apiFloorText = {
     "2층": 2,
     "3층": 3,
@@ -19,17 +45,13 @@ const DSPlaceBackgrondContainer = () => {
     .map(data => data.isClicked && floorText2apiFloorText[data.text])
     .filter(data => data);
 
-  const { schedule } = useSelector(state => state.dStats.activityByDate);
-  const managedClub = JSON.parse(localStorage.getItem("managedClub"));
-  const managedClassroom = JSON.parse(localStorage.getItem("managedClassroom"));
-  const managedInfo = schedule === "club" ? managedClub : managedClassroom;
-  const { floor, priority } = managedInfo;
   const floorMap = {
     2: 0,
     3: 1,
     4: 2,
     1: 3
   };
+
   const currentIndexArrPriority =
     classItemData.length &&
     classItemData.filter(dataObj => dataObj.priority === priority)[0].priority;
@@ -125,6 +147,7 @@ const DSPlaceBackgrondContainer = () => {
 
   return (
     <StatsPlaceBackground
+      nowUngranted={nowUngranted}
       textButtonData={textButtonData}
       classItemData={classItemData}
       clickedPriorityArrPriority={clickedPriorityArrPriority}
