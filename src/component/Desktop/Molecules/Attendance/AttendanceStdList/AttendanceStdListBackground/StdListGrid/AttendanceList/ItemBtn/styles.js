@@ -42,6 +42,7 @@ export const Container = styled.button`
           border: 1px solid #ff406e;
           background: #ffffff;
         `;
+      case "기초학력":
       case "취업":
         return css`
           color: #909090;
@@ -65,6 +66,7 @@ export const Container = styled.button`
   &:hover {
     ${props =>
       props.text !== "취업" &&
+      props.text !== "기초학력" &&
       css`
         cursor: pointer;
       `}

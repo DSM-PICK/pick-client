@@ -32,6 +32,7 @@ const ItemBtn = props => {
 
   const inputRef = useRef();
 
+  const disableState = ["취업", "기초학력"];
   const memoState = ["이동"];
   const staticStates = [
     {
@@ -110,7 +111,7 @@ const ItemBtn = props => {
     if (textData === "취소") {
       setText("출석");
       setIsMemoStateClick(false);
-    } else if (textData !== "취업") {
+    } else if (!~disableState.findIndex(state => state === textData)) {
       setIsOpen(!isOpen);
     }
   }, [isOpen, textData]);
@@ -124,7 +125,11 @@ const ItemBtn = props => {
     [newMemo]
   );
   const changeMemoText = useCallback(e => {
-    setNewMemo(e.target.value);
+    if (e.target.value.length < 7) {
+      setNewMemo(e.target.value);
+    } else {
+      alert("메모는 6글자를 초과할 수 없습니다.");
+    }
   }, []);
   const onKeyPress = useCallback(e => {
     if (e.key === "Enter") {
