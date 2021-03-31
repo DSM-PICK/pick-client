@@ -221,8 +221,6 @@ function* modifyAttendancesData(action) {
         periods: Array.isArray(periods) ? periods : [periods]
       }
     );
-
-    console.log(res);
   } catch (error) {}
 }
 
