@@ -113,13 +113,10 @@ const AttendanceSection = props => {
           )
         );
     }, [attendanceData]);
-    useEffect(() => {
-      const tempCheck = checkArr.every(check => check === checkArr[0])
-        ? checkArr[0]
-        : false;
 
-      if (checkAll !== tempCheck) dispatchSetCheckAll(tempCheck);
-    }, [checkArr, checkAll]);
+    useEffect(() => {
+      dispatch(setCheckAll(false));
+    }, [dispatch, clubName]);
 
     return (
       <S.Container>
