@@ -107,6 +107,7 @@ const AttendanceRowContainer = () => {
               attData={data}
               checkArrWithoutDisable={checkArrWithoutDisable}
               disableStudentStateArray={disableStudentStateArray}
+              setAllStudentStateArray={setAllStudentStateArray}
             />
           ))
         : ""}
