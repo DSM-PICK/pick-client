@@ -26,7 +26,8 @@ const StdListGrid = props => {
         <S.SectionCheckbox
           type="checkbox"
           id={`${stdNum}-${index}`}
-          checked={selectArr[index]}
+          checked={selectArr[index] || false}
+          readOnly
           onClick={onClickCheckBox}
         />
         <S.SectionCheckboxLabel
