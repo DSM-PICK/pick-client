@@ -25,6 +25,16 @@ const AdminNav = () => {
       size: "middle",
       text: "동아리원 관리",
       link: "/admin/club/member"
+    },
+    {
+      size: "small",
+      text: "기타",
+      link: "/admin/"
+    },
+    {
+      size: "middle",
+      text: "학생 데이터 삽입",
+      link: "/admin/"
     }
   ];
 

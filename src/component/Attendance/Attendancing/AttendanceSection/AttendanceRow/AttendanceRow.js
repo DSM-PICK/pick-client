@@ -8,22 +8,33 @@ import {
 import AttendanceListContainer from "./AttendanceList/AttendanceListContainer";
 
 const AttendanceRow = props => {
-  const { index } = props;
+  const { index, disableStudentStateArray, checkArrWithoutDisable } = props;
   const { name, gradeClassNumber: stdNum } = props.attData;
 
   const dispatch = useDispatch();
   const checkArr = useSelector(state => state.attendance.checkArr);
 
   const onClickCheckbox = () => {
-    const newCheckArr = checkArr.map((check, mapIdx) =>
-      mapIdx === index ? !check : check
-    );
+    // console.log(checkArrWithoutDisable, disableStudentStateArray);
 
-    dispatch(setCheckArr(newCheckArr));
+    if (!disableStudentStateArray[index]) {
+      const newCheckArr = checkArr.map((check, mapIdx) =>
+        mapIdx === index ? !check : check
+      );
 
-    newCheckArr.every(check => check === true)
-      ? dispatch(setCheckAll(true))
-      : dispatch(setCheckAll(false));
+      dispatch(setCheckArr(newCheckArr));
+
+      console.log(
+        newCheckArr,
+        disableStudentStateArray
+          .map((data, idx) => (!data ? idx : -1))
+          .every(check => (~check ? check === true : true))
+      );
+
+      checkArrWithoutDisable.every(check => check === true)
+        ? dispatch(setCheckAll(true))
+        : dispatch(setCheckAll(false));
+    }
   };
 
   return (
