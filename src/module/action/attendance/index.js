@@ -19,6 +19,8 @@ export const SET_CURRENT_CLASS_INFO = "attendance/SET_CURRENT_CLASS_INFO";
 
 export const SET_IS_LOADING = "attendance/SET_IS_LOADING";
 
+export const SET_CHECK_ARR_WITH_DISABLE =
+  "attendance/SET_CHECK_ARR_WITH_DISABLE";
 export const SET_CHECK_ARR = "attendance/SET_CHECK_ARR";
 export const SET_CHECK_ALL = "attendance/SET_CHECK_ALL";
 
@@ -118,6 +120,10 @@ export const setIsLoading = payload => ({
   payload
 });
 
+export const setCheckArrWithDisable = payload => ({
+  type: SET_CHECK_ARR_WITH_DISABLE,
+  payload
+});
 export const setCheckArr = payload => ({
   type: SET_CHECK_ARR,
   payload

@@ -101,7 +101,6 @@ const AttendanceListContainer = props => {
     });
   };
   const getCascadePeriod = periods => {
-    console.log(periodArr);
     return periodArr.filter(p => p >= periods);
   };
   const putAttendanceStdData = (

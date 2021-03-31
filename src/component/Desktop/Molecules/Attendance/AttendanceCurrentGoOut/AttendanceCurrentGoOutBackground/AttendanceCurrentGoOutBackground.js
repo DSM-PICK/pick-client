@@ -11,7 +11,7 @@ const AttendanceCurrentGoOutBackground = () => {
   return (
     <S.Container>
       {floorDataArr.map((dataArr, mapIdx) => (
-        <S.FloorWrap>
+        <S.FloorWrap key={mapIdx}>
           <S.FloorTitle key={floorTitleStaticData[mapIdx]}>
             {floorTitleStaticData[mapIdx]}
           </S.FloorTitle>

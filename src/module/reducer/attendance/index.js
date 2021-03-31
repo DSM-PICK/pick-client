@@ -16,7 +16,8 @@ import {
   SET_CURRENT_CLASS_INFO,
   SET_IS_LOADING,
   SET_CHECK_ARR,
-  SET_CHECK_ALL
+  SET_CHECK_ALL,
+  SET_CHECK_ARR_WITH_DISABLE
 } from "../../action/attendance";
 
 const initialState = {
@@ -49,6 +50,7 @@ const initialState = {
   isLoading: false,
   attendanceData: {},
 
+  checkArrWithDisable: [],
   checkArr: [],
   chekAll: false
 };
@@ -185,6 +187,12 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         checkAll: action.payload
+      };
+    }
+    case SET_CHECK_ARR_WITH_DISABLE: {
+      return {
+        ...state,
+        checkArrWithDisable: action.payload
       };
     }
     default: {

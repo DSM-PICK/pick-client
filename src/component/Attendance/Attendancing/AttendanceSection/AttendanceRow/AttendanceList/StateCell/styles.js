@@ -10,7 +10,7 @@ export const Container = styled.button`
       ? "#2764A7"
       : props.text === "출석"
       ? "#ffffff"
-      : props.text === "취업"
+      : props.text === "취업" || props.text === "기초학력"
       ? "#bbbbbb"
       : "#2764A7"};
   color: ${props => (props.text === "출석" ? "#2764A7" : "#ffffff")};
@@ -25,6 +25,7 @@ export const Container = styled.button`
   &:hover {
     ${props =>
       props.text !== "취업" &&
+      props.text !== "기초학력" &&
       css`
         cursor: pointer;
       `}
