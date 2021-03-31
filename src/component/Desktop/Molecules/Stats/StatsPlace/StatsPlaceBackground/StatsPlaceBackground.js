@@ -7,6 +7,7 @@ const StatsPlaceBackground = props => {
     nowUngranted,
     textButtonData,
     classItemData,
+    buttonDisabledBySchedule,
     clickedPriorityArrPriority
   } = props;
   const { onClickFastSearchBtn, onTextButtonClick, onClassItemClick } = props;
@@ -17,8 +18,12 @@ const StatsPlaceBackground = props => {
         <Button
           text={"빠른 조회하기"}
           css={S.HeaderButtonCSS}
-          onClick={nowUngranted ? void "" : onClickFastSearchBtn}
-          buttonDisabled={nowUngranted}
+          onClick={
+            buttonDisabledBySchedule || nowUngranted
+              ? void ""
+              : onClickFastSearchBtn
+          }
+          buttonDisabled={buttonDisabledBySchedule || nowUngranted}
         />
       </S.ButtonWrap>
       <S.FloorWrap>
