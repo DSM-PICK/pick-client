@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 export const Header = styled.div`
   display: flex;
-  margin-top: 5px;
+  margin-top: 35px;
 `;
 
 export const ControlerWrap = styled.div`
@@ -135,6 +135,7 @@ export const DScheduleExecl = styled.div`
 
 export const BodyContainer = styled.div`
   position: relative;
+  padding-bottom: 90px;
 `;
 
 export const MiniScheduleHeader = styled.div`
@@ -165,6 +166,10 @@ export const Schedule = styled.div`
 export const SvgWrap = styled.div`
   display: flex;
   align-items: center;
+
+  svg {
+    cursor: pointer;
+  }
   svg + svg {
     margin-left: 20px;
   }

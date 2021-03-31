@@ -57,7 +57,7 @@ const DScheduleHeader = () => {
         <S.MoveMonth onClick={prevMonth}>
           <S.Triangle />
         </S.MoveMonth>
-        <S.ShowDay onClick={gotoThisMonth}>오늘로 돌아가기</S.ShowDay>
+        <S.ShowDay onClick={gotoThisMonth}>이번달</S.ShowDay>
         <S.MoveMonth onClick={nextMonth}>
           <S.Triangle x={180} />
         </S.MoveMonth>
