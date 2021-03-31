@@ -5,6 +5,7 @@ import AttendanceRow from "./AttendanceRow/AttendanceRow";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocationState } from "../../../../lib/attendanceApi";
 import { setCheckAll, setCheckArr } from "../../../../module/action/attendance";
+import AttendanceRowContainer from "./AttendanceRow/AttendanceRowContainer";
 
 const AttendanceSection = props => {
   try {
@@ -147,25 +148,7 @@ const AttendanceSection = props => {
           checkArrAll={checkArrAll}
           checkAll={checkAll}
         />
-        <S.Attendance>
-          {attendanceData.length === stdStateArr.length &&
-            stdStateArr.length &&
-            attendanceData.map((attendance, index) => (
-              <AttendanceRow
-                key={attendance.gradeClassNumber}
-                index={index}
-                attendance={attendance}
-                stdState={stdStateArr[index]}
-                setStdStateArr={setStdStateArr}
-                checkArr={checkArr}
-                handleCheckArr={handleCheckArr}
-                attendanceData={attendanceData} //
-                sArr={allStudentStateArray}
-                dataSArr={allStudentStateArray[index]} //
-                setAllStudentStateArray={setAllStudentStateArray}
-              />
-            ))}
-        </S.Attendance>
+        <AttendanceRowContainer />
       </S.Container>
     );
   } catch (err) {
