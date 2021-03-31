@@ -11,7 +11,6 @@ import {
 } from "../../../lib/requestApi";
 
 function* getSelectAttendanceArr(action) {
-  console.log("getSelectAttendanceArr");
   try {
     const { schedule, floor, isCascade } = action.payload;
     const { SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA } = DAttendanceAction;
@@ -45,7 +44,6 @@ function* successGetSelectAttendanceArr(action) {
 }
 
 function* getAttendanceStdData(action) {
-  console.log("getAttendanceStdData");
   try {
     const { schedule, floor, priority } = action.payload;
 

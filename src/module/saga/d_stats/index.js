@@ -67,6 +67,16 @@ function* getActivityByDate(action) {
   } catch (error) {
     console.log("getActivityByDate error");
     console.log(error);
+
+    const { setActivityByDate } = DStatsActionCreater;
+    yield put(
+      setActivityByDate({
+        schedule: "no-schedule",
+        secondFloorTeacherName: "",
+        thirdFloorTeacherName: "",
+        forthFloorTeacherName: ""
+      })
+    );
   }
 }
 
