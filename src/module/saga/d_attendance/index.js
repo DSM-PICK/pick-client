@@ -276,7 +276,7 @@ function* getStudentByState(action) {
   }
 }
 
-function* getMemoFloorData(action) {
+function* getMemoFloorData() {
   try {
     const REQUEST_URL = ATTENDANCE.MEMO_FLOOR_DATA(4);
 
@@ -297,7 +297,6 @@ function* getMemoFloorData(action) {
         { floor: "입력", floorData: [] }
       ])
     );
-    console.log(res);
   } catch (error) {
     console.log(error);
   }
