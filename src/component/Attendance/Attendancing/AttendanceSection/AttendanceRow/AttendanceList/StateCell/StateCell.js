@@ -6,10 +6,7 @@ import React, {
   useState
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  modifyAttendancesDataSaga,
-  putAttendanceStdDataSaga
-} from "../../../../../../../module/action/attendance";
+import { modifyAttendancesDataSaga } from "../../../../../../../module/action/attendance";
 import MemoItem from "./MemoItem/MemoItem";
 import StateItem from "./StateItem/StateItem";
 import * as S from "./styles";
@@ -36,6 +33,7 @@ const StateCell = props => {
 
   const inputRef = useRef();
 
+  const disableState = ["취업", "기초학력"];
   const memoState = ["이동"];
   const staticStates = [
     {
@@ -145,7 +143,7 @@ const StateCell = props => {
     if (textData === "취소") {
       setText("출석");
       setIsMemoStateClick(false);
-    } else if (textData !== "취업") {
+    } else if (!~disableState.findIndex(state => state === textData)) {
       setIsOpen(!isOpen);
     }
   };
