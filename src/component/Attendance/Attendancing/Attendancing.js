@@ -9,7 +9,7 @@ import AttendanceSection from "./AttendanceSection/AttendanceSection";
 import { BackIcon } from "../../../asset/index";
 
 const getFloorText = splitPathnames => {
-  const floor = splitPathnames[splitPathnames.length - 2]; // floorN 형식의 pathname. 자세한 건 노션 참조.
+  const floor = splitPathnames[splitPathnames.length - 2];
   const floorNum = floor[floor.length - 1];
 
   return floorNum != 1 ? `${floorNum}층` : "창조실";
