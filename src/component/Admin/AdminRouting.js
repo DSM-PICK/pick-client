@@ -10,6 +10,7 @@ import AdminNotFound from "./AdminNotFound/AdminNotFound";
 import AdminClubManagementContainer from "../../container/Admin/club/AdminClubManagementContainer";
 import AdminClubMemberContainer from "../../container/Admin/club/AdminClubMemberContainer";
 import AdminLogin from "../../component/Admin/AdminLogin/AdminLogin";
+import AdminClubInsert from "../../component/Admin/club/AdminClubInsert";
 import { checkAdminIsLogin } from "../../lib/requestApi";
 
 const AdminRouting = () => {
@@ -47,6 +48,7 @@ const AdminRouting = () => {
             path="/admin/club/member"
             component={AdminClubMemberContainer}
           />
+          <Route component="/admin/club/insert" component={AdminClubInsert} />
           <Route component={AdminNotFound} />
         </Switch>
       </S.Container>
