@@ -291,6 +291,8 @@ export const FormStudentAddInput = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: white;
+      z-index: 1;
       padding: 2px 0px;
     }
     > div:hover {

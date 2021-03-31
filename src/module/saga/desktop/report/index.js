@@ -51,6 +51,10 @@ const isAttendanceStudentDataAble = ({
     return false;
   } else if (memo && memo.length > 8) {
     return false;
+  } else if (startPeriod > 1 || startPeriod < 11) {
+    return false;
+  } else if (endPeriod > 1 || startPeriod < 11) {
+    return false;
   }
   return true;
 };

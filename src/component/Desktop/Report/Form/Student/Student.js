@@ -71,17 +71,30 @@ const Student = () => {
   const getAddSelectedStudentIndexToIndex = endIndex => {
     const startIndex = getSelectedStudentIndex();
     return () => {
-      const cuttedCopyStudentList = attendanceChangeStudentList.map(
-        (student, index) => {
-          if (
-            (startIndex <= index && endIndex >= index) ||
-            (startIndex >= index && endIndex <= index)
-          ) {
-            return student.id;
-          }
-        }
-      );
-      setSelectedStudent(cuttedCopyStudentList);
+      if (startIndex === endIndex) {
+        const cuttedCopyStudentIdList = [
+          attendanceChangeStudentList[startIndex].id
+        ];
+        setSelectedStudent(cuttedCopyStudentIdList);
+      } else if (startIndex < endIndex) {
+        const cuttedCopyStudentList = [...attendanceChangeStudentList].splice(
+          startIndex,
+          endIndex + 1
+        );
+        const cuttedCopyStudentIdList = cuttedCopyStudentList.map(
+          data => data.id
+        );
+        setSelectedStudent(cuttedCopyStudentIdList);
+      } else {
+        const cuttedCopyStudentList = [...attendanceChangeStudentList].splice(
+          endIndex,
+          startIndex + 1
+        );
+        const cuttedCopyStudentIdList = cuttedCopyStudentList.map(
+          data => data.id
+        );
+        setSelectedStudent(cuttedCopyStudentIdList);
+      }
     };
   };
   const removeEvents = () => {
