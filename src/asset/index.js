@@ -45,3 +45,6 @@ export { default as CalendarModalLeft } from "./Calendar/calendarModalLeft.svg";
 export { default as CalendarModalRight } from "./Calendar/calendarModalRight.svg";
 
 export { default as DeleteBtn } from "./attendance/deleteBtn.svg";
+export { default as searchIcon } from "./Admin/searchIcon.svg";
+export { default as adminBackground } from "./Admin/adminBackground.png";
+export { default as fileIcon } from "./Admin/fileIcon.png";
