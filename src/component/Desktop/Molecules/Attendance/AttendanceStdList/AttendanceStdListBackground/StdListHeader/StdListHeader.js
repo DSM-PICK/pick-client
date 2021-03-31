@@ -43,7 +43,8 @@ const StdListHeader = () => {
           <S.SectionCheckbox
             type="checkbox"
             id={`StdListHeaderCheckBox`}
-            checked={selectAll}
+            checked={selectAll || false}
+            readOnly
             onClick={onAllCheckBoxClick}
           />
           <S.SectionCheckboxLabel
