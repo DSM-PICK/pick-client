@@ -34,7 +34,7 @@ const StdListGrid = props => {
         ></S.SectionCheckboxLabel>
       </S.SectionCheckboxWrap>
       <S.StdName {...css}>{`${stdNum} ${name}`}</S.StdName>
-      <DesktopAttendanceListContainer index={index} {...props} />
+      <DesktopAttendanceListContainer {...props} />
       <S.StdMemo {...css}>{reason}</S.StdMemo>
     </S.Container>
   );
