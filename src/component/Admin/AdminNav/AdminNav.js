@@ -27,14 +27,9 @@ const AdminNav = () => {
       link: "/admin/club/member"
     },
     {
-      size: "small",
-      text: "기타",
-      link: "/admin/"
-    },
-    {
       size: "middle",
       text: "학생 데이터 삽입",
-      link: "/admin/"
+      link: "/admin/club/insert"
     }
   ];
 
