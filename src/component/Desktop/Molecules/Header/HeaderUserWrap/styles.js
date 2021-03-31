@@ -1,7 +1,6 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
