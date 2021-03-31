@@ -115,8 +115,6 @@ function* getAttendanceStdDataSaga(payload) {
       REQUEST_URL
     );
 
-    console.log(attendanceData);
-
     const atdData = attendanceData.data.attendances;
     const clubHead = attendanceData.data.head;
 
