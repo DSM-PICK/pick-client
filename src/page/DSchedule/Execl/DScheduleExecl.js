@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from "react";
+import { uploadExcelFile } from "../../../lib/api/schedule";
 import * as S from "../style";
 
 const DScheduleExecl = () => {
@@ -8,8 +9,22 @@ const DScheduleExecl = () => {
     inputRef.current.click();
   }, []);
 
-  const insertExecl = useCallback(e => {
-    const file = e.target.files[0];
+  const insertExecl = useCallback(async e => {
+    const file = e.currentTarget.files[0];
+
+    const fileUrl = e.currentTarget.value;
+    const splitUrl = fileUrl.split(".");
+    const extension = splitUrl[splitUrl.length - 1];
+
+    if (extension !== "xlsx") {
+      alert("엑셀 파일을 업로드해 주세요");
+      return;
+    }
+    try {
+      await uploadExcelFile(file);
+    } catch (err) {
+      alert("파일이 올바르지 않습니다.");
+    }
   }, []);
 
   return (

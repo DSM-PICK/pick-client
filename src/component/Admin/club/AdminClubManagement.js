@@ -1,14 +1,16 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import ManagementClubList from "../../default/ClubList/ManagementClubList";
 import ClubManagementModal from "../../default/Modal/ClubManagementModal";
 import * as S from "./styles";
+import { searchIcon } from "../../../asset";
 import { useDispatch } from "react-redux";
 import ImgButton from "../../default/Modal/ImgButton/ImgButton";
 import { DeleteIcon, PlusIcon } from "../../../asset";
 import ClubManagementFooterNotification from "../../default/Notification/footer/ClubManagementFooterNotification";
 import CreateClubModal from "../../default/Modal/CreateClubModal";
 import { deleteClubSaga } from "../../../module/action/club";
+import { getClubFilter } from "../../../lib/api/search";
 
 const AdminClubManagement = () => {
   const dispatch = useDispatch();
@@ -16,9 +18,21 @@ const AdminClubManagement = () => {
   const [isDeleteOn, setIsDeleteOn] = useState(false);
   const [selectItem, setSelectItem] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
+  const [clubNames, setClubnames] = useState([]);
   const deleteOnChange = useCallback(() => {
     setIsDeleteOn(prev => !prev);
   }, []);
+
+  const changeKeyword = useCallback(async e => {
+    if (!e.target.value) return;
+    const res = await getClubFilter(e.target.value);
+    setClubnames(res.data.map(({ club_name }) => club_name));
+  }, []);
+
+  const filterData = useMemo(() => {
+    if (!clubNames.length) return data;
+    return data.filter(({ name }) => clubNames.includes(name));
+  }, [clubNames, data]);
 
   const deleteClub = useCallback(() => {
     dispatch(deleteClubSaga(selectItem));
@@ -42,7 +56,15 @@ const AdminClubManagement = () => {
 
   return (
     <S.Container>
-      <S.Header>동아리 관리</S.Header>
+      <S.Header>
+        <S.Title>
+          동아리 목록
+          <S.SearchButtonWrap>
+            <img src={searchIcon} />
+            <S.SearchInput onChange={changeKeyword} />
+          </S.SearchButtonWrap>
+        </S.Title>
+      </S.Header>
       <S.Body>
         <S.ManagementButtonWrap>
           <ImgButton
@@ -64,7 +86,7 @@ const AdminClubManagement = () => {
           </ImgButton>
         </S.ManagementButtonWrap>
         <ManagementClubList
-          data={data}
+          data={filterData}
           changeSelectItem={changeSelectItem}
           isDeleteOn={isDeleteOn}
         />
