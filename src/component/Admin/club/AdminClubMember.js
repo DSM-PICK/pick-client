@@ -7,6 +7,7 @@ import MemberModal from "../../default/Modal/MemberModal";
 import { searchIcon } from "../../../asset";
 import { moveStudentSaga } from "../../../module/action/club";
 import modalAction from "../../../module/action/modal";
+import { getClubFilter } from "../../../lib/api/search";
 
 const AdminClubMember = () => {
   const dispatch = useDispatch();
