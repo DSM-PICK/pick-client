@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 export const Container = styled.div`
-  width: 1200px;
+  width: 1000px;
   margin: 0 auto;
 `;
 export const Header = styled.div`
