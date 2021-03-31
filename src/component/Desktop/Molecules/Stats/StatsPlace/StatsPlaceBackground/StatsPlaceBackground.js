@@ -11,9 +11,6 @@ const StatsPlaceBackground = props => {
   } = props;
   const { onClickFastSearchBtn, onTextButtonClick, onClassItemClick } = props;
 
-  // console.log(`classItemData, clickedPriorityArrPriority`);
-  // console.log(classItemData, clickedPriorityArrPriority);
-
   return (
     <S.Container>
       <S.ButtonWrap>
@@ -40,7 +37,7 @@ const StatsPlaceBackground = props => {
           classItemData.map((data, index) => (
             <S.ClassItemOfClickedFloor
               key={data.text}
-              isClicked={clickedPriorityArrPriority === data.priority}
+              isClicked={clickedPriorityArrPriority === index}
               onClick={() => onClassItemClick(index)}
             >
               {data.text}
