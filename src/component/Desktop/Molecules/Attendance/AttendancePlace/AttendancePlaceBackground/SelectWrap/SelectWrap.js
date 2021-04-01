@@ -2,12 +2,16 @@ import React from "react";
 import * as S from "./styles";
 
 const SelectWrap = props => {
-  const { selectArr, currentArr } = props;
+  const { selectArr, currentArr, selectFloorArray } = props;
   const { onClick } = props;
+
+  const selectWrapData = selectFloorArray[1]?.bodyItem?.length
+    ? selectFloorArray
+    : selectArr;
 
   return (
     <S.Container>
-      {selectArr.map((data, rowIndex) => (
+      {selectWrapData.map((data, rowIndex) => (
         <S.Select key={data.header}>
           <S.SelectHeader>{data.header}</S.SelectHeader>
           <S.SelectBody>
