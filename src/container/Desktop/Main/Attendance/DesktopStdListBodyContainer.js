@@ -1,18 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import StdListBody from "../../../../component/Desktop/Molecules/Attendance/AttendanceStdList/AttendanceStdListBackground/StdListBody/StdListBody";
 import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
 
 const DesktopStdListBodyContainer = () => {
   const dispatch = useDispatch();
   const attendanceLists = useSelector(
-    state => state.dAttendance.attendanceData,
-    shallowEqual
+    state => state.dAttendance.attendanceData
   );
   const currentClassPriority = useSelector(
     state => state.dAttendance.currentClassPriority
   );
 
+  const [disableStudentStateArray, setDisableStudentStateArray] = useState([]);
   const [prevAttList, setPrevAttList] = useState(attendanceLists);
   const [prevClassPriority, setPrevClassPriority] = useState(
     currentClassPriority
@@ -20,7 +20,41 @@ const DesktopStdListBodyContainer = () => {
   const [isFirst, setIsFirst] = useState(true);
   const [isUpdate, setIsUpdate] = useState(false);
 
-  const { setSelectArr, setSelectAll } = DAttendanceActionCreater;
+  const {
+    setSelectArr,
+    setSelectAll,
+    setSelectArrWithDisable
+  } = DAttendanceActionCreater;
+
+  const disableState = ["취업", "기초학력"];
+  useEffect(() => {
+    if (attendanceLists.length) {
+      const length = Object.values(attendanceLists[0].state).filter(
+        state => state !== null
+      ).length;
+      const newAllStudentStateArray = attendanceLists.map(studentData => ({
+        gradeClassNumber: studentData.gradeClassNumber,
+        name: studentData.name,
+        memoArr: Object.values(studentData.memo)
+          .reverse()
+          .slice(0, length)
+          .reverse(),
+        stateArr: Object.values(studentData.state)
+          .reverse()
+          .slice(0, length)
+          .reverse()
+      }));
+      const newDisableStudentStateArray = newAllStudentStateArray.map(stdData =>
+        !~disableState.findIndex(
+          disableState => disableState === stdData.stateArr[0]
+        )
+          ? false
+          : true
+      );
+
+      setDisableStudentStateArray(newDisableStudentStateArray);
+    }
+  }, [attendanceLists]);
 
   const dispatchNewSelectArr = useCallback(attList => {
     const newSelectArr = Array.from(
@@ -32,6 +66,43 @@ const DesktopStdListBodyContainer = () => {
   }, []);
 
   useEffect(() => {
+    if (attendanceLists.length) {
+      const length = Object.values(attendanceLists[0].state).filter(
+        state => state !== null
+      ).length;
+      const newAllStudentStateArray = attendanceLists.map(studentData => ({
+        gradeClassNumber: studentData.gradeClassNumber,
+        name: studentData.name,
+        memoArr: Object.values(studentData.memo)
+          .reverse()
+          .slice(0, length)
+          .reverse(),
+        stateArr: Object.values(studentData.state)
+          .reverse()
+          .slice(0, length)
+          .reverse()
+      }));
+
+      dispatch(
+        setSelectArrWithDisable(
+          newAllStudentStateArray.map(stdData =>
+            !~disableState.findIndex(
+              disableState => disableState === stdData.stateArr[0]
+            )
+              ? false
+              : "disabled"
+          )
+        )
+      );
+    } else {
+      const newSelectArr = Array.from(
+        { length: attendanceLists ? attendanceLists.length : 0 },
+        () => false
+      );
+      dispatch(setSelectArrWithDisable(newSelectArr));
+    }
+  }, [attendanceLists]);
+  useEffect(() => {
     if (isFirst) {
       const newSelectArr = Array.from(
         { length: attendanceLists ? attendanceLists.length : 0 },
@@ -39,7 +110,7 @@ const DesktopStdListBodyContainer = () => {
       );
 
       dispatch(setSelectArr(newSelectArr));
-      newSelectArr.length && setIsFirst(false);
+      setIsFirst(false);
     }
   }, [isFirst, attendanceLists]);
   useEffect(() => {
@@ -69,7 +140,12 @@ const DesktopStdListBodyContainer = () => {
     currentClassPriority
   ]);
 
-  return <StdListBody attendanceLists={attendanceLists} />;
+  return (
+    <StdListBody
+      attendanceLists={attendanceLists}
+      disableStudentStateArray={disableStudentStateArray}
+    />
+  );
 };
 
 export default React.memo(DesktopStdListBodyContainer);

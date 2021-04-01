@@ -8,9 +8,14 @@ const initialState = {
     stdCount: 0,
     stdCountWithoutEmployment: 0
   },
+  floorData: {
+    club: [],
+    class: []
+  },
   selectAttendanceArr: [],
   currentAttendanceIndexArr: [0, 0],
   attendanceData: [],
+  selectArrWithDisable: [],
   selectArr: [],
   selectAll: false,
   managedInfo: {
@@ -42,9 +47,11 @@ const initialState = {
 const DAttendanceReducer = (state = initialState, action) => {
   const {
     SET_CLASS_INFO,
+    SET_FLOOR_DATA,
     SET_SELECT_ATTENDANCE_ARR,
     SET_CURRENT_ATTENDANCE_INDEX_ARR,
     SET_ATTENDANCE_STD_DATA,
+    SET_SELECT_ARR_WITH_DISABLE,
     SET_SELECT_ARR,
     SET_SELECT_ALL,
     SET_MANAGED_INFO,
@@ -77,6 +84,12 @@ const DAttendanceReducer = (state = initialState, action) => {
         }
       };
     }
+    case SET_FLOOR_DATA: {
+      return {
+        ...state,
+        floorData: action.payload
+      };
+    }
     case SET_SELECT_ATTENDANCE_ARR: {
       return {
         ...state,
@@ -93,6 +106,12 @@ const DAttendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         attendanceData: action.payload
+      };
+    }
+    case SET_SELECT_ARR_WITH_DISABLE: {
+      return {
+        ...state,
+        selectArrWithDisable: action.payload
       };
     }
     case SET_SELECT_ARR: {

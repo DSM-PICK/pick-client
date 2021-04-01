@@ -4,13 +4,17 @@ import { ATTENDANCE } from "../../../lib/requestUrl";
 import { DStatsAction, DStatsActionCreater } from "../../action/d_stats";
 
 function* getStats(action) {
-  const grade = action.payload;
+  try {
+    const { grade, date } = action.payload;
 
-  const REQUEST_URL = ATTENDANCE.RECORD_BY_GRADE_URL(grade);
-  const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+    const REQUEST_URL = ATTENDANCE.RECORD_BY_GRADE_URL(grade, date);
+    const res = yield call(requestGetApiWithAccessToken, REQUEST_URL);
 
-  const { setStats } = DStatsActionCreater;
-  yield put(setStats({ grade, data: res.data }));
+    const { setStats } = DStatsActionCreater;
+    yield put(setStats({ grade, data: res.data }));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* getSClickedPriority(action) {

@@ -5,20 +5,37 @@ import { DAttendanceActionCreater } from "../../../../../../../module/action/d_a
 import * as S from "./styles";
 
 const StdListGrid = props => {
-  const { index, name, stdNum, reason, css } = props;
+  const { index, name, stdNum, reason, css, disableStudentStateArray } = props;
   const dispatch = useDispatch();
   const selectArr = useSelector(state => state.dAttendance.selectArr);
-  const { setSelectArr, setSelectAll } = DAttendanceActionCreater;
-  const onClickCheckBox = useCallback(() => {
-    const newSelectArr = selectArr.map((data, mapIndex) =>
-      mapIndex === index ? !data : data
-    );
-    dispatch(setSelectArr(newSelectArr));
+  const selectArrWithDisable = useSelector(
+    state => state.dAttendance.selectArrWithDisable
+  );
+  const {
+    setSelectArr,
+    setSelectAll,
+    setSelectArrWithDisable
+  } = DAttendanceActionCreater;
 
-    newSelectArr.every(select => select === true)
-      ? dispatch(setSelectAll(true))
-      : dispatch(setSelectAll(false));
-  }, [selectArr, dispatch]);
+  const onClickCheckBox = () => {
+    if (!disableStudentStateArray[index]) {
+      const newSelectArr = selectArr.map((data, mapIndex) =>
+        mapIndex === index ? !data : data
+      );
+      const newSelectArrWithoutDisable = selectArrWithDisable.map(
+        (data, mapIdx) => (mapIdx === index ? !data : data)
+      );
+
+      dispatch(setSelectArrWithDisable(newSelectArrWithoutDisable));
+      dispatch(setSelectArr(newSelectArr));
+
+      newSelectArrWithoutDisable.every(
+        select => select === true || select === "disabled"
+      )
+        ? dispatch(setSelectAll(true))
+        : dispatch(setSelectAll(false));
+    }
+  };
 
   return (
     <S.Container select={selectArr[index]}>
