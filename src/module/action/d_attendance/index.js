@@ -4,6 +4,17 @@ const setClassInfo = payload => ({
   payload
 });
 
+const SET_FLOOR_DATA = "d_attendance/SET_FLOOR_DATA";
+const setFloorData = payload => ({
+  type: SET_FLOOR_DATA,
+  payload
+});
+const GET_FLOOR_DATA_SAGA = "d_attendance/GET_FLOOR_DATA_SAGA";
+const getFloorDataSaga = payload => ({
+  type: GET_FLOOR_DATA_SAGA,
+  payload
+});
+
 const SET_SELECT_ATTENDANCE_ARR = "d_attendance/SET_SELECT_ATTENDANCE_ARR";
 const setSelectAttendanceArr = payload => ({
   type: SET_SELECT_ATTENDANCE_ARR,
@@ -185,6 +196,8 @@ const getMemoFloorDataSaga = payload => ({
 
 export const DAttendanceAction = {
   SET_CLASS_INFO,
+  SET_FLOOR_DATA,
+  GET_FLOOR_DATA_SAGA,
   SET_SELECT_ATTENDANCE_ARR,
   GET_SELECT_ATTENDANCE_ARR_SAGA,
   SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
@@ -219,6 +232,8 @@ export const DAttendanceAction = {
 
 export const DAttendanceActionCreater = {
   setClassInfo,
+  setFloorData,
+  getFloorDataSaga,
   setSelectAttendanceArr,
   getSelectAttendanceArrSaga,
   successGetSelectAttendanceArrSaga,
