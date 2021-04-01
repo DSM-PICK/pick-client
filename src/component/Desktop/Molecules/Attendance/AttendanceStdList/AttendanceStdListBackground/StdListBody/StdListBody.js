@@ -3,7 +3,7 @@ import StdListGrid from "../StdListGrid/StdListGrid";
 import * as S from "./styles";
 
 const StdListBody = props => {
-  const { attendanceLists } = props;
+  const { attendanceLists, disableStudentStateArray } = props;
 
   return (
     <S.Container>
@@ -18,6 +18,7 @@ const StdListBody = props => {
               memo={data.memo}
               reason={data.reason}
               css={S.StdListGridCSS}
+              disableStudentStateArray={disableStudentStateArray}
             />
           ))
         : ""}
