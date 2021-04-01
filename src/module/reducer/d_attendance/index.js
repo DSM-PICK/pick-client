@@ -8,6 +8,10 @@ const initialState = {
     stdCount: 0,
     stdCountWithoutEmployment: 0
   },
+  floorData: {
+    club: [],
+    class: []
+  },
   selectAttendanceArr: [],
   currentAttendanceIndexArr: [0, 0],
   attendanceData: [],
@@ -43,6 +47,7 @@ const initialState = {
 const DAttendanceReducer = (state = initialState, action) => {
   const {
     SET_CLASS_INFO,
+    SET_FLOOR_DATA,
     SET_SELECT_ATTENDANCE_ARR,
     SET_CURRENT_ATTENDANCE_INDEX_ARR,
     SET_ATTENDANCE_STD_DATA,
@@ -77,6 +82,12 @@ const DAttendanceReducer = (state = initialState, action) => {
           stdCount: stdCount,
           stdCountWithoutEmployment: stdCountWithoutEmployment
         }
+      };
+    }
+    case SET_FLOOR_DATA: {
+      return {
+        ...state,
+        floorData: action.payload
       };
     }
     case SET_SELECT_ATTENDANCE_ARR: {
