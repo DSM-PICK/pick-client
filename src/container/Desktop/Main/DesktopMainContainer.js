@@ -2,13 +2,14 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import Main from "../../../component/Desktop/Templates/Main/Main";
-import { getManagedInfo } from "../../../lib/attendanceApi";
+import { getManagedInfo, makeDate2Digit } from "../../../lib/attendanceApi";
 import {
   checkIsLogin,
   requestGetApiWithAccessToken
 } from "../../../lib/requestApi";
 import { ATTENDANCE } from "../../../lib/requestUrl";
 import { DAttendanceActionCreater } from "../../../module/action/d_attendance";
+import { setTodaySchedule } from "../../../module/action/schedule";
 
 const DesktopMainContainer = () => {
   const history = useHistory();
@@ -36,6 +37,19 @@ const DesktopMainContainer = () => {
     dispatch(setFirstScheduleAttendanceArrSaga());
   }, [dispatch]);
 
+  const getTodaySchedule = async () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const REQUEST_URL = ATTENDANCE.ACTIVITY_BY_DATE_URL(
+      `${year}-${makeDate2Digit(month)}-${makeDate2Digit(day)}`
+    );
+
+    const res = await requestGetApiWithAccessToken(REQUEST_URL);
+
+    dispatch(setTodaySchedule(res.data.schedule));
+  };
   const setFirst = useCallback(async () => {
     const REQUEST_URL_CLUB = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("CLUB", 4);
     const REQUEST_URL_CLASS = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
@@ -59,6 +73,7 @@ const DesktopMainContainer = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    getTodaySchedule();
     dispatchGetFloorDataSaga();
     setFirst();
     dispatchSetFirstScheduleAttendanceArrSaga();
