@@ -48,10 +48,8 @@ const AttendanceListContainer = props => {
           ~checkArray.findIndex(data => data === mapIdx)
             ? {
                 ...prevData,
-                stateArr: prevData.stateArr.map(state =>
-                  ~cascadePeriod.findIndex(data => data === 11 - length)
-                    ? value
-                    : state
+                stateArr: prevData.stateArr.map((state, stateIdx) =>
+                  length + periods[0] - 11 === stateIdx ? value : state
                 )
               }
             : prevData
