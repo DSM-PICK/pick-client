@@ -10,7 +10,7 @@ const StdListBody = props => {
       {attendanceLists.length
         ? attendanceLists.map((data, index) => (
             <StdListGrid
-              key={data.name}
+              key={data.gradeClassNumber}
               index={index}
               name={data.name}
               stdNum={data.gradeClassNumber}
