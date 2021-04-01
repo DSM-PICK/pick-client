@@ -26,7 +26,8 @@ const DesktopMainContainer = () => {
     setManagedInfo,
     setFirstScheduleAttendanceArr,
     setFirstScheduleAttendanceArrSaga,
-    getMemoFloorDataSaga
+    getMemoFloorDataSaga,
+    getFloorDataSaga
   } = DAttendanceActionCreater;
   const managedClassroom = JSON.parse(localStorage.getItem("managedClassroom"));
   const managedClub = JSON.parse(localStorage.getItem("managedClub"));
@@ -53,8 +54,12 @@ const DesktopMainContainer = () => {
   const dispatchGetMemoFloorData = useCallback(() => {
     dispatch(getMemoFloorDataSaga());
   }, [dispatch]);
+  const dispatchGetFloorDataSaga = useCallback(() => {
+    dispatch(getFloorDataSaga());
+  }, [dispatch]);
 
   useEffect(() => {
+    dispatchGetFloorDataSaga();
     setFirst();
     dispatchSetFirstScheduleAttendanceArrSaga();
     dispatchGetMemoFloorData();
