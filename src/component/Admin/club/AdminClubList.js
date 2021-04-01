@@ -28,7 +28,7 @@ const AdminClubList = () => {
           동아리 목록
           <S.SearchButtonWrap>
             <img src={searchIcon} />
-            <S.SearchInput onChange={changeKeyword} />
+            <S.SearchInput onChange={changeKeyword} placeholder="학생 이름" />
           </S.SearchButtonWrap>
         </S.Title>
       </S.Header>

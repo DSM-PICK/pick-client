@@ -275,27 +275,33 @@ const DLoginPage = () => {
           <S.ButtonWrap>
             {isChangePasswordMode ? (
               <>
-                <S.AuthButton
-                  type="button"
-                  onClick={changePasswordSubmtiHandler}
-                >
+                <S.BlueBtn type="button" onClick={changePasswordSubmtiHandler}>
                   비밀번호 초기화
-                </S.AuthButton>
-                <S.AuthButton type="button" onClick={changePasswordMode}>
+                </S.BlueBtn>
+                <S.WhiteBtn type="button" onClick={changePasswordMode}>
                   돌아가기
-                </S.AuthButton>
+                </S.WhiteBtn>
+              </>
+            ) : isLoginMode ? (
+              <>
+                <S.BlueBtn type="button" onClick={loginHandler}>
+                  로그인
+                </S.BlueBtn>
+                <S.WhiteBtn type="button" onClick={registerHandler}>
+                  회원가입
+                </S.WhiteBtn>
               </>
             ) : (
               <>
-                <S.AuthButton type="button" onClick={loginHandler}>
-                  로그인
-                </S.AuthButton>
-                <S.AuthButton type="button" onClick={registerHandler}>
+                <S.BlueBtn type="button" onClick={registerHandler}>
                   회원가입
-                </S.AuthButton>
-                <S.HideBtn type="submit"></S.HideBtn>
+                </S.BlueBtn>
+                <S.WhiteBtn type="button" onClick={loginHandler}>
+                  로그인
+                </S.WhiteBtn>
               </>
             )}
+            <S.HideBtn type="submit"></S.HideBtn>
           </S.ButtonWrap>
         </S.AuthBody>
       </S.AuthWrap>
