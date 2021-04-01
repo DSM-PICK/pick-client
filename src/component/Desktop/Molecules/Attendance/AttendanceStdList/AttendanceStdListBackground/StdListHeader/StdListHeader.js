@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { DAttendanceActionCreater } from "../../../../../../../module/action/d_attendance";
 import * as S from "./styles";
 
@@ -9,20 +9,38 @@ const StdListHeader = () => {
     state => state.dAttendance.attendanceData
   );
   const selectAll = useSelector(state => state.dAttendance.selectAll);
-  const selectArr = useSelector(
-    state => state.dAttendance.selectArr,
-    shallowEqual
+  const selectArr = useSelector(state => state.dAttendance.selectArr);
+  const selectArrWithDisable = useSelector(
+    state => state.dAttendance.selectArrWithDisable
   );
 
-  const { setSelectArr, setSelectAll } = DAttendanceActionCreater;
+  const {
+    setSelectArr,
+    setSelectAll,
+    setSelectArrWithDisable
+  } = DAttendanceActionCreater;
 
-  const onAllCheckBoxClick = useCallback(() => {
+  const onAllCheckBoxClick = () => {
     dispatch(setSelectAll(!selectAll));
 
+    dispatch(
+      setSelectArrWithDisable(
+        selectArrWithDisable.map(check =>
+          check !== "disabled" ? !check : check
+        )
+      )
+    );
+
     !selectAll
-      ? dispatch(setSelectArr(selectArr.map(_ => true)))
+      ? dispatch(
+          setSelectArr(
+            selectArrWithDisable.map(check =>
+              check !== "disabled" ? true : false
+            )
+          )
+        )
       : dispatch(setSelectArr(selectArr.map(_ => false)));
-  }, [dispatch, selectArr, selectAll]);
+  };
 
   let length = 0;
   if (attendanceLists.length) {
