@@ -410,6 +410,9 @@ export const FormListItem = styled.li`
   align-items: center;
   transition: all 0.3s;
   position: relative;
+  &:hover > .menu {
+    opacity: 1;
+  }
   > div.header {
     font-weight: 600;
   }
@@ -442,6 +445,7 @@ export const FormListItem = styled.li`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    opacity: 0;
     position: absolute;
     transition: all 0.3s;
     &:hover {
@@ -492,7 +496,7 @@ export const FormListItemMenu = styled.div`
 `;
 
 export const FormDatePeriodInput = styled.input`
-  width: 16px;
+  width: 20px;
   height: 16px;
   border: none;
   outline: none;
