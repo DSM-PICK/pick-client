@@ -11,7 +11,7 @@ const SelectWrap = props => {
     ? selectFloorArray
     : selectArr;
 
-  if (todaySchedule === "self-study") {
+  if (todaySchedule === "non-schedule") {
     return (
       <S.Container>
         <NoScheduleWrap text={"오늘은 일정이 없습니다."} gif={NonScheduleGif} />
