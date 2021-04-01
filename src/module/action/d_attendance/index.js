@@ -35,6 +35,12 @@ const setCurrentAttendanceIndexArr = payload => ({
   payload
 });
 
+const SET_SELECT_ARR_WITH_DISABLE = "d_attendance/SET_SELECT_ARR_WITH_DISABLE";
+const setSelectArrWithDisable = payload => ({
+  type: SET_SELECT_ARR_WITH_DISABLE,
+  payload
+});
+
 const SET_SELECT_ARR = "d_attendance/SET_SELECT_ARR";
 const setSelectArr = payload => ({
   type: SET_SELECT_ARR,
@@ -184,6 +190,7 @@ export const DAttendanceAction = {
   SUCCESS_GET_SELECT_ATTENDANCE_ARR_SAGA,
   FAILURE_GET_SELECT_ATTENDANCE_ARR_SAGA,
   SET_CURRENT_ATTENDANCE_INDEX_ARR,
+  SET_SELECT_ARR_WITH_DISABLE,
   SET_SELECT_ARR,
   SET_SELECT_ALL,
   SET_MANAGED_INFO,
@@ -217,6 +224,7 @@ export const DAttendanceActionCreater = {
   successGetSelectAttendanceArrSaga,
   failureGetSelectAttendanceArrSaga,
   setCurrentAttendanceIndexArr,
+  setSelectArrWithDisable,
   setSelectArr,
   setSelectAll,
   setManagedInfo,
