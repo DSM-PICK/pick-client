@@ -197,7 +197,6 @@ function* addAttendanceChangeStudentSaga({ payload }) {
   }
   const requestList = attendanceChangeListStateToDTO(payload);
   const requestFunction = requestList.map(async request => {
-    console.log(request.isFix, request.id);
     const REQUEST_URL = request.isFix
       ? PRE_REPORT.PUT_PRE_REPORT_URL(request.id)
       : PRE_REPORT.CREATE_PRE_REPORT_URL();
@@ -213,9 +212,7 @@ function* addAttendanceChangeStudentSaga({ payload }) {
     yield Promise.all(requestFunction);
     yield put(getAttendanceChangeList());
     yield put(setAttendanceChangeStudent([]));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* desktopReportSaga() {

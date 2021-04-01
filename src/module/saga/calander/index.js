@@ -72,7 +72,6 @@ function* getScheduleSaga() {
   const { year, month } = yield select(store => store.calander);
 
   const data1 = windowcalander(year, month + 1);
-  console.log(data1);
   const data = data1.map(dataArr =>
     dataArr.filter((_, i) => !(i === 0 || i === 6))
   );

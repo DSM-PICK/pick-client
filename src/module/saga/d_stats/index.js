@@ -12,9 +12,7 @@ function* getStats(action) {
 
     const { setStats } = DStatsActionCreater;
     yield put(setStats({ grade, data: res.data }));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* getSClickedPriority(action) {
@@ -31,10 +29,7 @@ function* getSClickedPriority(action) {
 
     const { setSClickedPriority } = DStatsActionCreater;
     yield put(setSClickedPriority({ clickedPriority }));
-  } catch (error) {
-    console.log("getSClickedPriority error");
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* getSAttendanceData(action) {
@@ -53,10 +48,7 @@ function* getSAttendanceData(action) {
 
     const { setSAttendanceData } = DStatsActionCreater;
     yield put(setSAttendanceData({ statsAttendance: attendances }));
-  } catch (error) {
-    console.log("getSAttendanceData error");
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* getActivityByDate(action) {
@@ -69,9 +61,6 @@ function* getActivityByDate(action) {
     const { setActivityByDate } = DStatsActionCreater;
     yield put(setActivityByDate({ ...res.data }));
   } catch (error) {
-    console.log("getActivityByDate error");
-    console.log(error);
-
     const { setActivityByDate } = DStatsActionCreater;
     yield put(
       setActivityByDate({
@@ -106,10 +95,7 @@ function* getFirstScheduleAttendanceArr() {
         class: res_class.data.locations
       }
     });
-  } catch (err) {
-    console.log(`d_stats/getFirstScheduleAttendanceArr`);
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 function* getManagedFloorData(action) {
@@ -130,10 +116,7 @@ function* getManagedFloorData(action) {
     } else {
       yield put(setManagedClassFloorData(res.data.locations));
     }
-  } catch (error) {
-    console.log(`d_stats/getManagedFloorData`);
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* dStatsSaga() {

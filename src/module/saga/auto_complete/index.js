@@ -19,19 +19,10 @@ function* getAutoCompleteTextSaga(payload) {
         REQUEST_URL
       );
       yield put(setPreReportAutoCompleteText(autoCompleteData.data));
-      // } else {
-      //   throw new Error(
-      //     "getAutoCompleteTextSaga : There is no parameter (autocomplete text)."
-      //   );
-      // }
     } else {
       yield put(setPreReportAutoCompleteText(""));
     }
-  } catch (error) {
-    // yield put(FAILURE_AUTO_COMPLETE_TEXT_SAGA(error.response.status));
-    console.log(error);
-    console.log("자동 완성 실패");
-  }
+  } catch (error) {}
 }
 
 function* autoCompleteSaga() {
