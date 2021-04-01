@@ -17,7 +17,7 @@ const Routing = () => {
         <Route exact path="/t/schedule" component={ScheduleContainer} />
         <Route exact path="/t/main" component={MainContainer} />
         <Route path="/t/attendance" component={AttendanceContainer} />
-        <Route path="/t/stats" component={StatsRouting} />
+        {/* <Route path="/t/stats" component={StatsRouting} /> */}
 
         <Route path="/admin" component={AdminRouting} />
 
