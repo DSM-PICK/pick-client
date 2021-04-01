@@ -14,6 +14,7 @@ const DesktopSelectWrapContainer = () => {
   );
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
   const floorData = useSelector(state => state.dAttendance.floorData);
+  const todaySchedule = useSelector(state => state.schedule.todaySchedule);
 
   const [selectFloorArray, setSelectFloorArray] = useState([{}, {}]);
 
@@ -112,6 +113,7 @@ const DesktopSelectWrapContainer = () => {
 
   return (
     <SelectWrap
+      todaySchedule={todaySchedule}
       selectArr={selectArr}
       currentArr={selectArrIndex}
       selectFloorArray={selectFloorArray}
