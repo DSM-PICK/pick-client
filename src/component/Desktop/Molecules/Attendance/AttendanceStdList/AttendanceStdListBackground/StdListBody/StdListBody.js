@@ -21,7 +21,7 @@ const StdListBody = props => {
               disableStudentStateArray={disableStudentStateArray}
             />
           ))
-        : ""}
+        : "학생 데이터가 없습니다."}
     </S.Container>
   );
 };
