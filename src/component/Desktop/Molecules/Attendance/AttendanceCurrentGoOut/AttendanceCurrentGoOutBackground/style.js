@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   width: 100%;
   height: 100%;
   padding: 12px 15px;
@@ -15,6 +15,7 @@ export const FloorWrap = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  overflow: scroll;
 `;
 
 export const FloorTitle = styled.p`
@@ -33,6 +34,9 @@ export const FloorDataWrap = styled.div`
 `;
 
 export const FloorDataText = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #000000;
   font-size: 16px;
   font-weight: 400;

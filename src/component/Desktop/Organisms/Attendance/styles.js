@@ -6,14 +6,14 @@ export const Container = styled.div`
   column-gap: 10px;
   grid-template-columns: 1fr 2fr;
   padding: 30px 0;
+  height: calc(100vh - 120px);
 `;
 
 export const LeftGridWrap = styled.div`
   display: grid;
   row-gap: 34px;
-  grid-template-rows: 10fr 11fr;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 120px);
 `;
 
 export const RightWrap = styled.div`

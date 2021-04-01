@@ -3,27 +3,39 @@ import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setCheckArr,
-  setCheckAll
+  setCheckAll,
+  setCheckArrWithDisable
 } from "../../../../../module/action/attendance";
 import AttendanceListContainer from "./AttendanceList/AttendanceListContainer";
 
 const AttendanceRow = props => {
-  const { index } = props;
+  const { index, disableStudentStateArray } = props;
   const { name, gradeClassNumber: stdNum } = props.attData;
 
   const dispatch = useDispatch();
   const checkArr = useSelector(state => state.attendance.checkArr);
+  const checkArrWithDisable = useSelector(
+    state => state.attendance.checkArrWithDisable
+  );
 
   const onClickCheckbox = () => {
-    const newCheckArr = checkArr.map((check, mapIdx) =>
-      mapIdx === index ? !check : check
-    );
+    if (!disableStudentStateArray[index]) {
+      const newCheckArr = checkArr.map((check, mapIdx) =>
+        mapIdx === index ? !check : check
+      );
+      const newCheckArrWithoutDisable = checkArrWithDisable.map(
+        (data, mapIdx) => (mapIdx === index ? !data : data)
+      );
 
-    dispatch(setCheckArr(newCheckArr));
+      dispatch(setCheckArrWithDisable(newCheckArrWithoutDisable));
+      dispatch(setCheckArr(newCheckArr));
 
-    newCheckArr.every(check => check === true)
-      ? dispatch(setCheckAll(true))
-      : dispatch(setCheckAll(false));
+      newCheckArrWithoutDisable.every(
+        check => check === true || check === "disabled"
+      )
+        ? dispatch(setCheckAll(true))
+        : dispatch(setCheckAll(false));
+    }
   };
 
   return (

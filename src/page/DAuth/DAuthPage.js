@@ -270,7 +270,7 @@ const DLoginPage = () => {
             )}
           </S.FormWrap>
           <S.ErrWrap>
-            {errMsg.length ? <S.ErrorMsg>{errMsg}</S.ErrorMsg> : ""}
+            {errMsg !== undefined ? <S.ErrorMsg>{errMsg}</S.ErrorMsg> : ""}
           </S.ErrWrap>
           <S.ButtonWrap>
             {isChangePasswordMode ? (

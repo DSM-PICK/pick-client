@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setCheckAll,
-  setCheckArr
+  setCheckArr,
+  setCheckArrWithDisable
 } from "../../../../../module/action/attendance";
 import * as S from "./styles";
 
@@ -10,14 +11,30 @@ const AttendanceRowTop = () => {
   const dispatch = useDispatch();
   const { attendanceData } = useSelector(state => state.attendance);
   const checkAll = useSelector(state => state.attendance.checkAll);
-  const checkArr = useSelector(state => state.attendance.checkArr);
+  const checkArrWithDisable = useSelector(
+    state => state.attendance.checkArrWithDisable
+  );
 
   const oncheckAllClick = () => {
     dispatch(setCheckAll(!checkAll));
 
+    dispatch(
+      setCheckArrWithDisable(
+        checkArrWithDisable.map(check =>
+          check !== "disabled" ? !check : check
+        )
+      )
+    );
+
     !checkAll
-      ? dispatch(setCheckArr(checkArr.map(_ => true)))
-      : dispatch(setCheckArr(checkArr.map(_ => false)));
+      ? dispatch(
+          setCheckArr(
+            checkArrWithDisable.map(check =>
+              check !== "disabled" ? true : false
+            )
+          )
+        )
+      : dispatch(setCheckArr(checkArrWithDisable.map(_ => false)));
   };
 
   let length = 0;

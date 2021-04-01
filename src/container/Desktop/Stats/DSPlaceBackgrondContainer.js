@@ -31,6 +31,13 @@ const DSPlaceBackgrondContainer = () => {
     };
   };
 
+  const disableScheduleArr = ["no-schedule", "after-school"];
+  const buttonDisabledBySchedule = ~disableScheduleArr.findIndex(
+    disableSchedule => disableSchedule === schedule
+  )
+    ? true
+    : false;
+
   const { name, floor, priority } = nowUngranted
     ? { name: "", floor: "", priority: "" }
     : getManagedInfo(grantedClass);
@@ -150,6 +157,7 @@ const DSPlaceBackgrondContainer = () => {
       nowUngranted={nowUngranted}
       textButtonData={textButtonData}
       classItemData={classItemData}
+      buttonDisabledBySchedule={buttonDisabledBySchedule}
       clickedPriorityArrPriority={clickedPriorityArrPriority}
       onClickFastSearchBtn={onClickFastSearchBtn}
       onTextButtonClick={onTextButtonClick}
