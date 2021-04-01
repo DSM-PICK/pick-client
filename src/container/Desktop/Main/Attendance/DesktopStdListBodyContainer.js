@@ -67,46 +67,51 @@ const DesktopStdListBodyContainer = () => {
   }, []);
 
   useEffect(() => {
-    if (isFirst) {
-      if (attendanceLists.length) {
-        const length = Object.values(attendanceLists[0].state).filter(
-          state => state !== null
-        ).length;
-        const newAllStudentStateArray = attendanceLists.map(studentData => ({
-          gradeClassNumber: studentData.gradeClassNumber,
-          name: studentData.name,
-          memoArr: Object.values(studentData.memo)
-            .reverse()
-            .slice(0, length)
-            .reverse(),
-          stateArr: Object.values(studentData.state)
-            .reverse()
-            .slice(0, length)
-            .reverse()
-        }));
+    if (attendanceLists.length) {
+      const length = Object.values(attendanceLists[0].state).filter(
+        state => state !== null
+      ).length;
+      const newAllStudentStateArray = attendanceLists.map(studentData => ({
+        gradeClassNumber: studentData.gradeClassNumber,
+        name: studentData.name,
+        memoArr: Object.values(studentData.memo)
+          .reverse()
+          .slice(0, length)
+          .reverse(),
+        stateArr: Object.values(studentData.state)
+          .reverse()
+          .slice(0, length)
+          .reverse()
+      }));
 
-        dispatch(
-          setSelectArrWithDisable(
-            newAllStudentStateArray.map(stdData =>
-              !~disableState.findIndex(
-                disableState => disableState === stdData.stateArr[0]
-              )
-                ? false
-                : "disabled"
+      dispatch(
+        setSelectArrWithDisable(
+          newAllStudentStateArray.map(stdData =>
+            !~disableState.findIndex(
+              disableState => disableState === stdData.stateArr[0]
             )
+              ? false
+              : "disabled"
           )
-        );
-      }
+        )
+      );
+    } else {
+      const newSelectArr = Array.from(
+        { length: attendanceLists ? attendanceLists.length : 0 },
+        () => false
+      );
+      dispatch(setSelectArrWithDisable(newSelectArr));
+    }
+  }, [attendanceLists]);
+  useEffect(() => {
+    if (isFirst) {
       const newSelectArr = Array.from(
         { length: attendanceLists ? attendanceLists.length : 0 },
         () => false
       );
 
-      if (attendanceLists.length === 0) {
-        dispatch(setSelectArrWithDisable(newSelectArr));
-      }
-
       dispatch(setSelectArr(newSelectArr));
+      setIsFirst(false);
     }
   }, [isFirst, attendanceLists]);
   useEffect(() => {
