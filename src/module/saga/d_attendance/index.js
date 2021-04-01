@@ -26,16 +26,24 @@ function* getSelectAttendanceArr(action) {
 }
 
 function* successGetSelectAttendanceArr(action) {
+  // console.log(action.payload);
+
   const { floorData, schedule, floor, isCascade } = action.payload;
   const locationArr = floorData.data.locations;
 
-  const { setSelectAttendanceArr } = DAttendanceActionCreater;
+  const {
+    setSelectAttendanceArr,
+    setAttendanceStdData
+  } = DAttendanceActionCreater;
 
   const { GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
 
   yield put(setSelectAttendanceArr(locationArr));
 
-  if (isCascade) {
+  if (!locationArr.length) {
+    yield put(setAttendanceStdData([]));
+  }
+  if (isCascade && locationArr.length) {
     yield put({
       type: GET_ATTENDANCE_STD_DATA_SAGA,
       payload: { schedule, floor, priority: locationArr[0].priority }
@@ -300,6 +308,83 @@ function* getMemoFloorData() {
   }
 }
 
+function* getFloorData() {
+  try {
+    const SELF_STUDY_FORTH_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      "self-study",
+      4
+    );
+    const SELF_STUDY_THIRD_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      "self-study",
+      3
+    );
+    const SELF_STUDY_SECOND_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      "self-study",
+      2
+    );
+    const SELF_STUDY_FIRST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      "self-study",
+      1
+    );
+    const CLUB_FORTH_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("club", 4);
+    const CLUB_THIRD_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("club", 3);
+    const CLUB_SECOND_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("club", 2);
+    const CLUB_FIRST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("club", 1);
+
+    const selfStudyForthRes = yield call(
+      requestGetApiWithAccessToken,
+      SELF_STUDY_FORTH_URL
+    );
+    const selfStudyThirdRes = yield call(
+      requestGetApiWithAccessToken,
+      SELF_STUDY_THIRD_URL
+    );
+    const selfStudySecondRes = yield call(
+      requestGetApiWithAccessToken,
+      SELF_STUDY_SECOND_URL
+    );
+    const selfStudyFirstRes = yield call(
+      requestGetApiWithAccessToken,
+      SELF_STUDY_FIRST_URL
+    );
+    const clubForthRes = yield call(
+      requestGetApiWithAccessToken,
+      CLUB_FORTH_URL
+    );
+    const clubThirdRes = yield call(
+      requestGetApiWithAccessToken,
+      CLUB_THIRD_URL
+    );
+    const clubSecondRes = yield call(
+      requestGetApiWithAccessToken,
+      CLUB_SECOND_URL
+    );
+    const clubFirstRes = yield call(
+      requestGetApiWithAccessToken,
+      CLUB_FIRST_URL
+    );
+
+    const { setFloorData } = DAttendanceActionCreater;
+
+    yield put(
+      setFloorData({
+        class: [
+          { locations: selfStudyForthRes.data.locations },
+          { locations: selfStudyThirdRes.data.locations },
+          { locations: selfStudySecondRes.data.locations },
+          { locations: selfStudyFirstRes.data.locations }
+        ],
+        club: [
+          { locations: clubForthRes.data.locations },
+          { locations: clubThirdRes.data.locations },
+          { locations: clubSecondRes.data.locations },
+          { locations: clubFirstRes.data.locations }
+        ]
+      })
+    );
+  } catch (error) {}
+}
+
 function* dAttendanceSaga() {
   const {
     GET_ATTENDANCE_STD_DATA_SAGA,
@@ -317,7 +402,8 @@ function* dAttendanceSaga() {
     // SET_ATTENDANCE_MEMO_SAGA,
     GET_STUDENT_BY_STATE_SAGA,
     SET_ATTENDANCE_MEMO_SAGA,
-    GET_MEMO_FLOOR_DATA_SAGA
+    GET_MEMO_FLOOR_DATA_SAGA,
+    GET_FLOOR_DATA_SAGA
   } = DAttendanceAction;
 
   yield takeLatest(GET_SELECT_ATTENDANCE_ARR_SAGA, getSelectAttendanceArr);
@@ -355,6 +441,7 @@ function* dAttendanceSaga() {
   yield takeLatest(SET_ATTENDANCE_MEMO_SAGA, setAttendanceMemo);
   yield takeLatest(GET_STUDENT_BY_STATE_SAGA, getStudentByState);
   yield takeLatest(GET_MEMO_FLOOR_DATA_SAGA, getMemoFloorData);
+  yield takeLatest(GET_FLOOR_DATA_SAGA, getFloorData);
 }
 
 export default dAttendanceSaga;
