@@ -34,6 +34,9 @@ export const FloorDataWrap = styled.div`
 `;
 
 export const FloorDataText = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #000000;
   font-size: 16px;
   font-weight: 400;
