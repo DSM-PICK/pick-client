@@ -11,6 +11,7 @@ const initialState = {
   selectAttendanceArr: [],
   currentAttendanceIndexArr: [0, 0],
   attendanceData: [],
+  selectArrWithDisable: [],
   selectArr: [],
   selectAll: false,
   managedInfo: {
@@ -45,6 +46,7 @@ const DAttendanceReducer = (state = initialState, action) => {
     SET_SELECT_ATTENDANCE_ARR,
     SET_CURRENT_ATTENDANCE_INDEX_ARR,
     SET_ATTENDANCE_STD_DATA,
+    SET_SELECT_ARR_WITH_DISABLE,
     SET_SELECT_ARR,
     SET_SELECT_ALL,
     SET_MANAGED_INFO,
@@ -93,6 +95,12 @@ const DAttendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         attendanceData: action.payload
+      };
+    }
+    case SET_SELECT_ARR_WITH_DISABLE: {
+      return {
+        ...state,
+        selectArrWithDisable: action.payload
       };
     }
     case SET_SELECT_ARR: {
