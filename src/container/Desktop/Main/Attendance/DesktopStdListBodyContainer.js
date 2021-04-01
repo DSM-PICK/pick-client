@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import StdListBody from "../../../../component/Desktop/Molecules/Attendance/AttendanceStdList/AttendanceStdListBackground/StdListBody/StdListBody";
 import { DAttendanceActionCreater } from "../../../../module/action/d_attendance";
 
 const DesktopStdListBodyContainer = () => {
   const dispatch = useDispatch();
   const attendanceLists = useSelector(
-    state => state.dAttendance.attendanceData,
-    shallowEqual
+    state => state.dAttendance.attendanceData
   );
   const currentClassPriority = useSelector(
     state => state.dAttendance.currentClassPriority
