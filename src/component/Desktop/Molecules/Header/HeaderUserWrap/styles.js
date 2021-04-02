@@ -53,6 +53,7 @@ export const UserWrapModal = styled.div`
 
 export const ModalButton = styled.button`
   width: 100%;
+  height: 100%;
   color: ${props => props.color || "#000000"};
   font-size: 16px;
   text-decoration: none;
@@ -60,8 +61,10 @@ export const ModalButton = styled.button`
   outline: none;
   background: none;
 
+  transition: all 0.3s ease-in-out;
+
   :hover {
-    font-weight: 700;
     cursor: pointer;
+    background: #f8f8f8;
   }
 `;
