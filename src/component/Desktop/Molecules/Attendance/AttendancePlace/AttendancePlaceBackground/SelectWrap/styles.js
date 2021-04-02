@@ -40,7 +40,7 @@ export const SelectItem = styled.p`
   height: 100%;
   color: ${props => (props.select ? "#406CFF" : "#909090")};
   font-size: 16px;
-  font-weight: 400;
+  font-weight: ${props => (props.select ? 500 : 400)};
 
   &:hover {
     cursor: pointer;
