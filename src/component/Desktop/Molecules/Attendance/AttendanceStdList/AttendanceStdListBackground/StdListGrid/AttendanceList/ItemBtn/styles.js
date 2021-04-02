@@ -2,7 +2,9 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.button`
   position: relative;
-  padding: 0;
+  box-sizing: border-box;
+  height: 24px;
+  padding: 0 3px;
   color: ${props => props.color || "#000000"};
   font-size: ${props => props.fontSize || "16px"};
   font-weight: ${props => props.fontWeight || "400"};
