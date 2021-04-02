@@ -5,6 +5,7 @@ export const Container = styled.div``;
 export const RefreshButton = styled.button`
   width: 20px;
   height: 20px;
+  border: none;
   border-radius: 5px;
   outline: none;
   background: ${props => `#ffffff url('${props.img}') no-repeat center`};
@@ -12,5 +13,9 @@ export const RefreshButton = styled.button`
 
   :hover {
     cursor: pointer;
+  }
+
+  :active {
+    background: ${props => `#f6f6f6 url('${props.img}') no-repeat center`};
   }
 `;
