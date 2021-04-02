@@ -10,7 +10,7 @@ import NoScheduleWrap from "../../../../NoScheduleWrap/NoScheduleWrap";
 const AttendanceStdList = () => {
   const todaySchedule = useSelector(state => state.schedule.todaySchedule);
 
-  if (todaySchedule === "club") {
+  if (todaySchedule === "non-schedule") {
     return (
       <S.Container>
         <S.LableHeader>
