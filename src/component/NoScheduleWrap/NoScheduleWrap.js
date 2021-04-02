@@ -6,7 +6,7 @@ const NoScheduleWrap = props => {
 
   return (
     <S.Container>
-      <S.GifWrapper gif={gif} gifSize={gifSize}>
+      <S.GifWrapper gif={gif} gifSize={gifSize} text={text}>
         <S.Text text={text} textPadding={textPadding}>
           {text}
         </S.Text>
