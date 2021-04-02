@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr 1fr;
+  grid-template-columns: 1fr 2fr 8fr 2fr;
   width: 100%;
-  height: 24px;
+  height: 30px;
   background: ${props => (props.select ? "#F4F4F4" : "#ffffff")};
 `;
 
@@ -22,19 +22,19 @@ export const SectionCheckbox = styled.input`
   & + label {
     display: flex;
     position: relative;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
 
     &::after {
       content: " ";
-      top: -4px;
-      left: -4px;
+      top: -3px;
+      left: -3px;
       position: absolute;
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
       border: 1px solid #707070;
       border-radius: 4px;
     }
