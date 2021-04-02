@@ -7,9 +7,9 @@ export const Toggle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 128px;
+  width: 122px;
   height: 20px;
-  padding: 1px;
+  padding: 1px 2px;
   border-radius: 5px;
   background: #ffffff;
   box-shadow: 0px 1px 1px 0px rgba(144, 144, 144, 0.2);
