@@ -11,7 +11,7 @@ const SelectWrap = props => {
     ? selectFloorArray
     : selectArr;
 
-  if (todaySchedule === "club") {
+  if (todaySchedule === "non-schedule") {
     return (
       <S.Container>
         <NoScheduleWrap
