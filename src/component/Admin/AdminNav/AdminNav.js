@@ -27,6 +27,12 @@ const AdminNav = () => {
       link: "/admin/club/member"
     },
     {
+      size: "small",
+      text: "기타",
+      link: "/admin/club/insert",
+      withoutActiveStyle: true
+    },
+    {
       size: "middle",
       text: "학생 데이터 삽입",
       link: "/admin/club/insert"
@@ -68,6 +74,7 @@ const AdminNav = () => {
           link={item.link}
           imgLink={item.imgLink}
           navlink={item.navlink}
+          withoutActiveStyle={item.withoutActiveStyle}
         />
       ))}
 
