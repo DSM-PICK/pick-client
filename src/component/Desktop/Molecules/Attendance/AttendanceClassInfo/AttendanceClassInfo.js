@@ -6,9 +6,14 @@ const AttendanceClassInfo = props => {
   const {
     managerTeacher,
     className,
+    isNonSchedule,
     stdCount,
     stdCountWithoutEmployment
   } = props;
+
+  if (isNonSchedule) {
+    return <></>;
+  }
 
   return (
     <S.Container>
