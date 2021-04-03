@@ -22,7 +22,7 @@ const AttendanceStdList = () => {
             text="오늘은 일정이 없어요..."
             gif={NonScheduleGif}
             gifSize="53% 40% / 60%"
-            textPadding="240px 0"
+            textPadding="0"
           />
         </Background>
       </S.Container>
