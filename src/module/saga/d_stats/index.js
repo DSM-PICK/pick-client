@@ -2,6 +2,7 @@ import { put, call, takeEvery } from "@redux-saga/core/effects";
 import { requestGetApiWithAccessToken } from "../../../lib/requestApi";
 import { ATTENDANCE } from "../../../lib/requestUrl";
 import { DStatsAction, DStatsActionCreater } from "../../action/d_stats";
+import { setTodaySchedule } from "../../action/schedule";
 
 function* getStats(action) {
   try {
@@ -29,7 +30,11 @@ function* getSClickedPriority(action) {
 
     const { setSClickedPriority } = DStatsActionCreater;
     yield put(setSClickedPriority({ clickedPriority }));
-  } catch (error) {}
+  } catch (error) {
+    if (error === 404) {
+      setTodaySchedule("non-schedule");
+    }
+  }
 }
 
 function* getSAttendanceData(action) {
