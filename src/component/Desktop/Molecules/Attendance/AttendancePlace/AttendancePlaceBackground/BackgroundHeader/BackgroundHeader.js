@@ -21,14 +21,16 @@ const BackgroundHeader = props => {
           </>
         )}
       </S.TextWrap>
-      <S.ButtonWrap>
-        <Button
-          text={"빠른 조회하기"}
-          css={S.HeaderButtonCSS}
-          onClick={nowUngranted ? void "" : onClickFastSearchBtn}
-          buttonDisabled={nowUngranted}
-        />
-      </S.ButtonWrap>
+      <S.ButtonTempWrap>
+        <S.ButtonWrap>
+          <Button
+            text={"빠른 조회하기"}
+            css={S.HeaderButtonCSS}
+            onClick={nowUngranted ? void "" : onClickFastSearchBtn}
+            buttonDisabled={nowUngranted}
+          />
+        </S.ButtonWrap>
+      </S.ButtonTempWrap>
     </S.Container>
   );
 };
