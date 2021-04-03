@@ -161,6 +161,7 @@ export const MiniFooter = styled.div`
 `;
 export const Schedule = styled.div`
   margin-bottom: 0.7rem;
+  font-weight: bold;
 `;
 
 export const SvgWrap = styled.div`
