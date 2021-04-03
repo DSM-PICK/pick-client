@@ -17,7 +17,7 @@ const SelectWrap = props => {
       <S.Container>
         <NoScheduleWrap
           gif={NonScheduleGif2}
-          gifSize="53% 40% / 36%"
+          gifSize="53% 20% / 36%"
           textPadding="30px 0"
         />
       </S.Container>
