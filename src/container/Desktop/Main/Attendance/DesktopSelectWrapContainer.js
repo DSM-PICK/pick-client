@@ -111,6 +111,11 @@ const DesktopSelectWrapContainer = () => {
     ]);
   }, [floorData, selectSchedule, selectArrIndex, selectAttendance]);
 
+  const scheduleArr = ["self-study", "after-school", "club"];
+  const isNonSchedule = !~scheduleArr.findIndex(
+    schedule => schedule === todaySchedule
+  );
+
   return (
     <SelectWrap
       todaySchedule={todaySchedule}
@@ -118,6 +123,7 @@ const DesktopSelectWrapContainer = () => {
       currentArr={selectArrIndex}
       selectFloorArray={selectFloorArray}
       onClick={setCurrentArrByIndex}
+      isNonSchedule={isNonSchedule}
     />
   );
 };
