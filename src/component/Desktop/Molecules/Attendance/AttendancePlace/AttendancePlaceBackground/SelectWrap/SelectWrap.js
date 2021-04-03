@@ -11,7 +11,8 @@ const SelectWrap = props => {
     ? selectFloorArray
     : selectArr;
 
-  if (todaySchedule === "non-schedule") {
+  const scheduleArr = ["self-study", "after-school", "club"];
+  if (!~scheduleArr.findIndex(schedule => schedule === todaySchedule)) {
     return (
       <S.Container>
         <NoScheduleWrap
