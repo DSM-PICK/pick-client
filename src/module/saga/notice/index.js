@@ -16,9 +16,7 @@ function* getNoticeListSaga() {
 
     yield put({ type: SET_MEMBER_NOTICE_LIST, payload: memberList });
     yield put({ type: SET_CLUB_NOTICE_LIST, payload: clubList });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 function* noticeSaga() {

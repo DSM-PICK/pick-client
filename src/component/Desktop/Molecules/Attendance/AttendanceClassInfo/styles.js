@@ -12,8 +12,8 @@ export const ClassInfoContainer = styled.div`
   justify-content: center;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   width: calc(100% - 28px);
-  height: calc(100% - 28px);
-  padding: 14px;
+  height: calc(100% - 18px);
+  padding: 6px 14px 0px 14px;
 `;
 
 export const Header = styled.p`

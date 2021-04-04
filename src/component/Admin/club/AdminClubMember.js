@@ -7,6 +7,7 @@ import MemberModal from "../../default/Modal/MemberModal";
 import { searchIcon } from "../../../asset";
 import { moveStudentSaga } from "../../../module/action/club";
 import modalAction from "../../../module/action/modal";
+import { getClubFilter } from "../../../lib/api/search";
 
 const AdminClubMember = () => {
   const dispatch = useDispatch();
@@ -38,10 +39,10 @@ const AdminClubMember = () => {
     <S.Container>
       <S.Header>
         <S.Title>
-          동아리 목록
+          동아리원 관리
           <S.SearchButtonWrap>
             <img src={searchIcon} />
-            <S.SearchInput onChange={changeKeyword} />
+            <S.SearchInput onChange={changeKeyword} placeholder="학생 이름" />
           </S.SearchButtonWrap>
         </S.Title>
       </S.Header>

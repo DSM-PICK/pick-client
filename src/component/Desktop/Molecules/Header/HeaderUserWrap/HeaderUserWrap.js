@@ -12,6 +12,9 @@ const HeaderUserWrap = props => {
       <S.UserName>{`${userName} 선생님`}</S.UserName>
       <Img src={DropDownArrow} css={S.ImgCSS} />
       <S.UserWrapModal>
+        <S.ModalButton onClick={onLogout} color="#000000">
+          비밀번호 변경
+        </S.ModalButton>
         <S.ModalButton onClick={onLogout} color="#FF406E">
           로그아웃
         </S.ModalButton>

@@ -22,6 +22,7 @@ const DScheduleExecl = () => {
     }
     try {
       await uploadExcelFile(file);
+      alert("파일을 업로드 했습니다");
     } catch (err) {
       alert("파일이 올바르지 않습니다.");
     }

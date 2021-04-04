@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   position: relative;
-  min-width: 220px;
+  min-width: 234px;
   height: 100%;
   background: #202831;
   align-items: center;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const ButtonWrap = styled.div`
   position: absolute;
-  top: 31%;
+  top: 42%;
   left: 20px;
 `;
 

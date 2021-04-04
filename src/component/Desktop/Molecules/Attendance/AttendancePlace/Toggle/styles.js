@@ -7,15 +7,15 @@ export const Toggle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 128px;
+  width: 122px;
   height: 20px;
-  padding: 1px;
+  padding: 1px 2px;
   border-radius: 5px;
   background: #ffffff;
   box-shadow: 0px 1px 1px 0px rgba(144, 144, 144, 0.2);
 
   &:hover {
-    cursor: pointer;
+    cursor: ${props => (props.isNonSchedule ? "default" : "pointer")};
   }
 `;
 
@@ -36,7 +36,8 @@ export const ToggleItem = styled.div`
   width: ${props => (props.toggle ? "56px" : "68px")};
   height: 100%;
   border-radius: 5px;
-  background: rgba(64, 108, 255, 1);
+  background: ${props =>
+    props.isNonSchedule ? "gray" : rgba(64, 108, 255, 1)};
   left: ${props => (props.toggle ? "0" : "calc(100% - 68px)")};
   transition: all 0.3s ease-in-out;
 `;

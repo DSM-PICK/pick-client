@@ -14,7 +14,7 @@ const ManagementClubList = ({ data, changeSelectItem, isDeleteOn }) => {
               where={location}
               isDeleteOn={isDeleteOn}
               changeSelectItem={changeSelectItem}
-              key={String(rowIndex) + itemIndex + name}
+              key={name}
             />
           ))}
         </S.ClubRow>

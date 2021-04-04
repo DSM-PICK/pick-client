@@ -31,7 +31,7 @@ export const AuthBody = styled.form`
 `;
 
 export const FormWrap = styled.div`
-  height: 17rem;
+  /* height: 17rem; */
 `;
 
 export const AuthInput = styled.input`
@@ -57,36 +57,53 @@ export const AuthInput = styled.input`
 export const ButtonWrap = styled.div`
   margin-top: 2rem;
 `;
-
 export const AuthButton = styled.button`
   border-radius: 12px;
   width: 100%;
+  cursor: pointer;
   border: 1px solid transparent;
   outline: none;
   padding: 0.8rem 0;
   color: white;
-  background: linear-gradient(177.33deg, #3d8bfe 5.4%, #267dff 97.78%);
   font-size: 1.2rem;
   transition: 125ms all;
-
-  &:hover {
-    color: #267dff;
-    border: 1px solid #267dff;
-    background: transparent;
-  }
 
   & + & {
     margin-top: 0.5rem;
   }
 `;
+export const WhiteBtn = styled(AuthButton)`
+  background: transparent;
+  color: #707070;
+
+  &:hover {
+    color: #303030;
+  }
+`;
+export const BlueBtn = styled(AuthButton)`
+  background: linear-gradient(177.33deg, #3d8bfe 5.4%, #267dff 97.78%);
+
+  &:hover {
+    background: linear-gradient(177.33deg, #267dff 5.4%, #0969f8 97.78%);
+  }
+`;
+
 export const HelpMessage = styled.p`
   color: #707070;
   margin-top: 0.4rem;
   cursor: pointer;
+  transition: 125ms all;
+
+  &:hover {
+    color: #303030;
+  }
 `;
 
 export const ErrWrap = styled.div`
-  height: 2rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const HideBtn = styled.button`

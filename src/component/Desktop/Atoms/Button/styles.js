@@ -19,7 +19,7 @@ export const Container = styled.button`
   outline: none;
 
   &:hover {
-    cursor: ${props => (props.buttonDisabled ? "" : "pointer")};
+    cursor: ${props => (props.buttonDisabled ? "default" : "pointer")};
     background: ${props =>
       props.buttonDisabled
         ? "gray"

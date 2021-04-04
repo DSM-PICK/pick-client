@@ -14,6 +14,7 @@ export const TextWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   width: fit-content;
+  width: 100%;
   height: 100%;
 `;
 
@@ -23,6 +24,13 @@ export const HeaderText = styled.p`
   width: max-content;
   height: 20px;
   font-size: 16px;
+`;
+
+export const ButtonTempWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ButtonWrap = styled.div`

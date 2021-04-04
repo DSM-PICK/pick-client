@@ -40,8 +40,8 @@ export const UserWrapModal = styled.div`
   position: absolute;
   top: 60px;
   z-index: 2;
-  width: 110px;
-  height: 42px;
+  width: 120px;
+  height: 70px;
   border-radius: 0 0 8px 8px;
   background: #ffffff;
   box-shadow: 0px 4px 4px 2px rgb(144 144 144 / 20%);
@@ -53,6 +53,7 @@ export const UserWrapModal = styled.div`
 
 export const ModalButton = styled.button`
   width: 100%;
+  height: 100%;
   color: ${props => props.color || "#000000"};
   font-size: 16px;
   text-decoration: none;
@@ -60,8 +61,10 @@ export const ModalButton = styled.button`
   outline: none;
   background: none;
 
+  transition: all 0.3s ease-in-out;
+
   :hover {
-    font-weight: 700;
     cursor: pointer;
+    background: #f8f8f8;
   }
 `;

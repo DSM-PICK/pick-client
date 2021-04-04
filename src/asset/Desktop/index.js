@@ -8,3 +8,4 @@ export { default as Search } from "./PreAbsence/Search.svg";
 export { default as RefreshBtn } from "./Main/refresh.svg";
 
 export { default as NonScheduleGif } from "./Main/non_schedule.gif";
+export { default as NonScheduleGif2 } from "./Main/non_schedule2.gif";
