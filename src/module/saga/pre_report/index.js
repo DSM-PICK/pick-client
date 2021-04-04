@@ -53,14 +53,14 @@ function* createPreReportSaga(payload) {
     } = payload.payload;
     const REQUEST_URL = PRE_REPORT.CREATE_PRE_REPORT_URL();
 
-    const isDataRight = checkPreReportData(
+    const isDataRight = checkPreReportData({
       state,
       stdnum,
       start_date,
       start_period,
       end_date,
       end_period
-    );
+    });
 
     const res = yield call(
       requestApiWithAccessToken,

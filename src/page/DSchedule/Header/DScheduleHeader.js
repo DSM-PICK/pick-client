@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { getSchedule } from "../../../module/action/schedule";
+import {
+  getSchedule,
+  getScheduleMiniCalander
+} from "../../../module/action/schedule";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "../style";
 
 const DScheduleHeader = () => {
   const dispatch = useDispatch();
-  const { year, month } = useSelector(store => store.schedule.date);
+  const { year, month } = useSelector(store => store.schedule.calander.date);
   const dateObj = useRef();
 
   useEffect(() => {
@@ -14,6 +17,7 @@ const DScheduleHeader = () => {
     const month = dateObj.current.getMonth() + 1;
 
     dispatch(getSchedule({ year, month }));
+    dispatch(getScheduleMiniCalander({ year, month }));
   }, []);
 
   useEffect(() => {

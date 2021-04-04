@@ -42,11 +42,18 @@ export const Container = styled.button`
           border: 1px solid #ff406e;
           background: #ffffff;
         `;
+      case "기초학력":
       case "취업":
         return css`
           color: #909090;
           border: 1px solid #c4c4c4;
           background: #ffffff;
+        `;
+      case "취소":
+        return css`
+          color: #ffffff;
+          border: none;
+          background: #406cff;
         `;
       default:
         return css`
@@ -59,6 +66,7 @@ export const Container = styled.button`
   &:hover {
     ${props =>
       props.text !== "취업" &&
+      props.text !== "기초학력" &&
       css`
         cursor: pointer;
       `}
@@ -66,20 +74,32 @@ export const Container = styled.button`
 
   &:focus,
   &:active {
-    & > div {
+    & > :nth-child(1) {
       opacity: ${props => (props.isOpen ? 1 : 0)};
       visibility: ${props => (props.isOpen ? "visible" : "hidden")};
     }
   }
 
-  & > div {
+  & > :nth-child(1) {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease-in-out;
   }
+`;
 
-  & > div > li {
-  }
+export const WriteMemoWrap = styled.input`
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  outline: none;
+  color: #ffffff;
+  border: none;
+  background: #406cff;
+  font-size: 16px;
+  text-align: center;
+  box-sizing: border-box;
+
+  display: ${props => (props.isWriteMemo ? "inline-block" : "none")};
 `;
 
 export const Wrap = styled.div`
@@ -88,6 +108,18 @@ export const Wrap = styled.div`
   left: -1.25px;
   z-index: 3;
   width: 100%;
+  border: 1px solid #c4c4c4;
+  border-radius: 8px;
+  background: #ffffff;
+`;
+
+export const MemoWrap = styled.div`
+  position: absolute;
+  top: ${props => (props.index > 17 ? "-109.25px" : "23.75px")};
+  left: -1.25px;
+  z-index: 4;
+  width: 143px;
+  height: 85px;
   border: 1px solid #c4c4c4;
   border-radius: 8px;
   background: #ffffff;

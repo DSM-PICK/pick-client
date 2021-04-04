@@ -1,27 +1,33 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5;
   width: 100%;
   height: 60px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 1px 1px 0px rgba(144, 144, 144, 0.2);
+
+  @media screen and (max-width: 1200px) {
+    width: 1200px;
+  }
 `;
 
 export const Wrap = styled.div`
   display: grid;
   align-items: center;
-  gap: 67px;
-  grid-template: 1fr / 1fr 293px 122px;
-  width: 1072px;
+  gap: 40px;
+  grid-template: 1fr / 1fr 400px 130px;
+  width: 1200px;
   height: 100%;
 `;
 
 export const GridItem = styled.div``;
 
-export const ImgWrap = styled.div`
+export const ImgWrap = styled(NavLink)`
   display: flex;
   align-items: center;
 `;

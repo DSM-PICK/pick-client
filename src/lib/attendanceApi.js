@@ -78,14 +78,9 @@ export const checkPreReportName = stdnum => {
   }
   return true;
 };
-export const checkPreReportData = (
-  state,
-  stdnum,
-  start_date,
-  start_period,
-  end_date,
-  end_period
-) => {
+export const checkPreReportData = obj => {
+  const { state, stdnum, start_date, start_period, end_date, end_period } = obj;
+
   if (!PreReportReg.isRightState(state)) {
     alert(
       `출석 상태는 "외출", "현체", "귀가", "이동", "취업" 중 하나여야합니다.`
@@ -93,10 +88,6 @@ export const checkPreReportData = (
     throw new Error(
       `State(${state}) is not in "외출", "현체", "귀가", "이동", "취업"`
     );
-  }
-  if (!PreReportReg.isRightStdnum(stdnum)) {
-    alert(`이름이 올바르지 않습니다.`);
-    throw new Error(`Invalid stdnum(${stdnum})`);
   }
   for (let date of [start_date, end_date]) {
     if (!PreReportReg.isRightDate(date)) {
@@ -109,6 +100,10 @@ export const checkPreReportData = (
       alert(`교시가 올바르지 않습니다.`);
       throw new Error(`Invalid Period(${period})`);
     }
+  }
+  if (!PreReportReg.isRightStdnum(stdnum)) {
+    alert(`이름이 올바르지 않습니다.`);
+    throw new Error(`Invalid stdnum(${stdnum})`);
   }
   return true;
 };
@@ -134,4 +129,22 @@ export const getFloor = floorName => {
       return 0;
     }
   }
+};
+
+export const getManagedInfo = (managedClassroom, managedClub) => {
+  const isClubUngranted = managedClub.length === 0;
+  const isClassUngranted = managedClassroom === null;
+
+  return {
+    club: {
+      isUngranted: isClubUngranted,
+      data: isClubUngranted ? [] : managedClub,
+      floorData: []
+    },
+    class: {
+      isUngranted: isClassUngranted,
+      data: isClassUngranted ? null : managedClassroom,
+      floorData: isClassUngranted ? null : []
+    }
+  };
 };

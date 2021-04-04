@@ -5,16 +5,16 @@ import * as S from "./styles";
 
 const HeaderUserWrap = props => {
   const { userName } = props;
+  const { onLogout } = props;
 
   return (
     <S.Container>
       <S.UserName>{`${userName} 선생님`}</S.UserName>
       <Img src={DropDownArrow} css={S.ImgCSS} />
       <S.UserWrapModal>
-        <S.ModalNavLink to="/mypage">마이페이지</S.ModalNavLink>
-        <S.ModalNavLink to="/login" color="#FF406E">
+        <S.ModalButton onClick={onLogout} color="#FF406E">
           로그아웃
-        </S.ModalNavLink>
+        </S.ModalButton>
       </S.UserWrapModal>
     </S.Container>
   );

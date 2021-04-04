@@ -18,8 +18,6 @@ import { PRE_REPORT, AUTO_COMPLETE } from "../../../../lib/requestUrl";
 import { makeDate2Digit } from "../../../../lib/attendanceApi";
 import {
   deleteAttendanceChangeListErrorHandler,
-  addAttendanceChangeStudentErrorHandler,
-  putAttendanceChangeStudentErrorHandler,
   getAllAttendanceChangeListErrorHandler
 } from "../../../../error/desktop/report";
 
@@ -30,7 +28,9 @@ const isAttendanceStudentDataAble = ({
   endDate,
   startDate,
   endPeriod,
-  startPeriod
+  startPeriod,
+  description,
+  memo
 }) => {
   if (
     type.length <= 0 ||
@@ -46,6 +46,10 @@ const isAttendanceStudentDataAble = ({
   } else if (!startDate.year || !startDate.month || !startDate.date) {
     return false;
   } else if (!endDate.year || !endDate.month || !endDate.date) {
+    return false;
+  } else if (description && description.length > 8) {
+    return false;
+  } else if (memo && memo.length > 8) {
     return false;
   }
   return true;
@@ -83,7 +87,6 @@ const attendanceChangeListStateToDTO = state => {
       isFix,
       id
     }) => ({
-      id,
       stdnum: parseInt(number),
       name,
       start_date: `${startDate.year}-${makeDate2Digit(
@@ -95,8 +98,10 @@ const attendanceChangeListStateToDTO = state => {
       )}-${makeDate2Digit(endDate.date)}`,
       end_period: endPeriod,
       state: type,
-      memo: description,
-      isFix
+      memo: type === "이동" ? description : null,
+      reason: type !== "이동" ? description : null,
+      isFix,
+      id
     })
   );
 };
@@ -115,11 +120,12 @@ const attendanceChangeListDTOToState = response => {
       arrival_time,
       state,
       sub_state,
-      memo
+      memo,
+      reason
     }) => {
       return {
         type: state,
-        description: memo,
+        description: reason,
         name: name,
         number: stdnum,
         id,
@@ -127,7 +133,8 @@ const attendanceChangeListDTOToState = response => {
         startPeriod: start_period,
         endDate: getDateTextToObject(end_date),
         endPeriod: end_period,
-        teacher
+        teacher,
+        memo
       };
     }
   );
@@ -139,7 +146,6 @@ function* deleteAttendanceChangeStudent({ payload }) {
     const newState = attendanceChangeList.filter(
       attendanceChangeStudent => attendanceChangeStudent.id !== payload
     );
-    console.log(newState);
     const REQUEST_URL = PRE_REPORT.DELETE_PRE_REPORT_URL(payload);
     yield call(requestDelApiWithAccessToken, REQUEST_URL);
     yield put(setAttendanceChangeList(newState));
@@ -186,20 +192,26 @@ function* addAttendanceChangeStudentSaga({ payload }) {
     return;
   }
   const requestList = attendanceChangeListStateToDTO(payload);
+  const requestFunction = requestList.map(async request => {
+    console.log(request.isFix, request.id);
+    const REQUEST_URL = request.isFix
+      ? PRE_REPORT.PUT_PRE_REPORT_URL(request.id)
+      : PRE_REPORT.CREATE_PRE_REPORT_URL();
+    const REQUEST_METHOD = request.isFix ? "put" : "post";
+    try {
+      await requestApiWithAccessToken(REQUEST_METHOD, REQUEST_URL, request);
+    } catch (error) {
+      if (error === 409) alert("이전 데이터와 겹치는 부분이 있습니다.");
+      throw error;
+    }
+  });
   try {
-    const requestFunction = requestList.map(request =>
-      requestApiWithAccessToken(
-        request.isFix ? "put" : "post",
-        request.isFix
-          ? PRE_REPORT.PUT_PRE_REPORT_URL(request.id)
-          : PRE_REPORT.CREATE_PRE_REPORT_URL(),
-        request
-      )
-    );
     yield Promise.all(requestFunction);
     yield put(getAttendanceChangeList());
     yield put(setAttendanceChangeStudent([]));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* desktopReportSaga() {

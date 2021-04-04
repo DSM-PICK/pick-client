@@ -3,8 +3,14 @@ import Button from "../../../../Atoms/Button/Button";
 import * as S from "./style";
 
 const StatsPlaceBackground = props => {
-  const { textButtonData, classItemData } = props;
-  const { onTextButtonClick, onClassItemClick } = props;
+  const {
+    nowUngranted,
+    textButtonData,
+    classItemData,
+    buttonDisabledBySchedule,
+    clickedPriorityArrPriority
+  } = props;
+  const { onClickFastSearchBtn, onTextButtonClick, onClassItemClick } = props;
 
   return (
     <S.Container>
@@ -12,7 +18,12 @@ const StatsPlaceBackground = props => {
         <Button
           text={"빠른 조회하기"}
           css={S.HeaderButtonCSS}
-          onClick={() => console.log("1234")}
+          onClick={
+            buttonDisabledBySchedule || nowUngranted
+              ? void ""
+              : onClickFastSearchBtn
+          }
+          buttonDisabled={buttonDisabledBySchedule || nowUngranted}
         />
       </S.ButtonWrap>
       <S.FloorWrap>
@@ -31,7 +42,7 @@ const StatsPlaceBackground = props => {
           classItemData.map((data, index) => (
             <S.ClassItemOfClickedFloor
               key={data.text}
-              isClicked={data.isClicked}
+              isClicked={clickedPriorityArrPriority === index}
               onClick={() => onClassItemClick(index)}
             >
               {data.text}

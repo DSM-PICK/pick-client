@@ -10,11 +10,12 @@ const SStdListBody = props => {
       {statsAttendance.length
         ? statsAttendance.map((data, index) => (
             <SStdListGrid
-              key={data.name}
+              key={data.gradeClassNumber}
               index={index}
               name={data.name}
               stdNum={data.gradeClassNumber}
               stateList={data.state}
+              reason={data.reason}
               memo={data.memo}
               css={S.StdListGridCSS}
             />

@@ -3,13 +3,13 @@ import DSAttendanceListContainer from "../../../../../../../container/Desktop/St
 import * as S from "./styles";
 
 const SStdListGrid = props => {
-  const { index, name, stdNum, memo, css } = props;
+  const { index, name, stdNum, reason, css } = props;
 
   return (
     <S.Container>
       <S.StdName {...css}>{`${stdNum} ${name}`}</S.StdName>
       <DSAttendanceListContainer index={index} {...props} />
-      {/* <S.StdMemo {...css}>{memo}</S.StdMemo> */}
+      <S.StdMemo {...css}>{reason}</S.StdMemo>
     </S.Container>
   );
 };

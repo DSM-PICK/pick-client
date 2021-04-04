@@ -17,7 +17,7 @@ const FormTypeButton = ({ type, setType }) => {
         isActive={type === "외출"}
         onClick={getButtonClickHandler("외출")}
       >
-        외출
+        외출
       </S.FormTypeButton>
       <S.FormTypeButton
         isActive={type === "귀가"}

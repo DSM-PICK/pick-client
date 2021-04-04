@@ -11,7 +11,7 @@ const HeaderNavLinkWrap = props => {
       text: "출석체크"
     },
     {
-      to: "/pre-report",
+      to: "/report",
       text: "출결등록"
     },
     {

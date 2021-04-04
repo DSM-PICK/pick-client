@@ -15,6 +15,7 @@ const Description = () => {
       <S.FormDescriptionInput
         value={description}
         onChange={descriptionChangeHandler}
+        placeholder="최대 8글자로 작성해 주세요(선택)"
       />
     </S.FormColumn>
   );

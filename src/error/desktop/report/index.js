@@ -1,4 +1,4 @@
-import { requesetRefresh } from "../../../lib/requestApi";
+import { requesetRefreshForDesktop } from "../../../lib/requestApi";
 
 export const addAttendanceChangeStudentErrorHandler = callback => async error => {
   switch (error) {
@@ -18,7 +18,7 @@ export const addAttendanceChangeStudentErrorHandler = callback => async error =>
       break;
     }
     case 410: {
-      await requesetRefresh(callback);
+      await requesetRefreshForDesktop(callback);
     }
   }
 };
@@ -30,7 +30,7 @@ export const deleteAttendanceChangeListErrorHandler = callback => async error =>
       break;
     }
     case 410: {
-      await requesetRefresh(callback);
+      await requesetRefreshForDesktop(callback);
       break;
     }
   }
@@ -54,7 +54,7 @@ export const putAttendanceChangeStudentErrorHandler = callback => async error =>
       break;
     }
     case 410: {
-      await requesetRefresh(callback);
+      await requesetRefreshForDesktop(callback);
       break;
     }
   }
@@ -67,7 +67,11 @@ export const getAllAttendanceChangeListErrorHandler = callback => async error =>
       break;
     }
     case 401: {
-      await requesetRefresh(callback);
+      try {
+        await requesetRefreshForDesktop(callback);
+      } catch (error) {
+        throw error;
+      }
       break;
     }
     case 403: {
@@ -79,7 +83,11 @@ export const getAllAttendanceChangeListErrorHandler = callback => async error =>
       break;
     }
     case 410: {
-      await requesetRefresh(callback);
+      try {
+        await requesetRefreshForDesktop(callback);
+      } catch (error) {
+        throw error;
+      }
       break;
     }
   }

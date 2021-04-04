@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 
-const scheduleMap = {
+export const scheduleMap = {
   "non-schedule": "일정 없음",
   club: "동아리",
   "self-study": "자습",

@@ -35,20 +35,20 @@ export const DesktopReportContentT = styled(DesktopReportContent)`
 
 export const DesktopReportCalender = styled(DesktopReportContent)`
   width: ${pxToRem(300 * computerScale)}rem;
-  height: ${pxToRem(885)}rem;
+  height: ${pxToRem(790)}rem;
   overflow: hidden;
   box-shadow: 0px 0px 0px white;
 `;
 
 export const Form = styled(DesktopReportContent)`
-  width: ${pxToRem(900 * computerScale)}rem;
+  width: ${pxToRem(900)}rem;
   height: ${pxToRem(332)}rem;
   padding: ${pxToRem(16)}rem ${pxToRem(26)}rem;
   box-sizing: border-box;
 `;
 
 export const List = styled(DesktopReportContent)`
-  width: ${pxToRem(900 * computerScale)}rem;
+  width: ${pxToRem(900)}rem;
   height: ${pxToRem(500)}rem;
   padding: ${pxToRem(16)}rem 0px;
   box-sizing: border-box;
@@ -67,7 +67,7 @@ export const CalenderDayWrapper = styled.div`
 
 export const CalenderDay = styled.div`
   font-size: ${pxToRem(12)}rem;
-  width: ${pxToRem(18 * computerScale)}rem;
+  width: ${pxToRem(18)}rem;
   height: ${pxToRem(18)}rem;
   display: flex;
   align-items: center;
@@ -97,7 +97,7 @@ export const CalenderDay = styled.div`
 
 export const CalenderMonth = styled.div`
   font-size: ${pxToRem(14)}rem;
-  margin-left: ${pxToRem(40)}rem;
+  margin-left: ${pxToRem(15)}rem;
   margin-top: ${pxToRem(20)}rem;
   ${props =>
     props.isTodayMonth
@@ -121,6 +121,7 @@ export const CalenderToday = styled.div`
 export const CalenderButton = styled.button`
   width: ${pxToRem(60)}rem;
   height: ${pxToRem(20)}rem;
+  cursor: pointer;
   background-color: #f2f2f2;
   border-radius: 6px;
   box-shadow: 0px 1px 1px 0px rgba(144, 144, 144, 0.2);
@@ -158,7 +159,7 @@ export const FormTitle = styled.p`
 `;
 
 export const FormColumn = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   display: flex;
   align-items: center;
 `;
@@ -170,20 +171,51 @@ export const FormStudent = styled(FormColumn)`
 
 export const FormText = styled.p`
   font-size: ${pxToRem(16)}rem;
+  width: 45px;
   margin-top: 2px;
   font-weight: 600;
   margin-right: 15px;
 `;
 
 export const FormStudentWrapper = styled.div`
+  width: 90%;
   display: flex;
+  flex-wrap: wrap;
+  height: 68px;
 `;
 
 export const FormStudentItem = styled.div`
   position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-bottom: 14px;
+  > div.selected {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #406cff;
+    position: absolute;
+    left: 50%;
+    transform: translate(-100%, -5px);
+    ${({ isActive }) =>
+      isActive
+        ? css`
+            display: block;
+          `
+        : css`
+            display: none;
+          `};
+  }
+  &:hover > div {
+    font-weight: 600;
+  }
   > div {
-    width: ${pxToRem(50)}rem;
-    height: ${pxToRem(46)}rem;
+    width: ${pxToRem(84)}rem;
+    height: ${pxToRem(24)}rem;
     border-radius: 6px;
     margin: 0px ${pxToRem(3)}rem;
     display: flex;
@@ -195,26 +227,16 @@ export const FormStudentItem = styled.div`
     ${props =>
       props.isActive
         ? css`
-            color: white;
-            background-color: #406cff;
+            font-weight: 600;
           `
         : css`
-            border: 1px solid #707070;
-            color: #707070;
-            background-color: white;
+            font-weight: 300;
           `}
   }
-  ${({ isActive }) =>
-    isActive
-      ? ""
-      : css`
-          &:hover > div {
-            background-color: #eeeeee;
-          }
-        `}
   &:hover > .delete {
     display: block;
     opacity: 1;
+    z-index: 10;
   }
   > .delete {
     width: 100%;
@@ -222,7 +244,7 @@ export const FormStudentItem = styled.div`
     color: #ff406e;
     font-size: 14px;
     position: absolute;
-    margin-top: 2px;
+    margin-top: 0px;
     text-align: center;
     display: none;
     opacity: 0;
@@ -231,11 +253,10 @@ export const FormStudentItem = styled.div`
 `;
 
 export const FormStudentAddInput = styled.div`
-  width: ${pxToRem(50)}rem;
-  height: ${pxToRem(46)}rem;
+  width: ${pxToRem(84)}rem;
+  height: ${pxToRem(24)}rem;
   border-radius: 6px;
   margin: 0px ${pxToRem(3)}rem;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -257,11 +278,11 @@ export const FormStudentAddInput = styled.div`
     text-align: center;
   }
   > div {
-    top: ${pxToRem(50)}rem;
+    top: ${pxToRem(25)}rem;
     left: 0px;
     position: absolute;
-    width: 95px;
-    height: 120px;
+    width: ${pxToRem(84)}rem;
+    max-height: 120px;
     overflow-y: scroll;
     border: 1px solid #707070;
     background-color: white;
@@ -280,14 +301,16 @@ export const FormStudentAddInput = styled.div`
 
 export const FormStudentAddItemButton = styled(FormStudentItem)`
   > div {
+    width: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #707070;
     &::before {
       content: "";
       display: block;
-      width: 2px;
-      height: 18px;
+      width: 1px;
+      height: 10px;
       border-radius: 10px;
       background-color: #707070;
     }
@@ -295,10 +318,10 @@ export const FormStudentAddItemButton = styled(FormStudentItem)`
       content: "";
       display: block;
       background-color: #707070;
-      width: 2px;
+      width: 1px;
       border-radius: 10px;
-      height: 18px;
-      transform: translate(-2px) rotate(90deg);
+      height: 10px;
+      transform: translate(-1px) rotate(90deg);
     }
   }
 `;

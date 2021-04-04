@@ -6,6 +6,7 @@ const DesktopAttendanceClassInfoContainer = () => {
   const classInfo = useSelector(state => state.dAttendance.classInfo);
 
   const {
+    managerTeacher,
     name: className,
     head,
     stdCount,
@@ -14,6 +15,7 @@ const DesktopAttendanceClassInfoContainer = () => {
 
   return (
     <AttendanceClassInfo
+      managerTeacher={managerTeacher}
       className={className}
       head={head}
       stdCount={stdCount}
@@ -22,4 +24,4 @@ const DesktopAttendanceClassInfoContainer = () => {
   );
 };
 
-export default DesktopAttendanceClassInfoContainer;
+export default React.memo(DesktopAttendanceClassInfoContainer);

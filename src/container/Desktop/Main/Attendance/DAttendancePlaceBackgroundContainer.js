@@ -11,36 +11,75 @@ const DAttendancePlaceBackgroundContainer = () => {
     selectAttendanceArr: selectAttendance,
     currentAttendanceIndexArr: selectArrIndex
   } = dAttendance;
+  const managedInfo = useSelector(state => state.dAttendance.managedInfo);
+  const isFastClick = useSelector(state => state.dAttendance.isFastClick);
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
   const selectSelfStudyOrClub =
     staticSelectArr[selectSchedule === "교실자습" ? "selfStudy" : "club"];
   const selectPriority = selectAttendance[selectArrIndex[1]]?.priority;
 
-  const payload = {
-    schedule: selectSchedule === "교실자습" ? "self-study" : "club",
-    floor: getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]]),
-    priority: selectPriority
-  };
-
-  const { getAttendanceStdDataSaga } = DAttendanceActionCreater;
+  const { setIsFastClick, getAttendanceStdDataSaga } = DAttendanceActionCreater;
 
   const dispatch = useDispatch();
-  const getAttendanceStdData = useCallback(() => {
-    dispatch(getAttendanceStdDataSaga(payload));
-  }, [dispatch, payload]);
 
   const teacherName = localStorage.getItem("teacherName");
 
+  const dispatchGetAttendanceStdData = useCallback(
+    data => {
+      dispatch(getAttendanceStdDataSaga(data));
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
-    dispatch(getAttendanceStdDataSaga({ ...payload, priority: 0 }));
+    const {
+      getManagedAttendanceArrSaga,
+      getManagedClubAttendanceArrSaga
+    } = DAttendanceActionCreater;
+    if (!managedInfo.club.isUngranted) {
+      const { floor } = managedInfo.club.data[0];
+      dispatch(
+        getManagedClubAttendanceArrSaga({
+          floor,
+          schedule: "club"
+        })
+      );
+    }
+    if (!managedInfo.class.isUngranted) {
+      const { floor } = managedInfo.class.data;
+      dispatch(
+        getManagedAttendanceArrSaga({
+          floor,
+          schedule: "self-study"
+        })
+      );
+    }
+  }, [managedInfo]);
+
+  const getDispatchGetAttendanceStdDataParameter = useCallback(
+    () => ({
+      schedule: selectSchedule === "교실자습" ? "self-study" : "club",
+      floor: getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]]),
+      priority: selectPriority === undefined ? 0 : selectPriority
+    }),
+    [selectSchedule, selectSelfStudyOrClub, selectArrIndex, selectPriority]
+  );
+
+  const disptchSetIsFastClick = useCallback(() => {
+    dispatch(setIsFastClick(false));
+  }, [dispatch]);
+
+  const getIsFastClick = useCallback(() => isFastClick, [isFastClick]);
+
+  useEffect(() => {
+    if (!getIsFastClick()) {
+      dispatchGetAttendanceStdData(getDispatchGetAttendanceStdDataParameter());
+    } else {
+      disptchSetIsFastClick();
+    }
   }, []);
 
-  return (
-    <AttendancePlaceBackground
-      onClick={getAttendanceStdData}
-      teacherName={teacherName}
-    />
-  );
+  return <AttendancePlaceBackground teacherName={teacherName} />;
 };
 
-export default DAttendancePlaceBackgroundContainer;
+export default React.memo(DAttendancePlaceBackgroundContainer);

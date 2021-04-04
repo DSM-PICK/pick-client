@@ -21,17 +21,17 @@ export const FooterStaticData = [
     assetOnLink: CalendarOnIcon,
     link: "/t/schedule",
     text: "일정"
-  },
-  {
-    assetLink: StatsIcon,
-    assetOnLink: StatsOnIcon,
-    link: "/t/stats",
-    text: "조회"
-  },
-  {
-    assetLink: AdminIcon,
-    assetOnLink: AdminOnIcon,
-    link: "/t/admin",
-    text: "관리"
   }
+  // {
+  //   assetLink: StatsIcon,
+  //   assetOnLink: StatsOnIcon,
+  //   link: "/t/stats",
+  //   text: "조회"
+  // },
+  // {
+  //   assetLink: AdminIcon,
+  //   assetOnLink: AdminOnIcon,
+  //   link: "/t/admin",
+  //   text: "관리"
+  // }
 ];

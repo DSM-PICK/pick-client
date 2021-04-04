@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as S from "./styles";
 import AttendanceRowTop from "./AttendanceRowTop/AttendanceRowTop";
 import AttendanceRow from "./AttendanceRow/AttendanceRow";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getLocationState } from "../../../../lib/attendanceApi";
+import { setCheckAll, setCheckArr } from "../../../../module/action/attendance";
+import AttendanceRowContainer from "./AttendanceRow/AttendanceRowContainer";
 
 const AttendanceSection = props => {
   try {
     const { location, name: clubName } = props.locations;
 
-    const information = useSelector(state => state.attendance);
-    const { clubHead, attendanceData } = information;
+    const dispatch = useDispatch();
+    const { checkArr } = useSelector(state => state.attendance);
+    const { checkAll } = useSelector(state => state.attendance);
+    const { clubHead } = useSelector(state => state.attendance);
+    const { attendanceData } = useSelector(state => state.attendance);
+    const { currentClassInfo } = useSelector(state => state.attendance);
+
+    const [allStudentStateArray, setAllStudentStateArray] = useState([]);
+    const [prevClassInfo, setPrevClassInfo] = useState(currentClassInfo);
+    const [stdStateArr, setStdStateArr] = useState(
+      !!Object.values(attendanceData).length
+        ? attendanceData.map(data =>
+            Object.values(data.state).filter(state => !!state)
+          )
+        : []
+    );
+    const [first, setFirst] = useState(true);
 
     const isSevenNull =
       attendanceData.length && attendanceData[0].state.seven === null;
@@ -18,12 +35,88 @@ const AttendanceSection = props => {
       attendanceData.length && attendanceData.map(data => data.state);
     const employmentCount =
       stateData && stateData.filter(state => state.eight === "취업").length;
-    const attendanceCountArr = stateData && [
-      stateData.filter(state => state.seven === "출석").length,
-      stateData.filter(state => state.eight === "출석").length,
-      stateData.filter(state => state.nine === "출석").length,
-      stateData.filter(state => state.ten === "출석").length
-    ];
+
+    const dispatchSetCheckAll = useCallback(
+      checkAllState => {
+        dispatch(setCheckAll(checkAllState));
+      },
+      [dispatch]
+    );
+    const dispatchSetCheckArr = useCallback(
+      checkArray => {
+        dispatch(setCheckArr(checkArray));
+      },
+      [dispatch]
+    );
+
+    const checkArrAll = useCallback(() => {
+      dispatchSetCheckArr(
+        Array.from(
+          { length: attendanceData ? attendanceData.length : 0 },
+          () => !checkAll
+        )
+      );
+    }, [checkAll, attendanceData]);
+    const handleCheckArr = useCallback(
+      index => {
+        dispatchSetCheckArr(
+          checkArr.map((check, mapIndex) =>
+            mapIndex === index ? !check : check
+          )
+        );
+      },
+      [checkArr]
+    );
+
+    useEffect(() => {
+      attendanceData.length &&
+        setAllStudentStateArray(
+          !isSevenNull
+            ? attendanceData.map(data =>
+                Object.values(data.state).map((_, idx) => ({
+                  memo: Object.values(data.memo)[idx],
+                  state: Object.values(data.state)[idx]
+                }))
+              )
+            : attendanceData
+                .map(data =>
+                  Object.values(data.state).map((_, idx) => ({
+                    memo: Object.values(data.memo)[idx],
+                    state: Object.values(data.state)[idx]
+                  }))
+                )
+                .map(data => data.slice(1))
+        );
+    }, [attendanceData]);
+
+    useEffect(() => {
+      if (JSON.stringify(prevClassInfo) !== JSON.stringify(currentClassInfo)) {
+        setPrevClassInfo(currentClassInfo);
+      }
+    }, [prevClassInfo, currentClassInfo]);
+    useEffect(() => {
+      if (attendanceData.length && first) {
+        dispatchSetCheckArr(
+          Array.from(
+            { length: attendanceData ? attendanceData.length : 0 },
+            () => false
+          )
+        );
+        setFirst(false);
+      }
+    }, [first, attendanceData]);
+    useEffect(() => {
+      if (!!Object.values(attendanceData).length)
+        setStdStateArr(
+          attendanceData.map(data =>
+            Object.values(data.state).filter(state => !!state)
+          )
+        );
+    }, [attendanceData]);
+
+    useEffect(() => {
+      dispatch(setCheckAll(false));
+    }, [dispatch, clubName]);
 
     return (
       <S.Container>
@@ -47,17 +140,12 @@ const AttendanceSection = props => {
             <S.Location location="창조실">{`창조실`}</S.Location>
           </S.Article>
         )}
-        <AttendanceRowTop isSevenNull={isSevenNull} />
-        <S.Attendance>
-          {attendanceData.length &&
-            attendanceData.map((attendance, index) => (
-              <AttendanceRow
-                key={attendance.gradeClassNumber}
-                index={index}
-                attendance={attendance}
-              />
-            ))}
-        </S.Attendance>
+        <AttendanceRowTop
+          isSevenNull={isSevenNull}
+          checkArrAll={checkArrAll}
+          checkAll={checkAll}
+        />
+        <AttendanceRowContainer />
       </S.Container>
     );
   } catch (err) {
@@ -68,4 +156,4 @@ const AttendanceSection = props => {
   }
 };
 
-export default AttendanceSection;
+export default React.memo(AttendanceSection);

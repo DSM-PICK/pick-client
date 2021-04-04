@@ -5,11 +5,37 @@ export const ATTENDANCE = {
   CHANGE_ATTENDANCE_STATE_URL: () => {
     return `/saturn/attendance/student-state`;
   },
-  ATTENDANCE_LIST_URL: (schedule, floor, priority) => {
-    return `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
+  ATTENDANCE_LIST_URL: (schedule, floor, priority, date) => {
+    return !!date
+      ? `/saturn/attendance/student-state/${schedule}/${floor}/${priority}?date=${date}`
+      : `/saturn/attendance/student-state/${schedule}/${floor}/${priority}`;
   },
-  RECORD_BY_GRADE_URL: grade => {
-    return `/saturn/attendance/record/${grade}`;
+  RECORD_BY_GRADE_URL: (grade, date) => {
+    return !!date
+      ? `/saturn/attendance/record/${grade}?date=${date}`
+      : `/saturn/attendance/record/${grade}`;
+  },
+  ACTIVITY_BY_DATE_URL: date => {
+    return `/saturn/attendance/activity/${date}`;
+  },
+  SET_ATTENCANE_MEMO: () => {
+    return `/saturn/attendance/student-memo`;
+  },
+  SEARCH_STUDENT_BY_STATE: (schedule, state) => {
+    const scheduleMap = {
+      교실자습: "self-study",
+      전공동아리: "club"
+    };
+    const stateMap = {
+      외출: "outing"
+    };
+    return `/saturn/attendance/student?schedule=${scheduleMap[schedule]}&state=${stateMap[state]}`;
+  },
+  MEMO_FLOOR_DATA: floor => {
+    return `/saturn/attendance/memo/${floor}`;
+  },
+  MODIFY_STUDENTS_DATA: () => {
+    return `/saturn/attendance/student`;
   }
 };
 

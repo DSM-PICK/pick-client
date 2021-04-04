@@ -62,7 +62,7 @@ export const ShowSchedule = styled.div`
 `;
 
 export const TeacehrWrap = styled.div`
-  height: 6.5rem;
+  height: 6.2rem;
   display: flex;
   justify-content: center;
   align-items: center;

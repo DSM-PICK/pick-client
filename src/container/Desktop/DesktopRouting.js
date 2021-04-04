@@ -4,8 +4,8 @@ import NotFoundContainer from "../NotFound/NotFoundContainer";
 import DesktopReportContainer from "./DesktopReportContainer";
 import { DScheduleContainer } from "../../container";
 import { DAuthPage } from "../../page";
-import DesktopMainContainer from "./Main/DesktopMainContainer";
 import DesktopStatsContainer from "./Stats/DesktopStatsContainer";
+import DesktopMainContainer from "./Main/DesktopMainContainer";
 
 const DesktopRouting = () => {
   const history = useHistory();

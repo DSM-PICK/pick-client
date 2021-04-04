@@ -4,6 +4,7 @@ export const Container = styled.div`
   flex: 1 1 18%;
   text-align: center;
   margin: 0.7rem 0;
+  cursor: pointer;
 
   ${props =>
     props.isActive &&
@@ -16,7 +17,7 @@ export const Container = styled.div`
     css`
       position: relative;
       z-index: 0;
-      color: #406cff;
+      color: #406cff !important;
 
       &::before {
         content: "";

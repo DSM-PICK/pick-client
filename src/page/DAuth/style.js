@@ -31,7 +31,7 @@ export const AuthBody = styled.form`
 `;
 
 export const FormWrap = styled.div`
-  height: 13rem;
+  height: 17rem;
 `;
 
 export const AuthInput = styled.input`
@@ -82,6 +82,7 @@ export const AuthButton = styled.button`
 export const HelpMessage = styled.p`
   color: #707070;
   margin-top: 0.4rem;
+  cursor: pointer;
 `;
 
 export const ErrWrap = styled.div`

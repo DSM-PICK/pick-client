@@ -1,7 +1,6 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,10 +38,10 @@ export const UserWrapModal = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   position: absolute;
-  top: 61px;
-  z-index: 3;
+  top: 60px;
+  z-index: 2;
   width: 110px;
-  height: 82px;
+  height: 42px;
   border-radius: 0 0 8px 8px;
   background: #ffffff;
   box-shadow: 0px 4px 4px 2px rgb(144 144 144 / 20%);
@@ -52,9 +51,17 @@ export const UserWrapModal = styled.div`
   }
 `;
 
-export const ModalNavLink = styled(NavLink)`
+export const ModalButton = styled.button`
   width: 100%;
   color: ${props => props.color || "#000000"};
   font-size: 16px;
   text-decoration: none;
+  border: none;
+  outline: none;
+  background: none;
+
+  :hover {
+    font-weight: 700;
+    cursor: pointer;
+  }
 `;
