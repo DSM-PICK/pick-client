@@ -90,8 +90,6 @@ function* getFloorData(payload) {
     yield put(setFloorData(locations));
     yield put(setFloorTeacherName(teacherName));
   } catch (error) {
-    // yield put(FAILURE_GET_SELF_STUDY_FLOOR_DATA_SAGA(error.response));
-
     switch (error) {
       case 403:
         requesetRefresh();
@@ -121,10 +119,6 @@ function* getAttendanceStdDataSaga(payload) {
     yield put(setHead(clubHead));
     yield put(setAttendanceStdData(atdData));
   } catch (error) {
-    // yield put(FAILURE_GET_ATTENDANCE_STD_DATA_SAGA(error.response));
-
-    console.log(error);
-
     switch (error) {
       case 403:
         requesetRefresh();
@@ -147,17 +141,7 @@ function* patchAttendanceStdData(payload) {
         state
       }
     );
-
-    // console.log(123);
-
-    // yield put({
-    //   type: GET_ATTENDANCE_STD_DATA_SAGA,
-    //   payload: { floor, priority }
-    // });
-  } catch (error) {
-    console.log(error);
-    // yield put(FAILURE_POST_ATTsENDANCE_STD_DATA_SAGA(error.response));
-  }
+  } catch (error) {}
 }
 
 function* putAttendanceStdData(payload) {
@@ -175,14 +159,7 @@ function* putAttendanceStdData(payload) {
         state
       }
     );
-
-    // yield put({
-    //   type: GET_ATTENDANCE_STD_DATA_SAGA,
-    //   payload: { floor, priority }
-    // });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* putAttendanceMemo(action) {

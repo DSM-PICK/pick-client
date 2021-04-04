@@ -25,6 +25,8 @@ const AdminNavItem = props => {
 
   const navStyle = props.navlink
     ? {}
+    : props.withoutActiveStyle
+    ? {}
     : props.text === "로그아웃"
     ? navLogoutStyle
     : props.size === "small"

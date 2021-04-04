@@ -171,7 +171,7 @@ export const FormStudent = styled(FormColumn)`
 
 export const FormText = styled.p`
   font-size: ${pxToRem(16)}rem;
-  width: 45px;
+  width: 60px;
   margin-top: 2px;
   font-weight: 600;
   margin-right: 15px;
@@ -214,7 +214,7 @@ export const FormStudentItem = styled.div`
     font-weight: 600;
   }
   > div {
-    width: ${pxToRem(84)}rem;
+    width: ${pxToRem(90)}rem;
     height: ${pxToRem(24)}rem;
     border-radius: 6px;
     margin: 0px ${pxToRem(3)}rem;
@@ -291,6 +291,8 @@ export const FormStudentAddInput = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: white;
+      z-index: 1;
       padding: 2px 0px;
     }
     > div:hover {
@@ -408,6 +410,9 @@ export const FormListItem = styled.li`
   align-items: center;
   transition: all 0.3s;
   position: relative;
+  &:hover > .menu {
+    opacity: 1;
+  }
   > div.header {
     font-weight: 600;
   }
@@ -440,6 +445,7 @@ export const FormListItem = styled.li`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    opacity: 0;
     position: absolute;
     transition: all 0.3s;
     &:hover {
@@ -490,7 +496,7 @@ export const FormListItemMenu = styled.div`
 `;
 
 export const FormDatePeriodInput = styled.input`
-  width: 16px;
+  width: 20px;
   height: 16px;
   border: none;
   outline: none;

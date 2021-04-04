@@ -132,8 +132,12 @@ export const getFloor = floorName => {
 };
 
 export const getManagedInfo = (managedClassroom, managedClub) => {
-  const isClubUngranted = managedClub.length === 0;
-  const isClassUngranted = managedClassroom === null;
+  const isClubUngranted =
+    managedClub === null ||
+    managedClub === undefined ||
+    managedClub?.length === 0;
+  const isClassUngranted =
+    managedClassroom === null || managedClassroom === undefined;
 
   return {
     club: {

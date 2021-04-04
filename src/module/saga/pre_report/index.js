@@ -107,7 +107,7 @@ function* deletePreReport(payload) {
     yield put({ type: GET_PRE_REPORT_LIST_SAGA });
   } catch (error) {
     // yield put(FAILURE_DELETE_PRE_REPORT_SAGA());
-    // console.log(error);
+    //
     switch (error) {
       case 410:
         requesetRefresh();

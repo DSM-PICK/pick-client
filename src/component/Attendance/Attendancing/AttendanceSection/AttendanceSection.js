@@ -29,12 +29,17 @@ const AttendanceSection = props => {
     );
     const [first, setFirst] = useState(true);
 
+    const disableState = ["취업", "기초학력"];
     const isSevenNull =
       attendanceData.length && attendanceData[0].state.seven === null;
     const stateData =
       attendanceData.length && attendanceData.map(data => data.state);
     const employmentCount =
-      stateData && stateData.filter(state => state.eight === "취업").length;
+      stateData &&
+      stateData.filter(
+        state =>
+          ~disableState.findIndex(disableState => disableState === state.eight)
+      ).length;
 
     const dispatchSetCheckAll = useCallback(
       checkAllState => {

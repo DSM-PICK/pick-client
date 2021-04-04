@@ -14,7 +14,7 @@ const MemberClubList = ({ data, step, setCircleData, setEditStep }) => {
               name={name}
               where={location}
               setCircleData={setCircleData}
-              key={String(rowIndex) + itemIndex}
+              key={name}
               setEditStep={setEditStep}
             />
           ))}

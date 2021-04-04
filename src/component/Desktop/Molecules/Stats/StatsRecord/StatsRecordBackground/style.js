@@ -21,6 +21,7 @@ export const GradeTitle = styled.p`
   justify-content: center;
   width: 100%;
   height: 100%;
+  min-height: 40px;
   color: #000000;
   font-size: 16px;
   font-weight: bold;
@@ -40,6 +41,7 @@ export const RecordText = styled.p`
   justify-content: center;
   width: 50%;
   height: 100%;
+  min-height: 27px;
   color: ${props => (props.isHighlight ? "#FF406E" : "#000000")};
   font-size: 16px;
 `;

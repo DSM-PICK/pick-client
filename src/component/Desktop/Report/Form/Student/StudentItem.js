@@ -6,7 +6,6 @@ const StudentItem = ({
   name,
   setSelectedStudent,
   selectedStudent,
-  selectedIndex,
   id,
   deleteAttendanceChangeStudent,
   pressShift,

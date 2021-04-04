@@ -103,7 +103,11 @@ const PreReports = () => {
   }, [reasonMemo]);
 
   const onChangeReason = useCallback(e => {
-    setReasonMemo(e.target.value);
+    if (e.target.value.length > 8) {
+      alert("사유는 8글자를 초과할 수 없습니다.");
+    } else {
+      setReasonMemo(e.target.value);
+    }
   }, []);
 
   const onEnroll = useCallback(() => {

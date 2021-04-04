@@ -4,6 +4,12 @@ import AttendanceClassInfo from "../../../../component/Desktop/Molecules/Attenda
 
 const DesktopAttendanceClassInfoContainer = () => {
   const classInfo = useSelector(state => state.dAttendance.classInfo);
+  const todaySchedule = useSelector(state => state.schedule.todaySchedule);
+
+  const scheduleArr = ["self-study", "after-school", "club"];
+  const isNonSchedule = !~scheduleArr.findIndex(
+    schedule => schedule === todaySchedule
+  );
 
   const {
     managerTeacher,
@@ -19,6 +25,7 @@ const DesktopAttendanceClassInfoContainer = () => {
       className={className}
       head={head}
       stdCount={stdCount}
+      isNonSchedule={isNonSchedule}
       stdCountWithoutEmployment={stdCountWithoutEmployment}
     />
   );

@@ -127,7 +127,6 @@ function* getStudentSaga(action) {
       `/venus/students/search?num_and_name=${action.payload}`
     );
     yield put(getStudent(res.data));
-    console.log(res);
   } catch (err) {}
 }
 

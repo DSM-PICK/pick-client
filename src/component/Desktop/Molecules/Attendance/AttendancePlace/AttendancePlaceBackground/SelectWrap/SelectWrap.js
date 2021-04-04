@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import NoScheduleWrap from "../../../../../../NoScheduleWrap/NoScheduleWrap";
-import { NonScheduleGif } from "../../../../../../../asset/Desktop";
+import { NonScheduleGif2 } from "../../../../../../../asset/Desktop";
 
 const SelectWrap = props => {
   const { selectArr, currentArr, selectFloorArray, todaySchedule } = props;
@@ -11,10 +11,15 @@ const SelectWrap = props => {
     ? selectFloorArray
     : selectArr;
 
-  if (todaySchedule === "non-schedule") {
+  const scheduleArr = ["self-study", "after-school", "club"];
+  if (!~scheduleArr.findIndex(schedule => schedule === todaySchedule)) {
     return (
       <S.Container>
-        <NoScheduleWrap text={"오늘은 일정이 없습니다."} gif={NonScheduleGif} />
+        <NoScheduleWrap
+          gif={NonScheduleGif2}
+          gifSize="53% 20% / 36%"
+          textPadding="30px 0"
+        />
       </S.Container>
     );
   }

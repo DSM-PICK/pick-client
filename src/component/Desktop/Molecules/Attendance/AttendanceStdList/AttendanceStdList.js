@@ -10,7 +10,8 @@ import NoScheduleWrap from "../../../../NoScheduleWrap/NoScheduleWrap";
 const AttendanceStdList = () => {
   const todaySchedule = useSelector(state => state.schedule.todaySchedule);
 
-  if (todaySchedule === "non-schedule") {
+  const scheduleArr = ["self-study", "after-school", "club"];
+  if (!~scheduleArr.findIndex(schedule => schedule === todaySchedule)) {
     return (
       <S.Container>
         <S.LableHeader>
@@ -18,8 +19,10 @@ const AttendanceStdList = () => {
         </S.LableHeader>
         <Background css={S.BackgroundCSS}>
           <NoScheduleWrap
-            text={"오늘은 일정이 없습니다."}
+            text="오늘은 일정이 없어요..."
             gif={NonScheduleGif}
+            gifSize="53% 40% / 60%"
+            textPadding="0"
           />
         </Background>
       </S.Container>

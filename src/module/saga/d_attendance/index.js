@@ -26,8 +26,6 @@ function* getSelectAttendanceArr(action) {
 }
 
 function* successGetSelectAttendanceArr(action) {
-  // console.log(action.payload);
-
   const { floorData, schedule, floor, isCascade } = action.payload;
   const locationArr = floorData.data.locations;
 
@@ -138,9 +136,7 @@ function* patchAndGetStdData(action) {
       type: GET_ATTENDANCE_STD_DATA_SAGA,
       payload: { schedule, floor, priority }
     });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 function* getManagedAttendanceArr(action) {
@@ -161,9 +157,7 @@ function* getManagedAttendanceArr(action) {
     } else {
       yield put(setManagedClassFloorData(res.data.locations));
     }
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* getManagedClubAttendanceArr(action) {
@@ -184,9 +178,7 @@ function* getManagedClubAttendanceArr(action) {
     } else {
       yield put(setManagedClassFloorData(res.data.locations));
     }
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* putAttendanceStdData(action) {
@@ -212,9 +204,7 @@ function* putAttendanceStdData(action) {
       type: GET_ATTENDANCE_STD_DATA_SAGA,
       payload: { schedule, floor, priority }
     });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 function* setFirstScheduleAttendanceArr() {
@@ -239,9 +229,7 @@ function* setFirstScheduleAttendanceArr() {
         class: res_class.data.locations
       }
     });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 function* setAttendanceMemo(action) {
@@ -260,9 +248,7 @@ function* setAttendanceMemo(action) {
         periods: Array.isArray(periods) ? periods : [periods]
       }
     );
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* getStudentByState(action) {
@@ -277,9 +263,7 @@ function* getStudentByState(action) {
 
     const { SET_FLOOR_CLASS_DATA } = DAttendanceAction;
     yield put({ type: SET_FLOOR_CLASS_DATA, payload: res.data });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* getMemoFloorData() {
@@ -303,9 +287,7 @@ function* getMemoFloorData() {
         { floor: "입력", floorData: [] }
       ])
     );
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function* getFloorData() {

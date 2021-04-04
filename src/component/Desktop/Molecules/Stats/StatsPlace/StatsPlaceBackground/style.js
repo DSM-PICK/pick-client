@@ -36,7 +36,7 @@ export const FloorWrap = styled.div`
 export const FloorTextButton = styled.button`
   color: ${props => (props.isClicked ? "#406CFF" : "#000000")};
   font-size: 14px;
-  font-weight: 500;
+  font-weight: ${props => (props.isClicked ? 700 : 400)};
   border: none;
   outline: none;
   background: none;
@@ -61,7 +61,7 @@ export const ClassItemOfClickedFloor = styled.div`
   min-height: 24px;
   color: ${props => (props.isClicked ? "#406CFF" : "#000000")};
   font-size: 16px;
-  font-weight: 500;
+  font-weight: ${props => (props.isClicked ? 700 : 400)};
   line-height: 24px;
 
   ${props =>

@@ -27,8 +27,6 @@ function* requestSignUp(action) {
       confirmPassword: confirmPassword
     });
 
-    console.log(res);
-
     alert("회원가입에 성공했습니다.");
     window.location.href = "/login ";
   } catch (err) {
@@ -60,15 +58,11 @@ function* requestPwChange(action) {
     alert("비밀번호 변경에 성공하였습니다");
 
     /*!!Need Redirect Code!!*/
-
-    console.log(res);
   } catch (error) {
     yield put({
       type: SET_PW_CHANGE_ERROR,
       payload: "비밀번호 형식이 올바르지 않습니다"
     });
-
-    console.log(error);
   }
 }
 
@@ -86,10 +80,7 @@ function* requestAuthenticate(action) {
 
     yield put({ type: SET_AUTHENTICATE_ERROR, payload: "" });
     yield put({ type: SET_IS_ACCOUNTED, payload: true });
-
-    console.log(res);
   } catch (err) {
-    console.log(err);
     switch (err) {
       case 400: {
         yield put({

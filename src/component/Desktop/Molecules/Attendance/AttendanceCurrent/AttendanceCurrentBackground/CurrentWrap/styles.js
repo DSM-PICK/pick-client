@@ -30,5 +30,5 @@ export const BodyItem = styled.p`
   justify-content: center;
   color: ${props => (props.done ? "#FF406E" : "#406CFF")};
   font-size: 16px;
-  font-weight: 400;
+  font-weight: ${props => (props.done ? "500" : "400")};
 `;

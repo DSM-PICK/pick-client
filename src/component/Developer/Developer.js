@@ -10,6 +10,7 @@ const Developer = () => {
           <S.Field>Front</S.Field>
           <div>공영길</div>
           <div>유시온</div>
+          <div>오준상</div>
         </div>
         <div>
           <S.Field>Server</S.Field>
