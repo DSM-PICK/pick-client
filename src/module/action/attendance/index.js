@@ -24,6 +24,8 @@ export const SET_CHECK_ARR_WITH_DISABLE =
 export const SET_CHECK_ARR = "attendance/SET_CHECK_ARR";
 export const SET_CHECK_ALL = "attendance/SET_CHECK_ALL";
 
+export const SET_TODAY_SCHEDULE = "attendance/SET_TODAY_SCHEDULE";
+
 export const GET_FLOOR_DATA_SAGA = "attendance/GET_FLOOR_DATA_SAGA";
 
 export const SET_ATTENDANCE_STD_DATA = "attendance/SET_ATTENDANCE_STD_DATA";
@@ -130,6 +132,11 @@ export const setCheckArr = payload => ({
 });
 export const setCheckAll = payload => ({
   type: SET_CHECK_ALL,
+  payload
+});
+
+export const setTodaySchedule = payload => ({
+  type: SET_TODAY_SCHEDULE,
   payload
 });
 

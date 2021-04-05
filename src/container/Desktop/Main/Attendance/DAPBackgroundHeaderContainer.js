@@ -5,9 +5,9 @@ import { DAttendanceActionCreater } from "../../../../module/action/d_attendance
 
 const DAPBackgroundHeaderContainer = props => {
   const { teacherName } = props;
-  const selectAttendanceArr = useSelector(
-    state => state.dAttendance.selectAttendanceArr
-  );
+  // const selectAttendanceArr = useSelector(
+  //   state => state.dAttendance.selectAttendanceArr
+  // );
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
   const strManagedInfo = useSelector(state => state.dAttendance.managedInfo);
   const managedClassFloorData = useSelector(
@@ -70,7 +70,7 @@ const DAPBackgroundHeaderContainer = props => {
     );
   }, [managedClassFloorData, managedClubFloorData, selectSchedule, priority]);
 
-  const onClickFastSearchBtn = useCallback(() => {
+  const onClickFastSearchBtn = () => {
     dispatch(setIsFastClick(true));
     dispatch(
       setCurrentClassPriority({
@@ -98,15 +98,7 @@ const DAPBackgroundHeaderContainer = props => {
         currentIndexArrPriority
       ])
     );
-  }, [
-    dispatch,
-    selectAttendanceArr,
-    selectSchedule,
-    floor,
-    priority,
-    currentIndexArrFloor,
-    currentIndexArrPriority
-  ]);
+  };
   return (
     <BackgroundHeader
       locationName={locationName}

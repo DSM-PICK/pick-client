@@ -64,6 +64,8 @@ function* getAttendanceStdData(action) {
       REQUEST_URL
     );
 
+    console.log(attendanceData);
+
     const { SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
     yield put({
       type: SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
@@ -290,22 +292,43 @@ function* getMemoFloorData() {
   } catch (error) {}
 }
 
-function* getFloorData() {
+function* getFloorData(action) {
   try {
+    const { todaySchedule } = action.payload;
+
+    const selfStudyOrAfterSchoolArr = ["self-study", "after-school"];
+    console.log(todaySchedule);
+
     const SELF_STUDY_FORTH_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
-      "self-study",
+      !!~selfStudyOrAfterSchoolArr.findIndex(
+        schedule => schedule === todaySchedule
+      )
+        ? todaySchedule
+        : "self-study",
       4
     );
     const SELF_STUDY_THIRD_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
-      "self-study",
+      !!~selfStudyOrAfterSchoolArr.findIndex(
+        schedule => schedule === todaySchedule
+      )
+        ? todaySchedule
+        : "self-study",
       3
     );
     const SELF_STUDY_SECOND_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
-      "self-study",
+      !!~selfStudyOrAfterSchoolArr.findIndex(
+        schedule => schedule === todaySchedule
+      )
+        ? todaySchedule
+        : "self-study",
       2
     );
     const SELF_STUDY_FIRST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
-      "self-study",
+      !!~selfStudyOrAfterSchoolArr.findIndex(
+        schedule => schedule === todaySchedule
+      )
+        ? todaySchedule
+        : "self-study",
       1
     );
     const CLUB_FORTH_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("club", 4);
