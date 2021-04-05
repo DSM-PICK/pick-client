@@ -56,13 +56,15 @@ const DesktopSelectWrapContainer = () => {
     };
   };
   const setCurrentArrByIndex = (row, col) => {
+    console.log(todaySchedule);
     const updateArr = getUpdatedArr(row, col);
     const schedule = selectSchedule === "교실자습" ? "class" : "club";
 
     if (floorData[schedule][updateArr[0]].locations.length) {
       dispatch(
         getAttendanceStdDataSaga({
-          schedule: selectSchedule === "교실자습" ? "self-study" : "club",
+          schedule: todaySchedule,
+          // schedule: selectSchedule === "교실자습" ? "self-study" : "club",
           floor: 4 - updateArr[0],
           priority:
             floorData[schedule][updateArr[0]].locations[updateArr[1]].priority
@@ -70,7 +72,8 @@ const DesktopSelectWrapContainer = () => {
       );
     } else {
       setSelectFloorArray([
-        staticSelectArr[selectSchedule === "교실자습" ? "selfStudy" : "club"],
+        staticSelectArr[todaySchedule],
+        // staticSelectArr[selectSchedule === "교실자습" ? "selfStudy" : "club"],
         {
           header: selectSchedule === "교실자습" ? "반" : "동아리명",
           bodyItem: []
