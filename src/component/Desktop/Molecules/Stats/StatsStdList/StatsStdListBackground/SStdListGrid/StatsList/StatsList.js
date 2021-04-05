@@ -9,7 +9,7 @@ const StatsList = props => {
       {stateList.map((state, idx) => {
         return (
           <S.StateText key={idx} state={state}>
-            {!!memoList[idx] ? memoList[idx] : state}
+            {state === "이동" && !!memoList[idx] ? memoList[idx] : state}
           </S.StateText>
         );
       })}
