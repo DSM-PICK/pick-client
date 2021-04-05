@@ -99,9 +99,9 @@ function* getFloorData(payload) {
 
 function* getAttendanceStdDataSaga(payload) {
   try {
-    const { floor, priority } = payload.payload;
+    const { floor, priority, todaySchedule } = payload.payload;
     const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
-      getLocationState(),
+      todaySchedule || getLocationState(),
       floor,
       priority
     );
