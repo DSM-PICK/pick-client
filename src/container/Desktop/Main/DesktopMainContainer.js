@@ -94,12 +94,12 @@ const DesktopMainContainer = () => {
   };
 
   useEffect(() => {
+    dispatchSetTodaySchedule();
     useEffectFunc();
   }, []);
 
   useEffect(() => {
     setFirst();
-    dispatchSetTodaySchedule();
     dispatchSetFirstScheduleAttendanceArrSaga();
     dispatchGetMemoFloorData();
     dispatch(setManagedInfo(getManagedInfo(managedClassroom, managedClub)));

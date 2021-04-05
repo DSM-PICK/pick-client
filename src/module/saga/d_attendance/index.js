@@ -202,6 +202,8 @@ function* putAttendanceStdData(action) {
     const { GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
     const { schedule, floor, priority } = currentClassPriority;
 
+    console.log({ schedule, floor, priority });
+
     yield put({
       type: GET_ATTENDANCE_STD_DATA_SAGA,
       payload: { schedule, floor, priority }
