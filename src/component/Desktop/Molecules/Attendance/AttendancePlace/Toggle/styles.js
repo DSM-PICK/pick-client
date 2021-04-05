@@ -37,7 +37,7 @@ export const ToggleItem = styled.div`
   height: 100%;
   border-radius: 5px;
   background: ${props =>
-    props.isNonSchedule ? "gray" : rgba(64, 108, 255, 1)};
+    props.isNonSchedule ? "gray" : "rgba(64, 108, 255, 1)"};
   left: ${props => (props.toggle ? "0" : "calc(100% - 68px)")};
   transition: all 0.3s ease-in-out;
 `;
