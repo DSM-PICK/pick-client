@@ -17,7 +17,8 @@ import {
   SET_IS_LOADING,
   SET_CHECK_ARR,
   SET_CHECK_ALL,
-  SET_CHECK_ARR_WITH_DISABLE
+  SET_CHECK_ARR_WITH_DISABLE,
+  SET_TODAY_SCHEDULE
 } from "../../action/attendance";
 
 const initialState = {
@@ -52,7 +53,9 @@ const initialState = {
 
   checkArrWithDisable: [],
   checkArr: [],
-  chekAll: false
+  chekAll: false,
+
+  todaySchedule: ""
 };
 
 const attendanceReducer = (state = initialState, action) => {
@@ -193,6 +196,12 @@ const attendanceReducer = (state = initialState, action) => {
       return {
         ...state,
         checkArrWithDisable: action.payload
+      };
+    }
+    case SET_TODAY_SCHEDULE: {
+      return {
+        ...state,
+        todaySchedule: action.payload
       };
     }
     default: {
