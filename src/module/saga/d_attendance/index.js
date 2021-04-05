@@ -64,8 +64,6 @@ function* getAttendanceStdData(action) {
       REQUEST_URL
     );
 
-    console.log(attendanceData);
-
     const { SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA } = DAttendanceAction;
     yield put({
       type: SUCCESS_GET_ATTENDANCE_STD_DATA_SAGA,
@@ -297,7 +295,6 @@ function* getFloorData(action) {
     const { todaySchedule } = action.payload;
 
     const selfStudyOrAfterSchoolArr = ["self-study", "after-school"];
-    console.log(todaySchedule);
 
     const SELF_STUDY_FORTH_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
       !!~selfStudyOrAfterSchoolArr.findIndex(
