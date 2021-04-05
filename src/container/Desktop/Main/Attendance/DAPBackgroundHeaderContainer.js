@@ -5,9 +5,6 @@ import { DAttendanceActionCreater } from "../../../../module/action/d_attendance
 
 const DAPBackgroundHeaderContainer = props => {
   const { teacherName } = props;
-  // const selectAttendanceArr = useSelector(
-  //   state => state.dAttendance.selectAttendanceArr
-  // );
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
   const strManagedInfo = useSelector(state => state.dAttendance.managedInfo);
   const managedClassFloorData = useSelector(
