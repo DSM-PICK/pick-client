@@ -1,4 +1,3 @@
-import { channel } from "@redux-saga/core";
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SelectWrap from "../../../../component/Desktop/Molecules/Attendance/AttendancePlace/AttendancePlaceBackground/SelectWrap/SelectWrap";
@@ -24,7 +23,8 @@ const DesktopSelectWrapContainer = () => {
     getSelectAttendanceArrSaga,
     setCurrentAttendanceIndexArr,
     setCurrentClassPriority,
-    setAttendanceStdData
+    setAttendanceStdData,
+    setSelectAttendanceArr
   } = DAttendanceActionCreater;
 
   const selectSelfStudyOrClub =
@@ -38,6 +38,12 @@ const DesktopSelectWrapContainer = () => {
   ];
 
   const dispatch = useDispatch();
+  const dispatchSetSelectAttendanceArr = useCallback(
+    selectAttendanceArr => {
+      dispatch(setSelectAttendanceArr(selectAttendanceArr));
+    },
+    [dispatch]
+  );
   const dispatchSetCurrentClassPriority = useCallback(
     priority => {
       dispatch(setCurrentClassPriority(priority));
@@ -52,7 +58,12 @@ const DesktopSelectWrapContainer = () => {
   );
   const getSelectAttendanceArrPayload = () => {
     return {
-      schedule: selectSchedule === "교실자습" ? todaySchedule : "club",
+      schedule:
+        selectSchedule === "교실자습"
+          ? todaySchedule === "club"
+            ? "self-study"
+            : todaySchedule
+          : "club",
       floor: getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]])
     };
   };
@@ -61,19 +72,19 @@ const DesktopSelectWrapContainer = () => {
     const schedule = selectSchedule === "교실자습" ? "class" : "club";
 
     if (floorData[schedule][updateArr[0]].locations.length) {
-      dispatch(
-        getAttendanceStdDataSaga({
-          schedule:
-            selectSchedule === "교실자습"
-              ? todaySchedule === "club"
-                ? "self-study"
-                : todaySchedule
-              : "club",
-          floor: 4 - updateArr[0],
-          priority:
-            floorData[schedule][updateArr[0]].locations[updateArr[1]].priority
-        })
-      );
+      const data = {
+        schedule:
+          selectSchedule === "교실자습"
+            ? todaySchedule === "club"
+              ? "self-study"
+              : todaySchedule
+            : "club",
+        floor: 4 - updateArr[0],
+        priority:
+          floorData[schedule][updateArr[0]].locations[updateArr[1]].priority
+      };
+      dispatchSetCurrentClassPriority(data);
+      dispatch(getAttendanceStdDataSaga(data));
     } else {
       setSelectFloorArray([
         staticSelectArr[todaySchedule],
