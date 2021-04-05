@@ -13,7 +13,7 @@ const SStdListBody = props => {
         text="선택하신 날은 데이터가 없어요..."
         gif={NonScheduleGif}
         gifSize="53% 40% / 60%"
-        textPadding="240px 0"
+        textPadding="0"
       />
     );
   }
