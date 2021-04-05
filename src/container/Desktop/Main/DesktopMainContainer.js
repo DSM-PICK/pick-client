@@ -48,14 +48,26 @@ const DesktopMainContainer = () => {
 
     const res = await requestGetApiWithAccessToken(REQUEST_URL);
 
+    return res;
+  };
+  const dispatchSetTodaySchedule = async () => {
+    const res = await getTodaySchedule();
     dispatch(setTodaySchedule(res.data.schedule));
   };
-  const setFirst = useCallback(async () => {
-    const REQUEST_URL_CLUB = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("CLUB", 4);
+  const setFirst = async () => {
+    const selfStudyOrAfterSchoolArr = ["self-study", "after-school"];
+    const res = await getTodaySchedule();
+    const todaySchedule = res.data.schedule;
+    const REQUEST_URL_CLUB = ATTENDANCE.ATTENDANCE_NAVIGATION_URL("club", 4);
     const REQUEST_URL_CLASS = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
-      "SELF_STUDY",
+      !!~selfStudyOrAfterSchoolArr.findIndex(
+        schedule => schedule === todaySchedule
+      )
+        ? todaySchedule
+        : "self-study",
       4
     );
+
     const res_club = await requestGetApiWithAccessToken(REQUEST_URL_CLUB);
     const res_class = await requestGetApiWithAccessToken(REQUEST_URL_CLASS);
 
@@ -63,19 +75,31 @@ const DesktopMainContainer = () => {
       club: res_club.data.locations,
       class: res_class.data.locations
     });
-  }, []);
+  };
 
   const dispatchGetMemoFloorData = useCallback(() => {
     dispatch(getMemoFloorDataSaga());
   }, [dispatch]);
-  const dispatchGetFloorDataSaga = useCallback(() => {
-    dispatch(getFloorDataSaga());
-  }, [dispatch]);
+  const dispatchGetFloorDataSaga = useCallback(
+    todaySchedule => {
+      dispatch(getFloorDataSaga({ todaySchedule }));
+    },
+    [dispatch]
+  );
+
+  const useEffectFunc = async () => {
+    const res = await getTodaySchedule();
+    const todaySchedule = res.data.schedule;
+    dispatchGetFloorDataSaga(todaySchedule);
+  };
 
   useEffect(() => {
-    getTodaySchedule();
-    dispatchGetFloorDataSaga();
+    useEffectFunc();
+  }, []);
+
+  useEffect(() => {
     setFirst();
+    dispatchSetTodaySchedule();
     dispatchSetFirstScheduleAttendanceArrSaga();
     dispatchGetMemoFloorData();
     dispatch(setManagedInfo(getManagedInfo(managedClassroom, managedClub)));
