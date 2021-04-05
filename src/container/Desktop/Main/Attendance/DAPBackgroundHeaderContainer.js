@@ -13,6 +13,7 @@ const DAPBackgroundHeaderContainer = props => {
   const managedClubFloorData = useSelector(
     state => state.dAttendance.managedClubFloorData
   );
+  const todaySchedule = useSelector(state => state.schedule.todaySchedule);
 
   const [currentIndexArrPriority, setCurrentIndexArrPriority] = useState("");
 
@@ -20,7 +21,11 @@ const DAPBackgroundHeaderContainer = props => {
   const [isClubUngranted, isClassUngranted] = Object.values(strManagedInfo).map(
     info => info.isUngranted
   );
-  const nowUngranted = isScheduleClass ? isClassUngranted : isClubUngranted;
+  const nowUngranted = isScheduleClass
+    ? todaySchedule === "after-school"
+      ? true
+      : isClassUngranted
+    : isClubUngranted;
   const grantedClass = nowUngranted
     ? null
     : isScheduleClass
