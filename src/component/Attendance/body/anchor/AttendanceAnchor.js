@@ -37,14 +37,14 @@ const AttendanceBody = props => {
   );
 
   const getAttendanceStdDate = useCallback(
-    (floor, floorData, clickE, todaySchedule) => {
+    (floor, floorData, clickE, schedule) => {
       try {
         const floorIndex = !!isNaN(floor) ? 0 : Number(floor) - 1;
         dispatch(
           getAttendanceStdDataSaga({
             floor: floorIndex + 1,
             priority: floorData[floorDataText[floorIndex]][0].priority,
-            todaySchedule
+            schedule
           })
         );
       } catch (err) {
@@ -61,7 +61,11 @@ const AttendanceBody = props => {
       link.split("/")[4][5],
       floorDatas,
       clickEvent,
-      todaySchedule
+      getLocationState() === "self-study"
+        ? todaySchedule === "club"
+          ? "self-study"
+          : todaySchedule
+        : "club"
     );
   };
 
@@ -73,13 +77,18 @@ const AttendanceBody = props => {
     const res = await requestGetApiWithAccessToken(
       ATTENDANCE.ACTIVITY_BY_DATE_URL(dateString)
     );
+    const todaySchedule = res.data.schedule;
+    const scheduleData =
+      getLocationState() === "self-study"
+        ? todaySchedule === "club"
+          ? "self-study"
+          : todaySchedule
+        : "club";
 
     dispatch(setTodaySchedule(res.data.schedule));
 
-    console.log(res.data.schedule);
-
     if (getLocationState() === "self-study" || getLocationState() === "club") {
-      getFloorData(res.data.schedule, text);
+      getFloorData(scheduleData, text);
     }
   };
 
