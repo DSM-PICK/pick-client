@@ -107,7 +107,11 @@ const DesktopAttendancePlaceContainer = () => {
       dispatch(
         getAttendanceStdDataSaga({
           schedule:
-            selectSchedule === "전공동아리" ? "club" : getTodaySchedule(),
+            selectSchedule === "전공동아리"
+              ? "club"
+              : getTodaySchedule() === "club"
+              ? "self-study"
+              : getTodaySchedule(),
           floor: 4,
           priority:
             selectSchedule === "전공동아리"

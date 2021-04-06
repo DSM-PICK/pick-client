@@ -111,6 +111,7 @@ const DesktopSelectWrapContainer = () => {
 
   useEffect(() => {
     const { schedule, floor } = getSelectAttendanceArrPayload();
+    console.log({ schedule, floor, priority: 0 });
     dispatchSetCurrentClassPriority({ schedule, floor, priority: 0 });
     getSelectAttendanceArr(getSelectAttendanceArrPayload());
   }, [todaySchedule]);

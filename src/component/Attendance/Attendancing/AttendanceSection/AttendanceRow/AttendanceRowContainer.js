@@ -97,7 +97,7 @@ const AttendanceRowContainer = () => {
       {allStudentStateArray.length
         ? allStudentStateArray.map((data, mapIdx) => (
             <AttendanceRow
-              key={data.name}
+              key={data.gradeClassNumber}
               index={mapIdx}
               attData={data}
               disableStudentStateArray={disableStudentStateArray}
