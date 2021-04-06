@@ -2,7 +2,6 @@ import React from "react";
 import * as S from "../styles";
 import AttendanceBody from "../body/AttendanceBody";
 import Header from "../../Header/Header";
-// import Footer from "../../Footer/Footer";
 import { Link } from "react-router-dom";
 import { BackIcon } from "../../../asset";
 import { TABLET_MAIN } from "../../../lib/constant";
