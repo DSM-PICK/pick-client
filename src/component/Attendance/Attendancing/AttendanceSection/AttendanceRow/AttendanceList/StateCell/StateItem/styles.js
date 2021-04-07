@@ -5,7 +5,7 @@ export const Container = styled.li`
   align-items: center;
   justify-content: center;
   opacity: ${props => (props.current === props.value ? 0 : 1)};
-  height: 24px;
+  height: 30px;
   color: #000000;
   font-weight: 400;
 
