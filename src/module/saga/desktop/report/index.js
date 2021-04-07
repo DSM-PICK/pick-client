@@ -175,7 +175,13 @@ function* getSimilerStudent({ payload }) {
 
 function* getAttendanceChangeListSaga() {
   try {
-    const REQUEST_URL = PRE_REPORT.GET_ALL_PRE_REPORT_URL();
+    const date = new Date();
+    const REQUEST_URL = PRE_REPORT.PRE_REPORT_LIST_URL(
+      `${date.getFullYear()}-${makeDate2Digit(
+        date.getMonth() + 1
+      )}-${makeDate2Digit(date.getDate())}`
+    );
+    console.log(REQUEST_URL);
     const attendanceChangeList = yield call(
       requestGetApiWithAccessToken,
       REQUEST_URL
