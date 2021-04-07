@@ -78,7 +78,7 @@ export const MemoWrap = styled.div`
   left: -1.25px;
   z-index: 4;
   width: 180px;
-  height: 120px;
+  height: 140px;
   border: 1px solid #c4c4c4;
   border-radius: 8px;
   background: #ffffff;
