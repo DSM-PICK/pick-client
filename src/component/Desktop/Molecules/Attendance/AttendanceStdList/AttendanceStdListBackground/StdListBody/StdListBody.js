@@ -6,7 +6,7 @@ const StdListBody = props => {
   const { attendanceLists, disableStudentStateArray } = props;
 
   return (
-    <S.Container>
+    <S.Container length={attendanceLists.length}>
       {attendanceLists.length
         ? attendanceLists.map((data, index) => (
             <StdListGrid
