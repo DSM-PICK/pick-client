@@ -44,7 +44,7 @@ const AttendanceBody = props => {
           getAttendanceStdDataSaga({
             floor: floorIndex + 1,
             priority: floorData[floorDataText[floorIndex]][0].priority,
-            schedule
+            todaySchedule: schedule
           })
         );
       } catch (err) {
