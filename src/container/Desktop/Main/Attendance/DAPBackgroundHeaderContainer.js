@@ -5,9 +5,6 @@ import { DAttendanceActionCreater } from "../../../../module/action/d_attendance
 
 const DAPBackgroundHeaderContainer = props => {
   const { teacherName } = props;
-  const selectAttendanceArr = useSelector(
-    state => state.dAttendance.selectAttendanceArr
-  );
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
   const strManagedInfo = useSelector(state => state.dAttendance.managedInfo);
   const managedClassFloorData = useSelector(
@@ -16,6 +13,7 @@ const DAPBackgroundHeaderContainer = props => {
   const managedClubFloorData = useSelector(
     state => state.dAttendance.managedClubFloorData
   );
+  const todaySchedule = useSelector(state => state.schedule.todaySchedule);
 
   const [currentIndexArrPriority, setCurrentIndexArrPriority] = useState("");
 
@@ -23,7 +21,11 @@ const DAPBackgroundHeaderContainer = props => {
   const [isClubUngranted, isClassUngranted] = Object.values(strManagedInfo).map(
     info => info.isUngranted
   );
-  const nowUngranted = isScheduleClass ? isClassUngranted : isClubUngranted;
+  const nowUngranted = isScheduleClass
+    ? todaySchedule === "after-school"
+      ? true
+      : isClassUngranted
+    : isClubUngranted;
   const grantedClass = nowUngranted
     ? null
     : isScheduleClass
@@ -70,7 +72,7 @@ const DAPBackgroundHeaderContainer = props => {
     );
   }, [managedClassFloorData, managedClubFloorData, selectSchedule, priority]);
 
-  const onClickFastSearchBtn = useCallback(() => {
+  const onClickFastSearchBtn = () => {
     dispatch(setIsFastClick(true));
     dispatch(
       setCurrentClassPriority({
@@ -98,15 +100,7 @@ const DAPBackgroundHeaderContainer = props => {
         currentIndexArrPriority
       ])
     );
-  }, [
-    dispatch,
-    selectAttendanceArr,
-    selectSchedule,
-    floor,
-    priority,
-    currentIndexArrFloor,
-    currentIndexArrPriority
-  ]);
+  };
   return (
     <BackgroundHeader
       locationName={locationName}

@@ -63,7 +63,7 @@ export const WriteMemoWrap = styled.input`
 
 export const Wrap = styled.div`
   position: absolute;
-  top: ${props => (props.index > 13 ? "-120.25px" : "-1.25px")};
+  top: ${props => (props.index > 13 ? "-146.25px" : "-1.25px")};
   left: -1.25px;
   z-index: 3;
   width: 100%;
@@ -74,11 +74,11 @@ export const Wrap = styled.div`
 
 export const MemoWrap = styled.div`
   position: absolute;
-  top: ${props => (props.index > 13 ? "-122.25px" : "29.75px")};
+  top: ${props => (props.index > 13 ? "-132.25px" : "29.75px")};
   left: -1.25px;
   z-index: 4;
   width: 180px;
-  height: 120px;
+  height: 130px;
   border: 1px solid #c4c4c4;
   border-radius: 8px;
   background: #ffffff;

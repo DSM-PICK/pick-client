@@ -14,6 +14,7 @@ const DAttendancePlaceBackgroundContainer = () => {
   const managedInfo = useSelector(state => state.dAttendance.managedInfo);
   const isFastClick = useSelector(state => state.dAttendance.isFastClick);
   const selectSchedule = useSelector(state => state.toggle.selectSchedule);
+  const todaySchedule = useSelector(state => state.schedule.todaySchedule);
   const selectSelfStudyOrClub =
     staticSelectArr[selectSchedule === "교실자습" ? "selfStudy" : "club"];
   const selectPriority = selectAttendance[selectArrIndex[1]]?.priority;
@@ -56,14 +57,11 @@ const DAttendancePlaceBackgroundContainer = () => {
     }
   }, [managedInfo]);
 
-  const getDispatchGetAttendanceStdDataParameter = useCallback(
-    () => ({
-      schedule: selectSchedule === "교실자습" ? "self-study" : "club",
-      floor: getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]]),
-      priority: selectPriority === undefined ? 0 : selectPriority
-    }),
-    [selectSchedule, selectSelfStudyOrClub, selectArrIndex, selectPriority]
-  );
+  const getDispatchGetAttendanceStdDataParameter = () => ({
+    schedule: selectSchedule === "교실자습" ? todaySchedule : "club",
+    floor: getFloor(selectSelfStudyOrClub.bodyItem[selectArrIndex[0]]),
+    priority: selectPriority === undefined ? 0 : selectPriority
+  });
 
   const disptchSetIsFastClick = useCallback(() => {
     dispatch(setIsFastClick(false));

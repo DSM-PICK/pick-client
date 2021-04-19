@@ -12,6 +12,7 @@ const DesktopAttendancePlaceContainer = () => {
   const firstScheduleAttendanceArr = useSelector(
     state => state.dAttendance.firstScheduleAttendanceArr
   );
+  const todaySchedule = useSelector(state => state.schedule.todaySchedule);
 
   const [isSelfStudy, setIsSelfStudy] = useState(true);
   const [isFirst, setIsFirst] = useState(true);
@@ -98,13 +99,19 @@ const DesktopAttendancePlaceContainer = () => {
     },
     [dispatch]
   );
+  const getTodaySchedule = () => todaySchedule;
 
   useEffect(() => {
     setIsFirst(false);
     !getIsFirst() &&
       dispatch(
         getAttendanceStdDataSaga({
-          schedule: selectSchedule === "전공동아리" ? "club" : "self-study",
+          schedule:
+            selectSchedule === "전공동아리"
+              ? "club"
+              : getTodaySchedule() === "club"
+              ? "self-study"
+              : getTodaySchedule(),
           floor: 4,
           priority:
             selectSchedule === "전공동아리"

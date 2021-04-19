@@ -9,9 +9,19 @@ import NoScheduleWrap from "../../../../NoScheduleWrap/NoScheduleWrap";
 
 const AttendanceStdList = () => {
   const todaySchedule = useSelector(state => state.schedule.todaySchedule);
+  const attendanceLists = useSelector(
+    state => state.dAttendance.attendanceData
+  );
 
   const scheduleArr = ["self-study", "after-school", "club"];
-  if (!~scheduleArr.findIndex(schedule => schedule === todaySchedule)) {
+  const NoScheduleWrapText = !attendanceLists?.length
+    ? "해당 반은 데이터가 없어요..."
+    : "오늘은 일정이 없어요...";
+
+  if (
+    !~scheduleArr.findIndex(schedule => schedule === todaySchedule) ||
+    !attendanceLists?.length
+  ) {
     return (
       <S.Container>
         <S.LableHeader>
@@ -19,10 +29,10 @@ const AttendanceStdList = () => {
         </S.LableHeader>
         <Background css={S.BackgroundCSS}>
           <NoScheduleWrap
-            text="오늘은 일정이 없어요..."
+            text={NoScheduleWrapText}
             gif={NonScheduleGif}
             gifSize="53% 40% / 60%"
-            textPadding="240px 0"
+            textPadding="0"
           />
         </Background>
       </S.Container>

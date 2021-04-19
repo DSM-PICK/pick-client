@@ -7,11 +7,19 @@ import NoScheduleWrap from "../../../../../NoScheduleWrap/NoScheduleWrap";
 import { NonScheduleGif } from "../../../../../../asset/Desktop";
 
 const StatsStdListBackground = () => {
-  const todaySchedule = useSelector(state => state.schedule.todaySchedule);
+  const { calander } = useSelector(store => store.schedule.mini);
+  const { selected } = useSelector(store => store.schedule);
+
+  const selectObj = calander.find(
+    ({ year, month, date }) =>
+      year === selected.year &&
+      month === selected.month &&
+      date === selected.day
+  );
 
   const scheduleArr = ["self-study", "after-school", "club"];
   const isNonSchedule = !~scheduleArr.findIndex(
-    schedule => schedule === todaySchedule
+    schedule => schedule === selectObj?.schedule
   );
 
   if (isNonSchedule) {
@@ -21,7 +29,7 @@ const StatsStdListBackground = () => {
           text="선택하신 날은 데이터가 없어요..."
           gif={NonScheduleGif}
           gifSize="53% 40% / 60%"
-          textPadding="240px 0"
+          textPadding="0"
         />
       </S.Container>
     );
