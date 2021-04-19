@@ -1,8 +1,8 @@
 import axios from "axios";
 import { loginConstant } from "../module/action/login";
 
-// const BASE_URL = "https://api.dsm-pick.com";
-const BASE_URL = "https://replica-api.dsm-pick.com";
+const BASE_URL = "https://api.dsm-pick.com";
+// const BASE_URL = "https://replica-api.dsm-pick.com";
 
 export const methodType = {
   GET: "get",
@@ -264,6 +264,22 @@ export const requestAdminGetApiWithAccessToken = async (url, headers) => {
     }
     throw errStatus;
   }
+};
+
+export const adminApi = (method, url, body) => {
+  const accessToken = window.localStorage.getItem(
+    loginConstant.ADMIN_ACCESS_TOKEN
+  );
+
+  return axios({
+    baseURL: BASE_URL,
+    method,
+    url,
+    data: body,
+    headers: {
+      [ACCESS_TOKEN_NAME]: "Bearer " + accessToken
+    }
+  });
 };
 
 export const requestAdminApiWithAccessToken = async (

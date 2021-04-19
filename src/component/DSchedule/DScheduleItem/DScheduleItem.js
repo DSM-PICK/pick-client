@@ -18,18 +18,77 @@ const DScheduleItem = ({
   month,
   schedule,
   year,
-  isToday
+  isToday,
+  hoverMode,
+  activeName,
+  onNameClick,
+  onNameHover,
+  onNameBlur
 }) => {
   return (
-    <S.Container isActive={isThisMonth}>
+    <S.Container hover={hoverMode} isActive={isThisMonth}>
       <S.ShowSchedule>
         <S.Date isActive={isToday}>{date}</S.Date>
         <S.Schedule>{scheduleMap[schedule] || "일정 오류"}</S.Schedule>
       </S.ShowSchedule>
       <S.TeacehrWrap>
-        <S.TeacerName>{floor4 || "선생님"}</S.TeacerName>
-        <S.TeacerName>{floor3 || "정보가"}</S.TeacerName>
-        <S.TeacerName>{floor2 || "없어요"}</S.TeacerName>
+        <S.TeacerName
+          onMouseEnter={
+            onNameHover
+              ? e =>
+                  onNameHover(e, { year, month, date, floor: 4, name: floor4 })
+              : undefined
+          }
+          onMouseLeave={onNameBlur}
+          onClick={
+            onNameClick
+              ? e =>
+                  onNameClick(e, { year, month, date, floor: 4, name: floor4 })
+              : undefined
+          }
+          isActive={activeName === floor4}
+          redMode={hoverMode}
+        >
+          {floor4 || "선생님"}
+        </S.TeacerName>
+        <S.TeacerName
+          onMouseEnter={
+            onNameHover
+              ? e =>
+                  onNameHover(e, { year, month, date, floor: 3, name: floor3 })
+              : undefined
+          }
+          onMouseLeave={onNameBlur}
+          onClick={
+            onNameClick
+              ? e =>
+                  onNameClick(e, { year, month, date, floor: 3, name: floor3 })
+              : undefined
+          }
+          isActive={activeName === floor3}
+          redMode={hoverMode}
+        >
+          {floor3 || "정보가"}
+        </S.TeacerName>
+        <S.TeacerName
+          onMouseEnter={
+            onNameHover
+              ? e =>
+                  onNameHover(e, { year, month, date, floor: 2, name: floor2 })
+              : undefined
+          }
+          onMouseLeave={onNameBlur}
+          onClick={
+            onNameClick
+              ? e =>
+                  onNameClick(e, { year, month, date, floor: 2, name: floor2 })
+              : undefined
+          }
+          isActive={activeName === floor2}
+          redMode={hoverMode}
+        >
+          {floor2 || "없어요"}
+        </S.TeacerName>
       </S.TeacehrWrap>
     </S.Container>
   );

@@ -9,6 +9,30 @@ export const GET_SCHEDULE_MINI_CALANDER = "schedule/GET_SCHEDULE_MINI_CALANDER";
 export const GET_SCHEDULE_MINI_CALANDER_SUCCESS =
   "schedule/GET_SCHEDULE_MINI_CALANDER_SUCCESS";
 
+export const SET_FIRST_SELECT = "schedule/SET_FIRST_SELECT";
+export const SET_SECOND_SELECT = "schedule/SET_SECOND_SELECT";
+export const SET_CHANGE_MODE = "schedule/SET_CHANGE_MODE";
+export const RESET_SCHEDULE_SELECT = "schedule/RESET_SCHEDULE_SELECT";
+
+export const resetScheduleSelect = () => ({
+  type: RESET_SCHEDULE_SELECT
+});
+
+export const setChangeMode = payload => ({
+  type: SET_CHANGE_MODE,
+  payload
+});
+
+export const setFirstSelect = payload => ({
+  type: SET_FIRST_SELECT,
+  payload
+});
+
+export const setSecondSelect = payload => ({
+  type: SET_SECOND_SELECT,
+  payload
+});
+
 export const setTodaySchedule = payload => ({
   type: SET_TODAY_SCHEDULE,
   payload

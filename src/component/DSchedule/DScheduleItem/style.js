@@ -3,22 +3,33 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   padding: 0.5rem 0.6rem;
   flex: 1 1 18%;
+  transition: 250ms all;
 
+  box-sizing: border-box;
+  border: 1px solid transparent;
   border-right: 1px solid rgba(144, 144, 144, 0.3);
   border-bottom: 1px solid rgba(144, 144, 144, 0.3);
 
   &:nth-child(5n) {
-    border-right: none;
+    border-right: 1px solid transparent;
   }
 
   &:nth-child(n + 26) {
-    border-bottom: none;
+    border-bottom: 1px solid transparent;
   }
 
   ${props =>
     !props.isActive &&
     css`
       opacity: 0.6;
+    `}
+
+  ${props =>
+    props.hover &&
+    css`
+      &:hover {
+        border: 1px solid #ff406e;
+      }
     `}
 `;
 
@@ -73,4 +84,20 @@ export const TeacerName = styled.div`
   & + & {
     margin-top: 0.5rem;
   }
+  padding: 3px;
+  border-radius: 8px;
+
+  ${props =>
+    props.isActive &&
+    css`
+      color: white;
+      background-color: #406cff;
+
+      ${props =>
+        props.redMode &&
+        `&:hover {
+        background-color:#FF406E;
+
+      }`}
+    `}
 `;

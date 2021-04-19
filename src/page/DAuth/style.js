@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css, keyframes } from "styled-components";
 
 export const Container = styled.div`
@@ -25,13 +26,38 @@ export const AuthHeader = styled.div`
   }
 `;
 
+export const AuthClassList = styled.div`
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 100%;
+  background-color: white;
+
+  max-height: 230px;
+  overflow-y: auto;
+  border: 1px solid black;
+  box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 14%);
+`;
+
+export const AuthClassItem = styled.div`
+  padding: 14.5px 0;
+  & + & {
+    border-top: 1px solid black;
+  }
+  text-align: center;
+  box-sizing: border-box;
+`;
+
 export const AuthBody = styled.form`
   padding: 0 2rem;
   padding-bottom: 3rem;
 `;
 
-export const FormWrap = styled.div`
-  /* height: 17rem; */
+export const FormWrap = styled.div``;
+
+export const AuthClass = styled.div`
+  position: relative;
+  margin: 1rem 0;
 `;
 
 export const AuthInput = styled.input`
@@ -88,9 +114,11 @@ export const BlueBtn = styled(AuthButton)`
   }
 `;
 
-export const HelpMessage = styled.p`
+export const HelpMessage = styled(Link)`
   color: #707070;
-  margin-top: 0.4rem;
+  display: block;
+  text-decoration: none;
+  margin-top: 0.5rem;
   cursor: pointer;
   transition: 125ms all;
 

@@ -86,8 +86,6 @@ export const DScheduleBody = styled.div`
 `;
 
 export const DScheduleMiniCalander = styled.div`
-  position: absolute;
-  right: calc(100% + 15px);
   background-color: white;
   box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
   border-radius: 12px;
@@ -103,7 +101,7 @@ export const ExeclBtn = styled.button`
   border: 1px solid #888888;
   border-radius: 8px;
   color: #888888;
-  width: 80%;
+  width: 90%;
   margin-top: 15px;
   font-size: 1.05rem;
   background-color: transparent;
@@ -121,14 +119,12 @@ export const ExeclBtn = styled.button`
 
 export const DScheduleExecl = styled.div`
   background-color: white;
-  position: absolute;
   text-align: center;
   border-radius: 12px;
   box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
-  top: 470px;
   padding: 1rem 0.5rem;
+  margin-top: 15px;
 
-  right: calc(100% + 15px);
   box-shadow: 0px 1px 1px rgba(144, 144, 144, 0.2);
   width: 180px;
 `;
@@ -136,6 +132,11 @@ export const DScheduleExecl = styled.div`
 export const BodyContainer = styled.div`
   position: relative;
   padding-bottom: 90px;
+`;
+
+export const LeftContainer = styled.div`
+  position: absolute;
+  right: calc(100% + 15px);
 `;
 
 export const MiniScheduleHeader = styled.div`
