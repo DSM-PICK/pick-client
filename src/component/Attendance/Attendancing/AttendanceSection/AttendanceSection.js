@@ -29,7 +29,7 @@ const AttendanceSection = props => {
     );
     const [first, setFirst] = useState(true);
 
-    const disableState = ["취업", "기초학력"];
+    const disableState = ["취업", "기초학력", "방과후"];
     const isSevenNull =
       attendanceData.length && attendanceData[0].state.seven === null;
     const stateData =
