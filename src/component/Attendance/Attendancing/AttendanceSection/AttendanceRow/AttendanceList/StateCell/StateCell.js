@@ -33,7 +33,7 @@ const StateCell = props => {
 
   const inputRef = useRef();
 
-  const disableState = ["취업", "기초학력"];
+  const disableState = ["취업", "기초학력", "방과후"];
   const memoState = ["이동"];
   const staticStates = [
     {
