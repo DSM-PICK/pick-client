@@ -26,7 +26,7 @@ const DesktopStdListBodyContainer = () => {
     setSelectArrWithDisable
   } = DAttendanceActionCreater;
 
-  const disableState = ["취업", "기초학력"];
+  const disableState = ["취업", "기초학력", "방과후"];
   useEffect(() => {
     if (attendanceLists.length) {
       const length = Object.values(attendanceLists[0].state).filter(
