@@ -266,6 +266,22 @@ export const requestAdminGetApiWithAccessToken = async (url, headers) => {
   }
 };
 
+export const adminApi = (method, url, body) => {
+  const accessToken = window.localStorage.getItem(
+    loginConstant.ADMIN_ACCESS_TOKEN
+  );
+
+  return axios({
+    baseURL: BASE_URL,
+    method,
+    url,
+    data: body,
+    headers: {
+      [ACCESS_TOKEN_NAME]: "Bearer " + accessToken
+    }
+  });
+};
+
 export const requestAdminApiWithAccessToken = async (
   method,
   url,

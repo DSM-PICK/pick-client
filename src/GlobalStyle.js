@@ -78,6 +78,12 @@ export const GlobalStyle = createGlobalStyle`
         cursor:pointer;
         outline:none;
     }
+    .first-select {
+        background-color:#FF406E !important;
+    }
+    .blue {
+        background-color:#406cff !important;
+    }
 `;
 
 export const GlobalContainer = styled.div`

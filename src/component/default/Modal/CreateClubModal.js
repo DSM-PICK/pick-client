@@ -3,6 +3,7 @@ import { CancelIcon, SaveIcon } from "../../../asset";
 import ImgButton from "./ImgButton/ImgButton";
 import ModalCreateClubList from "../ModalClubList/ModalCreateClubList";
 import * as S from "./styles";
+import * as adminApi from "../../../lib/api/admin";
 import LocationView from "./LocationView/LocationView";
 import { useDispatch } from "react-redux";
 import modalAction from "../../../module/action/modal";
@@ -17,6 +18,7 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
     teacher: "",
     club_head: ""
   });
+  const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
     dispatch(getClubLocationSaga(createCircleData.location));
@@ -45,6 +47,23 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
       ...prev,
       [name]: value
     }));
+  }, []);
+
+  const getTeacherList = useCallback(async e => {
+    const keyword = e.target.value;
+    setCreateCircleData(prev => ({ ...prev, teacher: keyword }));
+    try {
+      const res = await adminApi.getTeachers(keyword);
+      setTeachers(res.data);
+    } catch (err) {}
+  }, []);
+
+  const setTeacherName = useCallback(name => {
+    setCreateCircleData(prev => ({
+      ...prev,
+      teacher: name
+    }));
+    setTeachers([]);
   }, []);
 
   const setLocation = useCallback(location => {
@@ -128,14 +147,31 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
                 </S.ViewWrap>
               </S.HeaderCenter>
               <S.HeaderRight active={true}>
-                <S.Input
-                  placeholder="담당 선생님"
-                  onChange={changeCircleData}
-                  fontSize={13}
-                  color="#707070"
-                  name="teacher"
-                  value={createCircleData.teacher}
-                />
+                <S.TeacherNameWrap>
+                  <S.Input
+                    placeholder="담당 선생님"
+                    onChange={getTeacherList}
+                    fontSize={13}
+                    autoComplete="off"
+                    color="#707070"
+                    name="teacher"
+                    value={createCircleData.teacher}
+                  />
+                  {teachers.length ? (
+                    <S.TeacherNameList>
+                      {teachers.map(({ name }) => (
+                        <S.TeacherNameItem
+                          key={name}
+                          onClick={() => setTeacherName(name)}
+                        >
+                          {name}
+                        </S.TeacherNameItem>
+                      ))}
+                    </S.TeacherNameList>
+                  ) : (
+                    ""
+                  )}
+                </S.TeacherNameWrap>
                 <S.Input
                   placeholder="부장 이름"
                   onChange={changeCircleData}

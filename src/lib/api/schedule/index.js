@@ -25,3 +25,7 @@ export const uploadExcelFile = file => {
     }
   );
 };
+
+export const changeSchedule = payload => {
+  return requestApiWithAccessToken("patch", "/mars/working-teacher", payload);
+};

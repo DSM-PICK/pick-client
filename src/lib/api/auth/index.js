@@ -1,4 +1,8 @@
-import { requestApi, requestApiErr } from "../../requestApi";
+import {
+  requestApi,
+  requestApiErr,
+  requestApiWithAccessToken
+} from "../../requestApi";
 
 export const reqLogin = payload =>
   requestApi("post", "/saturn/auth/login", payload);
@@ -16,7 +20,10 @@ export const reqCheckCode = payload =>
 
 export const reqChangePassword = payload => {
   return requestApiErr("patch", "/saturn/auth/password", {
-    ...payload,
-    
+    ...payload
   });
+};
+
+export const getRoom = payload => {
+  return requestApiWithAccessToken("get", `/mars/class?name-like=${payload}`);
 };

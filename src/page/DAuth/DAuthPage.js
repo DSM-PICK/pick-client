@@ -17,13 +17,9 @@ const errMsgMap = {
 const DLoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [roomList, setRoomList] = useState([]);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [isChangePasswordMode, setChangePasswordMode] = useState(false);
-  const [newRegisterData, setNewRegisterData] = useState({
-    teacherId: "",
-    newPassword: "",
-    authenticationNumber: ""
-  });
+
   const [errMsg, setErrMsg] = useState("");
   const [loginData, setLoginData] = useState({
     id: "",
@@ -33,13 +29,12 @@ const DLoginPage = () => {
     id: "",
     password: "",
     name: "",
-    code: ""
+    code: "",
+    managedClassroomName: {}
   });
 
   const { setManagedInfo } = DAttendanceActionCreater;
-  const changePasswordMode = useCallback(() => {
-    setChangePasswordMode(prev => !prev);
-  }, []);
+
   const dispatchManagedInfo = useCallback(
     (managedClassroom, managedClub) => {
       dispatch(setManagedInfo(getManagedInfo(managedClassroom, managedClub)));
@@ -56,11 +51,6 @@ const DLoginPage = () => {
     const { name, value } = e.target;
     setRegisterData(prev => ({ ...prev, [name]: value }));
   }, []);
-
-  const changePasswordHandler = useCallback(e => {
-    const { name, value } = e.target;
-    setNewRegisterData(prev => ({ ...prev, [name]: value }));
-  });
 
   const loginHandler = useCallback(
     async e => {
@@ -117,6 +107,10 @@ const DLoginPage = () => {
         return;
       }
       e.preventDefault();
+      if (!registerData.managedClassroomName) {
+        setErrMsg("담당 교실을 입력해주세요.");
+        return;
+      }
       if (!registerData.name) {
         setErrMsg("이름을 입력해주세요.");
         return;
@@ -125,15 +119,22 @@ const DLoginPage = () => {
         setErrMsg("아이디를 입력해주세요.");
         return;
       }
+
       if (!registerData.password) {
         setErrMsg("비밀번호를 입력해주세요.");
         return;
       }
 
       try {
-        const { code, id, name, password } = registerData;
+        const { code, id, name, password, managedClassroomName } = registerData;
         await authApi.reqCheckCode(code);
-        const res = await authApi.reqRegister({ id, name, password });
+        const res = await authApi.reqRegister({
+          id,
+          name,
+          password,
+          managedClassroomFloor: managedClassroomName.floor,  
+          managedClassroomPriority: managedClassroomName.priority
+        });
         setIsLoginMode(true);
         alert("회원가입을 성공했습니다");
       } catch (errResponse) {
@@ -144,38 +145,25 @@ const DLoginPage = () => {
     [isLoginMode, registerData]
   );
 
-  const changePasswordSubmtiHandler = useCallback(
-    async e => {
-      setErrMsg("");
-      e.preventDefault();
-      try {
-        if (!newRegisterData.authenticationNumber) {
-          setErrMsg("인증번호를 입력해주세요.");
-          return;
-        }
-
-        if (!newRegisterData.teacherId) {
-          setErrMsg("아이디를 입력해주세요.");
-          return;
-        }
-
-        if (!newRegisterData.newPassword) {
-          setErrMsg("비밀번호를 입력해주세요.");
-          return;
-        }
-
-        await authApi.reqChangePassword(newRegisterData);
-        alert("비밀번호가 변경되었습니다");
-        setChangePasswordMode(false);
-        setIsLoginMode(true);
-      } catch (err) {
-        const code = err.data.code;
-
-        setErrMsg(errMsgMap[code]);
+  const getRoomList = useCallback(async e => {
+    try {
+      setClass(e.target.value);
+      if (!e.target.value) {
+        setRoomList([]);
+        return;
       }
-    },
-    [newRegisterData]
-  );
+      const res = await authApi.getRoom(e.target.value);
+      setRoomList(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  const setClass = useCallback(className => {
+    setRegisterData(prev => ({ ...prev, managedClassroomName: className }));
+    setRoomList([]);
+  }, []);
+
   return (
     <S.Container>
       <S.AuthWrap>
@@ -185,32 +173,7 @@ const DLoginPage = () => {
         </S.AuthHeader>
         <S.AuthBody onSubmit={isLoginMode ? loginHandler : registerHandler}>
           <S.FormWrap>
-            {isChangePasswordMode ? (
-              <>
-                <S.AuthInput
-                  placeholder="인증코드"
-                  autoComplete="off"
-                  name="authenticationNumber"
-                  onChange={changePasswordHandler}
-                  value={newRegisterData.authenticationNumber}
-                ></S.AuthInput>
-                <S.AuthInput
-                  placeholder="아이디"
-                  autoComplete="off"
-                  name="teacherId"
-                  onChange={changePasswordHandler}
-                  value={newRegisterData.teacherId}
-                ></S.AuthInput>
-                <S.AuthInput
-                  autoComplete="off"
-                  placeholder="새 비밀번호"
-                  name="newPassword"
-                  type="password"
-                  onChange={changePasswordHandler}
-                  value={newRegisterData.newPassword}
-                ></S.AuthInput>
-              </>
-            ) : isLoginMode ? (
+            {isLoginMode ? (
               <>
                 <S.AuthInput
                   autoComplete="off"
@@ -228,7 +191,7 @@ const DLoginPage = () => {
                   type="password"
                   placeholder="비밀번호"
                 />
-                <S.HelpMessage onClick={changePasswordMode}>
+                <S.HelpMessage to="/password-change">
                   비밀번호를 잊으셨나요?
                 </S.HelpMessage>
               </>
@@ -242,6 +205,26 @@ const DLoginPage = () => {
                   type="text"
                   placeholder="인증코드"
                 />
+                <S.AuthClass>
+                  <S.AuthInput
+                    autoComplete="off"
+                    value={registerData.managedClassroomName.location}
+                    onChange={getRoomList}
+                    name="managedClassroomName"
+                    placeholder="담당 교실"
+                  />
+                  {roomList.length ? (
+                    <S.AuthClassList>
+                      {roomList.map(now => (
+                        <S.AuthClassItem onClick={() => setClass(now)}>
+                          {now.location}
+                        </S.AuthClassItem>
+                      ))}
+                    </S.AuthClassList>
+                  ) : (
+                    ""
+                  )}
+                </S.AuthClass>
                 <S.AuthInput
                   autoComplete="off"
                   onChange={registerInputHandler}
@@ -273,16 +256,7 @@ const DLoginPage = () => {
             {errMsg !== undefined ? <S.ErrorMsg>{errMsg}</S.ErrorMsg> : ""}
           </S.ErrWrap>
           <S.ButtonWrap>
-            {isChangePasswordMode ? (
-              <>
-                <S.BlueBtn type="button" onClick={changePasswordSubmtiHandler}>
-                  비밀번호 초기화
-                </S.BlueBtn>
-                <S.WhiteBtn type="button" onClick={changePasswordMode}>
-                  돌아가기
-                </S.WhiteBtn>
-              </>
-            ) : isLoginMode ? (
+            {isLoginMode ? (
               <>
                 <S.BlueBtn type="button" onClick={loginHandler}>
                   로그인

@@ -58,6 +58,28 @@ export const HeaderCenter = styled.div`
   }
 `;
 
+export const TeacherNameWrap = styled.div`
+  position: relative;
+`;
+
+export const TeacherNameList = styled.div`
+  position: absolute;
+  width: 100%;
+  border: 1px solid #606060;
+  background-color: white;
+  max-height: 100px;
+  overflow-y: auto;
+`;
+
+export const TeacherNameItem = styled.div`
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  & + & {
+    border-top: 1px solid #606060;
+  }
+`;
+
 export const HeaderLeft = styled.div`
   display: flex;
   flex-direction: row !important;
@@ -71,7 +93,7 @@ export const HeaderRight = styled.div`
     font-weight: bolder;
   }
   ${props => props.active && "align-items:flex-end;"}
-  > input {
+  > div, > input {
     display: inline;
     width: 100px;
   }
