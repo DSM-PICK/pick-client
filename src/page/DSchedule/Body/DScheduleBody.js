@@ -2,7 +2,7 @@ import React from "react";
 import DScheduleMiniCalander from "../MiniCalander/DScheduleMiniCalander";
 import DScheduleExecl from "../Execl/DScheduleExecl";
 import DScheduleCalander from "../Calander/DScheduleCalander";
-import DScheduleChange from "../Change/DScheduleChange";
+import DScheduleChange from "../Change/DscheduleChange";
 import DScheduleHelpMsg from "../HelpMsg/DScheduleHelpMsg";
 import * as S from "../style";
 
