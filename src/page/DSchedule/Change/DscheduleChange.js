@@ -1,9 +1,5 @@
-import React, { useCallback, useState } from "react";
-import {
-  setChangeMode,
-  setFirstSelect,
-  setSecondSelect
-} from "../../../module/action/schedule";
+import React, { useCallback } from "react";
+import { setChangeMode } from "../../../module/action/schedule";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 
@@ -13,7 +9,7 @@ const DScheduleChange = () => {
     store => store.schedule.isChangeMode
   );
   const changeIsScheduleChangeMode = useCallback(() => {
-    if (isScheduleChangeMode) {   
+    if (isScheduleChangeMode) {
     }
 
     dispatch(setChangeMode(!isScheduleChangeMode));

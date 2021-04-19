@@ -172,7 +172,6 @@ const CreateClubModal = ({ isOpen, setFunc }) => {
                     ""
                   )}
                 </S.TeacherNameWrap>
-
                 <S.Input
                   placeholder="부장 이름"
                   onChange={changeCircleData}
