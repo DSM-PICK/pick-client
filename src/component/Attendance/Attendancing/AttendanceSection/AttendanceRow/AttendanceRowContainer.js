@@ -15,7 +15,7 @@ const AttendanceRowContainer = () => {
   const [allStudentStateArray, setAllStudentStateArray] = useState([]);
   const [isFirst, setIsFirst] = useState(true);
 
-  const disableState = ["취업", "기초학력"];
+  const disableState = ["취업", "기초학력", "방과후"];
 
   useEffect(() => {
     if (attendanceData.length) {
