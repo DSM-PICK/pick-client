@@ -19,3 +19,10 @@ export const Container = styled.div`
     margin: 0 10px;
   }
 `;
+
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;

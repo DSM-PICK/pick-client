@@ -7,7 +7,7 @@ import * as S from "./styles";
 
 const Header = props => {
   const { userName } = props;
-  const { onLogout } = props;
+  const { onLogout, onPasswordChange } = props;
 
   return (
     <S.Container>
@@ -21,7 +21,11 @@ const Header = props => {
             activeStyle={S.NavLinkActiveStyle}
           />
         </S.NavLinkWrap>
-        <HeaderUserWrap userName={userName} onLogout={onLogout} />
+        <HeaderUserWrap
+          userName={userName}
+          onLogout={onLogout}
+          onPasswordChange={onPasswordChange}
+        />
       </S.Wrap>
     </S.Container>
   );

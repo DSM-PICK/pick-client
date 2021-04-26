@@ -26,7 +26,7 @@ const DPasswordChange = () => {
   });
 
   const goAuth = useCallback(() => {
-    history.push("/auth");
+    history.goBack();
   }, []);
 
   const changePasswordSubmtiHandler = useCallback(

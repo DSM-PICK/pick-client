@@ -13,7 +13,12 @@ const DScheduleHelpMsg = () => {
   );
   const render = useMemo(() => {
     if (!firstSelect && !secondSelect) {
-      return "일정 교체가 필요한 날짜를 선택해주세요";
+      return (
+        <S.TextWrapper>
+          <p>일정 교체가 필요한</p>
+          <p>날짜를 선택해주세요</p>
+        </S.TextWrapper>
+      );
     }
     if (firstSelect && !secondSelect) {
       const { month, date } = firstSelect;
