@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const ContainerContainer = styled.div`
-  display: flex;
+  display: grid;
   width: 100%;
   height: 100%;
   padding: 0 10px;
   overflow-y: auto;
-  flex-direction: column;
 `;
 
 export const Containter = styled.div`
