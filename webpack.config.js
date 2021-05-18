@@ -19,7 +19,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(jpg|png|jpeg|bmp|gif|svg)?$/,
+        test: /\.(jpg|png|jpeg|bmp|gif|svg|ico)?$/,
         loader: "file-loader"
       }
     ]
@@ -27,7 +27,7 @@ module.exports = {
   output: {
     publicPath: "/",
     path: path.join(__dirname, "/S3-Files"),
-    filename: "bundle.min.js"
+    filename: "bundle.min.[hash].js"
   },
   plugins: [
     new HtmlWebpackPlugin({

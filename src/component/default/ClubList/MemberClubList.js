@@ -8,14 +8,13 @@ const MemberClubList = ({ data, step, setCircleData, setEditStep }) => {
     <>
       {data.map((clubData, rowIndex) => (
         <S.ClubRow key={rowIndex}>
-          {clubData.map(({ name, where, id }, itemIndex) => (
+          {clubData.map(({ name, location }, itemIndex) => (
             <MemberClubItemContainer
               step={step}
               name={name}
-              where={where}
-              id={id}
+              where={location}
               setCircleData={setCircleData}
-              key={String(rowIndex) + itemIndex}
+              key={name}
               setEditStep={setEditStep}
             />
           ))}

@@ -1,70 +1,78 @@
-import React, { useCallback, useState } from "react";
-import * as G from "../../GlobalStyle";
+import React, { useCallback, useEffect } from "react";
 import * as S from "./styles";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Body from "../Body/Body";
-import Footer from "../Footer/Footer";
 import AttendanceBody from "../Attendance/body/AttendanceBody";
-import { MAIN_ANCHOR_ITEMS, LOGO } from "../Attendance/Constant";
-import LogoutModal from "./Modal/LogoutModal";
+import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 import PreReport from "./PreReport/PreReport";
-import { useDispatch, useSelector } from "react-redux";
-import { modalOn, modalOff } from "../../module/action/admin_modal";
+import Notice from "./Notice/Notice";
+import { LogoPickWithCap } from "../../asset";
+import { MAIN_ANCHOR_ITEMS } from "../Attendance/Constant";
+import { getPreReportListSaga } from "../../module/action/pre_report";
+import { getMainTextRemainingDateSaga } from "../../module/action/main_text";
+import { checkPageWithLogin } from "../../lib/requestApi";
+import { showModal } from "../../module/action/modal_wrap/index";
+import Footer from "../Organisms/Footer/Footer";
+import { LOCAL_TEACHER_NAME } from "../../lib/localStorage";
+import PreReportShowWrap from "./PreReport/PreReportView/PreReportShowView";
 
 const Main = () => {
   const anchorItems = MAIN_ANCHOR_ITEMS;
-
+  const TEACHER_NAME = LOCAL_TEACHER_NAME;
   const dispatch = useDispatch();
-  const isOpen = useSelector(state => state.adminModal.modalOn);
-  const mainText = useSelector(state => state.mainText.mainText);
-  const preAbsence = useSelector(state => state.preAbsence.preAbsence);
+  const remainingDate = useSelector(state => state.mainText.remainingDate);
 
-  const modalOpen = useCallback(() => dispatch(modalOn()), [dispatch]);
-  const modalClose = useCallback(() => dispatch(modalOff()), [dispatch]);
+  const teacherName = window.localStorage.getItem(TEACHER_NAME);
 
-  const onModalClick = () => {
-    const modalDoing = isOpen ? modalClose : modalOpen;
-    modalDoing();
-    console.log(isOpen);
-  };
+  const ShowLogoutModal = useCallback(() => {
+    dispatch(showModal(LogoutModal));
+  }, [dispatch]);
+
+  useEffect(() => {
+    checkPageWithLogin();
+    dispatch(getPreReportListSaga());
+    dispatch(getMainTextRemainingDateSaga());
+  }, []);
 
   return (
-    <G.GlobalContainer>
+    <S.Container>
       <Header>
         <S.MainHeader>
-          <S.MainHeaderLogo url={LOGO.imgLink} />
+          <S.MainBodyLogoutButton onClick={ShowLogoutModal}>
+            로그아웃
+          </S.MainBodyLogoutButton>
+          <S.MainHeaderLogo url={LogoPickWithCap} />
+          <div />
         </S.MainHeader>
       </Header>
       <Body>
         <S.MainBodyTopText>
-          <S.MainBodyTopWho>{"김정은"} 선생님은</S.MainBodyTopWho>
+          <S.MainBodyTopWho>{teacherName} 선생님은</S.MainBodyTopWho>
           <S.MainBodyTopWhen>
-            <S.MainBodyTopWhenTime>{"오늘 저녁 "}</S.MainBodyTopWhenTime>
-            자습감독 이십니다.
+            <S.MainBodyTopWhenTime>{remainingDate[0]}</S.MainBodyTopWhenTime>
+            {remainingDate[1]}
           </S.MainBodyTopWhen>
         </S.MainBodyTopText>
-        <S.MainBodyLogoutLayout>
-          <S.MainBodyLogoutButton onClick={onModalClick}>
-            로그아웃
-          </S.MainBodyLogoutButton>
-        </S.MainBodyLogoutLayout>
-        <S.MainBodyOffwork>
-          힘내세요! 퇴근까지
-          <S.MainBodyOffworkWhen>{" 2시간 38분"}</S.MainBodyOffworkWhen>{" "}
-          남았습니다.
-        </S.MainBodyOffwork>
         <S.MainBodyBox>
-          <S.MainBodyBoxText>출석하기</S.MainBodyBoxText>
-          <AttendanceBody anchorItems={anchorItems} />
+          <S.MainBodyBoxText>출석부</S.MainBodyBoxText>
+          <AttendanceBody anchorItems={anchorItems} mode={"main"} />
         </S.MainBodyBox>
         <S.MainBodyBox>
-          <S.MainBodyBoxText>사전결석신고</S.MainBodyBoxText>
+          <S.MainBodyBoxText>
+            <span>출결변동사항 등록</span>
+          </S.MainBodyBoxText>
           <PreReport />
         </S.MainBodyBox>
-        {isOpen && <LogoutModal onModalClick={onModalClick} />}
+        <S.MainBodyBox>
+          <S.MainBodyBoxText>
+            <span>출결변동내역</span>
+          </S.MainBodyBoxText>
+          <PreReportShowWrap />
+        </S.MainBodyBox>
       </Body>
       <Footer />
-    </G.GlobalContainer>
+    </S.Container>
   );
 };
 

@@ -1,97 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import * as S from './styles';
-import AttendanceCell from './AttendanceCell/AttendanceCell';
+import React from "react";
+import * as S from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCheckArr,
+  setCheckAll,
+  setCheckArrWithDisable
+} from "../../../../../module/action/attendance";
+import AttendanceListContainer from "./AttendanceList/AttendanceListContainer";
 
-const AttendanceRow = (props) => {
-	const { gradeClassNumber, name, sequence } = props.attendance;
-	const { onChangeRow } = props;
-	const { classData } = props;
-	let sevenState = '출석';
-	let eightState = '출석';
-	let nineState = '출석';
-	let tenState = '출석';
+const AttendanceRow = props => {
+  const { index, disableStudentStateArray } = props;
+  const { name, gradeClassNumber: stdNum } = props.attData;
 
-	const onSevenClick = (value) => {
-		sevenState = value;
-		onDataChange();
-	};
+  const dispatch = useDispatch();
+  const checkArr = useSelector(state => state.attendance.checkArr);
+  const checkArrWithDisable = useSelector(
+    state => state.attendance.checkArrWithDisable
+  );
 
-	const onEightClick = (value) => {
-		eightState = value;
-		onDataChange();
-	};
+  const onClickCheckbox = () => {
+    if (!disableStudentStateArray[index]) {
+      const newCheckArr = checkArr.map((check, mapIdx) =>
+        mapIdx === index ? !check : check
+      );
+      const newCheckArrWithoutDisable = checkArrWithDisable.map(
+        (data, mapIdx) => (mapIdx === index ? !data : data)
+      );
 
-	const onNineClick = (value) => {
-		nineState = value;
-		onDataChange();
-	};
+      dispatch(setCheckArrWithDisable(newCheckArrWithoutDisable));
+      dispatch(setCheckArr(newCheckArr));
 
-	const onTenClick = (value) => {
-		tenState = value;
-		onDataChange();
-	};
+      newCheckArrWithoutDisable.every(
+        check => check === true || check === "disabled"
+      )
+        ? dispatch(setCheckAll(true))
+        : dispatch(setCheckAll(false));
+    }
+  };
 
-	const onDataChange = () => {
-		let classDatas = classData.attendances.filter(
-			(attendance) => attendance.sequence !== sequence,
-		);
-
-		classDatas = classDatas.concat({
-			gradeClassNumber: gradeClassNumber,
-			name: name,
-			sequence: sequence,
-			state: {
-				seven: sevenState,
-				eight: eightState,
-				nine: nineState,
-				ten: tenState,
-			},
-		});
-
-		classDatas.sort(function (a, b) {
-			return a.sequence - b.sequence;
-		});
-
-		let datas = {
-			...classData,
-			attendances: [...classDatas],
-		};
-
-		console.log(datas);
-
-		onChangeRow(datas);
-	};
-
-	return (
-		<S.Containter>
-			<S.SectionSeq>{sequence}</S.SectionSeq>
-			<S.SectionStdNum>{gradeClassNumber}</S.SectionStdNum>
-			<S.SectionName>{name}</S.SectionName>
-			<S.SectionClassWrap>
-				{/* <S.SectionClass>
-					<AttendanceCell sequence={sequence} onClassClick={onSevenClick}></AttendanceCell>
-				</S.SectionClass> */}
-				<S.SectionClass>
-					<AttendanceCell
-						sequence={sequence}
-						onClassClick={onEightClick}
-					></AttendanceCell>
-				</S.SectionClass>
-				<S.SectionClass>
-					<AttendanceCell
-						sequence={sequence}
-						onClassClick={onNineClick}
-					></AttendanceCell>
-				</S.SectionClass>
-				<S.SectionClass>
-					<AttendanceCell
-						sequence={sequence}
-						onClassClick={onTenClick}
-					></AttendanceCell>
-				</S.SectionClass>
-			</S.SectionClassWrap>
-		</S.Containter>
-	);
+  return (
+    <S.Containter check={checkArr[index]}>
+      <S.SectionCheckboxWrap>
+        <S.SectionCheckbox
+          type="checkbox"
+          id={`${stdNum}-${index}`}
+          checked={checkArr[index] || false}
+          readOnly
+          onClick={onClickCheckbox}
+        />
+        <S.SectionCheckboxLabel
+          htmlFor={`${stdNum}-${index}`}
+        ></S.SectionCheckboxLabel>
+      </S.SectionCheckboxWrap>
+      <S.SectionStdNum>{stdNum}</S.SectionStdNum>
+      <S.SectionName>{name}</S.SectionName>
+      <AttendanceListContainer {...props} />
+    </S.Containter>
+  );
 };
 
 export default AttendanceRow;

@@ -7,6 +7,8 @@ import {
 export const Container = styled.div`
   background-color: white;
   padding: 30px;
+  max-height: 630px;
+  overflow-y: auto;
 
   & ${ClubItemContainer} {
     ${props =>

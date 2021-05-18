@@ -2,21 +2,20 @@ import { takeEvery, select, put, call } from "redux-saga/effects";
 import getDateObj from "../../../lib/calander";
 import {
   methodType,
-  requestApi,
   requestApiWithAccessToken,
   requestGetApi
 } from "../../../lib/requestApi";
 import {
   SELECT_FIRST_DAY_SAGA,
   selectFirstDay,
+  getScheduleSaga as getScheduleAction,
   RESOLVE_CHANGE_TEACHER_SAGA,
   REJECT_CHANGE_TEACHER_SAGA,
   defaultStatus,
-  failChangeTeacher,
-  successChangeTeacher,
   GET_SCHEDULE_SAGA,
   getSchedule
 } from "../../action/calander";
+import windowcalander from "window-calander";
 
 function* selectFirstDaySaga({ payload }) {
   const { teachers, month, date } = payload;
@@ -60,43 +59,48 @@ function* resolveChangeTeacherSaga() {
         floor2
       }
     );
-    console.log(res);
+    yield put(getScheduleAction());
     yield put(defaultStatus());
-    yield put(successChangeTeacher(200));
     alert("성공하였습니다");
   } catch (err) {
     alert("실패했습니다");
+    yield put(defaultStatus());
   }
 }
 
 function* getScheduleSaga() {
-  const nowDateObj = new Date();
-  const year = nowDateObj.getFullYear();
-  const month = nowDateObj.getMonth();
+  const { year, month } = yield select(store => store.calander);
 
-  const data = getDateObj(year, month);
+  const data1 = windowcalander(year, month + 1);
+  const data = data1.map(dataArr =>
+    dataArr.filter((_, i) => !(i === 0 || i === 6))
+  );
   const oneArray = data.reduce((state, dateArr) => state.concat(dateArr), []);
 
-  const promiseArray = oneArray.map(async ({ month, date, isActive }) => {
-    try {
-      const data = await requestGetApi(
-        `/mars/activity/dates/${year}-${month.fillZero(2)}-${date.fillZero(2)}`
-      );
-      return {
-        ...data.data,
-        isActive,
-        date,
-        month
-      };
-    } catch (err) {
-      return {
-        error: true,
-        isActive,
-        date,
-        month
-      };
+  const promiseArray = oneArray.map(
+    async ({ month, date, isThisMonth: isActive, year }) => {
+      try {
+        const data = await requestGetApi(
+          `/mars/activity/dates/${year}-${month.fillZero(2)}-${date.fillZero(
+            2
+          )}`
+        );
+        return {
+          ...data.data,
+          isActive,
+          date,
+          month
+        };
+      } catch (err) {
+        return {
+          error: true,
+          isActive,
+          date,
+          month
+        };
+      }
     }
-  });
+  );
 
   const response = yield Promise.all(promiseArray);
   const splitArr = [];

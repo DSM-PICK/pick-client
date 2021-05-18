@@ -8,8 +8,11 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: normal;
         font-style: normal;
     }
+
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
     * {
-        font-family:나눔고딕 !important;
+        font-family:Noto Sans KR !important;
     }
     *::-webkit-scrollbar {
         display: none;
@@ -71,9 +74,20 @@ export const GlobalStyle = createGlobalStyle`
         border-collapse: collapse;
         border-spacing: 0;
     }
+    button {
+        cursor:pointer;
+        outline:none;
+    }
+    .first-select {
+        background-color:#FF406E !important;
+    }
+    .blue {
+        background-color:#406cff !important;
+    }
 `;
 
 export const GlobalContainer = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
 `;

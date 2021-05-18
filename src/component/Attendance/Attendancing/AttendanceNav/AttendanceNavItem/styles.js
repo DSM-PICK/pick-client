@@ -1,15 +1,17 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-	padding: 0 20px;
-	font-size: 28px;
-	font-weight: bold;
-	text-align: center;
-	min-width: 180px;
-	color: ${(props) => (props.done === 'true' ? '#C4C4C4' : 'black')};
-	text-decoration: none;
+  display: flex;
+  min-width: max-content;
+  padding: 0 15px;
+  color: ${props => (props.done === "done" ? "#C4C4C4" : "black")};
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  transform: translateY(-5px);
+  justify-content: center;
 `;
 
 export const activeStyle = {
-	color: '#2764A7',
+  color: "#2764A7"
 };

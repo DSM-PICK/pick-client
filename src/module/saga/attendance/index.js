@@ -1,119 +1,213 @@
-import axios from "axios";
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { getLocationState } from "../../../lib/attendanceApi";
 import {
   methodType,
+  requesetRefresh,
   requestApiWithAccessToken,
   requestGetApiWithAccessToken
 } from "../../../lib/requestApi";
+import { ATTENDANCE } from "../../../lib/requestUrl";
 import {
-  GET_CLUB_FLOOR_DATA_SAGA,
-  GET_SELF_STUDY_FLOOR_DATA_SAGA,
-  FAILURE_GET_CLUB_FLOOR_DATA_SAGA,
-  FAILURE_GET_SELF_STUDY_FLOOR_DATA_SAGA,
-  SET_CLUB_FIRST_DATA,
-  SET_CLUB_SECOND_DATA,
-  SET_CLUB_THIRD_DATA,
-  SET_CLUB_FORTH_DATA,
-  SET_SELF_STUDY_SECOND_DATA,
-  SET_SELF_STUDY_THIRD_DATA,
-  SET_SELF_STUDY_FORTH_DATA,
-  GET_ATTENDANCE_DATA_SAGA,
-  SET_ATTENDANCE_DATA,
-  FAILURE_GET_ATTENDANCE_DATA_SAGA,
-  FAILURE_POST_ATTENDANCE_DATA_SAGA,
-  POST_ATTENDANCE_DATA_SAGA
+  setFirstFloorData,
+  setSecondFloorData,
+  setThirdFloorData,
+  setForthFloorData,
+  setFirstTeacherName,
+  setSecondTeacherName,
+  setThirdTeacherName,
+  setForthTeacherName,
+  setDate,
+  setDayOfWeek,
+  setAttendanceStdData,
+  GET_FLOOR_DATA_SAGA,
+  SET_ATTENDANCE_STD_DATA,
+  GET_ATTENDANCE_STD_DATA_SAGA,
+  FAILURE_GET_ATTENDANCE_STD_DATA_SAGA,
+  POST_ATTENDANCE_STD_DATA_SAGA,
+  FAILURE_POST_ATTENDANCE_STD_DATA_SAGA,
+  setHead,
+  setSchedule,
+  setCurrentClassInfo,
+  putAttendanceStdDataSaga,
+  PUT_ATTENDANCE_STD_DATA_SAGA,
+  PUT_ATTENDANCE_MEMO_SAGA,
+  setIsLoading,
+  MODIFY_ATTENDANCES_DATA_SAGA
 } from "../../action/attendance";
 
-function* getClubFloorData() {
+function* getFloorData(payload) {
   try {
-    const SET_CLUB_DATA_ACTIONS = [
-      SET_CLUB_FIRST_DATA,
-      SET_CLUB_SECOND_DATA,
-      SET_CLUB_THIRD_DATA,
-      SET_CLUB_FORTH_DATA
-    ];
-    for (let i = 1; i < 5; i++) {
-      console.log("/" === "/");
-      const clubData = yield call(
-        requestGetApiWithAccessToken,
-        `/saturn/attendance/club/${i}`
-      );
-      yield put(SET_CLUB_DATA_ACTIONS[i - 1](clubData));
-      console.log(`동아리/${i} 리스트 불러오기 성공`);
+    const { locationState, text } = payload.payload;
+
+    let floor = "";
+    let setFloorData;
+    let setFloorTeacherName;
+    switch (text) {
+      case "4층":
+        floor = 4;
+        setFloorData = setForthFloorData;
+        setFloorTeacherName = setForthTeacherName;
+        break;
+      case "3층":
+        floor = 3;
+        setFloorData = setThirdFloorData;
+        setFloorTeacherName = setThirdTeacherName;
+        break;
+      case "2층":
+        floor = 2;
+        setFloorData = setSecondFloorData;
+        setFloorTeacherName = setSecondTeacherName;
+        break;
+      case "창조실":
+        floor = 1;
+        setFloorData = setFirstFloorData;
+        setFloorTeacherName = setFirstTeacherName;
+        break;
+      default:
+        throw new Error(
+          `getSelfStudyFloorData : payload is not in "4층", "3층", "2층", "창조실"`
+        );
     }
-    console.log(`전체 동아리 리스트 불러오기 성공`);
+
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_NAVIGATION_URL(
+      locationState,
+      floor
+    );
+
+    const floorData = yield call(requestGetApiWithAccessToken, REQUEST_URL);
+
+    const {
+      date,
+      schedule,
+      dayOfWeek,
+      locations,
+      teacherName
+    } = floorData.data;
+
+    yield put(setDate(date));
+    yield put(setSchedule(schedule));
+    yield put(setDayOfWeek(dayOfWeek));
+    yield put(setFloorData(locations));
+    yield put(setFloorTeacherName(teacherName));
   } catch (error) {
-    // yield put(FAILURE_GET_CLUB_FLOOR_DATA_SAGA(error.response));
-    console.log(error);
-    console.log("동아리 리스트 불러오기 실패");
+    switch (error) {
+      case 403:
+        requesetRefresh();
+    }
   }
 }
 
-function* getSelfStudyFloorData() {
+function* getAttendanceStdDataSaga(payload) {
   try {
-    const SET_SELF_STUDY_DATA_ACTIONS = [
-      SET_SELF_STUDY_SECOND_DATA,
-      SET_SELF_STUDY_THIRD_DATA,
-      SET_SELF_STUDY_FORTH_DATA
-    ];
-    for (let i = 2; i < 5; i++) {
-      const selfStudyData = yield call(
-        requestGetApiWithAccessToken,
-        `/saturn​/attendance​/self-study/${i}`
-      );
-      yield put(SET_SELF_STUDY_DATA_ACTIONS[i - 1](selfStudyData));
-      console.log(`자습/${i} 리스트 불러오기 성공`);
-    }
-    console.log(`전체 자습 리스트 불러오기 성공`);
-  } catch (error) {
-    yield put(FAILURE_GET_SELF_STUDY_FLOOR_DATA_SAGA(error.response));
-    console.log(error);
-    console.log("자습 리스트 불러오기 실패");
-  }
-}
+    const { floor, priority, todaySchedule } = payload.payload;
+    const REQUEST_URL = ATTENDANCE.ATTENDANCE_LIST_URL(
+      todaySchedule || getLocationState(),
+      floor,
+      priority
+    );
 
-function* getAttendanceData(payload) {
-  try {
-    const { activity, floor, priority } = payload;
+    yield put(setCurrentClassInfo({ floor, priority }));
+
     const attendanceData = yield call(
       requestGetApiWithAccessToken,
-      `/saturn​/${activity}/${floor}/${priority}`
+      REQUEST_URL
     );
-    yield put(SET_ATTENDANCE_DATA(attendanceData));
-    console.log(`출석 데이터 불러오기 성공`);
+
+    const atdData = attendanceData.data.attendances;
+    const clubHead = attendanceData.data.head;
+
+    yield put(setHead(clubHead));
+    yield put(setAttendanceStdData(atdData));
   } catch (error) {
-    yield put(FAILURE_GET_ATTENDANCE_DATA_SAGA(error.response));
-    console.log(error);
-    console.log("출석 데이터 불러오기 실패");
+    switch (error) {
+      case 403:
+        requesetRefresh();
+    }
   }
 }
 
-function* postAttendanceData(payload) {
+function* patchAttendanceStdData(payload) {
   try {
-    const { number, period, state } = payload;
-    yield call(
-      methodType.POST,
-      `attendance/student-state`,
-      JSON.stringify({
+    const { number, period, state, floor, priority } = payload.payload;
+    const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PATCH,
+      REQUEST_URL,
+      {
         number,
         period,
         state
-      })
+      }
     );
+  } catch (error) {}
+}
 
-    console.log(`출석 데이터 저장 성공`);
-  } catch (error) {
-    yield put(FAILURE_POST_ATTENDANCE_DATA_SAGA(error.response));
-    console.log(error);
-    console.log("출석 데이터 저장 실패");
-  }
+function* putAttendanceStdData(payload) {
+  try {
+    const { state, numbers, periods, floor, priority } = payload.payload;
+    const REQUEST_URL = ATTENDANCE.CHANGE_ATTENDANCE_STATE_URL();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PUT,
+      REQUEST_URL,
+      {
+        numbers: Array.isArray(numbers) ? numbers : [numbers],
+        periods: Array.isArray(periods) ? periods : [periods],
+        state
+      }
+    );
+  } catch (error) {}
+}
+
+function* putAttendanceMemo(action) {
+  try {
+    const { memo, numbers, periods } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.SET_ATTENCANE_MEMO();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PUT,
+      REQUEST_URL,
+      {
+        memo,
+        periods: Array.isArray(periods) ? periods : [periods],
+        numbers: Array.isArray(numbers) ? numbers : [numbers]
+      }
+    );
+  } catch (error) {}
+}
+
+function* modifyAttendancesData(action) {
+  try {
+    const { state, memo, numbers, periods } = action.payload;
+
+    const REQUEST_URL = ATTENDANCE.MODIFY_STUDENTS_DATA();
+
+    const res = yield call(
+      requestApiWithAccessToken,
+      methodType.PUT,
+      REQUEST_URL,
+      {
+        state,
+        memo: memo || "",
+        numbers: Array.isArray(numbers) ? numbers : [numbers],
+        periods: Array.isArray(periods) ? periods : [periods]
+      }
+    );
+  } catch (error) {}
 }
 
 function* attendanceSaga() {
-  yield takeEvery(GET_CLUB_FLOOR_DATA_SAGA, getClubFloorData);
-  yield takeEvery(GET_SELF_STUDY_FLOOR_DATA_SAGA, getSelfStudyFloorData);
-  yield takeEvery(GET_ATTENDANCE_DATA_SAGA, getAttendanceData);
-  yield takeEvery(POST_ATTENDANCE_DATA_SAGA, postAttendanceData);
+  yield takeEvery(PUT_ATTENDANCE_MEMO_SAGA, putAttendanceMemo);
+  yield takeEvery(GET_FLOOR_DATA_SAGA, getFloorData);
+  yield takeEvery(GET_ATTENDANCE_STD_DATA_SAGA, getAttendanceStdDataSaga);
+  yield takeEvery(POST_ATTENDANCE_STD_DATA_SAGA, patchAttendanceStdData);
+  yield takeEvery(PUT_ATTENDANCE_STD_DATA_SAGA, putAttendanceStdData);
+  yield takeEvery(MODIFY_ATTENDANCES_DATA_SAGA, modifyAttendancesData);
 }
 
 export default attendanceSaga;

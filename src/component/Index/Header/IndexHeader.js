@@ -15,7 +15,6 @@ const IndexHeader = () => {
       <S.Header>
         <img src={IndexIcon} />
         <S.LoginText>
-          <S.BoldP>전달사항</S.BoldP>
           <div onClick={changeLoginModalIsOpen}>
             <S.P>이곳을 눌러</S.P>
             <S.P>로그인 하기</S.P>
@@ -29,7 +28,7 @@ const IndexHeader = () => {
           {date.month}월 {date.date}일
         </S.P>
       </S.Body>
-      {loginModalIsOpen && <LoginModal />}
+      {loginModalIsOpen && <LoginModal closeModal={changeLoginModalIsOpen} />}
     </S.Container>
   );
 };

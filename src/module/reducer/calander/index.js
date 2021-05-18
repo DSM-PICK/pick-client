@@ -5,14 +5,17 @@ import {
   SELECT_FIRST_DAY,
   SELECT_SECOND_DAY,
   SELECT_SECOND_DAY_TEACHER,
-  GET_SCHEDULE
+  GET_SCHEDULE,
+  SET_DATE
 } from "../../action/calander";
 
 const defaultState = {
   state: DEFAULT_STATUS,
-  todayTeacher: "안희명",
+  todayTeacher: window.localStorage.getItem("teacherName"),
   calanderArr: [],
   changeScheduleStatus: 1,
+  year: 0,
+  month: 0,
   changeDays: {
     first: {},
     second: {}
@@ -79,6 +82,14 @@ const calanderReducer = (state = defaultState, action) => {
       return {
         ...state,
         calanderArr: action.payload
+      };
+    }
+    case SET_DATE: {
+      const { month, year } = action.payload;
+      return {
+        ...state,
+        month: month,
+        year
       };
     }
     default: {

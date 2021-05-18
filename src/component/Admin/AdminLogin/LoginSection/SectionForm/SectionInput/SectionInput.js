@@ -1,12 +1,19 @@
-import React from 'react';
-import * as S from './styles';
+import React from "react";
+import * as S from "./styles";
 
-const SectionInput = (props) => {
-	const { type, ph_text, minus_width } = props;
+const SectionInput = props => {
+  const { type, ph_text, onChange, name, value, customRef } = props;
 
-	return (
-		<S.Container placeholder={ph_text} minus_width={minus_width} type={type} />
-	);
+  return (
+    <S.Container
+      ref={customRef}
+      placeholder={ph_text}
+      type={type}
+      onChange={onChange}
+      name={name}
+      value={value}
+    />
+  );
 };
 
 export default SectionInput;

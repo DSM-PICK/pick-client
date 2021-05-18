@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as S from "./styles";
 import CalanderItemContainer from "./CalanderItem/CalanderItemContainer";
 
 const CalanderRow = ({ dateArr }) => {
+  const dateObj = new Date();
+  const todayMonth = dateObj.getMonth() + 1;
+  const todayDate = dateObj.getDate();
+
   return (
     <S.Container>
       {dateArr.map(
@@ -16,6 +20,7 @@ const CalanderRow = ({ dateArr }) => {
             floor2={floor2}
             floor3={floor3}
             floor4={floor4}
+            isToday={Number(month) === todayMonth && Number(date) === todayDate}
           />
         )
       )}

@@ -23,7 +23,7 @@ export const Button = styled.button`
 
 export const BigButton = styled(Button)`
   z-index: 0;
-  ${(props) =>
+  ${props =>
     props.isOpen &&
     css`
       transform: rotate(45deg);
@@ -34,6 +34,7 @@ export const BigButton = styled(Button)`
 
 export const MenuButton = styled(Button)`
   width: 0;
+  width: 60px;
   height: 0;
   &:nth-child(1) {
     transform: translate(0px, 130px);
@@ -63,21 +64,11 @@ export const AnimationWrap = styled.div`
   flex-direction: column;
 
   ${ButtonWrap} {
-    opacity: 0;
-    ${(props) =>
-      props.isOpen &&
-      css`
-        opacity: 1;
-      `}
+    opacity: 1;
   }
 
   ${MenuButton} {
-    ${(props) =>
-      props.isOpen &&
-      css`
-        width: 60px;
-        height: 60px;
-        transform: translate(0) !important;
-      `}
+    height: 60px;
+    transform: translate(0) !important;
   }
 `;

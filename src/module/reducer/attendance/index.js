@@ -1,118 +1,208 @@
 import {
-  SET_CLUB_FIRST_DATA,
-  SET_CLUB_SECOND_DATA,
-  SET_CLUB_THIRD_DATA,
-  SET_CLUB_FORTH_DATA,
-  SET_SELF_STUDY_SECOND_DATA,
-  SET_SELF_STUDY_THIRD_DATA,
-  SET_SELF_STUDY_FORTH_DATA,, SET_FLOOR, SET_ATTENDANCE_DATA, SET_PERIOD, SET_STATE, SET_NUMBER
+  SET_FIRST_FLOOR_DATA,
+  SET_SECOND_FLOOR_DATA,
+  SET_THIRD_FLOOR_DATA,
+  SET_FORTH_FLOOR_DATA,
+  SET_FIRST_TEACHER_NAME,
+  SET_SECOND_TEACHER_NAME,
+  SET_THIRD_TEACHER_NAME,
+  SET_FORTH_TEACHER_NAME,
+  SET_ATTENDANCE_STD_DATA,
+  SET_DATE,
+  SET_DAY_OF_WEEK,
+  SET_HEAD,
+  SET_CLUB_NAME,
+  SET_SCHEDULE,
+  SET_CURRENT_CLASS_INFO,
+  SET_IS_LOADING,
+  SET_CHECK_ARR,
+  SET_CHECK_ALL,
+  SET_CHECK_ARR_WITH_DISABLE,
+  SET_TODAY_SCHEDULE
 } from "../../action/attendance";
 
 const initialState = {
-  clubFirstData = [],
-  clubSecondData = [],
-  clubThirdData = [],
-  clubForthData = [],
-  selfStudySecondData = [],
-  selfStudyThirdData = [],
-  selfStudyForthData = [],
+  datas: {
+    firstFloorData: [],
+    secondFloorData: [],
+    thirdFloorData: [],
+    forthFloorData: []
+  },
 
-  activity: "",
-  floor: "",
-  priority: "",
+  teachers: {
+    firstTeacherName: "",
+    secondTeacherName: "",
+    thirdTeacherName: "",
+    forthTeacherName: ""
+  },
 
-  number: "",
-  period: "",
-  state: "",
+  currentClassInfo: {
+    floor: "",
+    priority: ""
+  },
 
-  attendanceData = {},
+  date: "",
+  dayOfWeek: "",
+
+  schedule: "",
+  clubName: "",
+  clubHead: "",
+
+  isLoading: false,
+  attendanceData: {},
+
+  checkArrWithDisable: [],
+  checkArr: [],
+  chekAll: false,
+
+  todaySchedule: ""
 };
 
 const attendanceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CLUB_FIRST_DATA: {
+    case SET_FIRST_FLOOR_DATA: {
       return {
         ...state,
-        clubFirstData: action.payload,
-      }
+        datas: {
+          ...state.datas,
+          firstFloorData: action.payload
+        }
+      };
     }
-    case SET_CLUB_SECOND_DATA: {
+    case SET_SECOND_FLOOR_DATA: {
       return {
         ...state,
-        clubSecondData: action.payload,
-      }
+        datas: {
+          ...state.datas,
+          secondFloorData: action.payload
+        }
+      };
     }
-    case SET_CLUB_THIRD_DATA: {
+    case SET_THIRD_FLOOR_DATA: {
       return {
         ...state,
-        clubThirdData: action.payload,
-      }
+        datas: {
+          ...state.datas,
+          thirdFloorData: action.payload
+        }
+      };
     }
-    case SET_CLUB_FORTH_DATA: {
+    case SET_FORTH_FLOOR_DATA: {
       return {
         ...state,
-        clubForthData: action.payload,
-      }
+        datas: {
+          ...state.datas,
+          forthFloorData: action.payload
+        }
+      };
     }
-    case SET_SELF_STUDY_SECOND_DATA: {
+    case SET_FIRST_TEACHER_NAME: {
       return {
         ...state,
-        selfStudySecondData: action.payload,
-      }
+        teachers: {
+          ...state.teachers,
+          firstTeacherName: action.payload
+        }
+      };
     }
-    case SET_SELF_STUDY_THIRD_DATA: {
+    case SET_SECOND_TEACHER_NAME: {
       return {
         ...state,
-        selfStudyThirdData: action.payload,
-      }
+        teachers: {
+          ...state.teachers,
+          secondTeacherName: action.payload
+        }
+      };
     }
-    case SET_SELF_STUDY_FORTH_DATA: {
+    case SET_THIRD_TEACHER_NAME: {
       return {
         ...state,
-        selfStudyForthData: action.payload,
-      }
+        teachers: {
+          ...state.teachers,
+          thirdTeacherName: action.payload
+        }
+      };
     }
-    case SET_ACTIVITY: {
+    case SET_FORTH_TEACHER_NAME: {
       return {
         ...state,
-        activity: action.payload
-      }
+        teachers: {
+          ...state.teachers,
+          forthTeacherName: action.payload
+        }
+      };
     }
-    case SET_FLOOR: {
+    case SET_DATE: {
       return {
         ...state,
-        floor: action.payload,
-      }
+        date: action.payload
+      };
     }
-    case SET_PRIORITY: {
+    case SET_DAY_OF_WEEK: {
       return {
         ...state,
-        priority: action.payload,
-      }
+        dayOfWeek: action.payload
+      };
     }
-    case SET_NUMBER: {
+    case SET_SCHEDULE: {
       return {
         ...state,
-        number: action.payload,
-      }
+        schedule: action.payload
+      };
     }
-    case SET_PERIOD: {
+    case SET_CLUB_NAME: {
       return {
         ...state,
-        period: action.payload,
-      }
+        clubName: action.payload
+      };
     }
-    case SET_STATE: {
+    case SET_HEAD: {
       return {
         ...state,
-        state: action.payload,
-      }
+        clubHead: action.payload
+      };
     }
-    case SET_ATTENDANCE_DATA: {
+    case SET_ATTENDANCE_STD_DATA: {
       return {
         ...state,
         attendanceData: action.payload
-      }
+      };
+    }
+    case SET_CURRENT_CLASS_INFO: {
+      return {
+        ...state,
+        currentClassInfo: action.payload
+      };
+    }
+    case SET_IS_LOADING: {
+      return {
+        ...state,
+        isLoading: action.payload
+      };
+    }
+    case SET_CHECK_ARR: {
+      return {
+        ...state,
+        checkArr: action.payload
+      };
+    }
+    case SET_CHECK_ALL: {
+      return {
+        ...state,
+        checkAll: action.payload
+      };
+    }
+    case SET_CHECK_ARR_WITH_DISABLE: {
+      return {
+        ...state,
+        checkArrWithDisable: action.payload
+      };
+    }
+    case SET_TODAY_SCHEDULE: {
+      return {
+        ...state,
+        todaySchedule: action.payload
+      };
     }
     default: {
       return state;

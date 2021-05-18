@@ -8,13 +8,8 @@ const ClubList = ({ data }) => {
     <>
       {data.map((clubData, rowIndex) => (
         <S.ClubRow key={rowIndex}>
-          {clubData.map(({ name, where, id }, itemIndex) => (
-            <ListClubItemContainer
-              name={name}
-              wehre={where}
-              id={id}
-              key={String(rowIndex) + itemIndex}
-            />
+          {clubData.map(({ name, location }, itemIndex) => (
+            <ListClubItemContainer name={name} where={location} key={name} />
           ))}
         </S.ClubRow>
       ))}

@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  border-radius: 60px 60px 0 0;
-  width: 100%;
-  /* height: calc(100vh - 210px); */
-  height: ${props =>
-    props.height === "auto" ? "auto" : "calc(100vh - 210px)"};
-  background-color: white;
-  padding: 20px 50px 0px 50px;
-  box-sizing: border-box;
   display: flex;
+  width: 100%;
+  height: ${props =>
+    props.mode === "attendance"
+      ? "calc(100vh - 70px)"
+      : props.mode === "main"
+      ? "auto"
+      : "calc(100vh - 125px)"};
+  background-color: white;
+  padding: 10px 30px 30px 30px;
+  border-radius: 40px 40px 0 0;
+  box-sizing: border-box;
+  overflow: auto;
   flex-direction: column;
   justify-content: flex-start;
 `;

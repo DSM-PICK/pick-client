@@ -1,15 +1,11 @@
-import React from 'react';
-import * as S from './styles';
-import AdminNavItem from './AdminNavItem/AdminNavItem';
-import AdminModal from '../AdminModal/AdminModal';
+import React, { useCallback, useEffect, useState } from "react";
+import * as S from "./styles";
+import AdminNavItem from "./AdminNavItem/AdminNavItem";
+import { WhiteLogoPick } from "../../../asset/index";
 
 const AdminNav = () => {
-  const itemDataSet = [
-    {
-      size: "big",
-      imgLink: "/src/asset/Logo/WhiteLogo.svg",
-      link: "/admin"
-    },
+  const [zoomLevel, setZoomLevel] = useState(0);
+  const itemDataSets = [
     {
       size: "small",
       text: "동아리",
@@ -33,19 +29,44 @@ const AdminNav = () => {
     {
       size: "small",
       text: "기타",
-      link: "/admin/print",
-      navlink: true
+      link: "/admin/club/insert",
+      withoutActiveStyle: true
     },
     {
       size: "middle",
-      text: "출석기록 출력",
-      link: "/admin/print"
+      text: "학생 데이터 삽입",
+      link: "/admin/club/insert"
     }
   ];
 
+  useEffect(() => {
+    const zoomLevel = Number(window.localStorage.getItem("zoomLevel")) || 1;
+    setZoomLevel(zoomLevel);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("zoomLevel", zoomLevel);
+    document.body.style.zoom = zoomLevel;
+  }, [zoomLevel]);
+
+  const addZoomLevel = useCallback(() => {
+    setZoomLevel(prev => prev + 0.1);
+  }, []);
+
+  const minusZoomLevel = useCallback(() => {
+    setZoomLevel(prev => prev - 0.1);
+  }, []);
+
   return (
     <S.Container>
-      {itemDataSet.map(item => (
+      <AdminNavItem
+        text={""}
+        size={"big"}
+        link={"/admin"}
+        imgLink={WhiteLogoPick}
+        navlink={""}
+      />
+      {itemDataSets.map(item => (
         <AdminNavItem
           key={item.text + item.link}
           text={item.text}
@@ -53,9 +74,15 @@ const AdminNav = () => {
           link={item.link}
           imgLink={item.imgLink}
           navlink={item.navlink}
+          withoutActiveStyle={item.withoutActiveStyle}
         />
       ))}
+
       <AdminNavItem text="로그아웃" size="middle" link="" />
+      <S.ButtonWrap>
+        <S.Button onClick={addZoomLevel}>+</S.Button>
+        <S.Button onClick={minusZoomLevel}>-</S.Button>
+      </S.ButtonWrap>
     </S.Container>
   );
 };

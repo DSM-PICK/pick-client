@@ -1,12 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginActionCreater } from "../../../../module/action/login";
-import { Eye } from "../../../../asset";
+import PasswordEye from "../../../default/PasswordEye/PasswordEye";
 import * as S from "./styles";
 
-const LoginModal = () => {
+const LoginModal = ({ closeModal }) => {
   const dispatch = useDispatch();
   const [typeIsPassword, setTypeIsPassword] = useState(true);
+  const passwordRef = useRef();
+  const modalRef = useRef();
   const [loginInfo, setLoginInfo] = useState({
     id: "",
     password: ""
@@ -22,6 +24,7 @@ const LoginModal = () => {
 
   const changeTypeIsPassword = useCallback(() => {
     setTypeIsPassword(prev => !prev);
+    passwordRef.current.focus();
   }, []);
   const requestLogin = useCallback(
     e => {
@@ -30,10 +33,16 @@ const LoginModal = () => {
     },
     [loginInfo]
   );
+  const modalOff = useCallback(e => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  }, []);
+
   return (
-    <S.Container>
+    <S.Container onClick={modalOff}>
       <form onSubmit={requestLogin}>
-        <S.Modal>
+        <S.Modal ref={modalRef}>
           <S.Header>
             <S.Title>로그인</S.Title>
             <S.Hr />
@@ -44,7 +53,8 @@ const LoginModal = () => {
                 name="id"
                 onChange={changeLoginInfo}
                 type="text"
-                placeholder="이메일을 입력하세요"
+                placeholder="아이디를 입력하세요"
+                autoCapitalize="off"
               />
             </S.InputWrap>
             <S.InputWrap>
@@ -53,8 +63,12 @@ const LoginModal = () => {
                 onChange={changeLoginInfo}
                 type={typeIsPassword ? "password" : "text"}
                 placeholder="비밀번호를 입력하세요"
+                ref={passwordRef}
               />
-              <img src={Eye} onClick={changeTypeIsPassword} />
+              <PasswordEye
+                onClick={changeTypeIsPassword}
+                showPassword={typeIsPassword}
+              />
             </S.InputWrap>
             <S.LoginBtn>로그인</S.LoginBtn>
           </S.Body>

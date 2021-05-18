@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   CHANGE_MY_SCHEDULE_STATUS,
   selectFirstDaySaga,
-  selectSecondDay,
-  SHOW_MY_SCHEDULE_STATUS
+  selectSecondDay
 } from "../../../../../../module/action/calander";
 import CalanderItem from "./CalanderItem";
 
@@ -15,7 +14,8 @@ const CalanderItemContainer = ({
   floor2,
   floor3,
   floor4,
-  error
+  error,
+  isToday
 }) => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.calander.state);
@@ -77,13 +77,14 @@ const CalanderItemContainer = ({
     <CalanderItem
       isActive={isActive}
       isActives={[
-        state === SHOW_MY_SCHEDULE_STATUS && floor2 === todayTeacher,
-        state === SHOW_MY_SCHEDULE_STATUS && floor3 === todayTeacher,
-        state === SHOW_MY_SCHEDULE_STATUS && floor4 === todayTeacher
+        state && floor2 === todayTeacher,
+        state && floor3 === todayTeacher,
+        state && floor4 === todayTeacher
       ]}
       names={[floor2, floor3, floor4]}
       date={date}
       error={error}
+      isToday={isToday}
       onClick={onClick}
     />
   );

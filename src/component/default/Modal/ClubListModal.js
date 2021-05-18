@@ -1,18 +1,14 @@
-import React, { useCallback } from "react";
+import React from "react";
 import ModalClubList from "../ModalClubList/ModalClubList";
 import * as S from "./styles";
 import { useSelector } from "react-redux";
 import withModal from "./Modal";
 
 const ClubListModal = () => {
-  const data = useSelector(state => state.club.detail);
   const {
-    name,
-    where,
-    teacher,
-    owner,
-    people: { one, two, three }
-  } = data;
+    club: { name, location, teacher, club_head, floor, priority },
+    students
+  } = useSelector(state => state.club.detail);
 
   return (
     <>
@@ -20,16 +16,16 @@ const ClubListModal = () => {
         <S.EmptyBox />
         <S.HeaderCenter>
           <div>{name}</div>
-          <div>{where}</div>
+          <div>{location}</div>
         </S.HeaderCenter>
         <S.HeaderRight>
-          <div>담당 : {teacher}</div>
-          <div>부장 : {owner}</div>
+          <div>담당 : {teacher || "선생님이 없어요"}</div>
+          <div>부장 : {club_head || "부장이 없어요"}</div>
         </S.HeaderRight>
       </S.Header>
       <S.Hr />
       <S.Body>
-        <ModalClubList one={one} two={two} three={three} />
+        <ModalClubList list={students} />
       </S.Body>
     </>
   );

@@ -1,235 +1,279 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useRef, useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 import * as C from "./Constant";
 import PreReportState from "./PreReportState/PreReportState";
 import PreReportName from "./PreReportName/PreReportName";
 import PreReportDate from "./PreReportDate/PreReportDate";
-import DeleteModal from "../Modal/DeleteModal";
 import getDateObj from "../../../lib/calander";
+import {
+  checkPreReportData,
+  checkPreReportName,
+  makeDate2Digit
+} from "../../../lib/attendanceApi";
+import {
+  createPreReportSaga,
+  setPreReportNextDate,
+  setPreReportPreDate,
+  setPreReportUtils,
+  setPreReportCalcDate,
+  setPreReportCalcYear,
+  setPreReportCalcMonth,
+  setPreReportIsClickPreState,
+  setNames,
+  setReason,
+  setPreReportText,
+  setTempReason
+} from "../../../module/action/pre_report";
+import CalendarModal from "../../Modal/CalendarModal/CalendarModal";
+import { dropModal, showModal } from "../../../module/action/modal_wrap";
+import PreReportEnroll from "./PreReportEnroll/PreReportEnroll";
+import PreReportReason from "./PreReportReason/PreReportReason";
 
-const PreReport = () => {
-  const date = new Date();
+const PreReports = () => {
+  const nameText = useSelector(state => state.preReport.text);
+  const nameArr = useSelector(state => state.preReport.names);
+  const preReportData = useSelector(state => state.preReport);
+  const {
+    tempReason: reasonMemo,
+    reason: memo,
+    state,
+    preDate,
+    nextDate
+  } = preReportData;
+  const dispatch = useDispatch();
+
+  const ShowCalendarModal = useCallback(() => {
+    dispatch(showModal(CalendarModal));
+  }, [dispatch]);
+  const DropCalendarModal = useCallback(() => {
+    dispatch(dropModal());
+  }, [dispatch]);
+  const createPreReport = useCallback(
+    payload => dispatch(createPreReportSaga(payload)),
+    [dispatch]
+  );
+  const setPreDate = useCallback(
+    payload => dispatch(setPreReportPreDate(payload)),
+    [dispatch]
+  );
+  const setNextDate = useCallback(
+    payload => dispatch(setPreReportNextDate(payload)),
+    [dispatch]
+  );
+  const setUtils = useCallback(
+    payload => dispatch(setPreReportUtils(payload)),
+    [dispatch]
+  );
+  const setCalcDate = useCallback(
+    payload => dispatch(setPreReportCalcDate(payload)),
+    [dispatch]
+  );
+  const setCalcYear = useCallback(
+    payload => dispatch(setPreReportCalcYear(payload)),
+    [dispatch]
+  );
+  const setCalcMonth = useCallback(
+    payload => dispatch(setPreReportCalcMonth(payload)),
+    [dispatch]
+  );
+  const setPreState = useCallback(
+    payload => dispatch(setPreReportIsClickPreState(payload)),
+    [dispatch]
+  );
+  const setNameArr = useCallback(payload => dispatch(setNames(payload)), [
+    dispatch
+  ]);
+  const setNameComplete = useCallback(
+    payload => dispatch(setPreReportText(payload)),
+    [dispatch]
+  );
+  const setMemo = useCallback(payload => dispatch(setReason(payload)), [
+    dispatch
+  ]);
+  const setReasonMemo = useCallback(
+    payload => dispatch(setTempReason(payload)),
+    [dispatch]
+  );
+
+  const onAddReason = useCallback(() => {
+    setMemo(reasonMemo);
+
+    alert(`사유 "${reasonMemo}" 저장되었습니다.`);
+  }, [reasonMemo]);
+
+  const onChangeReason = useCallback(e => {
+    if (e.target.value.length > 8) {
+      alert("사유는 8글자를 초과할 수 없습니다.");
+    } else {
+      setReasonMemo(e.target.value);
+    }
+  }, []);
+
+  const onEnroll = useCallback(() => {
+    if (!!~nameArr.findIndex(name => name === nameText)) {
+      alert("중복된 이름입니다.");
+    } else if (checkPreReportName(nameText)) {
+      setNameArr([...nameArr, nameText]);
+      setNameComplete("");
+    }
+  }, [nameArr, nameText]);
+
+  const onSubmit = useCallback(() => {
+    const data = {
+      reason: memo,
+      state: String(state),
+      start_date: `${preDate.year}-${makeDate2Digit(
+        preDate.month
+      )}-${makeDate2Digit(preDate.day)}`,
+      start_period: String(preDate.period),
+      end_date: `${nextDate.year}-${makeDate2Digit(
+        nextDate.month
+      )}-${makeDate2Digit(nextDate.day)}`,
+      end_period: String(nextDate.period)
+    };
+
+    if (!nameArr.length) {
+      alert("학생을 추가해주세요.");
+      return;
+    }
+
+    for (let name of nameArr) {
+      checkPreReportData({ ...data, stdnum: Number(name.slice(0, 4)) });
+    }
+
+    for (let name of nameArr) {
+      createPreReport({ ...data, stdnum: Number(name.slice(0, 4)) });
+    }
+  }, [memo, state, preDate, nextDate, nameArr]);
 
   const preClassInput = useRef("");
   const nextClassInput = useRef("");
 
-  const [preReportState, setPreReportState] = useState(["외출"]);
-
-  const [calcYear, setCalcYear] = useState(date.getFullYear());
-  const [calcMonth, setCalcMonth] = useState(date.getMonth());
-  const [calcDate, setCalcDate] = useState(getDateObj(calcYear, calcMonth));
-  const [preMonth, setPreMonth] = useState("");
-  const [nextMonth, setNextMonth] = useState("");
-  const [preDay, setPreDay] = useState("");
-  const [nextDay, setNextDay] = useState("");
-  const [preClassValue, setPreClassValue] = useState("");
-  const [nextClassValue, setNextClassValue] = useState("");
-
-  const [name, setName] = useState("");
-
-  const [modal, setModal] = useState(false);
-  const [height, setHeight] = useState("30px");
-  const [preNextState, setPreNextState] = useState("");
-
-  const [delModal, setDelModal] = useState(false);
-
-  const onOffModal = () => {
-    setModal(!modal);
+  const onPreReportClick = isSetPre => {
+    const date = isSetPre ? preDate : nextDate;
+    const inputRef = isSetPre ? preClassInput : nextClassInput;
+    if (!date.period) inputRef.current.blur();
+    setPreState(isSetPre ? "pre" : "next");
+    ShowCalendarModal();
   };
 
-  const onOffDelModal = () => {
-    setDelModal(!delModal);
-  };
+  const onPreNextSelect = (year, month, day, isSetPre, preDate, nextDate) => {
+    const date = isSetPre ? preDate : nextDate;
+    const otherDate = isSetPre ? nextDate : preDate;
+    const refInput = isSetPre ? preClassInput : nextClassInput;
+    const setDate = isSetPre ? setPreDate : setNextDate;
 
-  const onPreClick = () => {
-    preClassInput.current.blur();
-    setHeight("30px");
-    setPreNextState("pre");
-    onOffModal();
-  };
-
-  const onNextClick = () => {
-    nextClassInput.current.blur();
-    setHeight("64px");
-    setPreNextState("next");
-    onOffModal();
-  };
-
-  const onPreSelect = day => {
-    const tempPreMonth = calcMonth + 1;
-
-    setPreClassValue("");
-
-    if (nextMonth !== "") {
+    if (nextDate.month !== "") {
       if (
-        tempPreMonth > nextMonth ||
-        (tempPreMonth == nextMonth && day > nextDay)
+        isSetPre
+          ? month > nextDate.month ||
+            (month == nextDate.month && day > nextDate.day)
+          : month < preDate.month ||
+            (month == preDate.month && day < preDate.day)
       ) {
-        setPreMonth(nextMonth);
-        setPreDay(nextDay);
+        setDate({
+          ...date,
+          year,
+          month: otherDate.month,
+          day: otherDate.day
+        });
       } else {
-        setPreMonth(tempPreMonth);
-        setPreDay(day);
+        setDate({ ...date, year, month, day });
       }
     } else {
-      setPreMonth(tempPreMonth);
-      setPreDay(day);
+      setDate({ ...date, year, month, day });
     }
 
-    preClassInput.current.focus();
+    if (!date.period) refInput.current.focus();
   };
 
-  const onNextSelect = day => {
-    const tempNextMonth = calcMonth + 1;
+  const onClickCalcMonth = (year, month, isSetPre) => {
+    const calcs = isSetPre ? -1 : 1;
+    const tmpMonth = isSetPre ? 11 : 0;
 
-    setNextClassValue("");
-
-    if (preMonth !== "") {
-      if (
-        tempNextMonth < preMonth ||
-        (tempNextMonth == preMonth && day < preDay)
-      ) {
-        setNextMonth(preMonth);
-        setNextDay(preDay);
-      } else {
-        setNextMonth(tempNextMonth);
-        setNextDay(day);
-      }
+    if (month === 0) {
+      setCalcYear(isSetPre ? year + calcs : year);
+      setCalcMonth(isSetPre ? tmpMonth : month + calcs);
+    } else if (month === 11) {
+      setCalcYear(isSetPre ? year : year + calcs);
+      setCalcMonth(isSetPre ? month + calcs : tmpMonth);
     } else {
-      setNextMonth(tempNextMonth);
-      setNextDay(day);
+      setCalcMonth(month + calcs);
     }
 
-    nextClassInput.current.focus();
+    setCalcDate(getDateObj(year, month + calcs));
   };
 
-  const prevCalcMonth = () => {
-    if (calcMonth === 0) {
-      setCalcYear(calcYear - 1);
-      setCalcMonth(11);
-    } else {
-      setCalcMonth(calcMonth - 1);
-    }
-    setCalcDate(getDateObj(calcYear, calcMonth - 1));
+  const onSelectDay = (year, month, date, state, preDate, nextDate) => {
+    onPreNextSelect(year, month, date, state === "pre", preDate, nextDate);
+    DropCalendarModal();
   };
 
-  const nextCalcMonth = () => {
-    if (calcMonth === 11) {
-      setCalcYear(calcYear + 1);
-      setCalcMonth(0);
-    } else {
-      setCalcMonth(calcMonth + 1);
-    }
-    setCalcDate(getDateObj(calcYear, calcMonth + 1));
-  };
+  const onClassChange = useCallback((isSetPre, date, preDate, nextDate, e) => {
+    const setDate = isSetPre ? setPreDate : setNextDate;
 
-  const onSelectDay = day => {
-    preNextState === "pre" ? onPreSelect(day) : onNextSelect(day);
-    onOffModal();
-  };
-
-  const onPreClassChange = useCallback(e => {
-    if (e.target.value > 10) {
-      setPreClassValue(10);
-    } else if (e.target.value < 0) {
-      setPreClassValue(1);
-    } else {
-      setPreClassValue(Number(e.target.value));
-    }
-  }, []);
-
-  const onNextClassChange = useCallback(e => {
     if (Number(e.target.value) > 10) {
-      setNextClassValue(10);
-    } else if (Number(e.target.value) < 0) {
-      setNextClassValue(1);
+      setDate({ ...date, period: 10 });
+    } else if (Number(e.target.value) < 1) {
+      setDate({ ...date, period: 0 });
     } else {
-      setNextClassValue(Number(e.target.value));
+      setDate({
+        ...date,
+        period: Number(e.target.value)
+      });
     }
   }, []);
 
-  const onChangePreReportState = changeState => {
-    setPreReportState(changeState);
-  };
+  useEffect(() => {
+    const date = new Date();
 
-  const onChangeName = useCallback(e => {
-    setName(e.target.value);
-  });
-
-  const onSubmit = () => {
-    console.log(preReportState);
-    console.log(name);
-    console.log(preMonth, preDay, preClassValue);
-    console.log(nextMonth, nextDay, nextClassValue);
-  };
+    setUtils([onSelectDay, onClickCalcMonth]);
+    setCalcYear(date.getFullYear());
+    setCalcMonth(date.getMonth());
+    setCalcDate(getDateObj(date.getFullYear(), date.getMonth()));
+  }, []);
 
   return (
     <S.Container>
       <S.Func>
-        <S.FuncKindName>
+        <S.FuncKindState>
           <S.FuncTitle>종류</S.FuncTitle>
           <S.PreReportStates>
             {C.PreReportStates.map(state => (
-              <PreReportState
-                key={state}
-                stateName={state}
-                preReportState={preReportState}
-                onChangePreReportState={onChangePreReportState}
-              />
+              <PreReportState key={state} stateName={state} />
             ))}
           </S.PreReportStates>
-        </S.FuncKindName>
-        <S.FuncKindName>
-          <S.FuncTitle>이름</S.FuncTitle>
-          <PreReportName name={name} onChangeName={onChangeName} />
-        </S.FuncKindName>
+        </S.FuncKindState>
         <S.FuncDate>
-          <S.FuncTitle>기간</S.FuncTitle>
+          <S.FuncTitle>날짜</S.FuncTitle>
           <PreReportDate
-            modal={modal}
-            height={height}
-            calcDate={calcDate}
-            calcMonth={calcMonth}
-            calcYear={calcYear}
-            preMonth={preMonth}
-            nextMonth={nextMonth}
-            preDay={preDay}
-            nextDay={nextDay}
-            preClassValue={preClassValue}
-            nextClassValue={nextClassValue}
-            preClassInput={preClassInput}
-            nextClassInput={nextClassInput}
-            onOffModal={onOffModal}
-            onPreClick={onPreClick}
-            onNextClick={onNextClick}
-            onPreSelect={onPreSelect}
-            onNextSelect={onNextSelect}
-            prevCalcMonth={prevCalcMonth}
-            nextCalcMonth={nextCalcMonth}
-            onSelectDay={onSelectDay}
-            onPreClassChange={onPreClassChange}
-            onNextClassChange={onNextClassChange}
+            refInputArr={[preClassInput, nextClassInput]}
+            onClassChange={onClassChange}
+            onPreReportClick={onPreReportClick}
           />
         </S.FuncDate>
-        <S.FuncAdd onClick={onSubmit}>추가하기</S.FuncAdd>
+        <S.FuncKindName>
+          <S.FuncTitle>이름</S.FuncTitle>
+          <S.FuncNameWrap>
+            <PreReportName />
+            <S.FuncAdd onClick={onEnroll}>추가</S.FuncAdd>
+          </S.FuncNameWrap>
+        </S.FuncKindName>
+        <S.FuncKindName>
+          <S.FuncTitle>사유</S.FuncTitle>
+          <S.FuncNameWrap>
+            <PreReportReason
+              reason={reasonMemo}
+              onChangeReason={onChangeReason}
+            />
+          </S.FuncNameWrap>
+          <S.FuncAdd onClick={onAddReason}>저장</S.FuncAdd>
+        </S.FuncKindName>
       </S.Func>
-      <S.Show>
-        <S.ShowHeader>
-          <S.ShowHeaderStd>학생</S.ShowHeaderStd>
-          <S.ShowHeaderKind>종류</S.ShowHeaderKind>
-          <S.ShowHeaderDate>기간</S.ShowHeaderDate>
-        </S.ShowHeader>
-        <S.ShowBody>
-          <S.ShowBodyBox onClick={onOffDelModal}>
-            <S.ShowBodyStd>2415 유시온</S.ShowBodyStd>
-            <S.ShowBodyKind>외출</S.ShowBodyKind>
-            <S.ShowBodyDate>8월 15일 7교시 ~ 8월 18일 9교시</S.ShowBodyDate>
-          </S.ShowBodyBox>
-        </S.ShowBody>
-        {delModal && <DeleteModal onOffDelModal={onOffDelModal} />}
-      </S.Show>
+      <PreReportEnroll onSubmit={onSubmit} />
     </S.Container>
   );
 };
 
-export default PreReport;
+export default PreReports;

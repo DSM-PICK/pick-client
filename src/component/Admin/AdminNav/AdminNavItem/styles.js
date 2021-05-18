@@ -52,12 +52,11 @@ export const Container = styled(NavLink)`
           border-radius: 22px;
           margin: 5px 0;
 
-          &::after {
+          &:after {
             content: " ";
             width: 100%;
             height: 100%;
-            background: ${props => props.imglink && `url(${props.imglink})`}
-              no-repeat center;
+            background: ${props => `url(${props.link})`} no-repeat center;
           }
 
           &:hover {

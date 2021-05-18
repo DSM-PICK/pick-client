@@ -40,9 +40,9 @@ function* getTeacherTodaySaga() {
   } catch (err) {
     yield put(
       teacherActionCreater.getTeacherToday({
-        floor2: "선생님",
+        floor4: "없어요",
         floor3: "정보가",
-        floor4: "없어요"
+        floor2: "선생님"
       })
     );
   }
@@ -50,7 +50,7 @@ function* getTeacherTodaySaga() {
 
 function* getTeacherWeekSaga() {
   const now = new Date();
-  now.setDate(now.getDate() - (now.getDay() - 1));
+  now.setDate(now.getDate() - now.getDay());
 
   const dateArr = [];
   for (let i = 1; i <= 5; i++) {
@@ -65,9 +65,9 @@ function* getTeacherWeekSaga() {
       dateArr.push(res.data);
     } catch (err) {
       dateArr.push({
-        floor2: "선생님",
+        floor4: "선생님",
         floor3: "정보가",
-        floor4: "없어요"
+        floor2: "없어요"
       });
     }
   }

@@ -1,19 +1,29 @@
-import React from 'react';
-import * as S from './styles';
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPreReportState } from "../../../../module/action/pre_report";
+import * as S from "./styles";
 
-const PreReportState = (props) => {
-	const { stateName, preReportState } = props;
-	const { onChangePreReportState } = props;
+const PreReportState = props => {
+  const { stateName } = props;
 
-	return (
-		<S.Container
-			onClick={() => onChangePreReportState(stateName)}
-			stateName={stateName}
-			preReportState={preReportState}
-		>
-			{stateName}
-		</S.Container>
-	);
+  const preReportState = useSelector(state => state.preReport.state);
+
+  const dispatch = useDispatch();
+
+  const setReportState = useCallback(
+    payload => dispatch(setPreReportState(payload)),
+    [dispatch]
+  );
+
+  return (
+    <S.Container
+      onClick={() => setReportState(stateName)}
+      stateName={stateName}
+      preReportState={preReportState}
+    >
+      {stateName}
+    </S.Container>
+  );
 };
 
 export default PreReportState;

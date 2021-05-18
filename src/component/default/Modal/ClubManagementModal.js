@@ -1,37 +1,67 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import * as S from "./styles";
 import ModalClubList from "../ModalClubList/ModalClubList";
 import { EditIcon, SaveIcon, CancelIcon } from "../../../asset";
 import ImgButton from "./ImgButton/ImgButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import withModal from "./Modal";
+import {
+  changeClubDataSaga,
+  getClubLocationSaga
+} from "../../../module/action/club";
+import modalAction from "../../../module/action/modal";
+import LocationView from "./LocationView/LocationView";
 
 const ClubManagementModal = () => {
+  const dispatch = useDispatch();
   const data = useSelector(state => state.club.detail);
-  const {
-    name,
-    where,
-    teacher,
-    owner,
-    people: { one, two, three }
-  } = data;
-
-  useEffect(() => {
-    setCircleData(data);
-  }, [data]);
-
   const [isEdit, setIsEdit] = useState(false);
   const [circleData, setCircleData] = useState({
-    name,
-    where,
-    teacher,
-    owner
+    name: "",
+    location: "",
+    teacher: "",
+    club_head: "",
+    students: []
   });
+
+  useEffect(() => {
+    dispatch(getClubLocationSaga(circleData.location));
+  }, [circleData.location]);
+
+  useEffect(() => {
+    const {
+      club: { name, location, teacher, club_head },
+      students
+    } = data;
+    setCircleData({
+      name,
+      location,
+      teacher,
+      club_head,
+      students
+    });
+  }, [data]);
 
   const cancelEdit = useCallback(() => {
     setIsEdit(false);
-    setCircleData(data);
-  }, []);
+    const {
+      club: { name, location, teacher, club_head },
+      students
+    } = data;
+    setCircleData({
+      name,
+      location,
+      teacher,
+      club_head,
+      students
+    });
+  }, [data]);
   const changeIsEdit = useCallback(() => {
     setIsEdit(prev => !prev);
   }, []);
@@ -44,6 +74,45 @@ const ClubManagementModal = () => {
     }));
   }, []);
 
+  const changeClubData = useCallback(() => {
+    const { club_head, location, name, teacher } = circleData;
+    if (!name.trim() || !location) {
+      alert("빈칸을 모두 채워주세요");
+      return;
+    }
+
+    const noneList = ["/", "?", "%", "#"];
+    const isInclueNoneChar = noneList.reduce(
+      (state, noneChar) => state || name.includes(noneChar),
+      false
+    );
+    if (isInclueNoneChar) {
+      alert("/, ?, %, #는 삽입 불가합니다");
+      return;
+    }
+    if (name.length > 20) {
+      alert("동아리 이름은 20자 제한입니다");
+      return;
+    }
+    const { club } = data;
+
+    const newObject = { ...circleData };
+    Object.keys(newObject).forEach(key => {
+      circleData[key] === club[key] && delete newObject[key];
+    });
+    delete newObject["students"];
+
+    dispatch(changeClubDataSaga([club.name, newObject]));
+    dispatch(modalAction.creater.modalOff());
+  }, [circleData, data]);
+
+  const setLocation = useCallback(location => {
+    setCircleData(prev => ({
+      ...prev,
+      location
+    }));
+  }, []);
+
   const render = () => {
     if (isEdit) {
       return (
@@ -52,7 +121,11 @@ const ClubManagementModal = () => {
             <ImgButton imgSrc={CancelIcon} onClick={cancelEdit} color="#E81A95">
               취소
             </ImgButton>
-            <ImgButton imgSrc={SaveIcon} color="#267DFF" onClick={changeIsEdit}>
+            <ImgButton
+              imgSrc={SaveIcon}
+              color="#267DFF"
+              onClick={changeClubData}
+            >
               저장
             </ImgButton>
           </S.HeaderLeft>
@@ -61,15 +134,21 @@ const ClubManagementModal = () => {
               onChange={changeCircleData}
               fontSize={20}
               name="name"
+              placeholder="동아리 이름"
               value={circleData.name}
             />
-            <S.Input
-              onChange={changeCircleData}
-              fontSize={15}
-              color="#707070"
-              name="where"
-              value={circleData.where}
-            />
+            <S.ViewWrap>
+              <S.Input
+                autoComplete="off"
+                onChange={changeCircleData}
+                fontSize={15}
+                color="#707070"
+                name="location"
+                placeholder="동아리 위치"
+                value={circleData.location}
+              />
+              <LocationView onClick={setLocation} />
+            </S.ViewWrap>
           </S.HeaderCenter>
           <S.HeaderRight active={isEdit}>
             <S.Input
@@ -77,14 +156,16 @@ const ClubManagementModal = () => {
               fontSize={13}
               color="#707070"
               name="teacher"
+              placeholder="담당 선생님"
               value={circleData.teacher}
             />
             <S.Input
               onChange={changeCircleData}
               fontSize={13}
               color="#707070"
-              name="owner"
-              value={circleData.owner}
+              name="club_head"
+              placeholder="부장"
+              value={circleData.club_head}
             />
           </S.HeaderRight>
         </>
@@ -99,11 +180,11 @@ const ClubManagementModal = () => {
         </S.HeaderLeft>
         <S.HeaderCenter>
           <div>{circleData.name}</div>
-          <div>{circleData.where}</div>
+          <div>{circleData.location}</div>
         </S.HeaderCenter>
         <S.HeaderRight>
-          <div>담당 : {circleData.teacher}</div>
-          <div>부장 : {circleData.owner}</div>
+          <div>담당 : {circleData.teacher || "선생님 정보가 없어요"}</div>
+          <div>부장 : {circleData.club_head || "부장이 없어요"}</div>
         </S.HeaderRight>
       </>
     );
@@ -113,7 +194,7 @@ const ClubManagementModal = () => {
     <>
       <S.Header>{render()}</S.Header>
       <S.Body>
-        <ModalClubList one={one} two={two} three={three} />
+        <ModalClubList list={circleData.students} />
       </S.Body>
     </>
   );

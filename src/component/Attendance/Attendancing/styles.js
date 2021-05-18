@@ -1,52 +1,66 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-	display: flex;
-	height: 100%;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const HeaderWhere = styled.div`
-	display: flex;
-	align-items: center;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const HeaderBackBtn = styled.div`
-	display: flex;
-	width: 3em;
-	height: 3em;
-	margin-right: 20px;
-	align-items: center;
-	justify-content: center;
-	background: url('../../../src/asset/Header/back.png') no-repeat center/100%;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  background: ${props => `url('${props.url}') no-repeat center/50%`};
 `;
 
 export const HeaderFloor = styled.div`
-	font-size: 38px;
-	font-weight: bolder;
+  display: flex;
+  height: 48px;
+  font-size: 28px;
+  font-weight: bolder;
+  align-items: center;
 `;
 
 export const HeaderWhen = styled.div`
-	display: flex;
-	height: 80px;
-	flex-direction: column;
-	justify-content: space-evenly;
+  position: absolute;
+  display: flex;
+  margin: 0 0 0 50%;
+  height: 60px;
+  flex-direction: column;
+  transform: translateX(-50%);
+  justify-content: center;
 `;
 
 export const HeaderMonthAndDay = styled.p`
-	text-align: center;
-	font-size: 30px;
-	font-weight: bold;
+  padding-bottom: 3px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 export const HeaderDayOfTheWeek = styled.p`
-	text-align: center;
-	font-size: 18px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 200;
 `;
 
 export const HeaderWho = styled.div`
-	font-size: 30px;
-	font-weight: bold;
+  display: flex;
+  padding-right: 10px;
+  margin-right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  align-items: center;
+  flex-direction: column;
 `;

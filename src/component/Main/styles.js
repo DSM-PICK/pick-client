@@ -1,28 +1,34 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  height: auto;
+  flex-direction: column;
+`;
+
 export const MainHeader = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const MainHeaderLogo = styled.div`
   width: 500px;
-  height: 60px;
+  height: 40px;
   background: ${props =>
       props.url.length > 1 ? `url(${props.url})` : "#ffffff"}
     no-repeat;
-  background-size: 500px 60px;
+  background-size: 500px 40px;
 `;
 
 export const MainBodyTopText = styled.div`
   display: flex;
   height: 120px;
-  margin-top: 62px;
+  margin: 32px 0;
   color: #20223e;
-  font-size: 50px;
+  font-size: 38px;
   font-weight: bold;
   text-align: center;
   align-items: center;
@@ -30,7 +36,10 @@ export const MainBodyTopText = styled.div`
   flex-direction: column;
 `;
 
-export const MainBodyTopWho = styled.div``;
+export const MainBodyTopWho = styled.div`
+  display: flex;
+  align-items: center;
+`;
 export const MainBodyTopWhen = styled.div``;
 export const MainBodyTopWhoName = styled.span``;
 export const MainBodyTopWhenTime = styled.span`
@@ -46,6 +55,8 @@ export const MainBodyOffwork = styled.div`
 
 export const MainBodyOffworkWhen = styled.span`
   color: #2764a7;
+  font-size: 32px;
+  font-weight: bold;
 `;
 
 export const MainBodyBox = styled.div`
@@ -53,12 +64,11 @@ export const MainBodyBox = styled.div`
   width: 100%;
   height: auto;
   color: #20223e;
-  padding: 10px 0 20px 0;
 
   & > div {
     display: flex;
     border: none;
-    padding: 20px 0;
+    padding: 0 0 20px 0;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -69,10 +79,11 @@ export const MainBodyBox = styled.div`
   }
 `;
 
-export const MainBodyBoxText = styled.p`
-  height: 34px;
-  margin-left: 30px;
-  font-size: 32px;
+export const MainBodyBoxText = styled.span`
+  /* height: 34px; */
+  /* margin-left: 30px; */
+  display: flex;
+  font-size: 24px;
   font-weight: bold;
 `;
 
@@ -95,24 +106,18 @@ export const MainBodyBoxBeforeFunc = styled.div`
   margin-left: 20px;
 `;
 
-export const MainBodyLogoutLayout = styled.div`
-  position: absolute;
-  display: flex;
-  height: 27px;
-  left: calc(50% + 230px);
-  transform: translateX(-50%);
-  top: 200px;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const MainBodyLogoutButton = styled.button`
-  width: 98px;
-  height: 27px;
-  background: white;
-  font-size: 14px;
+  position: absolute;
+  left: 25px;
+  width: 100px;
+  height: 25px;
+  color: #ff406e;
+  font-size: 20px;
   font-weight: bold;
-  color: #707070;
-  border: 1px solid #707070;
-  border-radius: 30px;
+  border: none;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

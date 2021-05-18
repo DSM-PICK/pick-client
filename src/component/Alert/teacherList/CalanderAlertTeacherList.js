@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 import { selectSecondDayTeacher } from "../../../module/action/calander";
 
 const CalanderAlertTeacherList = ({ teachers }) => {
-  useEffect(() => {
-    console.log("캘린더 얼랏 리스트");
-  });
+  useEffect(() => {});
   const [floor2, floor3, floor4] = teachers;
   const dispatch = useDispatch();
 
-  const onClick = (payload) => {
+  const onClick = payload => {
     dispatch(selectSecondDayTeacher(payload));
   };
 

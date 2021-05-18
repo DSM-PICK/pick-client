@@ -1,25 +1,22 @@
-import React, { useCallback } from "react";
+import React from "react";
 import AttendanceAnchor from "./anchor/AttendanceAnchor";
 import Body from "../../Body/Body";
-import { useDispatch } from "react-redux";
-import { getClubFloorDataSaga } from "../../../module/action/attendance";
+import { ClubPng, ClassPng } from "../../../asset";
 
 const AttendanceBody = props => {
-  const { anchorItems } = props;
+  const { anchorItems, mode } = props;
 
-  const dispatch = useDispatch();
-  const clubFloorDataGet = useCallback(() => dispatch(getClubFloorDataSaga()), [
-    dispatch
-  ]);
+  const pngArr = [ClubPng, ClassPng];
 
   return (
-    <Body height="auto">
-      {anchorItems.map(anchorItems => (
+    <Body mode={mode}>
+      {anchorItems.map((anchorItems, index) => (
         <AttendanceAnchor
-          onClick={clubFloorDataGet()}
           key={anchorItems.link}
           text={anchorItems.text}
-          imgLink={anchorItems.imgLink}
+          imgLink={
+            anchorItems.imgLink === "" ? anchorItems.imgLink : pngArr[index]
+          }
           link={anchorItems.link}
         />
       ))}

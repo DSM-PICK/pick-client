@@ -18,11 +18,20 @@ export const LeftTextWrap = styled.div`
 
 export const MiddleWrap = styled.div`
   text-align: center;
+  display: flex;
+  width: 174px;
+  justify-content: space-between;
+
+  > button {
+    font-size: 30px;
+    background: none;
+    border: none;
+  }
 `;
 
 export const Box = styled.div`
-  width: ${(props) => props.width};
-  height: ${(props) => props.width};
+  width: ${props => props.width};
+  height: ${props => props.width};
 `;
 
 export const MiddleFirstText = styled.div`
