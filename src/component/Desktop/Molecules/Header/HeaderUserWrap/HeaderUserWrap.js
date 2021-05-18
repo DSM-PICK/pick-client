@@ -5,14 +5,14 @@ import * as S from "./styles";
 
 const HeaderUserWrap = props => {
   const { userName } = props;
-  const { onLogout } = props;
+  const { onLogout, onChangePassword } = props;
 
   return (
     <S.Container>
       <S.UserName>{`${userName} 선생님`}</S.UserName>
       <Img src={DropDownArrow} css={S.ImgCSS} />
       <S.UserWrapModal>
-        <S.ModalButton onClick={onLogout} color="#000000">
+        <S.ModalButton onClick={onChangePassword} color="#000000">
           비밀번호 변경
         </S.ModalButton>
         <S.ModalButton onClick={onLogout} color="#FF406E">
