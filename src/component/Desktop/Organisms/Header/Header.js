@@ -6,9 +6,6 @@ import HeaderUserWrap from "../../Molecules/Header/HeaderUserWrap/HeaderUserWrap
 import * as S from "./styles";
 
 const Header = props => {
-  const { userName } = props;
-  const { onLogout } = props;
-
   return (
     <S.Container>
       <S.Wrap>
@@ -21,7 +18,7 @@ const Header = props => {
             activeStyle={S.NavLinkActiveStyle}
           />
         </S.NavLinkWrap>
-        <HeaderUserWrap userName={userName} onLogout={onLogout} />
+        <HeaderUserWrap {...props} />
       </S.Wrap>
     </S.Container>
   );
