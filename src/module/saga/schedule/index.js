@@ -7,8 +7,8 @@ import {
   setDateMiniCalander,
   getScheduleMiniCalanderSuccess
 } from "../../action/schedule";
-import WindowCalander from "window-calander";
 import * as scheduleApi from "../../../lib/api/schedule";
+import WindowCalander from "../../../lib/windowCalander";
 
 function* getScheduleSaga(action) {
   const { year, month } = action.payload;
