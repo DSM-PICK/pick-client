@@ -153,7 +153,6 @@ const DLoginPage = () => {
         return;
       }
       const res = await authApi.getRoom(e.target.value);
-      console.log(res.data);
       setRoomList(res.data);
     } catch (err) {
       console.log(err);
@@ -161,7 +160,6 @@ const DLoginPage = () => {
   }, []);
 
   const setClass = useCallback(className => {
-    console.log(className);
     setRegisterData(prev => ({ ...prev, managedClassroomName: className }));
     setRoomList([]);
   }, []);

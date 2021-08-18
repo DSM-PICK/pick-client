@@ -181,7 +181,6 @@ function* getAttendanceChangeListSaga() {
         date.getMonth() + 1
       )}-${makeDate2Digit(date.getDate())}`
     );
-    console.log(REQUEST_URL);
     const attendanceChangeList = yield call(
       requestGetApiWithAccessToken,
       REQUEST_URL
