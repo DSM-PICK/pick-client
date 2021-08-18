@@ -132,7 +132,7 @@ const DLoginPage = () => {
           id,
           name,
           password,
-          managedClassroomFloor: managedClassroomName.floor,  
+          managedClassroomFloor: managedClassroomName.floor,
           managedClassroomPriority: managedClassroomName.priority
         });
         setIsLoginMode(true);
@@ -153,6 +153,7 @@ const DLoginPage = () => {
         return;
       }
       const res = await authApi.getRoom(e.target.value);
+      console.log(res.data);
       setRoomList(res.data);
     } catch (err) {
       console.log(err);
@@ -160,6 +161,7 @@ const DLoginPage = () => {
   }, []);
 
   const setClass = useCallback(className => {
+    console.log(className);
     setRegisterData(prev => ({ ...prev, managedClassroomName: className }));
     setRoomList([]);
   }, []);
@@ -208,7 +210,7 @@ const DLoginPage = () => {
                 <S.AuthClass>
                   <S.AuthInput
                     autoComplete="off"
-                    value={registerData.managedClassroomName.location}
+                    value={registerData.managedClassroomName.short_name}
                     onChange={getRoomList}
                     name="managedClassroomName"
                     placeholder="담당 교실"
@@ -216,8 +218,11 @@ const DLoginPage = () => {
                   {roomList.length ? (
                     <S.AuthClassList>
                       {roomList.map(now => (
-                        <S.AuthClassItem onClick={() => setClass(now)}>
-                          {now.location}
+                        <S.AuthClassItem
+                          onClick={() => setClass(now)}
+                          key={now.short_name}
+                        >
+                          {now.short_name}
                         </S.AuthClassItem>
                       ))}
                     </S.AuthClassList>
